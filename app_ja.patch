@@ -173,8 +173,8 @@ diff -urN gitlab-rails.bk/app/views/dashboard/_projects_filter.html.haml gitlab-
          %li{ class: (group.name == params[:group]) ? 'active' : 'light' }
 diff -urN gitlab-rails.bk/app/views/dashboard/_sidebar.html.haml gitlab-rails/app/views/dashboard/_sidebar.html.haml
 --- gitlab-rails.bk/app/views/dashboard/_sidebar.html.haml	2014-03-04 01:23:53.000000000 +0900
-+++ gitlab-rails/app/views/dashboard/_sidebar.html.haml	2014-03-22 09:02:16.578663903 +0900
-@@ -1,25 +1,25 @@
++++ gitlab-rails/app/views/dashboard/_sidebar.html.haml	2014-03-22 18:10:52.977637718 +0900
+@@ -1,11 +1,11 @@
  %ul.nav.nav-tabs.dash-sidebar-tabs
    %li.active
      = link_to '#projects', 'data-toggle' => 'tab', id: 'sidebar-projects-tab' do

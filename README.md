@@ -16,10 +16,14 @@ GitLabはi18nに対応しないとのことですが、
 
 ## 動作確認環境
 
-* MacBookPro
-* VirtualBox CentOS 6.5
-* GitLab Omnibus package CentOS 6.5 64bit 6.6.4
-* Git 1.9.0
+| ソフトウェア | バージョン等                                  |
+| ------------ | --------------------------------------------- |
+| マシン       | MacBookPro                                    |
+| OS           | OS X 10.9                                     |
+| VM           | VirtualBox 4.3.8                              |
+| ゲストOS     | CentOS 6.5                                    |
+| GitLab       | GitLab Omnibus package CentOS 6.5 64bit 6.6.4 |
+| Git          | 1.9.0                                         |
 
 ## 使い方
 

@@ -2661,6 +2661,84 @@ diff -urN gitlab-rails.bk/app/views/projects/show.html.haml gitlab-rails/app/vie
  
  
        - if @project.gitlab_ci?
+diff -urN gitlab-rails.bk/app/views/projects/snippets/_blob.html.haml gitlab-rails/app/views/projects/snippets/_blob.html.haml
+--- gitlab-rails.bk/app/views/projects/snippets/_blob.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/snippets/_blob.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -5,6 +5,6 @@
+     %span.options
+       .btn-group.tree-btn-group.pull-right
+         - if can?(current_user, :admin_project_snippet, @project) || @snippet.author == current_user
+-          = link_to "Edit", edit_project_snippet_path(@project, @snippet), class: "btn btn-tiny", title: 'Edit Snippet'
++          = link_to "編集", edit_project_snippet_path(@project, @snippet), class: "btn btn-tiny", title: 'スニペットを編集'
+         = link_to "Raw", raw_project_snippet_path(@project, @snippet), class: "btn btn-tiny", target: "_blank"
+   = render 'snippets/blob_content'
+diff -urN gitlab-rails.bk/app/views/projects/snippets/_form.html.haml gitlab-rails/app/views/projects/snippets/_form.html.haml
+--- gitlab-rails.bk/app/views/projects/snippets/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/snippets/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,5 +1,5 @@
+ %h3.page-title
+-  = @snippet.new_record? ? "New Snippet" : "Edit Snippet ##{@snippet.id}"
++  = @snippet.new_record? ? "新しいスニペット" : "スニペット ##{@snippet.id} を編集"
+ %hr
+ .snippet-form-holder
+   = form_for [@project, @snippet], as: :project_snippet, url: url, html: {class: "form-horizontal snippet-form"} do |f|
+@@ -10,11 +10,11 @@
+             %li= msg
+ 
+     .form-group
+-      = f.label :title, class: 'control-label'
++      = f.label :title, 'タイトル', class: 'control-label'
+       .col-sm-10= f.text_field :title, placeholder: "Example Snippet", class: 'form-control', required: true
+     .form-group
+       .file-editor
+-        = f.label :file_name, "File", class: 'control-label'
++        = f.label :file_name, "ファイル", class: 'control-label'
+         .col-sm-10
+           .file-holder.snippet
+             .file-title
+@@ -25,14 +25,14 @@
+ 
+     .form-actions
+       - if @snippet.new_record?
+-        = f.submit 'Create snippet', class: "btn-create btn"
++        = f.submit 'スニペットを作成', class: "btn-create btn"
+       - else
+-        = f.submit 'Save', class: "btn-save btn"
++        = f.submit '保存', class: "btn-save btn"
+ 
+       - unless @snippet.new_record?
+         .pull-right.prepend-left-20
+-          = link_to 'Remove snippet', project_snippet_path(@project, @snippet), data: { confirm: 'Are you sure?' }, method: :delete, class: "btn pull-right btn-remove delete-snippet prepend-left-10", id: "destroy_snippet_#{@snippet.id}"
+-      = link_to "Cancel", project_snippets_path(@project), class: "btn btn-cancel"
++          = link_to 'スニペットを削除', project_snippet_path(@project, @snippet), data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn pull-right btn-remove delete-snippet prepend-left-10", id: "destroy_snippet_#{@snippet.id}"
++      = link_to "キャンセル", project_snippets_path(@project), class: "btn btn-cancel"
+ 
+ :javascript
+   var editor = ace.edit("editor");
+diff -urN gitlab-rails.bk/app/views/projects/snippets/index.html.haml gitlab-rails/app/views/projects/snippets/index.html.haml
+--- gitlab-rails.bk/app/views/projects/snippets/index.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/snippets/index.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,15 +1,15 @@
+ %h3.page-title
+-  Snippets
++  スニペット
+   - if can? current_user, :write_project_snippet, @project
+-    = link_to new_project_snippet_path(@project), class: "btn btn-new pull-right", title: "New Snippet" do
+-      Add new snippet
++    = link_to new_project_snippet_path(@project), class: "btn btn-new pull-right", title: "新しいスニペット" do
++      新しいスニペットを追加
+ 
+ %p.light
+-  Share code pastes with others out of git repository
++  コードをGitリポジトリの外で共有しましょう。
+ 
+ %hr
+ %ul.bordered-list
+   = render partial: "projects/snippets/snippet", collection: @snippets
+   - if @snippets.empty?
+     %li
+-      %h3.nothing_here_message Nothing here.
++      %h3.nothing_here_message スニペットはありません
 diff -urN gitlab-rails.bk/app/views/projects/tags/_tag.html.haml gitlab-rails/app/views/projects/tags/_tag.html.haml
 --- gitlab-rails.bk/app/views/projects/tags/_tag.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/tags/_tag.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -3300,18 +3378,35 @@ diff -urN gitlab-rails.bk/app/views/shared/_sort_dropdown.html.haml gitlab-rails
        = link_to project_filter_path(sort: 'milestone_due_later') do
 -        Milestone due later
 +        マイルストーンが遠い順
+diff -urN gitlab-rails.bk/app/views/snippets/_blob.html.haml gitlab-rails/app/views/snippets/_blob.html.haml
+--- gitlab-rails.bk/app/views/snippets/_blob.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/snippets/_blob.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -5,7 +5,7 @@
+     %span.options
+       .btn-group.tree-btn-group.pull-right
+         - if @snippet.author == current_user
+-          = link_to "Edit", edit_snippet_path(@snippet), class: "btn btn-tiny", title: 'Edit Snippet'
+-          = link_to "Delete", snippet_path(@snippet), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-tiny", title: 'Delete Snippet'
++          = link_to "編集", edit_snippet_path(@snippet), class: "btn btn-tiny", title: 'スニペットを編集'
++          = link_to "削除", snippet_path(@snippet), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-tiny", title: 'スニペットを削除'
+         = link_to "Raw", raw_snippet_path(@snippet), class: "btn btn-tiny", target: "_blank"
+   = render 'snippets/blob_content'
 diff -urN gitlab-rails.bk/app/views/snippets/_form.html.haml gitlab-rails/app/views/snippets/_form.html.haml
 --- gitlab-rails.bk/app/views/snippets/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/snippets/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,5 +1,5 @@
  %h3.page-title
 -  = @snippet.new_record? ? "New Snippet" : "Edit Snippet ##{@snippet.id}"
-+  = @snippet.new_record? ? "新しいスニペット" : "スニペットを編集 ##{@snippet.id}"
++  = @snippet.new_record? ? "新しいスニペット" : "スニペット ##{@snippet.id} を編集"
  %hr
  .snippet-form-holder
    = form_for @snippet, as: :personal_snippet, url: url, html: { class: "form-horizontal snippet-form" } do |f|
-@@ -13,23 +13,23 @@
-       = f.label :title, class: 'control-label'
+@@ -10,26 +10,26 @@
+             %li= msg
+ 
+     .form-group
+-      = f.label :title, class: 'control-label'
++      = f.label :title, 'タイトル', class: 'control-label'
        .col-sm-10= f.text_field :title, placeholder: "Example Snippet", class: 'form-control', required: true
      .form-group
 -      = f.label "Access", class: 'control-label'
@@ -3358,6 +3453,18 @@ diff -urN gitlab-rails.bk/app/views/snippets/_form.html.haml gitlab-rails/app/vi
  
  
  :javascript
+diff -urN gitlab-rails.bk/app/views/snippets/_snippet.html.haml gitlab-rails/app/views/snippets/_snippet.html.haml
+--- gitlab-rails.bk/app/views/snippets/_snippet.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/snippets/_snippet.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -5,7 +5,7 @@
+       - if snippet.private?
+         %span.label.label-gray
+           %i.icon-lock
+-          private
++          プライベート
+     %span.cgray.monospace.tiny.pull-right
+       = snippet.file_name
+ 
 diff -urN gitlab-rails.bk/app/views/snippets/_snippets.html.haml gitlab-rails/app/views/snippets/_snippets.html.haml
 --- gitlab-rails.bk/app/views/snippets/_snippets.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/snippets/_snippets.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -3429,6 +3536,52 @@ diff -urN gitlab-rails.bk/app/views/snippets/index.html.haml gitlab-rails/app/vi
  
  %hr
  = render 'snippets'
+diff -urN gitlab-rails.bk/app/views/snippets/show.html.haml gitlab-rails/app/views/snippets/show.html.haml
+--- gitlab-rails.bk/app/views/snippets/show.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/snippets/show.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -4,11 +4,11 @@
+   - if @snippet.private?
+     %span.label.label-success
+       %i.icon-lock
+-      private
++      プライベート
+ 
+   .pull-right
+-    = link_to new_snippet_path, class: "btn btn-new btn-small", title: "New Snippet" do
+-      Add new snippet
++    = link_to new_snippet_path, class: "btn btn-new btn-small", title: "新しいスニペット" do
++      新しいスニペットを追加
+ 
+ 
+ .append-bottom-20
+@@ -23,9 +23,9 @@
+   .back-link
+     - if @snippet.author == current_user
+       = link_to user_snippets_path(current_user) do
+-        &larr; my snippets
++        &larr; マイスニペット
+     - else
+       = link_to snippets_path do
+-        &larr; discover snippets
++        &larr; スニペットを探す
+ 
+ %div= render 'blob'
+diff -urN gitlab-rails.bk/app/views/snippets/user_index.html.haml gitlab-rails/app/views/snippets/user_index.html.haml
+--- gitlab-rails.bk/app/views/snippets/user_index.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/snippets/user_index.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -3,9 +3,9 @@
+   = @user.name
+   %span
+     \/
+-    Snippets
+-  = link_to new_snippet_path, class: "btn btn-small add_new pull-right", title: "New Snippet" do
+-    Add new snippet
++    スニペット
++  = link_to new_snippet_path, class: "btn btn-small add_new pull-right", title: "新しいスニペット" do
++    新しいスニペットを追加
+ 
+ %hr
+ 
 diff -urN gitlab-rails.bk/app/views/users/_profile.html.haml gitlab-rails/app/views/users/_profile.html.haml
 --- gitlab-rails.bk/app/views/users/_profile.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/users/_profile.html.haml	2014-03-22 09:00:00.000000000 +0900

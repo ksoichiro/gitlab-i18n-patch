@@ -424,6 +424,140 @@ diff -urN gitlab-rails.bk/app/views/events/event/_note.html.haml gitlab-rails/ap
  
  .event-body
    .event-note
+diff -urN gitlab-rails.bk/app/views/groups/edit.html.haml gitlab-rails/app/views/groups/edit.html.haml
+--- gitlab-rails.bk/app/views/groups/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/groups/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -4,15 +4,15 @@
+       %li.active
+         = link_to '#tab-edit', 'data-toggle' => 'tab' do
+           %i.icon-edit
+-          Group
++          グループ
+       %li
+         = link_to '#tab-projects', 'data-toggle' => 'tab' do
+           %i.icon-folder-close
+-          Projects
++          プロジェクト
+       %li
+         = link_to '#tab-remove', 'data-toggle' => 'tab' do
+           %i.icon-remove-sign
+-          Remove
++          削除
+ 
+   .col-md-10
+     .tab-content
+@@ -20,7 +20,7 @@
+         .ui-box
+           .title
+             %strong= @group.name
+-            group settings:
++            グループの設定:
+           %div.form-holder
+             = form_for @group, html: { multipart: true, class: "form-horizontal" }, authenticity_token: true do |f|
+               - if @group.errors.any?
+@@ -28,12 +28,12 @@
+                   %span= @group.errors.full_messages.first
+               .form-group
+                 = f.label :name, class: 'control-label' do
+-                  Group name
++                  グループ名
+                 .col-sm-10
+                   = f.text_field :name, placeholder: "Ex. OpenSource", class: "form-control left"
+ 
+               .form-group.group-description-holder
+-                = f.label :description, "Details", class: 'control-label'
++                = f.label :description, "詳細", class: 'control-label'
+                 .col-sm-10
+                   = f.text_area :description, maxlength: 250, class: "form-control js-gfm-input", rows: 4
+ 
+@@ -43,52 +43,52 @@
+                   = image_tag group_icon(@group.to_param), alt: '', class: 'avatar s160'
+                   %p.light
+                     - if @group.avatar?
+-                      You can change your group avatar here
++                      アバターを変更することができます。
+                     - else
+-                      You can upload an group avatar here
++                      アバターをアップロードすることができます。
+                   %a.choose-btn.btn.btn-small.js-choose-group-avatar-button
+                     %i.icon-paper-clip
+-                    %span Choose File ...
++                    %span ファイルを選択 ...
+                   &nbsp;
+-                  %span.file_name.js-avatar-filename File name...
++                  %span.file_name.js-avatar-filename ファイル名...
+                   = f.file_field :avatar, class: "js-group-avatar-input hidden"
+-                  .light The maximum file size allowed is 100KB.
++                  .light ファイルの最大サイズは100KBです
+                   - if @group.avatar?
+                     %hr
+-                    = link_to 'Remove avatar', group_avatar_path(@group.to_param), data: { confirm: "Group avatar will be removed. Are you sure?"}, method: :delete, class: "btn btn-remove btn-small remove-avatar"
++                    = link_to 'アバターを削除', group_avatar_path(@group.to_param), data: { confirm: "グループアバターを削除します。よろしいですか？"}, method: :delete, class: "btn btn-remove btn-small remove-avatar"
+ 
+               .form-actions
+-                = f.submit 'Save group', class: "btn btn-save"
++                = f.submit 'グループを保存', class: "btn btn-save"
+ 
+       .tab-pane#tab-projects
+         .ui-box
+           .title
+             %strong= @group.name
+-            projects:
++            のプロジェクト:
+             - if can? current_user, :manage_group, @group
+               %span.pull-right
+                 = link_to new_project_path(namespace_id: @group.id), class: "btn btn-tiny" do
+                   %i.icon-plus
+-                  New Project
++                  新しいプロジェクト
+           %ul.well-list
+             - @group.projects.each do |project|
+               %li
+                 = visibility_level_icon(project.visibility_level)
+                 = link_to project.name_with_namespace, project
+                 .pull-right
+-                  = link_to 'Members', project_team_index_path(project), id: "edit_#{dom_id(project)}", class: "btn btn-small"
+-                  = link_to 'Edit', edit_project_path(project), id: "edit_#{dom_id(project)}", class: "btn btn-small"
+-                  = link_to 'Remove', project, data: { confirm: remove_project_message(project)}, method: :delete, class: "btn btn-small btn-remove"
++                  = link_to 'メンバー', project_team_index_path(project), id: "edit_#{dom_id(project)}", class: "btn btn-small"
++                  = link_to '編集', edit_project_path(project), id: "edit_#{dom_id(project)}", class: "btn btn-small"
++                  = link_to '削除', project, data: { confirm: remove_project_message(project)}, method: :delete, class: "btn btn-small btn-remove"
+             - if @group.projects.blank?
+-              %p.nothing_here_message This group has no projects yet
++              %p.nothing_here_message このグループにはまだプロジェクトがありません
+ 
+       .tab-pane#tab-remove
+         .ui-box.ui-box-danger
+-          .title Remove group
++          .title グループの削除
+           .body
+             %p
+-              Removing group will cause all child projects and resources to be removed.
++              グループを削除すると、子プロジェクトとリソースも削除されます。
+             %p
+-              %strong Removed group can not be restored!
++              %strong グループの削除は元に戻せません！
+ 
+-            = link_to 'Remove Group', @group, data: {confirm: 'Removed group can not be restored! Are you sure?'}, method: :delete, class: "btn btn-remove"
++            = link_to 'グループの削除', @group, data: {confirm: 'グループの削除は元に戻せません！本当に削除しますか？'}, method: :delete, class: "btn btn-remove"
+diff -urN gitlab-rails.bk/app/views/groups/issues.html.haml gitlab-rails/app/views/groups/issues.html.haml
+--- gitlab-rails.bk/app/views/groups/issues.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/groups/issues.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,11 +1,10 @@
+ %h3.page-title
+-  Issues
+-  %span.pull-right #{@issues.total_count} issues
++  課題
++  %span.pull-right #{@issues.total_count} 件の課題
+ 
+ %p.light
+-  Only issues from
+   %strong #{@group.name}
+-  group are listed here. To see all issues you should visit #{link_to 'dashboard', issues_dashboard_path} page.
++  グループの課題だけが表示されています。すべての課題を確認するには #{link_to 'ダッシュボード', issues_dashboard_path} を表示してください。
+ %hr
+ 
+ .row
 diff -urN gitlab-rails.bk/app/views/groups/members.html.haml gitlab-rails/app/views/groups/members.html.haml
 --- gitlab-rails.bk/app/views/groups/members.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/groups/members.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -436,6 +570,24 @@ diff -urN gitlab-rails.bk/app/views/groups/members.html.haml gitlab-rails/app/vi
  
    - if current_user.can? :manage_group, @group
      .pull-right
+diff -urN gitlab-rails.bk/app/views/groups/new.html.haml gitlab-rails/app/views/groups/new.html.haml
+--- gitlab-rails.bk/app/views/groups/new.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/groups/new.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -4,12 +4,12 @@
+       %span= @group.errors.full_messages.first
+   .form-group
+     = f.label :name, class: 'control-label' do
+-      Group name
++      グループ名
+     .col-sm-10
+       = f.text_field :name, placeholder: "Ex. OpenSource", class: "form-control"
+ 
+   .form-group.group-description-holder
+-    = f.label :description, "Details", class: 'control-label'
++    = f.label :description, "詳細", class: 'control-label'
+     .col-sm-10
+       = f.text_area :description, maxlength: 250, class: "form-control js-gfm-input", rows: 4
+ 
 diff -urN gitlab-rails.bk/app/views/help/_shortcuts.html.haml gitlab-rails/app/views/help/_shortcuts.html.haml
 --- gitlab-rails.bk/app/views/help/_shortcuts.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/help/_shortcuts.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -583,6 +735,18 @@ diff -urN gitlab-rails.bk/app/views/layouts/application.html.haml gitlab-rails/a
      = render "layouts/flash"
      %nav.main-nav.navbar-collapse.collapse
        .container= render 'layouts/nav/dashboard'
+diff -urN gitlab-rails.bk/app/views/layouts/group.html.haml gitlab-rails/app/views/layouts/group.html.haml
+--- gitlab-rails.bk/app/views/layouts/group.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/layouts/group.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -3,7 +3,7 @@
+   = render "layouts/head", title: group_head_title
+   %body{class: "#{app_theme} application", :'data-page' => body_data_page}
+     = render "layouts/broadcast"
+-    = render "layouts/head_panel", title: "group: #{@group.name}"
++    = render "layouts/head_panel", title: "グループ: #{@group.name}"
+     = render "layouts/flash"
+     %nav.main-nav.navbar-collapse.collapse
+       .container= render 'layouts/nav/group'
 diff -urN gitlab-rails.bk/app/views/layouts/nav/_dashboard.html.haml gitlab-rails/app/views/layouts/nav/_dashboard.html.haml
 --- gitlab-rails.bk/app/views/layouts/nav/_dashboard.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/layouts/nav/_dashboard.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -1297,7 +1461,8 @@ diff -urN gitlab-rails.bk/app/views/profiles/show.html.haml gitlab-rails/app/vie
 +            .light ファイルの最大サイズは100KBです
              - if @user.avatar?
                %hr
-               = link_to 'Remove avatar', profile_avatar_path, data: { confirm: "Avatar will be removed. Are you sure?"}, method: :delete, class: "btn btn-remove btn-small remove-avatar"
+-              = link_to 'Remove avatar', profile_avatar_path, data: { confirm: "Avatar will be removed. Are you sure?"}, method: :delete, class: "btn btn-remove btn-small remove-avatar"
++              = link_to 'Remove avatar', profile_avatar_path, data: { confirm: "アバターを削除します。よろしいですか？"}, method: :delete, class: "btn btn-remove btn-small remove-avatar"
  
    .form-actions
 -    = f.submit 'Save changes', class: "btn btn-save"

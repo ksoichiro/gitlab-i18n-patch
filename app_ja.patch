@@ -173,8 +173,8 @@ diff -urN gitlab-rails.bk/app/views/dashboard/_projects_filter.html.haml gitlab-
          %li{ class: (group.name == params[:group]) ? 'active' : 'light' }
 diff -urN gitlab-rails.bk/app/views/dashboard/_sidebar.html.haml gitlab-rails/app/views/dashboard/_sidebar.html.haml
 --- gitlab-rails.bk/app/views/dashboard/_sidebar.html.haml	2014-03-04 01:23:53.000000000 +0900
-+++ gitlab-rails/app/views/dashboard/_sidebar.html.haml	2014-03-22 00:32:00.638996943 +0900
-@@ -1,11 +1,11 @@
++++ gitlab-rails/app/views/dashboard/_sidebar.html.haml	2014-03-22 09:02:16.578663903 +0900
+@@ -1,25 +1,25 @@
  %ul.nav.nav-tabs.dash-sidebar-tabs
    %li.active
      = link_to '#projects', 'data-toggle' => 'tab', id: 'sidebar-projects-tab' do
@@ -188,7 +188,15 @@ diff -urN gitlab-rails.bk/app/views/dashboard/_sidebar.html.haml gitlab-rails/ap
        %span.badge= @groups.count
  
  .tab-content
-@@ -19,7 +19,7 @@
+   .tab-pane.active#projects
+-    = render "projects", projects: @projects
++    = render "projects", プロジェクト: @projects
+   .tab-pane#groups
+-    = render "groups", groups: @groups
++    = render "groups", グループ: @groups
+ 
+ .prepend-top-20
+   %span.rss-icon
      = link_to dashboard_path(:atom, { private_token: current_user.private_token }) do
        %strong
          %i.icon-rss
@@ -633,9 +641,12 @@ diff -urN gitlab-rails.bk/app/views/layouts/nav/_group.html.haml gitlab-rails/ap
  
 diff -urN gitlab-rails.bk/app/views/layouts/nav/_profile.html.haml gitlab-rails/app/views/layouts/nav/_profile.html.haml
 --- gitlab-rails.bk/app/views/layouts/nav/_profile.html.haml	2014-03-04 01:23:53.000000000 +0900
-+++ gitlab-rails/app/views/layouts/nav/_profile.html.haml	2014-03-22 02:37:28.111681570 +0900
-@@ -3,24 +3,24 @@
-     = link_to profile_path, title: "Profile" do
++++ gitlab-rails/app/views/layouts/nav/_profile.html.haml	2014-03-22 09:10:11.112662979 +0900
+@@ -1,26 +1,26 @@
+ %ul
+   = nav_link(path: 'profiles#show', html_options: {class: 'home'}) do
+-    = link_to profile_path, title: "Profile" do
++    = link_to profile_path, title: "プロフィール" do
        %i.icon-home
    = nav_link(controller: :accounts) do
 -    = link_to "Account", profile_account_path
@@ -725,6 +736,21 @@ diff -urN gitlab-rails.bk/app/views/layouts/nav/_project.html.haml gitlab-rails/
        = link_to edit_project_path(@project), class: "stat-tab tab " do
 -        Settings
 +        設定
+diff -urN gitlab-rails.bk/app/views/layouts/profile.html.haml gitlab-rails/app/views/layouts/profile.html.haml
+--- gitlab-rails.bk/app/views/layouts/profile.html.haml	2014-03-04 01:23:53.000000000 +0900
++++ gitlab-rails/app/views/layouts/profile.html.haml	2014-03-22 09:09:46.876663397 +0900
+@@ -1,9 +1,9 @@
+ !!! 5
+ %html{ lang: "en"}
+-  = render "layouts/head", title: "Profile"
++  = render "layouts/head", title: "プロフィール"
+   %body{class: "#{app_theme} profile", :'data-page' => body_data_page}
+     = render "layouts/broadcast"
+-    = render "layouts/head_panel", title: "Profile"
++    = render "layouts/head_panel", title: "プロフィール"
+     = render "layouts/flash"
+     %nav.main-nav.navbar-collapse.collapse
+       .container= render 'layouts/nav/profile'
 diff -urN gitlab-rails.bk/app/views/layouts/public.html.haml gitlab-rails/app/views/layouts/public.html.haml
 --- gitlab-rails.bk/app/views/layouts/public.html.haml	2014-03-04 01:23:53.000000000 +0900
 +++ gitlab-rails/app/views/layouts/public.html.haml	2014-03-22 00:43:47.012996784 +0900
@@ -1186,7 +1212,7 @@ diff -urN gitlab-rails.bk/app/views/profiles/passwords/edit.html.haml gitlab-rai
 +        = f.submit 'パスワードを保存', class: "btn btn-save"
 diff -urN gitlab-rails.bk/app/views/profiles/show.html.haml gitlab-rails/app/views/profiles/show.html.haml
 --- gitlab-rails.bk/app/views/profiles/show.html.haml	2014-03-04 01:23:53.000000000 +0900
-+++ gitlab-rails/app/views/profiles/show.html.haml	2014-03-22 02:29:18.108682828 +0900
++++ gitlab-rails/app/views/profiles/show.html.haml	2014-03-22 09:07:58.532663550 +0900
 @@ -1,9 +1,9 @@
  %h3.page-title
 -  Profile settings
@@ -1234,8 +1260,12 @@ diff -urN gitlab-rails.bk/app/views/profiles/show.html.haml gitlab-rails/app/vie
        .form-group
          = f.label :skype, class: "control-label"
          .col-sm-10= f.text_field :skype, class: "form-control"
-@@ -50,10 +51,10 @@
-         = f.label :website_url, 'Website', class: "control-label"
+@@ -47,13 +48,13 @@
+         = f.label :twitter, class: "control-label"
+         .col-sm-10= f.text_field :twitter, class: "form-control"
+       .form-group
+-        = f.label :website_url, 'Website', class: "control-label"
++        = f.label :website_url, 'Webサイト', class: "control-label"
          .col-sm-10= f.text_field :website_url, class: "form-control"
        .form-group
 -        = f.label :bio, class: "control-label"
@@ -1280,6 +1310,18 @@ diff -urN gitlab-rails.bk/app/views/profiles/show.html.haml gitlab-rails/app/vie
    .form-actions
 -    = f.submit 'Save changes', class: "btn btn-save"
 +    = f.submit '変更を保存', class: "btn btn-save"
+diff -urN gitlab-rails.bk/app/views/profiles/update.js.erb gitlab-rails/app/views/profiles/update.js.erb
+--- gitlab-rails.bk/app/views/profiles/update.js.erb	2014-03-04 01:23:53.000000000 +0900
++++ gitlab-rails/app/views/profiles/update.js.erb	2014-03-22 09:10:24.815663449 +0900
+@@ -3,7 +3,7 @@
+ $('body').addClass('<%= app_theme %>')
+ 
+ // Re-render the header to reflect the new theme
+-$('header').html('<%= escape_javascript(render("layouts/head_panel", title: "Profile")) %>')
++$('header').html('<%= escape_javascript(render("layouts/head_panel", title: "プロフィール")) %>')
+ 
+ // Re-initialize header tooltips
+ $('.has_bottom_tooltip').tooltip({placement: 'bottom'})
 diff -urN gitlab-rails.bk/app/views/profiles/update_username.js.haml gitlab-rails/app/views/profiles/update_username.js.haml
 --- gitlab-rails.bk/app/views/profiles/update_username.js.haml	2014-03-04 01:23:53.000000000 +0900
 +++ gitlab-rails/app/views/profiles/update_username.js.haml	2014-03-22 02:32:20.260682511 +0900
@@ -1292,6 +1334,49 @@ diff -urN gitlab-rails.bk/app/views/profiles/update_username.js.haml gitlab-rail
    :plain
 -    new Flash("Username change failed - #{@user.errors.full_messages.first}", "alert")
 +    new Flash("ユーザ名の変更に失敗しました - #{@user.errors.full_messages.first}", "alert")
+diff -urN gitlab-rails.bk/app/views/projects/_dropdown.html.haml gitlab-rails/app/views/projects/_dropdown.html.haml
+--- gitlab-rails.bk/app/views/projects/_dropdown.html.haml	2014-03-04 01:23:53.000000000 +0900
++++ gitlab-rails/app/views/projects/_dropdown.html.haml	2014-03-22 09:13:12.357663323 +0900
+@@ -5,29 +5,29 @@
+     %ul.dropdown-menu
+       - if @project.issues_enabled && can?(current_user, :write_issue, @project)
+         %li
+-          = link_to url_for_new_issue, title: "New Issue" do
+-            New issue
++          = link_to url_for_new_issue, title: "課題を作成" do
++            課題を作成
+       - if @project.merge_requests_enabled && can?(current_user, :write_merge_request, @project)
+         %li
+-          = link_to new_project_merge_request_path(@project), title: "New Merge Request" do
+-            New merge request
++          = link_to new_project_merge_request_path(@project), title: "マージリクエストを作成" do
++            マージリクエストを作成
+       - if @project.snippets_enabled && can?(current_user, :write_snippet, @project)
+         %li
+-          = link_to new_project_snippet_path(@project), title: "New Snippet" do
+-            New snippet
++          = link_to new_project_snippet_path(@project), title: "スニペットを作成" do
++            スニペットを作成
+       - if can?(current_user, :admin_team_member, @project)
+         %li
+-          = link_to new_project_team_member_path(@project), title: "New project member" do
+-            New project member
++          = link_to new_project_team_member_path(@project), title: "メンバーを追加" do
++            メンバーを追加
+       - if can? current_user, :push_code, @project
+         %li.divider
+         %li
+           = link_to new_project_branch_path(@project) do
+             %i.icon-code-fork
+-            Git branch
++            Gitブランチ
+         %li
+           = link_to new_project_tag_path(@project) do
+             %i.icon-tag
+-            Git tag
++            Gitタグ
+ 
+ 
 diff -urN gitlab-rails.bk/app/views/projects/_home_panel.html.haml gitlab-rails/app/views/projects/_home_panel.html.haml
 --- gitlab-rails.bk/app/views/projects/_home_panel.html.haml	2014-03-04 01:23:53.000000000 +0900
 +++ gitlab-rails/app/views/projects/_home_panel.html.haml	2014-03-22 07:54:39.647667069 +0900
@@ -1540,6 +1625,120 @@ diff -urN gitlab-rails.bk/app/views/projects/commits/_head.html.haml gitlab-rail
 -      = link_to project_commits_path(@project, @ref, {format: :atom, private_token: current_user.private_token}), title: "Feed" do
 +      = link_to project_commits_path(@project, @ref, {format: :atom, private_token: current_user.private_token}), title: "フィード" do
          %i.icon-rss
+diff -urN gitlab-rails.bk/app/views/projects/edit.html.haml gitlab-rails/app/views/projects/edit.html.haml
+--- gitlab-rails.bk/app/views/projects/edit.html.haml	2014-03-04 01:23:53.000000000 +0900
++++ gitlab-rails/app/views/projects/edit.html.haml	2014-03-22 09:26:06.229662721 +0900
+@@ -3,29 +3,29 @@
+   .project-edit-content
+     %div
+       %h3.page-title
+-        Project settings:
+-      %p.light Some settings, such as "Transfer Project", are hidden inside the danger area below
++        プロジェクト設定:
++      %p.light "プロジェクトの移譲"のようないくつかの機能は"危険な設定"エリア内で非表示になっています。
+       %hr
+       .form-holder
+         = form_for @project, remote: true, html: { class: "edit_project form-horizontal" } do |f|
+           %fieldset
+             .form-group.project_name_holder
+               = f.label :name, class: 'control-label' do
+-                Project name
++                プロジェクト名
+               .col-sm-10
+                 = f.text_field :name, placeholder: "Example Project", class: "form-control"
+ 
+ 
+             .form-group
+               = f.label :description, class: 'control-label' do
+-                Project description
+-                %span.light (optional)
++                説明
++                %span.light (任意)
+               .col-sm-10
+                 = f.text_area :description, placeholder: "Awesome project", class: "form-control", rows: 3, maxlength: 250
+ 
+             - if @project.repository.exists? && @project.repository.branch_names.any?
+               .form-group
+-                = f.label :default_branch, "Default Branch", class: 'control-label'
++                = f.label :default_branch, "デフォルトブランチ", class: 'control-label'
+                 .col-sm-10= f.select(:default_branch, @repository.branch_names, {}, {class: 'select2 select-wide'})
+ 
+ 
+@@ -33,7 +33,7 @@
+ 
+           %fieldset.features
+             %legend
+-              Labels:
++              ラベル:
+             .form-group
+               = f.label :label_list, "Labels", class: 'control-label'
+               .col-sm-10
+@@ -42,7 +42,7 @@
+ 
+           %fieldset.features
+             %legend
+-              Features:
++              機能:
+             .form-group
+               = f.label :issues_enabled, "Issues", class: 'control-label'
+               .col-sm-10
+@@ -52,7 +52,7 @@
+ 
+             - if Project.issues_tracker.values.count > 1
+               .form-group
+-                = f.label :issues_tracker, "Issues tracker", class: 'control-label'
++                = f.label :issues_tracker, "課題管理", class: 'control-label'
+                 .col-sm-10= f.select(:issues_tracker, project_issues_trackers(@project.issues_tracker), {}, { disabled: !@project.issues_enabled })
+ 
+               .form-group
+@@ -60,7 +60,7 @@
+                 .col-sm-10= f.text_field :issues_tracker_id, disabled: !@project.can_have_issues_tracker_id?, class: 'form-control'
+ 
+             .form-group
+-              = f.label :merge_requests_enabled, "Merge Requests", class: 'control-label'
++              = f.label :merge_requests_enabled, "マージリクエスト", class: 'control-label'
+               .col-sm-10
+                 .checkbox
+                   = f.check_box :merge_requests_enabled
+@@ -74,14 +74,14 @@
+                   %span.descr Pages for project documentation
+ 
+             .form-group
+-              = f.label :wall_enabled, "Wall", class: 'control-label'
++              = f.label :wall_enabled, "ウォール", class: 'control-label'
+               .col-sm-10
+                 .checkbox
+                   = f.check_box :wall_enabled
+                   %span.descr Simple chat system for broadcasting inside project
+ 
+             .form-group
+-              = f.label :snippets_enabled, "Snippets", class: 'control-label'
++              = f.label :snippets_enabled, "スニペット", class: 'control-label'
+               .col-sm-10
+                 .checkbox
+                   = f.check_box :snippets_enabled
+@@ -89,17 +89,17 @@
+ 
+ 
+           .form-actions
+-            = f.submit 'Save changes', class: "btn btn-save"
++            = f.submit '変更を保存', class: "btn btn-save"
+ 
+ 
+ 
+     %center.light.prepend-top-20.padded
+       %h3
+         %i.icon-warning-sign
+-        Dangerous settings
+-      %p Project settings below may result in data loss!
++        危険な設定
++      %p 以下の設定を変更すると、データが損失する恐れがあります。
+       = link_to '#', class: 'btn js-toggle-visibility-link' do
+-        Show it to me
++        表示する
+         %i.icon-chevron-down
+ 
+     .js-toggle-visibility-container.hide
 diff -urN gitlab-rails.bk/app/views/projects/graphs/show.html.haml gitlab-rails/app/views/projects/graphs/show.html.haml
 --- gitlab-rails.bk/app/views/projects/graphs/show.html.haml	2014-03-04 01:23:53.000000000 +0900
 +++ gitlab-rails/app/views/projects/graphs/show.html.haml	2014-03-22 07:19:08.509668809 +0900
@@ -1894,6 +2093,27 @@ diff -urN gitlab-rails.bk/app/views/projects/merge_requests/_head.html.haml gitl
 -    Merge Requests
 +    マージリクエスト
  
+diff -urN gitlab-rails.bk/app/views/projects/merge_requests/_show.html.haml gitlab-rails/app/views/projects/merge_requests/_show.html.haml
+--- gitlab-rails.bk/app/views/projects/merge_requests/_show.html.haml	2014-03-04 01:23:53.000000000 +0900
++++ gitlab-rails/app/views/projects/merge_requests/_show.html.haml	2014-03-22 09:18:51.032663425 +0900
+@@ -16,7 +16,7 @@
+       %li.notes-tab{data: {action: 'notes'}}
+         = link_to project_merge_request_path(@project, @merge_request) do
+           %i.icon-comment
+-          Discussion
++          ディスカッション
+       %li.diffs-tab{data: {action: 'diffs'}}
+         = link_to diffs_project_merge_request_path(@project, @merge_request) do
+           %i.icon-list-alt
+@@ -25,7 +25,7 @@
+   - content_for :note_actions do
+     - if can?(current_user, :modify_merge_request, @merge_request)
+       - unless @merge_request.closed?
+-        = link_to 'Close', project_merge_request_path(@project, @merge_request, merge_request: {state_event: :close }), method: :put, class: "btn grouped btn-close", title: "Close merge request"
++        = link_to 'クローズ', project_merge_request_path(@project, @merge_request, merge_request: {state_event: :close }), method: :put, class: "btn grouped btn-close", title: "Close merge request"
+ 
+ 
+   .notes.tab-content.voting_notes#notes{ class: (controller.action_name == 'show') ? "" : "hide" }
 diff -urN gitlab-rails.bk/app/views/projects/merge_requests/index.html.haml gitlab-rails/app/views/projects/merge_requests/index.html.haml
 --- gitlab-rails.bk/app/views/projects/merge_requests/index.html.haml	2014-03-04 01:23:53.000000000 +0900
 +++ gitlab-rails/app/views/projects/merge_requests/index.html.haml	2014-03-22 05:53:12.518672875 +0900
@@ -1986,6 +2206,47 @@ diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_commits.html.h
          - if @commits.size > MergeRequestDiff::COMMITS_SAFE_SIZE
            %ul.all-commits.hide.well-list
              - @commits.first(MergeRequestDiff::COMMITS_SAFE_SIZE).each do |commit|
+diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_mr_title.html.haml gitlab-rails/app/views/projects/merge_requests/show/_mr_title.html.haml
+--- gitlab-rails.bk/app/views/projects/merge_requests/show/_mr_title.html.haml	2014-03-04 01:23:53.000000000 +0900
++++ gitlab-rails/app/views/projects/merge_requests/show/_mr_title.html.haml	2014-03-22 09:16:48.728663170 +0900
+@@ -1,5 +1,5 @@
+ %h3.page-title
+-  = "Merge Request ##{@merge_request.iid}"
++  = "マージリクエスト ##{@merge_request.iid}"
+ 
+   %span.pull-right
+     - if can?(current_user, :modify_merge_request, @merge_request)
+@@ -7,24 +7,24 @@
+         .left.btn-group
+           %a.btn.grouped.dropdown-toggle{ data: {toggle: :dropdown} }
+             %i.icon-download-alt
+-            Download as
++            ダウンロード
+             %span.caret
+           %ul.dropdown-menu
+-            %li= link_to "Email Patches", project_merge_request_path(@project, @merge_request, format: :patch)
+-            %li= link_to "Plain Diff",    project_merge_request_path(@project, @merge_request, format: :diff)
++            %li= link_to "メール用パッチ", project_merge_request_path(@project, @merge_request, format: :patch)
++            %li= link_to "プレーンDiff",    project_merge_request_path(@project, @merge_request, format: :diff)
+ 
+-        = link_to 'Close', project_merge_request_path(@project, @merge_request, merge_request: { state_event: :close }), method: :put, class: "btn grouped btn-close", title: "Close merge request"
++        = link_to 'クローズ', project_merge_request_path(@project, @merge_request, merge_request: { state_event: :close }), method: :put, class: "btn grouped btn-close", title: "Close merge request"
+ 
+         = link_to edit_project_merge_request_path(@project, @merge_request), class: "btn grouped", id:"edit_merge_request" do
+           %i.icon-edit
+-          Edit
++          編集
+ 
+ .votes-holder.hidden-sm.hidden-xs
+   #votes= render 'votes/votes_block', votable: @merge_request
+ 
+ .back-link
+   = link_to project_merge_requests_path(@project) do
+-    &larr; To merge requests
++    &larr; 一覧に戻る
+ 
+   %span.prepend-left-20.monospace
+     -if @merge_request.for_fork?
 diff -urN gitlab-rails.bk/app/views/projects/milestones/index.html.haml gitlab-rails/app/views/projects/milestones/index.html.haml
 --- gitlab-rails.bk/app/views/projects/milestones/index.html.haml	2014-03-04 01:23:53.000000000 +0900
 +++ gitlab-rails/app/views/projects/milestones/index.html.haml	2014-03-22 07:47:53.286667410 +0900
@@ -2114,6 +2375,51 @@ diff -urN gitlab-rails.bk/app/views/projects/notes/_form.html.haml gitlab-rails/
        = f.file_field :attachment, class: "js-note-attachment-input hidden"
  
      .clearfix
+diff -urN gitlab-rails.bk/app/views/projects/repositories/_download_archive.html.haml gitlab-rails/app/views/projects/repositories/_download_archive.html.haml
+--- gitlab-rails.bk/app/views/projects/repositories/_download_archive.html.haml	2014-03-04 01:23:53.000000000 +0900
++++ gitlab-rails/app/views/projects/repositories/_download_archive.html.haml	2014-03-22 09:14:37.819663288 +0900
+@@ -5,28 +5,28 @@
+   %span.btn-group{class: btn_class}
+     = link_to archive_project_repository_path(@project, ref: ref, format: 'zip'), class: 'btn', rel: 'nofollow' do
+       %i.icon-download-alt
+-      %span Download zip
++      %span zipをダウンロード
+     %a.btn.dropdown-toggle{ 'data-toggle' => 'dropdown' }
+       %span.caret
+       %span.sr-only
+-        Select Archive Format
++        アーカイブ形式を選択
+     %ul.dropdown-menu{ role: 'menu' }
+       %li
+         = link_to archive_project_repository_path(@project, ref: ref, format: 'zip'), rel: 'nofollow' do
+           %i.icon-download-alt
+-          %span Download zip
++          %span zipをダウンロード
+       %li
+         = link_to archive_project_repository_path(@project, ref: ref, format: 'tar.gz'), rel: 'nofollow' do
+           %i.icon-download-alt
+-          %span Download tar.gz
++          %span tar.gzをダウンロード
+       %li
+         = link_to archive_project_repository_path(@project, ref: ref, format: 'tar.bz2'), rel: 'nofollow' do
+           %i.icon-download-alt
+-          %span Download tar.bz2
++          %span tar.bz2をダウンロード
+       %li
+         = link_to archive_project_repository_path(@project, ref: ref, format: 'tar'), rel: 'nofollow' do
+           %i.icon-download-alt
+-          %span Download tar
++          %span tarをダウンロード
+ - else
+   %span.btn-group{class: btn_class}
+     = link_to archive_project_repository_path(@project, ref: ref, format: 'zip'), class: 'btn', rel: 'nofollow' do
+@@ -34,4 +34,4 @@
+       %span zip
+     = link_to archive_project_repository_path(@project, ref: ref, format: 'tar.gz'), class: 'btn', rel: 'nofollow' do
+       %i.icon-download-alt
+-      %span tar.gz
+\ ファイル末尾に改行がありません
++      %span tar.gz
 diff -urN gitlab-rails.bk/app/views/projects/show.html.haml gitlab-rails/app/views/projects/show.html.haml
 --- gitlab-rails.bk/app/views/projects/show.html.haml	2014-03-04 01:23:53.000000000 +0900
 +++ gitlab-rails/app/views/projects/show.html.haml	2014-03-22 05:13:13.743674820 +0900
@@ -2156,6 +2462,34 @@ diff -urN gitlab-rails.bk/app/views/projects/show.html.haml gitlab-rails/app/vie
  
  
        - if @project.gitlab_ci?
+diff -urN gitlab-rails.bk/app/views/projects/team_members/index.html.haml gitlab-rails/app/views/projects/team_members/index.html.haml
+--- gitlab-rails.bk/app/views/projects/team_members/index.html.haml	2014-03-04 01:23:53.000000000 +0900
++++ gitlab-rails/app/views/projects/team_members/index.html.haml	2014-03-22 09:28:23.275662631 +0900
+@@ -1,16 +1,17 @@
+ %h3.page-title
+-  Users with access to this project
++  プロジェクトにアクセス可能なユーザ
+ 
+   - if can? current_user, :admin_team_member, @project
+     %span.pull-right
+-      = link_to new_project_team_member_path(@project), class: "btn btn-new grouped", title: "New project member" do
+-        New project member
+-      = link_to import_project_team_members_path(@project), class: "btn grouped", title: "Import members from another project" do
+-        Import members
++      = link_to new_project_team_member_path(@project), class: "btn btn-new grouped", title: "メンバーを追加" do
++        メンバーを追加
++      = link_to import_project_team_members_path(@project), class: "btn grouped", title: "別のプロジェクトからメンバーをインポート" do
++        メンバーをインポート
+ 
+ %p.light
+-  Read more about project permissions
+-  %strong= link_to "here", help_permissions_path, class: "vlink"
++  プロジェクトのアクセス権についての詳細は、
++  %strong= link_to "こちら", help_permissions_path, class: "vlink"
++  から確認できます。
+ = render "team", members: @users_projects
+ - if @group
+   = render "group_members"
 diff -urN gitlab-rails.bk/app/views/projects/tree/_spinner.html.haml gitlab-rails/app/views/projects/tree/_spinner.html.haml
 --- gitlab-rails.bk/app/views/projects/tree/_spinner.html.haml	2014-03-04 01:23:53.000000000 +0900
 +++ gitlab-rails/app/views/projects/tree/_spinner.html.haml	2014-03-22 04:05:16.384677949 +0900
@@ -2741,3 +3075,66 @@ diff -urN gitlab-rails.bk/app/views/snippets/index.html.haml gitlab-rails/app/vi
  
  %hr
  = render 'snippets'
+diff -urN gitlab-rails.bk/app/views/users/_profile.html.haml gitlab-rails/app/views/users/_profile.html.haml
+--- gitlab-rails.bk/app/views/users/_profile.html.haml	2014-03-04 01:23:53.000000000 +0900
++++ gitlab-rails/app/views/users/_profile.html.haml	2014-03-22 09:06:52.135663654 +0900
+@@ -1,10 +1,10 @@
+ .ui-box
+   .title
+-    Profile
++    プロフィール
+   %ul.well-list
+     %li
+-      %span.light Member since
+-      %strong= user.created_at.stamp("Aug 21, 2011")
++      %span.light 登録日: 
++      %strong= user.created_at.stamp("2011/08/21")
+     - unless user.skype.blank?
+       %li
+         %span.light Skype:
+@@ -19,9 +19,9 @@
+         %strong= link_to user.twitter, "http://www.twitter.com/#{user.twitter}"
+     - unless user.website_url.blank?
+       %li
+-        %span.light Website:
++        %span.light Webサイト:
+         %strong= link_to user.short_website_url, user.full_website_url
+     - unless user.bio.blank?
+       %li
+-        %span.light Bio:
++        %span.light 自己紹介:
+         %span= user.bio
+diff -urN gitlab-rails.bk/app/views/users/_projects.html.haml gitlab-rails/app/views/users/_projects.html.haml
+--- gitlab-rails.bk/app/views/users/_projects.html.haml	2014-03-04 01:23:53.000000000 +0900
++++ gitlab-rails/app/views/users/_projects.html.haml	2014-03-22 09:07:12.530663625 +0900
+@@ -1,5 +1,5 @@
+ .ui-box
+-  .title Projects
++  .title プロジェクト
+   %ul.well-list
+     - @projects.each do |project|
+       %li
+diff -urN gitlab-rails.bk/app/views/users/show.html.haml gitlab-rails/app/views/users/show.html.haml
+--- gitlab-rails.bk/app/views/users/show.html.haml	2014-03-04 01:23:53.000000000 +0900
++++ gitlab-rails/app/views/users/show.html.haml	2014-03-22 09:05:50.275663704 +0900
+@@ -7,16 +7,16 @@
+         .pull-right
+           = link_to profile_path, class: 'btn' do
+             %i.icon-edit
+-            Edit Profile settings
++            プロフィール設定を編集
+       %br
+       %span.user-show-username #{@user.username}
+       %br
+-      %small member since #{@user.created_at.stamp("Nov 12, 2031")}
++      %small 登録日: #{@user.created_at.stamp("2031/11/12")}
+     .clearfix
+-    %h4 Groups:
++    %h4 グループ:
+     = render 'groups', groups: @groups
+     %hr
+-    %h4 User Activity:
++    %h4 アクティビティ:
+     = render @events
+   .col-md-4
+     = render 'profile', user: @user

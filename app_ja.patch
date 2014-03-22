@@ -188,15 +188,7 @@ diff -urN gitlab-rails.bk/app/views/dashboard/_sidebar.html.haml gitlab-rails/ap
        %span.badge= @groups.count
  
  .tab-content
-   .tab-pane.active#projects
--    = render "projects", projects: @projects
-+    = render "projects", プロジェクト: @projects
-   .tab-pane#groups
--    = render "groups", groups: @groups
-+    = render "groups", グループ: @groups
- 
- .prepend-top-20
-   %span.rss-icon
+@@ -19,7 +19,7 @@
      = link_to dashboard_path(:atom, { private_token: current_user.private_token }) do
        %strong
          %i.icon-rss

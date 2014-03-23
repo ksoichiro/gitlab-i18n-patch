@@ -158,10 +158,121 @@ diff -urN gitlab-rails.bk/app/models/notification.rb gitlab-rails/app/models/not
        }
      end
  
+diff -urN gitlab-rails.bk/app/views/admin/background_jobs/show.html.haml gitlab-rails/app/views/admin/background_jobs/show.html.haml
+--- gitlab-rails.bk/app/views/admin/background_jobs/show.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/admin/background_jobs/show.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,15 +1,15 @@
+-%h3.page-title Background Jobs
+-%p.light GitLab uses #{link_to "sidekiq", "http://sidekiq.org/"} library for async job processing
++%h3.page-title バックグラウンドジョブ
++%p.light GitLabは #{link_to "sidekiq", "http://sidekiq.org/"} ライブラリを使用して非同期ジョブを処理しています。
+ 
+ %hr
+ 
+ .ui-box
+-  .title Sidekiq running processes
++  .title 実行中の Sidekiq プロセス
+   .body
+     - if @sidekiq_processes.empty?
+       %h4.cred
+         %i.icon-warning-sign
+-        There are no running sidekiq processes. Please restart GitLab
++        実行中の Sidekiq プロセスはありません。GitLabを再起動してください。
+     - else
+       %table.table
+         %thead
+@@ -39,10 +39,10 @@
+       .clearfix
+         %p
+           %i.icon-exclamation-sign
+-          If '[25 of 25 busy]' is shown, restart GitLab with 'sudo service gitlab reload'.
++          もし '[25 of 25 busy]' と表示されていたら、'sudo service gitlab reload' でGitLabを再起動してください。
+         %p
+           %i.icon-exclamation-sign
+-          If more than one sidekiq process is listed, stop GitLab, kill the remaining sidekiq processes (sudo pkill -u #{Settings.gitlab.user} -f sidekiq) and restart GitLab.
++          もし2つ以上の Sidekiq プロセスが表示されている場合、GitLabを停止し、残っている Sidekiq プロセスを kill し(sudo pkill -u #{Settings.gitlab.user} -f sidekiq)、GitLabを再起動してください。
+ 
+ 
+ 
+diff -urN gitlab-rails.bk/app/views/admin/broadcast_messages/index.html.haml gitlab-rails/app/views/admin/broadcast_messages/index.html.haml
+--- gitlab-rails.bk/app/views/admin/broadcast_messages/index.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/admin/broadcast_messages/index.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,10 +1,10 @@
+ %h3.page-title
+-  Broadcast Messages
++  ブロードキャストメッセージ
+ %p.light
+-  Broadcast messages are displayed for every user and can be used to notify users about scheduled maintenance, recent upgrades and more.
++  ブロードキャストメッセージはすべてのユーザに表示されます。計画メンテナンス, 最近のアップグレードなどの通知に利用します。
+ .broadcast-message-preview
+   %i.icon-bullhorn
+-  %span Your message here
++  %span メッセージがここに表示されます
+ 
+ = form_for [:admin, @broadcast_message], html: { class: 'broadcast-message-form form-horizontal'} do |f|
+   -if @broadcast_message.errors.any?
+@@ -12,32 +12,32 @@
+       - @broadcast_message.errors.full_messages.each do |msg|
+         %p= msg
+   .form-group
+-    = f.label :message, class: 'control-label'
++    = f.label :message, 'メッセージ', class: 'control-label'
+     .col-sm-10
+       = f.text_area :message, class: "form-control", rows: 2, required: true
+       %div
+         = link_to '#', class: 'js-toggle-colors-link' do
+-          Customize colors
++          色をカスタマイズ
+   .form-group.js-toggle-colors-container.hide
+-    = f.label :color, "Background Color", class: 'control-label'
++    = f.label :color, "背景色", class: 'control-label'
+     .col-sm-10
+       = f.text_field :color, placeholder: "#AA33EE", class: "form-control"
+-      .light Hex values as 3 double digit numbers, starting with a # sign.
++      .light #記号で始まる2桁ずつ3組の16進数で表記します。
+   .form-group.js-toggle-colors-container.hide
+-    = f.label :font, "Font Color", class: 'control-label'
++    = f.label :font, "文字色", class: 'control-label'
+     .col-sm-10
+       = f.text_field :font, placeholder: "#224466", class: "form-control"
+-      .light Hex values as 3 double digit numbers, starting with a # sign.
++      .light #記号で始まる2桁ずつ3組の16進数で表記します。
+   .form-group
+-    = f.label :starts_at, class: 'control-label'
++    = f.label :starts_at, '開始日', class: 'control-label'
+     .col-sm-10.datetime-controls
+-      = f.datetime_select :starts_at
++      = f.datetime_select :starts_at, :use_month_numbers => true
+   .form-group
+-    = f.label :ends_at, class: 'control-label'
++    = f.label :ends_at, '終了日', class: 'control-label'
+     .col-sm-10.datetime-controls
+-      = f.datetime_select :ends_at
++      = f.datetime_select :ends_at, :use_month_numbers => true
+   .form-actions
+-    = f.submit "Add broadcast message", class: "btn btn-create"
++    = f.submit "ブロードキャストメッセージを追加", class: "btn btn-create"
+ 
+ -if @broadcast_messages.any?
+   %ul.bordered-list.broadcast-messages
 diff -urN gitlab-rails.bk/app/views/admin/dashboard/index.html.haml gitlab-rails/app/views/admin/dashboard/index.html.haml
 --- gitlab-rails.bk/app/views/admin/dashboard/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/admin/dashboard/index.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -12,7 +12,7 @@
+@@ -1,38 +1,38 @@
+ %h3.page-title
+-  Admin area
++  管理エリア
+ %p.light
+-  You can manage projects, users and other GitLab data from here.
++  プロジェクト、ユーザ、その他 GitLab のデータをここで管理できます。
+ %hr
+ .admin-dashboard
+   .row
+     .col-sm-4
+       .light-well
+-        %h4 Projects
++        %h4 プロジェクト
+         .data
            = link_to admin_projects_path do
              %h1= Project.count
            %hr
@@ -169,12 +280,450 @@ diff -urN gitlab-rails.bk/app/views/admin/dashboard/index.html.haml gitlab-rails
 +          = link_to '新しいプロジェクト', new_project_path, class: "btn btn-new"
      .col-sm-4
        .light-well
-         %h4 Users
+-        %h4 Users
++        %h4 ユーザ
+         .data
+           = link_to admin_users_path do
+             %h1= User.count
+           %hr
+-          = link_to 'New User', new_admin_user_path, class: "btn btn-new"
++          = link_to '新しいユーザ', new_admin_user_path, class: "btn btn-new"
+     .col-sm-4
+       .light-well
+-        %h4 Groups
++        %h4 グループ
+         .data
+           = link_to admin_groups_path do
+             %h1= Group.count
+           %hr
+-          = link_to 'New Group', new_admin_group_path, class: "btn btn-new"
++          = link_to '新しいグループ', new_admin_group_path, class: "btn btn-new"
+ 
+   .row.prepend-top-10
+     .col-md-4
+-      %h4 Latest projects
++      %h4 最新のプロジェクト
+       %hr
+       - @projects.each do |project|
+         %p
+@@ -41,7 +41,7 @@
+             #{time_ago_with_tooltip(project.created_at)}
+ 
+     .col-md-4
+-      %h4 Latest users
++      %h4 最新のユーザ
+       %hr
+       - @users.each do |user|
+         %p
+@@ -51,7 +51,7 @@
+             #{time_ago_with_tooltip(user.created_at)}
+ 
+     .col-md-4
+-      %h4 Latest groups
++      %h4 最新のグループ
+       %hr
+       - @groups.each do |group|
+         %p
+@@ -63,42 +63,42 @@
+   %br
+   .row
+     .col-md-4
+-      %h4 Stats
++      %h4 統計
+       %hr
+       %p
+-        Forks
++        フォーク
+         %span.light.pull-right
+           = ForkedProjectLink.count
+       %p
+-        Issues
++        課題
+         %span.light.pull-right
+           = Issue.count
+       %p
+-        Merge Requests
++        マージリクエスト
+         %span.light.pull-right
+           = MergeRequest.count
+       %p
+-        Notes
++        ノート
+         %span.light.pull-right
+           = Note.count
+       %p
+-        Snippets
++        スニペット
+         %span.light.pull-right
+           = Snippet.count
+       %p
+-        SSH Keys
++        SSHキー
+         %span.light.pull-right
+           = Key.count
+       %p
+-        Milestones
++        マイルストーン
+         %span.light.pull-right
+           = Milestone.count
+     .col-md-4
+       %h4
+-        Features
++        機能
+       %hr
+       %p
+-        Sign up
++        サインアップ
+         %span.light.pull-right
+           = boolean_to_icon gitlab_config.signup_enabled
+       %p
+@@ -114,7 +114,7 @@
+         %span.light.pull-right
+           = boolean_to_icon Gitlab.config.omniauth.enabled
+     .col-md-4
+-      %h4 Components
++      %h4 コンポーネント
+       %hr
+       %p
+         GitLab
+diff -urN gitlab-rails.bk/app/views/admin/groups/edit.html.haml gitlab-rails/app/views/admin/groups/edit.html.haml
+--- gitlab-rails.bk/app/views/admin/groups/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/admin/groups/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-%h3.page-title Edit Group
++%h3.page-title グループを編集
+ %hr
+ = form_for [:admin, @group], html: { class: "form-horizontal" } do |f|
+   - if @group.errors.any?
+@@ -6,26 +6,26 @@
+       %span= @group.errors.full_messages.first
+   .form-group.group_name_holder
+     = f.label :name, class: 'control-label' do
+-      Group name
++      グループ名
+     .col-sm-10
+       = f.text_field :name, placeholder: "Example Group", class: "form-control"
+ 
+   .form-group.group-description-holder
+-    = f.label :description, "Details", class: 'control-label'
++    = f.label :description, "詳細", class: 'control-label'
+     .col-sm-10
+       = f.text_area :description, maxlength: 250, class: "form-control js-gfm-input", rows: 4
+ 
+   .form-group.group_name_holder
+     = f.label :path, class: 'control-label' do
+-      %span.cred Group path
++      %span.cred グループのパス
+     .col-sm-10
+       = f.text_field :path, placeholder: "example-group", class: "form-control danger"
+       %ul.cred
+-        %li Changing group path can have unintended side effects.
+-        %li Renaming group path will rename directory for all related projects
+-        %li It will change web url for access group and group projects.
+-        %li It will change the git path to repositories under this group.
++        %li グループのパスを変更すると予期しない副作用が生じる可能性があります。
++        %li グループのパスを変更すると関連するすべてのプロジェクトのディレクトリ名が変更されます。
++        %li グループとグループ内のすべてのプロジェクトのWeb URLが変更されます。
++        %li グループ内のリポジトリのGitのパスも変更されます。
+ 
+   .form-actions
+-    = f.submit 'Save changes', class: "btn btn-primary"
+-    = link_to  'Cancel', admin_groups_path, class: "btn btn-cancel"
++    = f.submit '変更を保存', class: "btn btn-primary"
++    = link_to  'キャンセル', admin_groups_path, class: "btn btn-cancel"
+diff -urN gitlab-rails.bk/app/views/admin/groups/index.html.haml gitlab-rails/app/views/admin/groups/index.html.haml
+--- gitlab-rails.bk/app/views/admin/groups/index.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/admin/groups/index.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,16 +1,16 @@
+ %h3.page-title
+-  Groups (#{@groups.total_count})
+-  = link_to 'New Group', new_admin_group_path, class: "btn btn-new pull-right"
++  グループ (#{@groups.total_count})
++  = link_to '新しいグループ', new_admin_group_path, class: "btn btn-new pull-right"
+ 
+ %p.light
+-  Group allows you to keep projects organized.
+-  Use groups for uniting related projects.
++  グループを使うとプロジェクトを組織化することができます。
++  関連するプロジェクトをグループ化するのに使用してください。
+ 
+ %hr
+ = form_tag admin_groups_path, method: :get, class: 'form-inline' do
+   .form-group
+     = text_field_tag :name, params[:name], class: "form-control input-mn-300"
+-  = submit_tag "Search", class: "btn submit btn-primary"
++  = submit_tag "検索", class: "btn submit btn-primary"
+ 
+ %hr
+ 
+@@ -19,8 +19,8 @@
+     %li
+       .clearfix
+         .pull-right.prepend-top-10
+-          = link_to 'Edit', edit_admin_group_path(group), id: "edit_#{dom_id(group)}", class: "btn btn-small"
+-          = link_to 'Destroy', [:admin, group], data: {confirm: "REMOVE #{group.name}? Are you sure?"}, method: :delete, class: "btn btn-small btn-remove"
++          = link_to '編集', edit_admin_group_path(group), id: "edit_#{dom_id(group)}", class: "btn btn-small"
++          = link_to '削除', [:admin, group], data: {confirm: "#{group.name}が削除されます。本当に削除しますか？"}, method: :delete, class: "btn btn-small btn-remove"
+ 
+         %h4
+           = link_to [:admin, group] do
+@@ -35,7 +35,7 @@
+           = truncate group.description, length: 150
+       .clearfix
+         %p.light
+-          #{pluralize(group.members.size, 'member')}, #{pluralize(group.projects.count, 'project')}
++          #{group.members.size}メンバー, #{group.projects.count}プロジェクト
+ 
+ 
+ = paginate @groups, theme: "gitlab"
+diff -urN gitlab-rails.bk/app/views/admin/groups/new.html.haml gitlab-rails/app/views/admin/groups/new.html.haml
+--- gitlab-rails.bk/app/views/admin/groups/new.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/admin/groups/new.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-%h3.page-title New Group
++%h3.page-title 新しいグループ
+ %hr
+ = form_for [:admin, @group], html: { class: 'group-form form-horizontal' } do |f|
+   - if @group.errors.any?
+@@ -6,12 +6,12 @@
+       %span= @group.errors.full_messages.first
+   .form-group
+     = f.label :name, class: 'control-label' do
+-      Group name
++      グループ名
+     .col-sm-10
+       = f.text_field :name, placeholder: "Ex. OpenSource", class: "form-control"
+ 
+   .form-group.group-description-holder
+-    = f.label :description, "Details", class: 'control-label'
++    = f.label :description, "詳細", class: 'control-label'
+     .col-sm-10
+       = f.text_area :description, maxlength: 250, class: "form-control js-gfm-input", rows: 4
+ 
+@@ -19,13 +19,13 @@
+     .col-sm-2
+     .col-sm-10
+       %ul
+-        %li A group is a collection of several projects
+-        %li Groups are private by default
+-        %li Members of a group may only view projects they have permission to access
+-        %li Group project URLs are prefixed with the group namespace
+-        %li Existing projects may be moved into a group
++        %li グループは複数のプロジェクトの集合です。
++        %li グループはでフォルトではプライベートです。
++        %li グループのメンバーはアクセス権のあるプロジェクトだけ参照することができます。
++        %li グループのプロジェクトのURLにはグループのネームスペースのプレフィクスが付きます。
++        %li 既存のプロジェクトをグループに移すこともできます。
+ 
+   .form-actions
+-    = f.submit 'Create group', class: "btn btn-create"
++    = f.submit 'グループを作成', class: "btn btn-create"
+ 
+ 
+diff -urN gitlab-rails.bk/app/views/admin/groups/show.html.haml gitlab-rails/app/views/admin/groups/show.html.haml
+--- gitlab-rails.bk/app/views/admin/groups/show.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/admin/groups/show.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,37 +1,37 @@
+ %h3.page-title
+-  Group: #{@group.name}
++  グループ: #{@group.name}
+ 
+   = link_to edit_admin_group_path(@group), class: "btn btn-small pull-right" do
+     %i.icon-edit
+-    Edit
++    編集
+ %hr
+ .row
+   .col-md-6
+     .ui-box
+       .title
+-        Group info:
++        グループ情報:
+       %ul.well-list
+         %li
+-          %span.light Name:
++          %span.light グループ名:
+           %strong= @group.name
+         %li
+-          %span.light Path:
++          %span.light パス:
+           %strong
+             = @group.path
+ 
+         %li
+-          %span.light Description:
++          %span.light 説明:
+           %strong
+             = @group.description
+ 
+         %li
+-          %span.light Created on:
++          %span.light 作成日:
+           %strong
+-            = @group.created_at.stamp("March 1, 1999")
++            = @group.created_at.stamp("1999/03/01")
+ 
+     .ui-box
+       .title
+-        Projects
++        プロジェクト
+         %small
+           (#{@group.projects.count})
+       %ul.well-list
+@@ -47,11 +47,12 @@
+   .col-md-6
+     .ui-box
+       .title
+-        Add user(s) to the group:
++        グループにユーザを追加:
+       .body.form-holder
+         %p.light
+-          Read more about project permissions
+-          %strong= link_to "here", help_permissions_path, class: "vlink"
++          プロジェクトのアクセス権についての詳細は、
++          %strong= link_to "こちら", help_permissions_path, class: "vlink"
++          から確認できます。
+ 
+         = form_tag project_teams_update_admin_group_path(@group), id: "new_team_member", class: "bulk_import", method: :put  do
+           %div
+@@ -59,11 +60,11 @@
+           %div.prepend-top-10
+             = select_tag :group_access, options_for_select(UsersGroup.group_access_roles), class: "project-access-select select2"
+           %hr
+-          = submit_tag 'Add users into group', class: "btn btn-create"
++          = submit_tag 'グループにユーザを追加', class: "btn btn-create"
+     .ui-box
+       .title
+         %strong #{@group.name}
+-        Group Members
++        グループのメンバー
+         %small
+           (#{@group.users_groups.count})
+       %ul.well-list.group-users-list
+@@ -74,5 +75,5 @@
+               = link_to user.name, admin_user_path(user)
+             %span.pull-right.light
+               = member.human_access
+-              = link_to group_users_group_path(@group, member), data: { confirm: remove_user_from_group_message(@group, user) }, method: :delete, remote: true, class: "btn-tiny btn btn-remove", title: 'Remove user from group' do
++              = link_to group_users_group_path(@group, member), data: { confirm: remove_user_from_group_message(@group, user) }, method: :delete, remote: true, class: "btn-tiny btn btn-remove", title: 'グループからユーザを削除' do
+                 %i.icon-minus.icon-white
+diff -urN gitlab-rails.bk/app/views/admin/hooks/index.html.haml gitlab-rails/app/views/admin/hooks/index.html.haml
+--- gitlab-rails.bk/app/views/admin/hooks/index.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/admin/hooks/index.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,9 +1,9 @@
+ %h3.page-title
+-  System hooks
++  システムフック
+ 
+ %p.light
+-  #{link_to "System hooks ", help_system_hooks_path, class: "vlink"} can be
+-  used for binding events when GitLab creates a User or Project.
++  #{link_to "システムフック", help_system_hooks_path, class: "vlink"} を使うと
++  GitLabがユーザやプロジェクトを作成したイベントを別のアクションに紐付けることができます。
+ 
+ %hr
+ 
+@@ -18,18 +18,18 @@
+     .col-sm-10
+       = f.text_field :url, class: "form-control"
+   .form-actions
+-    = f.submit "Add System Hook", class: "btn btn-create"
++    = f.submit "システムフックを追加", class: "btn btn-create"
+ %hr
+ 
+ -if @hooks.any?
+   .ui-box
+     .title
+-      System hooks (#{@hooks.count})
++      システムフック (#{@hooks.count})
+     %ul.well-list
+       - @hooks.each do |hook|
+         %li
+           .pull-right
+-            = link_to 'Test Hook', admin_hook_test_path(hook), class: "btn btn-small"
+-            = link_to 'Remove', admin_hook_path(hook), data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-remove btn-small"
++            = link_to 'フックをテスト', admin_hook_test_path(hook), class: "btn btn-small"
++            = link_to '削除', admin_hook_path(hook), data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn btn-remove btn-small"
+           = link_to admin_hook_path(hook) do
+             %strong= hook.url
+diff -urN gitlab-rails.bk/app/views/admin/logs/show.html.haml gitlab-rails/app/views/admin/logs/show.html.haml
+--- gitlab-rails.bk/app/views/admin/logs/show.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/admin/logs/show.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -8,7 +8,7 @@
+   %li
+     = link_to "sidekiq.log", "#sidekiq", 'data-toggle' => 'tab'
+ 
+-%p.light To prevent performance issues admin logs output the last 2000 lines
++%p.light パフォーマンスの問題を避けるため、管理ログの出力は最後の2000行に限られます。
+ .tab-content
+   .tab-pane.active#githost
+     .file-holder#README
+@@ -18,7 +18,7 @@
+         .pull-right
+           = link_to '#', class: 'log-bottom' do
+             %i.icon-arrow-down
+-            Scroll down
++            スクロールダウン
+       .file-content.logs
+         %ol
+           - Gitlab::GitLogger.read_latest.each do |line|
+@@ -32,7 +32,7 @@
+         .pull-right
+           = link_to '#', class: 'log-bottom' do
+             %i.icon-arrow-down
+-            Scroll down
++            スクロールダウン
+       .file-content.logs
+         %ol
+           - Gitlab::AppLogger.read_latest.each do |line|
+@@ -46,7 +46,7 @@
+         .pull-right
+           = link_to '#', class: 'log-bottom' do
+             %i.icon-arrow-down
+-            Scroll down
++            スクロールダウン
+       .file-content.logs
+         %ol
+           - Gitlab::Logger.read_latest_for('production.log').each do |line|
+@@ -60,7 +60,7 @@
+         .pull-right
+           = link_to '#', class: 'log-bottom' do
+             %i.icon-arrow-down
+-            Scroll down
++            スクロールダウン
+       .file-content.logs
+         %ol
+           - Gitlab::Logger.read_latest_for('sidekiq.log').each do |line|
 diff -urN gitlab-rails.bk/app/views/admin/projects/index.html.haml gitlab-rails/app/views/admin/projects/index.html.haml
 --- gitlab-rails.bk/app/views/admin/projects/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/admin/projects/index.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -22,7 +22,7 @@
-           %span.light No activity over 6 month
+@@ -3,26 +3,26 @@
+     .admin-filter
+       = form_tag admin_projects_path, method: :get, class: '' do
+         .form-group
+-          = label_tag :name, 'Name:'
++          = label_tag :name, 'プロジェクト名:'
+           = text_field_tag :name, params[:name], class: "form-control"
+ 
+         .form-group
+-          = label_tag :owner_id, 'Owner:'
++          = label_tag :owner_id, '所有者:'
+           %div
+             = users_select_tag :owner_id, selected: params[:owner_id], class: 'input-large input-clamp'
+         .checkbox
+-          = label_tag :with_push, 'Not empty'
++          = label_tag :with_push, '空でない'
+           = check_box_tag :with_push, 1, params[:with_push]
+           &nbsp;
+-          %span.light Projects with push events
++          %span.light Pushイベントがある
+         .checkbox
+-          = label_tag :abandoned, 'Abandoned'
++          = label_tag :abandoned, '放棄されている'
+           = check_box_tag :abandoned, 1, params[:abandoned]
+           &nbsp;
+-          %span.light No activity over 6 month
++          %span.light 6ヶ月以上アクティビティがない
  
          %fieldset
 -          %strong Visibility level:
@@ -182,9 +731,17 @@ diff -urN gitlab-rails.bk/app/views/admin/projects/index.html.haml gitlab-rails/
            .visibility-levels
              - Project.visibility_levels.each do |label, level|
                .checkbox
-@@ -32,15 +32,15 @@
+@@ -30,17 +30,22 @@
+                   = check_box_tag 'visibility_levels[]', level, params[:visibility_levels].present? && params[:visibility_levels].include?(level.to_s)
+                   %span.descr
                      = visibility_level_icon(level)
-                     = label
+-                    = label
++                    - if level == Gitlab::VisibilityLevel::PRIVATE
++                      プライベート
++                    - elsif level == Gitlab::VisibilityLevel::INTERNAL
++                      内部
++                    - elsif level == Gitlab::VisibilityLevel::PUBLIC
++                      公開
          .form-actions
 -          = submit_tag "Search", class: "btn submit btn-primary"
 -          = link_to "Reset", admin_projects_path, class: "btn"
@@ -194,22 +751,428 @@ diff -urN gitlab-rails.bk/app/views/admin/projects/index.html.haml gitlab-rails/
    .col-md-8
      .ui-box
        .title
-         Projects (#{@projects.total_count})
+-        Projects (#{@projects.total_count})
++        プロジェクト (#{@projects.total_count})
          .pull-right
 -          = link_to 'New Project', new_project_path, class: "btn btn-new"
 +          = link_to '新しいプロジェクト', new_project_path, class: "btn btn-new"
        %ul.well-list
          - @projects.each do |project|
            %li
-@@ -50,7 +50,7 @@
+@@ -50,8 +55,8 @@
              .pull-right
                %span.label.label-gray
                  = repository_size(project)
 -              = link_to 'Edit', edit_project_path(project), id: "edit_#{dom_id(project)}", class: "btn btn-small"
+-              = link_to 'Destroy', [project], data: { confirm: remove_project_message(project) }, method: :delete, class: "btn btn-small btn-remove"
 +              = link_to '編集', edit_project_path(project), id: "edit_#{dom_id(project)}", class: "btn btn-small"
-               = link_to 'Destroy', [project], data: { confirm: remove_project_message(project) }, method: :delete, class: "btn btn-small btn-remove"
++              = link_to '削除', [project], data: { confirm: remove_project_message(project) }, method: :delete, class: "btn btn-small btn-remove"
          - if @projects.blank?
-           %p.nothing_here_message 0 projects matches
+-          %p.nothing_here_message 0 projects matches
++          %p.nothing_here_message マッチするプロジェクトがありません
+     = paginate @projects, theme: "gitlab"
+diff -urN gitlab-rails.bk/app/views/admin/users/_form.html.haml gitlab-rails/app/views/admin/users/_form.html.haml
+--- gitlab-rails.bk/app/views/admin/users/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/admin/users/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -7,70 +7,70 @@
+             %li= msg
+ 
+     %fieldset
+-      %legend Account
++      %legend アカウント
+       .form-group
+-        = f.label :name, class: 'control-label'
++        = f.label :name, '名前', class: 'control-label'
+         .col-sm-10
+           = f.text_field :name, required: true, autocomplete: "off", class: 'form-control'
+-          %span.help-inline * required
++          %span.help-inline * 必須
+       .form-group
+-        = f.label :username, class: 'control-label'
++        = f.label :username, 'ユーザ名', class: 'control-label'
+         .col-sm-10
+           = f.text_field :username, required: true, autocomplete: "off", class: 'form-control'
+-          %span.help-inline * required
++          %span.help-inline * 必須
+       .form-group
+-        = f.label :email, class: 'control-label'
++        = f.label :email, 'メールアドレス', class: 'control-label'
+         .col-sm-10
+           = f.text_field :email, required: true, autocomplete: "off", class: 'form-control'
+-          %span.help-inline * required
++          %span.help-inline * 必須
+ 
+     - if @user.new_record?
+       %fieldset
+-        %legend Password
++        %legend パスワード
+         .form-group
+           = f.label :password, class: 'control-label'
+           .col-sm-10
+             %strong
+-              A temporary password will be generated and sent to user.
++              一時的なパスワードが生成され、ユーザに送信されます。
+               %br
+-              User will be forced to change it after first sign in
++              ユーザは初回のサインイン時にパスワードを強制的に変更させられます。
+     - else
+       %fieldset
+-        %legend Password
++        %legend パスワード
+         .form-group
+-          = f.label :password, class: 'control-label'
++          = f.label :password, 'パスワード', class: 'control-label'
+           .col-sm-10= f.password_field :password, disabled: f.object.force_random_password, class: 'form-control'
+         .form-group
+-          = f.label :password_confirmation, class: 'control-label'
++          = f.label :password_confirmation, 'パスワード(確認)', class: 'control-label'
+           .col-sm-10= f.password_field :password_confirmation, disabled: f.object.force_random_password, class: 'form-control'
+ 
+     %fieldset
+-      %legend Access
++      %legend アクセス
+       .form-group
+-        = f.label :projects_limit, class: 'control-label'
++        = f.label :projects_limit, 'プロジェクト数上限', class: 'control-label'
+         .col-sm-10= f.number_field :projects_limit, class: 'form-control'
+ 
+       .form-group
+-        = f.label :can_create_group, class: 'control-label'
++        = f.label :can_create_group, 'グループ作成可能', class: 'control-label'
+         .col-sm-10= f.check_box :can_create_group
+ 
+       .form-group
+-        = f.label :admin, class: 'control-label'
++        = f.label :admin, '管理者', class: 'control-label'
+         - if current_user == @user
+           .col-sm-10= f.check_box :admin, disabled: true
+-          .col-sm-10 You cannot remove your own admin rights
++          .col-sm-10 あなた自身の管理者権限を削除することはできません。
+         - else
+           .col-sm-10= f.check_box :admin
+       - unless @user.new_record? || current_user == @user
+         .alert.alert-danger
+           - if @user.blocked?
+-            %p This user is blocked and is not able to login to GitLab
+-            = link_to 'Unblock User', unblock_admin_user_path(@user), method: :put, class: "btn btn-small"
++            %p このユーザはブロックされており、GitLabにログインすることもできません。
++            = link_to 'ブロック解除', unblock_admin_user_path(@user), method: :put, class: "btn btn-small"
+           - else
+-            %p Blocked users will be removed from all projects &amp; will not be able to login to GitLab.
+-            = link_to 'Block User', block_admin_user_path(@user), data: {confirm: 'USER WILL BE BLOCKED! Are you sure?'}, method: :put, class: "btn btn-small btn-remove"
++            %p ブロックされたユーザはすべてのプロジェクトから削除され、GitLabへのログインもできなくなります。
++            = link_to 'ユーザをブロック', block_admin_user_path(@user), data: {confirm: 'ユーザはブロックされます！本当にブロックしますか？'}, method: :put, class: "btn btn-small btn-remove"
+     %fieldset
+-      %legend Profile
++      %legend プロフィール
+       .form-group
+         = f.label :skype, class: 'control-label'
+         .col-sm-10= f.text_field :skype, class: 'form-control'
+@@ -81,13 +81,13 @@
+         = f.label :twitter, class: 'control-label'
+         .col-sm-10= f.text_field :twitter, class: 'form-control'
+       .form-group
+-        = f.label :website_url, 'Website', class: 'control-label'
++        = f.label :website_url, 'Webサイト', class: 'control-label'
+         .col-sm-10= f.text_field :website_url, class: 'form-control'
+ 
+     .form-actions
+       - if @user.new_record?
+-        = f.submit 'Create user', class: "btn btn-create"
+-        = link_to 'Cancel', admin_users_path, class: "btn btn-cancel"
++        = f.submit 'ユーザを作成', class: "btn btn-create"
++        = link_to 'キャンセル', admin_users_path, class: "btn btn-cancel"
+       - else
+-        = f.submit 'Save changes', class: "btn btn-save"
+-        = link_to 'Cancel', admin_user_path(@user), class: "btn btn-cancel"
++        = f.submit '変更を保存', class: "btn btn-save"
++        = link_to 'キャンセル', admin_user_path(@user), class: "btn btn-cancel"
+diff -urN gitlab-rails.bk/app/views/admin/users/edit.html.haml gitlab-rails/app/views/admin/users/edit.html.haml
+--- gitlab-rails.bk/app/views/admin/users/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/admin/users/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,6 +1,6 @@
+ %h3.page-title
+   #{@user.name} &rarr;
+   %i.icon-edit
+-  Edit user
++  ユーザを編集
+ %hr
+ = render 'form'
+diff -urN gitlab-rails.bk/app/views/admin/users/index.html.haml gitlab-rails/app/views/admin/users/index.html.haml
+--- gitlab-rails.bk/app/views/admin/users/index.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/admin/users/index.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -4,35 +4,35 @@
+       %ul.nav.nav-pills.nav-stacked
+         %li{class: "#{'active' unless params[:filter]}"}
+           = link_to admin_users_path do
+-            Active
++            アクティブ
+             %small.pull-right= User.active.count
+         %li{class: "#{'active' if params[:filter] == "admins"}"}
+           = link_to admin_users_path(filter: "admins") do
+-            Admins
++            管理者
+             %small.pull-right= User.admins.count
+         %li{class: "#{'active' if params[:filter] == "blocked"}"}
+           = link_to admin_users_path(filter: "blocked") do
+-            Blocked
++            ブロック中
+             %small.pull-right= User.blocked.count
+         %li{class: "#{'active' if params[:filter] == "wop"}"}
+           = link_to admin_users_path(filter: "wop") do
+-            Without projects
++            プロジェクトに所属しない
+             %small.pull-right= User.without_projects.count
+       %hr
+       = form_tag admin_users_path, method: :get, class: 'form-inline' do
+         .form-group
+-          = search_field_tag :name, params[:name], placeholder: 'Name, email or username', class: 'form-control'
++          = search_field_tag :name, params[:name], placeholder: '名前, メールアドレス, ユーザ名', class: 'form-control'
+         = button_tag type: 'submit', class: 'btn btn-primary' do
+           %i.icon-search
+       %hr
+-      = link_to 'Reset', admin_users_path, class: "btn btn-cancel"
++      = link_to 'リセット', admin_users_path, class: "btn btn-cancel"
+ 
+   .col-md-9
+     .ui-box
+       .title
+-        Users (#{@users.total_count})
++        ユーザ (#{@users.total_count})
+         .pull-right
+-          = link_to 'New User', new_admin_user_path, class: "btn btn-new"
++          = link_to '新しいユーザ', new_admin_user_path, class: "btn btn-new"
+       %ul.well-list
+         - @users.each do |user|
+           %li
+@@ -42,19 +42,19 @@
+               %i.icon-user.cgreen
+             = link_to user.name, [:admin, user]
+             - if user.admin?
+-              %strong.cred (Admin)
++              %strong.cred (管理者)
+             - if user == current_user
+-              %span.cred It's you!
++              %span.cred あなた
+             .pull-right
+               %span.light
+                 %i.icon-envelope
+                 = mail_to user.email, user.email, class: 'light'
+               &nbsp;
+-              = link_to 'Edit', edit_admin_user_path(user), id: "edit_#{dom_id(user)}", class: "btn btn-small"
++              = link_to '編集', edit_admin_user_path(user), id: "edit_#{dom_id(user)}", class: "btn btn-small"
+               - unless user == current_user
+                 - if user.blocked?
+-                  = link_to 'Unblock', unblock_admin_user_path(user), method: :put, class: "btn btn-small success"
++                  = link_to 'ブロック解除', unblock_admin_user_path(user), method: :put, class: "btn btn-small success"
+                 - else
+-                  = link_to 'Block', block_admin_user_path(user), data: {confirm: 'USER WILL BE BLOCKED! Are you sure?'}, method: :put, class: "btn btn-small btn-remove"
+-                = link_to 'Destroy', [:admin, user], data: { confirm: "USER #{user.name} WILL BE REMOVED! All tickets linked to this user will also be removed! Maybe block the user instead? Are you sure?" }, method: :delete, class: "btn btn-small btn-remove"
++                  = link_to 'ブロック', block_admin_user_path(user), data: {confirm: 'ユーザはブロックされます！よろしいですか？'}, method: :put, class: "btn btn-small btn-remove"
++                = link_to '削除', [:admin, user], data: { confirm: "ユーザ #{user.name} は削除されます！このユーザに関連するすべての課題も削除されます！削除する代わりにブロックした方が良いかもしれません。本当に削除しますか？" }, method: :delete, class: "btn btn-small btn-remove"
+     = paginate @users, theme: "gitlab"
+diff -urN gitlab-rails.bk/app/views/admin/users/new.html.haml gitlab-rails/app/views/admin/users/new.html.haml
+--- gitlab-rails.bk/app/views/admin/users/new.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/admin/users/new.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,5 +1,5 @@
+ %h3.page-title
+   %i.icon-plus
+-  New user
++  新しいユーザ
+ %hr
+ = render 'form'
+diff -urN gitlab-rails.bk/app/views/admin/users/show.html.haml gitlab-rails/app/views/admin/users/show.html.haml
+--- gitlab-rails.bk/app/views/admin/users/show.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/admin/users/show.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,66 +1,66 @@
+ %h3.page-title
+-  %span.cgray User:
++  %span.cgray ユーザ:
+   = @user.name
+   - if @user.blocked?
+-    %span.cred (Blocked)
++    %span.cred (ブロック中)
+   - if @user.admin
+-    %span.cred (Admin)
++    %span.cred (管理者)
+ 
+   .pull-right
+     = link_to edit_admin_user_path(@user), class: "btn grouped" do
+       %i.icon-edit
+-      Edit
++      編集
+ %hr
+ 
+ .row
+   .col-md-6
+     .ui-box
+       .title
+-        Account:
++        アカウント:
+         .pull-right
+           = image_tag avatar_icon(@user.email, 32), class: "avatar s32"
+       %ul.well-list
+         %li
+-          %span.light Name:
++          %span.light 名前:
+           %strong= @user.name
+         %li
+-          %span.light Username:
++          %span.light ユーザ名:
+           %strong
+             = @user.username
+         %li
+-          %span.light Email:
++          %span.light メールアドレス:
+           %strong
+             = mail_to @user.email
+         %li
+-          %span.light Can create groups:
++          %span.light グループの作成:
+           %strong
+-            = @user.can_create_group ? "Yes" : "No"
++            = @user.can_create_group ? "可" : "不可"
+         %li
+-          %span.light Personal projects limit:
++          %span.light 個人のプロジェクト数の上限:
+           %strong
+             = @user.projects_limit
+         %li
+-          %span.light Member since:
++          %span.light 登録日:
+           %strong
+-            = @user.created_at.stamp("Nov 12, 2031")
++            = @user.created_at.stamp("2031/11/12")
+         - if @user.confirmed_at
+           %li
+-            %span.light Confirmed at:
++            %span.light 登録確認日:
+             %strong
+-              = @user.confirmed_at.stamp("Nov 12, 2031")
++              = @user.confirmed_at.stamp("2031/11/12")
+         - else
+           %li
+-            %span.light Confirmed:
++            %span.light 登録確認日:
+             %strong.cred
+-              No
++              未確認
+ 
+         %li
+-          %span.light Last sign-in at:
++          %span.light 最終サインイン:
+           %strong
+             - if @user.last_sign_in_at
+-              = @user.last_sign_in_at.stamp("Nov 12, 2031")
++              = @user.last_sign_in_at.stamp("2031/11/12")
+             - else
+-              never
++              サインインなし
+ 
+         - if @user.ldap_user?
+           %li
+@@ -70,56 +70,56 @@
+ 
+         - if @user.created_by
+           %li
+-            %span.light Created by:
++            %span.light 登録者:
+             %strong
+               = link_to @user.created_by.name, [:admin, @user.created_by]
+ 
+     - unless @user == current_user
+       - if @user.blocked?
+         .alert.alert-info
+-          %h4 This user is blocked
+-          %p Blocking user has the following effects:
++          %h4 このユーザをブロック
++          %p ユーザをブロックすると以下の影響があります。
+           %ul
+-            %li User will not be able to login
+-            %li User will not be able to access git repositories
+-            %li User will be removed from joined projects and groups
+-            %li Personal projects will be left
+-            %li Owned groups will be left
++            %li ユーザはログインできません。
++            %li ユーザはGitリポジトリにアクセスできません。
++            %li ユーザは参加中のプロジェクトとグループから削除されます。
++            %li ユーザ個人のプロジェクトから離脱します。
++            %li ユーザが所有するグループから離脱します。
+           %br
+-          = link_to 'Unblock user', unblock_admin_user_path(@user), method: :put, class: "btn btn-new", data: { confirm: 'Are you sure?' }
++          = link_to 'ブロック解除', unblock_admin_user_path(@user), method: :put, class: "btn btn-new", data: { confirm: 'Are you sure?' }
+       - else
+         .alert.alert-warning
+-          %h4 Block this user
+-          %p Blocking user has the following effects:
++          %h4 このユーザをブロック
++          %p ユーザをブロックすると以下の効果/影響があります。
+           %ul
+-            %li User will not be able to login
+-            %li User will not be able to access git repositories
+-            %li User will be removed from joined projects and groups
+-            %li Personal projects will be left
+-            %li Owned groups will be left
++            %li ユーザはログインできません。
++            %li ユーザはGitリポジトリにアクセスできません。
++            %li ユーザは参加中のプロジェクトとグループから削除されます。
++            %li ユーザ個人のプロジェクトから離脱します。
++            %li ユーザが所有するグループから離脱します。
+           %br
+-          = link_to 'Block user', block_admin_user_path(@user), data: { confirm: 'USER WILL BE BLOCKED! Are you sure?' }, method: :put, class: "btn btn-remove"
++          = link_to 'このユーザをブロック', block_admin_user_path(@user), data: { confirm: 'このユーザはブロックされます！本当にブロックしますか？' }, method: :put, class: "btn btn-remove"
+ 
+       .alert.alert-danger
+         %h4
+-          Remove user
+-        %p Deleting a user has the following effects:
++          ユーザの削除
++        %p ユーザを削除すると以下の影響があります。
+         %ul
+-          %li All user content like authored issues, snippets, comments will be removed
++          %li このユーザが作成した課題, スニペット, コメントといったすべてのコンテンツが削除されます。
+           - rp = @user.personal_projects.count
+           - unless rp.zero?
+-            %li #{pluralize rp, 'personal project'} will be removed and cannot be restored
++            %li #{rp}個の個人プロジェクトが削除され、復元できなくなります。
+           - if @user.solo_owned_groups.present?
+             %li
+-              Next groups with all content will be removed:
++              以下のグループと、グループ内のすべてのコンテンツが削除されます。
+               %strong #{@user.solo_owned_groups.map(&:name).join(', ')}
+         %br
+-        = link_to 'Remove user', [:admin, @user], data: { confirm: "USER #{@user.name} WILL BE REMOVED! Are you sure?" }, method: :delete, class: "btn btn-remove"
++        = link_to 'ユーザを削除', [:admin, @user], data: { confirm: "ユーザ #{@user.name} は削除されます！本当に削除しますか？" }, method: :delete, class: "btn btn-remove"
+ 
+   .col-md-6
+     - if @user.users_groups.present?
+       .ui-box
+-        .title Groups:
++        .title グループ:
+         %ul.well-list
+           - @user.users_groups.each do |user_group|
+             - group = user_group.group
+@@ -128,11 +128,11 @@
+               .pull-right
+                 %span.light= user_group.human_access
+                 - unless user_group.owner?
+-                  = link_to group_users_group_path(group, user_group), data: { confirm: remove_user_from_group_message(group, @user) }, method: :delete, remote: true, class: "btn-tiny btn btn-remove", title: 'Remove user from group' do
++                  = link_to group_users_group_path(group, user_group), data: { confirm: remove_user_from_group_message(group, @user) }, method: :delete, remote: true, class: "btn-tiny btn btn-remove", title: 'グループからユーザを削除' do
+                     %i.icon-remove.icon-white
+ 
+     .ui-box
+-      .title Projects (#{@projects.count})
++      .title プロジェクト (#{@projects.count})
+       %ul.well-list
+         - @projects.sort_by(&:name_with_namespace).each do |project|
+           - tm = project.team.find_tm(@user.id)
+@@ -148,5 +148,5 @@
+                   %span.light= tm.human_access
+ 
+                   - if tm.respond_to? :project
+-                    = link_to project_team_member_path(project, @user), data: { confirm: remove_from_project_team_message(project, @user) }, remote: true, method: :delete, class: "btn-tiny btn btn-remove", title: 'Remove user from project' do
++                    = link_to project_team_member_path(project, @user), data: { confirm: remove_from_project_team_message(project, @user) }, remote: true, method: :delete, class: "btn-tiny btn btn-remove", title: 'プロジェクトからユーザを削除' do
+                       %i.icon-remove
 diff -urN gitlab-rails.bk/app/views/dashboard/_activities.html.haml gitlab-rails/app/views/dashboard/_activities.html.haml
 --- gitlab-rails.bk/app/views/dashboard/_activities.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/dashboard/_activities.html.haml	2014-03-22 09:00:00.000000000 +0900

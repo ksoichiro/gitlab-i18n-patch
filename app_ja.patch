@@ -153,7 +153,7 @@ diff -urN gitlab-rails.bk/app/helpers/visibility_level_helper.rb gitlab-rails/ap
 +    when Gitlab::VisibilityLevel::INTERNAL
 +      "内部"
 +    when Gitlab::VisibilityLevel::PUBLIC
-+      "パブリック"
++      "公開"
 +    end
    end
  

@@ -2114,7 +2114,7 @@ diff -urN gitlab-rails.bk/app/views/layouts/_head_panel.html.haml gitlab-rails/a
            %h1 GITLAB
          %span.separator
        %h1.title= title
-@@ -21,27 +21,27 @@
+@@ -21,28 +21,28 @@
            %li.hidden-sm.hidden-xs
              = render "layouts/search"
            %li.visible-sm.visible-xs
@@ -2149,6 +2149,8 @@ diff -urN gitlab-rails.bk/app/views/layouts/_head_panel.html.haml gitlab-rails/a
                %i.icon-signout
            %li
              = link_to current_user, class: "profile-pic", id: 'profile-pic' do
+-              = image_tag avatar_icon(current_user.email, 26), alt: 'User activity'
++              = image_tag avatar_icon(current_user.email, 26), alt: 'ユーザアクティビティ'
 diff -urN gitlab-rails.bk/app/views/layouts/_public_head_panel.html.haml gitlab-rails/app/views/layouts/_public_head_panel.html.haml
 --- gitlab-rails.bk/app/views/layouts/_public_head_panel.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/layouts/_public_head_panel.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -2161,6 +2163,21 @@ diff -urN gitlab-rails.bk/app/views/layouts/_public_head_panel.html.haml gitlab-
  
        %ul.nav.navbar-nav
          %li
+diff -urN gitlab-rails.bk/app/views/layouts/admin.html.haml gitlab-rails/app/views/layouts/admin.html.haml
+--- gitlab-rails.bk/app/views/layouts/admin.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/layouts/admin.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,9 +1,9 @@
+ !!! 5
+ %html{ lang: "en"}
+-  = render "layouts/head", title: "Admin area"
++  = render "layouts/head", title: "管理エリア"
+   %body{class: "#{app_theme} admin", :'data-page' => body_data_page}
+     = render "layouts/broadcast"
+-    = render "layouts/head_panel", title: "Admin area"
++    = render "layouts/head_panel", title: "管理エリア"
+     = render "layouts/flash"
+     %nav.main-nav.navbar-collapse.collapse
+       .container= render 'layouts/nav/admin'
 diff -urN gitlab-rails.bk/app/views/layouts/application.html.haml gitlab-rails/app/views/layouts/application.html.haml
 --- gitlab-rails.bk/app/views/layouts/application.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/layouts/application.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -2191,6 +2208,17 @@ diff -urN gitlab-rails.bk/app/views/layouts/devise.html.haml gitlab-rails/app/vi
      %hr
      .container
        .content
+diff -urN gitlab-rails.bk/app/views/layouts/errors.html.haml gitlab-rails/app/views/layouts/errors.html.haml
+--- gitlab-rails.bk/app/views/layouts/errors.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/layouts/errors.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,6 +1,6 @@
+ !!! 5
+ %html{ lang: "en"}
+-  = render "layouts/head", title: "Error"
++  = render "layouts/head", title: "エラー"
+   %body{class: "#{app_theme} application"}
+     = render "layouts/head_panel", title: "" if current_user
+     = render "layouts/flash"
 diff -urN gitlab-rails.bk/app/views/layouts/group.html.haml gitlab-rails/app/views/layouts/group.html.haml
 --- gitlab-rails.bk/app/views/layouts/group.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/layouts/group.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -2203,10 +2231,45 @@ diff -urN gitlab-rails.bk/app/views/layouts/group.html.haml gitlab-rails/app/vie
      = render "layouts/flash"
      %nav.main-nav.navbar-collapse.collapse
        .container= render 'layouts/nav/group'
+diff -urN gitlab-rails.bk/app/views/layouts/nav/_admin.html.haml gitlab-rails/app/views/layouts/nav/_admin.html.haml
+--- gitlab-rails.bk/app/views/layouts/nav/_admin.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/layouts/nav/_admin.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,19 +1,19 @@
+ %ul
+   = nav_link(controller: :dashboard, html_options: {class: 'home'}) do
+-    = link_to admin_root_path, title: "Stats" do
++    = link_to admin_root_path, title: "統計" do
+       %i.icon-home
+   = nav_link(controller: :projects) do
+-    = link_to "Projects", admin_projects_path
++    = link_to "プロジェクト", admin_projects_path
+   = nav_link(controller: :groups) do
+-    = link_to "Groups", admin_groups_path
++    = link_to "グループ", admin_groups_path
+   = nav_link(controller: :users) do
+-    = link_to "Users", admin_users_path
++    = link_to "ユーザ", admin_users_path
+   = nav_link(controller: :logs) do
+-    = link_to "Logs", admin_logs_path
++    = link_to "ログ", admin_logs_path
+   = nav_link(controller: :broadcast_messages) do
+-    = link_to "Messages", admin_broadcast_messages_path
++    = link_to "メッセージ", admin_broadcast_messages_path
+   = nav_link(controller: :hooks) do
+-    = link_to "Hooks", admin_hooks_path
++    = link_to "フック", admin_hooks_path
+   = nav_link(controller: :background_jobs) do
+-    = link_to "Background Jobs", admin_background_jobs_path
++    = link_to "ジョブ", admin_background_jobs_path
+ 
 diff -urN gitlab-rails.bk/app/views/layouts/nav/_dashboard.html.haml gitlab-rails/app/views/layouts/nav/_dashboard.html.haml
 --- gitlab-rails.bk/app/views/layouts/nav/_dashboard.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/layouts/nav/_dashboard.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -4,15 +4,15 @@
+@@ -1,18 +1,18 @@
+ %ul
+   = nav_link(path: 'dashboard#show', html_options: {class: 'home'}) do
+-    = link_to root_path, title: "Home" do
++    = link_to root_path, title: "ホーム" do
        %i.icon-home
    = nav_link(path: 'dashboard#projects') do
      = link_to projects_dashboard_path do
@@ -2229,7 +2292,11 @@ diff -urN gitlab-rails.bk/app/views/layouts/nav/_dashboard.html.haml gitlab-rail
 diff -urN gitlab-rails.bk/app/views/layouts/nav/_group.html.haml gitlab-rails/app/views/layouts/nav/_group.html.haml
 --- gitlab-rails.bk/app/views/layouts/nav/_group.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/layouts/nav/_group.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -4,17 +4,17 @@
+@@ -1,20 +1,20 @@
+ %ul
+   = nav_link(path: 'groups#show', html_options: {class: 'home'}) do
+-    = link_to group_path(@group), title: "Home" do
++    = link_to group_path(@group), title: "ホーム" do
        %i.icon-home
    = nav_link(path: 'groups#issues') do
      = link_to issues_group_path(@group) do
@@ -2293,7 +2360,12 @@ diff -urN gitlab-rails.bk/app/views/layouts/nav/_profile.html.haml gitlab-rails/
 diff -urN gitlab-rails.bk/app/views/layouts/nav/_project.html.haml gitlab-rails/app/views/layouts/nav/_project.html.haml
 --- gitlab-rails.bk/app/views/layouts/nav/_project.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/layouts/nav/_project.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -5,31 +5,31 @@
+@@ -1,35 +1,35 @@
+ %ul
+   = nav_link(path: 'projects#show', html_options: {class: "home"}) do
+-    = link_to project_path(@project), title: "Project" do
++    = link_to project_path(@project), title: "プロジェクト" do
+       %i.icon-home
  
    - if project_nav_tab? :files
      = nav_link(controller: %w(tree blob blame edit_tree new_tree)) do

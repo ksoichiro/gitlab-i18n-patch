@@ -176,6 +176,135 @@ diff -urN gitlab-rails.bk/app/mailers/emails/groups.rb gitlab-rails/app/mailers/
      end
    end
  end
+diff -urN gitlab-rails.bk/app/mailers/emails/issues.rb gitlab-rails/app/mailers/emails/issues.rb
+--- gitlab-rails.bk/app/mailers/emails/issues.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/mailers/emails/issues.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,9 +1,10 @@
++# encoding: utf-8
+ module Emails
+   module Issues
+     def new_issue_email(recipient_id, issue_id)
+       @issue = Issue.find(issue_id)
+       @project = @issue.project
+-      mail(to: recipient(recipient_id), subject: subject("New issue ##{@issue.iid}", @issue.title))
++      mail(to: recipient(recipient_id), subject: subject("新しい課題 ##{@issue.iid}", @issue.title))
+     end
+ 
+     def reassigned_issue_email(recipient_id, issue_id, previous_assignee_id)
+diff -urN gitlab-rails.bk/app/mailers/emails/merge_requests.rb gitlab-rails/app/mailers/emails/merge_requests.rb
+--- gitlab-rails.bk/app/mailers/emails/merge_requests.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/mailers/emails/merge_requests.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,29 +1,30 @@
++# encoding: utf-8
+ module Emails
+   module MergeRequests
+     def new_merge_request_email(recipient_id, merge_request_id)
+       @merge_request = MergeRequest.find(merge_request_id)
+       @project = @merge_request.project
+-      mail(to: recipient(recipient_id), subject: subject("New merge request ##{@merge_request.iid}", @merge_request.title))
++      mail(to: recipient(recipient_id), subject: subject("新しいマージリクエスト ##{@merge_request.iid}", @merge_request.title))
+     end
+ 
+     def reassigned_merge_request_email(recipient_id, merge_request_id, previous_assignee_id)
+       @merge_request = MergeRequest.find(merge_request_id)
+       @previous_assignee = User.find_by(id: previous_assignee_id) if previous_assignee_id
+       @project = @merge_request.project
+-      mail(to: recipient(recipient_id), subject: subject("Changed merge request ##{@merge_request.iid}", @merge_request.title))
++      mail(to: recipient(recipient_id), subject: subject("マージリクエスト ##{@merge_request.iid} の変更", @merge_request.title))
+     end
+ 
+     def closed_merge_request_email(recipient_id, merge_request_id, updated_by_user_id)
+       @merge_request = MergeRequest.find(merge_request_id)
+       @updated_by = User.find updated_by_user_id
+       @project = @merge_request.project
+-      mail(to: recipient(recipient_id), subject: subject("Closed merge request ##{@merge_request.iid}", @merge_request.title))
++      mail(to: recipient(recipient_id), subject: subject("マージリクエスト ##{@merge_request.iid} のクローズ", @merge_request.title))
+     end
+ 
+     def merged_merge_request_email(recipient_id, merge_request_id)
+       @merge_request = MergeRequest.find(merge_request_id)
+       @project = @merge_request.project
+-      mail(to: recipient(recipient_id), subject: subject("Accepted merge request ##{@merge_request.iid}", @merge_request.title))
++      mail(to: recipient(recipient_id), subject: subject("マージリクエスト ##{@merge_request.iid} の承認", @merge_request.title))
+     end
+   end
+ 
+diff -urN gitlab-rails.bk/app/mailers/emails/notes.rb gitlab-rails/app/mailers/emails/notes.rb
+--- gitlab-rails.bk/app/mailers/emails/notes.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/mailers/emails/notes.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,30 +1,31 @@
++# encoding: utf-8
+ module Emails
+   module Notes
+     def note_commit_email(recipient_id, note_id)
+       @note = Note.find(note_id)
+       @commit = @note.noteable
+       @project = @note.project
+-      mail(to: recipient(recipient_id), subject: subject("Note for commit #{@commit.short_id}", @commit.title))
++      mail(to: recipient(recipient_id), subject: subject("コミット #{@commit.short_id} へのコメント", @commit.title))
+     end
+ 
+     def note_issue_email(recipient_id, note_id)
+       @note = Note.find(note_id)
+       @issue = @note.noteable
+       @project = @note.project
+-      mail(to: recipient(recipient_id), subject: subject("Note for issue ##{@issue.iid}"))
++      mail(to: recipient(recipient_id), subject: subject("課題 ##{@issue.iid} へのコメント"))
+     end
+ 
+     def note_merge_request_email(recipient_id, note_id)
+       @note = Note.find(note_id)
+       @merge_request = @note.noteable
+       @project = @note.project
+-      mail(to: recipient(recipient_id), subject: subject("Note for merge request ##{@merge_request.iid}"))
++      mail(to: recipient(recipient_id), subject: subject("マージリクエスト ##{@merge_request.iid} へのコメント"))
+     end
+ 
+     def note_wall_email(recipient_id, note_id)
+       @note = Note.find(note_id)
+       @project = @note.project
+-      mail(to: recipient(recipient_id), subject: subject("Note on wall"))
++      mail(to: recipient(recipient_id), subject: subject("ウォールでのコメント"))
+     end
+   end
+ end
+diff -urN gitlab-rails.bk/app/mailers/emails/profile.rb gitlab-rails/app/mailers/emails/profile.rb
+--- gitlab-rails.bk/app/mailers/emails/profile.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/mailers/emails/profile.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,21 +1,22 @@
++# encoding: utf-8
+ module Emails
+   module Profile
+     def new_user_email(user_id, password)
+       @user = User.find(user_id)
+       @password = password
+-      mail(to: @user.email, subject: subject("Account was created for you"))
++      mail(to: @user.email, subject: subject("あなたのアカウントが作成されました"))
+     end
+ 
+     def new_email_email(email_id)
+       @email = Email.find(email_id)
+       @user = @email.user
+-      mail(to: @user.email, subject: subject("Email was added to your account"))
++      mail(to: @user.email, subject: subject("メールアドレスがあなたのアカウントに追加されました"))
+     end
+ 
+     def new_ssh_key_email(key_id)
+       @key = Key.find(key_id)
+       @user = @key.user
+-      mail(to: @user.email, subject: subject("SSH key was added to your account"))
++      mail(to: @user.email, subject: subject("SSHキーがあなたのアカウントに追加されました"))
+     end
+   end
+ end
+diff -urN gitlab-rails.bk/app/mailers/emails/projects.rb gitlab-rails/app/mailers/emails/projects.rb
+--- gitlab-rails.bk/app/mailers/emails/projects.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/mailers/emails/projects.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ module Emails
+   module Projects
+     def project_access_granted_email(user_project_id)
 diff -urN gitlab-rails.bk/app/models/notification.rb gitlab-rails/app/models/notification.rb
 --- gitlab-rails.bk/app/models/notification.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/models/notification.rb	2014-03-22 09:00:00.000000000 +0900
@@ -4310,6 +4439,41 @@ diff -urN gitlab-rails.bk/app/views/projects/edit.html.haml gitlab-rails/app/vie
 -    %p Please wait a moment, this page will automatically refresh when ready.
 +      プロジェクトを保存しています
 +    %p 準備ができ次第、自動的に更新されますのでお待ちください
+diff -urN gitlab-rails.bk/app/views/projects/empty.html.haml gitlab-rails/app/views/projects/empty.html.haml
+--- gitlab-rails.bk/app/views/projects/empty.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/empty.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -14,14 +14,14 @@
+ - else
+   %div.git-empty
+     %fieldset
+-      %legend Git global setup:
++      %legend Gitのグローバルなセットアップ:
+       %pre.dark
+         :preserve
+           git config --global user.name "#{git_user_name}"
+           git config --global user.email "#{git_user_email}"
+ 
+     %fieldset
+-      %legend Create Repository
++      %legend リポジトリを新しく作成する場合
+       %pre.dark
+         :preserve
+           mkdir #{@project.path}
+@@ -34,7 +34,7 @@
+           git push -u origin master
+ 
+     %fieldset
+-      %legend Existing Git Repo?
++      %legend 既存のGitリポジトリがある場合
+       %pre.dark
+         :preserve
+           cd existing_git_repo
+@@ -43,4 +43,4 @@
+ 
+   - if can? current_user, :remove_project, @project
+     .prepend-top-20
+-      = link_to 'Remove project', @project, data: { confirm: remove_project_message(@project)}, method: :delete, class: "btn btn-remove pull-right"
++      = link_to 'プロジェクトを削除', @project, data: { confirm: remove_project_message(@project)}, method: :delete, class: "btn btn-remove pull-right"
 diff -urN gitlab-rails.bk/app/views/projects/graphs/show.html.haml gitlab-rails/app/views/projects/graphs/show.html.haml
 --- gitlab-rails.bk/app/views/projects/graphs/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/graphs/show.html.haml	2014-03-22 09:00:00.000000000 +0900

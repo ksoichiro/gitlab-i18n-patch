@@ -24,6 +24,34 @@ diff -urN gitlab-rails.bk/app/assets/javascripts/lib/jquery.timeago.js gitlab-ra
 +  years: "約 %d 年",
 +  wordSeparator: ""
 +};
+バイナリー・ファイルgitlab-rails.bk/app/controllers/.groups_controller.rb.swpとgitlab-rails/app/controllers/.groups_controller.rb.swpは違います
+diff -urN gitlab-rails.bk/app/controllers/users_groups_controller.rb gitlab-rails/app/controllers/users_groups_controller.rb
+--- gitlab-rails.bk/app/controllers/users_groups_controller.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/controllers/users_groups_controller.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,5 @@
++# encoding: utf-8
++
+ class UsersGroupsController < ApplicationController
+   before_filter :group
+ 
+@@ -9,7 +11,7 @@
+   def create
+     @group.add_users(params[:user_ids].split(','), params[:group_access])
+ 
+-    redirect_to members_group_path(@group), notice: 'Users were successfully added.'
++    redirect_to members_group_path(@group), notice: 'ユーザは正常に追加されました。'
+   end
+ 
+   def update
+@@ -22,7 +24,7 @@
+     if can?(current_user, :destroy, @users_group)  # May fail if last owner.
+       @users_group.destroy
+       respond_to do |format|
+-        format.html { redirect_to members_group_path(@group), notice: 'User was  successfully removed from group.' }
++        format.html { redirect_to members_group_path(@group), notice: 'ユーザはグループから正常に削除されました。' }
+         format.js { render nothing: true }
+       end
+     else
 diff -urN gitlab-rails.bk/app/helpers/application_helper.rb gitlab-rails/app/helpers/application_helper.rb
 --- gitlab-rails.bk/app/helpers/application_helper.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/helpers/application_helper.rb	2014-03-22 09:00:00.000000000 +0900
@@ -56,6 +84,27 @@ diff -urN gitlab-rails.bk/app/helpers/application_helper.rb gitlab-rails/app/hel
          data: { toggle: 'tooltip', placement: placement }
  
        haml_tag :script, "$('." + html_class + "').timeago().tooltip()"
+diff -urN gitlab-rails.bk/app/mailers/emails/groups.rb gitlab-rails/app/mailers/emails/groups.rb
+--- gitlab-rails.bk/app/mailers/emails/groups.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/mailers/emails/groups.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,5 @@
++# encoding: utf-8
++
+ module Emails
+   module Groups
+     def group_access_granted_email(user_group_id)
+@@ -5,7 +7,7 @@
+       @group = @membership.group
+ 
+       mail(to: @membership.user.email,
+-           subject: subject("Access to group was granted"))
++           subject: subject("グループへのアクセス権が付与されました"))
+     end
+   end
+ end
+バイナリー・ファイルgitlab-rails.bk/app/models/.group.rb.swpとgitlab-rails/app/models/.group.rb.swpは違います
+バイナリー・ファイルgitlab-rails.bk/app/models/.user.rb.swpとgitlab-rails/app/models/.user.rb.swpは違います
+バイナリー・ファイルgitlab-rails.bk/app/models/.users_group.rb.swpとgitlab-rails/app/models/.users_group.rb.swpは違います
 diff -urN gitlab-rails.bk/app/models/notification.rb gitlab-rails/app/models/notification.rb
 --- gitlab-rails.bk/app/models/notification.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/models/notification.rb	2014-03-22 09:00:00.000000000 +0900
@@ -448,6 +497,8 @@ diff -urN gitlab-rails.bk/app/views/events/event/_note.html.haml gitlab-rails/ap
  
  .event-body
    .event-note
+バイナリー・ファイルgitlab-rails.bk/app/views/groups/._new_group_member.html.haml.swpとgitlab-rails/app/views/groups/._new_group_member.html.haml.swpは違います
+バイナリー・ファイルgitlab-rails.bk/app/views/groups/.members.html.haml.swpとgitlab-rails/app/views/groups/.members.html.haml.swpは違います
 diff -urN gitlab-rails.bk/app/views/groups/_new_group_member.html.haml gitlab-rails/app/views/groups/_new_group_member.html.haml
 --- gitlab-rails.bk/app/views/groups/_new_group_member.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/groups/_new_group_member.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -1087,6 +1138,267 @@ diff -urN gitlab-rails.bk/app/views/layouts/search.html.haml gitlab-rails/app/vi
      = render "layouts/flash"
  
      .container.navless-container
+diff -urN gitlab-rails.bk/app/views/notify/closed_issue_email.html.haml gitlab-rails/app/views/notify/closed_issue_email.html.haml
+--- gitlab-rails.bk/app/views/notify/closed_issue_email.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/notify/closed_issue_email.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,5 +1,5 @@
+ %p
+-  = "Issue was closed by #{@updated_by.name}"
++  = "#{@updated_by.name} が課題を「解決」に変更しました。"
+ %p
+-  = "Issue ##{@issue.iid}"
++  = "課題 ##{@issue.iid}"
+   = link_to_gfm truncate(@issue.title, length: 45), project_issue_url(@issue.project, @issue), title: @issue.title
+diff -urN gitlab-rails.bk/app/views/notify/closed_merge_request_email.html.haml gitlab-rails/app/views/notify/closed_merge_request_email.html.haml
+--- gitlab-rails.bk/app/views/notify/closed_merge_request_email.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/notify/closed_merge_request_email.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,5 +1,5 @@
+ %p
+-  = "Merge Request #{@merge_request.iid} was closed by #{@updated_by.name}"
++  = "#{@updated_by.name} がマージリクエスト #{@merge_request.iid} をクローズしました。"
+ %p
+   = link_to_gfm truncate(@merge_request.title, length: 40), project_merge_request_url(@merge_request.target_project, @merge_request)
+ %p
+diff -urN gitlab-rails.bk/app/views/notify/group_access_granted_email.html.haml gitlab-rails/app/views/notify/group_access_granted_email.html.haml
+--- gitlab-rails.bk/app/views/notify/group_access_granted_email.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/notify/group_access_granted_email.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,5 +1,5 @@
+ %p
+-  = "You have been granted #{@membership.human_access} access to group"
++  = "あなたに以下のグループへの #{@membership.human_access} レベルのアクセス権が付与されました。"
+ %p
+   = link_to group_url(@group) do
+     = @group.name
+diff -urN gitlab-rails.bk/app/views/notify/issue_status_changed_email.html.haml gitlab-rails/app/views/notify/issue_status_changed_email.html.haml
+--- gitlab-rails.bk/app/views/notify/issue_status_changed_email.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/notify/issue_status_changed_email.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,5 +1,5 @@
+ %p
+-  = "Issue was #{@issue_status} by #{@updated_by.name}"
++  = "#{@updated_by.name} が課題のステータスを #{@issue_status} に変更しました。"
+ %p
+-  = "Issue ##{@issue.iid}"
++  = "課題 ##{@issue.iid}"
+   = link_to_gfm truncate(@issue.title, length: 45), project_issue_url(@issue.project, @issue), title: @issue.title
+diff -urN gitlab-rails.bk/app/views/notify/new_email_email.html.haml gitlab-rails/app/views/notify/new_email_email.html.haml
+--- gitlab-rails.bk/app/views/notify/new_email_email.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/notify/new_email_email.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,10 +1,10 @@
+ %p
+-  Hi #{@user.name}!
++  こんにちは #{@user.name} さん！
+ %p
+-  A new email was added to your account:
++  以下の新しいメールアドレスがあなたのアカウントに追加されました。
+ %p
+-  email:
++  メールアドレス:
+   %code= @email.email
+ %p
+-  If this email was added in error, you can remove it here:
+-  = link_to "Emails", profile_emails_url
++  もしこのメールアドレスが誤って追加したものである場合、以下から削除できます。
++  = link_to "メールアドレス", profile_emails_url
+diff -urN gitlab-rails.bk/app/views/notify/new_issue_email.html.haml gitlab-rails/app/views/notify/new_issue_email.html.haml
+--- gitlab-rails.bk/app/views/notify/new_issue_email.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/notify/new_issue_email.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,9 +1,9 @@
+ %p
+-  New Issue was created.
++  新しい課題が作成されました。
+ %p
+-  = "Issue ##{@issue.iid}"
++  = "課題 ##{@issue.iid}"
+   = link_to_gfm truncate(@issue.title, length: 45), project_issue_url(@issue.project, @issue), title: @issue.title
+ %p
+-  Author: #{@issue.author_name}
++  作成者: #{@issue.author_name}
+ %p
+-  Assignee: #{@issue.assignee_name}
++  担当者: #{@issue.assignee_name}
+diff -urN gitlab-rails.bk/app/views/notify/new_merge_request_email.html.haml gitlab-rails/app/views/notify/new_merge_request_email.html.haml
+--- gitlab-rails.bk/app/views/notify/new_merge_request_email.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/notify/new_merge_request_email.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,9 +1,9 @@
+ %p
+-  = "New Merge Request ##{@merge_request.iid}"
++  = "新規マージリクエスト ##{@merge_request.iid}"
+ %p
+   = link_to_gfm truncate(@merge_request.title, length: 40), project_merge_request_url(@merge_request.target_project, @merge_request)
+ %p
+   != merge_path_description(@merge_request, '&rarr;')
+ %p
+-  Assignee: #{@merge_request.author_name} &rarr; #{@merge_request.assignee_name}
++  担当者: #{@merge_request.author_name} &rarr; #{@merge_request.assignee_name}
+ 
+diff -urN gitlab-rails.bk/app/views/notify/new_ssh_key_email.html.haml gitlab-rails/app/views/notify/new_ssh_key_email.html.haml
+--- gitlab-rails.bk/app/views/notify/new_ssh_key_email.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/notify/new_ssh_key_email.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,10 +1,10 @@
+ %p
+-  Hi #{@user.name}!
++  こんにちは #{@user.name} さん！
+ %p
+-  A new public key was added to your account:
++  新しい公開鍵があなたのアカウントに追加されました。
+ %p
+-  title:
++  タイトル:
+   %code= @key.title
+ %p
+-  If this key was added in error, you can remove it here:
+-  = link_to "SSH Keys", profile_keys_url
++  もしこのキーが誤って追加されたものである場合、以下から削除できます。
++  = link_to "SSHキー", profile_keys_url
+diff -urN gitlab-rails.bk/app/views/notify/new_user_email.html.haml gitlab-rails/app/views/notify/new_user_email.html.haml
+--- gitlab-rails.bk/app/views/notify/new_user_email.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/notify/new_user_email.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,21 +1,22 @@
+ %p
+-  Hi #{@user['name']}!
++  こんにちは #{@user['name']} さん！
+ %p
+   - if Gitlab.config.gitlab.signup_enabled
+-    Your account has been created successfully.
++    あなたのアカウントが正常に作成されました。
+   - else
+-    The Administrator created an account for you. Now you are a member of the company GitLab application.
++    管理者があなたのアカウントを作成しました。
++    これであなたも社内GitLabアプリケーションのメンバーです。
+ %p
+-  login..........................................
++  ログイン..................................
+   %code= @user['email']
+ 
+ - if @user.created_by_id
+   %p
+-    password..................................
++    パスワード................................
+     %code= @password
+ 
+   %p
+-    You will be forced to change this password immediately after login.
++    ログイン後にパスワードを変更してください。
+ 
+ %p
+-  = link_to "Click here to login", root_url
++  = link_to "クリックしてログイン", root_url
+diff -urN gitlab-rails.bk/app/views/notify/note_commit_email.html.haml gitlab-rails/app/views/notify/note_commit_email.html.haml
+--- gitlab-rails.bk/app/views/notify/note_commit_email.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/notify/note_commit_email.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,5 +1,5 @@
+ %p
+-  = "New comment for Commit #{@commit.short_id}"
++  = "コミット #{@commit.short_id} にコメントが付きました"
+   = link_to_gfm truncate(@commit.title, length: 16), project_commit_url(@note.project, id: @commit.id, anchor: "note_#{@note.id}")
+ = render 'note_message'
+ 
+diff -urN gitlab-rails.bk/app/views/notify/note_issue_email.html.haml gitlab-rails/app/views/notify/note_issue_email.html.haml
+--- gitlab-rails.bk/app/views/notify/note_issue_email.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/notify/note_issue_email.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+ %p
+-  = "New comment for Issue ##{@issue.iid}"
++  = "課題 ##{@issue.iid} にコメントが付きました"
+   = link_to_gfm truncate(@issue.title, length: 35), project_issue_url(@issue.project, @issue, anchor: "note_#{@note.id}")
+ = render 'note_message'
+diff -urN gitlab-rails.bk/app/views/notify/note_wall_email.html.haml gitlab-rails/app/views/notify/note_wall_email.html.haml
+--- gitlab-rails.bk/app/views/notify/note_wall_email.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/notify/note_wall_email.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,5 +1,5 @@
+ %p
+-  New message on
+-  = link_to "Project Wall", project_wall_url(@note.project, anchor: "note_#{@note.id}")
++  = link_to "プロジェクト ウォール", project_wall_url(@note.project, anchor: "note_#{@note.id}")
++  に新しいメッセージがあります。
+ 
+ = render 'note_message'
+diff -urN gitlab-rails.bk/app/views/notify/project_access_granted_email.html.haml gitlab-rails/app/views/notify/project_access_granted_email.html.haml
+--- gitlab-rails.bk/app/views/notify/project_access_granted_email.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/notify/project_access_granted_email.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,5 +1,5 @@
+ %p
+-  = "You have been granted #{@users_project.human_access} access to project"
++  = "あなたに以下のプロジェクトへの #{@users_project.human_access} レベルのアクセス権が付与されました。"
+ %p
+   = link_to project_url(@project) do
+     = @project.name_with_namespace
+diff -urN gitlab-rails.bk/app/views/notify/project_was_moved_email.html.haml gitlab-rails/app/views/notify/project_was_moved_email.html.haml
+--- gitlab-rails.bk/app/views/notify/project_was_moved_email.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/notify/project_was_moved_email.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,11 +1,11 @@
+ %p
+-  = "Project was moved to another location"
++  = "プロジェクトが別の場所へ移動されました。"
+ %p
+-  The project is now located under
++  プロジェクトは以下の場所にあります。
+   = link_to project_url(@project) do
+     = @project.name_with_namespace
+ %p
+-  To update the remote url in your local repository run:
++  リモートURLを更新するには、ローカルリポジトリで以下を実行してください。
+ %p{ style: "background:#f5f5f5; padding:10px; border:1px solid #ddd" }
+   git remote set-url origin #{@project.ssh_url_to_repo}
+ %br
+diff -urN gitlab-rails.bk/app/views/notify/reassigned_issue_email.html.haml gitlab-rails/app/views/notify/reassigned_issue_email.html.haml
+--- gitlab-rails.bk/app/views/notify/reassigned_issue_email.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/notify/reassigned_issue_email.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,11 +1,11 @@
+ %p
+-  = "Reassigned Issue ##{@issue.iid}"
++  = "課題 ##{@issue.iid} の担当者が変更されました。"
+   = link_to_gfm truncate(@issue.title, length: 30), project_issue_url(@issue.project, @issue)
+ %p
+-  Assignee changed
++  担当者は
+   - if @previous_assignee
+-    from
+     %strong #{@previous_assignee.name}
+-  to
++    から
+   %strong #{@issue.assignee_name}
++  になりました。
+ 
+diff -urN gitlab-rails.bk/app/views/notify/reassigned_merge_request_email.html.haml gitlab-rails/app/views/notify/reassigned_merge_request_email.html.haml
+--- gitlab-rails.bk/app/views/notify/reassigned_merge_request_email.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/notify/reassigned_merge_request_email.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,10 +1,10 @@
+ %p
+-  = "Reassigned Merge Request ##{@merge_request.iid}"
++  = "マージリクエスト ##{@merge_request.iid} の担当者が変更されました。"
+   = link_to_gfm truncate(@merge_request.title, length: 30), project_merge_request_url(@merge_request.target_project, @merge_request)
+ %p
+-  Assignee changed
++  担当者は
+   - if @previous_assignee
+-    from
+     %strong #{@previous_assignee.name}
+-  to
++    から
+   %strong #{@merge_request.assignee_name}
++  になりました。
+diff -urN gitlab-rails.bk/app/views/notify/repository_push_email.html.haml gitlab-rails/app/views/notify/repository_push_email.html.haml
+--- gitlab-rails.bk/app/views/notify/repository_push_email.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/notify/repository_push_email.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,6 +1,6 @@
+-%h3 #{@author.name} pushed to #{@branch} at #{@project.name_with_namespace}
++%h3 #{@author.name} が #{@project.name_with_namespace} の #{@branch} ブランチへPushしました
+ 
+-%h4 Commits:
++%h4 コミット:
+ 
+ %ul
+   - @commits.each do |commit|
+@@ -23,6 +23,6 @@
+     %br
+ 
+ - if @compare.timeout
+-  %h5 Huge diff. To prevent performance issues it was hidden
++  %h5 差分が大きいため、パフォーマンス悪化を防ぐため差分は表示されていません。
+ - elsif @compare.commits_over_limit?
+-  %h5 Diff for big amount of commits is disabled
++  %h5 コミット数が多いため、差分は表示されていません。
 diff -urN gitlab-rails.bk/app/views/profiles/accounts/show.html.haml gitlab-rails/app/views/profiles/accounts/show.html.haml
 --- gitlab-rails.bk/app/views/profiles/accounts/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/profiles/accounts/show.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -3965,3 +4277,29 @@ diff -urN gitlab-rails.bk/app/views/users/show.html.haml gitlab-rails/app/views/
      = render @events
    .col-md-4
      = render 'profile', user: @user
+diff -urN gitlab-rails.bk/app/views/users_groups/_users_group.html.haml gitlab-rails/app/views/users_groups/_users_group.html.haml
+--- gitlab-rails.bk/app/views/users_groups/_users_group.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/users_groups/_users_group.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -11,18 +11,18 @@
+     %strong= member.human_access
+     - if show_controls
+       - if can?(current_user, :modify, member)
+-        = link_to '#', class: "btn-tiny btn js-toggle-button", title: 'Edit access level' do
++        = link_to '#', class: "btn-tiny btn js-toggle-button", title: 'アクセスレベルを編集' do
+           %i.icon-edit
+       - if can?(current_user, :destroy, member)
+         - if current_user == member.user
+-          = link_to leave_profile_group_path(@group), data: { confirm: leave_group_message(@group.name)}, method: :delete, class: "btn-tiny btn btn-remove", title: 'Remove user from group' do
++          = link_to leave_profile_group_path(@group), data: { confirm: leave_group_message(@group.name)}, method: :delete, class: "btn-tiny btn btn-remove", title: 'ユーザをグループから削除' do
+             %i.icon-minus.icon-white
+         - else
+-          = link_to group_users_group_path(@group, member), data: { confirm: remove_user_from_group_message(@group, user) }, method: :delete, remote: true, class: "btn-tiny btn btn-remove", title: 'Remove user from group' do
++          = link_to group_users_group_path(@group, member), data: { confirm: remove_user_from_group_message(@group, user) }, method: :delete, remote: true, class: "btn-tiny btn btn-remove", title: 'ユーザをグループから削除' do
+             %i.icon-minus.icon-white
+ 
+   .edit-member.hide.js-toggle-content
+     = form_for [@group, member], remote: true do |f|
+       .alert.prepend-top-20
+         = f.select :group_access, options_for_select(UsersGroup.group_access_roles, member.group_access)
+-        = f.submit 'Save', class: 'btn btn-save btn-small'
++        = f.submit '保存', class: 'btn btn-save btn-small'

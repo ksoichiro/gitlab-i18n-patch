@@ -599,6 +599,54 @@ diff -urN gitlab-rails.bk/app/views/devise/shared/_links.erb gitlab-rails/app/vi
 -  <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
 +  <%= link_to "ロック解除方法のメールを受信していませんか？", new_unlock_path(resource_name) %><br />
  <% end -%>
+diff -urN gitlab-rails.bk/app/views/events/event/_common.html.haml gitlab-rails/app/views/events/event/_common.html.haml
+--- gitlab-rails.bk/app/views/events/event/_common.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/events/event/_common.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,15 +1,38 @@
+ .event-title
+   %span.author_name= link_to_author event
+-  %span.event_label{class: event.action_name}= event_action_name(event)
+-  - if event.target
+-    %strong= link_to "##{event.target_iid}", [event.project, event.target]
+-  - else
+-    %strong= gfm event.target_title
+-  at
++  が
+   - if event.project
+     = link_to_project event.project
+   - else
+     = event.project_name
++  - if event.joined?
++    プロジェクトに参加しました
++  - else
++    で
++    - if event.milestone?
++      マイルストーン
++    - elsif event.note?
++      ノート
++    - elsif event.issue?
++      課題
++    - elsif event.merge_request?
++      マージリクエスト
++    - if event.target
++      %strong= link_to "##{event.target_iid}", [event.project, event.target]
++    - else
++      %strong= gfm event.target_title
++    を
++    %span.event_label{class: event.action_name}
++      - if event.closed?
++        クローズしました
++      - elsif event.merged?
++        承認しました
++      - elsif event.joined?
++        参加しました
++      - elsif event.left?
++        離脱しました
++      - else
++        オープンしました
+ - if event.target.respond_to?(:title)
+   .event-body
+     .event-note
 diff -urN gitlab-rails.bk/app/views/events/event/_note.html.haml gitlab-rails/app/views/events/event/_note.html.haml
 --- gitlab-rails.bk/app/views/events/event/_note.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/events/event/_note.html.haml	2014-03-22 09:00:00.000000000 +0900

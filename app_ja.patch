@@ -424,6 +424,45 @@ diff -urN gitlab-rails.bk/app/views/events/event/_note.html.haml gitlab-rails/ap
  
  .event-body
    .event-note
+diff -urN gitlab-rails.bk/app/views/groups/_new_group_member.html.haml gitlab-rails/app/views/groups/_new_group_member.html.haml
+--- gitlab-rails.bk/app/views/groups/_new_group_member.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/groups/_new_group_member.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,11 +1,11 @@
+ = form_for @users_group, url: group_users_groups_path(@group), html: { class: 'form-horizontal users-group-form' } do |f|
+   .form-group
+-    = f.label :user_ids, "People", class: 'control-label'
++    = f.label :user_ids, "ユーザ", class: 'control-label'
+     .col-sm-10= users_select_tag(:user_ids, multiple: true, class: 'input-large')
+ 
+   .form-group
+-    = f.label :group_access, "Group Access", class: 'control-label'
++    = f.label :group_access, "アクセス権", class: 'control-label'
+     .col-sm-10= select_tag :group_access, options_for_select(UsersGroup.group_access_roles, @users_group.group_access), class: "project-access-select select2"
+ 
+   .form-actions
+-    = f.submit 'Add users into group', class: "btn btn-create"
++    = f.submit 'ユーザをグループに追加', class: "btn btn-create"
+diff -urN gitlab-rails.bk/app/views/groups/_projects.html.haml gitlab-rails/app/views/groups/_projects.html.haml
+--- gitlab-rails.bk/app/views/groups/_projects.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/groups/_projects.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,14 +1,14 @@
+ .ui-box
+   .title
+-    Projects (#{projects.count})
++    プロジェクト (#{projects.count})
+     - if can? current_user, :manage_group, @group
+       %span.pull-right
+         = link_to new_project_path(namespace_id: @group.id), class: "btn btn-new" do
+           %i.icon-plus
+-          New project
++          新しいプロジェクト
+   %ul.well-list
+     - if projects.blank?
+-      %p.nothing_here_message This groups has no projects yet
++      %p.nothing_here_message このグループにはまだプロジェクトがありません
+     - projects.each do |project|
+       %li.project-row
+         = link_to project_path(project), class: dom_class(project) do
 diff -urN gitlab-rails.bk/app/views/groups/edit.html.haml gitlab-rails/app/views/groups/edit.html.haml
 --- gitlab-rails.bk/app/views/groups/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/groups/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -561,15 +600,64 @@ diff -urN gitlab-rails.bk/app/views/groups/issues.html.haml gitlab-rails/app/vie
 diff -urN gitlab-rails.bk/app/views/groups/members.html.haml gitlab-rails/app/views/groups/members.html.haml
 --- gitlab-rails.bk/app/views/groups/members.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/groups/members.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -11,7 +11,7 @@
+@@ -1,22 +1,23 @@
+ %h3.page-title
+-  Group members
++  グループメンバー
+ %p.light
+-  Members of group have access to all group projects.
+-  Read more about permissions
+-  %strong= link_to "here", help_permissions_path, class: "vlink"
++  このグループのメンバーはこのグループのすべてのプロジェクトにアクセスできます。
++  アクセス権についての詳細は、
++  %strong= link_to "こちら", help_permissions_path, class: "vlink"
++  から確認できます。
+ 
+ %hr
+ 
+ .clearfix
    = form_tag members_group_path(@group), method: :get, class: 'form-inline member-search-form'  do
      .form-group
-       = search_field_tag :search, params[:search], { placeholder: 'Find member by name', class: 'form-control search-text-input input-mn-300' }
+-      = search_field_tag :search, params[:search], { placeholder: 'Find member by name', class: 'form-control search-text-input input-mn-300' }
 -    = submit_tag 'Search', class: 'btn'
++      = search_field_tag :search, params[:search], { placeholder: 'メンバーを名前で検索', class: 'form-control search-text-input input-mn-300' }
 +    = submit_tag '検索', class: 'btn'
  
    - if current_user.can? :manage_group, @group
      .pull-right
+       = link_to '#', class: 'btn btn-new js-toggle-visibility-link' do
+-        Add members
++        メンバーを追加
+         %i.icon-chevron-down
+ 
+     .js-toggle-visibility-container.hide.new-group-member-holder
+@@ -25,7 +26,7 @@
+ .ui-box.prepend-top-20
+   .title
+     %strong #{@group.name}
+-    group members
++    グループのメンバー
+     %small
+       (#{@members.total_count})
+   %ul.well-list
+diff -urN gitlab-rails.bk/app/views/groups/merge_requests.html.haml gitlab-rails/app/views/groups/merge_requests.html.haml
+--- gitlab-rails.bk/app/views/groups/merge_requests.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/groups/merge_requests.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,11 +1,10 @@
+ %h3.page-title
+-  Merge Requests
+-  %span.pull-right #{@merge_requests.total_count} merge requests
++  マージリクエスト
++  %span.pull-right #{@merge_requests.total_count} 件のマージリクエスト
+ 
+ %p.light
+-  Only merge requests from
+   %strong #{@group.name}
+-  group are listed here. To see all merge requests you should visit #{link_to 'dashboard', merge_requests_dashboard_path} page.
++  グループのマージリクエストだけが表示されています。すべてのマージリクエストを確認するには #{link_to 'ダッシュボード', merge_requests_dashboard_path} を表示してください。
+ %hr
+ .row
+   .col-md-3
 diff -urN gitlab-rails.bk/app/views/groups/new.html.haml gitlab-rails/app/views/groups/new.html.haml
 --- gitlab-rails.bk/app/views/groups/new.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/groups/new.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -588,6 +676,41 @@ diff -urN gitlab-rails.bk/app/views/groups/new.html.haml gitlab-rails/app/views/
      .col-sm-10
        = f.text_area :description, maxlength: 250, class: "form-control js-gfm-input", rows: 4
  
+diff -urN gitlab-rails.bk/app/views/groups/show.html.haml gitlab-rails/app/views/groups/show.html.haml
+--- gitlab-rails.bk/app/views/groups/show.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/groups/show.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -2,15 +2,15 @@
+   .activities.col-md-8.hidden-sm
+     = render "events/event_last_push", event: @last_push
+     = link_to dashboard_path, class: 'btn btn-tiny' do
+-      &larr; To dashboard
++      &larr; ダッシュボード
+     &nbsp;
+-    %span.cgray You will only see events from projects in this group
++    %span.cgray このグループでのイベントだけが表示されています。
+     %hr
+     = render 'shared/event_filter'
+     - if @events.any?
+       .content_list
+     - else
+-      %p.nothing_here_message Project activity will be displayed here
++      %p.nothing_here_message プロジェクトでのアクティビティがここに表示されます
+     = spinner
+   .side.col-md-4
+     .light-well.append-bottom-20
+@@ -22,10 +22,10 @@
+           %p= @group.description
+     = render "projects", projects: @projects
+     .prepend-top-20
+-      = link_to group_path(@group, { format: :atom, private_token: current_user.private_token }), title: "Feed" do
++      = link_to group_path(@group, { format: :atom, private_token: current_user.private_token }), title: "フィード" do
+         %strong
+           %i.icon-rss
+-          News Feed
++          ニュースフィード
+ 
+     %hr
+     = render 'shared/promo'
 diff -urN gitlab-rails.bk/app/views/help/_shortcuts.html.haml gitlab-rails/app/views/help/_shortcuts.html.haml
 --- gitlab-rails.bk/app/views/help/_shortcuts.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/help/_shortcuts.html.haml	2014-03-22 09:00:00.000000000 +0900

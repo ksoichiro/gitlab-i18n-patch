@@ -305,6 +305,26 @@ diff -urN gitlab-rails.bk/app/mailers/emails/projects.rb gitlab-rails/app/mailer
  module Emails
    module Projects
      def project_access_granted_email(user_project_id)
+diff -urN gitlab-rails.bk/app/models/milestone.rb gitlab-rails/app/models/milestone.rb
+--- gitlab-rails.bk/app/models/milestone.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/models/milestone.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ # == Schema Information
+ #
+ # Table name: milestones
+@@ -73,9 +74,9 @@
+   def expires_at
+     if due_date
+       if due_date.past?
+-        "expired at #{due_date.stamp("Aug 21, 2011")}"
++        "#{due_date.stamp("2011/08/21")} まで"
+       else
+-        "expires at #{due_date.stamp("Aug 21, 2011")}"
++        "#{due_date.stamp("2011/08/21")} まで"
+       end
+     end
+   end
 diff -urN gitlab-rails.bk/app/models/notification.rb gitlab-rails/app/models/notification.rb
 --- gitlab-rails.bk/app/models/notification.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/models/notification.rb	2014-03-22 09:00:00.000000000 +0900
@@ -4830,7 +4850,7 @@ diff -urN gitlab-rails.bk/app/views/projects/issues/_issues.html.haml gitlab-rai
 diff -urN gitlab-rails.bk/app/views/projects/issues/show.html.haml gitlab-rails/app/views/projects/issues/show.html.haml
 --- gitlab-rails.bk/app/views/projects/issues/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/issues/show.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -1,31 +1,31 @@
+@@ -1,43 +1,43 @@
  %h3.page-title
 -  Issue ##{@issue.iid}
 +  課題 ##{@issue.iid}
@@ -4870,8 +4890,14 @@ diff -urN gitlab-rails.bk/app/views/projects/issues/show.html.haml gitlab-rails/
        = link_to project_milestone_path(@project, @issue.milestone) do
          = @issue.milestone.title
  
-@@ -37,7 +37,7 @@
-       %span.state-label.state-label-green Open
+ .issue-box
+   .state{ class: issue_alert_class(@issue) }
+     - if @issue.closed?
+-      %span.state-label.state-label-red Closed
++      %span.state-label.state-label-red 解決
+     - else
+-      %span.state-label.state-label-green Open
++      %span.state-label.state-label-green オープン
  
      %span.creator
 -      Created by #{link_to_member(@project, @issue.author)} #{time_ago_with_tooltip(@issue.created_at)}
@@ -4879,7 +4905,7 @@ diff -urN gitlab-rails.bk/app/views/projects/issues/show.html.haml gitlab-rails/
  
    %h4.title
      = gfm escape_once(@issue.title)
-@@ -57,7 +57,7 @@
+@@ -57,10 +57,10 @@
      - if @issue.closed?
        = link_to 'Reopen Issue', project_issue_path(@project, @issue, issue: {state_event: :reopen }, status_only: true), method: :put,  class: "btn grouped btn-reopen"
      - else
@@ -4887,7 +4913,11 @@ diff -urN gitlab-rails.bk/app/views/projects/issues/show.html.haml gitlab-rails/
 +      = link_to '課題を解決', project_issue_path(@project, @issue, issue: {state_event: :close }, status_only: true), method: :put, class: "btn grouped btn-close", title: "課題を解決"
  
  .participants
-   %cite.cgray #{@issue.participants.count} participants
+-  %cite.cgray #{@issue.participants.count} participants
++  %cite.cgray #{@issue.participants.count} 人の参加者
+   - @issue.participants.each do |participant|
+     = link_to_member(@project, participant, name: false, size: 24)
+ 
 diff -urN gitlab-rails.bk/app/views/projects/labels/index.html.haml gitlab-rails/app/views/projects/labels/index.html.haml
 --- gitlab-rails.bk/app/views/projects/labels/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/labels/index.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -5127,6 +5157,27 @@ diff -urN gitlab-rails.bk/app/views/projects/milestones/_milestone.html.haml git
    %h4
      = link_to_gfm truncate(milestone.title, length: 100), project_milestone_path(milestone.project, milestone)
      - if milestone.expired? and not milestone.closed?
+@@ -12,16 +12,16 @@
+     %small
+       = milestone.expires_at
+   - if milestone.is_empty?
+-    %span.muted Empty
++    %span.muted 空のマイルストーン
+   - else
+     %div
+       %div
+         = link_to project_issues_path(milestone.project, milestone_id: milestone.id) do
+-          = pluralize milestone.issues.count, 'Issue'
++          #{milestone.issues.count}件の課題
+         &nbsp;
+         = link_to project_merge_requests_path(milestone.project, milestone_id: milestone.id) do
+-          = pluralize milestone.merge_requests.count, 'Merge Request'
++          #{milestone.merge_requests.count}件のマージリクエスト
+         &nbsp;
+-        %span.light #{milestone.percent_complete}% complete
++        %span.light #{milestone.percent_complete}% 完了
+       .progress.progress-info
+         .progress-bar{style: "width: #{milestone.percent_complete}%;"}
 diff -urN gitlab-rails.bk/app/views/projects/milestones/index.html.haml gitlab-rails/app/views/projects/milestones/index.html.haml
 --- gitlab-rails.bk/app/views/projects/milestones/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/milestones/index.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -5447,6 +5498,60 @@ diff -urN gitlab-rails.bk/app/views/projects/notes/_form.html.haml gitlab-rails/
        = f.file_field :attachment, class: "js-note-attachment-input hidden"
  
      .clearfix
+diff -urN gitlab-rails.bk/app/views/projects/notes/_note.html.haml gitlab-rails/app/views/projects/notes/_note.html.haml
+--- gitlab-rails.bk/app/views/projects/notes/_note.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/notes/_note.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -3,16 +3,16 @@
+     .note-actions
+       = link_to "##{dom_id(note)}", name: dom_id(note) do
+         %i.icon-link
+-        Link here
++        リンク
+       &nbsp;
+       - if(note.author_id == current_user.try(:id)) || can?(current_user, :admin_note, @project)
+         = link_to "#", title: "Edit comment", class: "js-note-edit" do
+           %i.icon-edit
+-          Edit
++          編集
+         &nbsp;
+-        = link_to project_note_path(@project, note), title: "Remove comment", method: :delete, data: { confirm: 'Are you sure you want to remove this comment?' }, remote: true, class: "danger js-note-delete" do
++        = link_to project_note_path(@project, note), title: "コメントを削除", method: :delete, data: { confirm: '本当にコメントを削除しますか？' }, remote: true, class: "danger js-note-delete" do
+           %i.icon-trash.cred
+-          Remove
++          削除
+     = image_tag avatar_icon(note.author_email), class: "avatar s32"
+     = link_to_member(@project, note.author, avatar: false)
+     %span.note-last-update
+@@ -38,17 +38,17 @@
+         = f.text_area :note, class: 'note_text js-note-text js-gfm-input turn-on'
+ 
+         .form-actions.clearfix
+-          = f.submit 'Save changes', class: "btn btn-primary btn-save"
++          = f.submit '変更を保存', class: "btn btn-primary btn-save"
+ 
+           .note-form-option
+             %a.choose-btn.btn.btn-small.js-choose-note-attachment-button
+               %i.icon-paper-clip
+-              %span Choose File ...
++              %span ファイルを選択 ...
+             &nbsp;
+-            %span.file_name.js-attachment-filename File name...
++            %span.file_name.js-attachment-filename ファイル名...
+             = f.file_field :attachment, class: "js-note-attachment-input hidden"
+ 
+-          = link_to  'Cancel', "#", class: "btn btn-cancel note-edit-cancel"
++          = link_to  'キャンセル', "#", class: "btn btn-cancel note-edit-cancel"
+ 
+ 
+   - if note.attachment.url
+@@ -61,6 +61,6 @@
+           %i.icon-paper-clip
+           = note.attachment_identifier
+           = link_to delete_attachment_project_note_path(@project, note),
+-            title: "Delete this attachment", method: :delete, remote: true, data: { confirm: 'Are you sure you want to remove the attachment?' }, class: "danger js-note-attachment-delete" do
++            title: "添付ファイルの削除", method: :delete, remote: true, data: { confirm: '本当に添付ファイルを削除しますか？' }, class: "danger js-note-attachment-delete" do
+             %i.icon-trash.cred
+   .clear
 diff -urN gitlab-rails.bk/app/views/projects/repositories/_download_archive.html.haml gitlab-rails/app/views/projects/repositories/_download_archive.html.haml
 --- gitlab-rails.bk/app/views/projects/repositories/_download_archive.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/repositories/_download_archive.html.haml	2014-03-22 09:00:00.000000000 +0900

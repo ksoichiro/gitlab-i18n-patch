@@ -200,6 +200,125 @@ diff -urN gitlab-rails.bk/app/models/notification.rb gitlab-rails/app/models/not
        }
      end
  
+diff -urN gitlab-rails.bk/app/models/project_services/assembla_service.rb gitlab-rails/app/models/project_services/assembla_service.rb
+--- gitlab-rails.bk/app/models/project_services/assembla_service.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/models/project_services/assembla_service.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ # == Schema Information
+ #
+ # Table name: services
+@@ -27,7 +28,7 @@
+   end
+ 
+   def description
+-    'Project Management Software (Source Commits Endpoint)'
++    'プロジェクト管理ソフトウェア (ソースコミットエンドポイント)'
+   end
+ 
+   def to_param
+diff -urN gitlab-rails.bk/app/models/project_services/campfire_service.rb gitlab-rails/app/models/project_services/campfire_service.rb
+--- gitlab-rails.bk/app/models/project_services/campfire_service.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/models/project_services/campfire_service.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ # == Schema Information
+ #
+ # Table name: services
+@@ -25,7 +26,7 @@
+   end
+ 
+   def description
+-    'Simple web-based real-time group chat'
++    'シンプルなWebベースのリアルタイムグループチャット'
+   end
+ 
+   def to_param
+diff -urN gitlab-rails.bk/app/models/project_services/emails_on_push_service.rb gitlab-rails/app/models/project_services/emails_on_push_service.rb
+--- gitlab-rails.bk/app/models/project_services/emails_on_push_service.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/models/project_services/emails_on_push_service.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ # == Schema Information
+ #
+ # Table name: services
+@@ -25,7 +26,7 @@
+   end
+ 
+   def description
+-    'Email the commits and diff of each push to a list of recipients.'
++    '各Pushのコミットと差分をメール送信します。'
+   end
+ 
+   def to_param
+diff -urN gitlab-rails.bk/app/models/project_services/flowdock_service.rb gitlab-rails/app/models/project_services/flowdock_service.rb
+--- gitlab-rails.bk/app/models/project_services/flowdock_service.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/models/project_services/flowdock_service.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ # == Schema Information
+ #
+ # Table name: services
+@@ -25,7 +26,7 @@
+   end
+ 
+   def description
+-    'Flowdock is a collaboration web app for technical teams.'
++    'Flowdockはテクニカルチーム向けの共同作業用Webアプリケーションです。'
+   end
+ 
+   def to_param
+diff -urN gitlab-rails.bk/app/models/project_services/gitlab_ci_service.rb gitlab-rails/app/models/project_services/gitlab_ci_service.rb
+--- gitlab-rails.bk/app/models/project_services/gitlab_ci_service.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/models/project_services/gitlab_ci_service.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ # == Schema Information
+ #
+ # Table name: services
+@@ -62,7 +63,7 @@
+   end
+ 
+   def description
+-    'Continuous integration server from GitLab'
++    'GitLabのCIサーバ'
+   end
+ 
+   def to_param
+diff -urN gitlab-rails.bk/app/models/project_services/hipchat_service.rb gitlab-rails/app/models/project_services/hipchat_service.rb
+--- gitlab-rails.bk/app/models/project_services/hipchat_service.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/models/project_services/hipchat_service.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ # == Schema Information
+ #
+ # Table name: services
+@@ -25,7 +26,7 @@
+   end
+ 
+   def description
+-    'Private group chat and IM'
++    'プライベートなグループチャットとIM'
+   end
+ 
+   def to_param
+diff -urN gitlab-rails.bk/app/models/project_services/pivotaltracker_service.rb gitlab-rails/app/models/project_services/pivotaltracker_service.rb
+--- gitlab-rails.bk/app/models/project_services/pivotaltracker_service.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/models/project_services/pivotaltracker_service.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ # == Schema Information
+ #
+ # Table name: services
+@@ -25,7 +26,7 @@
+   end
+ 
+   def description
+-    'Project Management Software (Source Commits Endpoint)'
++    'プロジェクト管理ソフトウェア (ソースコミットエンドポイント)'
+   end
+ 
+   def to_param
 diff -urN gitlab-rails.bk/app/views/admin/background_jobs/show.html.haml gitlab-rails/app/views/admin/background_jobs/show.html.haml
 --- gitlab-rails.bk/app/views/admin/background_jobs/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/admin/background_jobs/show.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -4100,6 +4219,76 @@ diff -urN gitlab-rails.bk/app/views/projects/graphs/show.js.haml gitlab-rails/ap
    :plain
 -    $('.stat-graph').replaceWith('<div class="alert alert-danger">Failed to load graph</div>')
 +    $('.stat-graph').replaceWith('<div class="alert alert-danger">グラフの読み込みに失敗しました</div>')
+diff -urN gitlab-rails.bk/app/views/projects/hooks/index.html.haml gitlab-rails/app/views/projects/hooks/index.html.haml
+--- gitlab-rails.bk/app/views/projects/hooks/index.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/hooks/index.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,9 +1,9 @@
+ %h3.page-title
+-  Web hooks
++  Webフック
+ 
+ %p.light
+-  #{link_to "Web hooks ", help_web_hooks_path, class: "vlink"} can be
+-  used for binding events when something is happening within the project.
++  #{link_to "Webフック", help_web_hooks_path, class: "vlink"}を使うと
++  プロジェクト内のイベントを別のアクションに紐付けることができます。
+ 
+ %hr.clearfix
+ 
+@@ -17,42 +17,42 @@
+     .col-sm-10
+       = f.text_field :url, class: "form-control", placeholder: 'http://example.com/trigger-ci.json'
+   .form-group
+-    = f.label :url, "Trigger", class: 'control-label'
++    = f.label :url, "トリガー", class: 'control-label'
+     .col-sm-10
+       %div
+         = f.check_box :push_events, class: 'pull-left'
+         .prepend-left-20
+           = f.label :push_events, class: 'list-label' do
+-            %strong Push events
++            %strong Pushイベント
+           %p.light
+-            This url will be triggered by a push to the repository
++            リポジトリへのPushイベントがあったときにこのURLをリクエストします
+       %div
+         = f.check_box :issues_events, class: 'pull-left'
+         .prepend-left-20
+           = f.label :issues_events, class: 'list-label' do
+-            %strong Issues events
++            %strong 課題イベント
+           %p.light
+-            This url will be triggered when an issue is created
++            課題が作成されたときにこのURLをリクエストします
+       %div
+         = f.check_box :merge_requests_events, class: 'pull-left'
+         .prepend-left-20
+           = f.label :merge_requests_events, class: 'list-label' do
+-            %strong Merge Request events
++            %strong マージリクエストイベント
+           %p.light
+-            This url will be triggered when a merge request is created
++            マージリクエストが作成されたときにこのURLをリクエストします
+   .form-actions
+-    = f.submit "Add Web Hook", class: "btn btn-create"
++    = f.submit "Webフックを追加", class: "btn btn-create"
+ 
+ -if @hooks.any?
+   .ui-box
+     .title
+-      Web hooks (#{@hooks.count})
++      Webフック (#{@hooks.count})
+     %ul.well-list
+       - @hooks.each do |hook|
+         %li
+           .pull-right
+-            = link_to 'Test Hook', test_project_hook_path(@project, hook), class: "btn btn-small grouped"
+-            = link_to 'Remove', project_hook_path(@project, hook), data: { confirm: 'Are you sure?'}, method: :delete, class: "btn btn-remove btn-small grouped"
++            = link_to 'フックをテスト', test_project_hook_path(@project, hook), class: "btn btn-small grouped"
++            = link_to '削除', project_hook_path(@project, hook), data: { confirm: '本当に削除しますか？'}, method: :delete, class: "btn btn-remove btn-small grouped"
+           .clearfix
+             %span.monospace= hook.url
+           %p
 diff -urN gitlab-rails.bk/app/views/projects/issues/_form.html.haml gitlab-rails/app/views/projects/issues/_form.html.haml
 --- gitlab-rails.bk/app/views/projects/issues/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/issues/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -5043,6 +5232,48 @@ diff -urN gitlab-rails.bk/app/views/projects/repositories/stats.html.haml gitlab
 -  var title = "Commit activity for last #{@graph.weeks} weeks";
 +  var title = "過去 #{@graph.weeks} 週間のコミット";
    Chart.init(labels, commits, title);
+diff -urN gitlab-rails.bk/app/views/projects/services/_form.html.haml gitlab-rails/app/views/projects/services/_form.html.haml
+--- gitlab-rails.bk/app/views/projects/services/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/services/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -6,7 +6,7 @@
+ 
+ .back-link
+   = link_to project_services_path(@project) do
+-    &larr; to services
++    &larr; サービス一覧
+ 
+ %hr
+ 
+@@ -19,7 +19,7 @@
+ 
+ 
+   .form-group
+-    = f.label :active, "Active", class: "control-label"
++    = f.label :active, "アクティブ", class: "control-label"
+     .col-sm-10
+       = f.check_box :active
+ 
+@@ -39,7 +39,7 @@
+           = f.check_box name
+ 
+   .form-actions
+-    = f.submit 'Save', class: 'btn btn-save'
++    = f.submit '保存', class: 'btn btn-save'
+     &nbsp;
+     - if @service.valid? && @service.activated? && @service.can_test?
+-      = link_to 'Test settings', test_project_service_path(@project, @service.to_param), class: 'btn btn-small'
++      = link_to '設定をテスト', test_project_service_path(@project, @service.to_param), class: 'btn btn-small'
+diff -urN gitlab-rails.bk/app/views/projects/services/index.html.haml gitlab-rails/app/views/projects/services/index.html.haml
+--- gitlab-rails.bk/app/views/projects/services/index.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/services/index.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,5 +1,5 @@
+-%h3.page-title Project services
+-%p.light Project services allow you to integrate GitLab with other applications
++%h3.page-title プロジェクトサービス
++%p.light プロジェクトサービスを使うと、GitLabと他のアプリケーションを統合することができます。
+ %hr
+ 
+ %ul.bordered-list
 diff -urN gitlab-rails.bk/app/views/projects/show.html.haml gitlab-rails/app/views/projects/show.html.haml
 --- gitlab-rails.bk/app/views/projects/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/show.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -5226,6 +5457,100 @@ diff -urN gitlab-rails.bk/app/views/projects/tags/new.html.haml gitlab-rails/app
    .form-actions
      = submit_tag 'Create tag', class: 'btn btn-create', tabindex: 3
      = link_to 'Cancel', project_tags_path(@project), class: 'btn btn-cancel'
+diff -urN gitlab-rails.bk/app/views/projects/team_members/_form.html.haml gitlab-rails/app/views/projects/team_members/_form.html.haml
+--- gitlab-rails.bk/app/views/projects/team_members/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/team_members/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,5 +1,5 @@
+ %h3.page-title
+-  = "New project member(s)"
++  = "新しいプロジェクトメンバー"
+ 
+ = form_for @user_project_relation, as: :team_member, url: project_team_members_path(@project), html: { class: "form-horizontal users-project-form" } do |f|
+   -if @user_project_relation.errors.any?
+@@ -8,17 +8,17 @@
+         - @user_project_relation.errors.full_messages.each do |msg|
+           %li= msg
+ 
+-  %p 1. Choose people you want in the project
++  %p 1. プロジェクトに追加したいユーザを選択してください
+   .form-group
+-    = f.label :user_ids, "People", class: 'control-label'
++    = f.label :user_ids, "ユーザ", class: 'control-label'
+     .col-sm-10
+       = users_select_tag(:user_ids, multiple: true)
+ 
+-  %p 2. Set access level for them
++  %p 2. ユーザのアクセスレベルを設定してください
+   .form-group
+-    = f.label :project_access, "Project Access", class: 'control-label'
++    = f.label :project_access, "アクセスレベル", class: 'control-label'
+     .col-sm-10= select_tag :project_access, options_for_select(Gitlab::Access.options, @user_project_relation.project_access), class: "project-access-select select2"
+ 
+   .form-actions
+-    = f.submit 'Add users', class: "btn btn-create"
+-    = link_to "Cancel", project_team_index_path(@project), class: "btn btn-cancel"
++    = f.submit 'ユーザを追加', class: "btn btn-create"
++    = link_to "キャンセル", project_team_index_path(@project), class: "btn btn-cancel"
+diff -urN gitlab-rails.bk/app/views/projects/team_members/_group_members.html.haml gitlab-rails/app/views/projects/team_members/_group_members.html.haml
+--- gitlab-rails.bk/app/views/projects/team_members/_group_members.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/team_members/_group_members.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -2,7 +2,7 @@
+ .ui-box
+   .title
+     %strong #{@group.name}
+-    group members (#{group_users_count})
++    グループのメンバー (#{group_users_count})
+     .pull-right
+       = link_to members_group_path(@group), class: 'btn btn-small' do
+         %i.icon-edit
+diff -urN gitlab-rails.bk/app/views/projects/team_members/_team.html.haml gitlab-rails/app/views/projects/team_members/_team.html.haml
+--- gitlab-rails.bk/app/views/projects/team_members/_team.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/team_members/_team.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -3,7 +3,7 @@
+   .ui-box
+     .title
+       %strong #{@project.name}
+-      project members (#{members.count})
++      プロジェクトのメンバー (#{members.count})
+     %ul.well-list
+       - members.each do |team_member|
+         = render 'team_member', member: team_member, current_user_can_admin_project: can_admin_project
+diff -urN gitlab-rails.bk/app/views/projects/team_members/_team_member.html.haml gitlab-rails/app/views/projects/team_members/_team_member.html.haml
+--- gitlab-rails.bk/app/views/projects/team_members/_team_member.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/team_members/_team_member.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -7,7 +7,7 @@
+           = form_for(member, as: :team_member, url: project_team_member_path(@project, member.user)) do |f|
+             = f.select :project_access, options_for_select(UsersProject.access_roles, member.project_access), {}, class: "medium project-access-select span2 trigger-submit"
+           &nbsp;
+-        = link_to project_team_member_path(@project, user), data: { confirm: remove_from_project_team_message(@project, user)}, method: :delete, class: "btn-tiny btn btn-remove", title: 'Remove user from team' do
++        = link_to project_team_member_path(@project, user), data: { confirm: remove_from_project_team_message(@project, user)}, method: :delete, class: "btn-tiny btn btn-remove", title: 'ユーザをプロジェクトから削除' do
+           %i.icon-minus.icon-white
+   = image_tag avatar_icon(user.email, 32), class: "avatar s32"
+   %p
+diff -urN gitlab-rails.bk/app/views/projects/team_members/import.html.haml gitlab-rails/app/views/projects/team_members/import.html.haml
+--- gitlab-rails.bk/app/views/projects/team_members/import.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/team_members/import.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,14 +1,14 @@
+ %h3.page-title
+-  = "Import members from another project"
++  = "別のプロジェクトからメンバーをインポート"
+ %p.light
+-  Only project members will be imported. Group members will be skipped.
++  プロジェクトのメンバーだけがインポートされます。グループのメンバーはスキップされます。
+ %hr
+ = form_tag apply_import_project_team_members_path(@project), method: 'post', class: 'form-horizontal' do
+   .form-group
+-    = label_tag :source_project_id, "Project", class: 'control-label'
+-    .col-sm-10= select_tag(:source_project_id, options_from_collection_for_select(current_user.authorized_projects, :id, :name_with_namespace), prompt: "Select project", class: "select2 lg", required: true)
++    = label_tag :source_project_id, "プロジェクト", class: 'control-label'
++    .col-sm-10= select_tag(:source_project_id, options_from_collection_for_select(current_user.authorized_projects, :id, :name_with_namespace), prompt: "プロジェクトを選択", class: "select2 lg", required: true)
+ 
+   .form-actions
+-    = submit_tag 'Import project members', class: "btn btn-create"
+-    = link_to "Cancel", project_team_index_path(@project), class: "btn btn-cancel"
++    = submit_tag 'プロジェクトメンバーをインポート', class: "btn btn-create"
++    = link_to "キャンセル", project_team_index_path(@project), class: "btn btn-cancel"
+ 
 diff -urN gitlab-rails.bk/app/views/projects/team_members/index.html.haml gitlab-rails/app/views/projects/team_members/index.html.haml
 --- gitlab-rails.bk/app/views/projects/team_members/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/team_members/index.html.haml	2014-03-22 09:00:00.000000000 +0900

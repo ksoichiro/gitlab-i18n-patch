@@ -1081,6 +1081,143 @@ diff -urN gitlab-rails.bk/app/views/admin/projects/index.html.haml gitlab-rails/
 -          %p.nothing_here_message 0 projects matches
 +          %p.nothing_here_message マッチするプロジェクトがありません
      = paginate @projects, theme: "gitlab"
+diff -urN gitlab-rails.bk/app/views/admin/projects/show.html.haml gitlab-rails/app/views/admin/projects/show.html.haml
+--- gitlab-rails.bk/app/views/admin/projects/show.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/admin/projects/show.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,41 +1,41 @@
+ %h3.page-title
+-  Project: #{@project.name_with_namespace}
++  プロジェクト: #{@project.name_with_namespace}
+   = link_to edit_project_path(@project), class: "btn pull-right" do
+     %i.icon-edit
+-    Edit
++    編集
+ %hr
+ .row
+   .col-md-6
+     .ui-box
+       .title
+-        Project info:
++        プロジェクト情報:
+       %ul.well-list
+         %li
+-          %span.light Name:
++          %span.light プロジェクト名:
+           %strong
+             = link_to @project.name, project_path(@project)
+         %li
+-          %span.light Namespace:
++          %span.light ネームスペース:
+           %strong
+             - if @project.namespace
+               = link_to @project.namespace.human_name, [:admin, @project.group || @project.owner]
+             - else
+-              Global
++              グローバル
+         %li
+           %span.light Owned by:
+           %strong
+             - if @project.owner
+               = link_to @project.owner_name, [:admin, @project.owner]
+             - else
+-              (deleted)
++              (削除済み)
+ 
+         %li
+-          %span.light Created by:
++          %span.light 作成者:
+           %strong
+             = @project.creator.try(:name) || '(deleted)'
+ 
+         %li
+-          %span.light Created on:
++          %span.light 作成日:
+           %strong
+             = @project.created_at.stamp("March 1, 1999")
+ 
+@@ -54,22 +54,22 @@
+               = @repository.path_to_repo
+ 
+           %li
+-            %span.light Size
++            %span.light サイズ:
+             %strong
+               = repository_size(@project)
+ 
+           %li
+-            %span.light last commit:
++            %span.light 最終コミット:
+             %strong
+               = last_commit(@project)
+         - else
+           %li
+-            %span.light repository:
++            %span.light リポジトリ:
+             %strong.cred
+-              does not exist
++              存在しません
+ 
+         %li
+-          %span.light access:
++          %span.light アクセス:
+           %strong
+             %span{ class: visibility_level_color(@project.visibility_level) }
+               = visibility_level_icon(@project.visibility_level)
+@@ -77,25 +77,25 @@
+ 
+     .ui-box
+       .title
+-        Transfer project
++        プロジェクトの移譲
+       .body
+         = form_for @project, url: transfer_admin_project_path(@project), method: :put, html: { class: 'form-horizontal' } do |f|
+           .form-group
+-            = f.label :namespace_id, "Namespace", class: 'control-label'
++            = f.label :namespace_id, "ネームスペース", class: 'control-label'
+             .col-sm-10
+               = namespace_select_tag :namespace_id, selected: params[:namespace_id], class: 'input-large'
+ 
+           .form-group
+             .col-sm-2
+             .col-sm-10
+-              = f.submit 'Transfer', class: 'btn btn-primary'
++              = f.submit '移譲', class: 'btn btn-primary'
+ 
+   .col-md-6
+     - if @group
+       .ui-box
+         .title
+           %strong #{@group.name}
+-          group members (#{@group.users_groups.count})
++          グループのメンバー (#{@group.users_groups.count})
+           .pull-right
+             = link_to admin_group_path(@group), class: 'btn btn-small' do
+               %i.icon-edit
+@@ -105,13 +105,13 @@
+ 
+     .ui-box
+       .title
+-        Project members
++        プロジェクトメンバー
+         %small
+           (#{@project.users.count})
+         .pull-right
+           = link_to project_team_index_path(@project), class: "btn btn-tiny" do
+             %i.icon-edit
+-            Manage Access
++            アクセス権管理
+       %ul.well-list.team_members
+         - @project.users_projects.each do |users_project|
+           - user = users_project.user
+@@ -120,7 +120,7 @@
+               = link_to user.name, admin_user_path(user)
+             .pull-right
+               - if users_project.owner?
+-                %span.light Owner
++                %span.light 所有者
+               - else
+                 %span.light= users_project.human_access
+                 = link_to project_team_member_path(@project, user), data: { confirm: remove_from_project_team_message(@project, user)}, method: :delete, remote: true, class: "btn btn-small btn-remove" do
 diff -urN gitlab-rails.bk/app/views/admin/users/_form.html.haml gitlab-rails/app/views/admin/users/_form.html.haml
 --- gitlab-rails.bk/app/views/admin/users/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/admin/users/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -1476,7 +1613,13 @@ diff -urN gitlab-rails.bk/app/views/admin/users/show.html.haml gitlab-rails/app/
        %ul.well-list
          - @projects.sort_by(&:name_with_namespace).each do |project|
            - tm = project.team.find_tm(@user.id)
-@@ -148,5 +148,5 @@
+@@ -143,10 +143,10 @@
+             - if tm
+               .pull-right
+                 - if tm.owner?
+-                  %span.light Owner
++                  %span.light 所有者
+                 - else
                    %span.light= tm.human_access
  
                    - if tm.respond_to? :project
@@ -6805,7 +6948,14 @@ diff -urN gitlab-rails.bk/app/views/users/show.html.haml gitlab-rails/app/views/
 diff -urN gitlab-rails.bk/app/views/users_groups/_users_group.html.haml gitlab-rails/app/views/users_groups/_users_group.html.haml
 --- gitlab-rails.bk/app/views/users_groups/_users_group.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/users_groups/_users_group.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -11,18 +11,18 @@
+@@ -5,24 +5,24 @@
+   %strong= user.name
+   %span.cgray= user.username
+   - if user == current_user
+-    %span.label.label-success It's you
++    %span.label.label-success あなた
+ 
+   %span.pull-right
      %strong= member.human_access
      - if show_controls
        - if can?(current_user, :modify, member)

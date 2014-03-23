@@ -24,6 +24,39 @@ diff -urN gitlab-rails.bk/app/assets/javascripts/lib/jquery.timeago.js gitlab-ra
 +  years: "約 %d 年",
 +  wordSeparator: ""
 +};
+diff -urN gitlab-rails.bk/app/controllers/projects_controller.rb gitlab-rails/app/controllers/projects_controller.rb
+--- gitlab-rails.bk/app/controllers/projects_controller.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/controllers/projects_controller.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ class ProjectsController < ApplicationController
+   skip_before_filter :authenticate_user!, only: [:show]
+   before_filter :project, except: [:new, :create]
+@@ -137,7 +138,7 @@
+   private
+ 
+   def set_title
+-    @title = 'New Project'
++    @title = '新しいプロジェクト'
+   end
+ 
+   def user_layout
+diff -urN gitlab-rails.bk/app/controllers/snippets_controller.rb gitlab-rails/app/controllers/snippets_controller.rb
+--- gitlab-rails.bk/app/controllers/snippets_controller.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/controllers/snippets_controller.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ class SnippetsController < ApplicationController
+   before_filter :snippet, only: [:show, :edit, :destroy, :update, :raw]
+ 
+@@ -104,6 +105,6 @@
+   end
+ 
+   def set_title
+-    @title = 'Snippets'
++    @title = 'スニペット'
+   end
+ end
 diff -urN gitlab-rails.bk/app/controllers/users_groups_controller.rb gitlab-rails/app/controllers/users_groups_controller.rb
 --- gitlab-rails.bk/app/controllers/users_groups_controller.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/controllers/users_groups_controller.rb	2014-03-22 09:00:00.000000000 +0900
@@ -125,18 +158,58 @@ diff -urN gitlab-rails.bk/app/models/notification.rb gitlab-rails/app/models/not
        }
      end
  
+diff -urN gitlab-rails.bk/app/views/admin/dashboard/index.html.haml gitlab-rails/app/views/admin/dashboard/index.html.haml
+--- gitlab-rails.bk/app/views/admin/dashboard/index.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/admin/dashboard/index.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -12,7 +12,7 @@
+           = link_to admin_projects_path do
+             %h1= Project.count
+           %hr
+-          = link_to 'New Project', new_project_path, class: "btn btn-new"
++          = link_to '新しいプロジェクト', new_project_path, class: "btn btn-new"
+     .col-sm-4
+       .light-well
+         %h4 Users
 diff -urN gitlab-rails.bk/app/views/admin/projects/index.html.haml gitlab-rails/app/views/admin/projects/index.html.haml
 --- gitlab-rails.bk/app/views/admin/projects/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/admin/projects/index.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -32,7 +32,7 @@
+@@ -22,7 +22,7 @@
+           %span.light No activity over 6 month
+ 
+         %fieldset
+-          %strong Visibility level:
++          %strong 可視性レベル:
+           .visibility-levels
+             - Project.visibility_levels.each do |label, level|
+               .checkbox
+@@ -32,15 +32,15 @@
                      = visibility_level_icon(level)
                      = label
          .form-actions
 -          = submit_tag "Search", class: "btn submit btn-primary"
+-          = link_to "Reset", admin_projects_path, class: "btn"
 +          = submit_tag "検索", class: "btn submit btn-primary"
-           = link_to "Reset", admin_projects_path, class: "btn"
++          = link_to "リセット", admin_projects_path, class: "btn"
  
    .col-md-8
+     .ui-box
+       .title
+         Projects (#{@projects.total_count})
+         .pull-right
+-          = link_to 'New Project', new_project_path, class: "btn btn-new"
++          = link_to '新しいプロジェクト', new_project_path, class: "btn btn-new"
+       %ul.well-list
+         - @projects.each do |project|
+           %li
+@@ -50,7 +50,7 @@
+             .pull-right
+               %span.label.label-gray
+                 = repository_size(project)
+-              = link_to 'Edit', edit_project_path(project), id: "edit_#{dom_id(project)}", class: "btn btn-small"
++              = link_to '編集', edit_project_path(project), id: "edit_#{dom_id(project)}", class: "btn btn-small"
+               = link_to 'Destroy', [project], data: { confirm: remove_project_message(project) }, method: :delete, class: "btn btn-small btn-remove"
+         - if @projects.blank?
+           %p.nothing_here_message 0 projects matches
 diff -urN gitlab-rails.bk/app/views/dashboard/_activities.html.haml gitlab-rails/app/views/dashboard/_activities.html.haml
 --- gitlab-rails.bk/app/views/dashboard/_activities.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/dashboard/_activities.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -3353,6 +3426,85 @@ diff -urN gitlab-rails.bk/app/views/projects/network/show.json.erb gitlab-rails/
      commits: @graph.commits.map do |c|
        {
          parents: parents_zip_spaces(c.parents(@graph.map), c.parent_spaces),
+diff -urN gitlab-rails.bk/app/views/projects/new.html.haml gitlab-rails/app/views/projects/new.html.haml
+--- gitlab-rails.bk/app/views/projects/new.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/new.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -6,16 +6,16 @@
+     = form_for @project, remote: true, html: { class: 'new_project form-horizontal' } do |f|
+       .form-group.project-name-holder
+         = f.label :name, class: 'control-label' do
+-          %strong Project name
++          %strong プロジェクト名
+         .col-sm-10
+           = f.text_field :name, placeholder: "Example Project", class: "form-control", tabindex: 1, autofocus: true
+           .help-inline
+             = link_to "#", class: 'js-toggle-visibility-link' do
+-              %span Customize repository name?
++              %span リポジトリ名をカスタマイズしますか？
+ 
+       .form-group.js-toggle-visibility-container.hide
+         = f.label :path, class: 'control-label' do
+-          %span Repository name
++          %span リポジトリ名
+         .col-sm-10
+           .input-group
+             = f.text_field :path, class: 'form-control'
+@@ -25,7 +25,7 @@
+       - if current_user.can_select_namespace?
+         .form-group
+           = f.label :namespace_id, class: 'control-label' do
+-            %span Namespace
++            %span ネームスペース
+           .col-sm-10
+             = f.select :namespace_id, namespaces_options(params[:namespace_id] || :current_user), {}, {class: 'select2', tabindex: 2}
+ 
+@@ -34,35 +34,35 @@
+         .col-sm-10
+           = link_to "#", class: 'appear-link' do
+             %i.icon-upload-alt
+-            %span Import existing repository?
++            %span 既存のリポジトリをインポートしますか？
+       .form-group.appear-data.import-url-data
+         = f.label :import_url, class: 'control-label' do
+-          %span Import existing repo
++          %span 既存のリポジトリをインポート
+         .col-sm-10
+           = f.text_field :import_url, class: 'form-control', placeholder: 'https://github.com/randx/six.git'
+           .light
+-            URL must be cloneable
++            URLはクローン可能なでなければなりません
+       .form-group
+         = f.label :description, class: 'control-label' do
+-          Description
+-          %span.light (optional)
++          説明
++          %span.light (任意)
+         .col-sm-10
+-          = f.text_area :description, placeholder: "Awesome project", class: "form-control", rows: 3, maxlength: 250, tabindex: 3
++          = f.text_area :description, placeholder: "すごいプロジェクト", class: "form-control", rows: 3, maxlength: 250, tabindex: 3
+       = render "visibility_level", f: f, visibility_level: gitlab_config.default_projects_features.visibility_level, can_change_visibility_level: true
+ 
+       .form-actions
+-        = f.submit 'Create project', class: "btn btn-create project-submit", tabindex: 4
++        = f.submit 'プロジェクトを作成', class: "btn btn-create project-submit", tabindex: 4
+ 
+         - if current_user.can_create_group?
+           .pull-right
+             .light
+-              Need a group for several dependent projects?
++              複数のプロジェクトを管理するグループが必要ですか？
+               = link_to new_group_path, class: "btn btn-tiny" do
+-                Create a group
++                グループを作成
+ 
+ .save-project-loader.hide
+   %center
+     %h2
+       %i.icon-spinner.icon-spin
+-      Creating project &amp; repository.
+-    %p Please wait a moment, this page will automatically refresh when ready.
++      プロジェクトとリポジトリを作成しています
++    %p 準備ができ次第、自動的に更新されますのでお待ちください
 diff -urN gitlab-rails.bk/app/views/projects/notes/_form.html.haml gitlab-rails/app/views/projects/notes/_form.html.haml
 --- gitlab-rails.bk/app/views/projects/notes/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/notes/_form.html.haml	2014-03-22 09:00:00.000000000 +0900

@@ -6210,9 +6210,12 @@ diff -urN gitlab-rails.bk/app/views/public/projects/index.html.haml gitlab-rails
  
  %hr
  .public-projects
-@@ -63,6 +63,6 @@
+@@ -61,8 +61,8 @@
+             = link_to pluralize(project.repository.tag_names.count, 'tag'), project_tags_path(project)
+           - else
              %i.icon-warning-sign
-             Empty repository
+-            Empty repository
++            空のリポジトリ
      - unless @projects.present?
 -      %h3.nothing_here_message No public projects
 +      %h3.nothing_here_message 公開プロジェクトはありません
@@ -6465,8 +6468,9 @@ diff -urN gitlab-rails.bk/app/views/snippets/_form.html.haml gitlab-rails/app/vi
          = f.label :private_false, class: 'radio-label' do
            = f.radio_button :private, false
            %span
-             %strong Public
+-            %strong Public
 -            (GitLab users can see this snippet)
++            %strong 公開
 +            (GitLabユーザはこのスニペットを見ることができます)
  
      .form-group

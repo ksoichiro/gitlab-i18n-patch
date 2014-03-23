@@ -24,7 +24,6 @@ diff -urN gitlab-rails.bk/app/assets/javascripts/lib/jquery.timeago.js gitlab-ra
 +  years: "約 %d 年",
 +  wordSeparator: ""
 +};
-バイナリー・ファイルgitlab-rails.bk/app/controllers/.groups_controller.rb.swpとgitlab-rails/app/controllers/.groups_controller.rb.swpは違います
 diff -urN gitlab-rails.bk/app/controllers/users_groups_controller.rb gitlab-rails/app/controllers/users_groups_controller.rb
 --- gitlab-rails.bk/app/controllers/users_groups_controller.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/controllers/users_groups_controller.rb	2014-03-22 09:00:00.000000000 +0900
@@ -102,9 +101,6 @@ diff -urN gitlab-rails.bk/app/mailers/emails/groups.rb gitlab-rails/app/mailers/
      end
    end
  end
-バイナリー・ファイルgitlab-rails.bk/app/models/.group.rb.swpとgitlab-rails/app/models/.group.rb.swpは違います
-バイナリー・ファイルgitlab-rails.bk/app/models/.user.rb.swpとgitlab-rails/app/models/.user.rb.swpは違います
-バイナリー・ファイルgitlab-rails.bk/app/models/.users_group.rb.swpとgitlab-rails/app/models/.users_group.rb.swpは違います
 diff -urN gitlab-rails.bk/app/models/notification.rb gitlab-rails/app/models/notification.rb
 --- gitlab-rails.bk/app/models/notification.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/models/notification.rb	2014-03-22 09:00:00.000000000 +0900
@@ -497,8 +493,37 @@ diff -urN gitlab-rails.bk/app/views/events/event/_note.html.haml gitlab-rails/ap
  
  .event-body
    .event-note
-バイナリー・ファイルgitlab-rails.bk/app/views/groups/._new_group_member.html.haml.swpとgitlab-rails/app/views/groups/._new_group_member.html.haml.swpは違います
-バイナリー・ファイルgitlab-rails.bk/app/views/groups/.members.html.haml.swpとgitlab-rails/app/views/groups/.members.html.haml.swpは違います
+diff -urN gitlab-rails.bk/app/views/events/event/_push.html.haml gitlab-rails/app/views/events/event/_push.html.haml
+--- gitlab-rails.bk/app/views/events/event/_push.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/events/event/_push.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,13 +1,24 @@
+ .event-title
+   %span.author_name= link_to_author event
+-  %span.event_label.pushed #{event.push_action_name} #{event.ref_type}
++  %span.event_label.pushed が
++  = link_to_project event.project
++  で
++  - if event.ref_type == "tag"
++    タグ
++  - else
++    ブランチ
+   - if event.rm_ref?
+     %strong= event.ref_name
+   - else
+     = link_to project_commits_path(event.project, event.ref_name) do
+       %strong= truncate(event.ref_name, length: 30)
+-  at
+-  = link_to_project event.project
++  を
++  - if event.push_action_name == "pushed new"
++    新規にPushしました
++  - elsif event.push_action_name == "deleted"
++    削除しました
++  - else
++    Pushしました
+ 
+ - if event.push_with_commits?
+   - project = event.project
 diff -urN gitlab-rails.bk/app/views/groups/_new_group_member.html.haml gitlab-rails/app/views/groups/_new_group_member.html.haml
 --- gitlab-rails.bk/app/views/groups/_new_group_member.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/groups/_new_group_member.html.haml	2014-03-22 09:00:00.000000000 +0900

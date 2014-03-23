@@ -387,7 +387,7 @@ diff -urN gitlab-rails.bk/app/views/dashboard/projects.html.haml gitlab-rails/ap
 +          最終更新日
  %p.light
 -  All projects you have access to are listed here. Public projects are not included here unless you are a member
-+  アクセス権のあるすべてのプロジェクトを表示しています。メンバーでないpublicなプロジェクトは表示されません。
++  アクセス権のあるすべてのプロジェクトを表示しています。メンバーでない公開プロジェクトは表示されません。
  %hr
  .row
    .col-md-3.hidden-sm.hidden-xs.side-filters
@@ -917,7 +917,7 @@ diff -urN gitlab-rails.bk/app/views/layouts/_head_panel.html.haml gitlab-rails/a
                %i.icon-search
            %li
 -            = link_to public_root_path, title: "Public area", class: 'has_bottom_tooltip', 'data-original-title' => 'Public area' do
-+            = link_to public_root_path, title: "Publicエリア", class: 'has_bottom_tooltip', 'data-original-title' => 'Publicエリア' do
++            = link_to public_root_path, title: "公開エリア", class: 'has_bottom_tooltip', 'data-original-title' => '公開エリア' do
                %i.icon-globe
            %li
 -            = link_to user_snippets_path(current_user), title: "My snippets", class: 'has_bottom_tooltip', 'data-original-title' => 'My snippets' do
@@ -958,6 +958,21 @@ diff -urN gitlab-rails.bk/app/views/layouts/application.html.haml gitlab-rails/a
      = render "layouts/flash"
      %nav.main-nav.navbar-collapse.collapse
        .container= render 'layouts/nav/dashboard'
+diff -urN gitlab-rails.bk/app/views/layouts/devise.html.haml gitlab-rails/app/views/layouts/devise.html.haml
+--- gitlab-rails.bk/app/views/layouts/devise.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/layouts/devise.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -8,9 +8,9 @@
+         %center
+           %h1 GitLab
+           %p.light
+-            GitLab is open source software to collaborate on code.
++            GitLabはコードを共同編集するためのオープンソースソフトウェアです。
+             %br
+-            #{link_to "Sign in", new_user_session_path} or browse for #{link_to "public projects", public_projects_path}.
++            #{link_to "サインイン", new_user_session_path} または #{link_to "公開プロジェクト", public_projects_path} を閲覧
+     %hr
+     .container
+       .content
 diff -urN gitlab-rails.bk/app/views/layouts/group.html.haml gitlab-rails/app/views/layouts/group.html.haml
 --- gitlab-rails.bk/app/views/layouts/group.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/layouts/group.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -1137,15 +1152,15 @@ diff -urN gitlab-rails.bk/app/views/layouts/public.html.haml gitlab-rails/app/vi
  !!! 5
  %html{ lang: "en"}
 -  = render "layouts/head", title: "Public Projects"
-+  = render "layouts/head", title: "Public プロジェクト"
++  = render "layouts/head", title: "公開プロジェクト"
    %body{class: "#{app_theme} application", :'data-page' => body_data_page}
      = render "layouts/broadcast"
      - if current_user
 -      = render "layouts/head_panel", title: "Public Projects"
-+      = render "layouts/head_panel", title: "Public プロジェクト"
++      = render "layouts/head_panel", title: "公開プロジェクト"
      - else
 -      = render "layouts/public_head_panel", title: "Public Projects"
-+      = render "layouts/public_head_panel", title: "Public プロジェクト"
++      = render "layouts/public_head_panel", title: "公開プロジェクト"
      .container.navless-container
        .content= yield
 diff -urN gitlab-rails.bk/app/views/layouts/search.html.haml gitlab-rails/app/views/layouts/search.html.haml
@@ -3782,7 +3797,7 @@ diff -urN gitlab-rails.bk/app/views/public/projects/index.html.haml gitlab-rails
 +  プロジェクト (#{@projects.total_count})
  .light
 -  You can browse public projects in read-only mode until signed in.
-+  ログインするまでは読み取り専用モードでpublicなプロジェクトをブラウズできます。
++  ログインするまでは読み取り専用モードで公開プロジェクトを閲覧できます。
  %hr
  .clearfix
    .pull-left
@@ -3830,7 +3845,7 @@ diff -urN gitlab-rails.bk/app/views/public/projects/index.html.haml gitlab-rails
              Empty repository
      - unless @projects.present?
 -      %h3.nothing_here_message No public projects
-+      %h3.nothing_here_message Publicなプロジェクトはありません
++      %h3.nothing_here_message 公開プロジェクトはありません
  
    = paginate @projects, theme: "gitlab"
 diff -urN gitlab-rails.bk/app/views/search/show.html.haml gitlab-rails/app/views/search/show.html.haml
@@ -4155,7 +4170,7 @@ diff -urN gitlab-rails.bk/app/views/snippets/current_user_index.html.haml gitlab
  %hr
  
  .row
-@@ -15,12 +15,12 @@
+@@ -15,17 +15,17 @@
      %ul.nav.nav-pills.nav-stacked
        = nav_tab :scope, nil do
          = link_to user_snippets_path(@user) do
@@ -4170,13 +4185,19 @@ diff -urN gitlab-rails.bk/app/views/snippets/current_user_index.html.haml gitlab
            %span.pull-right
              = @user.snippets.private.count
        = nav_tab :scope, 'public' do
+         = link_to user_snippets_path(@user, scope: 'public') do
+-          Public
++          公開
+           %span.pull-right
+             = @user.snippets.public.count
+ 
 diff -urN gitlab-rails.bk/app/views/snippets/index.html.haml gitlab-rails/app/views/snippets/index.html.haml
 --- gitlab-rails.bk/app/views/snippets/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/snippets/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,14 +1,14 @@
  %h3.page-title
 -  Public snippets
-+  Publicスニペット
++  公開スニペット
  
    .pull-right
 -    = link_to new_snippet_path, class: "btn btn-new grouped", title: "New Snippet" do
@@ -4189,7 +4210,7 @@ diff -urN gitlab-rails.bk/app/views/snippets/index.html.haml gitlab-rails/app/vi
  
  %p.light
 -  Public snippets created by you and other users are listed here
-+  あなたや他のユーザが作成したPublicなスニペットが表示されています。
++  あなたや他のユーザが作成した公開スニペットが表示されています。
  
  %hr
  = render 'snippets'

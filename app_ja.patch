@@ -426,6 +426,30 @@ diff -urN gitlab-rails.bk/app/views/dashboard/projects.html.haml gitlab-rails/ap
      .bottom
        = paginate @projects, theme: "gitlab"
  
+diff -urN gitlab-rails.bk/app/views/devise/confirmations/new.html.haml gitlab-rails/app/views/devise/confirmations/new.html.haml
+--- gitlab-rails.bk/app/views/devise/confirmations/new.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/devise/confirmations/new.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,15 +1,15 @@
+ .login-box
+-  %h3.page-title Resend confirmation instructions
++  %h3.page-title 確認メールの再送信
+   = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+     .devise-errors
+       = devise_error_messages!
+     .clearfix.append-bottom-20
+-      = f.email_field :email, placeholder: 'Email', class: "form-control", required: true
++      = f.email_field :email, placeholder: 'メールアドレス', class: "form-control", required: true
+     .clearfix.append-bottom-10
+-      = f.submit "Resend confirmation instructions", class: 'btn btn-success'
++      = f.submit "確認メールを再送信", class: 'btn btn-success'
+   %hr
+   %p
+     %span.light
+-      Already have login and password?
++      ログインアカウントとパスワードをお持ちですか？
+     %strong
+-      = link_to "Sign in", new_session_path(resource_name)
++      = link_to "サインイン", new_session_path(resource_name)
 diff -urN gitlab-rails.bk/app/views/devise/passwords/edit.html.haml gitlab-rails/app/views/devise/passwords/edit.html.haml
 --- gitlab-rails.bk/app/views/devise/passwords/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/devise/passwords/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -450,6 +474,29 @@ diff -urN gitlab-rails.bk/app/views/devise/passwords/edit.html.haml gitlab-rails
 +    = link_to "サインイン", new_session_path(resource_name), class: "btn pull-right"
    %div
      = link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name)
+diff -urN gitlab-rails.bk/app/views/devise/passwords/new.html.haml gitlab-rails/app/views/devise/passwords/new.html.haml
+--- gitlab-rails.bk/app/views/devise/passwords/new.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/devise/passwords/new.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,14 +1,14 @@
+ = form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: "login-box", method: :post }) do |f|
+-  %h3.page-title Reset password
++  %h3.page-title パスワードのリセット
+   .devise-errors
+     = devise_error_messages!
+   .clearfix.append-bottom-20
+-    = f.email_field :email, placeholder: "Email",  class: "form-control", required: true
++    = f.email_field :email, placeholder: "メールアドレス",  class: "form-control", required: true
+   .clearfix.append-bottom-10
+-    = f.submit "Reset password", class: "btn-primary btn"
++    = f.submit "パスワードをリセット", class: "btn-primary btn"
+   %hr
+   %p
+     %span.light
+-      Already have login and password?
++      ログインアカウントとパスワードをお持ちですか？
+     %strong
+-      = link_to "Sign in", new_session_path(resource_name)
++      = link_to "サインイン", new_session_path(resource_name)
 diff -urN gitlab-rails.bk/app/views/devise/registrations/new.html.haml gitlab-rails/app/views/devise/registrations/new.html.haml
 --- gitlab-rails.bk/app/views/devise/registrations/new.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/devise/registrations/new.html.haml	2014-03-22 09:00:00.000000000 +0900

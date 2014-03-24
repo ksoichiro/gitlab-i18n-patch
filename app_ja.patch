@@ -24,6 +24,25 @@ diff -urN gitlab-rails.bk/app/assets/javascripts/lib/jquery.timeago.js gitlab-ra
 +  years: "約 %d 年",
 +  wordSeparator: ""
 +};
+diff -urN gitlab-rails.bk/app/assets/javascripts/profile.js.coffee gitlab-rails/app/assets/javascripts/profile.js.coffee
+--- gitlab-rails.bk/app/assets/javascripts/profile.js.coffee	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/assets/javascripts/profile.js.coffee	2014-03-22 09:00:00.000000000 +0900
+@@ -3,7 +3,7 @@
+     # Submit the form
+     $('.edit_user').submit()
+ 
+-    new Flash("Appearance settings saved", "notice")
++    new Flash("デザイン設定が保存されました", "notice")
+ 
+   $('.update-username form').on 'ajax:before', ->
+     $('.loading-gif').show()
+@@ -27,4 +27,4 @@
+     filename = $(this).val().replace(/^.*[\\\/]/, '')
+     form.find(".js-avatar-filename").text(filename)
+ 
+-  $('.profile-groups-avatars').tooltip("placement": "top")
+\ ファイル末尾に改行がありません
++  $('.profile-groups-avatars').tooltip("placement": "top")
 diff -urN gitlab-rails.bk/app/controllers/profiles/passwords_controller.rb gitlab-rails/app/controllers/profiles/passwords_controller.rb
 --- gitlab-rails.bk/app/controllers/profiles/passwords_controller.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/controllers/profiles/passwords_controller.rb	2014-03-22 09:00:00.000000000 +0900

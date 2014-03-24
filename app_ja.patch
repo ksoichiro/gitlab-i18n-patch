@@ -5599,6 +5599,18 @@ diff -urN gitlab-rails.bk/app/views/projects/new.html.haml gitlab-rails/app/view
 -    %p Please wait a moment, this page will automatically refresh when ready.
 +      プロジェクトとリポジトリを作成しています
 +    %p 準備ができ次第、自動的に更新されますのでお待ちください
+diff -urN gitlab-rails.bk/app/views/projects/notes/_discussion_reply_button.html.haml gitlab-rails/app/views/projects/notes/_discussion_reply_button.html.haml
+--- gitlab-rails.bk/app/views/projects/notes/_discussion_reply_button.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/notes/_discussion_reply_button.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -5,6 +5,6 @@
+                   commit_id:     note.commit_id,
+                   line_code:     note.line_code,
+                   discussion_id: note.discussion_id },
+-          title: "Add a reply" do
++          title: "返信する" do
+   %i.icon-comment
+-  Reply
++  返信
 diff -urN gitlab-rails.bk/app/views/projects/notes/_form.html.haml gitlab-rails/app/views/projects/notes/_form.html.haml
 --- gitlab-rails.bk/app/views/projects/notes/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/notes/_form.html.haml	2014-03-22 09:00:00.000000000 +0900

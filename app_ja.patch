@@ -250,6 +250,109 @@ diff -urN gitlab-rails.bk/app/helpers/projects_helper.rb gitlab-rails/app/helper
      end
    end
  end
+diff -urN gitlab-rails.bk/app/helpers/search_helper.rb gitlab-rails/app/helpers/search_helper.rb
+--- gitlab-rails.bk/app/helpers/search_helper.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/helpers/search_helper.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ module SearchHelper
+   def search_autocomplete_opts(term)
+     return unless current_user
+@@ -24,25 +25,25 @@
+   # Autocomplete results for various settings pages
+   def default_autocomplete
+     [
+-      { label: "My Profile settings", url: profile_path },
+-      { label: "My SSH Keys",         url: profile_keys_path },
+-      { label: "My Dashboard",        url: root_path },
+-      { label: "Admin Section",       url: admin_root_path },
++      { label: "プロフィール設定",    url: profile_path },
++      { label: "SSHキー",             url: profile_keys_path },
++      { label: "ダッシュボード",      url: root_path },
++      { label: "管理エリア",          url: admin_root_path },
+     ]
+   end
+ 
+   # Autocomplete results for internal help pages
+   def help_autocomplete
+     [
+-      { label: "help: API Help",           url: help_api_path },
+-      { label: "help: Markdown Help",      url: help_markdown_path },
+-      { label: "help: Permissions Help",   url: help_permissions_path },
+-      { label: "help: Public Access Help", url: help_public_access_path },
+-      { label: "help: Rake Tasks Help",    url: help_raketasks_path },
+-      { label: "help: SSH Keys Help",      url: help_ssh_path },
+-      { label: "help: System Hooks Help",  url: help_system_hooks_path },
+-      { label: "help: Web Hooks Help",     url: help_web_hooks_path },
+-      { label: "help: Workflow Help",      url: help_workflow_path },
++      { label: "ヘルプ: API Help",           url: help_api_path },
++      { label: "ヘルプ: Markdown Help",      url: help_markdown_path },
++      { label: "ヘルプ: Permissions Help",   url: help_permissions_path },
++      { label: "ヘルプ: Public Access Help", url: help_public_access_path },
++      { label: "ヘルプ: Rake Tasks Help",    url: help_raketasks_path },
++      { label: "ヘルプ: SSH Keys Help",      url: help_ssh_path },
++      { label: "ヘルプ: System Hooks Help",  url: help_system_hooks_path },
++      { label: "ヘルプ: Web Hooks Help",     url: help_web_hooks_path },
++      { label: "ヘルプ: Workflow Help",      url: help_workflow_path },
+     ]
+   end
+ 
+@@ -53,17 +54,17 @@
+       ref    = @ref || @project.repository.root_ref
+ 
+       [
+-        { label: "#{prefix} - Files",          url: project_tree_path(@project, ref) },
+-        { label: "#{prefix} - Commits",        url: project_commits_path(@project, ref) },
+-        { label: "#{prefix} - Network",        url: project_network_path(@project, ref) },
+-        { label: "#{prefix} - Graph",          url: project_graph_path(@project, ref) },
+-        { label: "#{prefix} - Issues",         url: project_issues_path(@project) },
+-        { label: "#{prefix} - Merge Requests", url: project_merge_requests_path(@project) },
+-        { label: "#{prefix} - Milestones",     url: project_milestones_path(@project) },
+-        { label: "#{prefix} - Snippets",       url: project_snippets_path(@project) },
+-        { label: "#{prefix} - Team",           url: project_team_index_path(@project) },
+-        { label: "#{prefix} - Wall",           url: project_wall_path(@project) },
+-        { label: "#{prefix} - Wiki",           url: project_wikis_path(@project) },
++        { label: "#{prefix} - ファイル",         url: project_tree_path(@project, ref) },
++        { label: "#{prefix} - コミット",         url: project_commits_path(@project, ref) },
++        { label: "#{prefix} - ネットワーク",     url: project_network_path(@project, ref) },
++        { label: "#{prefix} - グラフ",           url: project_graph_path(@project, ref) },
++        { label: "#{prefix} - 課題",             url: project_issues_path(@project) },
++        { label: "#{prefix} - マージリクエスト", url: project_merge_requests_path(@project) },
++        { label: "#{prefix} - マイルストーン",   url: project_milestones_path(@project) },
++        { label: "#{prefix} - スニペット",       url: project_snippets_path(@project) },
++        { label: "#{prefix} - メンバー",         url: project_team_index_path(@project) },
++        { label: "#{prefix} - ウォール",         url: project_wall_path(@project) },
++        { label: "#{prefix} - Wiki",             url: project_wikis_path(@project) },
+       ]
+     else
+       []
+@@ -74,7 +75,7 @@
+   def groups_autocomplete(term, limit = 5)
+     current_user.authorized_groups.search(term).limit(limit).map do |group|
+       {
+-        label: "group: #{search_result_sanitize(group.name)}",
++        label: "グループ: #{search_result_sanitize(group.name)}",
+         url: group_path(group)
+       }
+     end
+@@ -84,7 +85,7 @@
+   def projects_autocomplete(term, limit = 5)
+     current_user.authorized_projects.search_by_title(term).non_archived.limit(limit).map do |p|
+       {
+-        label: "project: #{search_result_sanitize(p.name_with_namespace)}",
++        label: "プロジェクト: #{search_result_sanitize(p.name_with_namespace)}",
+         url: project_path(p)
+       }
+     end
+@@ -94,7 +95,7 @@
+   def public_projects_autocomplete(term, limit = 5)
+     Project.public_or_internal_only(current_user).search_by_title(term).non_archived.limit(limit).map do |p|
+       {
+-        label: "project: #{search_result_sanitize(p.name_with_namespace)}",
++        label: "プロジェクト: #{search_result_sanitize(p.name_with_namespace)}",
+         url: project_path(p)
+       }
+     end
 diff -urN gitlab-rails.bk/app/helpers/visibility_level_helper.rb gitlab-rails/app/helpers/visibility_level_helper.rb
 --- gitlab-rails.bk/app/helpers/visibility_level_helper.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/helpers/visibility_level_helper.rb	2014-03-22 09:00:00.000000000 +0900

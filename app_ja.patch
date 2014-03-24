@@ -2183,6 +2183,12 @@ diff -urN gitlab-rails.bk/app/views/events/event/_push.html.haml gitlab-rails/ap
  
  - if event.push_with_commits?
    - project = event.project
+@@ -22,4 +33,4 @@
+           - if event.commits_count > 2
+             %span ... and #{event.commits_count - 2} more commits.
+           = link_to project_compare_path(event.project, from: event.commit_from, to: event.commit_to) do
+-            %strong Compare &rarr; #{event.commit_from[0..7]}...#{event.commit_to[0..7]}
++            %strong 比較 &rarr; #{event.commit_from[0..7]}...#{event.commit_to[0..7]}
 diff -urN gitlab-rails.bk/app/views/groups/_new_group_member.html.haml gitlab-rails/app/views/groups/_new_group_member.html.haml
 --- gitlab-rails.bk/app/views/groups/_new_group_member.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/groups/_new_group_member.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -3112,6 +3118,21 @@ diff -urN gitlab-rails.bk/app/views/notify/note_commit_email.html.haml gitlab-ra
    = link_to_gfm truncate(@commit.title, length: 16), project_commit_url(@note.project, id: @commit.id, anchor: "note_#{@note.id}")
  = render 'note_message'
  
+diff -urN gitlab-rails.bk/app/views/notify/note_commit_email.text.erb gitlab-rails/app/views/notify/note_commit_email.text.erb
+--- gitlab-rails.bk/app/views/notify/note_commit_email.text.erb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/notify/note_commit_email.text.erb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,9 +1,9 @@
+-New comment for Commit <%= @commit.short_id %>
++コミット <%= @commit.short_id %> への新しいコメント
+ 
+ <%= url_for(project_commit_url(@note.project, id: @commit.id, anchor: "note_#{@note.id}")) %>
+ 
+ 
+-Author: <%= @note.author_name %>
++担当者: <%= @note.author_name %>
+ 
+ <%= @note.note %>
+ 
 diff -urN gitlab-rails.bk/app/views/notify/note_issue_email.html.haml gitlab-rails/app/views/notify/note_issue_email.html.haml
 --- gitlab-rails.bk/app/views/notify/note_issue_email.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/notify/note_issue_email.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -3121,6 +3142,48 @@ diff -urN gitlab-rails.bk/app/views/notify/note_issue_email.html.haml gitlab-rai
 +  = "課題 ##{@issue.iid} にコメントが付きました"
    = link_to_gfm truncate(@issue.title, length: 35), project_issue_url(@issue.project, @issue, anchor: "note_#{@note.id}")
  = render 'note_message'
+diff -urN gitlab-rails.bk/app/views/notify/note_issue_email.text.erb gitlab-rails/app/views/notify/note_issue_email.text.erb
+--- gitlab-rails.bk/app/views/notify/note_issue_email.text.erb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/notify/note_issue_email.text.erb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,9 +1,9 @@
+-New comment for Issue <%= @issue.iid %>
++課題 <%= @issue.iid %> への新しいコメント
+ 
+ <%= url_for(project_issue_url(@issue.project, @issue, anchor: "note_#{@note.id}")) %>
+ 
+ 
+-Author: <%= @note.author_name %>
++担当者: <%= @note.author_name %>
+ 
+ <%= @note.note %>
+ 
+diff -urN gitlab-rails.bk/app/views/notify/note_merge_request_email.html.haml gitlab-rails/app/views/notify/note_merge_request_email.html.haml
+--- gitlab-rails.bk/app/views/notify/note_merge_request_email.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/notify/note_merge_request_email.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,8 +1,10 @@
+ %p
++  マージリクエスト ##{@merge_request.iid}
++  %cite "#{truncate(@merge_request.title, length: 20)}"
+   - if @note.for_diff_line?
+-    = link_to "New comment on diff", diffs_project_merge_request_url(@merge_request.target_project, @merge_request, anchor: "note_#{@note.id}")
++    の
++    = link_to "差分への新しいコメント", diffs_project_merge_request_url(@merge_request.target_project, @merge_request, anchor: "note_#{@note.id}")
+   - else
+-    = link_to "New comment", project_merge_request_url(@merge_request.target_project, @merge_request, anchor: "note_#{@note.id}")
+-  for Merge Request ##{@merge_request.iid}
+-  %cite "#{truncate(@merge_request.title, length: 20)}"
++    への
++    = link_to "新しいコメント", project_merge_request_url(@merge_request.target_project, @merge_request, anchor: "note_#{@note.id}")
+ = render 'note_message'
+diff -urN gitlab-rails.bk/app/views/notify/note_merge_request_email.text.erb gitlab-rails/app/views/notify/note_merge_request_email.text.erb
+--- gitlab-rails.bk/app/views/notify/note_merge_request_email.text.erb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/notify/note_merge_request_email.text.erb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-New comment for Merge Request <%= @merge_request.iid %>
++マージリクエスト <%= @merge_request.iid %> への新しいコメント
+ 
+ <%= url_for(project_merge_request_url(@merge_request.target_project, @merge_request, anchor: "note_#{@note.id}")) %>
+ 
 diff -urN gitlab-rails.bk/app/views/notify/note_wall_email.html.haml gitlab-rails/app/views/notify/note_wall_email.html.haml
 --- gitlab-rails.bk/app/views/notify/note_wall_email.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/notify/note_wall_email.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -3999,7 +4062,7 @@ diff -urN gitlab-rails.bk/app/views/projects/branches/new.html.haml gitlab-rails
 diff -urN gitlab-rails.bk/app/views/projects/commit/_commit_box.html.haml gitlab-rails/app/views/projects/commit/_commit_box.html.haml
 --- gitlab-rails.bk/app/views/projects/commit/_commit_box.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/commit/_commit_box.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -7,30 +7,32 @@
+@@ -7,48 +7,50 @@
      .pull-left.btn-group
        %a.btn.grouped.dropdown-toggle{ data: {toggle: :dropdown} }
          %i.icon-download-alt
@@ -4038,8 +4101,10 @@ diff -urN gitlab-rails.bk/app/views/projects/commit/_commit_box.html.haml gitlab
 +    %span.light に作成
  
  .commit-info-row
-   %span.cgray= pluralize(@commit.parents.count, "parent")
-@@ -39,8 +41,6 @@
+-  %span.cgray= pluralize(@commit.parents.count, "parent")
++  %span.cgray= "#{@commit.parents.count}つの親コミット:"
+   - @commit.parents.each do |parent|
+     = link_to parent.id[0...10], project_commit_path(@project, parent)
  
  - if @branches.any?
    .commit-info-row
@@ -4048,8 +4113,11 @@ diff -urN gitlab-rails.bk/app/views/projects/commit/_commit_box.html.haml gitlab
      %span
        - branch = commit_default_branch(@project, @branches)
        = link_to(branch, project_tree_path(@project, branch))
-@@ -49,6 +49,8 @@
-         = link_to("#{pluralize(@branches.count, "other branch")}", "#", class: "js-details-expand")
+       - if @branches.any?
+-        and in
+-        = link_to("#{pluralize(@branches.count, "other branch")}", "#", class: "js-details-expand")
++        とその他
++        = link_to("#{@branches.count}つの", "#", class: "js-details-expand")
          %span.js-details-contain.hide
            = commit_branches_links(@project, @branches)
 +    %span.cgray

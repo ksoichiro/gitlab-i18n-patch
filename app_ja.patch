@@ -24,6 +24,56 @@ diff -urN gitlab-rails.bk/app/assets/javascripts/lib/jquery.timeago.js gitlab-ra
 +  years: "約 %d 年",
 +  wordSeparator: ""
 +};
+diff -urN gitlab-rails.bk/app/controllers/profiles/passwords_controller.rb gitlab-rails/app/controllers/profiles/passwords_controller.rb
+--- gitlab-rails.bk/app/controllers/profiles/passwords_controller.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/controllers/profiles/passwords_controller.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ class Profiles::PasswordsController < ApplicationController
+   layout :determine_layout
+ 
+@@ -21,7 +22,7 @@
+ 
+     if result
+       @user.update_attributes(password_expires_at: nil)
+-      redirect_to root_path, notice: 'Password successfully changed'
++      redirect_to root_path, notice: 'パスワードは正常に変更されました'
+     else
+       render :new
+     end
+@@ -36,12 +37,12 @@
+     end
+ 
+     unless @user.valid_password?(params[:user][:current_password])
+-      redirect_to edit_profile_password_path, alert: 'You must provide a valid current password'
++      redirect_to edit_profile_password_path, alert: '現在のパスワードを正しく入力してください'
+       return
+     end
+ 
+     if @user.update_attributes(password_attributes)
+-      flash[:notice] = "Password was successfully updated. Please login with it"
++      flash[:notice] = "パスワードは正常に更新されました。新しいパスワードでログインしてください"
+       redirect_to new_user_session_path
+     else
+       render 'edit'
+@@ -50,7 +51,7 @@
+ 
+   def reset
+     current_user.send_reset_password_instructions
+-    redirect_to edit_profile_password_path, notice: 'We sent you an email with reset password instructions'
++    redirect_to edit_profile_password_path, notice: 'パスワードのリセット方法についてのご案内をメールでお送りしました'
+   end
+ 
+   private
+@@ -60,7 +61,7 @@
+   end
+ 
+   def set_title
+-    @title = "New password"
++    @title = "新しいパスワード"
+   end
+ 
+   def determine_layout
 diff -urN gitlab-rails.bk/app/controllers/projects_controller.rb gitlab-rails/app/controllers/projects_controller.rb
 --- gitlab-rails.bk/app/controllers/projects_controller.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/controllers/projects_controller.rb	2014-03-22 09:00:00.000000000 +0900
@@ -2023,6 +2073,55 @@ diff -urN gitlab-rails.bk/app/views/devise/confirmations/new.html.haml gitlab-ra
      %strong
 -      = link_to "Sign in", new_session_path(resource_name)
 +      = link_to "サインイン", new_session_path(resource_name)
+diff -urN gitlab-rails.bk/app/views/devise/mailer/confirmation_instructions.html.erb gitlab-rails/app/views/devise/mailer/confirmation_instructions.html.erb
+--- gitlab-rails.bk/app/views/devise/mailer/confirmation_instructions.html.erb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/devise/mailer/confirmation_instructions.html.erb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,9 +1,9 @@
+-<p>Welcome <%= @resource.name %>!</p>
++<p>ようこそ <%= @resource.name %> さん！</p>
+ 
+ <% if @resource.unconfirmed_email.present? %>
+-  <p>You can confirm your email (<%= @resource.unconfirmed_email %>) through the link below:</p>
++  <p>あなたのメールアドレス(<%= @resource.unconfirmed_email %>)を確認するために以下のリンクをクリックしてください。</p>
+ <% else %>
+-  <p>You can confirm your account through the link below:</p>
++  <p>あなたのアカウントを確認するために以下のリンクをクリックしてください。</p>
+ <% end %>
+ 
+-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @resource.confirmation_token) %></p>
++<p><%= link_to 'アカウントを確認', confirmation_url(@resource, confirmation_token: @resource.confirmation_token) %></p>
+diff -urN gitlab-rails.bk/app/views/devise/mailer/reset_password_instructions.html.erb gitlab-rails/app/views/devise/mailer/reset_password_instructions.html.erb
+--- gitlab-rails.bk/app/views/devise/mailer/reset_password_instructions.html.erb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/devise/mailer/reset_password_instructions.html.erb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,8 +1,8 @@
+-<p>Hello <%= @resource.email %>!</p>
++<p>こんにちは <%= @resource.email %> さん！</p>
+ 
+-<p>Someone has requested a link to change your password, and you can do this through the link below.</p>
++<p>パスワード変更のリンクがリクエストされました。以下のリンクから変更することができます。</p>
+ 
+-<p><%= link_to 'Change my password', edit_password_url(@resource, reset_password_token: @resource.reset_password_token) %></p>
++<p><%= link_to 'パスワードを変更する', edit_password_url(@resource, reset_password_token: @resource.reset_password_token) %></p>
+ 
+-<p>If you didn't request this, please ignore this email.</p>
+-<p>Your password won't change until you access the link above and create a new one.</p>
++<p>もしあなたがパスワード変更をリクエストしていない場合は、このメールは無視してください。</p>
++<p>あなたのパスワードは上記のリンクから新しいパスワードを発行するまでは変更されません。</p>
+diff -urN gitlab-rails.bk/app/views/devise/mailer/unlock_instructions.html.erb gitlab-rails/app/views/devise/mailer/unlock_instructions.html.erb
+--- gitlab-rails.bk/app/views/devise/mailer/unlock_instructions.html.erb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/devise/mailer/unlock_instructions.html.erb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,7 +1,7 @@
+-<p>Hello <%= @resource.email %>!</p>
++<p>こんにちは <%= @resource.email %>さん！</p>
+ 
+-<p>Your account has been locked due to an excessive amount of unsuccessful sign in attempts.</p>
++<p>サインインに何度も失敗したため、あなたのアカウントはロックされました。</p>
+ 
+-<p>Click the link below to unlock your account:</p>
++<p>以下のリンクをクリックすると、アカウントのロックを解除できます。</p>
+ 
+-<p><%= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @resource.unlock_token) %></p>
++<p><%= link_to 'アカウントのロックを解除', unlock_url(@resource, unlock_token: @resource.unlock_token) %></p>
 diff -urN gitlab-rails.bk/app/views/devise/passwords/edit.html.haml gitlab-rails/app/views/devise/passwords/edit.html.haml
 --- gitlab-rails.bk/app/views/devise/passwords/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/devise/passwords/edit.html.haml	2014-03-22 09:00:00.000000000 +0900

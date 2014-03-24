@@ -3698,6 +3698,49 @@ diff -urN gitlab-rails.bk/app/views/profiles/keys/index.html.haml gitlab-rails/a
 -
 +        %h3.nothing_here_message あなたのアカウントにアクセスできるSSHキーはありません。
  
+diff -urN gitlab-rails.bk/app/views/profiles/keys/new.html.haml gitlab-rails/app/views/profiles/keys/new.html.haml
+--- gitlab-rails.bk/app/views/profiles/keys/new.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/profiles/keys/new.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,6 +1,6 @@
+-%h3.page-title Add an SSH Key
++%h3.page-title SSHキーを追加
+ %p.light
+-  Paste your public key here. Read more about how to generate a key on #{link_to "the SSH help page", help_ssh_path}.
++  公開鍵をペーストしてください。SSHキーの生成方法についての詳細は #{link_to "SSHヘルプページ", help_ssh_path} をご確認ください。
+ %hr
+ = render 'form'
+ 
+diff -urN gitlab-rails.bk/app/views/profiles/keys/show.html.haml gitlab-rails/app/views/profiles/keys/show.html.haml
+--- gitlab-rails.bk/app/views/profiles/keys/show.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/profiles/keys/show.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -2,21 +2,21 @@
+   .col-md-4
+     .ui-box
+       .title
+-        SSH Key
++        SSHキー
+       %ul.well-list
+         %li
+-          %span.light Title:
++          %span.light タイトル:
+           %strong= @key.title
+         %li
+-          %span.light Created on:
+-          %strong= @key.created_at.stamp("Aug 21, 2011")
++          %span.light 作成日:
++          %strong= @key.created_at.stamp("2011/08/21")
+ 
+   .col-md-8
+     %p
+-      %span.light Fingerprint:
++      %span.light フィンガープリント:
+       %strong= @key.fingerprint
+     %pre.well-pre
+       = @key.key
+ 
+ .pull-right
+-  = link_to 'Remove', profile_key_path(@key), data: {confirm: 'Are you sure?'}, method: :delete, class: "btn btn-remove delete-key"
++  = link_to '削除', profile_key_path(@key), data: {confirm: '本当に削除しますか？'}, method: :delete, class: "btn btn-remove delete-key"
 diff -urN gitlab-rails.bk/app/views/profiles/notifications/show.html.haml gitlab-rails/app/views/profiles/notifications/show.html.haml
 --- gitlab-rails.bk/app/views/profiles/notifications/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/profiles/notifications/show.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -5304,6 +5347,16 @@ diff -urN gitlab-rails.bk/app/views/projects/issues/show.html.haml gitlab-rails/
    - @issue.participants.each do |participant|
      = link_to_member(@project, participant, name: false, size: 24)
  
+diff -urN gitlab-rails.bk/app/views/projects/labels/_label.html.haml gitlab-rails/app/views/projects/labels/_label.html.haml
+--- gitlab-rails.bk/app/views/projects/labels/_label.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/labels/_label.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -9,5 +9,5 @@
+   .pull-right
+     - unless frequency.zero?
+       = link_to project_issues_path(label_name: label.name) do
+-        = pluralize(frequency, 'issue')
++        #{frequency} 件の課題
+         = "»"
 diff -urN gitlab-rails.bk/app/views/projects/labels/index.html.haml gitlab-rails/app/views/projects/labels/index.html.haml
 --- gitlab-rails.bk/app/views/projects/labels/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/labels/index.html.haml	2014-03-22 09:00:00.000000000 +0900

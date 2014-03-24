@@ -2935,13 +2935,34 @@ diff -urN gitlab-rails.bk/app/views/notify/closed_issue_email.html.haml gitlab-r
 diff -urN gitlab-rails.bk/app/views/notify/closed_merge_request_email.html.haml gitlab-rails/app/views/notify/closed_merge_request_email.html.haml
 --- gitlab-rails.bk/app/views/notify/closed_merge_request_email.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/notify/closed_merge_request_email.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -1,5 +1,5 @@
+@@ -1,9 +1,9 @@
  %p
 -  = "Merge Request #{@merge_request.iid} was closed by #{@updated_by.name}"
 +  = "#{@updated_by.name} がマージリクエスト #{@merge_request.iid} をクローズしました。"
  %p
    = link_to_gfm truncate(@merge_request.title, length: 40), project_merge_request_url(@merge_request.target_project, @merge_request)
  %p
+   != merge_path_description(@merge_request, '&rarr;')
+ %p
+-  Assignee: #{@merge_request.author_name} &rarr; #{@merge_request.assignee_name}
++  担当者: #{@merge_request.author_name} &rarr; #{@merge_request.assignee_name}
+ 
+diff -urN gitlab-rails.bk/app/views/notify/closed_merge_request_email.text.haml gitlab-rails/app/views/notify/closed_merge_request_email.text.haml
+--- gitlab-rails.bk/app/views/notify/closed_merge_request_email.text.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/notify/closed_merge_request_email.text.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,8 +1,8 @@
+-= "Merge Request #{@merge_request.iid} was closed by #{@updated_by.name}"
++= "マージリクエスト #{@merge_request.iid} は #{@updated_by.name} にクローズされました"
+ 
+-Merge Request url: #{project_merge_request_url(@merge_request.target_project, @merge_request)}
++マージリクエストのURL: #{project_merge_request_url(@merge_request.target_project, @merge_request)}
+ 
+ = merge_path_description(@merge_request, 'to')
+ 
+-Author: #{@merge_request.author_name}
+-Assignee: #{@merge_request.assignee_name}
++作成者: #{@merge_request.author_name}
++担当者: #{@merge_request.assignee_name}
 diff -urN gitlab-rails.bk/app/views/notify/group_access_granted_email.html.haml gitlab-rails/app/views/notify/group_access_granted_email.html.haml
 --- gitlab-rails.bk/app/views/notify/group_access_granted_email.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/notify/group_access_granted_email.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -2963,6 +2984,21 @@ diff -urN gitlab-rails.bk/app/views/notify/issue_status_changed_email.html.haml 
 -  = "Issue ##{@issue.iid}"
 +  = "課題 ##{@issue.iid}"
    = link_to_gfm truncate(@issue.title, length: 45), project_issue_url(@issue.project, @issue), title: @issue.title
+diff -urN gitlab-rails.bk/app/views/notify/merged_merge_request_email.html.haml gitlab-rails/app/views/notify/merged_merge_request_email.html.haml
+--- gitlab-rails.bk/app/views/notify/merged_merge_request_email.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/notify/merged_merge_request_email.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,9 +1,9 @@
+ %p
+-  = "Merge Request #{@merge_request.iid} was merged"
++  = "マージリクエスト #{@merge_request.iid} はマージされました"
+ %p
+   = link_to_gfm truncate(@merge_request.title, length: 40), project_merge_request_url(@merge_request.target_project, @merge_request)
+ %p
+   != merge_path_description(@merge_request, '&rarr;')
+ %p
+-  Assignee: #{@merge_request.author_name} &rarr; #{@merge_request.assignee_name}
++  担当者: #{@merge_request.author_name} &rarr; #{@merge_request.assignee_name}
+ 
 diff -urN gitlab-rails.bk/app/views/notify/new_email_email.html.haml gitlab-rails/app/views/notify/new_email_email.html.haml
 --- gitlab-rails.bk/app/views/notify/new_email_email.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/notify/new_email_email.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -3143,6 +3179,17 @@ diff -urN gitlab-rails.bk/app/views/notify/reassigned_issue_email.html.haml gitl
    %strong #{@issue.assignee_name}
 +  になりました。
  
+diff -urN gitlab-rails.bk/app/views/notify/reassigned_issue_email.text.erb gitlab-rails/app/views/notify/reassigned_issue_email.text.erb
+--- gitlab-rails.bk/app/views/notify/reassigned_issue_email.text.erb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/notify/reassigned_issue_email.text.erb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,5 +1,5 @@
+-Reassigned Issue <%= @issue.iid %>
++課題 <%= @issue.iid %> の担当を再割り当て
+ 
+ <%= url_for(project_issue_url(@issue.project, @issue)) %>
+ 
+-Assignee changed <%= "from #{@previous_assignee.name}" if @previous_assignee %> to <%= @issue.assignee_name %>
++担当者は <%= "#{@previous_assignee.name} から" if @previous_assignee %> に <%= @issue.assignee_name %> 変更されました
 diff -urN gitlab-rails.bk/app/views/notify/reassigned_merge_request_email.html.haml gitlab-rails/app/views/notify/reassigned_merge_request_email.html.haml
 --- gitlab-rails.bk/app/views/notify/reassigned_merge_request_email.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/notify/reassigned_merge_request_email.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -3161,6 +3208,19 @@ diff -urN gitlab-rails.bk/app/views/notify/reassigned_merge_request_email.html.h
 +    から
    %strong #{@merge_request.assignee_name}
 +  になりました。
+diff -urN gitlab-rails.bk/app/views/notify/reassigned_merge_request_email.text.erb gitlab-rails/app/views/notify/reassigned_merge_request_email.text.erb
+--- gitlab-rails.bk/app/views/notify/reassigned_merge_request_email.text.erb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/notify/reassigned_merge_request_email.text.erb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,7 +1,7 @@
+-Reassigned Merge Request #<%= @merge_request.iid %>
++マージリクエスト #<%= @merge_request.iid %> の担当の再割り当て
+ 
+ <%= url_for(project_merge_request_url(@merge_request.target_project, @merge_request)) %>
+ 
+ 
+-Assignee changed <%= "from #{@previous_assignee.name}" if @previous_assignee %> to <%= @merge_request.assignee_name %>
++担当者は <%= "#{@previous_assignee.name} から" if @previous_assignee %> に <%= @merge_request.assignee_name %> 変更されました
+ 
 diff -urN gitlab-rails.bk/app/views/notify/repository_push_email.html.haml gitlab-rails/app/views/notify/repository_push_email.html.haml
 --- gitlab-rails.bk/app/views/notify/repository_push_email.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/notify/repository_push_email.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -4964,19 +5024,23 @@ diff -urN gitlab-rails.bk/app/views/projects/issues/_issues.html.haml gitlab-rai
          - project_active_milestones.each do |milestone|
            %li
              = link_to project_filter_path(milestone_id: milestone.id) do
-@@ -54,9 +54,9 @@
+@@ -54,23 +54,23 @@
    .clearfix
      .issues_bulk_update.hide
        = form_tag bulk_update_project_issues_path(@project), method: :post  do
 -        = select_tag('update[status]', options_for_select(['Open', 'Closed']), prompt: "Status")
-+        = select_tag('update[status]', options_for_select([['オープン', 'opened'], ['解決', 'closed']]), prompt: "ステータス")
-         = project_users_select_tag('update[assignee_id]', placeholder: 'Assignee')
+-        = project_users_select_tag('update[assignee_id]', placeholder: 'Assignee')
 -        = select_tag('update[milestone_id]', bulk_update_milestone_options, prompt: "Milestone")
++        = select_tag('update[status]', options_for_select([['オープン', 'opened'], ['解決', 'closed']]), prompt: "ステータス")
++        = project_users_select_tag('update[assignee_id]', placeholder: '担当者')
 +        = select_tag('update[milestone_id]', bulk_update_milestone_options, prompt: "マイルストーン")
          = hidden_field_tag 'update[issues_ids]', []
          = hidden_field_tag :status, params[:status]
-         = button_tag "Update issues", class: "btn update_selected_issues btn-save"
-@@ -66,11 +66,11 @@
+-        = button_tag "Update issues", class: "btn update_selected_issues btn-save"
++        = button_tag "課題を更新", class: "btn update_selected_issues btn-save"
+ 
+ .ui-box
+   %ul.well-list.issues-list
      = render @issues
      - if @issues.blank?
        %li
@@ -5184,15 +5248,126 @@ diff -urN gitlab-rails.bk/app/views/projects/merge_requests/index.html.haml gitl
 diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_commits.html.haml gitlab-rails/app/views/projects/merge_requests/show/_commits.html.haml
 --- gitlab-rails.bk/app/views/projects/merge_requests/show/_commits.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/merge_requests/show/_commits.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -11,7 +11,7 @@
+@@ -2,22 +2,22 @@
+   .ui-box
+     .title
+       %i.icon-list
+-      Commits (#{@commits.count})
++      コミット (#{@commits.count})
+     .commits
+       - if @commits.count > 8
+         %ul.first-commits.well-list
+           - @commits.first(8).each do |commit|
+             = render "projects/commits/commit", commit: commit, project: @merge_request.source_project
            %li.bottom
-             8 of #{@commits.count} commits displayed.
+-            8 of #{@commits.count} commits displayed.
++            #{@commits.count} 個中 8 個のコミットが表示されています。
              %strong
 -              %a.show-all-commits Click here to show all
 +              %a.show-all-commits クリックしてすべて表示
          - if @commits.size > MergeRequestDiff::COMMITS_SAFE_SIZE
            %ul.all-commits.hide.well-list
              - @commits.first(MergeRequestDiff::COMMITS_SAFE_SIZE).each do |commit|
+               = render "projects/commits/inline_commit", commit: commit, project: @merge_request.source_project
+             %li
+-              other #{@commits.size - MergeRequestDiff::COMMITS_SAFE_SIZE} commits hidden top prevent performance issues.
++              その他の #{@commits.size - MergeRequestDiff::COMMITS_SAFE_SIZE} 個のコミットはパフォーマンス悪化を防ぐため非表示になっています。
+         - else
+           %ul.all-commits.hide.well-list
+             - @commits.each do |commit|
+@@ -30,8 +30,8 @@
+ 
+ - else
+   %h4.nothing_here_message
+-    Nothing to merge from
+     %span.label-branch #{@merge_request.source_branch}
+-    to
++    と
+     %span.label-branch #{@merge_request.target_branch}
++    の間でマージするものはありません
+   %br
+diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_context.html.haml gitlab-rails/app/views/projects/merge_requests/show/_context.html.haml
+--- gitlab-rails.bk/app/views/projects/merge_requests/show/_context.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/merge_requests/show/_context.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,22 +1,22 @@
+ = form_for [@project, @merge_request], remote: true, html: {class: 'edit-merge_request inline-update'} do |f|
+   %strong.append-right-10
+-    Assignee:
++    担当者:
+ 
+   - if can?(current_user, :modify_merge_request, @merge_request)
+-    = project_users_select_tag('merge_request[assignee_id]', placeholder: 'Select assignee', class: 'custom-form-control', selected: @merge_request.assignee_id)
++    = project_users_select_tag('merge_request[assignee_id]', placeholder: '担当者を選択', class: 'custom-form-control', selected: @merge_request.assignee_id)
+   - elsif merge_request.assignee
+     = link_to_member(@project, @merge_request.assignee)
+   - else
+-    None
++    なし
+ 
+   .pull-right
+     %strong.append-right-10
+-      Milestone:
++      マイルストーン:
+     - if can?(current_user, :modify_merge_request, @merge_request)
+-      = f.select(:milestone_id, milestone_options(@merge_request), { include_blank: "Select milestone (none):" }, {class: 'select2 select2-compact'})
++      = f.select(:milestone_id, milestone_options(@merge_request), { include_blank: "マイルストーンを選択 (なし):" }, {class: 'select2 select2-compact'})
+       = hidden_field_tag :merge_request_context
+       = f.submit class: 'btn'
+     - elsif merge_request.milestone
+       = link_to merge_request.milestone.title, project_milestone_path
+     - else
+-      None
++      なし
+diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_mr_box.html.haml gitlab-rails/app/views/projects/merge_requests/show/_mr_box.html.haml
+--- gitlab-rails.bk/app/views/projects/merge_requests/show/_mr_box.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/merge_requests/show/_mr_box.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -2,15 +2,15 @@
+   .state{ class: merge_request_alert_class(@merge_request) }
+     - if @merge_request.merged?
+       %span.state-label.state-label-blue
+-        Merged
++        マージ済み
+     - elsif @merge_request.closed?
+       %span.state-label.state-label-red
+-        Closed
++        クローズ
+     - else
+       %span.state-label.state-label-green
+-        Open
++        オープン
+     %span.creator
+-      Created by #{link_to_member(@project, @merge_request.author)} #{time_ago_with_tooltip(@merge_request.created_at)}
++      #{link_to_member(@project, @merge_request.author)} が #{time_ago_with_tooltip(@merge_request.created_at)} に作成
+ 
+   %h4.title
+     = gfm escape_once(@merge_request.title)
+@@ -29,18 +29,22 @@
+   .alert.alert-info
+     %span
+       %i.icon-remove
+-      Closed by #{link_to_member(@project, @merge_request.closed_event.author)}
++      #{link_to_member(@project, @merge_request.closed_event.author)}
++      が
+       #{time_ago_with_tooltip(@merge_request.closed_event.created_at)}.
++      にクローズしました
+ - if @merge_request.merged?
+   .alert.alert-info
+     %span
+       %i.icon-ok
+-      Merged by #{link_to_member(@project, @merge_request.merge_event.author)}
+-      #{time_ago_with_tooltip(@merge_request.merge_event.created_at)}.
++      #{link_to_member(@project, @merge_request.merge_event.author)}
++      が
++      #{time_ago_with_tooltip(@merge_request.merge_event.created_at)}
++      にマージしました
+ - if !@closes_issues.empty? && @merge_request.opened?
+   .alert.alert-info.alert-info
+     %span
+       %i.icon-ok
+-      Accepting this merge request will close #{@closes_issues.size == 1 ? 'issue' : 'issues'}
++      このマージリクエストを承認すると課題がクローズされます
+       = succeed '.' do
+         != gfm(@closes_issues.map { |i| "##{i.iid}" }.to_sentence)
 diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_mr_title.html.haml gitlab-rails/app/views/projects/merge_requests/show/_mr_title.html.haml
 --- gitlab-rails.bk/app/views/projects/merge_requests/show/_mr_title.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/merge_requests/show/_mr_title.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -5599,6 +5774,73 @@ diff -urN gitlab-rails.bk/app/views/projects/new.html.haml gitlab-rails/app/view
 -    %p Please wait a moment, this page will automatically refresh when ready.
 +      プロジェクトとリポジトリを作成しています
 +    %p 準備ができ次第、自動的に更新されますのでお待ちください
+diff -urN gitlab-rails.bk/app/views/projects/notes/_discussion.html.haml gitlab-rails/app/views/projects/notes/_discussion.html.haml
+--- gitlab-rails.bk/app/views/projects/notes/_discussion.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/notes/_discussion.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -4,32 +4,34 @@
+     .discussion-actions
+       = link_to "javascript:;", class: "js-details-target turn-on js-toggler-target" do
+         %i.icon-eye-close
+-        Hide discussion
++        ディスカッションを非表示
+       = link_to "javascript:;", class: "js-details-target turn-off js-toggler-target" do
+         %i.icon-eye-open
+-        Show discussion
++        ディスカッションを表示
+     = image_tag avatar_icon(note.author_email), class: "avatar s32"
+     %div
+       = link_to_member(@project, note.author, avatar: false)
+       - if note.for_merge_request?
+         - if note.diff
+-          started a discussion on this merge request diff
++          がこのマージリクエストの差分
+           = link_to_merge_request_diff_line_note(note)
++          についてディスカッションを始めました
+         - else
+-          started
++          がこのマージリクエストの差分について
+           %strong
+             %i.icon-remove
+-            outdated
+-          discussion on this merge request diff
++            無効な
++          ディスカッションを始めました
+       - elsif note.for_commit?
+-        started a discussion on commit
++        がコミット
+         #{link_to note.noteable.short_id, project_commit_path(note.project, note.noteable)}
+         = link_to_commit_diff_line_note(note) if note.for_diff_line?
++        についてディスカッションを始めました
+       - else
+-        %cite.cgray started a discussion
++        %cite.cgray がディスカッションを始めました
+     %div
+       - last_note = discussion_notes.last
+-      last updated by
++      最終更新者：
+       = link_to_member(@project, last_note.author, avatar: false)
+       %span.discussion-last-update
+         #{time_ago_with_tooltip(last_note.updated_at, 'bottom', 'discussion_updated_ago')}
+@@ -39,7 +41,7 @@
+         .content
+           .file= render "projects/notes/discussion_diff", discussion_notes: discussion_notes, note: note
+       - else
+-        = link_to 'show outdated discussion', '#', class: 'js-show-outdated-discussion'
++        = link_to '無効なディスカッションを表示', '#', class: 'js-show-outdated-discussion'
+         %div.hide.outdated-discussion
+           .content
+             .notes{ rel: discussion_notes.first.discussion_id }
+@@ -55,8 +57,8 @@
+     -# will be shown when the other one is hidden
+     .discussion-hidden.content.hide
+       .note
+-        %em Hidden discussion.
++        %em ディスカッションは非表示にされています
+         = link_to "javascript:;", class: "js-details-target js-toggler-target" do
+           %i.icon-eye-open
+-          Show
++          表示
+ 
 diff -urN gitlab-rails.bk/app/views/projects/notes/_discussion_reply_button.html.haml gitlab-rails/app/views/projects/notes/_discussion_reply_button.html.haml
 --- gitlab-rails.bk/app/views/projects/notes/_discussion_reply_button.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/notes/_discussion_reply_button.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -5830,7 +6072,7 @@ diff -urN gitlab-rails.bk/app/views/projects/services/index.html.haml gitlab-rai
 diff -urN gitlab-rails.bk/app/views/projects/show.html.haml gitlab-rails/app/views/projects/show.html.haml
 --- gitlab-rails.bk/app/views/projects/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/show.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -19,9 +19,9 @@
+@@ -19,25 +19,25 @@
        - if @project.forked_from_project
          .alert.alert-success
            %i.icon-code-fork.project-fork-icon
@@ -5842,7 +6084,18 @@ diff -urN gitlab-rails.bk/app/views/projects/show.html.haml gitlab-rails/app/vie
        - unless @project.empty_repo?
          - if current_user && can?(current_user, :fork_project, @project) && @project.namespace != current_user.namespace
            - if current_user.already_forked?(@project)
-@@ -37,7 +37,7 @@
+             = link_to project_path(current_user.fork_of(@project)), class: 'btn btn-block' do
+               %i.icon-compass
+-              Go to fork
++              フォークを表示
+           - else
+-            = link_to fork_project_path(@project), title: "Fork", class: "btn btn-block", method: "POST" do
++            = link_to fork_project_path(@project), title: "フォーク", class: "btn btn-block", method: "POST" do
+               %i.icon-code-fork
+-              Fork repository
++              リポジトリをフォーク
+ 
+         - if can? current_user, :download_code, @project
            = render 'projects/repositories/download_archive', btn_class: 'btn-block btn-group-justified', split_button: true
  
          = link_to project_compare_index_path(@project, from: @repository.root_ref, to: @ref || @repository.root_ref), class: 'btn btn-block' do
@@ -5862,7 +6115,8 @@ diff -urN gitlab-rails.bk/app/views/projects/show.html.haml gitlab-rails/app/vie
        %p
 -        %span.light Owned by
          - if @project.group
-           #{link_to @project.group.name, @project.group} group
+-          #{link_to @project.group.name, @project.group} group
++          #{link_to @project.group.name, @project.group} グループ
          - else
            #{link_to @project.owner_name, @project.owner}
 +        %span.light が所有

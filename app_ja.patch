@@ -92,6 +92,17 @@ diff -urN gitlab-rails.bk/app/helpers/application_helper.rb gitlab-rails/app/hel
  require 'digest/md5'
  require 'uri'
  
+@@ -93,8 +94,8 @@
+     repository = @project.repository
+ 
+     options = [
+-      ["Branches", repository.branch_names],
+-      ["Tags", repository.tag_names]
++      ["ブランチ", repository.branch_names],
++      ["タグ", repository.tag_names]
+     ]
+ 
+     # If reference is commit id -
 @@ -181,11 +182,11 @@
  
    def search_placeholder
@@ -116,6 +127,79 @@ diff -urN gitlab-rails.bk/app/helpers/application_helper.rb gitlab-rails/app/hel
          data: { toggle: 'tooltip', placement: placement }
  
        haml_tag :script, "$('." + html_class + "').timeago().tooltip()"
+diff -urN gitlab-rails.bk/app/helpers/projects_helper.rb gitlab-rails/app/helpers/projects_helper.rb
+--- gitlab-rails.bk/app/helpers/projects_helper.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/helpers/projects_helper.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,6 +1,7 @@
++# encoding: utf-8
+ module ProjectsHelper
+   def remove_from_project_team_message(project, user)
+-    "You are going to remove #{user.name} from #{project.name} project team. Are you sure?"
++    "#{user.name} をプロジェクト #{project.name} から削除します。よろしいですか？"
+   end
+ 
+   def link_to_project project
+@@ -20,7 +21,7 @@
+     default_opts = { avatar: true, name: true, size: 16 }
+     opts = default_opts.merge(opts)
+ 
+-    return "(deleted)" unless author
++    return "(削除済み)" unless author
+ 
+     author_html =  ""
+ 
+@@ -53,7 +54,7 @@
+   end
+ 
+   def remove_project_message(project)
+-    "You are going to remove #{project.name_with_namespace}.\n Removed project CANNOT be restored!\n Are you ABSOLUTELY sure?"
++    "プロジェクト #{project.name_with_namespace} を削除します。\n削除されたプロジェクトは元に戻せません！\n本当に、本当に削除してよろしいですか？"
+   end
+ 
+   def project_nav_tabs
+@@ -178,26 +179,26 @@
+               "#{@project.path}\/#{@path} at #{@ref} - " + title
+             elsif current_controller?(:issues)
+               if current_action?(:show)
+-                "Issue ##{@issue.iid} - #{@issue.title} - " + title
++                "課題 ##{@issue.iid} - #{@issue.title} - " + title
+               else
+-                "Issues - " + title
++                "課題 - " + title
+               end
+             elsif current_controller?(:blob)
+               "#{@project.path}\/#{@blob.path} at #{@ref} - " + title
+             elsif current_controller?(:commits)
+-              "Commits at #{@ref} - " + title
++              "#{@ref} のコミット - " + title
+             elsif current_controller?(:merge_requests)
+               if current_action?(:show)
+-                "Merge request ##{@merge_request.iid} - " + title
++                "マージリクエスト ##{@merge_request.iid} - " + title
+               else
+-                "Merge requests - " + title
++                "マージリクエスト - " + title
+               end
+             elsif current_controller?(:wikis)
+               "Wiki - " + title
+             elsif current_controller?(:network)
+-              "Network graph - " + title
++              "ネットワークグラフ - " + title
+             elsif current_controller?(:graphs)
+-              "Graphs - " + title
++              "グラフ - " + title
+             else
+               title
+             end
+@@ -218,7 +219,7 @@
+     if project.last_activity_at
+       time_ago_with_tooltip(project.last_activity_at, 'bottom', 'last_activity_time_ago')
+     else
+-      "Never"
++      "なし"
+     end
+   end
+ end
 diff -urN gitlab-rails.bk/app/helpers/visibility_level_helper.rb gitlab-rails/app/helpers/visibility_level_helper.rb
 --- gitlab-rails.bk/app/helpers/visibility_level_helper.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/helpers/visibility_level_helper.rb	2014-03-22 09:00:00.000000000 +0900
@@ -3996,6 +4080,18 @@ diff -urN gitlab-rails.bk/app/views/projects/branches/_branch.html.haml gitlab-r
        - if @project.protected_branch? branch.name
          %span.label.label-success
            %i.icon-lock
+@@ -12,9 +12,9 @@
+       - if can?(current_user, :download_code, @project)
+         = render 'projects/repositories/download_archive', ref: branch.name, btn_class: 'grouped btn-group-small'
+       - if branch.name != @repository.root_ref
+-        = link_to project_compare_index_path(@project, from: @repository.root_ref, to: branch.name), class: 'btn grouped btn-small', method: :post, title: "Compare" do
++        = link_to project_compare_index_path(@project, from: @repository.root_ref, to: branch.name), class: 'btn grouped btn-small', method: :post, title: "比較" do
+           %i.icon-copy
+-          Compare
++          比較
+ 
+       - if can?(current_user, :admin_project, @project) && branch.name != @repository.root_ref
+         = link_to project_branch_path(@project, branch.name), class: 'btn grouped btn-small remove-row', method: :delete, data: { confirm: 'Removed branch cannot be restored. Are you sure?'}, remote: true do
 diff -urN gitlab-rails.bk/app/views/projects/branches/_filter.html.haml gitlab-rails/app/views/projects/branches/_filter.html.haml
 --- gitlab-rails.bk/app/views/projects/branches/_filter.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/branches/_filter.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -4235,6 +4331,21 @@ diff -urN gitlab-rails.bk/app/views/projects/commits/_head.html.haml gitlab-rail
 -      = link_to project_commits_path(@project, @ref, {format: :atom, private_token: current_user.private_token}), title: "Feed" do
 +      = link_to project_commits_path(@project, @ref, {format: :atom, private_token: current_user.private_token}), title: "フィード" do
          %i.icon-rss
+diff -urN gitlab-rails.bk/app/views/projects/commits/show.html.haml gitlab-rails/app/views/projects/commits/show.html.haml
+--- gitlab-rails.bk/app/views/projects/commits/show.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/commits/show.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -2,9 +2,9 @@
+ 
+ - if @path.present?
+   %ul.breadcrumb.commit-breadcrumb
+-    %li.light
+-      History for
+     = commits_breadcrumbs
++    %li.light
++      の履歴
+ 
+ %div{id: dom_id(@project)}
+   #commits-list= render "commits"
 diff -urN gitlab-rails.bk/app/views/projects/compare/_form.html.haml gitlab-rails/app/views/projects/compare/_form.html.haml
 --- gitlab-rails.bk/app/views/projects/compare/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/compare/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -5202,6 +5313,82 @@ diff -urN gitlab-rails.bk/app/views/projects/labels/index.html.haml gitlab-rails
    .light-well
 -    %h3.nothing_here_message Add first label to your issues or #{link_to 'generate', generate_project_labels_path(@project), method: :post} default set of labels
 +    %h3.nothing_here_message 最初のラベルを追加 または デフォルトのラベルセットを#{link_to '生成', generate_project_labels_path(@project), method: :post}
+diff -urN gitlab-rails.bk/app/views/projects/merge_requests/_form.html.haml gitlab-rails/app/views/projects/merge_requests/_form.html.haml
+--- gitlab-rails.bk/app/views/projects/merge_requests/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/merge_requests/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -15,7 +15,7 @@
+             = f.select(:source_project_id, [[@merge_request.source_project_path,@merge_request.source_project.id]] , {}, { class: 'source_project select2 span3', disabled: @merge_request.persisted? })
+           .pull-left
+             &nbsp;
+-            = f.select(:source_branch, @merge_request.source_branches, { include_blank: "Select branch" }, {class: 'source_branch select2 span2'})
++            = f.select(:source_branch, @merge_request.source_branches, { include_blank: "ブランチを選択" }, {class: 'source_branch select2 span2'})
+         .mr_source_commit
+     %br
+     .form-group
+@@ -28,50 +28,50 @@
+             = f.select(:target_project_id, options_from_collection_for_select(projects, 'id', 'path_with_namespace'), {}, { class: 'target_project select2 span3', disabled: @merge_request.persisted? })
+           .pull-left
+             &nbsp;
+-            = f.select(:target_branch, @merge_request.target_branches, { include_blank: "Select branch" }, {class: 'target_branch select2 span2'})
++            = f.select(:target_branch, @merge_request.target_branches, { include_blank: "ブランチを選択" }, {class: 'target_branch select2 span2'})
+         .mr_target_commit
+ 
+   %hr
+   .merge-request-form-info
+     .form-group
+       = f.label :title, class: 'control-label' do
+-        %strong= "Title *"
++        %strong= "タイトル *"
+       .col-sm-10= f.text_field :title, class: "form-control pad js-gfm-input", maxlength: 255, rows: 5, required: true
+     .form-group
+-      = f.label :description, "Description", class: 'control-label'
++      = f.label :description, "説明", class: 'control-label'
+       .col-sm-10
+         = f.text_area :description, class: "form-control js-gfm-input", rows: 14
+-        %p.hint Description is parsed with #{link_to "GitLab Flavored Markdown", help_markdown_path, target: '_blank'}.
++        %p.hint 説明は #{link_to "GitLab Flavored Markdown", help_markdown_path, target: '_blank'} 形式でパースされます。
+ 
+     %hr
+     .form-group
+       .merge-request-assignee
+         = f.label :assignee_id, class: 'control-label' do
+           %i.icon-user
+-          Assign to
++          担当者
+         .col-sm-10
+-          = project_users_select_tag('merge_request[assignee_id]', placeholder: 'Select a user', class: 'custom-form-control', selected: @merge_request.assignee_id)
++          = project_users_select_tag('merge_request[assignee_id]', placeholder: 'ユーザを選択', class: 'custom-form-control', selected: @merge_request.assignee_id)
+           &nbsp;
+-          = link_to 'Assign to me', '#', class: 'btn btn-small assign-to-me-link'
++          = link_to '自分に割り当て', '#', class: 'btn btn-small assign-to-me-link'
+     .form-group
+       .merge-request-milestone
+         = f.label :milestone_id, class: 'control-label' do
+           %i.icon-time
+-          Milestone
+-        .col-sm-10= f.select(:milestone_id, milestone_options(@merge_request), { include_blank: "Select milestone" }, {class: 'select2'})
++          マイルストーン
++        .col-sm-10= f.select(:milestone_id, milestone_options(@merge_request), { include_blank: "マイルストーンを選択" }, {class: 'select2'})
+ 
+ 
+   .form-actions
+     - if @merge_request.new_record?
+-      = f.submit 'Submit merge request', class: "btn btn-create"
++      = f.submit 'マージリクエストを送信', class: "btn btn-create"
+     -else
+-      = f.submit 'Save changes', class: "btn btn-save"
++      = f.submit '変更を保存', class: "btn btn-save"
+     - if @merge_request.new_record?
+       = link_to project_merge_requests_path(@source_project), class: "btn btn-cancel" do
+-        Cancel
++        キャンセル
+     - else
+       = link_to project_merge_request_path(@target_project, @merge_request), class: "btn btn-cancel" do
+-        Cancel
++        キャンセル
+ 
+ :javascript
+   disableButtonIfEmptyField("#merge_request_title", ".btn-save");
 diff -urN gitlab-rails.bk/app/views/projects/merge_requests/_head.html.haml gitlab-rails/app/views/projects/merge_requests/_head.html.haml
 --- gitlab-rails.bk/app/views/projects/merge_requests/_head.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/merge_requests/_head.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -5313,6 +5500,14 @@ diff -urN gitlab-rails.bk/app/views/projects/merge_requests/index.html.haml gitl
  
        = paginate @merge_requests, theme: "gitlab"
  
+diff -urN gitlab-rails.bk/app/views/projects/merge_requests/new.html.haml gitlab-rails/app/views/projects/merge_requests/new.html.haml
+--- gitlab-rails.bk/app/views/projects/merge_requests/new.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/merge_requests/new.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,3 @@
+-%h3.page-title New Merge Request
++%h3.page-title 新しいマージリクエスト
+ %hr
+ = render 'form'
 diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_commits.html.haml gitlab-rails/app/views/projects/merge_requests/show/_commits.html.haml
 --- gitlab-rails.bk/app/views/projects/merge_requests/show/_commits.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/merge_requests/show/_commits.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -5386,6 +5581,18 @@ diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_context.html.h
      - else
 -      None
 +      なし
+diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_how_to_merge.html.haml gitlab-rails/app/views/projects/merge_requests/show/_how_to_merge.html.haml
+--- gitlab-rails.bk/app/views/projects/merge_requests/show/_how_to_merge.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/merge_requests/show/_how_to_merge.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -3,7 +3,7 @@
+     .modal-content
+       .modal-header
+         %a.close{href: "#", "data-dismiss" => "modal"} ×
+-        %h3 How to merge
++        %h3 マージする方法
+       .modal-body
+         - if @merge_request.for_fork?
+           - source_remote = @merge_request.source_project.namespace.nil? ? "source" :@merge_request.source_project.namespace.path
 diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_mr_box.html.haml gitlab-rails/app/views/projects/merge_requests/show/_mr_box.html.haml
 --- gitlab-rails.bk/app/views/projects/merge_requests/show/_mr_box.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/merge_requests/show/_mr_box.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -5414,9 +5621,10 @@ diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_mr_box.html.ha
      %span
        %i.icon-remove
 -      Closed by #{link_to_member(@project, @merge_request.closed_event.author)}
+-      #{time_ago_with_tooltip(@merge_request.closed_event.created_at)}.
 +      #{link_to_member(@project, @merge_request.closed_event.author)}
 +      が
-       #{time_ago_with_tooltip(@merge_request.closed_event.created_at)}.
++      #{time_ago_with_tooltip(@merge_request.closed_event.created_at)}
 +      にクローズしました
  - if @merge_request.merged?
    .alert.alert-info
@@ -5460,7 +5668,7 @@ diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_mr_title.html.
 +            %li= link_to "プレーンDiff",    project_merge_request_path(@project, @merge_request, format: :diff)
  
 -        = link_to 'Close', project_merge_request_path(@project, @merge_request, merge_request: { state_event: :close }), method: :put, class: "btn grouped btn-close", title: "Close merge request"
-+        = link_to 'クローズ', project_merge_request_path(@project, @merge_request, merge_request: { state_event: :close }), method: :put, class: "btn grouped btn-close", title: "Close merge request"
++        = link_to 'クローズ', project_merge_request_path(@project, @merge_request, merge_request: { state_event: :close }), method: :put, class: "btn grouped btn-close", title: "マージリクエストをクローズ"
  
          = link_to edit_project_merge_request_path(@project, @merge_request), class: "btn grouped", id:"edit_merge_request" do
            %i.icon-edit
@@ -5842,6 +6050,56 @@ diff -urN gitlab-rails.bk/app/views/projects/new.html.haml gitlab-rails/app/view
 -    %p Please wait a moment, this page will automatically refresh when ready.
 +      プロジェクトとリポジトリを作成しています
 +    %p 準備ができ次第、自動的に更新されますのでお待ちください
+diff -urN gitlab-rails.bk/app/views/projects/new_tree/show.html.haml gitlab-rails/app/views/projects/new_tree/show.html.haml
+--- gitlab-rails.bk/app/views/projects/new_tree/show.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/new_tree/show.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,10 +1,10 @@
+-%h3.page-title New file
++%h3.page-title 新しいファイル
+ %hr
+ .file-editor
+   = form_tag(project_new_tree_path(@project, @id), method: :put, class: "form-horizontal") do
+     .form-group.commit_message-group
+       = label_tag 'file_name', class: "control-label" do
+-        File name
++        ファイル名
+       .col-sm-10
+         .input-group
+           %span.input-group-addon
+@@ -16,15 +16,15 @@
+ 
+     .form-group.commit_message-group
+       = label_tag :encoding, class: "control-label" do
+-        Encoding
++        エンコーディング
+       .col-sm-10
+         = select_tag :encoding, options_for_select([ "base64", "text" ], "text"), class: 'form-control'
+ 
+     .form-group.commit_message-group
+       = label_tag 'commit_message', class: "control-label" do
+-        Commit message
++        コミットメッセージ
+       .col-sm-10
+-        = text_area_tag 'commit_message', params[:commit_message], placeholder: "Added new file", required: true, rows: 3, class: 'form-control'
++        = text_area_tag 'commit_message', params[:commit_message], placeholder: "新しいファイルを追加", required: true, rows: 3, class: 'form-control'
+ 
+     .file-holder
+       .file-title
+@@ -35,11 +35,11 @@
+     .form-actions
+       = hidden_field_tag 'content', '', id: "file-content"
+       .commit-button-annotation
+-        = button_tag "Commit changes", class: 'btn commit-btn js-commit-button btn-create'
+         .message
+-          to branch
+           %strong= @ref
+-      = link_to "Cancel", project_tree_path(@project, @id), class: "btn btn-cancel", data: { confirm: leave_edit_message}
++          ブランチに
++        = button_tag "変更をコミット", class: 'btn commit-btn js-commit-button btn-create'
++      = link_to "キャンセル", project_tree_path(@project, @id), class: "btn btn-cancel", data: { confirm: leave_edit_message}
+ 
+ :javascript
+   ace.config.set("modePath", gon.relative_url_root + "#{Gitlab::Application.config.assets.prefix}/ace-src-noconflict")
 diff -urN gitlab-rails.bk/app/views/projects/notes/_discussion.html.haml gitlab-rails/app/views/projects/notes/_discussion.html.haml
 --- gitlab-rails.bk/app/views/projects/notes/_discussion.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/notes/_discussion.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -6465,6 +6723,15 @@ diff -urN gitlab-rails.bk/app/views/projects/tree/_spinner.html.haml gitlab-rail
 diff -urN gitlab-rails.bk/app/views/projects/tree/_tree.html.haml gitlab-rails/app/views/projects/tree/_tree.html.haml
 --- gitlab-rails.bk/app/views/projects/tree/_tree.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/tree/_tree.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -11,7 +11,7 @@
+         = link_to title, '#'
+   - if current_user && @repository.branch_names.include?(@ref) && current_user.can?(:push_code, @project)
+     %li
+-      = link_to project_new_tree_path(@project, @id), title: 'New file', id: 'new-file-link' do
++      = link_to project_new_tree_path(@project, @id), title: '新しいファイル', id: 'new-file-link' do
+         %small
+           %i.icon-plus.light
+ 
 @@ -19,10 +19,10 @@
    %table#tree-slider{class: "table_#{@hex_path} tree-table" }
      %thead
@@ -6619,12 +6886,14 @@ diff -urN gitlab-rails.bk/app/views/projects/wikis/_new.html.haml gitlab-rails/a
        .modal-body
          = label_tag :new_wiki_path do
            %span Page slug
-         = text_field_tag :new_wiki_path, nil, placeholder: 'how-to-setup', class: 'form-control', required: true, :'data-wikis-path' => project_wikis_path(@project)
+-        = text_field_tag :new_wiki_path, nil, placeholder: 'how-to-setup', class: 'form-control', required: true, :'data-wikis-path' => project_wikis_path(@project)
++        = text_field_tag :new_wiki_path, nil, placeholder: 'セットアップ方法', class: 'form-control', required: true, :'data-wikis-path' => project_wikis_path(@project)
          %p.hint
 -          Please don't use spaces and slashes
 +          スペースやスラッシュを使わないでください。
        .modal-footer
-         = link_to 'Build', '#', class: 'build-new-wiki btn btn-create'
+-        = link_to 'Build', '#', class: 'build-new-wiki btn btn-create'
++        = link_to '作成', '#', class: 'build-new-wiki btn btn-create'
 diff -urN gitlab-rails.bk/app/views/projects/wikis/edit.html.haml gitlab-rails/app/views/projects/wikis/edit.html.haml
 --- gitlab-rails.bk/app/views/projects/wikis/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/wikis/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -6803,12 +7072,93 @@ diff -urN gitlab-rails.bk/app/views/public/projects/index.html.haml gitlab-rails
 +      %h3.nothing_here_message 公開プロジェクトはありません
  
    = paginate @projects, theme: "gitlab"
+diff -urN gitlab-rails.bk/app/views/search/_filter.html.haml gitlab-rails/app/views/search/_filter.html.haml
+--- gitlab-rails.bk/app/views/search/_filter.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/search/_filter.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,16 +1,16 @@
+ .dropdown.inline
+   %a.dropdown-toggle.btn.btn-small{href: '#', "data-toggle" => "dropdown"}
+     %i.icon-tags
+-    %span.light Group:
++    %span.light グループ:
+     - if @group.present?
+       %strong= @group.name
+     - else
+-      Any
++      指定なし
+     %b.caret
+   %ul.dropdown-menu
+     %li
+       = link_to search_path(group_id: nil, search: params[:search]) do
+-        Any
++        指定なし
+     - current_user.authorized_groups.sort_by(&:name).each do |group|
+       %li
+         = link_to search_path(group_id: group.id, search: params[:search]) do
+@@ -19,16 +19,16 @@
+ .dropdown.inline.prepend-left-10
+   %a.dropdown-toggle.btn.btn-small{href: '#', "data-toggle" => "dropdown"}
+     %i.icon-tags
+-    %span.light Project:
++    %span.light プロジェクト:
+     - if @project.present?
+       %strong= @project.name_with_namespace
+     - else
+-      Any
++      指定なし
+     %b.caret
+   %ul.dropdown-menu
+     %li
+       = link_to search_path(project_id: nil, search: params[:search]) do
+-        Any
++        指定なし
+     - current_user.authorized_projects.sort_by(&:name_with_namespace).each do |project|
+       %li
+         = link_to search_path(project_id: project.id, search: params[:search]) do
+diff -urN gitlab-rails.bk/app/views/search/_project_results.html.haml gitlab-rails/app/views/search/_project_results.html.haml
+--- gitlab-rails.bk/app/views/search/_project_results.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/search/_project_results.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,10 +1,10 @@
+ %ul.nav.nav-tabs
+   %li{class: ("active" if params[:search_code].present?)}
+     = link_to search_path(params.merge(search_code: true)) do
+-      Repository Code
++      リポジトリのソースコード
+   %li{class: ("active" if params[:search_code].blank?)}
+     = link_to search_path(params.merge(search_code: nil)) do
+-      Issues and Merge requests
++      課題・マージリクエスト
+ 
+ .search_results
+   - if params[:search_code].present?
+diff -urN gitlab-rails.bk/app/views/search/_results.html.haml gitlab-rails/app/views/search/_results.html.haml
+--- gitlab-rails.bk/app/views/search/_results.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/search/_results.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,9 +1,9 @@
+ %h4
+-  #{@search_results[:total_results]} results found
+   - if @project
+-    for #{link_to @project.name_with_namespace, @project}
++    #{link_to @project.name_with_namespace, @project} プロジェクト内で
+   - elsif @group
+-    for #{link_to @group.name, @group}
++    #{link_to @group.name, @group} グループ内で
++  #{@search_results[:total_results]} 件が見つかりました
+ 
+ %hr
+ 
 diff -urN gitlab-rails.bk/app/views/search/show.html.haml gitlab-rails/app/views/search/show.html.haml
 --- gitlab-rails.bk/app/views/search/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/search/show.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -6,7 +6,7 @@
+@@ -2,11 +2,11 @@
+   .search-holder.clearfix
+     .form-group
+       = label_tag :search, class: 'control-label' do
+-        %span Looking for
++        %span 次を検索：
        .col-sm-6
-         = search_field_tag :search, params[:search], placeholder: "issue 143", class: "form-control search-text-input", id: "dashboard_search"
+-        = search_field_tag :search, params[:search], placeholder: "issue 143", class: "form-control search-text-input", id: "dashboard_search"
++        = search_field_tag :search, params[:search], placeholder: "課題143", class: "form-control search-text-input", id: "dashboard_search"
        .col-sm-4
 -        = submit_tag 'Search', class: "btn btn-create"
 +        = submit_tag '検索', class: "btn btn-create"

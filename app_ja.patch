@@ -43,6 +43,174 @@ diff -urN gitlab-rails.bk/app/assets/javascripts/profile.js.coffee gitlab-rails/
 -  $('.profile-groups-avatars').tooltip("placement": "top")
 \ ファイル末尾に改行がありません
 +  $('.profile-groups-avatars').tooltip("placement": "top")
+diff -urN gitlab-rails.bk/app/controllers/admin/broadcast_messages_controller.rb gitlab-rails/app/controllers/admin/broadcast_messages_controller.rb
+--- gitlab-rails.bk/app/controllers/admin/broadcast_messages_controller.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/controllers/admin/broadcast_messages_controller.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ class Admin::BroadcastMessagesController < Admin::ApplicationController
+   before_filter :broadcast_messages
+ 
+@@ -9,7 +10,7 @@
+     @broadcast_message = BroadcastMessage.new(params[:broadcast_message])
+ 
+     if @broadcast_message.save
+-      redirect_to admin_broadcast_messages_path, notice: 'Broadcast Message was successfully created.'
++      redirect_to admin_broadcast_messages_path, notice: 'ブロードキャストメッセージは正常に作成されました'
+     else
+       render :index
+     end
+diff -urN gitlab-rails.bk/app/controllers/admin/groups_controller.rb gitlab-rails/app/controllers/admin/groups_controller.rb
+--- gitlab-rails.bk/app/controllers/admin/groups_controller.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/controllers/admin/groups_controller.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ class Admin::GroupsController < Admin::ApplicationController
+   before_filter :group, only: [:edit, :show, :update, :destroy, :project_update, :project_teams_update]
+ 
+@@ -23,7 +24,7 @@
+ 
+     if @group.save
+       @group.add_owner(current_user)
+-      redirect_to [:admin, @group], notice: 'Group was successfully created.'
++      redirect_to [:admin, @group], notice: 'グループが作成されました'
+     else
+       render "new"
+     end
+@@ -31,7 +32,7 @@
+ 
+   def update
+     if @group.update_attributes(params[:group])
+-      redirect_to [:admin, @group], notice: 'Group was successfully updated.'
++      redirect_to [:admin, @group], notice: 'グループが更新されました'
+     else
+       render "edit"
+     end
+@@ -40,13 +41,13 @@
+   def project_teams_update
+     @group.add_users(params[:user_ids].split(','), params[:group_access])
+ 
+-    redirect_to [:admin, @group], notice: 'Users were successfully added.'
++    redirect_to [:admin, @group], notice: 'ユーザが追加されました'
+   end
+ 
+   def destroy
+     @group.destroy
+ 
+-    redirect_to admin_groups_path, notice: 'Group was successfully deleted.'
++    redirect_to admin_groups_path, notice: 'グループが削除されました'
+   end
+ 
+   private
+diff -urN gitlab-rails.bk/app/controllers/admin/hooks_controller.rb gitlab-rails/app/controllers/admin/hooks_controller.rb
+--- gitlab-rails.bk/app/controllers/admin/hooks_controller.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/controllers/admin/hooks_controller.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ class Admin::HooksController < Admin::ApplicationController
+   def index
+     @hooks = SystemHook.all
+@@ -8,7 +9,7 @@
+     @hook = SystemHook.new(params[:hook])
+ 
+     if @hook.save
+-      redirect_to admin_hooks_path, notice: 'Hook was successfully created.'
++      redirect_to admin_hooks_path, notice: 'フックは正常に作成されました'
+     else
+       @hooks = SystemHook.all
+       render :index
+diff -urN gitlab-rails.bk/app/controllers/admin/users_controller.rb gitlab-rails/app/controllers/admin/users_controller.rb
+--- gitlab-rails.bk/app/controllers/admin/users_controller.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/controllers/admin/users_controller.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ class Admin::UsersController < Admin::ApplicationController
+   before_filter :user, only: [:show, :edit, :update, :destroy]
+ 
+@@ -21,17 +22,17 @@
+ 
+   def block
+     if user.block
+-      redirect_to :back, alert: "Successfully blocked"
++      redirect_to :back, alert: "正常にブロックしました"
+     else
+-      redirect_to :back, alert: "Error occurred. User was not blocked"
++      redirect_to :back, alert: "エラーが発生しました。ユーザはブロックされませんでした"
+     end
+   end
+ 
+   def unblock
+     if user.activate
+-      redirect_to :back, alert: "Successfully unblocked"
++      redirect_to :back, alert: "正常にブロック解除しました"
+     else
+-      redirect_to :back, alert: "Error occurred. User was not unblocked"
++      redirect_to :back, alert: "エラーが発生しました。ユーザはブロック解除されませんでした"
+     end
+   end
+ 
+@@ -51,7 +52,7 @@
+ 
+     respond_to do |format|
+       if @user.save
+-        format.html { redirect_to [:admin, @user], notice: 'User was successfully created.' }
++        format.html { redirect_to [:admin, @user], notice: 'ユーザが作成されました' }
+         format.json { render json: @user, status: :created, location: @user }
+       else
+         format.html { render "new" }
+@@ -75,7 +76,7 @@
+     respond_to do |format|
+       if user.update_attributes(params[:user], as: :admin)
+         user.confirm!
+-        format.html { redirect_to [:admin, user], notice: 'User was successfully updated.' }
++        format.html { redirect_to [:admin, user], notice: 'ユーザが更新されました' }
+         format.json { head :ok }
+       else
+         # restore username to keep form action url.
+diff -urN gitlab-rails.bk/app/controllers/groups_controller.rb gitlab-rails/app/controllers/groups_controller.rb
+--- gitlab-rails.bk/app/controllers/groups_controller.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/controllers/groups_controller.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ class GroupsController < ApplicationController
+   respond_to :html
+   before_filter :group, except: [:new, :create]
+@@ -26,7 +27,7 @@
+ 
+     if @group.save
+       @group.add_owner(current_user)
+-      redirect_to @group, notice: 'Group was successfully created.'
++      redirect_to @group, notice: 'グループが作成されました'
+     else
+       render action: "new"
+     end
+@@ -79,7 +80,7 @@
+ 
+   def update
+     if @group.update_attributes(params[:group])
+-      redirect_to @group, notice: 'Group was successfully updated.'
++      redirect_to @group, notice: 'グループが更新されました'
+     else
+       render action: "edit"
+     end
+@@ -88,7 +89,7 @@
+   def destroy
+     @group.destroy
+ 
+-    redirect_to root_path, notice: 'Group was removed.'
++    redirect_to root_path, notice: 'グループが削除されました'
+   end
+ 
+   protected
+@@ -125,7 +126,7 @@
+   end
+ 
+   def set_title
+-    @title = 'New Group'
++    @title = '新しいグループ'
+   end
+ 
+   def determine_layout
 diff -urN gitlab-rails.bk/app/controllers/profiles/passwords_controller.rb gitlab-rails/app/controllers/profiles/passwords_controller.rb
 --- gitlab-rails.bk/app/controllers/profiles/passwords_controller.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/controllers/profiles/passwords_controller.rb	2014-03-22 09:00:00.000000000 +0900
@@ -93,6 +261,201 @@ diff -urN gitlab-rails.bk/app/controllers/profiles/passwords_controller.rb gitla
    end
  
    def determine_layout
+diff -urN gitlab-rails.bk/app/controllers/profiles_controller.rb gitlab-rails/app/controllers/profiles_controller.rb
+--- gitlab-rails.bk/app/controllers/profiles_controller.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/controllers/profiles_controller.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ class ProfilesController < ApplicationController
+   include ActionView::Helpers::SanitizeHelper
+ 
+@@ -16,9 +17,9 @@
+     params[:user].delete(:email) if @user.ldap_user?
+ 
+     if @user.update_attributes(params[:user])
+-      flash[:notice] = "Profile was successfully updated"
++      flash[:notice] = "プロフィールが更新されました"
+     else
+-      flash[:alert] = "Failed to update profile"
++      flash[:alert] = "プロフィールの更新に失敗しました"
+     end
+ 
+     respond_to do |format|
+@@ -29,7 +30,7 @@
+ 
+   def reset_private_token
+     if current_user.reset_authentication_token!
+-      flash[:notice] = "Token was successfully updated"
++      flash[:notice] = "トークンが更新されました"
+     end
+ 
+     redirect_to profile_account_path
+diff -urN gitlab-rails.bk/app/controllers/projects/blob_controller.rb gitlab-rails/app/controllers/projects/blob_controller.rb
+--- gitlab-rails.bk/app/controllers/projects/blob_controller.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/controllers/projects/blob_controller.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ # Controller for viewing a file's blame
+ class Projects::BlobController < Projects::ApplicationController
+   include ExtractsPath
+@@ -17,7 +18,7 @@
+     result = Files::DeleteService.new(@project, current_user, params, @ref, @path).execute
+ 
+     if result[:status] == :success
+-      flash[:notice] = "Your changes have been successfully committed"
++      flash[:notice] = "変更は正常にコミットされました"
+       redirect_to project_tree_path(@project, @ref)
+     else
+       flash[:alert] = result[:error]
+diff -urN gitlab-rails.bk/app/controllers/projects/edit_tree_controller.rb gitlab-rails/app/controllers/projects/edit_tree_controller.rb
+--- gitlab-rails.bk/app/controllers/projects/edit_tree_controller.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/controllers/projects/edit_tree_controller.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ class Projects::EditTreeController < Projects::BaseTreeController
+   before_filter :require_branch_head
+   before_filter :blob
+@@ -11,7 +12,7 @@
+     result = Files::UpdateService.new(@project, current_user, params, @ref, @path).execute
+ 
+     if result[:status] == :success
+-      flash[:notice] = "Your changes have been successfully committed"
++      flash[:notice] = "変更は正常にコミットされました"
+       redirect_to project_blob_path(@project, @id)
+     else
+       flash[:alert] = result[:error]
+diff -urN gitlab-rails.bk/app/controllers/projects/merge_requests_controller.rb gitlab-rails/app/controllers/projects/merge_requests_controller.rb
+--- gitlab-rails.bk/app/controllers/projects/merge_requests_controller.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/controllers/projects/merge_requests_controller.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ require 'gitlab/satellite/satellite'
+ 
+ class Projects::MergeRequestsController < Projects::ApplicationController
+@@ -76,7 +77,7 @@
+     @merge_request.author = current_user
+     @target_branches ||= []
+     if @merge_request.save
+-      redirect_to [@merge_request.target_project, @merge_request], notice: 'Merge request was successfully created.'
++      redirect_to [@merge_request.target_project, @merge_request], notice: 'マージリクエストが作成されました'
+     else
+       @source_project = @merge_request.source_project
+       @target_project = @merge_request.target_project
+@@ -91,9 +92,9 @@
+       @merge_request.allow_broken = true
+ 
+       if @merge_request.close
+-        opts = { notice: 'Merge request was successfully closed.' }
++        opts = { notice: 'マージリクエストがクローズされました' }
+       else
+-        opts = { alert: 'Failed to close merge request.' }
++        opts = { alert: 'マージリクエストのクローズに失敗しました' }
+       end
+ 
+       redirect_to [@merge_request.target_project, @merge_request], opts
+@@ -111,7 +112,7 @@
+       respond_to do |format|
+         format.js
+         format.html do
+-          redirect_to [@merge_request.target_project, @merge_request], notice: 'Merge request was successfully updated.'
++          redirect_to [@merge_request.target_project, @merge_request], notice: 'マージリクエストが更新されました'
+         end
+       end
+     else
+diff -urN gitlab-rails.bk/app/controllers/projects/new_tree_controller.rb gitlab-rails/app/controllers/projects/new_tree_controller.rb
+--- gitlab-rails.bk/app/controllers/projects/new_tree_controller.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/controllers/projects/new_tree_controller.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ class Projects::NewTreeController < Projects::BaseTreeController
+   before_filter :require_branch_head
+   before_filter :authorize_push!
+@@ -10,7 +11,7 @@
+     result = Files::CreateService.new(@project, current_user, params, @ref, file_path).execute
+ 
+     if result[:status] == :success
+-      flash[:notice] = "Your changes have been successfully committed"
++      flash[:notice] = "変更は正常にコミットされました"
+       redirect_to project_blob_path(@project, File.join(@ref, file_path))
+     else
+       flash[:alert] = result[:error]
+diff -urN gitlab-rails.bk/app/controllers/projects/team_members_controller.rb gitlab-rails/app/controllers/projects/team_members_controller.rb
+--- gitlab-rails.bk/app/controllers/projects/team_members_controller.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/controllers/projects/team_members_controller.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ class Projects::TeamMembersController < Projects::ApplicationController
+   # Authorize
+   before_filter :authorize_admin_project!, except: :leave
+@@ -30,7 +31,7 @@
+     @user_project_relation.update_attributes(params[:team_member])
+ 
+     unless @user_project_relation.valid?
+-      flash[:alert] = "User should have at least one role"
++      flash[:alert] = "ユーザは少なくとも1つのロールを持つ必要があります"
+     end
+     redirect_to project_team_index_path(@project)
+   end
+@@ -57,7 +58,7 @@
+   def apply_import
+     giver = Project.find(params[:source_project_id])
+     status = @project.team.import(giver)
+-    notice = status ? "Successfully imported" : "Import failed"
++    notice = status ? "正常にインポートされました" : "インポートに失敗しました"
+ 
+     redirect_to project_team_index_path(project), notice: notice
+   end
+diff -urN gitlab-rails.bk/app/controllers/projects/wikis_controller.rb gitlab-rails/app/controllers/projects/wikis_controller.rb
+--- gitlab-rails.bk/app/controllers/projects/wikis_controller.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/controllers/projects/wikis_controller.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ class Projects::WikisController < Projects::ApplicationController
+   before_filter :authorize_read_wiki!
+   before_filter :authorize_write_wiki!, only: [:edit, :create, :history]
+@@ -32,7 +33,7 @@
+     return render('empty') unless can?(current_user, :write_wiki, @project)
+ 
+     if @wiki.update(content, format, message)
+-      redirect_to [@project, @wiki], notice: 'Wiki was successfully updated.'
++      redirect_to [@project, @wiki], notice: 'Wikiが更新されました'
+     else
+       render 'edit'
+     end
+@@ -42,7 +43,7 @@
+     @wiki = WikiPage.new(@gollum_wiki)
+ 
+     if @wiki.create(wiki_params)
+-      redirect_to project_wiki_path(@project, @wiki), notice: 'Wiki was successfully updated.'
++      redirect_to project_wiki_path(@project, @wiki), notice: 'Wikiが更新されました'
+     else
+       render action: "edit"
+     end
+@@ -51,13 +52,13 @@
+   def history
+     @wiki = @gollum_wiki.find_page(params[:id])
+ 
+-    redirect_to(project_wiki_path(@project, :home), notice: "Page not found") unless @wiki
++    redirect_to(project_wiki_path(@project, :home), notice: "ページが見つかりません") unless @wiki
+   end
+ 
+   def destroy
+     @wiki = @gollum_wiki.find_page(params[:id])
+     @wiki.delete if @wiki
+-    redirect_to project_wiki_path(@project, :home), notice: "Page was successfully deleted"
++    redirect_to project_wiki_path(@project, :home), notice: "ページが削除されました"
+   end
+ 
+   def git_access
+@@ -71,7 +72,7 @@
+     # Call #wiki to make sure the Wiki Repo is initialized
+     @gollum_wiki.wiki
+   rescue GollumWiki::CouldNotCreateWikiError => ex
+-    flash[:notice] = "Could not create Wiki Repository at this time. Please try again later."
++    flash[:notice] = "Wikiのリポジトリを作成できませんでした。後ほどもう一度お試しください"
+     redirect_to @project
+     return false
+   end
 diff -urN gitlab-rails.bk/app/controllers/projects_controller.rb gitlab-rails/app/controllers/projects_controller.rb
 --- gitlab-rails.bk/app/controllers/projects_controller.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/controllers/projects_controller.rb	2014-03-22 09:00:00.000000000 +0900
@@ -101,6 +464,38 @@ diff -urN gitlab-rails.bk/app/controllers/projects_controller.rb gitlab-rails/ap
  class ProjectsController < ApplicationController
    skip_before_filter :authenticate_user!, only: [:show]
    before_filter :project, except: [:new, :create]
+@@ -23,7 +24,7 @@
+     @project = ::Projects::CreateService.new(current_user, params[:project]).execute
+ 
+     respond_to do |format|
+-      flash[:notice] = 'Project was successfully created.' if @project.saved?
++      flash[:notice] = 'プロジェクトが作成されました' if @project.saved?
+       format.html do
+         if @project.saved?
+           redirect_to @project
+@@ -40,8 +41,8 @@
+ 
+     respond_to do |format|
+       if status
+-        flash[:notice] = 'Project was successfully updated.'
+-        format.html { redirect_to edit_project_path(@project), notice: 'Project was successfully updated.' }
++        flash[:notice] = 'プロジェクトが更新されました'
++        format.html { redirect_to edit_project_path(@project), notice: 'プロジェクトが更新されました' }
+         format.js
+       else
+         format.html { render "edit", layout: "project_settings" }
+@@ -94,9 +95,9 @@
+     respond_to do |format|
+       format.html do
+         if @forked_project.saved? && @forked_project.forked?
+-          redirect_to(@forked_project, notice: 'Project was successfully forked.')
++          redirect_to(@forked_project, notice: 'プロジェクトがフォークされました')
+         else
+-          @title = 'Fork project'
++          @title = 'プロジェクトをフォーク'
+           render "fork"
+         end
+       end
 @@ -137,7 +138,7 @@
    private
  
@@ -110,6 +505,23 @@ diff -urN gitlab-rails.bk/app/controllers/projects_controller.rb gitlab-rails/ap
    end
  
    def user_layout
+diff -urN gitlab-rails.bk/app/controllers/registrations_controller.rb gitlab-rails/app/controllers/registrations_controller.rb
+--- gitlab-rails.bk/app/controllers/registrations_controller.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/controllers/registrations_controller.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ class RegistrationsController < Devise::RegistrationsController
+   before_filter :signup_enabled?
+ 
+@@ -5,7 +6,7 @@
+     current_user.destroy
+ 
+     respond_to do |format|
+-      format.html { redirect_to new_user_session_path, notice: "Account successfully removed." }
++      format.html { redirect_to new_user_session_path, notice: "アカウントが削除されました" }
+     end
+   end
+ 
 diff -urN gitlab-rails.bk/app/controllers/snippets_controller.rb gitlab-rails/app/controllers/snippets_controller.rb
 --- gitlab-rails.bk/app/controllers/snippets_controller.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/controllers/snippets_controller.rb	2014-03-22 09:00:00.000000000 +0900
@@ -581,6 +993,29 @@ diff -urN gitlab-rails.bk/app/models/milestone.rb gitlab-rails/app/models/milest
        end
      end
    end
+diff -urN gitlab-rails.bk/app/models/namespace.rb gitlab-rails/app/models/namespace.rb
+--- gitlab-rails.bk/app/models/namespace.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/models/namespace.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ # == Schema Information
+ #
+ # Table name: namespaces
+@@ -25,12 +26,12 @@
+   validates :name, presence: true, uniqueness: true,
+             length: { within: 0..255 },
+             format: { with: Gitlab::Regex.name_regex,
+-                      message: "only letters, digits, spaces & '_' '-' '.' allowed." }
++                      message: "英数字, スペース, '_' '-' '.' だけが入力できます" }
+   validates :description, length: { within: 0..255 }
+   validates :path, uniqueness: { case_sensitive: false }, presence: true, length: { within: 1..255 },
+             exclusion: { in: Gitlab::Blacklist.path },
+             format: { with: Gitlab::Regex.path_regex,
+-                      message: "only letters, digits & '_' '-' '.' allowed. Letter should be first" }
++                      message: "英数字, '_' '-' '.' だけが入力できます。先頭は英数字のみです" }
+ 
+   delegate :name, to: :owner, allow_nil: true, prefix: true
+ 
 diff -urN gitlab-rails.bk/app/models/notification.rb gitlab-rails/app/models/notification.rb
 --- gitlab-rails.bk/app/models/notification.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/models/notification.rb	2014-03-22 09:00:00.000000000 +0900
@@ -605,6 +1040,41 @@ diff -urN gitlab-rails.bk/app/models/notification.rb gitlab-rails/app/models/not
        }
      end
  
+diff -urN gitlab-rails.bk/app/models/project.rb gitlab-rails/app/models/project.rb
+--- gitlab-rails.bk/app/models/project.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/models/project.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ # == Schema Information
+ #
+ # Table name: projects
+@@ -85,11 +86,11 @@
+   validates :description, length: { maximum: 2000 }, allow_blank: true
+   validates :name, presence: true, length: { within: 0..255 },
+             format: { with: Gitlab::Regex.project_name_regex,
+-                      message: "only letters, digits, spaces & '_' '-' '.' allowed. Letter or digit should be first" }
++                      message: "英数字, スペース, '_' '-' '.' だけが入力できます。先頭は英数字のみです" }
+   validates :path, presence: true, length: { within: 0..255 },
+             exclusion: { in: Gitlab::Blacklist.path },
+             format: { with: Gitlab::Regex.path_regex,
+-                      message: "only letters, digits & '_' '-' '.' allowed. Letter or digit should be first" }
++                      message: "英数字, '_' '-' '.' だけが入力できます。先頭は英数字のみです" }
+   validates :issues_enabled, :wall_enabled, :merge_requests_enabled,
+             :wiki_enabled, inclusion: { in: [true, false] }
+   validates :issues_tracker_id, length: { maximum: 255 }, allow_blank: true
+@@ -191,10 +192,10 @@
+ 
+   def check_limit
+     unless creator.can_create_project?
+-      errors[:limit_reached] << ("Your own projects limit is #{creator.projects_limit}! Please contact administrator to increase it")
++      errors[:limit_reached] << ("あなたが作成できるプロジェクトの上限は #{creator.projects_limit} 個です！管理者に上限を増やすように連絡してください")
+     end
+   rescue
+-    errors[:base] << ("Can't check your ability to create project")
++    errors[:base] << ("プロジェクトの作成権限が確認できませんでした")
+   end
+ 
+   def to_param
 diff -urN gitlab-rails.bk/app/models/project_services/assembla_service.rb gitlab-rails/app/models/project_services/assembla_service.rb
 --- gitlab-rails.bk/app/models/project_services/assembla_service.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/models/project_services/assembla_service.rb	2014-03-22 09:00:00.000000000 +0900
@@ -724,6 +1194,128 @@ diff -urN gitlab-rails.bk/app/models/project_services/pivotaltracker_service.rb 
    end
  
    def to_param
+diff -urN gitlab-rails.bk/app/services/files/create_service.rb gitlab-rails/app/services/files/create_service.rb
+--- gitlab-rails.bk/app/services/files/create_service.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/services/files/create_service.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ require_relative "base_service"
+ 
+ module Files
+@@ -10,24 +11,24 @@
+                 end
+ 
+       unless allowed
+-        return error("You are not allowed to create file in this branch")
++        return error("このブランチにファイルを作成する権限がありません")
+       end
+ 
+       unless repository.branch_names.include?(ref)
+-        return error("You can only create files if you are on top of a branch")
++        return error("ブランチ上にしかファイルは作成できません")
+       end
+ 
+       file_name = File.basename(path)
+       file_path = path
+ 
+       unless file_name =~ Gitlab::Regex.path_regex
+-        return error("Your changes could not be committed, because file name contains not allowed characters")
++        return error("ファイル名に利用できない文字が含まれているため、変更をコミットできません")
+       end
+ 
+       blob = repository.blob_at_branch(ref, file_path)
+ 
+       if blob
+-        return error("Your changes could not be committed, because file with such name exists")
++        return error("この名前のファイルが存在しないため、変更をコミットできません")
+       end
+ 
+       new_file_action = Gitlab::Satellite::NewFileAction.new(current_user, project, ref, file_path)
+@@ -40,7 +41,7 @@
+       if created_successfully
+         success
+       else
+-        error("Your changes could not be committed, because the file has been changed")
++        error("ファイルが変更されたため、変更をコミットできません")
+       end
+     end
+   end
+diff -urN gitlab-rails.bk/app/services/files/delete_service.rb gitlab-rails/app/services/files/delete_service.rb
+--- gitlab-rails.bk/app/services/files/delete_service.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/services/files/delete_service.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ require_relative "base_service"
+ 
+ module Files
+@@ -10,17 +11,17 @@
+                 end
+ 
+       unless allowed
+-        return error("You are not allowed to push into this branch")
++        return error("このブランチへのプッシュは許可されていません")
+       end
+ 
+       unless repository.branch_names.include?(ref)
+-        return error("You can only create files if you are on top of a branch")
++        return error("ブランチ上にしかファイルは作成できません")
+       end
+ 
+       blob = repository.blob_at_branch(ref, path)
+ 
+       unless blob
+-        return error("You can only edit text files")
++        return error("テキストファイルのみ編集できます")
+       end
+ 
+       delete_file_action = Gitlab::Satellite::DeleteFileAction.new(current_user, project, ref, path)
+@@ -33,7 +34,7 @@
+       if deleted_successfully
+         success
+       else
+-        error("Your changes could not be committed, because the file has been changed")
++        error("ファイルが変更されたため、変更をコミットできません")
+       end
+     end
+   end
+diff -urN gitlab-rails.bk/app/services/files/update_service.rb gitlab-rails/app/services/files/update_service.rb
+--- gitlab-rails.bk/app/services/files/update_service.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/services/files/update_service.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ require_relative "base_service"
+ 
+ module Files
+@@ -10,17 +11,17 @@
+                 end
+ 
+       unless allowed
+-        return error("You are not allowed to push into this branch")
++        return error("このブランチへのプッシュは許可されていません")
+       end
+ 
+       unless repository.branch_names.include?(ref)
+-        return error("You can only create files if you are on top of a branch")
++        return error("ブランチ上にしかファイルは作成できません")
+       end
+ 
+       blob = repository.blob_at_branch(ref, path)
+ 
+       unless blob
+-        return error("You can only edit text files")
++        return error("テキストファイルのみ編集できます")
+       end
+ 
+       edit_file_action = Gitlab::Satellite::EditFileAction.new(current_user, project, ref, path)
+@@ -33,7 +34,7 @@
+       if created_successfully
+         success
+       else
+-        error("Your changes could not be committed, because the file has been changed")
++        error("ファイルが変更されたため、変更をコミットできません")
+       end
+     end
+   end
 diff -urN gitlab-rails.bk/app/views/admin/background_jobs/show.html.haml gitlab-rails/app/views/admin/background_jobs/show.html.haml
 --- gitlab-rails.bk/app/views/admin/background_jobs/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/admin/background_jobs/show.html.haml	2014-03-22 09:00:00.000000000 +0900

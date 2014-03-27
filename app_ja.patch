@@ -7543,7 +7543,7 @@ diff -urN gitlab-rails.bk/app/views/projects/tags/index.html.haml gitlab-rails/a
 diff -urN gitlab-rails.bk/app/views/projects/tags/new.html.haml gitlab-rails/app/views/projects/tags/new.html.haml
 --- gitlab-rails.bk/app/views/projects/tags/new.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/tags/new.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -1,16 +1,16 @@
+@@ -1,19 +1,19 @@
  %h3.page-title
    %i.icon-code-fork
 -  New tag
@@ -7562,8 +7562,13 @@ diff -urN gitlab-rails.bk/app/views/projects/tags/new.html.haml gitlab-rails/app
 -      .light Branch name or commit SHA
 +      .light ブランチ名またはコミットSHA
    .form-actions
-     = submit_tag 'Create tag', class: 'btn btn-create', tabindex: 3
-     = link_to 'Cancel', project_tags_path(@project), class: 'btn btn-cancel'
+-    = submit_tag 'Create tag', class: 'btn btn-create', tabindex: 3
+-    = link_to 'Cancel', project_tags_path(@project), class: 'btn btn-cancel'
++    = submit_tag 'タグを作成', class: 'btn btn-create', tabindex: 3
++    = link_to 'キャンセル', project_tags_path(@project), class: 'btn btn-cancel'
+ 
+ :javascript
+   var availableTags = #{@project.repository.ref_names.to_json};
 diff -urN gitlab-rails.bk/app/views/projects/team_members/_form.html.haml gitlab-rails/app/views/projects/team_members/_form.html.haml
 --- gitlab-rails.bk/app/views/projects/team_members/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/team_members/_form.html.haml	2014-03-22 09:00:00.000000000 +0900

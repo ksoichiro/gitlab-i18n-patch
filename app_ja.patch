@@ -1139,7 +1139,7 @@ diff -urN gitlab-rails.bk/app/models/project_services/emails_on_push_service.rb 
  
    def description
 -    'Email the commits and diff of each push to a list of recipients.'
-+    '各Pushのコミットと差分をメール送信します。'
++    '各プッシュのコミットと差分をメール送信します。'
    end
  
    def to_param
@@ -1891,7 +1891,7 @@ diff -urN gitlab-rails.bk/app/views/admin/projects/index.html.haml gitlab-rails/
            = check_box_tag :with_push, 1, params[:with_push]
            &nbsp;
 -          %span.light Projects with push events
-+          %span.light Pushイベントがある
++          %span.light プッシュイベントがある
          .checkbox
 -          = label_tag :abandoned, 'Abandoned'
 +          = label_tag :abandoned, '放棄されている'
@@ -3089,11 +3089,11 @@ diff -urN gitlab-rails.bk/app/views/events/event/_push.html.haml gitlab-rails/ap
 -  = link_to_project event.project
 +  を
 +  - if event.push_action_name == "pushed new"
-+    新規にPushしました
++    新規にプッシュしました
 +  - elsif event.push_action_name == "deleted"
 +    削除しました
 +  - else
-+    Pushしました
++    プッシュしました
  
  - if event.push_with_commits?
    - project = event.project
@@ -4286,7 +4286,7 @@ diff -urN gitlab-rails.bk/app/views/notify/repository_push_email.html.haml gitla
 +++ gitlab-rails/app/views/notify/repository_push_email.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,6 +1,6 @@
 -%h3 #{@author.name} pushed to #{@branch} at #{@project.name_with_namespace}
-+%h3 #{@author.name} が #{@project.name_with_namespace} の #{@branch} ブランチへPushしました
++%h3 #{@author.name} が #{@project.name_with_namespace} の #{@branch} ブランチへプッシュしました
  
 -%h4 Commits:
 +%h4 コミット:
@@ -5902,10 +5902,10 @@ diff -urN gitlab-rails.bk/app/views/projects/hooks/index.html.haml gitlab-rails/
          .prepend-left-20
            = f.label :push_events, class: 'list-label' do
 -            %strong Push events
-+            %strong Pushイベント
++            %strong プッシュイベント
            %p.light
 -            This url will be triggered by a push to the repository
-+            リポジトリへのPushイベントがあったときにこのURLをリクエストします
++            リポジトリへのプッシュイベントがあったときにこのURLをリクエストします
        %div
          = f.check_box :issues_events, class: 'pull-left'
          .prepend-left-20
@@ -8216,7 +8216,7 @@ diff -urN gitlab-rails.bk/app/views/shared/_event_filter.html.haml gitlab-rails/
 -  = event_filter_link EventFilter.merged, 'Merge events'
 -  = event_filter_link EventFilter.comments, 'Comments'
 -  = event_filter_link EventFilter.team, 'Team'
-+  = event_filter_link EventFilter.push, 'Pushイベント'
++  = event_filter_link EventFilter.push, 'プッシュイベント'
 +  = event_filter_link EventFilter.merged, 'マージイベント'
 +  = event_filter_link EventFilter.comments, 'コメント'
 +  = event_filter_link EventFilter.team, 'チーム'

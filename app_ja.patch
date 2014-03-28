@@ -3425,7 +3425,29 @@ diff -urN gitlab-rails.bk/app/views/help/_shortcuts.html.haml gitlab-rails/app/v
 diff -urN gitlab-rails.bk/app/views/help/index.html.haml gitlab-rails/app/views/help/index.html.haml
 --- gitlab-rails.bk/app/views/help/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/help/index.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -20,7 +20,7 @@
+@@ -4,90 +4,91 @@
+     %span= Gitlab::VERSION
+     %small= Gitlab::REVISION
+   %p.slead
+-    GitLab is open source software to collaborate on code.
++    GitLabはコードを共同編集するためのオープンソースソフトウェアです。
+     %br
+-    Manage git repositories with fine grained access controls that keep your code secure.
++    Gitリポジトリをきめ細かくアクセス管理でき、あなたのソースコードを安全な状態に保ちます。
+     %br
+-    Perform code reviews and enhance collaboration with merge requests.
++    マージリクエストを使えば、ソースコードレビューや共同作業を向上することができます。
+     %br
+-    Each project can also have an issue tracker and a wiki.
++    各プロジェクトには課題トラッカーとWikiを備えることができます。
+     %br
+-    Used by more than 50,000 organizations, GitLab is the most popular solution to manage git repositories on-premises.
++    GitLabは5万以上の組織で使われており、もっともポピュラーなオンプレミスGitリポジトリ管理のソリューションです。
+     %br
+-    Read more about GitLab at #{link_to "www.gitlab.com", "https://www.gitlab.com/", target: "_blank"}.
++    GitLabについての詳細は #{link_to "www.gitlab.com", "https://www.gitlab.com/", target: "_blank"} でご確認ください。
+ 
+ .row
    .col-md-4
      .ui-box
        .title
@@ -3433,8 +3455,39 @@ diff -urN gitlab-rails.bk/app/views/help/index.html.haml gitlab-rails/app/views/
 +        クイックヘルプ
        %ul.well-list
          %li
-           Email your
-@@ -44,14 +44,14 @@
+-          Email your
+-          = mail_to gitlab_config.support_email, "support contact"
++          = mail_to gitlab_config.support_email, "サポート窓口"
++          にメールで連絡
+         %li
+-          Use the
+-          = link_to "search bar", '#', onclick: "$('#search').focus();"
+-          on the top of this page
+-        %li
+-          Use
+-          = link_to "shortcuts", '#', onclick: "new Shortcuts()"
+-        %li
+-          Ask in our
+-          = link_to "mailing list", "https://groups.google.com/forum/#!forum/gitlabhq"
+-          or on
++          ページトップの
++          = link_to "検索バー", '#', onclick: "$('#search').focus();"
++          を使う
++        %li
++          = link_to "ショートカット", '#', onclick: "new Shortcuts()"
++          を使う
++        %li
++          = link_to "メーリングリスト", "https://groups.google.com/forum/#!forum/gitlabhq"
++          または
+           = link_to "Stack Overflow", "http://stackoverflow.com/questions/tagged/gitlab"
++          で質問
+         %li
+-          Browse our
+-          = link_to "issue tracker", "https://gitlab.com/gitlab-org/gitlab-ce/issues"
++          GitLabの
++          = link_to "課題", "https://gitlab.com/gitlab-org/gitlab-ce/issues"
++          を確認
+ 
    .col-md-4
      .ui-box
        .title
@@ -3443,31 +3496,37 @@ diff -urN gitlab-rails.bk/app/views/help/index.html.haml gitlab-rails/app/views/
        %ul.well-list
          %li
 -          %strong= link_to "Workflow", help_workflow_path
+-          %p Learn how to use Git and GitLab together.
 +          %strong= link_to "ワークフロー", help_workflow_path
-           %p Learn how to use Git and GitLab together.
++          %p GitとGitLabの使い方を学びます。
  
          %li
 -          %strong= link_to "SSH keys", help_ssh_path
+-          %p Setup secure access to your projects.
 +          %strong= link_to "SSHキー", help_ssh_path
-           %p Setup secure access to your projects.
++          %p プロジェクトへのセキュアなアクセス方法を設定します。
  
          %li
-@@ -59,7 +59,7 @@
-           %p Learn what you can do with GitLab's advanced formatting system.
+           %strong= link_to "GitLab Markdown", help_markdown_path
+-          %p Learn what you can do with GitLab's advanced formatting system.
++          %p GitLabの高度なフォーマットシステムでできることを学びます。
  
          %li
 -          %strong= link_to "Permissions", help_permissions_path
+-          %p Get familiar with GitLab's permission levels.
 +          %strong= link_to "アクセス権", help_permissions_path
-           %p Get familiar with GitLab's permission levels.
++          %p GitLabのアクセス権レベルについて学びます。
  
          %li
-@@ -67,27 +67,27 @@
-           %p Explore how you can access GitLab via a simple and powerful API.
+           %strong= link_to "API", help_api_file_path(category: 'README')
+-          %p Explore how you can access GitLab via a simple and powerful API.
++          %p シンプルで強力なAPIを使ってGitLabにアクセスする方法を確認します。
  
          %li
 -          %strong= link_to "Web Hooks", help_web_hooks_path
+-          %p Let GitLab notify you when new code has been pushed to your project.
 +          %strong= link_to "Webフック", help_web_hooks_path
-           %p Let GitLab notify you when new code has been pushed to your project.
++          %p 新しいコードがプッシュされたときに通知させます。
  
    .col-md-4
      .ui-box
@@ -3478,23 +3537,27 @@ diff -urN gitlab-rails.bk/app/views/help/index.html.haml gitlab-rails/app/views/
  
          %li
 -          %strong= link_to "Rake Tasks", help_raketasks_path
+-          %p Explore what GitLab has in store for you to make administration easier.
 +          %strong= link_to "Rakeタスク", help_raketasks_path
-           %p Explore what GitLab has in store for you to make administration easier.
++          %p 管理をより簡単にするためにGitLabが用意しているタスクを確認します。
  
          %li
 -          %strong= link_to "System Hooks", help_system_hooks_path
+-          %p Let GitLab notify you when certain management tasks need to be carried out.
 +          %strong= link_to "システムフック", help_system_hooks_path
-           %p Let GitLab notify you when certain management tasks need to be carried out.
++          %p 特定の管理タスクが実行されるときに通知させます。
  
          %li
 -          %strong= link_to "Public Access", help_public_access_path
-+          %strong= link_to "Publicアクセス", help_public_access_path
-           %p Learn how you can allow public access to a project.
+-          %p Learn how you can allow public access to a project.
++          %strong= link_to "公開アクセス", help_public_access_path
++          %p プロジェクトを公開する方法を学びます。
  
          %li
 -          %strong= link_to "Security", help_security_path
+-          %p Learn what you can do to secure your GitLab instance.
 +          %strong= link_to "セキュリティ", help_security_path
-           %p Learn what you can do to secure your GitLab instance.
++          %p GitLab印すsタンスをセキュアにするためにすることを学びます。
 diff -urN gitlab-rails.bk/app/views/layouts/_head_panel.html.haml gitlab-rails/app/views/layouts/_head_panel.html.haml
 --- gitlab-rails.bk/app/views/layouts/_head_panel.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/layouts/_head_panel.html.haml	2014-03-22 09:00:00.000000000 +0900

@@ -3002,6 +3002,29 @@ diff -urN gitlab-rails.bk/app/views/devise/shared/_links.erb gitlab-rails/app/vi
 -  <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
 +  <%= link_to "ロック解除方法のメールを受信していませんか？", new_unlock_path(resource_name) %><br />
  <% end -%>
+diff -urN gitlab-rails.bk/app/views/events/_event_last_push.html.haml gitlab-rails/app/views/events/_event_last_push.html.haml
+--- gitlab-rails.bk/app/views/events/_event_last_push.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/events/_event_last_push.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,13 +1,15 @@
+ - if show_last_push_widget?(event)
+   .event-last-push
+-    %span You pushed to
++    %span あなたは
+     = link_to project_commits_path(event.project, event.ref_name) do
+       %strong= truncate(event.ref_name, length: 28)
+-    at
++    ブランチを
+     %strong= link_to_project event.project
++    プロジェクトに
+     #{time_ago_with_tooltip(event.created_at)}
++    にプッシュしました。
+ 
+     .pull-right
+-      = link_to new_mr_path_from_push_event(event), title: "New Merge Request", class: "btn btn-create btn-small" do
+-        Create Merge Request
++      = link_to new_mr_path_from_push_event(event), title: "新しいマージリクエスト", class: "btn btn-create btn-small" do
++        マージリクエストを作成
+   %hr
 diff -urN gitlab-rails.bk/app/views/events/event/_common.html.haml gitlab-rails/app/views/events/event/_common.html.haml
 --- gitlab-rails.bk/app/views/events/event/_common.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/events/event/_common.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -3876,6 +3899,21 @@ diff -urN gitlab-rails.bk/app/views/layouts/nav/_project.html.haml gitlab-rails/
        = link_to edit_project_path(@project), class: "stat-tab tab " do
 -        Settings
 +        設定
+diff -urN gitlab-rails.bk/app/views/layouts/notify.html.haml gitlab-rails/app/views/layouts/notify.html.haml
+--- gitlab-rails.bk/app/views/layouts/notify.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/layouts/notify.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-%html{lang: "en"}
++%html{lang: "ja"}
+   %head
+     %meta{content: "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
+       %title
+@@ -19,4 +19,4 @@
+         %td{align: "left", style: "margin: 0; padding: 10px;"}
+           %p{style: "font-size:small;color:#777"}
+             - if @project
+-              You're receiving this notification because you are a member of the #{@project.name_with_namespace} project team.
++              この通知は、あなたが #{@project.name_with_namespace} プロジェクトのメンバーであるため送信されています。
 diff -urN gitlab-rails.bk/app/views/layouts/profile.html.haml gitlab-rails/app/views/layouts/profile.html.haml
 --- gitlab-rails.bk/app/views/layouts/profile.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/layouts/profile.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -6376,6 +6414,33 @@ diff -urN gitlab-rails.bk/app/views/projects/merge_requests/_head.html.haml gitl
 -    Merge Requests
 +    マージリクエスト
  
+diff -urN gitlab-rails.bk/app/views/projects/merge_requests/_merge_request.html.haml gitlab-rails/app/views/projects/merge_requests/_merge_request.html.haml
+--- gitlab-rails.bk/app/views/projects/merge_requests/_merge_request.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/merge_requests/_merge_request.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -5,7 +5,7 @@
+     - if merge_request.merged?
+       %small.pull-right
+         %i.icon-ok
+-        = "MERGED"
++        = "マージ済み"
+     - else
+       %span.pull-right
+         - if merge_request.for_fork?
+@@ -20,7 +20,7 @@
+           = merge_request.target_branch
+   .merge-request-info
+     - if merge_request.author
+-      authored by #{link_to_member(merge_request.source_project, merge_request.author)}
++      #{link_to_member(merge_request.source_project, merge_request.author)} が作成
+     - if merge_request.votes_count > 0
+       = render 'votes/votes_inline', votable: merge_request
+     - if merge_request.notes.any?
+@@ -34,4 +34,4 @@
+ 
+ 
+     .pull-right
+-      %small updated #{time_ago_with_tooltip(merge_request.updated_at, 'bottom', 'merge_request_updated_ago')}
++      %small #{time_ago_with_tooltip(merge_request.updated_at, 'bottom', 'merge_request_updated_ago')} に更新
 diff -urN gitlab-rails.bk/app/views/projects/merge_requests/_show.html.haml gitlab-rails/app/views/projects/merge_requests/_show.html.haml
 --- gitlab-rails.bk/app/views/projects/merge_requests/_show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/merge_requests/_show.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -6570,7 +6635,7 @@ diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_context.html.h
 diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_how_to_merge.html.haml gitlab-rails/app/views/projects/merge_requests/show/_how_to_merge.html.haml
 --- gitlab-rails.bk/app/views/projects/merge_requests/show/_how_to_merge.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/merge_requests/show/_how_to_merge.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -3,7 +3,7 @@
+@@ -3,21 +3,21 @@
      .modal-content
        .modal-header
          %a.close{href: "#", "data-dismiss" => "modal"} ×
@@ -6579,6 +6644,44 @@ diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_how_to_merge.h
        .modal-body
          - if @merge_request.for_fork?
            - source_remote = @merge_request.source_project.namespace.nil? ? "source" :@merge_request.source_project.namespace.path
+           - target_remote = @merge_request.target_project.namespace.nil? ? "target" :@merge_request.target_project.namespace.path
+           %p
+-            %strong Step 1.
+-            Checkout the branch we are going to merge and pull in the code
++            %strong ステップ1.
++            マージするブランチをチェックアウトしてソースコードをプルしてください。
+           %pre.dark
+             :preserve
+               git checkout -b #{@merge_request.source_project_path}-#{@merge_request.source_branch} #{@merge_request.target_branch}
+               git pull #{@merge_request.source_project.http_url_to_repo} #{@merge_request.source_branch}
+           %p
+-            %strong Step 2.
+-            Merge the branch and push the changes to GitLab
++            %strong ステップ2.
++            ブランチをマージして変更をGitLabにプッシュしてください。
+           %pre.dark
+             :preserve
+               git checkout #{@merge_request.target_branch}
+@@ -25,15 +25,15 @@
+               git push origin #{@merge_request.target_branch}
+         - else
+           %p
+-            %strong Step 1.
+-            Update the repo and checkout the branch we are going to merge
++            %strong ステップ1.
++            リポジトリを更新してマージするブランチをチェックアウトしてください。
+           %pre.dark
+             :preserve
+               git fetch origin
+               git checkout -b #{@merge_request.source_branch} origin/#{@merge_request.source_branch}
+           %p
+-            %strong Step 2.
+-            Merge the branch and push the changes to GitLab
++            %strong ステップ2.
++            ブランチをマージして変更をGitLabにプッシュしてください。
+           %pre.dark
+             :preserve
+               git checkout #{@merge_request.target_branch}
 diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_mr_accept.html.haml gitlab-rails/app/views/projects/merge_requests/show/_mr_accept.html.haml
 --- gitlab-rails.bk/app/views/projects/merge_requests/show/_mr_accept.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/merge_requests/show/_mr_accept.html.haml	2014-03-22 09:00:00.000000000 +0900

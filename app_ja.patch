@@ -6397,6 +6397,15 @@ diff -urN gitlab-rails.bk/app/views/projects/merge_requests/_show.html.haml gitl
  
  
    .notes.tab-content.voting_notes#notes{ class: (controller.action_name == 'show') ? "" : "hide" }
+diff -urN gitlab-rails.bk/app/views/projects/merge_requests/edit.html.haml gitlab-rails/app/views/projects/merge_requests/edit.html.haml
+--- gitlab-rails.bk/app/views/projects/merge_requests/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/merge_requests/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+ %h3.page-title
+-  = "Edit merge request ##{@merge_request.iid}"
++  = "マージリクエスト ##{@merge_request.iid} を編集"
+ %hr
+ = render 'form'
 diff -urN gitlab-rails.bk/app/views/projects/merge_requests/index.html.haml gitlab-rails/app/views/projects/merge_requests/index.html.haml
 --- gitlab-rails.bk/app/views/projects/merge_requests/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/merge_requests/index.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -6570,6 +6579,99 @@ diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_how_to_merge.h
        .modal-body
          - if @merge_request.for_fork?
            - source_remote = @merge_request.source_project.namespace.nil? ? "source" :@merge_request.source_project.namespace.path
+diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_mr_accept.html.haml gitlab-rails/app/views/projects/merge_requests/show/_mr_accept.html.haml
+--- gitlab-rails.bk/app/views/projects/merge_requests/show/_mr_accept.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/merge_requests/show/_mr_accept.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,6 +1,6 @@
+ - unless @allowed_to_merge
+   .bs-callout
+-    %strong You don't have permission to merge this MR
++    %strong このマージリクエストをマージする権限がありません
+ 
+ 
+ - if @show_merge_controls
+@@ -8,62 +8,64 @@
+     .bs-callout.bs-callout-success.clearfix
+       = form_for [:automerge, @project, @merge_request], remote: true, method: :get do |f|
+         %h4
+-          You can accept this request automatically.
++          このリクエストは、承認すれば自動的にマージすることができます。
+         %p
+-          If you still want to do it manually -
++          手動でマージしたい場合は
+           %strong
+-            = link_to "click here", "#modal_merge_info", class: "how_to_merge_link vlink", title: "How To Merge", "data-toggle" => "modal"
+-          for instructions.
++            = link_to "こちらをクリック", "#modal_merge_info", class: "how_to_merge_link vlink", title: "How To Merge", "data-toggle" => "modal"
++          して方法を確認してください。
+ 
+           %br
+-          If you want to modify merge commit message -
++          マージコミットのメッセージを修正したい場合は
+           %strong
+-            = link_to "click here", "#", class: "modify-merge-commit-link js-toggle-visibility-link", title: "Modify merge commit message"
++            = link_to "こちらをクリック", "#", class: "modify-merge-commit-link js-toggle-visibility-link", title: "Modify merge commit message"
++          してください。
+ 
+         .js-toggle-visibility-container.hide
+           .form-group
+-            = label_tag :merge_commit_message, "Commit message", class: 'control-label'
++            = label_tag :merge_commit_message, "コミットメッセージ", class: 'control-label'
+             .col-sm-10
+               = text_area_tag :merge_commit_message, @merge_request.merge_commit_message, class: "form-control js-gfm-input", rows: 14, required: true
+               %p.hint
+-                The recommended maximum line length is 52 characters for the first line and 72 characters for all following lines.
++                先頭の1行は最大52字、それ以降の行は最大72文字であることが推奨されます。
+ 
+         .accept-group
+           .pull-left
+-            = f.submit "Accept Merge Request", class: "btn btn-create accept_merge_request"
++            = f.submit "マージリクエストを承認", class: "btn btn-create accept_merge_request"
+           - unless @merge_request.disallow_source_branch_removal?
+             .remove_branch_holder.pull-left
+               = label_tag :should_remove_source_branch, class: "checkbox" do
+                 = check_box_tag :should_remove_source_branch
+-                Remove source-branch
++                マージ元のブランチを削除
+ 
+ 
+   .automerge_widget.no_satellite.hide
+     .bs-callout.bs-callout-danger
+       %span
+-        %strong This repository does not have satellite. Ask an administrator to fix this issue
++        %strong このリポジトリにはサテライトがありません。管理者に確認してこの問題を解決してください。
+ 
+   .automerge_widget.cannot_be_merged.hide
+     .bs-callout.bs-callout-disabled
+       %h4
+-        This request can't be merged with GitLab.
++        このリクエストはGitLabではマージできません。
+       %span
+-        You should do it manually with
++        このリクエストは手動で
+         %strong
+-          = link_to "command line", "#modal_merge_info", class: "how_to_merge_link", title: "How To Merge", "data-toggle" => "modal"
++          = link_to "コマンドライン", "#modal_merge_info", class: "how_to_merge_link", title: "マージ方法", "data-toggle" => "modal"
++        からマージする必要があります。
+ 
+   .automerge_widget.unchecked
+     .bs-callout.bs-callout-warning
+       %strong
+         %i.icon-spinner.icon-spin
+-        Checking for ability to automatically merge…
++        自動マージが可能か確認しています…
+ 
+   .automerge_widget.already_cannot_be_merged.hide
+     .bs-callout.bs-callout-info
+-      %strong This merge request can not be merged. Try to reload the page.
++      %strong このマージリクエストはマージできません。ページを再読み込みしてください。
+ 
+   .merge-in-progress.hide
+     .bs-callout.bs-callout-success
+       %i.icon-spinner.icon-spin
+       &nbsp;
+-      Merge is in progress. Please wait. Page will be automatically reloaded. &nbsp;
++      マージを実行中です。お待ちください。ページは自動的に更新されます。&nbsp;
 diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_mr_box.html.haml gitlab-rails/app/views/projects/merge_requests/show/_mr_box.html.haml
 --- gitlab-rails.bk/app/views/projects/merge_requests/show/_mr_box.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/merge_requests/show/_mr_box.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -6662,6 +6764,28 @@ diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_mr_title.html.
  
    %span.prepend-left-20.monospace
      -if @merge_request.for_fork?
+diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_no_accept.html.haml gitlab-rails/app/views/projects/merge_requests/show/_no_accept.html.haml
+--- gitlab-rails.bk/app/views/projects/merge_requests/show/_no_accept.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/merge_requests/show/_no_accept.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,12 +1,14 @@
+ .alert.alert-danger
+   %p
+-    This merge request can not be accepted because branch
++    このマージリクエストは以下の理由により承認できません。
+     - unless @merge_request.source_branch_exists?
+       %span.label.label-inverse= @merge_request.source_branch
+-      does not exist in
++      ブランチが
+       %span.label.label-info= @merge_request.source_project_path
++      に存在しません
+     - else
+       %span.label.label-inverse= @merge_request.target_branch
+-      does not exist in
++      ブランチが
+       %span.label.label-info= @merge_request.target_project_path
+-  %strong Please close this merge request or change branches with existing one
++      に存在しません
++  %strong このマージリクエストをクローズするか、存在するブランチを選び直してください。
 diff -urN gitlab-rails.bk/app/views/projects/milestones/_form.html.haml gitlab-rails/app/views/projects/milestones/_form.html.haml
 --- gitlab-rails.bk/app/views/projects/milestones/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/milestones/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -8189,6 +8313,22 @@ diff -urN gitlab-rails.bk/app/views/search/_results.html.haml gitlab-rails/app/v
  
  %hr
  
+diff -urN gitlab-rails.bk/app/views/search/results/_merge_request.html.haml gitlab-rails/app/views/search/results/_merge_request.html.haml
+--- gitlab-rails.bk/app/views/search/results/_merge_request.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/search/results/_merge_request.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,5 +1,5 @@
+ %li
+-  merge request:
++  マージリクエスト:
+   = link_to [merge_request.target_project, merge_request] do
+     %span ##{merge_request.iid}
+     %strong.term
+@@ -9,4 +9,4 @@
+   - else
+     %span.light (#{merge_request.source_branch} &rarr; #{merge_request.target_branch})
+   - if merge_request.closed?
+-    %span.label Closed
++    %span.label クローズ
 diff -urN gitlab-rails.bk/app/views/search/show.html.haml gitlab-rails/app/views/search/show.html.haml
 --- gitlab-rails.bk/app/views/search/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/search/show.html.haml	2014-03-22 09:00:00.000000000 +0900

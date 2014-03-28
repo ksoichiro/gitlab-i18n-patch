@@ -43,6 +43,27 @@ diff -urN gitlab-rails.bk/app/assets/javascripts/profile.js.coffee gitlab-rails/
 -  $('.profile-groups-avatars').tooltip("placement": "top")
 \ ファイル末尾に改行がありません
 +  $('.profile-groups-avatars').tooltip("placement": "top")
+diff -urN gitlab-rails.bk/app/assets/javascripts/stat_graph_contributors.js.coffee gitlab-rails/app/assets/javascripts/stat_graph_contributors.js.coffee
+--- gitlab-rails.bk/app/assets/javascripts/stat_graph_contributors.js.coffee	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/assets/javascripts/stat_graph_contributors.js.coffee	2014-03-22 09:00:00.000000000 +0900
+@@ -23,7 +23,7 @@
+     commits = $('<span/>', {
+       class: 'graph-author-commits-count'
+     })
+-    commits.text(author.commits + " commits")
++    commits.text(author.commits + " コミット")
+ 
+     additions = $('<span/>', {
+       class: 'graph-additions'
+@@ -75,7 +75,7 @@
+     @field = field
+   change_date_header: ->
+     x_domain = ContributorsGraph.prototype.x_domain
+-    print_date_format = d3.time.format("%B %e %Y")
++    print_date_format = d3.time.format("%Y/%m/%d")
+     print = print_date_format(x_domain[0]) + " - " + print_date_format(x_domain[1])
+     $("#date_header").text(print)
+   redraw_author_commit_info: (author) ->
 diff -urN gitlab-rails.bk/app/controllers/admin/broadcast_messages_controller.rb gitlab-rails/app/controllers/admin/broadcast_messages_controller.rb
 --- gitlab-rails.bk/app/controllers/admin/broadcast_messages_controller.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/controllers/admin/broadcast_messages_controller.rb	2014-03-22 09:00:00.000000000 +0900

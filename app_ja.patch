@@ -3454,18 +3454,74 @@ diff -urN gitlab-rails.bk/app/views/groups/show.html.haml gitlab-rails/app/views
  
      %hr
      = render 'shared/promo'
+diff -urN gitlab-rails.bk/app/views/help/_api_layout.html.haml gitlab-rails/app/views/help/_api_layout.html.haml
+--- gitlab-rails.bk/app/views/help/_api_layout.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/help/_api_layout.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -3,7 +3,7 @@
+     .append-bottom-20
+       = link_to help_path, class: 'btn btn-small' do
+         %i.icon-angle-left
+-        Back to help
++        ヘルプ
+     %ul.nav.nav-pills.nav-stacked
+       - %w(README projects project_snippets repositories repository_files commits deploy_keys users groups session issues milestones merge_requests notes system_hooks).each do |file|
+         %li{class: file == @category ? 'active' : nil}
+diff -urN gitlab-rails.bk/app/views/help/_layout.html.haml gitlab-rails/app/views/help/_layout.html.haml
+--- gitlab-rails.bk/app/views/help/_layout.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/help/_layout.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,8 +1,8 @@
+ .row
+   .col-md-3
+-    %h3.page-title Help
++    %h3.page-title ヘルプ
+     %ul.nav.nav-pills.nav-stacked
+-      - links = {:"Workflow" => help_workflow_path, :"SSH Keys" => help_ssh_path, :"GitLab Markdown" => help_markdown_path, :"Permissions" => help_permissions_path, :"API" => help_api_path, :"Web Hooks" => help_web_hooks_path, :"Rake Tasks" => help_raketasks_path, :"System Hooks" => help_system_hooks_path, :"Public Access" => help_public_access_path, :"Security" => help_security_path}
++      - links = {:"ワークフロー" => help_workflow_path, :"SSHキー" => help_ssh_path, :"GitLab Markdown" => help_markdown_path, :"アクセス権" => help_permissions_path, :"API" => help_api_path, :"Webフック" => help_web_hooks_path, :"Rakeタスク" => help_raketasks_path, :"Systemフック" => help_system_hooks_path, :"公開アクセス" => help_public_access_path, :"セキュリティ" => help_security_path}
+       - links.each do |title,path|
+         %li{class: current_page?(path) ? 'active' : nil}
+           = link_to title, path
 diff -urN gitlab-rails.bk/app/views/help/_shortcuts.html.haml gitlab-rails/app/views/help/_shortcuts.html.haml
 --- gitlab-rails.bk/app/views/help/_shortcuts.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/help/_shortcuts.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -3,7 +3,7 @@
+@@ -3,30 +3,30 @@
      .modal-content
        .modal-header
          %a.close{href: "#", "data-dismiss" => "modal"} ×
 -        %h3 Keyboard Shortcuts
 +        %h3 キーボードショートカット
        .modal-body
-         %h5 Global Shortcuts
+-        %h5 Global Shortcuts
++        %h5 グローバルショートカット
          %p
+           %span.label.label-inverse s
+           &ndash;
+-          Focus Search
++          検索バーにフォーカス
+         %p
+           %span.label.label-inverse ?
+           &ndash;
+-          Show this dialog
++          このダイアログを表示
+ 
+-        %h5 Project Files browsing
++        %h5 プロジェクトのファイル閲覧
+         %p
+           %span.label.label-inverse
+             %i.icon-arrow-up
+           &ndash;
+-          Move selection up
++          選択位置を上に移動
+         %p
+           %span.label.label-inverse
+             %i.icon-arrow-down
+           &ndash;
+-          Move selection down
++          選択位置を下に移動
+         %p
+           %span.label.label-inverse Enter
+           &ndash;
+-          Open selection
++          選択項目を開く
 diff -urN gitlab-rails.bk/app/views/help/index.html.haml gitlab-rails/app/views/help/index.html.haml
 --- gitlab-rails.bk/app/views/help/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/help/index.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -3602,6 +3658,266 @@ diff -urN gitlab-rails.bk/app/views/help/index.html.haml gitlab-rails/app/views/
 -          %p Learn what you can do to secure your GitLab instance.
 +          %strong= link_to "セキュリティ", help_security_path
 +          %p GitLab印すsタンスをセキュアにするためにすることを学びます。
+diff -urN gitlab-rails.bk/app/views/help/permissions.html.haml gitlab-rails/app/views/help/permissions.html.haml
+--- gitlab-rails.bk/app/views/help/permissions.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/help/permissions.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,15 +1,15 @@
+ = render layout: 'help/layout' do
+-  %h3.page-title Permissions
+-  %p.light Users have different abilities depending on the access level they have in particular group or project.
+-  %p.light If a user is both in a project group and in the project itself the highest permission level is used.
+-  %p.light If a user is a GitLab administrator they receive all permissions.
++  %h3.page-title アクセス権
++  %p.light それぞれのグループやプロジェクトでユーザが与えられているアクセス権レベルによって、できることは異なります。
++  %p.light ユーザがグループとプロジェクトの両方に属する場合はもっとも強力なアクセス権レベルが適用されます。
++  %p.light ユーザがGitLabの管理者である場合は、すべてのアクセス権が与えられます。
+   %hr
+ 
+-  %h4 Project:
++  %h4 プロジェクト:
+   %table.table
+     %thead
+       %tr
+-        %th Action
++        %th アクション
+         %th Guest
+         %th Reporter
+         %th Developer
+@@ -17,165 +17,165 @@
+         %th Owner
+     %tbody
+       %tr
+-        %td Create new issue
++        %td 新しい課題を作成する
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+       %tr
+-        %td Leave comments
++        %td コメントを作成する
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+       %tr
+-        %td Write on project wall
++        %td ウォールに書き込む
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+       %tr
+-        %td Pull project code
++        %td コードをプルする
+         %td
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+       %tr
+-        %td Download project
++        %td プロジェクトをダウンロードする
+         %td
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+       %tr
+-        %td Create code snippets
++        %td スニペットを作成する
+         %td
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+       %tr
+-        %td Create new merge request
++        %td マージリクエストを作成する
+         %td
+         %td
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+       %tr
+-        %td Create new branches
++        %td ブランチを作成する
+         %td
+         %td
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+       %tr
+-        %td Push to non-protected branches
++        %td 保護されていないブランチにプッシュする
+         %td
+         %td
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+       %tr
+-        %td Remove non-protected branches
++        %td 保護されていないブランチを削除する
+         %td
+         %td
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+       %tr
+-        %td Add tags
++        %td タグを追加する
+         %td
+         %td
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+       %tr
+-        %td Write a wiki
++        %td Wikiを書く
+         %td
+         %td
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+       %tr
+-        %td Manage issue tracker
++        %td 課題トラッカーを管理する
+         %td
+         %td
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+       %tr
+-        %td Add new team members
++        %td メンバーを追加する
+         %td
+         %td
+         %td
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+       %tr
+-        %td Push to protected branches
++        %td 保護されたブランチにプッシュする
+         %td
+         %td
+         %td
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+       %tr
+-        %td Remove protected branches
++        %td 保護されたブランチを削除する
+         %td
+         %td
+         %td
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+       %tr
+-        %td Edit project
++        %td プロジェクトを編集する
+         %td
+         %td
+         %td
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+       %tr
+-        %td Add Deploy Keys to project
++        %td デプロイキーを追加する
+         %td
+         %td
+         %td
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+       %tr
+-        %td Configure Project Hooks
++        %td フックを設定する
+         %td
+         %td
+         %td
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+       %tr
+-        %td Switch visibility level
++        %td 可視性レベルを変更する
+         %td
+         %td
+         %td
+         %td
+         %td.permission-x &#10003;
+       %tr
+-        %td Transfer project to another namespace
++        %td プロジェクトを移譲する
+         %td
+         %td
+         %td
+         %td
+         %td.permission-x &#10003;
+       %tr
+-        %td Remove project
++        %td プロジェクトを削除する
+         %td
+         %td
+         %td
+         %td
+         %td.permission-x &#10003;
+ 
+-  %h4 Group
++  %h4 グループ
+   %table.table
+     %thead
+       %tr
+-        %th Action
++        %th アクション
+         %th Guest
+         %th Reporter
+         %th Developer
+@@ -183,38 +183,38 @@
+         %th Owner
+     %tbody
+       %tr
+-        %td Browse group
++        %td グループを参照する
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+         %td.permission-x &#10003;
+       %tr
+-        %td Edit group
++        %td グループを編集する
+         %td
+         %td
+         %td
+         %td
+         %td.permission-x &#10003;
+       %tr
+-        %td Create project in group
++        %td グループ内にプロジェクトを作成する
+         %td
+         %td
+         %td
+         %td
+         %td.permission-x &#10003;
+       %tr
+-        %td Manage group members
++        %td メンバーを管理する
+         %td
+         %td
+         %td
+         %td
+         %td.permission-x &#10003;
+       %tr
+-        %td Remove group
++        %td グループを削除する
+         %td
+         %td
+         %td
+         %td
+         %td.permission-x &#10003;
+-  %p.light Any user can remove himself from a group, unless he is the last Owner of the group.
++  %p.light ユーザが唯一のグループ所有者でない限り、すべてのユーザは自分自身をグループから削除することができます。
 diff -urN gitlab-rails.bk/app/views/layouts/_head_panel.html.haml gitlab-rails/app/views/layouts/_head_panel.html.haml
 --- gitlab-rails.bk/app/views/layouts/_head_panel.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/layouts/_head_panel.html.haml	2014-03-22 09:00:00.000000000 +0900

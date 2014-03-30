@@ -3657,7 +3657,7 @@ diff -urN gitlab-rails.bk/app/views/help/index.html.haml gitlab-rails/app/views/
 -          %strong= link_to "Security", help_security_path
 -          %p Learn what you can do to secure your GitLab instance.
 +          %strong= link_to "セキュリティ", help_security_path
-+          %p GitLab印すsタンスをセキュアにするためにすることを学びます。
++          %p GitLabインスタンスをセキュアにするためにすることを学びます。
 diff -urN gitlab-rails.bk/app/views/help/permissions.html.haml gitlab-rails/app/views/help/permissions.html.haml
 --- gitlab-rails.bk/app/views/help/permissions.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/help/permissions.html.haml	2014-03-22 09:00:00.000000000 +0900

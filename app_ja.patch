@@ -3918,6 +3918,100 @@ diff -urN gitlab-rails.bk/app/views/help/permissions.html.haml gitlab-rails/app/
          %td.permission-x &#10003;
 -  %p.light Any user can remove himself from a group, unless he is the last Owner of the group.
 +  %p.light ユーザが唯一のグループ所有者でない限り、すべてのユーザは自分自身をグループから削除することができます。
+diff -urN gitlab-rails.bk/app/views/help/workflow.html.haml gitlab-rails/app/views/help/workflow.html.haml
+--- gitlab-rails.bk/app/views/help/workflow.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/help/workflow.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,47 +1,47 @@
+ = render layout: 'help/layout' do
+-  %h3.page-title Workflow
++  %h3.page-title ワークフロー
+ 
+-  %h4 Summary
++  %h4 サマリー
+ 
+   %ol.help
+     %li
+-      %p Clone project
++      %p プロジェクトをクローンします
+       .bash
+         %pre.dark
+           git clone git@example.com:project-name.git
+ 
+     %li
+-      %p Create branch with your feature
++      %p 機能追加用のブランチを作成します
+       .bash
+         %pre.dark
+           git checkout -b $feature_name
+ 
+     %li
+-      %p Write code. Commit changes
++      %p コードを書いて変更をコミットします
+       .bash
+         %pre.dark
+           git commit -am "My feature is ready"
+ 
+     %li
+-      %p Push your branch to GitLab
++      %p ブランチをGitLabにプッシュします
+       .bash
+         %pre.dark
+           git push origin $feature_name
+ 
+     %li
+-      %p Review your code on Commits page
++      %p コミットのページでコードをレビューします
+ 
+     %li
+-      %p Create a merge request
++      %p マージリクエストを作成します
+ 
+     %li
+-      %p Your team lead will review code &amp; merge it to main branch
++      %p チームリーダがコードレビューしメインのブランチにマージします
+ 
+-  %h3 Authorization for Merge Requests
++  %h3 マージリクエストのための認可
+   %p
+-    There are two main ways to have a merge request flow with GitLab: working with protected branches in a single repository, or working with forks of an authoritative project.
++    GitLabでマージリクエストする主な方法は2つあります。1つのリポジトリで保護されたブランチを活用する方法と、権威のある1つのプロジェクトからフォークする方法です。
+ 
+-  %h4 Protected branch flow
++  %h4 保護されたブランチのフロー
+   %p
+     With the protected branch flow everybody works within the same GitLab project.
+     The project maintainers get Master access and the regular developers get Developer access.
+@@ -49,25 +49,25 @@
+     The developers push feature branches to the project and create merge requests to have their feature branches reviewed and merged into one of the protected branches.
+     Only users with Master access can merge changes into a protected branch.
+ 
+-  %h5 Advantages
++  %h5 利点
+   %ul
+     %li fewer projects means less clutter
+     %li developers need to consider only one remote repository
+ 
+-  %h5 Disadvantages
++  %h5 欠点
+   %ul
+     %li manual setup of protected branch required for each new project
+ 
+-  %h4 Forking workflow
++  %h4 フォークのワークフロー
+   %p
+     With the forking workflow the maintainers get Master access and the regular developers get Reporter access to the authoritative repository, which prohibits them from pushing any changes to it.
+     Developers create forks of the authoritative project and push their feature branches to their own forks.
+     To get their changes into master they need to create a merge request across forks.
+ 
+-  %h5 Advantages
++  %h5 利点
+   %ul
+     %li in an appropriately configured GitLab group, new projects automatically get the required access restrictions for regular developers: fewer manual steps to configure authorization for new projects
+ 
+-  %h5 Disadvantages
++  %h5 欠点
+   %ul
+     %li all developers on the project need to keep their forks up to date, which requires more advanced Git skills (managing multiple remotes)
 diff -urN gitlab-rails.bk/app/views/layouts/_head_panel.html.haml gitlab-rails/app/views/layouts/_head_panel.html.haml
 --- gitlab-rails.bk/app/views/layouts/_head_panel.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/layouts/_head_panel.html.haml	2014-03-22 09:00:00.000000000 +0900

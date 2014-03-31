@@ -3918,6 +3918,28 @@ diff -urN gitlab-rails.bk/app/views/help/permissions.html.haml gitlab-rails/app/
          %td.permission-x &#10003;
 -  %p.light Any user can remove himself from a group, unless he is the last Owner of the group.
 +  %p.light ユーザが唯一のグループ所有者でない限り、すべてのユーザは自分自身をグループから削除することができます。
+diff -urN gitlab-rails.bk/app/views/help/security.html.haml gitlab-rails/app/views/help/security.html.haml
+--- gitlab-rails.bk/app/views/help/security.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/help/security.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,15 +1,15 @@
+ = render layout: 'help/layout' do
+-  %h3.page-title Security
++  %h3.page-title セキュリティ
+ 
+   %p.slead
+-    If your GitLab instance is visible from the internet chances are it will be 'tested' by bots sooner or later.
++    GitLabのインスタンスがインターネットからもアクセスできる場合、遅かれ早かれ'ボット'にアクセスされてしまうでしょう。
+     %br
+     %br
+     %br
+     .file-holder
+       .file-title
+         %i.icon-file
+-        Dealing with bruteforcing
++        総当たり攻撃への対応
+       .file-content.wiki
+         = preserve do
+           = markdown File.read(Rails.root.join("doc", "security", "rack_attack.md"))
 diff -urN gitlab-rails.bk/app/views/help/workflow.html.haml gitlab-rails/app/views/help/workflow.html.haml
 --- gitlab-rails.bk/app/views/help/workflow.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/help/workflow.html.haml	2014-03-22 09:00:00.000000000 +0900

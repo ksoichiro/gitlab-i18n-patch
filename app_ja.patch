@@ -4957,8 +4957,9 @@ diff -urN gitlab-rails.bk/app/views/profiles/emails/index.html.haml gitlab-rails
        %li
          %strong= email.email
          %span.cgray
-           added #{time_ago_with_tooltip(email.created_at)}
+-          added #{time_ago_with_tooltip(email.created_at)}
 -        = link_to 'Remove', profile_email_path(email), data: { confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-small btn-remove pull-right'
++          #{time_ago_with_tooltip(email.created_at)} に追加
 +        = link_to '削除', profile_email_path(email), data: { confirm: '本当に削除しますか？'}, method: :delete, class: 'btn btn-small btn-remove pull-right'
  
 -%h4 Add email address

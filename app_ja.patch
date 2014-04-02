@@ -3457,15 +3457,22 @@ diff -urN gitlab-rails.bk/app/views/groups/show.html.haml gitlab-rails/app/views
 diff -urN gitlab-rails.bk/app/views/help/_api_layout.html.haml gitlab-rails/app/views/help/_api_layout.html.haml
 --- gitlab-rails.bk/app/views/help/_api_layout.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/help/_api_layout.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -3,7 +3,7 @@
+@@ -3,11 +3,11 @@
      .append-bottom-20
        = link_to help_path, class: 'btn btn-small' do
          %i.icon-angle-left
 -        Back to help
 +        ヘルプ
      %ul.nav.nav-pills.nav-stacked
-       - %w(README projects project_snippets repositories repository_files commits deploy_keys users groups session issues milestones merge_requests notes system_hooks).each do |file|
-         %li{class: file == @category ? 'active' : nil}
+-      - %w(README projects project_snippets repositories repository_files commits deploy_keys users groups session issues milestones merge_requests notes system_hooks).each do |file|
+-        %li{class: file == @category ? 'active' : nil}
+-          = link_to file.titleize, help_api_file_path(file)
++      - {:README => 'はじめに', :projects => 'プロジェクト', :project_snippets => 'スニペット', :repositories => 'リポジトリ', :repository_files => 'ファイル', :commits => 'コミット', :deploy_keys => 'デプロイキー', :users => 'ユーザ', :groups => 'グループ', :session => 'セッション', :issues => '課題', :milestones => 'マイルストーン', :merge_requests => 'マージリクエスト', :notes => 'ノート', :system_hooks => 'システムフック'}.each do |key, value|
++        %li{class: key.to_s == @category ? 'active' : nil}
++          = link_to value, help_api_file_path(key)
+ 
+   .col-md-9.pull-right
+     = yield
 diff -urN gitlab-rails.bk/app/views/help/_layout.html.haml gitlab-rails/app/views/help/_layout.html.haml
 --- gitlab-rails.bk/app/views/help/_layout.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/help/_layout.html.haml	2014-03-22 09:00:00.000000000 +0900

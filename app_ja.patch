@@ -3947,6 +3947,70 @@ diff -urN gitlab-rails.bk/app/views/help/security.html.haml gitlab-rails/app/vie
        .file-content.wiki
          = preserve do
            = markdown File.read(Rails.root.join("doc", "security", "rack_attack.md"))
+diff -urN gitlab-rails.bk/app/views/help/web_hooks.html.haml gitlab-rails/app/views/help/web_hooks.html.haml
+--- gitlab-rails.bk/app/views/help/web_hooks.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/help/web_hooks.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,22 +1,22 @@
+ = render layout: 'help/layout' do
+-  %h3.page-title Project web hooks
++  %h3.page-title プロジェクトWebフック
+   %p.light
+-    Project web hooks allow you to trigger url if new code is pushed or new issue is created
++    プロジェクトWebフックを使うと、新しいコードのプッシュや課題の作成をトリガーとして指定のURLへリクエストすることができます。
+   %hr
+ 
+   %p.slead
+-    You can configure web hook to listen for specific events like pushes, issues, merge requests.
++    プッシュ、課題、マージリクエストといったイベントから特定のものに対してWebフックを設定することができます。
+     %br
+-    GitLab will send POST request with data to web hook url.
++    GitLab はWebフックのURLに対して POST リクエストでデータを送信します。
+     %br
+-    Web Hooks can be used to update an external issue tracker, trigger CI builds, update a backup mirror, or even deploy to your production server.
++    Webフックは、外部の課題トラッカーの更新、CIビルドの起動、バックアップミラーの更新、本番サーバへのデプロイなどに利用することができます。
+   %hr
+ 
+-  %h4 Push events
++  %h4 プッシュイベント
+   %p.light
+-    Triggered when you push to the repository except pushing tags.
++    リポジトリへのタグ以外のプッシュで実行されます。
+     %br
+-    Request body:
++    リクエストボディ:
+   = highlight_js do
+     :erb
+       {
+@@ -59,11 +59,11 @@
+       };
+ 
+ 
+-  %h4.prepend-top-20 Issues events
++  %h4.prepend-top-20 課題イベント
+   %p.light
+-    Triggered when new issue created or existing issue was updated/closed/reopened.
++    課題の作成/更新/クローズ/再オープンで実行されます。
+     %br
+-    Request body:
++    リクエストボディ:
+   = highlight_js do
+     :erb
+       {
+@@ -84,11 +84,11 @@
+           "iid":23
+         }
+       }
+-  %h4.prepend-top-20 Merge request events
++  %h4.prepend-top-20 マージリクエストイベント
+   %p.light
+-    Triggered when new merge request created or existing merge request was updated/merged/closed.
++    マージリクエストの作成/更新/マージ/クローズで実行されます。
+     %br
+-    Request body:
++    リクエストボディ:
+   = highlight_js do
+     :erb
+       {
 diff -urN gitlab-rails.bk/app/views/help/workflow.html.haml gitlab-rails/app/views/help/workflow.html.haml
 --- gitlab-rails.bk/app/views/help/workflow.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/help/workflow.html.haml	2014-03-22 09:00:00.000000000 +0900

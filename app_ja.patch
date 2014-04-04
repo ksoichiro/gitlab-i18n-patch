@@ -9636,10 +9636,14 @@ diff -urN gitlab-rails.bk/config/locales/devise.ja.yml gitlab-rails/config/local
 diff -urN gitlab-rails.bk/config/locales/ja.yml gitlab-rails/config/locales/ja.yml
 --- gitlab-rails.bk/config/locales/ja.yml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/config/locales/ja.yml	2014-03-22 09:00:00.000000000 +0900
-@@ -0,0 +1,6 @@
+@@ -0,0 +1,10 @@
 +ja:
 +  date:
 +    order:
 +    - :year
 +    - :month
 +    - :day
++  views:
++    pagination:
++      previous: 前へ
++      next: 次へ

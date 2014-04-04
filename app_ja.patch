@@ -594,7 +594,7 @@ diff -urN gitlab-rails.bk/app/helpers/application_helper.rb gitlab-rails/app/hel
  require 'digest/md5'
  require 'uri'
  
-@@ -93,8 +94,8 @@
+@@ -93,15 +94,15 @@
      repository = @project.repository
  
      options = [
@@ -605,6 +605,14 @@ diff -urN gitlab-rails.bk/app/helpers/application_helper.rb gitlab-rails/app/hel
      ]
  
      # If reference is commit id -
+     # we should add it to branch/tag selectbox
+     if(@ref && !options.flatten.include?(@ref) &&
+        @ref =~ /^[0-9a-zA-Z]{6,52}$/)
+-      options << ["Commit", [@ref]]
++      options << ["コミット", [@ref]]
+     end
+ 
+     grouped_options_for_select(options, @ref || @project.default_branch)
 @@ -181,11 +182,11 @@
  
    def search_placeholder

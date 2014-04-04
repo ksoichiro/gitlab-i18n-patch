@@ -2104,6 +2104,7 @@ diff -urN gitlab-rails.bk/app/views/admin/projects/show.html.haml gitlab-rails/a
                - else
                  %span.light= users_project.human_access
                  = link_to project_team_member_path(@project, user), data: { confirm: remove_from_project_team_message(@project, user)}, method: :delete, remote: true, class: "btn btn-small btn-remove" do
+バイナリー・ファイルgitlab-rails.bk/app/views/admin/users/._form.html.haml.swpとgitlab-rails/app/views/admin/users/._form.html.haml.swpは違います
 diff -urN gitlab-rails.bk/app/views/admin/users/_form.html.haml gitlab-rails/app/views/admin/users/_form.html.haml
 --- gitlab-rails.bk/app/views/admin/users/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/admin/users/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -2140,7 +2141,8 @@ diff -urN gitlab-rails.bk/app/views/admin/users/_form.html.haml gitlab-rails/app
 -        %legend Password
 +        %legend パスワード
          .form-group
-           = f.label :password, class: 'control-label'
+-          = f.label :password, class: 'control-label'
++          = f.label :password, 'パスワード', class: 'control-label'
            .col-sm-10
              %strong
 -              A temporary password will be generated and sent to user.

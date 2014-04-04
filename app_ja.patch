@@ -2104,7 +2104,6 @@ diff -urN gitlab-rails.bk/app/views/admin/projects/show.html.haml gitlab-rails/a
                - else
                  %span.light= users_project.human_access
                  = link_to project_team_member_path(@project, user), data: { confirm: remove_from_project_team_message(@project, user)}, method: :delete, remote: true, class: "btn btn-small btn-remove" do
-バイナリー・ファイルgitlab-rails.bk/app/views/admin/users/._form.html.haml.swpとgitlab-rails/app/views/admin/users/._form.html.haml.swpは違います
 diff -urN gitlab-rails.bk/app/views/admin/users/_form.html.haml gitlab-rails/app/views/admin/users/_form.html.haml
 --- gitlab-rails.bk/app/views/admin/users/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/admin/users/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -9634,3 +9633,13 @@ diff -urN gitlab-rails.bk/config/locales/devise.ja.yml gitlab-rails/config/local
 +#        one: "1 error prohibited this %{resource} from being saved:"
 +        other: "%{count} つのエラーにより %{resource} は保存されませんでした:"
 +#        other: "%{count} errors prohibited this %{resource} from being saved:"
+diff -urN gitlab-rails.bk/config/locales/ja.yml gitlab-rails/config/locales/ja.yml
+--- gitlab-rails.bk/config/locales/ja.yml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/config/locales/ja.yml	2014-03-22 09:00:00.000000000 +0900
+@@ -0,0 +1,6 @@
++ja:
++  date:
++    order:
++    - :year
++    - :month
++    - :day

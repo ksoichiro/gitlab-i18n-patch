@@ -10262,3 +10262,40 @@ diff -urN gitlab-rails.bk/doc/raketasks/user_management.md gitlab-rails/doc/rake
  
  ```
  bundle exec rake gitlab:import:all_users_to_all_groups
+diff -urN gitlab-rails.bk/doc/security/rack_attack.md gitlab-rails/doc/security/rack_attack.md
+--- gitlab-rails.bk/doc/security/rack_attack.md	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/doc/security/rack_attack.md	2014-03-22 09:00:00.000000000 +0900
+@@ -1,19 +1,19 @@
+-To prevent abusive clients doing damage GitLab uses rack-attack gem.
+-If you installed or upgraded GitLab by following the official guides this should be enabled by default.
+-If you are missing `config/initializers/rack_attack.rb` the following steps need to be taken in order to enable protection for your GitLab instance:
++クライアントからの大量アクセスによる被害を防ぐため、GitLabは rack-attack の gem を使っています。
++公式ガイドに沿ってGitLabをインストールまたはアップデートしている場合は、デフォルトで有効になっています。
++もし `config/initializers/rack_attack.rb` が存在しない場合は、GitLabインスタンスの保護を有効にするために次のステップを実行する必要があります。
+ 
+-1. In config/application.rb find and uncomment the following line:
++1. config/application.rb の中で次の行を探してコメントを外します：
+   config.middleware.use Rack::Attack
+-2. Rename config/initializers/rack_attack.rb.example to config/initializers/rack_attack.rb
+-3. Review the paths_to_be_protected and add any other path you need protecting
+-4. Restart GitLab instance
++2. config/initializers/rack_attack.rb.example を config/initializers/rack_attack.rb にリネームします。
++3. paths_to_be_protected を確認し、他に保護すべきパスがあれば追加します。
++4. GitLabインスタンスを再起動します。
+ 
+-By default, user sign-in, user sign-up(if enabled) and user password reset is limited to 6 requests per minute.
+-After trying for 6 times, client will have to wait for the next minute to be able to try again.
+-These settings can be found in `config/initializers/rack_attack.rb`
++デフォルトでは、ユーザのサインイン、サインアップ(有効な場合)、ユーザのパスワードリセットは 6 リクエスト/ 分 に制限されています。
++6 回試行すると、クライアントは次の1分間はアクセスできなくなります。
++この設定は `config/initializers/rack_attack.rb` にあります。
+ 
+-If you want more restrictive/relaxed throttle rule change the `limit` or `period` values. For example, more relaxed throttle rule will be if you set limit: 3 and period: 1.second(this will allow 3 requests per second). You can also add other paths to the protected list by adding to `paths_to_be_protected` variable. If you change any of these settings do not forget to restart your GitLab instance.
++さらに制限を厳しい、または緩いスロットル・ルールを設定したい場合は、 `limit` または `period` の値を変更します。例えば、 limit: 3 、 period: 1.second と設定するとより緩やかなスロットル・ルールになります(これは秒間 3 リクエストの制限になります)。 さらに他のパスを保護の対象としたい場合は `paths_to_be_protected` 変数にパスを追加します。これらの設定を変更した後は、GitLabインスタンスを再起動する必要があります。
+ 
+-In case you find throttling is not enough to protect you against abusive clients, rack-attack gem offers IP whitelisting, blacklisting, Fail2ban style filter and tracking.
++大量アクセスするクライアントから保護するのにスロットルでは不十分な場合のために、 rack-attack gem はIPホワイトリスト、ブラックリスト、Fail2ban 形式のフィルターと追跡の機能も備えています。
+ 
+-For more information on how to use these options check out [rack-attack README](https://github.com/kickstarter/rack-attack/blob/master/README.md).
+\ ファイル末尾に改行がありません
++これらのオプションに関するさらに詳細な情報については [rack-attack README](https://github.com/kickstarter/rack-attack/blob/master/README.md) を参照してください。

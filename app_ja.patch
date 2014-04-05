@@ -1121,6 +1121,15 @@ diff -urN gitlab-rails.bk/app/models/project.rb gitlab-rails/app/models/project.
    end
  
    def to_param
+@@ -358,7 +359,7 @@
+   def valid_repo?
+     repository.exists?
+   rescue
+-    errors.add(:path, "Invalid repository path")
++    errors.add(:path, "リポジトリのパスが無効です")
+     false
+   end
+ 
 diff -urN gitlab-rails.bk/app/models/project_services/assembla_service.rb gitlab-rails/app/models/project_services/assembla_service.rb
 --- gitlab-rails.bk/app/models/project_services/assembla_service.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/models/project_services/assembla_service.rb	2014-03-22 09:00:00.000000000 +0900
@@ -9644,7 +9653,7 @@ diff -urN gitlab-rails.bk/config/locales/devise.ja.yml gitlab-rails/config/local
 diff -urN gitlab-rails.bk/config/locales/ja.yml gitlab-rails/config/locales/ja.yml
 --- gitlab-rails.bk/config/locales/ja.yml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/config/locales/ja.yml	2014-03-22 09:00:00.000000000 +0900
-@@ -0,0 +1,10 @@
+@@ -0,0 +1,17 @@
 +ja:
 +  date:
 +    order:
@@ -9655,3 +9664,10 @@ diff -urN gitlab-rails.bk/config/locales/ja.yml gitlab-rails/config/locales/ja.y
 +    pagination:
 +      previous: 前へ
 +      next: 次へ
++  activerecord:
++    errors:
++      models:
++        group:
++          attributes:
++            name:
++              blank: グループ名は必須です

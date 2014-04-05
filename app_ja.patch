@@ -4113,6 +4113,81 @@ diff -urN gitlab-rails.bk/app/views/help/public_access.html.haml gitlab-rails/ap
 +        ログアウトしており、対象のユーザが1つ以上の公開プロジェクトで認可されている(Guest, Reporter など)場合。
 +      %p その他の場合はサインインのページにリダイレクトされます。
 +  ユーザの公開ページを表示したとき、あなたが見ることのできるプロジェクトだけが一覧表示されます。
+diff -urN gitlab-rails.bk/app/views/help/raketasks.html.haml gitlab-rails/app/views/help/raketasks.html.haml
+--- gitlab-rails.bk/app/views/help/raketasks.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/help/raketasks.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,27 +1,27 @@
+ = render layout: 'help/layout' do
+-  %h3.page-title GitLab Rake Tasks
++  %h3.page-title GitLab Rake タスク
+ 
+   %p.slead
+-    GitLab provides some specific rake tasks to enable special features or perform maintenance tasks.
++    GitLab は特殊な機能やメンテナンスを実行するための rake タスクを提供しています。
+ 
+   %ul.nav.nav-tabs.log-tabs
+     %li.active
+-      = link_to "Features", "#features", 'data-toggle' => 'tab'
++      = link_to "機能", "#features", 'data-toggle' => 'tab'
+     %li
+-      = link_to "Maintenance", "#maintenance", 'data-toggle' => 'tab'
++      = link_to "メンテナンス", "#maintenance", 'data-toggle' => 'tab'
+     %li
+-      = link_to "User Management", "#user_management", 'data-toggle' => 'tab'
++      = link_to "ユーザ管理", "#user_management", 'data-toggle' => 'tab'
+     %li
+-      = link_to "Backup & Restore", "#backup_restore", 'data-toggle' => 'tab'
++      = link_to "バックアップ & リストア", "#backup_restore", 'data-toggle' => 'tab'
+     %li
+-      = link_to "Cleanup", "#cleanup", 'data-toggle' => 'tab'
++      = link_to "クリーンアップ", "#cleanup", 'data-toggle' => 'tab'
+ 
+   .tab-content
+     .tab-pane.active#features
+       .file-holder
+         .file-title
+           %i.icon-file
+-          Features
++          機能
+         .file-content.wiki
+           = preserve do
+             = markdown File.read(Rails.root.join("doc", "raketasks", "features.md"))
+@@ -30,7 +30,7 @@
+       .file-holder
+         .file-title
+           %i.icon-file
+-          Maintenance
++          メンテナンス
+         .file-content.wiki
+           = preserve do
+             = markdown File.read(Rails.root.join("doc", "raketasks", "maintenance.md"))
+@@ -39,7 +39,7 @@
+       .file-holder
+         .file-title
+           %i.icon-file
+-          User Management
++          ユーザ管理
+         .file-content.wiki
+           = preserve do
+             = markdown File.read(Rails.root.join("doc", "raketasks", "user_management.md"))
+@@ -48,7 +48,7 @@
+       .file-holder
+         .file-title
+           %i.icon-file
+-          Cleanup
++          クリーンアップ
+         .file-content.wiki
+           = preserve do
+             = markdown File.read(Rails.root.join("doc", "raketasks", "cleanup.md"))
+@@ -57,7 +57,7 @@
+       .file-holder
+         .file-title
+           %i.icon-file
+-          Backup & Restore
++          バックアップ & リストア
+         .file-content.wiki
+           = preserve do
+             = markdown File.read(Rails.root.join("doc", "raketasks", "backup_restore.md"))
 diff -urN gitlab-rails.bk/app/views/help/security.html.haml gitlab-rails/app/views/help/security.html.haml
 --- gitlab-rails.bk/app/views/help/security.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/help/security.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -9917,3 +9992,273 @@ diff -urN gitlab-rails.bk/config/locales/ja.yml gitlab-rails/config/locales/ja.y
 +          attributes:
 +            name:
 +              blank: グループ名は必須です
+diff -urN gitlab-rails.bk/doc/raketasks/backup_restore.md gitlab-rails/doc/raketasks/backup_restore.md
+--- gitlab-rails.bk/doc/raketasks/backup_restore.md	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/doc/raketasks/backup_restore.md	2014-03-22 09:00:00.000000000 +0900
+@@ -1,13 +1,13 @@
+-### Create a backup of the GitLab system
++### GitLabシステムのバックアップの作成
+ 
+-Creates a backup archive of the database and all repositories. This archive will be saved in backup_path (see `config/gitlab.yml`).
+-The filename will be `[TIMESTAMP]_gitlab_backup.tar`. This timestamp can be used to restore an specific backup.
++データベースとすべてのリポジトリのバックアップアーカイブを作成します。このアーカイブは backup_path ( `config/gitlab.yml` を参照)に保存されます。
++ファイル名は `[TIMESTAMP]_gitlab_backup.tar` の形式です。このタイムスタンプはバックアップをリストアするときに使用されます。
+ 
+ ```
+ bundle exec rake gitlab:backup:create RAILS_ENV=production
+ ```
+ 
+-Example output:
++出力例:
+ 
+ ```
+ Dumping database tables:
+@@ -36,19 +36,19 @@
+ Deleting old backups... [SKIPPING]
+ ```
+ 
+-### Restore a previously created backup
++### 以前のバックアップへのリストア
+ 
+ ```
+ bundle exec rake gitlab:backup:restore RAILS_ENV=production
+ ```
+ 
+-Options:
++オプション:
+ 
+ ```
+ BACKUP=timestamp_of_backup (required if more than one backup exists)
+ ```
+ 
+-Example output:
++出力例:
+ 
+ ```
+ Unpacking backup... [DONE]
+@@ -79,7 +79,7 @@
+ Deleting tmp directories...[DONE]
+ ```
+ 
+-### Configure cron to make daily backups
++### 日次バックアップを行うためのcronの設定
+ 
+ ```
+ cd /home/git/gitlab
+@@ -87,7 +87,7 @@
+ sudo -u git crontab -e # Edit the crontab for the git user
+ ```
+ 
+-Add the following lines at the bottom:
++以下の行を末尾に追加します。
+ 
+ ```
+ # Create a full backup of the GitLab repositories and SQL database every day at 2am
+diff -urN gitlab-rails.bk/doc/raketasks/cleanup.md gitlab-rails/doc/raketasks/cleanup.md
+--- gitlab-rails.bk/doc/raketasks/cleanup.md	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/doc/raketasks/cleanup.md	2014-03-22 09:00:00.000000000 +0900
+@@ -1,12 +1,12 @@
+-### Remove garbage from filesystem. Important! Data loss!
++### ファイルシステム上のゴミを削除。重要：データを損失します！
+ 
+-Remove namespaces(dirs) from `/home/git/repositories` if they don't exist in GitLab database.
++`/home/git/repositories` から、GitLabのデータベースに存在しないネームスペース(ディレクトリ)を削除します。
+ 
+ ```
+ bundle exec rake gitlab:cleanup:dirs RAILS_ENV=production
+ ```
+ 
+-Remove repositories (global only for now) from `/home/git/repositories` if they don't exist in GitLab database.
++`/home/git/repositories` から、GitLabのデータベースに存在しないリポジトリ(現在のところはグローバルなもののみ)を削除します。
+ 
+ ```
+ bundle exec rake gitlab:cleanup:repos RAILS_ENV=production
+diff -urN gitlab-rails.bk/doc/raketasks/features.md gitlab-rails/doc/raketasks/features.md
+--- gitlab-rails.bk/doc/raketasks/features.md	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/doc/raketasks/features.md	2014-03-22 09:00:00.000000000 +0900
+@@ -1,31 +1,32 @@
+-### Enable usernames and namespaces for user projects
++### ユーザのプロジェクトでのユーザ名とネームスペースを有効化
+ 
+-This command will enable the namespaces feature introduced in v4.0. It will move every project in its namespace folder.
++このコマンドは、v4.0 で導入されたネームスペースの機能を有効にします。
++すべてのプロジェクトをネームスペースフォルダに移動します。
+ 
+-Note:
++注意:
+ 
+-* Because the **repository location will change**, you will need to **update all your git url's** to point to the new location.
+-* Username can be changed at [Profile / Account](/profile/account)
++* **リポジトリの場所が変更されるため** 、新しい場所を指すように **すべてのGitのURLを更新** する必要があります。
++* ユーザ名は [プロフィール / アカウント設定](/profile/account) から変更することができます。
+ 
+-**Example:**
++**例:**
+ 
+-Old path: `git@example.org:myrepo.git`
+-New path: `git@example.org:username/myrepo.git` or `git@example.org:groupname/myrepo.git`
++古いパス: `git@example.org:myrepo.git`
++新しいパス: `git@example.org:username/myrepo.git` または `git@example.org:groupname/myrepo.git`
+ 
+ ```
+ bundle exec rake gitlab:enable_namespaces RAILS_ENV=production
+ ```
+ 
+ 
+-### Rebuild project satellites
++### プロジェクトサテライトの再構築
+ 
+-This command will build missing satellites for projects. After this you will be able to **merge a merge request** via GitLab and use the **online editor**.
++このコマンドは存在しないプロジェクトサテライトを構築します。このコマンドを実行した後、 **マージリクエストのマージ** をGitLabを通じて **オンラインエディタ** から実行できるようになります。
+ 
+ ```
+ bundle exec rake gitlab:satellites:create RAILS_ENV=production
+ ```
+ 
+-Example output:
++出力例:
+ 
+ ```
+ Creating satellite for abcd.git
+diff -urN gitlab-rails.bk/doc/raketasks/maintenance.md gitlab-rails/doc/raketasks/maintenance.md
+--- gitlab-rails.bk/doc/raketasks/maintenance.md	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/doc/raketasks/maintenance.md	2014-03-22 09:00:00.000000000 +0900
+@@ -1,13 +1,13 @@
+-### Gather information about GitLab and the system it runs on
++### GitLabやシステムに関する情報の収集
+ 
+-This command gathers information about your GitLab installation and the System
+-it runs on. These may be useful when asking for help or reporting issues.
++このコマンドは、GitLabと、GitLabを実行するシステムの情報を収集します。
++これらはヘルプを求めたり問題をレポートするのに便利です。
+ 
+ ```
+ bundle exec rake gitlab:env:info RAILS_ENV=production
+ ```
+ 
+-Example output:
++出力例:
+ 
+ ```
+ System information
+@@ -38,24 +38,24 @@
+ ```
+ 
+ 
+-### Check GitLab configuration
++### GitLab設定の確認
+ 
+-Runs the following rake tasks:
++以下の rake タスクを実行します。
+ 
+ * gitlab:env:check
+ * gitlab:gitlab_shell:check
+ * gitlab:sidekiq:check
+ * gitlab:app:check
+ 
+-It will check that each component was setup according to the installation guide and suggest fixes for issues found.
++各コンポーネントがインストールガイドの通りにインストールされたかどうかチェックし、問題があれば修正方法を提示します。
+ 
+-You may also have a look at our [Trouble Shooting Guide](https://github.com/gitlabhq/gitlab-public-wiki/wiki/Trouble-Shooting-Guide).
++[Trouble Shooting Guide](https://github.com/gitlabhq/gitlab-public-wiki/wiki/Trouble-Shooting-Guide) も確認しておいた方が良いでしょう。
+ 
+ ```
+ bundle exec rake gitlab:check RAILS_ENV=production
+ ```
+ 
+-Example output:
++出力例:
+ 
+ ```
+ Checking Environment ...
+@@ -102,34 +102,34 @@
+ ```
+ 
+ 
+-### (Re-)Create satellite repos
++### サテライトリポジトリの(再)作成
+ 
+-This will create satellite repos for all your projects.
+-If necessary, remove the `tmp/repo_satellites` directory and rerun the command below.
++このコマンドはすべてのプロジェクトのサテライトリポジトリを作成します。  
++必要に応じて、 `tmp/repo_satellites` ディレクトリを削除して以下のコマンドを再実行します。
+ 
+ ```
+ bundle exec rake gitlab:satellites:create RAILS_ENV=production
+ ```
+ 
+-### Import bare repositories into GitLab project instance
++### ベアリポジトリのGitLabプロジェクトインスタンスへのインポート
+ 
+-Notes:
++注意:
+ 
+-* project owner will be a first admin
+-* groups will be created as needed
+-* group owner will be the first admin
+-* existing projects will be skipped
++* プロジェクトの所有者は最初の管理者になります
++* 必要に応じてグループが作成されます
++* グループの所有者が最初の管理者になります
++* 既存のプロジェクトはスキップされます
+ 
+-How to use:
++利用方法:
+ 
+-1. copy your bare repos under git repos_path (see `config/gitlab.yml` gitlab_shell -> repos_path)
+-2. run the command below
++1. ベアリポジトリをGitリポジトリのパス( `config/gitlab.yml` の gitlab_shell -> repos_path を参照)にコピーします
++2. 以下のコマンドを実行します
+ 
+ ```
+ bundle exec rake gitlab:import:repos RAILS_ENV=production
+ ```
+ 
+-Example output:
++出力例:
+ 
+ ```
+ Processing abcd.git
+diff -urN gitlab-rails.bk/doc/raketasks/user_management.md gitlab-rails/doc/raketasks/user_management.md
+--- gitlab-rails.bk/doc/raketasks/user_management.md	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/doc/raketasks/user_management.md	2014-03-22 09:00:00.000000000 +0900
+@@ -1,31 +1,31 @@
+-### Add user as a developer to all projects
++### ユーザを開発者としてすべてのプロジェクトに追加
+ 
+ ```bash
+ bundle exec rake gitlab:import:user_to_projects[username@domain.tld]
+ ```
+ 
+ 
+-### Add all users to all projects
++### すべてのユーザをすべてのプロジェクトへ追加
+ 
+-Notes:
++注意:
+ 
+-* admin users are added as masters
++* 管理者ユーザは Master として追加されます
+ 
+ ```bash
+ bundle exec rake gitlab:import:all_users_to_all_projects
+ ```
+ 
+-### Add user as a developer to all projects
++### ユーザを開発者としてすべてのグループに追加
+ 
+ ```
+ bundle exec rake gitlab:import:user_to_groups[username@domain.tld]
+ ```
+ 
+-### Add all users to all groups
++### すべてのユーザをすべてのグループに追加
+ 
+-Notes:
++注意:
+ 
+-* admin users are added as owners so they can add additional users to the group
++* 管理者ユーザは、グループにユーザを追加できるように所有者として追加されます
+ 
+ ```
+ bundle exec rake gitlab:import:all_users_to_all_groups

@@ -4049,7 +4049,7 @@ diff -urN gitlab-rails.bk/app/views/help/web_hooks.html.haml gitlab-rails/app/vi
 diff -urN gitlab-rails.bk/app/views/help/workflow.html.haml gitlab-rails/app/views/help/workflow.html.haml
 --- gitlab-rails.bk/app/views/help/workflow.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/help/workflow.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -1,47 +1,47 @@
+@@ -1,73 +1,74 @@
  = render layout: 'help/layout' do
 -  %h3.page-title Workflow
 +  %h3.page-title ワークフロー
@@ -4107,39 +4107,53 @@ diff -urN gitlab-rails.bk/app/views/help/workflow.html.haml gitlab-rails/app/vie
 -  %h4 Protected branch flow
 +  %h4 保護されたブランチのフロー
    %p
-     With the protected branch flow everybody works within the same GitLab project.
-     The project maintainers get Master access and the regular developers get Developer access.
-@@ -49,25 +49,25 @@
-     The developers push feature branches to the project and create merge requests to have their feature branches reviewed and merged into one of the protected branches.
-     Only users with Master access can merge changes into a protected branch.
+-    With the protected branch flow everybody works within the same GitLab project.
+-    The project maintainers get Master access and the regular developers get Developer access.
+-    The maintainers mark the authoritative branches as 'Protected'.
+-    The developers push feature branches to the project and create merge requests to have their feature branches reviewed and merged into one of the protected branches.
+-    Only users with Master access can merge changes into a protected branch.
++    保護されたブランチのフローでは、全員が同じGitLabプロジェクトを使います。
++    プロジェクトの管理者はMasterのアクセス権を、一般の開発者はDeveloperのアクセス権を持ちます。
++    管理者は権威のあるブランチを「保護」としてマークします。
++    開発者はフィーチャーブランチをプロジェクトにプッシュし、レビューと保護ブランチへのマージをしてもらうための
++    マージリクエストを作成します。
++    Master権限のあるユーザだけが保護ブランチへ変更をマージすることができます。
  
 -  %h5 Advantages
 +  %h5 利点
    %ul
-     %li fewer projects means less clutter
-     %li developers need to consider only one remote repository
+-    %li fewer projects means less clutter
+-    %li developers need to consider only one remote repository
++    %li プロジェクトが少ない分、散らかりにくくなります
++    %li 開発者は1つだけのリモートリポジトリを考えれば良くなります
  
 -  %h5 Disadvantages
 +  %h5 欠点
    %ul
-     %li manual setup of protected branch required for each new project
+-    %li manual setup of protected branch required for each new project
++    %li それぞれの新しいプロジェクトに対して手動でブランチの保護を設定する必要があります
  
 -  %h4 Forking workflow
 +  %h4 フォークのワークフロー
    %p
-     With the forking workflow the maintainers get Master access and the regular developers get Reporter access to the authoritative repository, which prohibits them from pushing any changes to it.
-     Developers create forks of the authoritative project and push their feature branches to their own forks.
-     To get their changes into master they need to create a merge request across forks.
+-    With the forking workflow the maintainers get Master access and the regular developers get Reporter access to the authoritative repository, which prohibits them from pushing any changes to it.
+-    Developers create forks of the authoritative project and push their feature branches to their own forks.
+-    To get their changes into master they need to create a merge request across forks.
++    フォークのワークフローでは、管理者はMasterのアクセス権を持ち、一般の開発者は、権威のあるプロジェクトに対して変更を一切プッシュできないようにReporterのアクセス権を持ちます。
++    開発者は権威のあるプロジェクトに対してフォークを作成し、フォークに対してフィーチャーブランチをプッシュします。
++    開発者の変更をマスターに取り込んでもらうにはマージリクエストを作成します。
  
 -  %h5 Advantages
 +  %h5 利点
    %ul
-     %li in an appropriately configured GitLab group, new projects automatically get the required access restrictions for regular developers: fewer manual steps to configure authorization for new projects
+-    %li in an appropriately configured GitLab group, new projects automatically get the required access restrictions for regular developers: fewer manual steps to configure authorization for new projects
++    %li 適切に設定されたGitLabのグループでは、新しいプロジェクトは一般の開発者に必要なアクセス制限が自動的に設定され、新しいプロジェクトでの認可に関する手動の設定は少なくなります
  
 -  %h5 Disadvantages
 +  %h5 欠点
    %ul
-     %li all developers on the project need to keep their forks up to date, which requires more advanced Git skills (managing multiple remotes)
+-    %li all developers on the project need to keep their forks up to date, which requires more advanced Git skills (managing multiple remotes)
++    %li プロジェクト内のすべての開発者はフォークを最新状態に保必要があり、複数のリモートリポジトリを管理するための、より高度なGitのスキルが必要になります
 diff -urN gitlab-rails.bk/app/views/layouts/_head_panel.html.haml gitlab-rails/app/views/layouts/_head_panel.html.haml
 --- gitlab-rails.bk/app/views/layouts/_head_panel.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/layouts/_head_panel.html.haml	2014-03-22 09:00:00.000000000 +0900

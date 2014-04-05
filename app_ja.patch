@@ -24,6 +24,18 @@ diff -urN gitlab-rails.bk/app/assets/javascripts/lib/jquery.timeago.js gitlab-ra
 +  years: "約 %d 年",
 +  wordSeparator: ""
 +};
+diff -urN gitlab-rails.bk/app/assets/javascripts/namespace_select.js.coffee gitlab-rails/app/assets/javascripts/namespace_select.js.coffee
+--- gitlab-rails.bk/app/assets/javascripts/namespace_select.js.coffee	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/assets/javascripts/namespace_select.js.coffee	2014-03-22 09:00:00.000000000 +0900
+@@ -11,7 +11,7 @@
+ 
+   $('.ajax-namespace-select').each (i, select) ->
+     $(select).select2
+-      placeholder: "Search for namespace"
++      placeholder: "ネームスペースを検索"
+       multiple: $(select).hasClass('multiselect')
+       minimumInputLength: 0
+       query: (query) ->
 diff -urN gitlab-rails.bk/app/assets/javascripts/profile.js.coffee gitlab-rails/app/assets/javascripts/profile.js.coffee
 --- gitlab-rails.bk/app/assets/javascripts/profile.js.coffee	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/assets/javascripts/profile.js.coffee	2014-03-22 09:00:00.000000000 +0900
@@ -43,6 +55,18 @@ diff -urN gitlab-rails.bk/app/assets/javascripts/profile.js.coffee gitlab-rails/
 -  $('.profile-groups-avatars').tooltip("placement": "top")
 \ ファイル末尾に改行がありません
 +  $('.profile-groups-avatars').tooltip("placement": "top")
+diff -urN gitlab-rails.bk/app/assets/javascripts/project_users_select.js.coffee gitlab-rails/app/assets/javascripts/project_users_select.js.coffee
+--- gitlab-rails.bk/app/assets/javascripts/project_users_select.js.coffee	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/assets/javascripts/project_users_select.js.coffee	2014-03-22 09:00:00.000000000 +0900
+@@ -4,7 +4,7 @@
+       project_id = $('body').data('project-id')
+ 
+       $(select).select2
+-        placeholder: $(select).data('placeholder') || "Search for a user"
++        placeholder: $(select).data('placeholder') || "ユーザを検索"
+         multiple: $(select).hasClass('multiselect')
+         minimumInputLength: 0
+         query: (query) ->
 diff -urN gitlab-rails.bk/app/assets/javascripts/stat_graph_contributors.js.coffee gitlab-rails/app/assets/javascripts/stat_graph_contributors.js.coffee
 --- gitlab-rails.bk/app/assets/javascripts/stat_graph_contributors.js.coffee	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/assets/javascripts/stat_graph_contributors.js.coffee	2014-03-22 09:00:00.000000000 +0900
@@ -64,6 +88,18 @@ diff -urN gitlab-rails.bk/app/assets/javascripts/stat_graph_contributors.js.coff
      print = print_date_format(x_domain[0]) + " - " + print_date_format(x_domain[1])
      $("#date_header").text(print)
    redraw_author_commit_info: (author) ->
+diff -urN gitlab-rails.bk/app/assets/javascripts/users_select.js.coffee gitlab-rails/app/assets/javascripts/users_select.js.coffee
+--- gitlab-rails.bk/app/assets/javascripts/users_select.js.coffee	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/assets/javascripts/users_select.js.coffee	2014-03-22 09:00:00.000000000 +0900
+@@ -20,7 +20,7 @@
+ 
+   $('.ajax-users-select').each (i, select) ->
+     $(select).select2
+-      placeholder: "Search for a user"
++      placeholder: "ユーザを検索"
+       multiple: $(select).hasClass('multiselect')
+       minimumInputLength: 0
+       query: (query) ->
 diff -urN gitlab-rails.bk/app/controllers/admin/broadcast_messages_controller.rb gitlab-rails/app/controllers/admin/broadcast_messages_controller.rb
 --- gitlab-rails.bk/app/controllers/admin/broadcast_messages_controller.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/controllers/admin/broadcast_messages_controller.rb	2014-03-22 09:00:00.000000000 +0900
@@ -611,7 +647,19 @@ diff -urN gitlab-rails.bk/app/helpers/application_helper.rb gitlab-rails/app/hel
  require 'digest/md5'
  require 'uri'
  
-@@ -93,15 +94,15 @@
+@@ -83,25 +84,25 @@
+     if project.repo_exists?
+       time_ago_with_tooltip(project.repository.commit.committed_date)
+     else
+-      "Never"
++      "なし"
+     end
+   rescue
+-    "Never"
++    "なし"
+   end
+ 
+   def grouped_options_refs(destination = :tree)
      repository = @project.repository
  
      options = [

@@ -637,6 +637,23 @@ diff -urN gitlab-rails.bk/app/helpers/application_helper.rb gitlab-rails/app/hel
          data: { toggle: 'tooltip', placement: placement }
  
        haml_tag :script, "$('." + html_class + "').timeago().tooltip()"
+diff -urN gitlab-rails.bk/app/helpers/namespaces_helper.rb gitlab-rails/app/helpers/namespaces_helper.rb
+--- gitlab-rails.bk/app/helpers/namespaces_helper.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/helpers/namespaces_helper.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,10 +1,11 @@
++# encoding: utf-8
+ module NamespacesHelper
+   def namespaces_options(selected = :current_user, scope = :default)
+     groups = current_user.owned_groups
+     users = [current_user.namespace]
+ 
+-    group_opts = ["Groups", groups.sort_by(&:human_name).map {|g| [g.human_name, g.id]} ]
+-    users_opts = [ "Users", users.sort_by(&:human_name).map {|u| [u.human_name, u.id]} ]
++    group_opts = ["グループ", groups.sort_by(&:human_name).map {|g| [g.human_name, g.id]} ]
++    users_opts = [  "ユーザ", users.sort_by(&:human_name).map {|u| [u.human_name, u.id]} ]
+ 
+     options = []
+     options << group_opts
 diff -urN gitlab-rails.bk/app/helpers/projects_helper.rb gitlab-rails/app/helpers/projects_helper.rb
 --- gitlab-rails.bk/app/helpers/projects_helper.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/helpers/projects_helper.rb	2014-03-22 09:00:00.000000000 +0900

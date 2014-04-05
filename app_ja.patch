@@ -3960,6 +3960,103 @@ diff -urN gitlab-rails.bk/app/views/help/permissions.html.haml gitlab-rails/app/
          %td.permission-x &#10003;
 -  %p.light Any user can remove himself from a group, unless he is the last Owner of the group.
 +  %p.light ユーザが唯一のグループ所有者でない限り、すべてのユーザは自分自身をグループから削除することができます。
+diff -urN gitlab-rails.bk/app/views/help/public_access.html.haml gitlab-rails/app/views/help/public_access.html.haml
+--- gitlab-rails.bk/app/views/help/public_access.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/help/public_access.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,61 +1,61 @@
+ = render layout: 'help/layout' do
+-  %h3.page-title Public Access
++  %h3.page-title 公開アクセス
+ 
+   %p.slead
+-    GitLab allows you to open selected projects to be accessed
+-    %strong publicly
+-    or
+-    %strong internally
+-    \.
++    GitLabは選択されたプロジェクトを
++    %strong 公開
++    または
++    %strong 内部のみ
++    の範囲でアクセスできるように公開範囲を広げることができます。
+     %br
+-    Projects with either of these visibility levels will be listed in the #{link_to "public access directory", public_root_path}.
++    どちらかの可視性が設定されているプロジェクトは #{link_to "公開プロジェクト一覧", public_root_path} に一覧表示されています。
+     %br
+-    Internal projects will only be available to authenticated users.
++    内部のみのプロジェクトは、ログインしたユーザだけが利用することができます。
+ 
+   .clearfix
+     .dashboard-intro-icon
+       = public_icon
+     %h4
+-      Public projects
++      公開プロジェクト
+     %p
+-      Public project can be cloned
+-      %strong without any
+-      authentication.
++      公開プロジェクトは
++      %strong 一切の認証なしで
++      クローンすることができます。
+       %br
+-      It will also be listed on the #{link_to "public access directory", public_root_path}.
++      公開プロジェクトは #{link_to "公開プロジェクト一覧", public_root_path} にも一覧表示されます。
+       %br
+-      %strong Any logged in user
+-      will have #{link_to "Guest", help_permissions_path} permissions on the repository.
++      %strong ログインしたユーザは誰でも
++      リポジトリに対して #{link_to "Guest", help_permissions_path} のアクセス権を持ちます。
+ 
+   .clearfix
+     .dashboard-intro-icon
+       = internal_icon
+     %h4
+-      Internal projects
++      内部プロジェクト
+     %p
+-      Internal project can be cloned by any logged in user.
++      内部プロジェクトはログインしたユーザであれば誰でもクローンすることができます。
+       %br
+-      It will also be listed on the #{link_to "public access directory", public_root_path} for logged in users.
++      内部プロジェクトは、ログインしたユーザの場合 #{link_to "公開プロジェクト一覧", public_root_path} にも表示されます。
+       %br
+-      Any logged in user will have #{link_to "Guest", help_permissions_path} permissions on the repository.
++      ログインしたユーザは誰でもリポジトリに対して #{link_to "Guest", help_permissions_path} のアクセス権を持ちます。
+ 
+-  %h4 How to change project visibility
++  %h4 プロジェクトの可視性レベルの変更方法
+   %ol
+-    %li Go to your project dashboard
+-    %li Click on the "Edit" tab
+-    %li Change "Visibility Level"
++    %li プロジェクトのダッシュボードに移動します
++    %li "編集"をクリックします
++    %li "可視性レベル"を変更します
+ 
+-  %h4 Visibility of users
+-  The public page of users, located at
+-  = succeed "," do
++  %h4 ユーザの可視性
++  ユーザの公開ページは
++  = succeed "" do
+     %code u/username
+-  is visible if either:
++  にあり、
++  以下の場合に閲覧することができます。
+   %ul
+     %li
+-      You are logged in.
++      ログインしている場合。
+     %li
+       %p
+-        You are logged out, and the target user is authorized to (is Guest, Reporter, etc.)
+-        at least one public project.
+-      %p Otherwise, you will be redirected to the sign in page.
+-  When visiting the public page of an user, you will only see listed projects which you can view yourself.
++        ログアウトしており、対象のユーザが1つ以上の公開プロジェクトで認可されている(Guest, Reporter など)場合。
++      %p その他の場合はサインインのページにリダイレクトされます。
++  ユーザの公開ページを表示したとき、あなたが見ることのできるプロジェクトだけが一覧表示されます。
 diff -urN gitlab-rails.bk/app/views/help/security.html.haml gitlab-rails/app/views/help/security.html.haml
 --- gitlab-rails.bk/app/views/help/security.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/help/security.html.haml	2014-03-22 09:00:00.000000000 +0900

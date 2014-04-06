@@ -12,7 +12,7 @@ if [ ! -d /opt/gitlab ]; then
   fi
   if [ ! -f ./${INSTALLER} ]; then
     echo "Getting gitlab omnibus installer..."
-    pushd ./${INSTALL_DIR} > /dev/null 2>&1
+    pushd ./${INSTALLER_DIR} > /dev/null 2>&1
     wget ${INSTALLER_URL} > /dev/null 2>&1
     popd > /dev/null 2>&1
   fi

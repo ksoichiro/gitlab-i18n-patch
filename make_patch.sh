@@ -11,12 +11,13 @@ GITLAB_RAILS_DOC_BAK_DIR=${GITLAB_RAILS_BAK_DIR}/doc
 GITLAB_RAILS_DOC_MOD_DIR=${GITLAB_RAILS_MOD_DIR}/doc
 OUTPUT_DIR=`pwd`
 
-pushd ${GITLAB_SERVICE_DIR} > /dev/null 2>&1
+CURRENT=`pwd`
+cd ${GITLAB_SERVICE_DIR}
 
 diff -urN ${GITLAB_RAILS_APP_BAK_DIR} ${GITLAB_RAILS_APP_MOD_DIR} > ${OUTPUT_DIR}/app_ja.patch.tmp
 diff -urN ${GITLAB_RAILS_CONFIG_BAK_DIR} ${GITLAB_RAILS_CONFIG_MOD_DIR} >> ${OUTPUT_DIR}/app_ja.patch.tmp
 diff -urN ${GITLAB_RAILS_DOC_BAK_DIR} ${GITLAB_RAILS_DOC_MOD_DIR} >> ${OUTPUT_DIR}/app_ja.patch.tmp
-sed -e 's/^\(+++|---\) \([^	]*\)	.*$/\1 \2	2014-03-22 09:00:00.000000000 +0900/' ${OUTPUT_DIR}/app_ja.patch.tmp > ${OUTPUT_DIR}/app_ja.patch
+sed -e 's/^\(+++\|---\) \([^	]*\)	.*$/\1 \2	2014-03-22 09:00:00.000000000 +0900/' ${OUTPUT_DIR}/app_ja.patch.tmp > ${OUTPUT_DIR}/app_ja.patch
 rm -f ${OUTPUT_DIR}/app_ja.patch.tmp
 
-popd > /dev/null 2>&1
+cd ${CURRENT}

@@ -25,6 +25,10 @@ fi
 
 which patch > /dev/null 2>&1
 if [ $? -ne 0 ]; then
+  # for editing files
+  echo "Updating apt-get..."
+  apt-get update
+
   echo "Installing patch..."
   apt-get install -y patch > /dev/null 2>&1
 fi

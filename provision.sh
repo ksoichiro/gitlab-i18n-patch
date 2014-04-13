@@ -25,6 +25,16 @@ fi
 
 which patch > /dev/null 2>&1
 if [ $? -ne 0 ]; then
+  # for editing files
+  echo "Updating apt-get..."
+  apt-get update
+  apt-get install -y vim-gnome
+  apt-get install -y language-pack-ja
+  dpkg-reconfigure locales
+  echo "set encoding=utf-8" >> ~vagrant/.vimrc
+  echo "set fileencodings=iso-2022-jp,sjis,utf-8" >> ~vagrant/.vimrc
+  chown vagrant:vagrant ~vagrant/.vimrc
+
   echo "Installing patch..."
   apt-get install -y patch > /dev/null 2>&1
 fi

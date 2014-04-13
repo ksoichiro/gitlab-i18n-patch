@@ -1055,6 +1055,50 @@ diff -urN gitlab-rails.bk/app/models/namespace.rb gitlab-rails/app/models/namesp
  
    delegate :name, to: :owner, allow_nil: true, prefix: true
  
+diff -urN gitlab-rails.bk/app/models/note.rb gitlab-rails/app/models/note.rb
+--- gitlab-rails.bk/app/models/note.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/models/note.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ # == Schema Information
+ #
+ # Table name: notes
+@@ -58,7 +59,7 @@
+ 
+   class << self
+     def create_status_change_note(noteable, project, author, status, source)
+-      body = "_Status changed to #{status}#{' by ' + source.gfm_reference if source}_"
++      body = "_#{source.gfm_reference + 'が' if source}ステータスを#{status}に変更しました_"
+ 
+       create({
+         noteable: noteable,
+@@ -75,7 +76,7 @@
+       note_options = {
+         project: project,
+         author: author,
+-        note: "_mentioned in #{mentioner.gfm_reference}_",
++        note: "_#{mentioner.gfm_reference} で言及されました_",
+         system: true
+       }
+ 
+@@ -89,7 +90,7 @@
+     end
+ 
+     def create_assignee_change_note(noteable, project, author, assignee)
+-      body = assignee.nil? ? '_Assignee removed_' : "_Reassigned to @#{assignee.username}_"
++      body = assignee.nil? ? '_担当者が削除されました_' : "_@#{assignee.username} に再度割り当てられました_"
+ 
+       create({
+         noteable: noteable,
+@@ -124,7 +125,7 @@
+ 
+   # Determine whether or not a cross-reference note already exists.
+   def self.cross_reference_exists?(noteable, mentioner)
+-    where(noteable_id: noteable.id, system: true, note: "_mentioned in #{mentioner.gfm_reference}_").any?
++    where(noteable_id: noteable.id, system: true, note: "_#{mentioner.gfm_reference} で言及されました_").any?
+   end
+ 
+   def commit_author
 diff -urN gitlab-rails.bk/app/models/notification.rb gitlab-rails/app/models/notification.rb
 --- gitlab-rails.bk/app/models/notification.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/models/notification.rb	2014-03-22 09:00:00.000000000 +0900
@@ -1364,6 +1408,23 @@ diff -urN gitlab-rails.bk/app/services/files/update_service.rb gitlab-rails/app/
        end
      end
    end
+diff -urN gitlab-rails.bk/app/services/notification_service.rb gitlab-rails/app/services/notification_service.rb
+--- gitlab-rails.bk/app/services/notification_service.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/services/notification_service.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ # NotificationService class
+ #
+ # Used for notifying users with emails about different events
+@@ -110,7 +111,7 @@
+     return true unless note.noteable_type.present?
+ 
+     # ignore gitlab service messages
+-    return true if note.note =~ /\A_Status changed to closed_/
++    return true if note.note =~ /\A_ステータスをクローズに変更しました_/
+ 
+     opts = { noteable_type: note.noteable_type, project_id: note.project_id }
+ 
 diff -urN gitlab-rails.bk/app/views/admin/background_jobs/show.html.haml gitlab-rails/app/views/admin/background_jobs/show.html.haml
 --- gitlab-rails.bk/app/views/admin/background_jobs/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/admin/background_jobs/show.html.haml	2014-03-22 09:00:00.000000000 +0900

@@ -8993,7 +8993,17 @@ diff -urN gitlab-rails.bk/app/views/shared/_project_filter.html.haml gitlab-rail
          %ul.nav.nav-pills.nav-stacked.nav-small.labels-filter
            - issue_label_names.each do |label_name|
              %li{class: label_filter_class(label_name)}
-@@ -50,6 +50,6 @@
+@@ -42,14 +42,14 @@
+ 
+           - if issue_label_names.empty?
+             .light-well
+-              Add first label to your issues
++              最初のラベルを追加
+               %br
+-              or #{link_to 'generate', generate_project_labels_path(@project), method: :post} default set of labels
++              または デフォルトのラベルセットを#{link_to '生成', generate_project_labels_path(@project), method: :post}
+ 
+     %fieldset
        - if %w(state scope milestone_id assignee_id label_name).select { |k| params[k].present? }.any?
          = link_to project_entities_path, class: 'cgray pull-right' do
            %i.icon-remove

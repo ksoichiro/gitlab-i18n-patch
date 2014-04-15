@@ -719,6 +719,23 @@ diff -urN gitlab-rails.bk/app/helpers/namespaces_helper.rb gitlab-rails/app/help
  
      options = []
      options << group_opts
+diff -urN gitlab-rails.bk/app/helpers/notes_helper.rb gitlab-rails/app/helpers/notes_helper.rb
+--- gitlab-rails.bk/app/helpers/notes_helper.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/helpers/notes_helper.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ module NotesHelper
+    # Helps to distinguish e.g. commit notes in mr notes list
+   def note_for_main_target?(note)
+@@ -27,7 +28,7 @@
+     if note.updated_at != note.created_at
+       ts << capture_haml do
+         haml_tag :small do
+-          haml_concat " (Edited #{time_ago_with_tooltip(note.updated_at, 'bottom', 'note_edited_ago')})"
++          haml_concat " (#{time_ago_with_tooltip(note.updated_at, 'bottom', 'note_edited_ago')}に編集)"
+         end
+       end
+     end
 diff -urN gitlab-rails.bk/app/helpers/projects_helper.rb gitlab-rails/app/helpers/projects_helper.rb
 --- gitlab-rails.bk/app/helpers/projects_helper.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/helpers/projects_helper.rb	2014-03-22 09:00:00.000000000 +0900

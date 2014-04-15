@@ -8068,7 +8068,7 @@ diff -urN gitlab-rails.bk/app/views/projects/milestones/show.html.haml gitlab-ra
        .col-md-6
          .ui-box
 -          .title Open
-+          .title クローズ
++          .title オープン
            %ul.well-list
              - @merge_requests.opened.each do |merge_request|
                = render 'merge_request', merge_request: merge_request

@@ -6455,7 +6455,12 @@ diff -urN gitlab-rails.bk/app/views/projects/issues/_issue_context.html.haml git
 diff -urN gitlab-rails.bk/app/views/projects/issues/_issue.html.haml gitlab-rails/app/views/projects/issues/_issue.html.haml
 --- gitlab-rails.bk/app/views/projects/issues/_issue.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/issues/_issue.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -13,9 +13,9 @@
+@@ -9,13 +9,13 @@
+       = link_to_gfm issue.title, project_issue_path(issue.project, issue), class: "row_title"
+     - if issue.closed?
+       %small.pull-right
+-        = "CLOSED"
++        = "クローズ"
  
    .issue-info
      - if issue.assignee

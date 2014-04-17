@@ -5980,6 +5980,15 @@ diff -urN gitlab-rails.bk/app/views/profiles/update_username.js.haml gitlab-rail
    :plain
 -    new Flash("Username change failed - #{@user.errors.full_messages.first}", "alert")
 +    new Flash("ユーザ名の変更に失敗しました - #{@user.errors.full_messages.first}", "alert")
+diff -urN gitlab-rails.bk/app/views/projects/blob/_text.html.haml gitlab-rails/app/views/projects/blob/_text.html.haml
+--- gitlab-rails.bk/app/views/projects/blob/_text.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/blob/_text.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -10,4 +10,4 @@
+     - unless blob.empty?
+       = render 'shared/file_hljs', blob: blob
+     - else
+-      %p.nothing_here_message Empty file
++      %p.nothing_here_message 空のファイル
 diff -urN gitlab-rails.bk/app/views/projects/branches/_branch.html.haml gitlab-rails/app/views/projects/branches/_branch.html.haml
 --- gitlab-rails.bk/app/views/projects/branches/_branch.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/branches/_branch.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -9699,6 +9708,15 @@ diff -urN gitlab-rails.bk/app/views/shared/_sort_dropdown.html.haml gitlab-rails
        = link_to project_filter_path(sort: 'milestone_due_later') do
 -        Milestone due later
 +        マイルストーンが遠い順
+diff -urN gitlab-rails.bk/app/views/snippets/_blob_content.html.haml gitlab-rails/app/views/snippets/_blob_content.html.haml
+--- gitlab-rails.bk/app/views/snippets/_blob_content.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/snippets/_blob_content.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -11,4 +11,4 @@
+       = render 'shared/file_hljs', blob: @snippet
+ - else
+   .file-content.code
+-    %p.nothing_here_message Empty file
++    %p.nothing_here_message 空のファイル
 diff -urN gitlab-rails.bk/app/views/snippets/_blob.html.haml gitlab-rails/app/views/snippets/_blob.html.haml
 --- gitlab-rails.bk/app/views/snippets/_blob.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/snippets/_blob.html.haml	2014-03-22 09:00:00.000000000 +0900

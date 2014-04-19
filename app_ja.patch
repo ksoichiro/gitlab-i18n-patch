@@ -5980,6 +5980,29 @@ diff -urN gitlab-rails.bk/app/views/profiles/update_username.js.haml gitlab-rail
    :plain
 -    new Flash("Username change failed - #{@user.errors.full_messages.first}", "alert")
 +    new Flash("ユーザ名の変更に失敗しました - #{@user.errors.full_messages.first}", "alert")
+diff -urN gitlab-rails.bk/app/views/projects/blob/_actions.html.haml gitlab-rails/app/views/projects/blob/_actions.html.haml
+--- gitlab-rails.bk/app/views/projects/blob/_actions.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/blob/_actions.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -2,7 +2,7 @@
+   -# only show edit link for text files
+   - if @blob.text?
+     - if allowed_tree_edit?
+-      = link_to "edit", project_edit_tree_path(@project, @id), class: "btn btn-small"
++      = link_to "編集", project_edit_tree_path(@project, @id), class: "btn btn-small"
+     - else
+       %span.btn.btn-small.disabled edit
+   = link_to "raw", project_raw_path(@project, @id), class: "btn btn-small", target: "_blank"
+@@ -12,8 +12,8 @@
+       = link_to "normal view", project_blob_path(@project, @id), class: "btn btn-small"
+     - else
+       = link_to "blame", project_blame_path(@project, @id), class: "btn btn-small" unless @blob.empty?
+-  = link_to "history", project_commits_path(@project, @id), class: "btn btn-small"
++  = link_to "履歴", project_commits_path(@project, @id), class: "btn btn-small"
+ 
+   - if allowed_tree_edit?
+     = link_to '#modal-remove-blob', class: "remove-blob btn btn-small btn-remove", "data-toggle" => "modal" do
+-      remove
++      削除
 diff -urN gitlab-rails.bk/app/views/projects/blob/_text.html.haml gitlab-rails/app/views/projects/blob/_text.html.haml
 --- gitlab-rails.bk/app/views/projects/blob/_text.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/blob/_text.html.haml	2014-03-22 09:00:00.000000000 +0900

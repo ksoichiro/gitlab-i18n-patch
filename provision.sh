@@ -2,8 +2,8 @@
 
 VAGRANT_SYNC_DIR=/vagrant
 INSTALLER_DIR=packages
-INSTALLER=${INSTALLER_DIR}/gitlab_6.7.2-omnibus-1.ubuntu.12.04_amd64.deb
-INSTALLER_URL=https://downloads-packages.s3.amazonaws.com/gitlab_6.7.2-omnibus-1.ubuntu.12.04_amd64.deb
+INSTALLER=${INSTALLER_DIR}/gitlab_6.7.5-omnibus-1.ubuntu.12.04_amd64.deb
+INSTALLER_URL=https://downloads-packages.s3.amazonaws.com/gitlab_6.7.5-omnibus-1.ubuntu.12.04_amd64.deb
 
 if [ ! -d /opt/gitlab ]; then
   pushd /vagrant > /dev/null 2>&1

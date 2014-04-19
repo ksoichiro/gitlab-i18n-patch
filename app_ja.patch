@@ -729,6 +729,23 @@ diff -urN gitlab-rails.bk/app/helpers/namespaces_helper.rb gitlab-rails/app/help
  
      options = []
      options << group_opts
+diff -urN gitlab-rails.bk/app/helpers/notes_helper.rb gitlab-rails/app/helpers/notes_helper.rb
+--- gitlab-rails.bk/app/helpers/notes_helper.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/helpers/notes_helper.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ module NotesHelper
+    # Helps to distinguish e.g. commit notes in mr notes list
+   def note_for_main_target?(note)
+@@ -27,7 +28,7 @@
+     if note.updated_at != note.created_at
+       ts << capture_haml do
+         haml_tag :small do
+-          haml_concat " (Edited #{time_ago_with_tooltip(note.updated_at, 'bottom', 'note_edited_ago')})"
++          haml_concat " (#{time_ago_with_tooltip(note.updated_at, 'bottom', 'note_edited_ago')}に編集)"
+         end
+       end
+     end
 diff -urN gitlab-rails.bk/app/helpers/projects_helper.rb gitlab-rails/app/helpers/projects_helper.rb
 --- gitlab-rails.bk/app/helpers/projects_helper.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/helpers/projects_helper.rb	2014-03-22 09:00:00.000000000 +0900
@@ -5298,6 +5315,38 @@ diff -urN gitlab-rails.bk/app/views/profiles/update_username.js.haml gitlab-rail
    :plain
 -    new Flash("Username change failed - #{@user.errors.full_messages.first}", "alert")
 +    new Flash("ユーザ名の変更に失敗しました - #{@user.errors.full_messages.first}", "alert")
+diff -urN gitlab-rails.bk/app/views/projects/blob/_actions.html.haml gitlab-rails/app/views/projects/blob/_actions.html.haml
+--- gitlab-rails.bk/app/views/projects/blob/_actions.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/blob/_actions.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -2,7 +2,7 @@
+   -# only show edit link for text files
+   - if @blob.text?
+     - if allowed_tree_edit?
+-      = link_to "edit", project_edit_tree_path(@project, @id), class: "btn btn-small"
++      = link_to "編集", project_edit_tree_path(@project, @id), class: "btn btn-small"
+     - else
+       %span.btn.btn-small.disabled edit
+   = link_to "raw", project_raw_path(@project, @id), class: "btn btn-small", target: "_blank"
+@@ -12,8 +12,8 @@
+       = link_to "normal view", project_blob_path(@project, @id), class: "btn btn-small"
+     - else
+       = link_to "blame", project_blame_path(@project, @id), class: "btn btn-small" unless @blob.empty?
+-  = link_to "history", project_commits_path(@project, @id), class: "btn btn-small"
++  = link_to "履歴", project_commits_path(@project, @id), class: "btn btn-small"
+ 
+   - if allowed_tree_edit?
+     = link_to '#modal-remove-blob', class: "remove-blob btn btn-small btn-remove", "data-toggle" => "modal" do
+-      remove
++      削除
+diff -urN gitlab-rails.bk/app/views/projects/blob/_text.html.haml gitlab-rails/app/views/projects/blob/_text.html.haml
+--- gitlab-rails.bk/app/views/projects/blob/_text.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/blob/_text.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -10,4 +10,4 @@
+     - unless blob.empty?
+       = render 'shared/file_hljs', blob: blob
+     - else
+-      .nothing-here-block Empty file
++      .nothing-here-block 空のファイル
 diff -urN gitlab-rails.bk/app/views/projects/branches/_branch.html.haml gitlab-rails/app/views/projects/branches/_branch.html.haml
 --- gitlab-rails.bk/app/views/projects/branches/_branch.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/branches/_branch.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -5481,6 +5530,18 @@ diff -urN gitlab-rails.bk/app/views/projects/commits/_commits.html.haml gitlab-r
 diff -urN gitlab-rails.bk/app/views/projects/commits/_diffs.html.haml gitlab-rails/app/views/projects/commits/_diffs.html.haml
 --- gitlab-rails.bk/app/views/projects/commits/_diffs.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/commits/_diffs.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -2,9 +2,9 @@
+ - if @suppress_diff
+   .alert.alert-warning
+     %p
+-      %strong Warning! This is a large diff.
++      %strong 警告！これは大きな差分です。
+     %p
+-      To preserve performance the diff is not shown.
++      パフォーマンスを維持するため、差分行は表示されません。
+       - if current_controller?(:commit) or current_controller?(:merge_requests)
+         Please, download the diff as
+         - if current_controller?(:commit)
 @@ -22,14 +22,14 @@
          = link_to "click this link", url_for(force_show_diff: true), class: "underlined-link"
  
@@ -6426,7 +6487,12 @@ diff -urN gitlab-rails.bk/app/views/projects/issues/_issue_context.html.haml git
 diff -urN gitlab-rails.bk/app/views/projects/issues/_issue.html.haml gitlab-rails/app/views/projects/issues/_issue.html.haml
 --- gitlab-rails.bk/app/views/projects/issues/_issue.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/issues/_issue.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -13,9 +13,9 @@
+@@ -9,13 +9,13 @@
+       = link_to_gfm issue.title, project_issue_path(issue.project, issue), class: "row_title"
+     - if issue.closed?
+       %small.pull-right
+-        = "CLOSED"
++        = "クローズ"
  
    .issue-info
      - if issue.assignee
@@ -7445,7 +7511,7 @@ diff -urN gitlab-rails.bk/app/views/projects/milestones/show.html.haml gitlab-ra
        .col-md-6
          .ui-box
 -          .title Open
-+          .title クローズ
++          .title オープン
            %ul.well-list
              - @merge_requests.opened.each do |merge_request|
                = render 'merge_request', merge_request: merge_request
@@ -8927,6 +8993,30 @@ diff -urN gitlab-rails.bk/app/views/shared/_merge_requests.html.haml gitlab-rail
  - else
 -  .nothing-here-block No merge requests to show
 +  .nothing-here-block マージリクエストはありません
+diff -urN gitlab-rails.bk/app/views/shared/_no_ssh.html.haml gitlab-rails/app/views/shared/_no_ssh.html.haml
+--- gitlab-rails.bk/app/views/shared/_no_ssh.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/shared/_no_ssh.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,14 +1,14 @@
+ - if cookies[:hide_no_ssh_message].blank? && current_user.require_ssh_key? && !current_user.hide_no_ssh_key
+   .no-ssh-key-message
+     .container
+-      You won't be able to pull or push project code via SSH until you #{link_to 'add an SSH key', new_profile_key_path} to your profile
++      プロファイルに#{link_to 'SSHキーを追加', new_profile_key_path}するまでプロジェクトのコードをプッシュ、プルすることはできません
+       .pull-right.hidden-xs
+-        = link_to "Don't show again", profile_path(user: {hide_no_ssh_key: true}), method: :put, class: 'hide-no-ssh-message', remote: true
++        = link_to "次から表示しない", profile_path(user: {hide_no_ssh_key: true}), method: :put, class: 'hide-no-ssh-message', remote: true
+         |
+-        = link_to 'Remind later', '#', class: 'hide-no-ssh-message'
++        = link_to '後で表示', '#', class: 'hide-no-ssh-message'
+       .links-xs.visible-xs
+-        = link_to "Add key", new_profile_key_path
++        = link_to "キーを追加", new_profile_key_path
+         |
+-        = link_to "Don't show again", profile_path(user: {hide_no_ssh_key: true}), method: :put, class: 'hide-no-ssh-message', remote: true
++        = link_to "次から表示しない", profile_path(user: {hide_no_ssh_key: true}), method: :put, class: 'hide-no-ssh-message', remote: true
+         |
+-        = link_to 'Later', '#', class: 'hide-no-ssh-message'
++        = link_to '後で表示', '#', class: 'hide-no-ssh-message'
 diff -urN gitlab-rails.bk/app/views/shared/_project_filter.html.haml gitlab-rails/app/views/shared/_project_filter.html.haml
 --- gitlab-rails.bk/app/views/shared/_project_filter.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/shared/_project_filter.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -8969,7 +9059,17 @@ diff -urN gitlab-rails.bk/app/views/shared/_project_filter.html.haml gitlab-rail
          %ul.nav.nav-pills.nav-stacked.nav-small.labels-filter
            - issue_label_names.each do |label_name|
              %li{class: label_filter_class(label_name)}
-@@ -50,6 +50,6 @@
+@@ -42,14 +42,14 @@
+ 
+           - if issue_label_names.empty?
+             .light-well
+-              Add first label to your issues
++              最初のラベルを追加
+               %br
+-              or #{link_to 'generate', generate_project_labels_path(@project), method: :post} default set of labels
++              または デフォルトのラベルセットを#{link_to '生成', generate_project_labels_path(@project), method: :post}
+ 
+     %fieldset
        - if %w(state scope milestone_id assignee_id label_name).select { |k| params[k].present? }.any?
          = link_to project_entities_path, class: 'cgray pull-right' do
            %i.icon-remove
@@ -9034,6 +9134,15 @@ diff -urN gitlab-rails.bk/app/views/shared/_sort_dropdown.html.haml gitlab-rails
        = link_to project_filter_path(sort: 'milestone_due_later') do
 -        Milestone due later
 +        マイルストーンが遠い順
+diff -urN gitlab-rails.bk/app/views/snippets/_blob_content.html.haml gitlab-rails/app/views/snippets/_blob_content.html.haml
+--- gitlab-rails.bk/app/views/snippets/_blob_content.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/snippets/_blob_content.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -11,4 +11,4 @@
+       = render 'shared/file_hljs', blob: @snippet
+ - else
+   .file-content.code
+-    .nothing-here-block Empty file
++    .nothing-here-block 空のファイル
 diff -urN gitlab-rails.bk/app/views/snippets/_blob.html.haml gitlab-rails/app/views/snippets/_blob.html.haml
 --- gitlab-rails.bk/app/views/snippets/_blob.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/snippets/_blob.html.haml	2014-03-22 09:00:00.000000000 +0900

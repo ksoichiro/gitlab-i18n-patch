@@ -34,6 +34,7 @@ if [ $? -ne 0 ]; then
   echo "set encoding=utf-8" >> ~vagrant/.vimrc
   echo "set fileencodings=iso-2022-jp,sjis,utf-8" >> ~vagrant/.vimrc
   chown vagrant:vagrant ~vagrant/.vimrc
+  sed -i "s/#force_color_prompt/force_color_prompt/" ~vagrant/.bashrc
 
   echo "Installing patch..."
   apt-get install -y patch > /dev/null 2>&1

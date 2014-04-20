@@ -1242,12 +1242,12 @@ diff -urN gitlab-rails.bk/app/models/project.rb gitlab-rails/app/models/project.
    validates :name, presence: true, length: { within: 0..255 },
              format: { with: Gitlab::Regex.project_name_regex,
 -                      message: "only letters, digits, spaces & '_' '-' '.' allowed. Letter or digit should be first" }
-+                      message: "英数字, スペース, '_' '-' '.' だけが入力できます。先頭は英数字のみです" }
++                      message: "には英数字, スペース, '_' '-' '.' だけが入力できます。先頭は英数字のみです" }
    validates :path, presence: true, length: { within: 0..255 },
              exclusion: { in: Gitlab::Blacklist.path },
              format: { with: Gitlab::Regex.path_regex,
 -                      message: "only letters, digits & '_' '-' '.' allowed. Letter or digit should be first" }
-+                      message: "英数字, '_' '-' '.' だけが入力できます。先頭は英数字のみです" }
++                      message: "には英数字, '_' '-' '.' だけが入力できます。先頭は英数字のみです" }
    validates :issues_enabled, :wall_enabled, :merge_requests_enabled,
              :wiki_enabled, inclusion: { in: [true, false] }
    validates :issues_tracker_id, length: { maximum: 255 }, allow_blank: true
@@ -10165,7 +10165,7 @@ diff -urN gitlab-rails.bk/config/locales/devise.ja.yml gitlab-rails/config/local
 diff -urN gitlab-rails.bk/config/locales/ja.yml gitlab-rails/config/locales/ja.yml
 --- gitlab-rails.bk/config/locales/ja.yml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/config/locales/ja.yml	2014-03-22 09:00:00.000000000 +0900
-@@ -0,0 +1,17 @@
+@@ -0,0 +1,24 @@
 +ja:
 +  date:
 +    order:
@@ -10177,6 +10177,13 @@ diff -urN gitlab-rails.bk/config/locales/ja.yml gitlab-rails/config/locales/ja.y
 +      previous: 前へ
 +      next: 次へ
 +  activerecord:
++    models:
++      project: プロジェクト
++    attributes:
++      project:
++        name: プロジェクト名
++        path: リポジトリパス
++        import_url: インポートURL
 +    errors:
 +      models:
 +        group:

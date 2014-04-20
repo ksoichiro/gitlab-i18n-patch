@@ -32,7 +32,7 @@ if [ $? -ne 0 ]; then
   apt-get install -y language-pack-ja
   dpkg-reconfigure locales
   echo "set encoding=utf-8" >> ~vagrant/.vimrc
-  echo "set fileencodings=iso-2022-jp,sjis,utf-8" >> ~vagrant/.vimrc
+  echo "set fileencodings=utf-8,iso-2022-jp,sjis" >> ~vagrant/.vimrc
   chown vagrant:vagrant ~vagrant/.vimrc
   sed -i "s/#force_color_prompt/force_color_prompt/" ~vagrant/.bashrc
 

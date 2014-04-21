@@ -6198,6 +6198,18 @@ diff -urN gitlab-rails.bk/app/views/projects/commits/_commits.html.haml gitlab-r
 diff -urN gitlab-rails.bk/app/views/projects/commits/_diffs.html.haml gitlab-rails/app/views/projects/commits/_diffs.html.haml
 --- gitlab-rails.bk/app/views/projects/commits/_diffs.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/commits/_diffs.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -2,9 +2,9 @@
+ - if @suppress_diff
+   .alert.alert-warning
+     %p
+-      %strong Warning! This is a large diff.
++      %strong 警告！これは大きな差分です。
+     %p
+-      To preserve performance the diff is not shown.
++      パフォーマンスを維持するため、差分行は表示されません。
+       - if current_controller?(:commit) or current_controller?(:merge_requests)
+         Please, download the diff as
+         - if current_controller?(:commit)
 @@ -22,14 +22,14 @@
          = link_to "click this link", url_for(force_show_diff: true), class: "underlined_link"
  

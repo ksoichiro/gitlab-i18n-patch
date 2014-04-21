@@ -2,8 +2,10 @@
 
 VAGRANT_SYNC_DIR=/vagrant
 INSTALLER_DIR=packages
-INSTALLER=${INSTALLER_DIR}/gitlab_6.7.5-omnibus-1.ubuntu.12.04_amd64.deb
-INSTALLER_URL=https://downloads-packages.s3.amazonaws.com/gitlab_6.7.5-omnibus-1.ubuntu.12.04_amd64.deb
+GITLAB_VERSION_FILE=${VAGRANT_SYNC_DIR}/gitlab.version
+GITLAB_VERSION=`cat ${GITLAB_VERSION_FILE}`
+INSTALLER=${INSTALLER_DIR}/gitlab_${GITLAB_VERSION}-omnibus-1.ubuntu.12.04_amd64.deb
+INSTALLER_URL=https://downloads-packages.s3.amazonaws.com/gitlab_${GITLAB_VERSION}-omnibus-1.ubuntu.12.04_amd64.deb
 
 if [ ! -d /opt/gitlab ]; then
   pushd /vagrant > /dev/null 2>&1
@@ -34,10 +36,15 @@ if [ $? -ne 0 ]; then
   echo "set encoding=utf-8" >> ~vagrant/.vimrc
   echo "set fileencodings=utf-8,iso-2022-jp,sjis" >> ~vagrant/.vimrc
   chown vagrant:vagrant ~vagrant/.vimrc
-  sed -i "s/#force_color_prompt/force_color_prompt/" ~vagrant/.bashrc
 
   echo "Installing patch..."
   apt-get install -y patch > /dev/null 2>&1
+fi
+
+grep GITLAB_VERSION ~vagrant/.bashrc > /dev/null 2>&1
+if [ $? -ne 0 ]; then
+  echo "GITLAB_VERSION=\`cat ${GITLAB_VERSION_FILE}\`" >> ~vagrant/.bashrc
+  echo 'PS1='\''${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;35m\]${GITLAB_VERSION}\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '\''' >> ~vagrant/.bashrc
 fi
 
 pushd /opt/gitlab/embedded/service > /dev/null 2>&1

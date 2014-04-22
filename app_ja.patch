@@ -7839,7 +7839,8 @@ diff -urN gitlab-rails.bk/app/views/projects/notes/_note.html.haml gitlab-rails/
 +        リンク
        &nbsp;
        - if(note.author_id == current_user.try(:id)) || can?(current_user, :admin_note, @project)
-         = link_to "#", title: "Edit comment", class: "js-note-edit" do
+-        = link_to "#", title: "Edit comment", class: "js-note-edit" do
++        = link_to "#", title: "コメントを編集", class: "js-note-edit" do
            %i.icon-edit
 -          Edit
 +          編集

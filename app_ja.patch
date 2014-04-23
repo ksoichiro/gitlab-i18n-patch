@@ -3083,6 +3083,40 @@ diff -urN gitlab-rails.bk/app/views/devise/passwords/new.html.haml gitlab-rails/
      %strong
 -      = link_to "Sign in", new_session_path(resource_name)
 +      = link_to "サインイン", new_session_path(resource_name)
+diff -urN gitlab-rails.bk/app/views/devise/registrations/edit.html.erb gitlab-rails/app/views/devise/registrations/edit.html.erb
+--- gitlab-rails.bk/app/views/devise/registrations/edit.html.erb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/devise/registrations/edit.html.erb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-<h2>Edit <%= resource_name.to_s.humanize %></h2>
++<h2><%= resource_name.to_s.humanize %>を編集</h2>
+ 
+ <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+   <%= devise_error_messages! %>
+@@ -9,20 +9,20 @@
+   <div><%= f.label :name %><br />
+     <%= f.text_field :name %></div>
+ 
+-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
++  <div><%= f.label :password %> <i>(変更しない場合は空欄のままにしてください)</i><br />
+   <%= f.password_field :password %></div>
+ 
+   <div><%= f.label :password_confirmation %><br />
+   <%= f.password_field :password_confirmation %></div>
+ 
+-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
++  <div><%= f.label :current_password %> <i>(変更の確認のために現在のパスワードを入力してください)</i><br />
+   <%= f.password_field :current_password %></div>
+ 
+-<div><%= f.submit "Update", class: "input_button" %></div>
++<div><%= f.submit "更新", class: "input_button" %></div>
+ <% end %>
+ 
+ <h3>Cancel my account</h3>
+ 
+ <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>.</p>
+ 
+-<%= link_to "Back", :back %>
++<%= link_to "戻る", :back %>
 diff -urN gitlab-rails.bk/app/views/devise/registrations/new.html.haml gitlab-rails/app/views/devise/registrations/new.html.haml
 --- gitlab-rails.bk/app/views/devise/registrations/new.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/devise/registrations/new.html.haml	2014-03-22 09:00:00.000000000 +0900

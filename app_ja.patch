@@ -5331,7 +5331,7 @@ diff -urN gitlab-rails.bk/app/views/profiles/show.html.haml gitlab-rails/app/vie
              - if @user.avatar?
                %hr
 -              = link_to 'Remove avatar', profile_avatar_path, data: { confirm: "Avatar will be removed. Are you sure?"}, method: :delete, class: "btn btn-remove btn-small remove-avatar"
-+              = link_to 'Remove avatar', profile_avatar_path, data: { confirm: "アバターを削除します。よろしいですか？"}, method: :delete, class: "btn btn-remove btn-small remove-avatar"
++              = link_to 'アバターを削除', profile_avatar_path, data: { confirm: "アバターを削除します。よろしいですか？"}, method: :delete, class: "btn btn-remove btn-small remove-avatar"
  
    .form-actions
 -    = f.submit 'Save changes', class: "btn btn-save"

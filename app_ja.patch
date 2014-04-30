@@ -398,6 +398,23 @@ diff -urN gitlab-rails.bk/app/controllers/projects/edit_tree_controller.rb gitla
  
        if from_merge_request
          from_merge_request.reload_code
+diff -urN gitlab-rails.bk/app/controllers/projects/issues_controller.rb gitlab-rails/app/controllers/projects/issues_controller.rb
+--- gitlab-rails.bk/app/controllers/projects/issues_controller.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/controllers/projects/issues_controller.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ class Projects::IssuesController < Projects::ApplicationController
+   before_filter :module_enabled
+   before_filter :issue, only: [:edit, :update, :show]
+@@ -93,7 +94,7 @@
+ 
+   def bulk_update
+     result = Issues::BulkUpdateService.new(project, current_user, params).execute
+-    redirect_to :back, notice: "#{result[:count]} issues updated"
++    redirect_to :back, notice: "#{result[:count]}件の課題が更新されました"
+   end
+ 
+   protected
 diff -urN gitlab-rails.bk/app/controllers/projects/merge_requests_controller.rb gitlab-rails/app/controllers/projects/merge_requests_controller.rb
 --- gitlab-rails.bk/app/controllers/projects/merge_requests_controller.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/controllers/projects/merge_requests_controller.rb	2014-03-22 09:00:00.000000000 +0900

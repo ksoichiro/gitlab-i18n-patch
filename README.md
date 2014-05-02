@@ -12,11 +12,11 @@ GitLabはi18nに対応しないとのことですが、
 ## 対応バージョン
 
 1. [GitLab CE v6.7.5](https://gitlab.com/gitlab-org/gitlab-ce/commit/00aa5c16ee6b06dabb5cd63349942f70bb131dda "GitLab CE v6.7.5")  
-   → `v6.7.5`ブランチ
+   → [v6.7.5ブランチ](https://github.com/ksoichiro/gitlab-i18n-patch/tree/v6.7.5)
 2. [GitLab CE v6.7.2](https://gitlab.com/gitlab-org/gitlab-ce/commit/dbbf4ea24c7bed7f1eddcfcbfebb3593bc30e92d "GitLab CE v6.7.2")  
-   → `v6.7.2`ブランチ
+   → [v6.7.2ブランチ](https://github.com/ksoichiro/gitlab-i18n-patch/tree/v6.7.2)
 3. [GitLab CE v6.6.4](https://gitlab.com/gitlab-org/gitlab-ce/commit/42e34aec97818981338401a47560cd40c05e686d "GitLab CE v6.6.4")  
-   → `v6.6.4`ブランチ
+   → [v6.6.4ブランチ](https://github.com/ksoichiro/gitlab-i18n-patch/tree/v6.6.4)
 
 ## 動作確認環境
 

@@ -11,21 +11,23 @@ GitLabはi18nに対応しないとのことですが、
 
 ## 対応バージョン
 
-1. [GitLab CE v6.7.2](https://gitlab.com/gitlab-org/gitlab-ce/commit/dbbf4ea24c7bed7f1eddcfcbfebb3593bc30e92d "GitLab CE v6.7.2")  
+1. [GitLab CE v6.7.5](https://gitlab.com/gitlab-org/gitlab-ce/commit/00aa5c16ee6b06dabb5cd63349942f70bb131dda "GitLab CE v6.7.5")  
+   → `v6.7.5`ブランチ
+2. [GitLab CE v6.7.2](https://gitlab.com/gitlab-org/gitlab-ce/commit/dbbf4ea24c7bed7f1eddcfcbfebb3593bc30e92d "GitLab CE v6.7.2")  
    → `v6.7.2`ブランチ
-2. [GitLab CE v6.6.4](https://gitlab.com/gitlab-org/gitlab-ce/commit/42e34aec97818981338401a47560cd40c05e686d "GitLab CE v6.6.4")  
+3. [GitLab CE v6.6.4](https://gitlab.com/gitlab-org/gitlab-ce/commit/42e34aec97818981338401a47560cd40c05e686d "GitLab CE v6.6.4")  
    → `v6.6.4`ブランチ
 
 ## 動作確認環境
 
-| ソフトウェア | バージョン等                             |
-| ------------ | ---------------------------------------- |
-| マシン       | MacBookPro                               |
-| OS           | OS X 10.9                                |
-| VM           | VirtualBox 4.3.8                         |
-| ゲストOS     | Ubuntu precise 64 VirtualBox             |
-| GitLab       | v6.6.4, v6.7.2 (GitLab Omnibus package)  |
-| Vagrant      | Vagrant 1.5.1                            |
+| ソフトウェア | バージョン等                                     |
+| ------------ | ------------------------------------------------ |
+| マシン       | MacBookPro                                       |
+| OS           | OS X 10.9                                        |
+| VM           | VirtualBox 4.3.8                                 |
+| ゲストOS     | Ubuntu precise 64 VirtualBox                     |
+| GitLab       | v6.6.4, v6.7.2, v6.7.5 (GitLab Omnibus package)  |
+| Vagrant      | Vagrant 1.5.1                                    |
 
 ## 使い方
 

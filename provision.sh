@@ -45,6 +45,7 @@ grep GITLAB_VERSION ~vagrant/.bashrc > /dev/null 2>&1
 if [ $? -ne 0 ]; then
   echo "GITLAB_VERSION=\`cat ${GITLAB_VERSION_FILE}\`" >> ~vagrant/.bashrc
   echo 'PS1='\''${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;35m\]${GITLAB_VERSION}\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '\''' >> ~vagrant/.bashrc
+  echo 'export PATH=${PATH}:/opt/gitlab/embedded/bin' >> ~vagrant/.bashrc
 fi
 
 pushd /opt/gitlab/embedded/service > /dev/null 2>&1

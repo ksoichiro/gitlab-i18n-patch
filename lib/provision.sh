@@ -3,8 +3,15 @@
 VAGRANT_SYNC_DIR=/vagrant
 INSTALLER_DIR=packages
 GITLAB_VERSION=$1
-INSTALLER=${INSTALLER_DIR}/gitlab_${GITLAB_VERSION}-omnibus-1.ubuntu.12.04_amd64.deb
-INSTALLER_URL=https://downloads-packages.s3.amazonaws.com/gitlab_${GITLAB_VERSION}-omnibus-1.ubuntu.12.04_amd64.deb
+
+# Package URL format changed since v6.8.1
+if [ `echo -n "${GITLAB_VERSION}" | sed -e "s/\.//g"` -ge 681 ]; then
+  INSTALLER=${INSTALLER_DIR}/gitlab_${GITLAB_VERSION}-omnibus.4-1_amd64.deb
+  INSTALLER_URL=https://downloads-packages.s3.amazonaws.com/ubuntu-12.04/gitlab_${GITLAB_VERSION}-omnibus.4-1_amd64.deb
+else
+  INSTALLER=${INSTALLER_DIR}/gitlab_${GITLAB_VERSION}-omnibus-1.ubuntu.12.04_amd64.deb
+  INSTALLER_URL=https://downloads-packages.s3.amazonaws.com/gitlab_${GITLAB_VERSION}-omnibus-1.ubuntu.12.04_amd64.deb
+fi
 
 echo "Provisioning GitLab v${GITLAB_VERSION}..."
 
@@ -54,6 +61,10 @@ if [ ! -d ./gitlab-rails.bk ]; then
   echo "Applying patch..."
   patch -p1 < /vagrant/patches/v${GITLAB_VERSION}/app_ja.patch > /dev/null 2>&1
   echo "Refreshing assets (this may take minutes)..."
+  if [ -d /var/opt/gitlab/gitlab-rails/tmp/cache ]; then
+    # Since v6.8.1, permission error occurs in this directory
+    chown -R git:root /var/opt/gitlab/gitlab-rails/tmp/cache
+  fi
   rm -rf ./public/assets > /dev/null 2>&1
   export PATH=$PATH:/opt/gitlab/embedded/bin
   rake assets:precompile RAILS_ENV=production > /dev/null 2>&1

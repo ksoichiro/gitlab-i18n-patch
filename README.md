@@ -11,11 +11,13 @@ GitLabはi18nに対応しないとのことですが、
 
 ## 対応バージョン
 
-1. [GitLab CE v6.7.5](https://gitlab.com/gitlab-org/gitlab-ce/commit/00aa5c16ee6b06dabb5cd63349942f70bb131dda "GitLab CE v6.7.5")  
+1. [GitLab CE v6.8.1](https://gitlab.com/gitlab-org/gitlab-ce/commit/319799073b502392fec9e45d617f566a90bef81e "GitLab CE v6.8.1")  
+   → [patches/v6.8.1ディレクトリ](patches/v6.8.1)
+2. [GitLab CE v6.7.5](https://gitlab.com/gitlab-org/gitlab-ce/commit/00aa5c16ee6b06dabb5cd63349942f70bb131dda "GitLab CE v6.7.5")  
    → [patches/v6.7.5ディレクトリ](patches/v6.7.5)
-2. [GitLab CE v6.7.2](https://gitlab.com/gitlab-org/gitlab-ce/commit/dbbf4ea24c7bed7f1eddcfcbfebb3593bc30e92d "GitLab CE v6.7.2")  
+3. [GitLab CE v6.7.2](https://gitlab.com/gitlab-org/gitlab-ce/commit/dbbf4ea24c7bed7f1eddcfcbfebb3593bc30e92d "GitLab CE v6.7.2")  
    → [patches/v6.7.2ディレクトリ](patches/v6.7.2)
-3. [GitLab CE v6.6.4](https://gitlab.com/gitlab-org/gitlab-ce/commit/42e34aec97818981338401a47560cd40c05e686d "GitLab CE v6.6.4")  
+4. [GitLab CE v6.6.4](https://gitlab.com/gitlab-org/gitlab-ce/commit/42e34aec97818981338401a47560cd40c05e686d "GitLab CE v6.6.4")  
    → [patches/v6.6.4ディレクトリ](patches/v6.6.4)
 
 ## 動作確認環境

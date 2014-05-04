@@ -1,3 +1,4 @@
 /.vagrant/
 /packages/*.deb
 /gitlabhq/
+*.swp

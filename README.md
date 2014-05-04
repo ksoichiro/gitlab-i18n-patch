@@ -33,7 +33,7 @@ GitLabはi18nに対応しないとのことですが、
 
 ### 前提
 
-[GitLab Community Editionのパッケージ](https://gitlab.com/gitlab-org/gitlab-ce)がインストールされているものとします。  
+[GitLab Community Editionのパッケージ](https://www.gitlab.com/downloads/)がインストールされているものとします。  
 
 ### 基本
 

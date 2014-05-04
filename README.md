@@ -29,7 +29,11 @@ GitLabはi18nに対応しないとのことですが、
 | GitLab       | v6.6.4, v6.7.2, v6.7.5 (GitLab Omnibus package)  |
 | Vagrant      | Vagrant 1.5.4                                    |
 
-## 使い方
+## 適用方法
+
+### 前提
+
+[GitLab Community Editionのパッケージ](https://gitlab.com/gitlab-org/gitlab-ce)がインストールされているものとします。  
 
 ### 基本
 
@@ -52,12 +56,14 @@ Javascriptファイルを変更するため、パッチ適用後にプリコン�
     $ rake assets:precompile RAILS_ENV=production
 
 
-### GitLab OmnibusパッケージをVagrantで実行して適用する場合
+## Vagrantでの動作確認
 
-#### 起動
+各バージョンのパッチのメンテナンスができるよう、Vagrantでこのプロジェクトから直接、  
+日本語反映版のGitLabを動かすことができます。
 
-以下のコマンドで、各バージョン用の仮想マシン起動、GitLab Omnibusパッケージをダウンロード、パッチ適用します。  
-(時間がかかります)
+### 起動
+
+以下のコマンドで、各バージョン用の仮想マシン起動、GitLab Omnibusパッケージをダウンロード、パッチ適用を一度に行います。(非常に時間がかかります)
 
     $ vagrant up
 
@@ -65,21 +71,26 @@ Javascriptファイルを変更するため、パッチ適用後にプリコン�
 
     $ vagrant up v664
 
-#### 停止
+### 停止
 
 以下で停止します。
 
     $ vagrant halt
 
-#### 破棄
+### 破棄
 
 以下で仮想マシンを破棄します。
 
     $ vagrant destroy
 
-#### ポート番号
+### ポート番号
 
 Webのポート番号(80)は、 `config/config.rb` に定義する `$base_port` の番号を起点として  
 バージョン番号(v6.6.4なら664)を加えた番号にポートフォワードします。  
 例えば、 `$base_port = 9000` の状態で `vagrant up v664` を実行した場合は  
 `http://localhost:9664` でGitLabにアクセスできます。
+
+## ライセンス
+
+Copyright (c) 2014 Soichiro Kashima  
+Licensed under the MIT license.

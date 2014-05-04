@@ -69,3 +69,19 @@ GitLabには様々なインストール方法があります。
 gitlab-i18n-patchでは`Vagrantfile`を用意しており、GitLab Omnibus Package のURLを
 設定して実行すればパッチ適用までを `vagrant up`だけでできるようになっています。  
 この環境で動作確認(主に、表示ができレイアウト崩れや機能を壊すことがないこと)をします。
+
+## その他
+
+### 新しいバージョンへの対応時に役立つコマンド
+
+コンフリクトしたファイルの一覧:
+
+    git status --short | egrep "^UU" | cut -d " " -f 2
+
+コンフリクトしたファイル一覧の先頭を編集:
+
+    vim $(git status --short | egrep "^UU" | cut -d " " -f 2 | head -n 1)
+
+コンフリクトの修正が済んだ先頭ファイルをIndexへ追加:
+
+    git add $(git status --short | egrep "^UU" | cut -d " " -f 2 | head -n 1) 

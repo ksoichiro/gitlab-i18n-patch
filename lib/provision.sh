@@ -3,6 +3,7 @@
 VAGRANT_SYNC_DIR=/vagrant
 INSTALLER_DIR=packages
 GITLAB_VERSION=$1
+GITLAB_WEB_PORT=$2
 
 # Package URL format changed since v6.8.1
 if [ `echo -n "${GITLAB_VERSION}" | sed -e "s/\.//g"` -ge 681 ]; then
@@ -72,3 +73,7 @@ if [ ! -d ./gitlab-rails.bk ]; then
   gitlab-ctl restart > /dev/null 2>&1
 fi
 popd > /dev/null 2>&1
+
+echo "[33;1mDone![m"
+echo "[33;1mGitLab v${GITLAB_VERSION} has been installed: http://localhost:${GITLAB_WEB_PORT}/[m"
+

@@ -25,6 +25,10 @@ CONTRIBUTINGとしていますが、備忘録程度のものです。
 差分を取得した後で `gitlab-rails` を削除して `gitlab-rails.bk`から再びコピーして復元し、
 取ったばかりの差分を適用してみて正常に適用できるかどうかを確認します。
 
+Vagrantの仮想マシン内で以下を実行します。
+
+    sudo -E /vagrant/lib/make_patch.sh
+
 ## バージョンアップについて
 
 GitLab-CEの新バージョンに日本語訳を適用したい場合、  

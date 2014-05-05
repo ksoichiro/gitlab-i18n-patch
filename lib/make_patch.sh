@@ -1,5 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
+PATCH=app_ja.patch
 GITLAB_SERVICE_DIR=/opt/gitlab/embedded/service
 GITLAB_RAILS_BAK_DIR=gitlab-rails.bk
 GITLAB_RAILS_MOD_DIR=gitlab-rails
@@ -9,15 +10,15 @@ GITLAB_RAILS_CONFIG_BAK_DIR=${GITLAB_RAILS_BAK_DIR}/config
 GITLAB_RAILS_CONFIG_MOD_DIR=${GITLAB_RAILS_MOD_DIR}/config
 GITLAB_RAILS_DOC_BAK_DIR=${GITLAB_RAILS_BAK_DIR}/doc
 GITLAB_RAILS_DOC_MOD_DIR=${GITLAB_RAILS_MOD_DIR}/doc
-OUTPUT_DIR=`pwd`
+OUTPUT_DIR=/vagrant/patches/v${GITLAB_VERSION}
 
 CURRENT=`pwd`
 cd ${GITLAB_SERVICE_DIR}
 
-diff -urN ${GITLAB_RAILS_APP_BAK_DIR} ${GITLAB_RAILS_APP_MOD_DIR} > ${OUTPUT_DIR}/app_ja.patch.tmp
-diff -urN ${GITLAB_RAILS_CONFIG_BAK_DIR} ${GITLAB_RAILS_CONFIG_MOD_DIR} >> ${OUTPUT_DIR}/app_ja.patch.tmp
-diff -urN ${GITLAB_RAILS_DOC_BAK_DIR} ${GITLAB_RAILS_DOC_MOD_DIR} >> ${OUTPUT_DIR}/app_ja.patch.tmp
-sed -e 's/^\(+++\|---\) \([^	]*\)	.*$/\1 \2	2014-03-22 09:00:00.000000000 +0900/' ${OUTPUT_DIR}/app_ja.patch.tmp > ${OUTPUT_DIR}/app_ja.patch
-rm -f ${OUTPUT_DIR}/app_ja.patch.tmp
+diff -urN ${GITLAB_RAILS_APP_BAK_DIR} ${GITLAB_RAILS_APP_MOD_DIR} > ${OUTPUT_DIR}/${PATCH}.tmp
+diff -urN ${GITLAB_RAILS_CONFIG_BAK_DIR} ${GITLAB_RAILS_CONFIG_MOD_DIR} >> ${OUTPUT_DIR}/${PATCH}.tmp
+diff -urN ${GITLAB_RAILS_DOC_BAK_DIR} ${GITLAB_RAILS_DOC_MOD_DIR} >> ${OUTPUT_DIR}/${PATCH}.tmp
+sed -e 's/^\(+++\|---\) \([^	]*\)	.*$/\1 \2	2014-03-22 09:00:00.000000000 +0900/' ${OUTPUT_DIR}/${PATCH}.tmp > ${OUTPUT_DIR}/${PATCH}
+rm -f ${OUTPUT_DIR}/${PATCH}.tmp
 
 cd ${CURRENT}

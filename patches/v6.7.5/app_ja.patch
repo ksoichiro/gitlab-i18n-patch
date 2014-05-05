@@ -4739,7 +4739,7 @@ diff -urN gitlab-rails.bk/app/views/notify/reassigned_merge_request_email.text.e
 diff -urN gitlab-rails.bk/app/views/notify/repository_push_email.html.haml gitlab-rails/app/views/notify/repository_push_email.html.haml
 --- gitlab-rails.bk/app/views/notify/repository_push_email.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/notify/repository_push_email.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -1,6 +1,6 @@
+@@ -1,13 +1,13 @@
 -%h3 #{@author.name} pushed to #{@branch} at #{@project.name_with_namespace}
 +%h3 #{@author.name} が #{@project.name_with_namespace} の #{@branch} ブランチへプッシュしました
  
@@ -4748,6 +4748,14 @@ diff -urN gitlab-rails.bk/app/views/notify/repository_push_email.html.haml gitla
  
  %ul
    - @commits.each do |commit|
+     %li
+       #{commit.short_id} - #{commit.title}
+ 
+-%h4 Diff:
++%h4 差分:
+ - @diffs.each do |diff|
+   %li
+     %strong
 @@ -23,6 +23,6 @@
      %br
  
@@ -5774,7 +5782,7 @@ diff -urN gitlab-rails.bk/app/views/projects/compare/index.html.haml gitlab-rail
 diff -urN gitlab-rails.bk/app/views/projects/compare/show.html.haml gitlab-rails/app/views/projects/compare/show.html.haml
 --- gitlab-rails.bk/app/views/projects/compare/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/compare/show.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -1,20 +1,20 @@
+@@ -1,46 +1,46 @@
  = render "projects/commits/head"
  
  %h3.page-title
@@ -5798,7 +5806,9 @@ diff -urN gitlab-rails.bk/app/views/projects/compare/show.html.haml gitlab-rails
      - else
        %ul.well-list= render Commit.decorate(@commits), project: @project
  
-@@ -23,24 +23,24 @@
+-  %h4 Diff
++  %h4 差分
+   - if @diffs.present?
      = render "projects/commits/diffs", diffs: @diffs, project: @project
    - elsif @commits.size > MergeRequestDiff::COMMITS_SAFE_SIZE
      .bs-callout.bs-callout-danger
@@ -7339,7 +7349,7 @@ diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_no_accept.html
 diff -urN gitlab-rails.bk/app/views/projects/merge_requests/_show.html.haml gitlab-rails/app/views/projects/merge_requests/_show.html.haml
 --- gitlab-rails.bk/app/views/projects/merge_requests/_show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/merge_requests/_show.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -16,7 +16,7 @@
+@@ -16,18 +16,18 @@
        %li.notes-tab{data: {action: 'notes'}}
          = link_to project_merge_request_path(@project, @merge_request) do
            %i.icon-comment
@@ -7348,7 +7358,9 @@ diff -urN gitlab-rails.bk/app/views/projects/merge_requests/_show.html.haml gitl
        %li.diffs-tab{data: {action: 'diffs'}}
          = link_to diffs_project_merge_request_path(@project, @merge_request) do
            %i.icon-list-alt
-@@ -25,9 +25,9 @@
+-          Diff
++          差分
+ 
    - content_for :note_actions do
      - if can?(current_user, :modify_merge_request, @merge_request)
        - unless @merge_request.closed? || @merge_request.merged?

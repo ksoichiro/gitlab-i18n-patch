@@ -6341,9 +6341,9 @@ diff -urN gitlab-rails.bk/app/views/projects/_home_panel.html.haml gitlab-rails/
 -          = link_to pluralize(number_with_delimiter(@repository.commit_count), 'commit'), project_commits_path(@project, @ref || @repository.root_ref)
 -          = link_to pluralize(number_with_delimiter(@repository.branch_names.count), 'branch'), project_branches_path(@project)
 -          = link_to pluralize(number_with_delimiter(@repository.tag_names.count), 'tag'), project_tags_path(@project)
-+          = link_to pluralize(number_with_delimiter(@repository.commit_count), 'コミット'), project_commits_path(@project, @ref || @repository.root_ref)
-+          = link_to pluralize(number_with_delimiter(@repository.branch_names.count), 'ブランチ'), project_branches_path(@project)
-+          = link_to pluralize(number_with_delimiter(@repository.tag_names.count), 'タグ'), project_tags_path(@project)
++          = link_to "#{number_with_delimiter(@repository.commit_count)}コミット", project_commits_path(@project, @ref || @repository.root_ref)
++          = link_to "#{number_with_delimiter(@repository.branch_names.count)}ブランチ", project_branches_path(@project)
++          = link_to "#{number_with_delimiter(@repository.tag_names.count)}タグ", project_tags_path(@project)
            %span.light.prepend-left-20= repository_size
 diff -urN gitlab-rails.bk/app/views/projects/hooks/index.html.haml gitlab-rails/app/views/projects/hooks/index.html.haml
 --- gitlab-rails.bk/app/views/projects/hooks/index.html.haml	2014-03-22 09:00:00.000000000 +0900

@@ -4537,6 +4537,21 @@ diff -urN gitlab-rails.bk/app/views/notify/new_issue_email.html.haml gitlab-rail
    %p
 -    Assignee: #{@issue.assignee_name}
 +    担当者: #{@issue.assignee_name}
+diff -urN gitlab-rails.bk/app/views/notify/new_merge_request_email.text.erb gitlab-rails/app/views/notify/new_merge_request_email.text.erb
+--- gitlab-rails.bk/app/views/notify/new_merge_request_email.text.erb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/notify/new_merge_request_email.text.erb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,8 +1,8 @@
+-New Merge Request #<%= @merge_request.iid %>
++新しいマージリクエスト #<%= @merge_request.iid %>
+ 
+ <%= url_for(project_merge_request_url(@merge_request.target_project, @merge_request)) %>
+ 
+ <%= merge_path_description(@merge_request, 'to') %>
+-Author:   <%= @merge_request.author_name %>
+-Asignee:  <%= @merge_request.assignee_name %>
++作成者:   <%= @merge_request.author_name %>
++担当者:  <%= @merge_request.assignee_name %>
+ 
 diff -urN gitlab-rails.bk/app/views/notify/new_ssh_key_email.html.haml gitlab-rails/app/views/notify/new_ssh_key_email.html.haml
 --- gitlab-rails.bk/app/views/notify/new_ssh_key_email.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/notify/new_ssh_key_email.html.haml	2014-03-22 09:00:00.000000000 +0900

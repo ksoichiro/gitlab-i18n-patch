@@ -7254,6 +7254,52 @@ diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_no_accept.html
    %br
 -  %strong Please close this merge request or change branches with existing one
 +  %strong このマージリクエストをクローズするか、存在するブランチを選び直してください。
+diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_state_widget.html.haml gitlab-rails/app/views/projects/merge_requests/show/_state_widget.html.haml
+--- gitlab-rails.bk/app/views/projects/merge_requests/show/_state_widget.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/merge_requests/show/_state_widget.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -11,30 +11,31 @@
+ 
+     - if @merge_request.closed?
+       %h4
+-        Closed by #{link_to_member(@project, @merge_request.closed_event.author, avatar: false)}
+-        #{time_ago_with_tooltip(@merge_request.closed_event.created_at)}
+-      %p Changes was not merged into target branch
++        #{link_to_member(@project, @merge_request.closed_event.author, avatar: false)}が
++        #{time_ago_with_tooltip(@merge_request.closed_event.created_at)}にクローズしました
++      %p 変更は対象のブランチにマージされませんでした
+ 
+     - if @merge_request.merged?
+       %h4
+-        Merged by #{link_to_member(@project, @merge_request.merge_event.author, avatar: false)}
+-        #{time_ago_with_tooltip(@merge_request.merge_event.created_at)}
++        #{link_to_member(@project, @merge_request.merge_event.author, avatar: false)}が
++        #{time_ago_with_tooltip(@merge_request.merge_event.created_at)}にマージしました
+       = render "projects/merge_requests/show/remove_source_branch"
+ 
+     - if !@closes_issues.empty? && @merge_request.open?
+       .alert.alert-info.alert-info
+         %span
+           %i.icon-ok
+-          Accepting this merge request will close #{@closes_issues.size == 1 ? 'issue' : 'issues'}
+-          = succeed '.' do
++          このマージリクエストを承認すると、次の#{@closes_issues.size}個の課題がクローズされます：
++          = succeed '' do
+             != gfm(@closes_issues.map { |i| "##{i.iid}" }.to_sentence)
+ 
+     - unless @commits.any?
+-      %h4 Nothing to merge
++      %h4 マージするものはありません
+       %p
+-        Nothing to merge from
++        ブランチ
+         %span.label-branch #{@merge_request.source_branch}
+-        to
++        と
+         %span.label-branch #{@merge_request.target_branch}
++        の間でマージするものはありません
+         %br
+-        Try to use different branches or push new code.
++        他のブランチを選択するか、新しいコードを選択してください
 diff -urN gitlab-rails.bk/app/views/projects/merge_requests/_show.html.haml gitlab-rails/app/views/projects/merge_requests/_show.html.haml
 --- gitlab-rails.bk/app/views/projects/merge_requests/_show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/merge_requests/_show.html.haml	2014-03-22 09:00:00.000000000 +0900

@@ -7909,8 +7909,9 @@ diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_mr_box.html.ha
      %span
        %i.icon-ok
 -      Accepting this merge request will close #{@closes_issues.size == 1 ? 'issue' : 'issues'}
-+      このマージリクエストを承認すると課題がクローズされます
-       = succeed '.' do
+-      = succeed '.' do
++      このマージリクエストを承認すると、次の課題がクローズされます：
++      = succeed '' do
          != gfm(@closes_issues.map { |i| "##{i.iid}" }.to_sentence)
 diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_mr_title.html.haml gitlab-rails/app/views/projects/merge_requests/show/_mr_title.html.haml
 --- gitlab-rails.bk/app/views/projects/merge_requests/show/_mr_title.html.haml	2014-03-22 09:00:00.000000000 +0900

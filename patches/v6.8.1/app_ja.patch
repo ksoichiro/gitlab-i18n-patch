@@ -5640,7 +5640,13 @@ diff -urN gitlab-rails.bk/app/views/projects/commits/_diffs.html.haml gitlab-rai
                    %span.commit-short-id= @commit.short_id(6)
            - else
              %span= diff.new_path
-@@ -67,11 +67,11 @@
+@@ -62,16 +62,16 @@
+             .diff-btn-group
+               = link_to "#", class: "js-toggle-button btn btn-small" do
+                 %i.icon-chevron-down
+-                Diff comments
++                差分へのコメント
+               &nbsp;
  
                - if @merge_request && @merge_request.source_project
                  = link_to project_edit_tree_path(@merge_request.source_project, tree_join(@merge_request.source_branch, diff.new_path), from_merge_request_id: @merge_request.id), { class: 'btn btn-small' } do

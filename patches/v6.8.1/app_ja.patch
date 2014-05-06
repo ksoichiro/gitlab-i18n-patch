@@ -67,6 +67,15 @@ diff -urN gitlab-rails.bk/app/assets/javascripts/project_users_select.js.coffee 
          multiple: $(select).hasClass('multiselect')
          minimumInputLength: 0
          query: (query) ->
+@@ -12,7 +12,7 @@
+             data = { results: users }
+ 
+             nullUser = {
+-              name: 'Unassigned',
++              name: '担当なし',
+               avatar: null,
+               username: 'none',
+               id: ''
 diff -urN gitlab-rails.bk/app/assets/javascripts/stat_graph_contributors.js.coffee gitlab-rails/app/assets/javascripts/stat_graph_contributors.js.coffee
 --- gitlab-rails.bk/app/assets/javascripts/stat_graph_contributors.js.coffee	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/assets/javascripts/stat_graph_contributors.js.coffee	2014-03-22 09:00:00.000000000 +0900

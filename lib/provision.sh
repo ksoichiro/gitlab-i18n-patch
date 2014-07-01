@@ -72,8 +72,8 @@ if [ ! -d ./gitlab-rails.bk ]; then
     chown -R git:root /var/opt/gitlab/gitlab-rails/tmp/cache
   fi
   rm -rf ./public/assets > /dev/null 2>&1
-  export PATH=$PATH:/opt/gitlab/embedded/bin
-  rake assets:precompile RAILS_ENV=production > /dev/null 2>&1
+  export PATH=/opt/gitlab/embedded/bin:$PATH
+  bundle exec rake assets:precompile RAILS_ENV=production > /dev/null 2>&1
   echo "Restarting gitlab..."
   gitlab-ctl restart > /dev/null 2>&1
 fi

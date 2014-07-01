@@ -4,12 +4,13 @@ VAGRANT_SYNC_DIR=/vagrant
 INSTALLER_DIR=packages
 GITLAB_VERSION=$1
 GITLAB_WEB_PORT=$2
+GITLAB_VERSION_INT=`echo -n "${GITLAB_VERSION}" | sed -e "s/\.//g"`
 
-if [ `echo -n "${GITLAB_VERSION}" | sed -e "s/\.//g"` -ge 682 ]; then
+if [ ${GITLAB_VERSION_INT} -ge 682 ]; then
   # Package URL format changed since v6.8.1
   INSTALLER=${INSTALLER_DIR}/gitlab_${GITLAB_VERSION}-omnibus-1_amd64.deb
   INSTALLER_URL=https://downloads-packages.s3.amazonaws.com/ubuntu-12.04/gitlab_${GITLAB_VERSION}-omnibus-1_amd64.deb
-elif [ `echo -n "${GITLAB_VERSION}" | sed -e "s/\.//g"` -ge 681 ]; then
+elif [ ${GITLAB_VERSION_INT} -ge 681 ]; then
   # Package URL format changed since v6.8.1
   INSTALLER=${INSTALLER_DIR}/gitlab_${GITLAB_VERSION}-omnibus.4-1_amd64.deb
   INSTALLER_URL=https://downloads-packages.s3.amazonaws.com/ubuntu-12.04/gitlab_${GITLAB_VERSION}-omnibus.4-1_amd64.deb

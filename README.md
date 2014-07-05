@@ -11,22 +11,24 @@ GitLabはi18nに対応しないとのことですが、
 
 ## 対応バージョン
 
+1. [GitLab CE v7.0.0](https://gitlab.com/gitlab-org/gitlab-ce/commit/d1e424bd5c403d73d399bf0f92e39aefde56e638 "GitLab CE v7.0.0") → [patches/v7.0.0ディレクトリ](patches/v7.0.0)
+1. [GitLab CE v6.9.2](https://gitlab.com/gitlab-org/gitlab-ce/commit/e46b644a8857a53ed3f6c3f64b224bb74b06fd8e "GitLab CE v6.9.2") → [patches/v6.9.2ディレクトリ](patches/v6.9.2)
 1. [GitLab CE v6.9.0](https://gitlab.com/gitlab-org/gitlab-ce/commit/f0a32c69494a1d4dda4c5ec8a7f3b94bc7ceed65 "GitLab CE v6.9.0") → [patches/v6.9.0ディレクトリ](patches/v6.9.0)
-2. [GitLab CE v6.8.2](https://gitlab.com/gitlab-org/gitlab-ce/commit/bfdcbc5380119b82bfbe1927c7daf2ae1d53fe19 "GitLab CE v6.8.2") → [patches/v6.8.2ディレクトリ](patches/v6.8.2)
-3. [GitLab CE v6.8.1](https://gitlab.com/gitlab-org/gitlab-ce/commit/319799073b502392fec9e45d617f566a90bef81e "GitLab CE v6.8.1") → [patches/v6.8.1ディレクトリ](patches/v6.8.1)
-4. [GitLab CE v6.7.5](https://gitlab.com/gitlab-org/gitlab-ce/commit/00aa5c16ee6b06dabb5cd63349942f70bb131dda "GitLab CE v6.7.5") → [patches/v6.7.5ディレクトリ](patches/v6.7.5)
-5. [GitLab CE v6.7.2](https://gitlab.com/gitlab-org/gitlab-ce/commit/dbbf4ea24c7bed7f1eddcfcbfebb3593bc30e92d "GitLab CE v6.7.2") → [patches/v6.7.2ディレクトリ](patches/v6.7.2)
-6. [GitLab CE v6.6.4](https://gitlab.com/gitlab-org/gitlab-ce/commit/42e34aec97818981338401a47560cd40c05e686d "GitLab CE v6.6.4") → [patches/v6.6.4ディレクトリ](patches/v6.6.4)
+1. [GitLab CE v6.8.2](https://gitlab.com/gitlab-org/gitlab-ce/commit/bfdcbc5380119b82bfbe1927c7daf2ae1d53fe19 "GitLab CE v6.8.2") → [patches/v6.8.2ディレクトリ](patches/v6.8.2)
+1. [GitLab CE v6.8.1](https://gitlab.com/gitlab-org/gitlab-ce/commit/319799073b502392fec9e45d617f566a90bef81e "GitLab CE v6.8.1") → [patches/v6.8.1ディレクトリ](patches/v6.8.1)
+1. [GitLab CE v6.7.5](https://gitlab.com/gitlab-org/gitlab-ce/commit/00aa5c16ee6b06dabb5cd63349942f70bb131dda "GitLab CE v6.7.5") → [patches/v6.7.5ディレクトリ](patches/v6.7.5)
+1. [GitLab CE v6.7.2](https://gitlab.com/gitlab-org/gitlab-ce/commit/dbbf4ea24c7bed7f1eddcfcbfebb3593bc30e92d "GitLab CE v6.7.2") → [patches/v6.7.2ディレクトリ](patches/v6.7.2)
+1. [GitLab CE v6.6.4](https://gitlab.com/gitlab-org/gitlab-ce/commit/42e34aec97818981338401a47560cd40c05e686d "GitLab CE v6.6.4") → [patches/v6.6.4ディレクトリ](patches/v6.6.4)
 
 ## 動作確認環境
 
 | ソフトウェア | バージョン等                                     |
 | ------------ | ------------------------------------------------ |
 | マシン       | MacBookPro                                       |
-| OS           | OS X 10.9                                        |
-| VM           | VirtualBox 4.3.10                                |
+| OS           | OS X 10.9.3                                      |
+| VM           | VirtualBox 4.3.12                                |
 | ゲストOS     | Ubuntu Precise 64 VirtualBox                     |
-| GitLab       | v6.6.4, v6.7.2, v6.7.5 (GitLab Omnibus package)  |
+| GitLab       | GitLab Omnibus Package                           |
 | Vagrant      | Vagrant 1.5.4                                    |
 
 ## 適用方法

@@ -52,8 +52,8 @@ Javascriptファイルを変更するため、パッチ適用後にプリコン�
 
     $ cd /opt/gitlab/embedded/service/gitlab-rails
     $ rm -rf public/assets
-    $ export PATH=$PATH:/opt/gitlab/embedded/bin
-    $ rake assets:precompile RAILS_ENV=production
+    $ export PATH=/opt/gitlab/embedded/bin:$PATH
+    $ bundle exec rake assets:precompile RAILS_ENV=production
 
 
 ## Vagrantでの動作確認

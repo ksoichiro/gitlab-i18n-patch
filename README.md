@@ -11,7 +11,8 @@ GitLabはi18nに対応しないとのことですが、
 
 ## 対応バージョン
 
-1. [GitLab CE v7.1.0](https://gitlab.com/gitlab-org/gitlab-ce/commit/68a9203bcef1e44bdf72acf4cc8d4977eec79b7a "GitLab CE v7.1.0") → [patches/v7.0.0ディレクトリ](patches/v7.1.0)
+1. [GitLab CE v7.2.0](https://gitlab.com/gitlab-org/gitlab-ce/commit/da5d33e13ec51006edfffd9e286b0f33781a4c12 "GitLab CE v7.2.0") → [patches/v7.2.0ディレクトリ](patches/v7.2.0)
+1. [GitLab CE v7.1.0](https://gitlab.com/gitlab-org/gitlab-ce/commit/68a9203bcef1e44bdf72acf4cc8d4977eec79b7a "GitLab CE v7.1.0") → [patches/v7.1.0ディレクトリ](patches/v7.1.0)
 1. [GitLab CE v7.0.0](https://gitlab.com/gitlab-org/gitlab-ce/commit/d1e424bd5c403d73d399bf0f92e39aefde56e638 "GitLab CE v7.0.0") → [patches/v7.0.0ディレクトリ](patches/v7.0.0)
 1. [GitLab CE v6.9.2](https://gitlab.com/gitlab-org/gitlab-ce/commit/e46b644a8857a53ed3f6c3f64b224bb74b06fd8e "GitLab CE v6.9.2") → [patches/v6.9.2ディレクトリ](patches/v6.9.2)
 1. [GitLab CE v6.9.0](https://gitlab.com/gitlab-org/gitlab-ce/commit/f0a32c69494a1d4dda4c5ec8a7f3b94bc7ceed65 "GitLab CE v6.9.0") → [patches/v6.9.0ディレクトリ](patches/v6.9.0)

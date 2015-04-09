@@ -36,6 +36,21 @@ diff -urN gitlab-rails.bk/app/assets/javascripts/namespace_select.js.coffee gitl
        multiple: $(select).hasClass('multiselect')
        minimumInputLength: 0
        query: (query) ->
+diff -urN gitlab-rails.bk/app/assets/javascripts/notes.js.coffee gitlab-rails/app/assets/javascripts/notes.js.coffee
+--- gitlab-rails.bk/app/assets/javascripts/notes.js.coffee	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/assets/javascripts/notes.js.coffee	2014-03-22 09:00:00.000000000 +0900
+@@ -188,9 +188,9 @@
+     preview = form.find(".js-note-preview")
+     noteText = form.find(".js-note-text").val()
+     if noteText.trim().length is 0
+-      preview.text "Nothing to preview."
++      preview.text "プレビューする内容がありません"
+     else
+-      preview.text "Loading..."
++      preview.text "読み込み中..."
+       $.post($(this).data("url"),
+         note: noteText
+       ).success (previewData) ->
 diff -urN gitlab-rails.bk/app/assets/javascripts/profile.js.coffee gitlab-rails/app/assets/javascripts/profile.js.coffee
 --- gitlab-rails.bk/app/assets/javascripts/profile.js.coffee	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/assets/javascripts/profile.js.coffee	2014-03-22 09:00:00.000000000 +0900
@@ -60,6 +75,18 @@ diff -urN gitlab-rails.bk/app/assets/javascripts/project_users_select.js.coffee 
          multiple: $(select).hasClass('multiselect')
          minimumInputLength: 0
          query: (query) ->
+@@ -12,9 +12,9 @@
+             data = { results: users }
+ 
+             nullUser = {
+-              name: 'Unassigned',
++              name: '担当なし',
+               avatar: null,
+-              username: 'none',
++              username: 'なし',
+               id: ''
+             }
+ 
 diff -urN gitlab-rails.bk/app/assets/javascripts/stat_graph_contributors.js.coffee gitlab-rails/app/assets/javascripts/stat_graph_contributors.js.coffee
 --- gitlab-rails.bk/app/assets/javascripts/stat_graph_contributors.js.coffee	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/assets/javascripts/stat_graph_contributors.js.coffee	2014-03-22 09:00:00.000000000 +0900
@@ -1116,6 +1143,18 @@ diff -urN gitlab-rails.bk/app/models/note.rb gitlab-rails/app/models/note.rb
          system: true
        }
  
+@@ -91,9 +92,9 @@
+ 
+     def create_milestone_change_note(noteable, project, author, milestone)
+       body = if milestone.nil?
+-               '_Milestone removed_'
++               '_マイルストーンが削除されました_'
+              else
+-               "_Milestone changed to #{milestone.title}_"
++               "_マイルストーンが#{milestone.title}に変更されました_"
+              end
+ 
+       create(
 @@ -106,7 +107,7 @@
      end
  
@@ -1701,6 +1740,84 @@ diff -urN gitlab-rails.bk/app/views/admin/groups/edit.html.haml gitlab-rails/app
 +%h3.page-title グループを編集: #{@group.name}
  %hr
  = render 'form'
+diff -urN gitlab-rails.bk/app/views/admin/groups/_form.html.haml gitlab-rails/app/views/admin/groups/_form.html.haml
+--- gitlab-rails.bk/app/views/admin/groups/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/admin/groups/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -4,25 +4,25 @@
+       %span= @group.errors.full_messages.first
+   .form-group.group_name_holder
+     = f.label :name, class: 'control-label' do
+-      Group name
++      グループ名
+     .col-sm-10
+       = f.text_field :name, placeholder: "Example Group", class: "form-control"
+ 
+   .form-group.group-description-holder
+-    = f.label :description, "Details", class: 'control-label'
++    = f.label :description, "詳細", class: 'control-label'
+     .col-sm-10
+       = f.text_area :description, maxlength: 250, class: "form-control js-gfm-input", rows: 4
+ 
+   .form-group.group-description-holder
+-    = f.label :avatar, "Group avatar", class: 'control-label'
++    = f.label :avatar, "グループアバター", class: 'control-label'
+     .col-sm-10
+       %a.choose-btn.btn.btn-small.js-choose-group-avatar-button
+         %i.icon-paper-clip
+-        %span Choose File ...
++        %span ファイルを選択...
+       &nbsp;
+-      %span.file_name.js-avatar-filename File name...
++      %span.file_name.js-avatar-filename ファイル名...
+       = f.file_field :avatar, class: "js-group-avatar-input hidden"
+-      .light The maximum file size allowed is 100KB.
++      .light ファイルの最大サイズは100KBです
+ 
+   - if @group.new_record?
+     .form-group
+@@ -30,28 +30,28 @@
+       .col-sm-10
+         .bs-callout.bs-callout-info
+           %ul
+-            %li A group is a collection of several projects
+-            %li Groups are private by default
+-            %li Members of a group may only view projects they have permission to access
+-            %li Group project URLs are prefixed with the group namespace
+-            %li Existing projects may be moved into a group
++            %li グループは複数のプロジェクトの集合です。
++            %li グループはデフォルトではプライベートです。
++            %li グループのメンバーはアクセス権のあるプロジェクトだけ参照することができます。
++            %li グループのプロジェクトのURLにはグループのネームスペースのプレフィクスが付きます。
++            %li 既存のプロジェクトをグループに移すこともできます。
+     .form-actions
+-      = f.submit 'Create group', class: "btn btn-create"
+-      = link_to  'Cancel', admin_groups_path, class: "btn btn-cancel"
++      = f.submit 'グループを作成', class: "btn btn-create"
++      = link_to  'キャンセル', admin_groups_path, class: "btn btn-cancel"
+ 
+   - else
+     .form-group.group_name_holder
+       = f.label :path, class: 'control-label' do
+-        %span Group path
++        %span グループのパス
+       .col-sm-10
+         = f.text_field :path, placeholder: "example-group", class: "form-control danger"
+         .bs-callout.bs-callout-danger
+           %ul
+-            %li Changing group path can have unintended side effects.
+-            %li Renaming group path will rename directory for all related projects
+-            %li It will change web url for access group and group projects.
+-            %li It will change the git path to repositories under this group.
++            %li グループのパスを変更すると予期しない副作用が生じる可能性があります。
++            %li グループのパスを変更すると関連するすべてのプロジェクトのディレクトリ名が変更されます。
++            %li グループとグループ内のすべてのプロジェクトのWeb URLが変更されます。
++            %li グループ内のリポジトリのGitのパスも変更されます。
+     .form-actions
+-      = f.submit 'Save changes', class: "btn btn-primary"
+-      = link_to  'Cancel', admin_group_path(@group), class: "btn btn-cancel"
++      = f.submit '変更を保存', class: "btn btn-primary"
++      = link_to  'キャンセル', admin_group_path(@group), class: "btn btn-cancel"
+ 
 diff -urN gitlab-rails.bk/app/views/admin/groups/index.html.haml gitlab-rails/app/views/admin/groups/index.html.haml
 --- gitlab-rails.bk/app/views/admin/groups/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/admin/groups/index.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -2044,7 +2161,7 @@ diff -urN gitlab-rails.bk/app/views/admin/projects/index.html.haml gitlab-rails/
            .visibility-levels
              - Project.visibility_levels.each do |label, level|
                .checkbox
-@@ -35,13 +35,13 @@
+@@ -35,37 +35,37 @@
                      = label
          %hr
          = hidden_field_tag :sort, params[:sort]
@@ -2061,7 +2178,8 @@ diff -urN gitlab-rails.bk/app/views/admin/projects/index.html.haml gitlab-rails/
          .panel-head-actions
            .dropdown.inline
              %a.dropdown-toggle.btn{href: '#', "data-toggle" => "dropdown"}
-@@ -49,23 +49,23 @@
+-              %span.light sort:
++              %span.light 並び替え:
                - if @sort.present?
                  = @sort.humanize
                - else
@@ -2245,13 +2363,16 @@ diff -urN gitlab-rails.bk/app/views/admin/projects/show.html.haml gitlab-rails/a
 diff -urN gitlab-rails.bk/app/views/admin/users/edit.html.haml gitlab-rails/app/views/admin/users/edit.html.haml
 --- gitlab-rails.bk/app/views/admin/users/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/admin/users/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -1,5 +1,5 @@
+@@ -1,7 +1,7 @@
  %h3.page-title
 -  Edit user: #{@user.name}
 +  ユーザを編集: #{@user.name}
  .back-link
    = link_to admin_user_path(@user) do
-     &larr; Back to user page
+-    &larr; Back to user page
++    &larr; ユーザページ
+ %hr
+ = render 'form'
 diff -urN gitlab-rails.bk/app/views/admin/users/_form.html.haml gitlab-rails/app/views/admin/users/_form.html.haml
 --- gitlab-rails.bk/app/views/admin/users/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/admin/users/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -3654,6 +3775,34 @@ diff -urN gitlab-rails.bk/app/views/groups/merge_requests.html.haml gitlab-rails
  %hr
  .row
    .fixed.sidebar-expand-button.hidden-lg.hidden-md
+diff -urN gitlab-rails.bk/app/views/groups/milestones/show.html.haml gitlab-rails/app/views/groups/milestones/show.html.haml
+--- gitlab-rails.bk/app/views/groups/milestones/show.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/groups/milestones/show.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,19 +1,19 @@
+ %h3.page-title
+-  Milestone #{@group_milestone.title}
++  マイルストーン #{@group_milestone.title}
+   .pull-right
+     - if can?(current_user, :manage_group, @group)
+       - if @group_milestone.active?
+-        = link_to 'Close Milestone', group_milestone_path(@group, @group_milestone.safe_title, title: @group_milestone.title, milestone: {state_event: :close }), method: :put, class: "btn btn-small btn-close"
++        = link_to 'マイルストーンをクローズ', group_milestone_path(@group, @group_milestone.safe_title, title: @group_milestone.title, milestone: {state_event: :close }), method: :put, class: "btn btn-small btn-close"
+       - else
+-        = link_to 'Reopen Milestone', group_milestone_path(@group, @group_milestone.safe_title, title: @group_milestone.title, milestone: {state_event: :activate }), method: :put, class: "btn btn-small btn-grouped btn-reopen"
++        = link_to 'マイルストーンを再オープン', group_milestone_path(@group, @group_milestone.safe_title, title: @group_milestone.title, milestone: {state_event: :activate }), method: :put, class: "btn btn-small btn-grouped btn-reopen"
+ 
+ - if (@group_milestone.total_items_count == @group_milestone.closed_items_count) && @group_milestone.active?
+   .alert.alert-success
+-    %span All issues for this milestone are closed. You may close the milestone now.
++    %span すべての課題がクローズされているため、マイルストーンをクローズできます
+ 
+ .back-link
+   = link_to group_milestones_path(@group) do
+-    &larr; To milestones list
++    &larr; マイルストーン一覧
+ 
+ .issue-box{ class: "issue-box-#{@group_milestone.closed? ? 'closed' : 'open'}" }
+   .state.clearfix
 diff -urN gitlab-rails.bk/app/views/groups/_new_group_member.html.haml gitlab-rails/app/views/groups/_new_group_member.html.haml
 --- gitlab-rails.bk/app/views/groups/_new_group_member.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/groups/_new_group_member.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -3675,7 +3824,7 @@ diff -urN gitlab-rails.bk/app/views/groups/_new_group_member.html.haml gitlab-ra
 diff -urN gitlab-rails.bk/app/views/groups/new.html.haml gitlab-rails/app/views/groups/new.html.haml
 --- gitlab-rails.bk/app/views/groups/new.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/groups/new.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -4,12 +4,12 @@
+@@ -4,35 +4,35 @@
        %span= @group.errors.full_messages.first
    .form-group
      = f.label :name, class: 'control-label' do
@@ -3690,7 +3839,22 @@ diff -urN gitlab-rails.bk/app/views/groups/new.html.haml gitlab-rails/app/views/
      .col-sm-10
        = f.text_area :description, maxlength: 250, class: "form-control js-gfm-input", rows: 4, tabindex: 2
  
-@@ -28,11 +28,11 @@
+   .form-group.group-description-holder
+-    = f.label :avatar, "Group avatar", class: 'control-label'
++    = f.label :avatar, "グループアバター", class: 'control-label'
+     .col-sm-10
+       %a.choose-btn.btn.btn-small.js-choose-group-avatar-button
+         %i.icon-paper-clip
+-        %span Choose File ...
++        %span ファイルを選択...
+       &nbsp;
+-      %span.file_name.js-avatar-filename File name...
++      %span.file_name.js-avatar-filename ファイル名...
+       = f.file_field :avatar, class: "js-group-avatar-input hidden"
+-      .light The maximum file size allowed is 100KB.
++      .light ファイルの最大サイズは100KBです
+ 
+   .form-group
      .col-sm-2
      .col-sm-10
        %ul
@@ -3729,6 +3893,21 @@ diff -urN gitlab-rails.bk/app/views/groups/_projects.html.haml gitlab-rails/app/
      - projects.each do |project|
        %li.project-row
          = link_to project_path(project), class: dom_class(project) do
+diff -urN gitlab-rails.bk/app/views/groups/_settings_nav.html.haml gitlab-rails/app/views/groups/_settings_nav.html.haml
+--- gitlab-rails.bk/app/views/groups/_settings_nav.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/groups/_settings_nav.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -2,9 +2,9 @@
+   = nav_link(path: 'groups#edit') do
+     = link_to edit_group_path(@group) do
+       %i.icon-edit
+-      Group
++      グループ
+   = nav_link(path: 'groups#projects') do
+     = link_to projects_group_path(@group) do
+       %i.icon-folder-close
+-      Projects
++      プロジェクト
+ 
 diff -urN gitlab-rails.bk/app/views/groups/show.html.haml gitlab-rails/app/views/groups/show.html.haml
 --- gitlab-rails.bk/app/views/groups/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/groups/show.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -7806,7 +7985,7 @@ diff -urN gitlab-rails.bk/app/views/projects/notes/_discussion_reply_button.html
 diff -urN gitlab-rails.bk/app/views/projects/notes/_form.html.haml gitlab-rails/app/views/projects/notes/_form.html.haml
 --- gitlab-rails.bk/app/views/projects/notes/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/notes/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -8,10 +8,10 @@
+@@ -8,33 +8,33 @@
    %ul.nav.nav-tabs
      %li.active
        = link_to '#note-write-holder', class: 'js-note-write-button' do
@@ -7819,7 +7998,15 @@ diff -urN gitlab-rails.bk/app/views/projects/notes/_form.html.haml gitlab-rails/
    %div
      .note-write-holder
        = f.text_area :note, size: 255, class: 'note_text js-note-text js-gfm-input markdown-area'
-@@ -25,16 +25,16 @@
+ 
+       .light.clearfix
+-        .pull-left Comments are parsed with #{link_to "GitLab Flavored Markdown", help_page_path("markdown", "markdown"),{ target: '_blank', tabindex: -1 }}
+-        .pull-right Attach images (JPG, PNG, GIF) by dragging &amp; dropping or #{link_to "selecting them", '#', class: 'markdown-selector', tabindex: -1 }.
++        .pull-left コメントは#{link_to "GitLab Flavored Markdown", help_page_path("markdown", "markdown"),{ target: '_blank', tabindex: -1 }}形式でパースされます
++        .pull-right ドラッグ &amp; ドロップまたは#{link_to "ファイルを選択", '#', class: 'markdown-selector', tabindex: -1 }して画像 (JPG, PNG, GIF) を添付
+ 
+     .note-preview-holder.hide
+       .js-note-preview
  
    .note-form-actions
      .buttons
@@ -9136,7 +9323,7 @@ diff -urN gitlab-rails.bk/app/views/shared/snippets/_blob.html.haml gitlab-rails
 diff -urN gitlab-rails.bk/app/views/shared/snippets/_form.html.haml gitlab-rails/app/views/shared/snippets/_form.html.haml
 --- gitlab-rails.bk/app/views/shared/snippets/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/shared/snippets/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -7,7 +7,7 @@
+@@ -7,28 +7,28 @@
              %li= msg
  
      .form-group
@@ -9145,7 +9332,25 @@ diff -urN gitlab-rails.bk/app/views/shared/snippets/_form.html.haml gitlab-rails
        .col-sm-10= f.text_field :title, placeholder: "Example Snippet", class: 'form-control', required: true
  
      - unless @snippet.respond_to?(:project)
-@@ -28,7 +28,7 @@
+       .form-group
+-        = f.label "Access", class: 'control-label'
++        = f.label "公開範囲", class: 'control-label'
+         .col-sm-10
+           = f.label :private_true, class: 'radio-label' do
+             = f.radio_button :private, true
+             %span
+-              %strong Private
+-              (only you can see this snippet)
++              %strong プライベート
++              (このスニペットはあなたにしか見えません)
+           %br
+           = f.label :private_false, class: 'radio-label' do
+             = f.radio_button :private, false
+             %span
+-              %strong Public
+-              (GitLab users can see this snippet)
++              %strong 公開
++              (GitLabユーザはこのスニペットを見ることができます)
  
      .form-group
        .file-editor
@@ -9363,6 +9568,15 @@ diff -urN gitlab-rails.bk/app/views/snippets/index.html.haml gitlab-rails/app/vi
  
  %hr
  = render 'snippets'
+diff -urN gitlab-rails.bk/app/views/snippets/new.html.haml gitlab-rails/app/views/snippets/new.html.haml
+--- gitlab-rails.bk/app/views/snippets/new.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/snippets/new.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+ %h3.page-title
+-  New snippet
++  新しいスニペット
+ %hr
+ = render "shared/snippets/form", url: snippets_path(@snippet)
 diff -urN gitlab-rails.bk/app/views/snippets/show.html.haml gitlab-rails/app/views/snippets/show.html.haml
 --- gitlab-rails.bk/app/views/snippets/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/snippets/show.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -9393,6 +9607,17 @@ diff -urN gitlab-rails.bk/app/views/snippets/show.html.haml gitlab-rails/app/vie
  
  .file-holder
    .file-title
+@@ -36,8 +36,8 @@
+     .options
+       .btn-group
+         - if can?(current_user, :modify_personal_snippet, @snippet)
+-          = link_to "edit", edit_snippet_path(@snippet), class: "btn btn-small", title: 'Edit Snippet'
++          = link_to "編集", edit_snippet_path(@snippet), class: "btn btn-small", title: 'Edit Snippet'
+         = link_to "raw", raw_snippet_path(@snippet), class: "btn btn-small", target: "_blank"
+       - if can?(current_user, :admin_personal_snippet, @snippet)
+-        = link_to "remove", snippet_path(@snippet), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-small btn-remove", title: 'Delete Snippet'
++        = link_to "削除", snippet_path(@snippet), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-small btn-remove", title: 'スニペットを削除'
+   = render 'shared/snippets/blob'
 diff -urN gitlab-rails.bk/app/views/snippets/_snippet.html.haml gitlab-rails/app/views/snippets/_snippet.html.haml
 --- gitlab-rails.bk/app/views/snippets/_snippet.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/snippets/_snippet.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -11064,6 +11289,76 @@ diff -urN gitlab-rails.bk/doc/web_hooks/web_hooks.md gitlab-rails/doc/web_hooks/
  
  ```json
  {
+diff -urN gitlab-rails.bk/doc/workflow/project_features.md gitlab-rails/doc/workflow/project_features.md
+--- gitlab-rails.bk/doc/workflow/project_features.md	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/doc/workflow/project_features.md	2014-03-22 09:00:00.000000000 +0900
+@@ -1,35 +1,35 @@
+-# Project features
++# プロジェクトの機能
+ 
+-When in a Project -> Settings, you will find Features on the bottom of the page that you can toggle.
++プロジェクトの設定画面には、ページ下部に、ON/OFFを切り替えられる機能があります。
+ 
+-Below you will find a more elaborate explanation of each of these.
++以下では、各機能をより詳しく説明します。
+ 
+-## Issues
++## 課題
+ 
+-Issues is a really powerful, but lightweight issue tracking system.
++"課題"は本当に強力ですが軽量な課題トラッキングシステムです。
+ 
+-You can make tickets, assign them to people, file them under milestones, order them with labels and have discussion in them.
++チケットを作成し、メンバーにアサインし、マイルストーンを設定し、ラベルをつけてディスカッションすることができます。
+ 
+-They integrate deeply into GitLab and are easily referenced from anywhere by using `#` and the issue number.
++課題はGitLabに深く統合されており、`#`と課題番号を使うことで、どこからでも簡単に参照することができます。
+ 
+-## Merge Requests
++## マージリクエスト
+ 
+-Using a merge request, you can review and discuss code before it is merged in the branch of your code.
++マージリクエストを使うと、ブランチ上のソースコードをマージする前にレビューし、ディスカッションすることができます。
+ 
+-As with issues, it can be assigned; people, issues, etc. can be referenced; milestones attached.
++課題と同じように、メンバーや課題などをアサインすることができ、マイルストーンとともに参照できます。
+ 
+-We see it as an integral part of working together on code and couldn't work without it.
++私たちは、これをソースコード上での共同作業に欠かすことのできない重要な部分だと考えています。
+ 
+ ## Wiki
+ 
+-This is a separate system for documentation, built right into GitLab.
++これはドキュメンテーションのための別のシステムですが、GitLabの一部として組み込まれています。
+ 
+-It is source controlled and is very convenient if you don't want to keep you documentation in your source code, but you do want to keep it in your GitLab project.
++Wikiはソースコードとして管理され、ドキュメントをソースコードの一部には入れたくないけれどもGitLabのプロジェクトの一部としておきたい場合に便利です。
+ 
+-## Snippets
++## スニペット
+ 
+-Snippets are little bits of code or text.
++スニペットはソースコードやテキストの断片です。
+ 
+-This is a nice place to put code or text that is used semi-regularly within the project, but does not belong in source control.
++スニペットは、プロジェクトで半定期的に参照するけれどもソースコード管理はしないようなソースコードやテキストを置いておくのに良い場所です。
+ 
+-For example, a specific config file that is used by > the team that is only valid for the people that work on the code.
++例えば、あるコードを扱うメンバーにのみ有効な特定の設定ファイルなどです。
+diff -urN gitlab-rails.bk/doc/workflow/README.md gitlab-rails/doc/workflow/README.md
+--- gitlab-rails.bk/doc/workflow/README.md	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/doc/workflow/README.md	2014-03-22 09:00:00.000000000 +0900
+@@ -1,5 +1,5 @@
+-- [Workflow](workflow.md)
+-- [Project Features](project_features.md)
+-- [Authorization for merge requests](authorization_for_merge_requests.md)
+-- [Groups](groups.md)
+-- [Labels](labels.md)
++- [ワークフロー](workflow.md)
++- [プロジェクトの機能](project_features.md)
++- [マージリクエストの承認](authorization_for_merge_requests.md)
++- [グループ](groups.md)
++- [ラベル](labels.md)
 diff -urN gitlab-rails.bk/doc/workflow/workflow.md gitlab-rails/doc/workflow/workflow.md
 --- gitlab-rails.bk/doc/workflow/workflow.md	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/doc/workflow/workflow.md	2014-03-22 09:00:00.000000000 +0900

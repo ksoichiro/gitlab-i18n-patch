@@ -47,6 +47,7 @@ if [ $? -ne 0 ]; then
   echo "set encoding=utf-8" >> ~vagrant/.vimrc
   echo "set fileencodings=utf-8,iso-2022-jp,sjis" >> ~vagrant/.vimrc
   chown vagrant:vagrant ~vagrant/.vimrc
+  cp ~vagrant/.vimrc ~root/
 
   echo "Installing patch..."
   apt-get install -y patch > /dev/null 2>&1
@@ -55,8 +56,11 @@ fi
 grep GITLAB_VERSION ~vagrant/.bashrc > /dev/null 2>&1
 if [ $? -ne 0 ]; then
   echo "export GITLAB_VERSION=${GITLAB_VERSION}" >> ~vagrant/.bashrc
+  echo "export GITLAB_VERSION=${GITLAB_VERSION}" >> ~root/.bashrc
   echo 'PS1='\''${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;35m\]${GITLAB_VERSION}\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '\''' >> ~vagrant/.bashrc
+  echo 'PS1='\''${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;35m\]${GITLAB_VERSION}\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '\''' >> ~root/.bashrc
   echo 'export PATH=${PATH}:/opt/gitlab/embedded/bin' >> ~vagrant/.bashrc
+  echo 'export PATH=${PATH}:/opt/gitlab/embedded/bin' >> ~root/.bashrc
 fi
 
 pushd /opt/gitlab/embedded/service > /dev/null 2>&1

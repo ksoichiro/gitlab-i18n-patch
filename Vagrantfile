@@ -6,8 +6,8 @@ require_relative 'lib/util.rb'
 include GitLabI18NPatch::Util
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "precise64"
-  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  config.vm.box = "gitlab-i18n-patch-box-v0.1.0"
+  config.vm.box_url = "https://github.com/ksoichiro/gitlab-i18n-patch-box/releases/download/v0.1.0/precise64.box"
   config.vm.provider "virtualbox" do |v|
     v.memory = 1024
     v.cpus = 2

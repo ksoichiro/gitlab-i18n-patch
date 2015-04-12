@@ -31,6 +31,13 @@ if [ ! -d /opt/gitlab ]; then
   fi
   echo "Installing gitlab..."
   dpkg -i ./${INSTALLER} > /dev/null 2>&1
+
+  # $external_url is not replaced in /etc/gitlab/gitlab.rb:
+  # https://gitlab.com/gitlab-org/omnibus-gitlab/commit/28731b656b350df9c0224e025dedeca1fee0eb06
+  if [ ${GITLAB_VERSION_INT} -ge 740 ]; then
+      sed -i -e "s/^external_url .*$/external_url 'http:\/\/gitlab.example.com'/" /etc/gitlab/gitlab.rb
+  fi
+
   echo "Reconfiguring gitlab..."
   gitlab-ctl reconfigure > /dev/null 2>&1
   popd > /dev/null 2>&1

@@ -36,10 +36,10 @@ if [ ! -d /opt/gitlab ]; then
   popd > /dev/null 2>&1
 fi
 
-grep GITLAB_VERSION ~vagrant/.bashrc > /dev/null 2>&1
+grep -e "^export GITLAB_VERSION=" ~vagrant/.bashrc > /dev/null 2>&1
 if [ $? -ne 0 ]; then
-  echo "export GITLAB_VERSION=${GITLAB_VERSION}" >> ~vagrant/.bashrc
-  echo "export GITLAB_VERSION=${GITLAB_VERSION}" >> ~root/.bashrc
+  sed -i -e "/^PS1=.*$/i export GITLAB_VERSION=${GITLAB_VERSION}" ~vagrant/.bashrc
+  sed -i -e "/^PS1=.*$/i export GITLAB_VERSION=${GITLAB_VERSION}" ~root/.bashrc
   echo 'export PATH=${PATH}:/opt/gitlab/embedded/bin' >> ~vagrant/.bashrc
   echo 'export PATH=${PATH}:/opt/gitlab/embedded/bin' >> ~root/.bashrc
 fi

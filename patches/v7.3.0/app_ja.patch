@@ -2899,8 +2899,17 @@ diff -urN gitlab-rails.bk/app/views/dashboard/_projects.html.haml gitlab-rails/a
  
    %ul.well-list.dash-list
      - projects.each do |project|
-@@ -20,5 +20,5 @@
-           #{@projects_limit} of #{pluralize(@projects_count, 'project')} displayed.
+@@ -13,12 +13,12 @@
+ 
+     - if projects.blank?
+       %li
+-        .nothing-here-block There are no projects here.
++        .nothing-here-block プロジェクトがありません。
+     - if @projects_count > @projects_limit
+       %li.bottom
+         %span.light
+-          #{@projects_limit} of #{pluralize(@projects_count, 'project')} displayed.
++          #{@projects_count} 個中 #{@projects_limit} 件のプロジェクトが表示されています
          .pull-right
            = link_to projects_dashboard_path do
 -            Show all
@@ -3059,6 +3068,22 @@ diff -urN gitlab-rails.bk/app/views/dashboard/_zero_authorized_projects.html.ham
  
  -if @publicish_project_count > 0
    %hr
+@@ -40,11 +41,11 @@
+       %i.icon-globe
+     %div
+       %p.slead
+-        There are
++        サーバ上に
+         %strong= @publicish_project_count
+-        public projects on this server.
++        件の公開プロジェクトがあります。
+         %br
+-        Public projects are an easy way to allow everyone to have read-only access.
++        公開プロジェクトは全員に読み取り専用でのアクセスを許可する簡単な方法です。
+       .link_holder
+         = link_to explore_projects_path, class: "btn btn-new" do
+-          Browse public projects »
++          公開プロジェクトを表示 »
 diff -urN gitlab-rails.bk/app/views/devise/confirmations/new.html.haml gitlab-rails/app/views/devise/confirmations/new.html.haml
 --- gitlab-rails.bk/app/views/devise/confirmations/new.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/devise/confirmations/new.html.haml	2014-03-22 09:00:00.000000000 +0900

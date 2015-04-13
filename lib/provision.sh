@@ -6,7 +6,11 @@ GITLAB_VERSION=$1
 GITLAB_WEB_PORT=$2
 GITLAB_VERSION_INT=`echo -n "${GITLAB_VERSION}" | sed -e "s/\.//g"`
 
-if [ ${GITLAB_VERSION_INT} -ge 682 ]; then
+if [ ${GITLAB_VERSION_INT} -ge 751 ]; then
+  # Package URL format changed since v7.5.1
+  INSTALLER=${INSTALLER_DIR}/gitlab_${GITLAB_VERSION}-omnibus.5.2.1.ci-1_amd64.deb
+  INSTALLER_URL=https://downloads-packages.s3.amazonaws.com/ubuntu-12.04/gitlab_${GITLAB_VERSION}-omnibus.5.2.1.ci-1_amd64.deb
+elif [ ${GITLAB_VERSION_INT} -ge 682 ]; then
   # Package URL format changed since v6.8.1
   INSTALLER=${INSTALLER_DIR}/gitlab_${GITLAB_VERSION}-omnibus-1_amd64.deb
   INSTALLER_URL=https://downloads-packages.s3.amazonaws.com/ubuntu-12.04/gitlab_${GITLAB_VERSION}-omnibus-1_amd64.deb

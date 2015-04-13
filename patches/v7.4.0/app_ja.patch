@@ -120,6 +120,18 @@ diff -urN gitlab-rails.bk/app/assets/javascripts/users_select.js.coffee gitlab-r
        multiple: $(select).hasClass('multiselect')
        minimumInputLength: 0
        query: (query) ->
+diff -urN gitlab-rails.bk/app/assets/stylesheets/sections/dashboard.scss gitlab-rails/app/assets/stylesheets/sections/dashboard.scss
+--- gitlab-rails.bk/app/assets/stylesheets/sections/dashboard.scss	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/assets/stylesheets/sections/dashboard.scss	2014-03-22 09:00:00.000000000 +0900
+@@ -25,7 +25,7 @@
+ 
+ .dashboard {
+   .dash-filter {
+-    width: 205px;
++    width: 160px;
+     float: left;
+     height: inherit;
+   }
 diff -urN gitlab-rails.bk/app/controllers/admin/broadcast_messages_controller.rb gitlab-rails/app/controllers/admin/broadcast_messages_controller.rb
 --- gitlab-rails.bk/app/controllers/admin/broadcast_messages_controller.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/controllers/admin/broadcast_messages_controller.rb	2014-03-22 09:00:00.000000000 +0900
@@ -3977,6 +3989,39 @@ diff -urN gitlab-rails.bk/app/views/groups/_projects.html.haml gitlab-rails/app/
      - projects.each do |project|
        %li.project-row
          = link_to project_path(project), class: dom_class(project) do
+diff -urN gitlab-rails.bk/app/views/groups/projects.html.haml gitlab-rails/app/views/groups/projects.html.haml
+--- gitlab-rails.bk/app/views/groups/projects.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/groups/projects.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -5,12 +5,12 @@
+     .panel.panel-default
+       .panel-heading
+         %strong= @group.name
+-        projects:
++        のプロジェクト:
+         - if can? current_user, :manage_group, @group
+           .panel-head-actions
+             = link_to new_project_path(namespace_id: @group.id), class: "btn btn-new" do
+               %i.fa.fa-plus
+-              New Project
++              新しいプロジェクト
+       %ul.well-list
+         - @projects.each do |project|
+           %li
+@@ -20,10 +20,10 @@
+               %span.label.label-gray
+                 = repository_size(project)
+             .pull-right
+-              = link_to 'Members', project_team_index_path(project), id: "edit_#{dom_id(project)}", class: "btn btn-small"
+-              = link_to 'Edit', edit_project_path(project), id: "edit_#{dom_id(project)}", class: "btn btn-small"
+-              = link_to 'Remove', project, data: { confirm: remove_project_message(project)}, method: :delete, class: "btn btn-small btn-remove"
++              = link_to 'メンバー', project_team_index_path(project), id: "edit_#{dom_id(project)}", class: "btn btn-small"
++              = link_to '編集', edit_project_path(project), id: "edit_#{dom_id(project)}", class: "btn btn-small"
++              = link_to '削除', project, data: { confirm: remove_project_message(project)}, method: :delete, class: "btn btn-small btn-remove"
+         - if @projects.blank?
+-          .nothing-here-block This group has no projects yet
++          .nothing-here-block このグループにはまだプロジェクトがありません
+ 
+     = paginate @projects, theme: "gitlab"
 diff -urN gitlab-rails.bk/app/views/groups/_settings_nav.html.haml gitlab-rails/app/views/groups/_settings_nav.html.haml
 --- gitlab-rails.bk/app/views/groups/_settings_nav.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/groups/_settings_nav.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -5157,7 +5202,7 @@ diff -urN gitlab-rails.bk/app/views/notify/repository_push_email.html.haml gitla
 diff -urN gitlab-rails.bk/app/views/profiles/accounts/show.html.haml gitlab-rails/app/views/profiles/accounts/show.html.haml
 --- gitlab-rails.bk/app/views/profiles/accounts/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/profiles/accounts/show.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -1,34 +1,35 @@
+@@ -1,41 +1,42 @@
  %h3.page-title
 -  Account settings
 +  アカウント設定
@@ -5194,15 +5239,25 @@ diff -urN gitlab-rails.bk/app/views/profiles/accounts/show.html.haml gitlab-rail
                = text_field_tag "token", current_user.private_token, class: "form-control"
                %div
 -                = f.submit 'Reset', data: { confirm: "Are you sure?" }, class: "btn btn-primary btn-build-token"
-+                = f.submit 'リセット', data: { confirm: "Are you sure?" }, class: "btn btn-primary btn-build-token"
++                = f.submit 'リセット', data: { confirm: "リセットしてよろしいですか？" }, class: "btn btn-primary btn-build-token"
              - else
-               %span You don`t have one yet. Click generate to fix it.
+-              %span You don`t have one yet. Click generate to fix it.
 -              = f.submit 'Generate', class: "btn success btn-build-token"
++              %span トークンがありません。「生成」をクリックして生成してください。
 +              = f.submit '生成', class: "btn success btn-build-token"
  
  
    - if show_profile_social_tab?
-@@ -43,21 +44,21 @@
+     %fieldset
+-      %legend Social Accounts
++      %legend ソーシャルアカウント
+       .oauth_select_holder.append-bottom-10
+-        %p Click on icon to activate signin with one of the following services
++        %p 以下の各サービスを使ったサインインを有効化するには、アイコンをクリックしてください。
+         - enabled_social_providers.each do |provider|
+           %span{class: oauth_active_class(provider) }
+             = link_to authbutton(provider, 32), omniauth_authorize_path(User, provider)
+@@ -43,35 +44,35 @@
    - if show_profile_username_tab?
      %fieldset.update-username
        %legend
@@ -5228,6 +5283,26 @@ diff -urN gitlab-rails.bk/app/views/profiles/accounts/show.html.haml gitlab-rail
  
    - if show_profile_remove_tab?
      %fieldset.remove-account
+       %legend
+-        Remove account
++        アカウントの削除
+       %div
+-        %p Deleting an account has the following effects:
++        %p アカウントを削除すると以下の影響があります。
+         %ul
+-          %li All user content like authored issues, snippets, comments will be removed
++          %li 課題、スニペット、コメントといった、このユーザが作成したすべてのコンテンツが削除されます
+           - rp = current_user.personal_projects.count
+           - unless rp.zero?
+-            %li #{pluralize rp, 'personal project'} will be removed and cannot be restored
++            %li #{rp}個の個人プロジェクトが削除され、元に戻すことはできません
+           - if current_user.solo_owned_groups.present?
+             %li
+-              The following groups will be abandoned. You should transfer or remove them:
++              以下のグループが破棄されます。移譲しなければ、削除されます。
+               %strong #{current_user.solo_owned_groups.map(&:name).join(', ')}
+-        = link_to 'Delete account', user_registration_path, data: { confirm: "REMOVE #{current_user.name}? Are you sure?" }, method: :delete, class: "btn btn-remove"
++        = link_to 'アカウントを削除', user_registration_path, data: { confirm: "#{current_user.name}を削除します。本当によろしいですか？" }, method: :delete, class: "btn btn-remove"
 diff -urN gitlab-rails.bk/app/views/profiles/design.html.haml gitlab-rails/app/views/profiles/design.html.haml
 --- gitlab-rails.bk/app/views/profiles/design.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/profiles/design.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -5745,7 +5820,7 @@ diff -urN gitlab-rails.bk/app/views/profiles/show.html.haml gitlab-rails/app/vie
  
      .col-md-5
        .light-well
-@@ -67,26 +68,31 @@
+@@ -67,26 +68,26 @@
            .profile-avatar-form-option
              %p.light
                - if @user.avatar?
@@ -5764,13 +5839,9 @@ diff -urN gitlab-rails.bk/app/views/profiles/show.html.haml gitlab-rails/app/vie
 +                  または #{link_to "gravatar.com", "http://gravatar.com"} で変更
              %hr
              %a.choose-btn.btn.btn-small.js-choose-user-avatar-button
-+<<<<<<< HEAD
-+              %i.icon-paper-clip
-+              %span ファイルを選択 ...
-+=======
                %i.fa.fa-paperclip
-               %span Choose File ...
-+>>>>>>> ba76dbc3667c2eb0a1a3687f8b0481e619946d73
+-              %span Choose File ...
++              %span ファイルを選択 ...
              &nbsp;
 -            %span.file_name.js-avatar-filename File name...
 +            %span.file_name.js-avatar-filename ファイル名...
@@ -5784,7 +5855,7 @@ diff -urN gitlab-rails.bk/app/views/profiles/show.html.haml gitlab-rails/app/vie
  
        - if @user.public_profile?
          .bs-callout.bs-callout-info
-@@ -95,4 +101,4 @@
+@@ -95,4 +96,4 @@
  
  
    .form-actions
@@ -5841,6 +5912,35 @@ diff -urN gitlab-rails.bk/app/views/projects/blob/_actions.html.haml gitlab-rail
    = link_to '#modal-remove-blob', class: "remove-blob btn btn-small btn-remove", "data-toggle" => "modal" do
 -    Remove
 +    削除
+diff -urN gitlab-rails.bk/app/views/projects/blob/_remove.html.haml gitlab-rails/app/views/projects/blob/_remove.html.haml
+--- gitlab-rails.bk/app/views/projects/blob/_remove.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/blob/_remove.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -3,20 +3,20 @@
+     .modal-content
+       .modal-header
+         %a.close{href: "#", "data-dismiss" => "modal"} ×
+-        %h3.page-title Remove #{@blob.name}
++        %h3.page-title #{@blob.name}を削除
+         %p.light
+-          From branch
+           %strong= @ref
++          ブランチから
+ 
+       .modal-body
+         = form_tag project_blob_path(@project, @id), method: :delete, class: 'form-horizontal' do
+           = render 'shared/commit_message_container', params: params,
+-                   placeholder: 'Removed this file because...'
++                   placeholder: '...のためファイルを削除'
+           .form-group
+             .col-sm-2
+             .col-sm-10
+-              = submit_tag 'Remove file', class: 'btn btn-remove btn-remove-file'
+-              = link_to "Cancel", '#', class: "btn btn-cancel", "data-dismiss" => "modal"
++              = submit_tag 'ファイルを削除', class: 'btn btn-remove btn-remove-file'
++              = link_to "キャンセル", '#', class: "btn btn-cancel", "data-dismiss" => "modal"
+ 
+ :javascript
+   disableButtonIfEmptyField('#commit_message', '.btn-remove-file')
 diff -urN gitlab-rails.bk/app/views/projects/blob/_text.html.haml gitlab-rails/app/views/projects/blob/_text.html.haml
 --- gitlab-rails.bk/app/views/projects/blob/_text.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/blob/_text.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -6346,6 +6446,18 @@ diff -urN gitlab-rails.bk/app/views/projects/deploy_keys/show.html.haml gitlab-r
  .pull-right
 -  = link_to 'Remove', project_deploy_key_path(@project, @key), data: { confirm: 'Are you sure?'}, method: :delete, class: "btn-remove btn delete-key"
 +  = link_to '削除', project_deploy_key_path(@project, @key), data: { confirm: '本当に削除しますか？'}, method: :delete, class: "btn-remove btn delete-key"
+diff -urN gitlab-rails.bk/app/views/projects/diffs/_file.html.haml gitlab-rails/app/views/projects/diffs/_file.html.haml
+--- gitlab-rails.bk/app/views/projects/diffs/_file.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/diffs/_file.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -28,7 +28,7 @@
+ 
+         - if @merge_request && @merge_request.source_project
+           = link_to project_edit_tree_path(@merge_request.source_project, tree_join(@merge_request.source_branch, diff_file.new_path), from_merge_request_id: @merge_request.id), { class: 'btn btn-small' } do
+-            Edit
++            編集
+           &nbsp;
+ 
+         = view_file_btn(@commit.id, diff_file, project)
 diff -urN gitlab-rails.bk/app/views/projects/_dropdown.html.haml gitlab-rails/app/views/projects/_dropdown.html.haml
 --- gitlab-rails.bk/app/views/projects/_dropdown.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/_dropdown.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -7110,6 +7222,20 @@ diff -urN gitlab-rails.bk/app/views/projects/issues/show.html.haml gitlab-rails/
    - @issue.participants.each do |participant|
      = link_to_member(@project, participant, name: false, size: 24)
  
+diff -urN gitlab-rails.bk/app/views/projects/labels/edit.html.haml gitlab-rails/app/views/projects/labels/edit.html.haml
+--- gitlab-rails.bk/app/views/projects/labels/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/labels/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,8 +1,8 @@
+ %h3
+-  Edit label
++  ラベルを編集
+   %span.light #{@label.name}
+ .back-link
+   = link_to project_labels_path(@project) do
+-    &larr; To labels list
++    &larr; ラベル一覧
+ %hr
+ = render 'form'
 diff -urN gitlab-rails.bk/app/views/projects/labels/_form.html.haml gitlab-rails/app/views/projects/labels/_form.html.haml
 --- gitlab-rails.bk/app/views/projects/labels/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/labels/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -7280,6 +7406,38 @@ diff -urN gitlab-rails.bk/app/views/projects/merge_requests/index.html.haml gitl
 +        %span.cgray.pull-right #{@merge_requests.total_count} 個のマージリクエストに絞り込まれています
  
        = paginate @merge_requests, theme: "gitlab"
+ 
+diff -urN gitlab-rails.bk/app/views/projects/merge_requests/invalid.html.haml gitlab-rails/app/views/projects/merge_requests/invalid.html.haml
+--- gitlab-rails.bk/app/views/projects/merge_requests/invalid.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/merge_requests/invalid.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -4,20 +4,22 @@
+ 
+   .alert.alert-danger
+     %p
+-      We cannot render this merge request properly because
+       - if @merge_request.for_fork? && !@merge_request.source_project
+-        fork project was removed
++        フォークプロジェクトが削除されたため
+       - elsif !@merge_request.source_branch_exists?
+         %span.label.label-inverse= @merge_request.source_branch
+-        does not exist in
++        が
+         %span.label.label-info= @merge_request.source_project_path
++        に存在しないため
+       - elsif !@merge_request.target_branch_exists?
+         %span.label.label-inverse= @merge_request.target_branch
+-        does not exist in
++        が
+         %span.label.label-info= @merge_request.target_project_path
++        に存在しないため
+       - else
+-        of internal error
++        内部エラーが発生したため
++      このマージリクエストを正常に表示することができません。
+ 
+     %strong
+-      Please close Merge Request or change branches with existing one
++      マージリクエストをクローズするか、存在するブランチに変更してください
  
 diff -urN gitlab-rails.bk/app/views/projects/merge_requests/_merge_request.html.haml gitlab-rails/app/views/projects/merge_requests/_merge_request.html.haml
 --- gitlab-rails.bk/app/views/projects/merge_requests/_merge_request.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -7617,6 +7775,32 @@ diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_no_accept.html
    %br
 -  %strong Please close this merge request or change branches with existing one
 +  %strong このマージリクエストをクローズするか、存在するブランチを選び直してください。
+diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_remove_source_branch.html.haml gitlab-rails/app/views/projects/merge_requests/show/_remove_source_branch.html.haml
+--- gitlab-rails.bk/app/views/projects/merge_requests/show/_remove_source_branch.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/merge_requests/show/_remove_source_branch.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,17 +1,17 @@
+ - if @source_branch.blank?
+-  Source branch has been removed
++  ソースブランチは削除されました
+ 
+ - elsif can_remove_branch?(@merge_request.source_project, @merge_request.source_branch) && @merge_request.merged?
+   .remove_source_branch_widget
+-    %p Changes merged into #{@merge_request.target_branch}. You can remove source branch now
++    %p 変更が #{@merge_request.target_branch} にマージされました。ブランチは削除することができます
+     = link_to project_branch_path(@merge_request.source_project, @source_branch), remote: true, method: :delete, class: "btn btn-primary btn-small remove_source_branch" do
+       %i.fa.fa-times
+-      Remove Source Branch
++      ソースブランチを削除
+ 
+   .remove_source_branch_widget.failed.hide
+-    Failed to remove source branch '#{@merge_request.source_branch}'
++    ソースブランチ '#{@merge_request.source_branch}' の削除に失敗しました
+ 
+   .remove_source_branch_in_progress.hide
+     %i.fa.fa-refresh.fa-spin
+     &nbsp;
+-    Removing source branch '#{@merge_request.source_branch}'. Please wait. Page will be automatically reloaded. &nbsp;
++    ソースブランチ '#{@merge_request.source_branch}' を削除しています。お待ちください。ページは自動的に更新されます。 &nbsp;
 diff -urN gitlab-rails.bk/app/views/projects/merge_requests/_show.html.haml gitlab-rails/app/views/projects/merge_requests/_show.html.haml
 --- gitlab-rails.bk/app/views/projects/merge_requests/_show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/merge_requests/_show.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -8128,7 +8312,7 @@ diff -urN gitlab-rails.bk/app/views/projects/notes/_note.html.haml gitlab-rails/
 +              編集
              &nbsp;
 -            = link_to project_note_path(@project, note), title: "Remove comment", method: :delete, data: { confirm: 'Are you sure you want to remove this comment?' }, remote: true, class: "danger js-note-delete" do
-+            = link_to project_note_path(@project, note), title: "Remove comment", method: :delete, data: { confirm: '本当にコメントを削除しますか？' }, remote: true, class: "danger js-note-delete" do
++            = link_to project_note_path(@project, note), title: "コメントを削除", method: :delete, data: { confirm: '本当にコメントを削除しますか？' }, remote: true, class: "danger js-note-delete" do
                %i.fa.fa-trash-o.cred
 -              Remove
 +              削除
@@ -8444,6 +8628,15 @@ diff -urN gitlab-rails.bk/app/views/projects/snippets/_blob.html.haml gitlab-rai
 +          = link_to "編集", edit_project_snippet_path(@project, @snippet), class: "btn btn-tiny", title: 'スニペットを編集'
 +        = link_to "Raw", raw_project_snippet_path(@project, @snippet), class: "btn btn-tiny", target: "_blank"
 +  = render 'snippets/blob_content'
+diff -urN gitlab-rails.bk/app/views/projects/snippets/edit.html.haml gitlab-rails/app/views/projects/snippets/edit.html.haml
+--- gitlab-rails.bk/app/views/projects/snippets/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/snippets/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+ %h3.page-title
+-  Edit snippet
++  スニペットを編集
+ %hr
+ = render "shared/snippets/form", url: project_snippet_path(@project, @snippet)
 diff -urN gitlab-rails.bk/app/views/projects/snippets/index.html.haml gitlab-rails/app/views/projects/snippets/index.html.haml
 --- gitlab-rails.bk/app/views/projects/snippets/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/snippets/index.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -8468,6 +8661,42 @@ diff -urN gitlab-rails.bk/app/views/projects/snippets/index.html.haml gitlab-rai
      %li
 -      .nothing-here-block Nothing here.
 +      .nothing-here-block スニペットはありません
+diff -urN gitlab-rails.bk/app/views/projects/snippets/show.html.haml gitlab-rails/app/views/projects/snippets/show.html.haml
+--- gitlab-rails.bk/app/views/projects/snippets/show.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/snippets/show.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -2,8 +2,8 @@
+   = @snippet.title
+ 
+   .pull-right
+-    = link_to new_project_snippet_path(@project), class: "btn btn-new", title: "New Snippet" do
+-      Add new snippet
++    = link_to new_project_snippet_path(@project), class: "btn btn-new", title: "新しいスニペット" do
++      新しいスニペットを追加
+ 
+ %hr
+ 
+@@ -18,7 +18,7 @@
+ 
+   .back-link
+     = link_to project_snippets_path(@project) do
+-      &larr; project snippets
++      &larr; プロジェクトスニペット
+ 
+ .file-holder
+   .file-title
+@@ -28,10 +28,10 @@
+     .options
+       .btn-group
+         - if can?(current_user, :modify_project_snippet, @snippet)
+-          = link_to "edit", edit_project_snippet_path(@project, @snippet), class: "btn btn-small", title: 'Edit Snippet'
++          = link_to "編集", edit_project_snippet_path(@project, @snippet), class: "btn btn-small", title: 'スニペットを編集'
+         = link_to "raw", raw_project_snippet_path(@project, @snippet), class: "btn btn-small", target: "_blank"
+       - if can?(current_user, :admin_project_snippet, @snippet)
+-        = link_to "remove", project_snippet_path(@project, @snippet), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-small btn-remove", title: 'Delete Snippet'
++        = link_to "削除", project_snippet_path(@project, @snippet), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-small btn-remove", title: 'スニペットを削除'
+   = render 'shared/snippets/blob'
+ 
+ %div#notes= render "projects/notes/notes_with_form"
 diff -urN gitlab-rails.bk/app/views/projects/tags/index.html.haml gitlab-rails/app/views/projects/tags/index.html.haml
 --- gitlab-rails.bk/app/views/projects/tags/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/tags/index.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -9153,6 +9382,20 @@ diff -urN gitlab-rails.bk/app/views/search/results/_merge_request.html.haml gitl
      - elsif merge_request.closed?
 -      %span.label.label-danger Closed
 +      %span.label.label-danger クローズ済み
+diff -urN gitlab-rails.bk/app/views/search/results/_snippet_blob.html.haml gitlab-rails/app/views/search/results/_snippet_blob.html.haml
+--- gitlab-rails.bk/app/views/search/results/_snippet_blob.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/search/results/_snippet_blob.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -16,8 +16,8 @@
+         %span.options
+           .btn-group.tree-btn-group.pull-right
+             - if snippet_blob[:snippet_object].author == current_user
+-              = link_to "Edit", edit_snippet_path(snippet_blob[:snippet_object]), class: "btn btn-tiny", title: 'Edit Snippet'
+-              = link_to "Delete", snippet_path(snippet_blob[:snippet_object]), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-tiny", title: 'Delete Snippet'
++              = link_to "編集", edit_snippet_path(snippet_blob[:snippet_object]), class: "btn btn-tiny", title: 'スニペットを編集'
++              = link_to "削除", snippet_path(snippet_blob[:snippet_object]), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-tiny", title: 'スニペットを削除'
+             = link_to "Raw", raw_snippet_path(snippet_blob[:snippet_object]), class: "btn btn-tiny", target: "_blank"
+       - if gitlab_markdown?(snippet_blob[:snippet_object].file_name)
+         .file-content.wiki
 diff -urN gitlab-rails.bk/app/views/search/_results.html.haml gitlab-rails/app/views/search/_results.html.haml
 --- gitlab-rails.bk/app/views/search/_results.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/search/_results.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -9188,6 +9431,55 @@ diff -urN gitlab-rails.bk/app/views/search/show.html.haml gitlab-rails/app/views
      .form-group
        .col-sm-2
        - unless params[:snippets].eql? 'true'
+diff -urN gitlab-rails.bk/app/views/shared/_commit_message_container.html.haml gitlab-rails/app/views/shared/_commit_message_container.html.haml
+--- gitlab-rails.bk/app/views/shared/_commit_message_container.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/shared/_commit_message_container.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,6 +1,6 @@
+ .form-group.commit_message-group
+   = label_tag 'commit_message', class: 'control-label' do
+-    Commit message
++    コミットメッセージ
+   .col-sm-10
+     .commit-message-container
+       .max-width-marker
+@@ -10,5 +10,5 @@
+           required: true, rows: (local_assigns[:rows] || 3)
+     - if local_assigns[:hint]
+       %p.hint
+-        Try to keep the first line under 52 characters
+-        and the others under 72.
++        1行目はなるべく52文字以下に、
++        他の行は72文字以下にするようにしてください。
+diff -urN gitlab-rails.bk/app/views/shared/_confirm_modal.html.haml gitlab-rails/app/views/shared/_confirm_modal.html.haml
+--- gitlab-rails.bk/app/views/shared/_confirm_modal.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/shared/_confirm_modal.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -3,20 +3,20 @@
+     .modal-content
+       .modal-header
+         %a.close{href: "#", "data-dismiss" => "modal"} ×
+-        %h4 Confirmation required
++        %h4 確認が必要です
+ 
+       .modal-body
+         %p.cred.lead.js-confirm-text
+ 
+         %p
+-          This action can lead to data loss.
+-          To prevent accidental actions we ask you to confirm your intention.
++          このアクションはデータを損失する可能性があります。
++          誤った操作を防ぐため、意図した操作であるかどうかを確認します。
+           %br
+-          Please type
++          続行するには、Please type
+           %code.js-confirm-danger-match #{phrase}
+-          to proceed or close this modal to cancel
++          を入力するか、ダイアログを閉じてキャンセルしてください
+ 
+         .form-group
+           = text_field_tag 'confirm_name_input', '', class: 'form-control js-confirm-danger-input'
+         .form-group
+-          = submit_tag 'Confirm', class: "btn btn-danger js-confirm-danger-submit"
++          = submit_tag '確認', class: "btn btn-danger js-confirm-danger-submit"
 diff -urN gitlab-rails.bk/app/views/shared/_event_filter.html.haml gitlab-rails/app/views/shared/_event_filter.html.haml
 --- gitlab-rails.bk/app/views/shared/_event_filter.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/shared/_event_filter.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -9393,7 +9685,8 @@ diff -urN gitlab-rails.bk/app/views/shared/_promo.html.haml gitlab-rails/app/vie
 +  = link_to 'ホームページ', promo_url
 +  = link_to "ブログ", promo_url + '/blog/'
    = link_to "@gitlabhq", "https://twitter.com/gitlabhq"
-   = link_to "Requests", "http://feedback.gitlab.com/"
+-  = link_to "Requests", "http://feedback.gitlab.com/"
++  = link_to "ご要望", "http://feedback.gitlab.com/"
 diff -urN gitlab-rails.bk/app/views/shared/snippets/_blob.html.haml gitlab-rails/app/views/shared/snippets/_blob.html.haml
 --- gitlab-rails.bk/app/views/shared/snippets/_blob.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/shared/snippets/_blob.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -9526,7 +9819,7 @@ diff -urN gitlab-rails.bk/app/views/snippets/current_user_index.html.haml gitlab
  %hr
  
  .row
-@@ -15,12 +15,12 @@
+@@ -15,22 +15,22 @@
      %ul.nav.nav-pills.nav-stacked
        = nav_tab :scope, nil do
          = link_to user_snippets_path(@user) do
@@ -9541,7 +9834,10 @@ diff -urN gitlab-rails.bk/app/views/snippets/current_user_index.html.haml gitlab
            %span.pull-right
              = @user.snippets.are_private.count
        = nav_tab :scope, 'are_internal' do
-@@ -30,7 +30,7 @@
+         = link_to user_snippets_path(@user, scope: 'are_internal') do
+-          Internal
++          内部
+           %span.pull-right
              = @user.snippets.are_internal.count
        = nav_tab :scope, 'are_public' do
          = link_to user_snippets_path(@user, scope: 'are_public') do
@@ -9550,6 +9846,15 @@ diff -urN gitlab-rails.bk/app/views/snippets/current_user_index.html.haml gitlab
            %span.pull-right
              = @user.snippets.are_public.count
  
+diff -urN gitlab-rails.bk/app/views/snippets/edit.html.haml gitlab-rails/app/views/snippets/edit.html.haml
+--- gitlab-rails.bk/app/views/snippets/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/snippets/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+ %h3.page-title
+-  Edit snippet
++  スニペットを編集
+ %hr
+ = render "shared/snippets/form", url: snippet_path(@snippet)
 diff -urN gitlab-rails.bk/app/views/snippets/_form.html.haml gitlab-rails/app/views/snippets/_form.html.haml
 --- gitlab-rails.bk/app/views/snippets/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/snippets/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -9657,8 +9962,9 @@ diff -urN gitlab-rails.bk/app/views/snippets/show.html.haml gitlab-rails/app/vie
 +      プライベート
  
    .pull-right
-     = link_to new_snippet_path, class: "btn btn-new", title: "New Snippet" do
+-    = link_to new_snippet_path, class: "btn btn-new", title: "New Snippet" do
 -      Add new snippet
++    = link_to new_snippet_path, class: "btn btn-new", title: "新しいスニペット" do
 +      新しいスニペットを追加
  %hr
  
@@ -9681,7 +9987,7 @@ diff -urN gitlab-rails.bk/app/views/snippets/show.html.haml gitlab-rails/app/vie
        .btn-group
          - if can?(current_user, :modify_personal_snippet, @snippet)
 -          = link_to "edit", edit_snippet_path(@snippet), class: "btn btn-small", title: 'Edit Snippet'
-+          = link_to "編集", edit_snippet_path(@snippet), class: "btn btn-small", title: 'Edit Snippet'
++          = link_to "編集", edit_snippet_path(@snippet), class: "btn btn-small", title: 'スニペットを編集'
          = link_to "raw", raw_snippet_path(@snippet), class: "btn btn-small", target: "_blank"
        - if can?(current_user, :admin_personal_snippet, @snippet)
 -        = link_to "remove", snippet_path(@snippet), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-small btn-remove", title: 'Delete Snippet'

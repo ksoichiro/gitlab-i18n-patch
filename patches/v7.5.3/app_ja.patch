@@ -6464,7 +6464,7 @@ diff -urN gitlab-rails.bk/app/views/projects/edit.html.haml gitlab-rails/app/vie
  
  
  
-@@ -91,36 +91,36 @@
+@@ -91,100 +91,100 @@
          - if @project.archived?
            .panel.panel-success
              .panel-heading
@@ -6515,7 +6515,12 @@ diff -urN gitlab-rails.bk/app/views/projects/edit.html.haml gitlab-rails/app/vie
          .errors-holder
          .panel-body
            = form_for(@project, html: { class: 'form-horizontal' }) do |f|
-@@ -132,59 +132,59 @@
+             .form-group.project_name_holder
+               = f.label :name, class: 'control-label' do
+-                Project name
++                プロジェクト名
+               .col-sm-9
+                 .form-group
                    = f.text_field :name, placeholder: "Example Project", class: "form-control"
              .form-group
                = f.label :path, class: 'control-label' do
@@ -6789,6 +6794,96 @@ diff -urN gitlab-rails.bk/app/views/projects/hooks/index.html.haml gitlab-rails/
            .clearfix
              %span.monospace= hook.url
            %p
+diff -urN gitlab-rails.bk/app/views/projects/_issuable_form.html.haml gitlab-rails/app/views/projects/_issuable_form.html.haml
+--- gitlab-rails.bk/app/views/projects/_issuable_form.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/_issuable_form.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -7,22 +7,22 @@
+           %br
+ .form-group
+   = f.label :title, class: 'control-label' do
+-    %strong= 'Title *'
++    %strong= 'タイトル *'
+   .col-sm-10
+     = f.text_field :title, maxlength: 255, autofocus: true,
+         class: 'form-control pad js-gfm-input', required: true
+ .form-group.issuable-description
+-  = f.label :description, 'Description', class: 'control-label'
++  = f.label :description, '説明', class: 'control-label'
+   .col-sm-10
+     = render 'projects/zen', f: f, attr: :description,
+                              classes: 'description form-control'
+     .col-sm-12.hint
+       .pull-left
+-        Parsed with
+         #{link_to 'GitLab Flavored Markdown', help_page_path('markdown', 'markdown'), target: '_blank'}.
++        としてパースされます
+       .pull-right
+-        Attach images (JPG, PNG, GIF) by dragging &amp; dropping
+-        or #{link_to 'selecting them', '#', class: 'markdown-selector' }.
++        ドラッグ &amp; ドロップまたは#{link_to 'ファイルを選択', '#', class: 'markdown-selector' }して
++        画像 (JPG, PNG, GIF) を添付
+     .clearfix
+     .error-alert
+ %hr
+@@ -30,46 +30,46 @@
+   .issue-assignee
+     = f.label :assignee_id, class: 'control-label' do
+       %i.fa.fa-user
+-      Assign to
++      担当者
+     .col-sm-10
+       = project_users_select_tag("#{issuable.class.model_name.param_key}[assignee_id]",
+-          placeholder: 'Select a user', class: 'custom-form-control',
++          placeholder: 'ユーザを選択', class: 'custom-form-control',
+           selected: issuable.assignee_id)
+       &nbsp;
+-      = link_to 'Assign to me', '#', class: 'btn assign-to-me-link'
++      = link_to '自分に割り当てる', '#', class: 'btn assign-to-me-link'
+ .form-group
+   .issue-milestone
+     = f.label :milestone_id, class: 'control-label' do
+       %i.fa.fa-clock-o
+-      Milestone
++      マイルストーン
+     .col-sm-10
+       - if milestone_options(issuable).present?
+         = f.select(:milestone_id, milestone_options(issuable),
+           { include_blank: 'Select milestone' }, { class: 'select2' })
+       - else
+-        %span.light No open milestones available.
++        %span.light オープン中のマイルストーンがありません。
+       &nbsp;
+-      = link_to 'Create new milestone', new_project_milestone_path(issuable.project)
++      = link_to '新しいマイルストーンを作成', new_project_milestone_path(issuable.project)
+ .form-group
+   = f.label :label_ids, class: 'control-label' do
+     %i.icon-tag
+-    Labels
++    ラベル
+   .col-sm-10
+     - if issuable.project.labels.any?
+       = f.collection_select :label_ids, issuable.project.labels.all, :id, :name,
+         { selected: issuable.label_ids }, multiple: true, class: 'select2'
+     - else
+-      %span.light No labels yet.
++      %span.light ラベルがありません。
+     &nbsp;
+-    = link_to 'Create new label', new_project_label_path(issuable.project)
++    = link_to '新しいラベルを作成', new_project_label_path(issuable.project)
+ 
+ .form-actions
+   - if issuable.new_record?
+-    = f.submit "Submit new #{issuable.class.model_name.human.downcase}", class: 'btn btn-create'
++    = f.submit "新しい #{issuable.class.model_name.human.downcase} を作成", class: 'btn btn-create'
+   - else
+-    = f.submit 'Save changes', class: 'btn btn-save'
++    = f.submit '変更を保存', class: 'btn btn-save'
+   - if issuable.new_record?
+     - cancel_project = issuable.source_project
+   - else
+     - cancel_project = issuable.project
+-  = link_to 'Cancel', [cancel_project, issuable], class: 'btn btn-cancel'
++  = link_to 'キャンセル', [cancel_project, issuable], class: 'btn btn-cancel'
 diff -urN gitlab-rails.bk/app/views/projects/issues/_form.html.haml gitlab-rails/app/views/projects/issues/_form.html.haml
 --- gitlab-rails.bk/app/views/projects/issues/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/issues/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -7126,6 +7221,18 @@ diff -urN gitlab-rails.bk/app/views/projects/labels/_form.html.haml gitlab-rails
 diff -urN gitlab-rails.bk/app/views/projects/labels/index.html.haml gitlab-rails/app/views/projects/labels/index.html.haml
 --- gitlab-rails.bk/app/views/projects/labels/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/labels/index.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -2,9 +2,9 @@
+ 
+ - if can? current_user, :admin_label, @project
+   = link_to new_project_label_path(@project), class: "pull-right btn btn-new" do
+-    New label
++    新しいラベル
+ %h3.page-title
+-  Labels
++  ラベル
+ %hr
+ 
+ .labels
 @@ -14,4 +14,4 @@
      = paginate @labels, theme: 'gitlab'
    - else
@@ -8002,7 +8109,7 @@ diff -urN gitlab-rails.bk/app/views/projects/new.html.haml gitlab-rails/app/view
              .col-sm-10
                .input-group
                  = f.text_field :path, class: 'form-control'
-@@ -40,41 +40,42 @@
+@@ -40,41 +40,41 @@
            .col-sm-10
              = link_to "#", class: 'js-toggle-button' do
                %i.fa.fa-upload
@@ -8054,8 +8161,8 @@ diff -urN gitlab-rails.bk/app/views/projects/new.html.haml gitlab-rails/app/view
      %h2
        %i.fa.fa-spinner.fa-spin
 -      Creating project &amp; repository.
+-    %p Please wait a moment, this page will automatically refresh when ready.
 +      プロジェクトとリポジトリを作成しています
-     %p Please wait a moment, this page will automatically refresh when ready.
 +    %p 準備ができ次第、自動的に更新されますのでお待ちください
 diff -urN gitlab-rails.bk/app/views/projects/new_tree/show.html.haml gitlab-rails/app/views/projects/new_tree/show.html.haml
 --- gitlab-rails.bk/app/views/projects/new_tree/show.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -9082,6 +9189,16 @@ diff -urN gitlab-rails.bk/app/views/projects/wikis/show.html.haml gitlab-rails/a
  .wiki-last-edit-by
 -  Last edited by #{@page.commit.author.name} #{time_ago_with_tooltip(@page.commit.authored_date)}
 +  #{@page.commit.author.name}が#{time_ago_with_tooltip(@page.commit.authored_date)}に更新
+diff -urN gitlab-rails.bk/app/views/projects/_zen.html.haml gitlab-rails/app/views/projects/_zen.html.haml
+--- gitlab-rails.bk/app/views/projects/_zen.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/_zen.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -3,5 +3,5 @@
+   .zen-backdrop
+     - classes << ' js-gfm-input markdown-area'
+     = f.text_area attr, class: classes, placeholder: 'Leave a comment'
+-    %label{ for: 'zen-toggle-comment', class: 'expand' } Edit in fullscreen
++    %label{ for: 'zen-toggle-comment', class: 'expand' } フルスクリーンで編集
+     %label{ for: 'zen-toggle-comment', class: 'collapse' }
 diff -urN gitlab-rails.bk/app/views/public/projects/index.html.haml gitlab-rails/app/views/public/projects/index.html.haml
 --- gitlab-rails.bk/app/views/public/projects/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/public/projects/index.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -9402,6 +9519,39 @@ diff -urN gitlab-rails.bk/app/views/shared/_filter.html.haml gitlab-rails/app/vi
 -          %strong Clear filter
 +          %strong 絞り込みを解除
  
+diff -urN gitlab-rails.bk/app/views/shared/_group_form.html.haml gitlab-rails/app/views/shared/_group_form.html.haml
+--- gitlab-rails.bk/app/views/shared/_group_form.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/shared/_group_form.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,12 +1,12 @@
+ .form-group
+   = f.label :name, class: 'control-label' do
+-    Group name
++    グループ名
+   .col-sm-10
+     = f.text_field :name, placeholder: 'Example Group', class: 'form-control',
+         autofocus: local_assigns[:autofocus] || false
+ 
+ .form-group.group-description-holder
+-  = f.label :description, 'Details', class: 'control-label'
++  = f.label :description, '詳細', class: 'control-label'
+   .col-sm-10
+     = f.text_area :description, maxlength: 250,
+         class: 'form-control js-gfm-input', rows: 4
+diff -urN gitlab-rails.bk/app/views/shared/_group_tips.html.haml gitlab-rails/app/views/shared/_group_tips.html.haml
+--- gitlab-rails.bk/app/views/shared/_group_tips.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/shared/_group_tips.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,6 +1,6 @@
+ %ul
+-  %li A group is a collection of several projects
+-  %li Groups are private by default
+-  %li Members of a group may only view projects they have permission to access
+-  %li Group project URLs are prefixed with the group namespace
+-  %li Existing projects may be moved into a group
++  %li グループは複数のプロジェクトの集合です。
++  %li グループはデフォルトではプライベートです。
++  %li グループのメンバーはアクセス権のあるプロジェクトだけ参照することができます。
++  %li グループのプロジェクトのURLにはグループのネームスペースのプレフィクスが付きます。
++  %li 既存のプロジェクトをグループに移すこともできます。
 diff -urN gitlab-rails.bk/app/views/shared/_issues.html.haml gitlab-rails/app/views/shared/_issues.html.haml
 --- gitlab-rails.bk/app/views/shared/_issues.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/shared/_issues.html.haml	2014-03-22 09:00:00.000000000 +0900

@@ -10101,10 +10101,11 @@ diff -urN gitlab-rails.bk/app/views/users/show.html.haml gitlab-rails/app/views/
 diff -urN gitlab-rails.bk/config/application.rb gitlab-rails/config/application.rb
 --- gitlab-rails.bk/config/application.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/config/application.rb	2014-03-22 09:00:00.000000000 +0900
-@@ -31,6 +31,7 @@
+@@ -31,6 +31,8 @@
      # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
      # config.i18n.default_locale = :de
      config.i18n.enforce_available_locales = false
++    config.i18n.locale = :ja
 +    config.i18n.default_locale = :ja
  
      # Configure the default encoding used in templates for Ruby 1.9.

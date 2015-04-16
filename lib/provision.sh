@@ -8,7 +8,9 @@ GITLAB_VERSION_INT=`echo -n "${GITLAB_VERSION}" | sed -e "s/\.//g"`
 
 if [ ${GITLAB_VERSION_INT} -ge 751 ]; then
   # Package URL format changed since v7.5.1
-  if [ ${GITLAB_VERSION_INT} -ge 760 ]; then
+  if [ ${GITLAB_VERSION_INT} -ge 770 ]; then
+    CI_VERSION=5.4.0
+  elif [ ${GITLAB_VERSION_INT} -ge 760 ]; then
     CI_VERSION=5.3.0
   else
     CI_VERSION=5.2.1

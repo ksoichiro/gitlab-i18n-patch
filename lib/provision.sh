@@ -6,7 +6,7 @@ GITLAB_VERSION=$1
 GITLAB_WEB_PORT=$2
 GITLAB_VERSION_INT=`echo -n "${GITLAB_VERSION}" | sed -e "s/\.//g"`
 
-if [ ${GITLAB_VERSION_INT} -ge 751 ]; then
+if [ ${GITLAB_VERSION_INT} -ge 751 -a ${GITLAB_VERSION_INT} -lt 780 ]; then
   # Package URL format changed since v7.5.1
   if [ ${GITLAB_VERSION_INT} -ge 770 ]; then
     CI_VERSION=5.4.0

@@ -3548,7 +3548,7 @@ diff -urN gitlab-rails.bk/app/views/explore/projects/_project.html.haml gitlab-r
        %strong.pull-right
          %i.fa.fa-star
 -        = pluralize project.star_count, 'star'
-+        ${project.star_count}スター
++        #{project.star_count}スター
  
    .project-info
      - if project.description.present?

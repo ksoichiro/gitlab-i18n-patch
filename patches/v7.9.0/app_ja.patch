@@ -1079,6 +1079,18 @@ diff -urN gitlab-rails.bk/app/helpers/notes_helper.rb gitlab-rails/app/helpers/n
  module NotesHelper
    # Helps to distinguish e.g. commit notes in mr notes list
    def note_for_main_target?(note)
+@@ -77,9 +78,9 @@
+     }
+ 
+     button_tag class: 'btn reply-btn js-discussion-reply-button',
+-               data: data, title: 'Add a reply' do
++               data: data, title: '返信を追加' do
+       link_text = icon('comment')
+-      link_text << ' Reply'
++      link_text << ' 返信'
+     end
+   end
+ end
 diff -urN gitlab-rails.bk/app/helpers/projects_helper.rb gitlab-rails/app/helpers/projects_helper.rb
 --- gitlab-rails.bk/app/helpers/projects_helper.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/helpers/projects_helper.rb	2014-03-22 09:00:00.000000000 +0900
@@ -1471,6 +1483,23 @@ diff -urN gitlab-rails.bk/app/models/application_setting.rb gitlab-rails/app/mod
      if: :home_page_url_column_exist
  
    validates_each :restricted_visibility_levels do |record, attr, value|
+diff -urN gitlab-rails.bk/app/models/commit.rb gitlab-rails/app/models/commit.rb
+--- gitlab-rails.bk/app/models/commit.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/models/commit.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ class Commit
+   include ActiveModel::Conversion
+   include StaticModel
+@@ -123,7 +124,7 @@
+ 
+   # Mentionable override.
+   def gfm_reference
+-    "commit #{id}"
++    "コミット #{id}"
+   end
+ 
+   def method_missing(m, *args, &block)
 diff -urN gitlab-rails.bk/app/models/event.rb gitlab-rails/app/models/event.rb
 --- gitlab-rails.bk/app/models/event.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/models/event.rb	2014-03-22 09:00:00.000000000 +0900
@@ -1565,6 +1594,40 @@ diff -urN gitlab-rails.bk/app/models/hooks/web_hook.rb gitlab-rails/app/models/h
  
    def execute(data)
      parsed_url = URI.parse(url)
+diff -urN gitlab-rails.bk/app/models/issue.rb gitlab-rails/app/models/issue.rb
+--- gitlab-rails.bk/app/models/issue.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/models/issue.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ # == Schema Information
+ #
+ # Table name: issues
+@@ -56,7 +57,7 @@
+   # Mentionable overrides.
+ 
+   def gfm_reference
+-    "issue ##{iid}"
++    "課題 ##{iid}"
+   end
+ 
+   # Reset issue events cache
+diff -urN gitlab-rails.bk/app/models/merge_request.rb gitlab-rails/app/models/merge_request.rb
+--- gitlab-rails.bk/app/models/merge_request.rb	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/models/merge_request.rb	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ # == Schema Information
+ #
+ # Table name: merge_requests
+@@ -261,7 +262,7 @@
+ 
+   # Mentionable override.
+   def gfm_reference
+-    "merge request !#{iid}"
++    "マージリクエスト !#{iid}"
+   end
+ 
+   def target_project_path
 diff -urN gitlab-rails.bk/app/models/milestone.rb gitlab-rails/app/models/milestone.rb
 --- gitlab-rails.bk/app/models/milestone.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/models/milestone.rb	2014-03-22 09:00:00.000000000 +0900
@@ -1669,7 +1732,38 @@ diff -urN gitlab-rails.bk/app/models/note.rb gitlab-rails/app/models/note.rb
  
        if existing_commits.length > 0
          commit_ids =
-@@ -313,6 +311,19 @@
+@@ -248,14 +246,14 @@
+       where("note like :query", query: "%#{query}%")
+     end
+ 
+-    def cross_reference_note_prefix
+-      '_mentioned in '
++    def cross_reference_note_suffix
++      'から参照しました_'
+     end
+ 
+     private
+ 
+     def cross_reference_note_content(gfm_reference)
+-      cross_reference_note_prefix + "#{gfm_reference}_"
++      "_#{gfm_reference}" + cross_reference_note_suffix
+     end
+ 
+     # Prepend the mentioner's namespaced project path to the GFM reference for
+@@ -302,17 +300,30 @@
+       else
+         if mentioner.is_a?(Commit)
+           mentioner.gfm_reference.sub(
+-            /(commit )/,
++            /(コミット )/,
+             "\\1#{mentioning_project.path_with_namespace}@"
+           )
+         else
+           mentioner.gfm_reference.sub(
+-            /(issue |merge request )/,
++            /(課題 |マージリクエスト )/,
+             "\\1#{mentioning_project.path_with_namespace}"
+           )
          end
        end
      end
@@ -1689,6 +1783,15 @@ diff -urN gitlab-rails.bk/app/models/note.rb gitlab-rails/app/models/note.rb
    end
  
    def commit_author
+@@ -324,7 +335,7 @@
+   end
+ 
+   def cross_reference?
+-    note.start_with?(self.class.cross_reference_note_prefix)
++    note.end_with?(self.class.cross_reference_note_suffix)
+   end
+ 
+   def find_diff
 diff -urN gitlab-rails.bk/app/models/notification.rb gitlab-rails/app/models/notification.rb
 --- gitlab-rails.bk/app/models/notification.rb	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/models/notification.rb	2014-03-22 09:00:00.000000000 +0900
@@ -7218,7 +7321,7 @@ diff -urN gitlab-rails.bk/app/views/projects/diffs/_file.html.haml gitlab-rails/
 diff -urN gitlab-rails.bk/app/views/projects/diffs/_stats.html.haml gitlab-rails/app/views/projects/diffs/_stats.html.haml
 --- gitlab-rails.bk/app/views/projects/diffs/_stats.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/diffs/_stats.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -1,7 +1,7 @@
+@@ -1,16 +1,16 @@
  .js-toggle-container
    .commit-stat-summary
 -    Showing
@@ -7227,9 +7330,14 @@ diff -urN gitlab-rails.bk/app/views/projects/diffs/_stats.html.haml gitlab-rails
 +    を表示中
      - if current_controller?(:commit)
        - unless @commit.has_zero_stats?
-         with
-@@ -10,7 +10,7 @@
-         %strong.cred #{@commit.stats.deletions} deletions
+-        with
+-        %strong.cgreen #{@commit.stats.additions} additions
+-        and
+-        %strong.cred #{@commit.stats.deletions} deletions
++        ,&nbsp;
++        %strong.cgreen #{@commit.stats.additions} 行の追加
++        と
++        %strong.cred #{@commit.stats.deletions} 行の削除
      &nbsp;
      = link_to '#', class: 'btn btn-sm js-toggle-button' do
 -      Show diff stats
@@ -7832,7 +7940,8 @@ diff -urN gitlab-rails.bk/app/views/projects/_issuable_form.html.haml gitlab-rai
        .col-sm-12.hint
          .pull-left
 -          Parsed with
-           #{link_to 'GitLab Flavored Markdown', help_page_path('markdown', 'markdown'), target: '_blank'}.
+-          #{link_to 'GitLab Flavored Markdown', help_page_path('markdown', 'markdown'), target: '_blank'}.
++          #{link_to 'GitLab Flavored Markdown', help_page_path('markdown', 'markdown'), target: '_blank'}
 +          としてパースされます
          .pull-right
 -          Attach files by dragging &amp; dropping
@@ -8917,26 +9026,32 @@ diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_remove_source_
 diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_state_widget.html.haml gitlab-rails/app/views/projects/merge_requests/show/_state_widget.html.haml
 --- gitlab-rails.bk/app/views/projects/merge_requests/show/_state_widget.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/merge_requests/show/_state_widget.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -11,15 +11,15 @@
+@@ -11,40 +11,44 @@
  
      - if @merge_request.closed?
        %h4
 -        Closed
-+        クローズ済み
          - if @merge_request.closed_event
-           by #{link_to_member(@project, @merge_request.closed_event.author, avatar: false)}
+-          by #{link_to_member(@project, @merge_request.closed_event.author, avatar: false)}
++          #{link_to_member(@project, @merge_request.closed_event.author, avatar: false)}
++          に
            #{time_ago_with_tooltip(@merge_request.closed_event.created_at)}
 -      %p Changes were not merged into target branch
++          に
++        クローズされました
 +      %p 変更はマージされていません
  
      - if @merge_request.merged?
        %h4
 -        Merged
-+        マージ済み
          - if @merge_request.merge_event
-           by #{link_to_member(@project, @merge_request.merge_event.author, avatar: false)}
+-          by #{link_to_member(@project, @merge_request.merge_event.author, avatar: false)}
++          #{link_to_member(@project, @merge_request.merge_event.author, avatar: false)}
++          に
            #{time_ago_with_tooltip(@merge_request.merge_event.created_at)}
-@@ -27,24 +27,24 @@
++          に
++        マージされました
+       = render "projects/merge_requests/show/remove_source_branch"
  
      - if @merge_request.locked?
        %h4
@@ -9433,6 +9548,75 @@ diff -urN gitlab-rails.bk/app/views/projects/no_repo.html.haml gitlab-rails/app/
    .prepend-top-20
 -    = link_to 'Remove project', project_path(@project), data: { confirm: remove_project_message(@project)}, method: :delete, class: "btn btn-remove pull-right"
 +    = link_to 'プロジェクトを削除', project_path(@project), data: { confirm: remove_project_message(@project)}, method: :delete, class: "btn btn-remove pull-right"
+diff -urN gitlab-rails.bk/app/views/projects/notes/discussions/_active.html.haml gitlab-rails/app/views/projects/notes/discussions/_active.html.haml
+--- gitlab-rails.bk/app/views/projects/notes/discussions/_active.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/notes/discussions/_active.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -4,16 +4,17 @@
+     .discussion-actions
+       = link_to "#", class: "js-toggle-button" do
+         %i.fa.fa-chevron-up
+-        Show/hide discussion
++        ディスカッションを表示/非表示
+     %div
+       = link_to_member(@project, note.author, avatar: false)
+-      started a discussion
++      が
+       = link_to diffs_namespace_project_merge_request_path(note.project.namespace, note.project, note.noteable, anchor: note.line_code) do
+-        %strong on the diff
++        %strong 差分
++      でディスカッションを開始しました
+     .last-update.hide.js-toggle-content
+       - last_note = discussion_notes.last
+-      last updated by
+       = link_to_member(@project, last_note.author, avatar: false)
++      最終更新:
+       %span.discussion-last-update
+         #{time_ago_with_tooltip(last_note.updated_at, 'bottom', 'discussion_updated_ago')}
+   .discussion-body.js-toggle-content
+diff -urN gitlab-rails.bk/app/views/projects/notes/discussions/_commit.html.haml gitlab-rails/app/views/projects/notes/discussions/_commit.html.haml
+--- gitlab-rails.bk/app/views/projects/notes/discussions/_commit.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/notes/discussions/_commit.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -4,14 +4,15 @@
+     .discussion-actions
+       = link_to "#", class: "js-toggle-button" do
+         %i.fa.fa-chevron-up
+-        Show/hide discussion
++        ディスカッションを表示/非表示
+     %div
+       = link_to_member(@project, note.author, avatar: false)
+-      started a discussion on commit
++      がコミット
+       = link_to(note.noteable.short_id, namespace_project_commit_path(note.project.namespace, note.project, note.noteable), class: 'monospace')
++      でディスカッションを開始しました
+     .last-update.hide.js-toggle-content
+       - last_note = discussion_notes.last
+-      last updated by
++      最終更新:
+       = link_to_member(@project, last_note.author, avatar: false)
+       %span.discussion-last-update
+         #{time_ago_with_tooltip(last_note.updated_at, 'bottom', 'discussion_updated_ago')}
+diff -urN gitlab-rails.bk/app/views/projects/notes/discussions/_outdated.html.haml gitlab-rails/app/views/projects/notes/discussions/_outdated.html.haml
+--- gitlab-rails.bk/app/views/projects/notes/discussions/_outdated.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/notes/discussions/_outdated.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -4,14 +4,15 @@
+     .discussion-actions
+       = link_to "#", class: "js-toggle-button" do
+         %i.fa.fa-chevron-down
+-        Show/hide discussion
++        ディスカッションを表示/非表示
+     %div
+       = link_to_member(@project, note.author, avatar: false)
+-      started a discussion on the
++      が
+       %strong outdated diff
++      でディスカッションを開始しました
+     %div
+       - last_note = discussion_notes.last
+-      last updated by
++      最終更新:
+       = link_to_member(@project, last_note.author, avatar: false)
+       %span.discussion-last-update
+         #{time_ago_with_tooltip(last_note.updated_at, 'bottom', 'discussion_updated_ago')}
 diff -urN gitlab-rails.bk/app/views/projects/notes/_edit_form.html.haml gitlab-rails/app/views/projects/notes/_edit_form.html.haml
 --- gitlab-rails.bk/app/views/projects/notes/_edit_form.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/notes/_edit_form.html.haml	2014-03-22 09:00:00.000000000 +0900

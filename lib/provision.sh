@@ -1,47 +1,25 @@
 #!/usr/bin/env bash
 
 VAGRANT_SYNC_DIR=/vagrant
-INSTALLER_DIR=packages
+GITLAB_INSTALLER_DIR=packages
 GITLAB_VERSION=$1
 GITLAB_WEB_PORT=$2
+GITLAB_INSTALLER_URL=$3
+GITLAB_INSTALLER=${GITLAB_INSTALLER_DIR}/${GITLAB_INSTALLER_URL##*/}
 GITLAB_VERSION_INT=`echo -n "${GITLAB_VERSION}" | sed -e "s/\.//g"`
-
-if [ ${GITLAB_VERSION_INT} -ge 751 -a ${GITLAB_VERSION_INT} -lt 780 ]; then
-  # Package URL format changed since v7.5.1
-  if [ ${GITLAB_VERSION_INT} -ge 770 ]; then
-    CI_VERSION=5.4.0
-  elif [ ${GITLAB_VERSION_INT} -ge 760 ]; then
-    CI_VERSION=5.3.0
-  else
-    CI_VERSION=5.2.1
-  fi
-  INSTALLER=${INSTALLER_DIR}/gitlab_${GITLAB_VERSION}-omnibus.${CI_VERSION}.ci-1_amd64.deb
-  INSTALLER_URL=https://downloads-packages.s3.amazonaws.com/ubuntu-12.04/gitlab_${GITLAB_VERSION}-omnibus.${CI_VERSION}.ci-1_amd64.deb
-elif [ ${GITLAB_VERSION_INT} -ge 682 ]; then
-  # Package URL format changed since v6.8.1
-  INSTALLER=${INSTALLER_DIR}/gitlab_${GITLAB_VERSION}-omnibus-1_amd64.deb
-  INSTALLER_URL=https://downloads-packages.s3.amazonaws.com/ubuntu-12.04/gitlab_${GITLAB_VERSION}-omnibus-1_amd64.deb
-elif [ ${GITLAB_VERSION_INT} -ge 681 ]; then
-  # Package URL format changed since v6.8.1
-  INSTALLER=${INSTALLER_DIR}/gitlab_${GITLAB_VERSION}-omnibus.4-1_amd64.deb
-  INSTALLER_URL=https://downloads-packages.s3.amazonaws.com/ubuntu-12.04/gitlab_${GITLAB_VERSION}-omnibus.4-1_amd64.deb
-else
-  INSTALLER=${INSTALLER_DIR}/gitlab_${GITLAB_VERSION}-omnibus-1.ubuntu.12.04_amd64.deb
-  INSTALLER_URL=https://downloads-packages.s3.amazonaws.com/gitlab_${GITLAB_VERSION}-omnibus-1.ubuntu.12.04_amd64.deb
-fi
 
 echo "Provisioning GitLab v${GITLAB_VERSION}..."
 
 if [ ! -d /opt/gitlab ]; then
   pushd /vagrant > /dev/null 2>&1
-  if [ ! -f "./${INSTALLER}" ]; then
+  if [ ! -f "./${GITLAB_INSTALLER}" ]; then
     echo "Getting gitlab omnibus installer..."
-    pushd ./${INSTALLER_DIR}/ > /dev/null 2>&1
-    wget ${INSTALLER_URL} > /dev/null 2>&1
+    pushd ./${GITLAB_INSTALLER_DIR}/ > /dev/null 2>&1
+    wget ${GITLAB_INSTALLER_URL} > /dev/null 2>&1
     popd > /dev/null 2>&1
   fi
   echo "Installing gitlab..."
-  dpkg -i ./${INSTALLER} > /dev/null 2>&1
+  dpkg -i ./${GITLAB_INSTALLER} > /dev/null 2>&1
 
   # $external_url is not replaced in /etc/gitlab/gitlab.rb:
   # https://gitlab.com/gitlab-org/omnibus-gitlab/commit/28731b656b350df9c0224e025dedeca1fee0eb06

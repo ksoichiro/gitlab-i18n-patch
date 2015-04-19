@@ -1566,7 +1566,7 @@ diff -urN gitlab-rails.bk/app/models/event.rb gitlab-rails/app/models/event.rb
 +        "コミット"
 +      when "Issue"
 +        "課題"
-+      when "MergeRequest"
++      when "Mergerequest"
 +        "マージリクエスト"
 +      else
 +        target.noteable_type.titleize

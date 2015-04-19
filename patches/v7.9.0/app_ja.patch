@@ -1535,7 +1535,7 @@ diff -urN gitlab-rails.bk/app/models/event.rb gitlab-rails/app/models/event.rb
 +        "コミット"
 +      when "Issue"
 +        "課題"
-+      when "MergeRequest"
++      when "Mergerequest"
 +        "マージリクエスト"
 +      else
 +        target.noteable_type.titleize
@@ -4614,7 +4614,13 @@ diff -urN gitlab-rails.bk/app/views/groups/_projects.html.haml gitlab-rails/app/
 diff -urN gitlab-rails.bk/app/views/groups/projects.html.haml gitlab-rails/app/views/groups/projects.html.haml
 --- gitlab-rails.bk/app/views/groups/projects.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/groups/projects.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -6,7 +6,7 @@
+@@ -1,12 +1,12 @@
+ .panel.panel-default
+   .panel-heading
+     %strong= @group.name
+-    projects:
++    グループのプロジェクト:
+     - if can? current_user, :manage_group, @group
        .panel-head-actions
          = link_to new_project_path(namespace_id: @group.id), class: "btn btn-sm btn-success" do
            %i.fa.fa-plus
@@ -9354,7 +9360,7 @@ diff -urN gitlab-rails.bk/app/views/projects/new.html.haml gitlab-rails/app/view
  
        .project-import.form-group
 -        %label.control-label Import projects from
-+        %label.control-label 以下からプロジェクトをインポート
++        %label.control-label プロジェクトをインポート
          .col-sm-10
            - if github_import_enabled?
              = link_to status_import_github_path, class: 'btn' do

@@ -31,6 +31,7 @@ Vagrant.configure("2") do |config|
     "7.7.0" => "https://downloads-packages.s3.amazonaws.com/ubuntu-12.04/gitlab_7.7.0-omnibus.5.4.0.ci-1_amd64.deb",
     "7.8.0" => "https://downloads-packages.s3.amazonaws.com/ubuntu-12.04/gitlab_7.8.0-omnibus-1_amd64.deb",
     "7.9.0" => "https://downloads-packages.s3.amazonaws.com/ubuntu-12.04/gitlab_7.9.0-omnibus.2-1_amd64.deb",
+    "7.9.4" => "https://downloads-packages.s3.amazonaws.com/ubuntu-12.04/gitlab_7.9.4-omnibus.1-1_amd64.deb",
   }.each do |ver, url|
     config.vm.define "v#{ver.gsub(/\./, "")}" do |gl|
       gl.vm.network "forwarded_port", guest: 80, host: web_port(ver)

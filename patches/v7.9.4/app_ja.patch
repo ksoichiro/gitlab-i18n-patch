@@ -3595,6 +3595,103 @@ diff -urN gitlab-rails.bk/app/views/dashboard/milestones/index.html.haml gitlab-
                = milestone_progress_bar(milestone)
                %div
                  %br
+diff -urN gitlab-rails.bk/app/views/dashboard/milestones/show.html.haml gitlab-rails/app/views/dashboard/milestones/show.html.haml
+--- gitlab-rails.bk/app/views/dashboard/milestones/show.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/dashboard/milestones/show.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,24 +1,24 @@
+ %h4.page-title
+   .issue-box{ class: "issue-box-#{@dashboard_milestone.closed? ? 'closed' : 'open'}" }
+     - if @dashboard_milestone.closed?
+-      Closed
++      クローズ
+     - else
+-      Open
+-  Milestone #{@dashboard_milestone.title}
++      オープン
++  マイルストーン #{@dashboard_milestone.title}
+ 
+ %hr
+ - if (@dashboard_milestone.total_items_count == @dashboard_milestone.closed_items_count) && @dashboard_milestone.active?
+   .alert.alert-success
+-    %span All issues for this milestone are closed. You may close the milestone now.
++    %span このマイルストーンの課題はすべてクローズされました。マイルストーンはクローズできます。
+ 
+ .description
+ %table.table
+   %thead
+     %tr
+-      %th Project
+-      %th Open issues
+-      %th State
+-      %th Due date
++      %th プロジェクト
++      %th オープン中の課題
++      %th ステータス
++      %th 期限
+   - @dashboard_milestone.milestones.each do |milestone|
+     %tr
+       %td
+@@ -27,48 +27,48 @@
+         = milestone.issues.opened.count
+       %td
+         - if milestone.closed?
+-          Closed
++          クローズ
+         - else
+-          Open
++          オープン
+       %td
+         = milestone.expires_at
+ 
+ .context
+   %p.lead
+-    Progress:
+-    #{@dashboard_milestone.closed_items_count} closed
++    進捗:
++    #{@dashboard_milestone.closed_items_count} クローズ
+     &ndash;
+-    #{@dashboard_milestone.open_items_count} open
++    #{@dashboard_milestone.open_items_count} オープン
+   = milestone_progress_bar(@dashboard_milestone)
+ 
+ %ul.nav.nav-tabs
+   %li.active
+     = link_to '#tab-issues', 'data-toggle' => 'tab' do
+-      Issues
++      課題
+       %span.badge= @dashboard_milestone.issue_count
+   %li
+     = link_to '#tab-merge-requests', 'data-toggle' => 'tab' do
+-      Merge Requests
++      マージリクエスト
+       %span.badge= @dashboard_milestone.merge_requests_count
+   %li
+     = link_to '#tab-participants', 'data-toggle' => 'tab' do
+-      Participants
++      参加者
+       %span.badge= @dashboard_milestone.participants.count
+ 
+ .tab-content
+   .tab-pane.active#tab-issues
+     .row
+       .col-md-6
+-        = render 'issues', title: "Open", issues: @dashboard_milestone.opened_issues
++        = render 'issues', title: "オープン", issues: @dashboard_milestone.opened_issues
+       .col-md-6
+-        = render 'issues', title: "Closed", issues: @dashboard_milestone.closed_issues
++        = render 'issues', title: "クローズ", issues: @dashboard_milestone.closed_issues
+ 
+   .tab-pane#tab-merge-requests
+     .row
+       .col-md-6
+-        = render 'merge_requests', title: "Open", merge_requests: @dashboard_milestone.opened_merge_requests
++        = render 'merge_requests', title: "オープン", merge_requests: @dashboard_milestone.opened_merge_requests
+       .col-md-6
+-        = render 'merge_requests', title: "Closed", merge_requests: @dashboard_milestone.closed_merge_requests
++        = render 'merge_requests', title: "クローズ", merge_requests: @dashboard_milestone.closed_merge_requests
+ 
+   .tab-pane#tab-participants
+     %ul.bordered-list
 diff -urN gitlab-rails.bk/app/views/dashboard/projects/starred.html.haml gitlab-rails/app/views/dashboard/projects/starred.html.haml
 --- gitlab-rails.bk/app/views/dashboard/projects/starred.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/dashboard/projects/starred.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -4402,7 +4499,7 @@ diff -urN gitlab-rails.bk/app/views/groups/group_members/_group_member.html.haml
  
    - if show_roles
      %span.pull-right
-@@ -19,12 +19,12 @@
+@@ -19,19 +19,19 @@
        - if show_controls
          - if can?(current_user, :modify_group_member, member)
            = button_tag class: "btn-xs btn js-toggle-button",
@@ -4416,8 +4513,11 @@ diff -urN gitlab-rails.bk/app/views/groups/group_members/_group_member.html.haml
 +            = link_to leave_group_group_members_path(@group), data: { confirm: leave_group_message(@group.name)}, method: :delete, class: "btn-xs btn btn-remove", title: 'ユーザをグループから削除' do
                %i.fa.fa-minus.fa-inverse
            - else
-             = link_to group_group_member_path(@group, member), data: { confirm: remove_user_from_group_message(@group, user) }, method: :delete, remote: true, class: "btn-xs btn btn-remove", title: 'Remove user from group' do
-@@ -34,4 +34,4 @@
+-            = link_to group_group_member_path(@group, member), data: { confirm: remove_user_from_group_message(@group, user) }, method: :delete, remote: true, class: "btn-xs btn btn-remove", title: 'Remove user from group' do
++            = link_to group_group_member_path(@group, member), data: { confirm: remove_user_from_group_message(@group, user) }, method: :delete, remote: true, class: "btn-xs btn btn-remove", title: 'ユーザをグループから削除' do
+               %i.fa.fa-minus.fa-inverse
+ 
+     .edit-member.hide.js-toggle-content
        = form_for [@group, member], remote: true do |f|
          .alert.prepend-top-20
            = f.select :access_level, options_for_select(GroupMember.access_level_roles, member.access_level)
@@ -4759,14 +4859,18 @@ diff -urN gitlab-rails.bk/app/views/groups/projects.html.haml gitlab-rails/app/v
 diff -urN gitlab-rails.bk/app/views/groups/_settings_nav.html.haml gitlab-rails/app/views/groups/_settings_nav.html.haml
 --- gitlab-rails.bk/app/views/groups/_settings_nav.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/groups/_settings_nav.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -3,9 +3,9 @@
-     = link_to edit_group_path(@group), title: 'Group' do
+@@ -1,11 +1,11 @@
+ %ul.sidebar-subnav
+   = nav_link(path: 'groups#edit') do
+-    = link_to edit_group_path(@group), title: 'Group' do
++    = link_to edit_group_path(@group), title: 'グループ' do
        %i.fa.fa-pencil-square-o
        %span
 -        Group
 +        グループ
    = nav_link(path: 'groups#projects') do
-     = link_to projects_group_path(@group), title: 'Projects' do
+-    = link_to projects_group_path(@group), title: 'Projects' do
++    = link_to projects_group_path(@group), title: 'プロジェクト' do
        %i.fa.fa-folder
        %span
 -        Projects
@@ -5095,6 +5199,16 @@ diff -urN gitlab-rails.bk/app/views/layouts/application.html.haml gitlab-rails/a
 -    = render "layouts/head_panel", title: link_to("Dashboard", root_path)
 +    = render "layouts/head_panel", title: link_to("ダッシュボード", root_path)
      = render 'layouts/page', sidebar: 'layouts/nav/dashboard'
+diff -urN gitlab-rails.bk/app/views/layouts/_collapse_button.html.haml gitlab-rails/app/views/layouts/_collapse_button.html.haml
+--- gitlab-rails.bk/app/views/layouts/_collapse_button.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/layouts/_collapse_button.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+ - if nav_menu_collapsed?
+-  = link_to icon('angle-right'), '#', class: 'toggle-nav-collapse', title: "Open/Close"
++  = link_to icon('angle-right'), '#', class: 'toggle-nav-collapse', title: "オープン/クローズ"
+ - else
+-  = link_to icon('angle-left'), '#', class: 'toggle-nav-collapse', title: "Open/Close"
++  = link_to icon('angle-left'), '#', class: 'toggle-nav-collapse', title: "オープン/クローズ"
 diff -urN gitlab-rails.bk/app/views/layouts/devise.html.haml gitlab-rails/app/views/layouts/devise.html.haml
 --- gitlab-rails.bk/app/views/layouts/devise.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/layouts/devise.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -5171,6 +5285,18 @@ diff -urN gitlab-rails.bk/app/views/layouts/explore.html.haml gitlab-rails/app/v
 +            = link_to 'すべてのグループ', explore_groups_path
  
          = yield
+diff -urN gitlab-rails.bk/app/views/layouts/_head.html.haml gitlab-rails/app/views/layouts/_head.html.haml
+--- gitlab-rails.bk/app/views/layouts/_head.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/layouts/_head.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -20,7 +20,7 @@
+   -# Atom feed
+   - if current_user
+     - if controller_name == 'projects' && action_name == 'index'
+-      = auto_discovery_link_tag :atom, projects_url(:atom, private_token: current_user.private_token), title: "Dashboard feed"
++      = auto_discovery_link_tag :atom, projects_url(:atom, private_token: current_user.private_token), title: "ダッシュボードフィード"
+     - if @project && !@project.new_record?
+       - if current_controller?(:tree, :commits)
+         = auto_discovery_link_tag(:atom, namespace_project_commits_url(@project.namespace, @project, @ref, format: :atom, private_token: current_user.private_token), title: "Recent commits to #{@project.name}:#{@ref}")
 diff -urN gitlab-rails.bk/app/views/layouts/_head_panel.html.haml gitlab-rails/app/views/layouts/_head_panel.html.haml
 --- gitlab-rails.bk/app/views/layouts/_head_panel.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/layouts/_head_panel.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -5447,13 +5573,15 @@ diff -urN gitlab-rails.bk/app/views/layouts/nav/_profile.html.haml gitlab-rails/
 -        Account
 +        アカウント
    = nav_link(path: ['profiles#applications', 'applications#edit', 'applications#show', 'applications#new']) do
-     = link_to applications_profile_path, title: 'Applications' do
+-    = link_to applications_profile_path, title: 'Applications' do
++    = link_to applications_profile_path, title: 'アプリケーション' do
        %i.fa.fa-cloud
        %span
 -        Applications
 +        アプリケーション
    = nav_link(controller: :emails) do
-     = link_to profile_emails_path, title: 'Emails' do
+-    = link_to profile_emails_path, title: 'Emails' do
++    = link_to profile_emails_path, title: 'メール' do
        %i.fa.fa-envelope-o
        %span
 -        Emails
@@ -5461,33 +5589,38 @@ diff -urN gitlab-rails.bk/app/views/layouts/nav/_profile.html.haml gitlab-rails/
          %span.count= current_user.emails.count + 1
    - unless current_user.ldap_user?
      = nav_link(controller: :passwords) do
-       = link_to edit_profile_password_path, title: 'Password' do
+-      = link_to edit_profile_password_path, title: 'Password' do
++      = link_to edit_profile_password_path, title: 'パスワード' do
          %i.fa.fa-lock
          %span
 -          Password
 +          パスワード
    = nav_link(controller: :notifications) do
-     = link_to profile_notifications_path, title: 'Notifications' do
+-    = link_to profile_notifications_path, title: 'Notifications' do
++    = link_to profile_notifications_path, title: '通知' do
        %i.fa.fa-inbox
        %span
 -        Notifications
 +        通知
  
    = nav_link(controller: :keys) do
-     = link_to profile_keys_path, title: 'SSH Keys' do
+-    = link_to profile_keys_path, title: 'SSH Keys' do
++    = link_to profile_keys_path, title: 'SSHキー' do
        %i.fa.fa-key
        %span
 -        SSH Keys
 +        SSHキー
          %span.count= current_user.keys.count
    = nav_link(path: 'profiles#design') do
-     = link_to design_profile_path, title: 'Design' do
+-    = link_to design_profile_path, title: 'Design' do
++    = link_to design_profile_path, title: 'デザイン' do
        %i.fa.fa-image
        %span
 -        Design
 +        デザイン
    = nav_link(path: 'profiles#history') do
-     = link_to history_profile_path, title: 'History' do
+-    = link_to history_profile_path, title: 'History' do
++    = link_to history_profile_path, title: '履歴' do
        %i.fa.fa-history
        %span
 -        History
@@ -9144,7 +9277,8 @@ diff -urN gitlab-rails.bk/app/views/projects/merge_requests/_show.html.haml gitl
 +          ディスカッション
            %span.badge= @merge_request.mr_and_commit_notes.count
        %li.commits-tab{data: {action: 'commits'}}
-         = link_to merge_request_path(@merge_request), title: 'Commits' do
+-        = link_to merge_request_path(@merge_request), title: 'Commits' do
++        = link_to merge_request_path(@merge_request), title: 'コミット' do
            %i.fa.fa-history
 -          Commits
 +          コミット
@@ -10018,38 +10152,46 @@ diff -urN gitlab-rails.bk/app/views/projects/services/index.html.haml gitlab-rai
 diff -urN gitlab-rails.bk/app/views/projects/_settings_nav.html.haml gitlab-rails/app/views/projects/_settings_nav.html.haml
 --- gitlab-rails.bk/app/views/projects/_settings_nav.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/_settings_nav.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -3,29 +3,29 @@
-     = link_to edit_project_path(@project), title: 'Project', class: "stat-tab tab " do
+@@ -1,31 +1,31 @@
+ %ul.project-settings-nav.sidebar-subnav
+   = nav_link(path: 'projects#edit') do
+-    = link_to edit_project_path(@project), title: 'Project', class: "stat-tab tab " do
++    = link_to edit_project_path(@project), title: 'プロジェクト', class: "stat-tab tab " do
        %i.fa.fa-pencil-square-o
        %span
 -        Project
 +        プロジェクト
    = nav_link(controller: [:project_members, :teams]) do
-     = link_to namespace_project_project_members_path(@project.namespace, @project), title: 'Members', class: "team-tab tab" do
+-    = link_to namespace_project_project_members_path(@project.namespace, @project), title: 'Members', class: "team-tab tab" do
++    = link_to namespace_project_project_members_path(@project.namespace, @project), title: 'メンバー', class: "team-tab tab" do
        %i.fa.fa-users
        %span
 -        Members
 +        メンバー
    = nav_link(controller: :deploy_keys) do
-     = link_to namespace_project_deploy_keys_path(@project.namespace, @project), title: 'Deploy Keys' do
+-    = link_to namespace_project_deploy_keys_path(@project.namespace, @project), title: 'Deploy Keys' do
++    = link_to namespace_project_deploy_keys_path(@project.namespace, @project), title: 'デプロイキー' do
        %i.fa.fa-key
        %span
 -        Deploy Keys
 +        デプロイキー
    = nav_link(controller: :hooks) do
-     = link_to namespace_project_hooks_path(@project.namespace, @project), title: 'Web Hooks' do
+-    = link_to namespace_project_hooks_path(@project.namespace, @project), title: 'Web Hooks' do
++    = link_to namespace_project_hooks_path(@project.namespace, @project), title: 'Webフック' do
        %i.fa.fa-link
        %span
 -        Web Hooks
 +        Webフック
    = nav_link(controller: :services) do
-     = link_to namespace_project_services_path(@project.namespace, @project), title: 'Services' do
+-    = link_to namespace_project_services_path(@project.namespace, @project), title: 'Services' do
++    = link_to namespace_project_services_path(@project.namespace, @project), title: 'サービス' do
        %i.fa.fa-cogs
        %span
 -        Services
 +        サービス
    = nav_link(controller: :protected_branches) do
-     = link_to namespace_project_protected_branches_path(@project.namespace, @project), title: 'Protected Branches' do
+-    = link_to namespace_project_protected_branches_path(@project.namespace, @project), title: 'Protected Branches' do
++    = link_to namespace_project_protected_branches_path(@project.namespace, @project), title: '保護ブランチ' do
        %i.fa.fa-lock
        %span
 -        Protected branches

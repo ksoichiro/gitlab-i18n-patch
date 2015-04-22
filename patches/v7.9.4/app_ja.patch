@@ -8373,7 +8373,8 @@ diff -urN gitlab-rails.bk/app/views/projects/issues/show.html.haml gitlab-rails/
 +          オープン
 +      課題 ##{@issue.iid}
        %small.creator
-         &middot; created by #{link_to_member(@project, @issue.author)} #{issue_timestamp(@issue)}
+-        &middot; created by #{link_to_member(@project, @issue.author)} #{issue_timestamp(@issue)}
++        &middot; #{link_to_member(@project, @issue.author)}が#{issue_timestamp(@issue)}に作成
  
        .pull-right
          - if can?(current_user, :write_issue, @project)

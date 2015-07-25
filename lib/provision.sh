@@ -3,10 +3,16 @@
 VAGRANT_SYNC_DIR=/vagrant
 GITLAB_INSTALLER_DIR=packages
 GITLAB_VERSION=$1
+GITLAB_VERSION_INT=`echo -n "${GITLAB_VERSION}" | sed -e "s/\.//g"`
 GITLAB_WEB_PORT=$2
 GITLAB_INSTALLER_URL=$3
 GITLAB_INSTALLER=${GITLAB_INSTALLER_DIR}/${GITLAB_INSTALLER_URL##*/}
-GITLAB_VERSION_INT=`echo -n "${GITLAB_VERSION}" | sed -e "s/\.//g"`
+if [ ${GITLAB_VERSION_INT} -gt 794 ]; then
+  # Since v7.10.0, URL changed: https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_7.10.0\~omnibus.4-1_amd64.deb/download
+  GITLAB_INSTALLER_FILE=${GITLAB_INSTALLER_URL##*precise/}
+  GITLAB_INSTALLER_FILE=${GITLAB_INSTALLER_FILE%/download}
+  GITLAB_INSTALLER=${GITLAB_INSTALLER_DIR}/${GITLAB_INSTALLER_FILE}
+fi
 
 echo "Provisioning GitLab v${GITLAB_VERSION}..."
 
@@ -16,6 +22,10 @@ if [ ! -d /opt/gitlab ]; then
     echo "Getting gitlab omnibus installer..."
     pushd ./${GITLAB_INSTALLER_DIR}/ > /dev/null 2>&1
     wget ${GITLAB_INSTALLER_URL} > /dev/null 2>&1
+    if [ ${GITLAB_VERSION_INT} -gt 794 ]; then
+      # Downloaded as "download", so rename it to *.deb
+      mv download ${GITLAB_INSTALLER_FILE}
+    fi
     popd > /dev/null 2>&1
   fi
   echo "Installing gitlab..."

@@ -1735,7 +1735,7 @@ diff -urN gitlab-rails.bk/app/models/note.rb gitlab-rails/app/models/note.rb
  
        create({
          noteable: noteable,
-@@ -128,18 +129,17 @@
+@@ -128,21 +129,19 @@
        labels_count = added_labels.count + removed_labels.count
        added_labels = added_labels.map{ |label| "~#{label.id}" }.join(' ')
        removed_labels = removed_labels.map{ |label| "~#{label.id}" }.join(' ')
@@ -1759,8 +1759,11 @@ diff -urN gitlab-rails.bk/app/models/note.rb gitlab-rails/app/models/note.rb
 +        message << " #{removed_labels} を削除しました"
        end
  
-       message << ' ' << 'label'.pluralize(labels_count)
-@@ -156,8 +156,7 @@
+-      message << ' ' << 'label'.pluralize(labels_count)
+       body = "#{message.capitalize}"
+ 
+       create(
+@@ -156,8 +155,7 @@
  
      def create_new_commits_note(merge_request, project, author, new_commits, existing_commits = [], oldrev = nil)
        total_count = new_commits.length + existing_commits.length
@@ -1770,7 +1773,7 @@ diff -urN gitlab-rails.bk/app/models/note.rb gitlab-rails/app/models/note.rb
  
        if existing_commits.length > 0
          commit_ids =
-@@ -251,14 +250,14 @@
+@@ -251,14 +249,14 @@
        where("note like :query", query: "%#{query}%")
      end
  
@@ -1788,7 +1791,7 @@ diff -urN gitlab-rails.bk/app/models/note.rb gitlab-rails/app/models/note.rb
      end
  
      def cross_reference_note_pattern(gfm_reference)
-@@ -310,17 +309,30 @@
+@@ -310,17 +308,30 @@
        else
          if mentioner.is_a?(Commit)
            mentioner.gfm_reference.sub(
@@ -1821,7 +1824,7 @@ diff -urN gitlab-rails.bk/app/models/note.rb gitlab-rails/app/models/note.rb
    end
  
    def max_attachment_size
-@@ -336,7 +348,7 @@
+@@ -336,7 +347,7 @@
    end
  
    def cross_reference?
@@ -4700,6 +4703,35 @@ diff -urN gitlab-rails.bk/app/views/groups/milestones/index.html.haml gitlab-rai
        - else
          - @group_milestones.each do |milestone|
            = render 'milestone', milestone: milestone
+diff -urN gitlab-rails.bk/app/views/groups/milestones/_milestone.html.haml gitlab-rails/app/views/groups/milestones/_milestone.html.haml
+--- gitlab-rails.bk/app/views/groups/milestones/_milestone.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/groups/milestones/_milestone.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -2,20 +2,20 @@
+   .pull-right
+     - if can?(current_user, :admin_group, @group)
+       - if milestone.closed?
+-        = link_to 'Reopen Milestone', group_milestone_path(@group, milestone.safe_title, title: milestone.title, milestone: {state_event: :activate }), method: :put, class: "btn btn-sm btn-grouped btn-reopen"
++        = link_to 'マイルストーンを再オープン', group_milestone_path(@group, milestone.safe_title, title: milestone.title, milestone: {state_event: :activate }), method: :put, class: "btn btn-sm btn-grouped btn-reopen"
+       - else
+-        = link_to 'Close Milestone', group_milestone_path(@group, milestone.safe_title, title: milestone.title, milestone: {state_event: :close }), method: :put, class: "btn btn-sm btn-close"
++        = link_to 'マイルストーンをクローズ', group_milestone_path(@group, milestone.safe_title, title: milestone.title, milestone: {state_event: :close }), method: :put, class: "btn btn-sm btn-close"
+   %h4
+     = link_to_gfm truncate(milestone.title, length: 100), group_milestone_path(@group, milestone.safe_title, title: milestone.title)
+   .row
+     .col-sm-6
+       = link_to group_milestone_path(@group, milestone.safe_title, title: milestone.title) do
+-        = pluralize milestone.issue_count, 'Issue'
++        #{milestone.issue_count}件の課題
+       &nbsp;
+       = link_to group_milestone_path(@group, milestone.safe_title, title: milestone.title) do
+-        = pluralize milestone.merge_requests_count, 'Merge Request'
++        #{milestone.merge_requests_count}件のマージリクエスト
+       &nbsp;
+-      %span.light #{milestone.percent_complete}% complete
++      %span.light #{milestone.percent_complete}% 完了
+     .col-sm-6
+       = milestone_progress_bar(milestone)
+   %div
 diff -urN gitlab-rails.bk/app/views/groups/milestones/show.html.haml gitlab-rails/app/views/groups/milestones/show.html.haml
 --- gitlab-rails.bk/app/views/groups/milestones/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/groups/milestones/show.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -6793,7 +6825,7 @@ diff -urN gitlab-rails.bk/app/views/profiles/show.html.haml gitlab-rails/app/vie
            - else
              - if @user.temp_oauth_email?
                = f.text_field :email, class: "form-control", required: true, value: nil
-@@ -36,11 +36,12 @@
+@@ -36,16 +36,17 @@
                = f.text_field :email, class: "form-control", required: true
              - if @user.unconfirmed_email.present?
                %span.help-block
@@ -6806,8 +6838,16 @@ diff -urN gitlab-rails.bk/app/views/profiles/show.html.haml gitlab-rails/app/vie
 -              %span.help-block We also use email for avatar detection if no avatar is uploaded.
 +              %span.help-block メールアドレスはアバターの検出にも使用されます(アップロードされていない場合)。
        .form-group
-         = f.label :public_email, class: "control-label"
+-        = f.label :public_email, class: "control-label"
++        = f.label :public_email, '公開メールアドレス', class: "control-label"
          .col-sm-10
+-          = f.select :public_email, options_for_select(@user.all_emails, selected: @user.public_email), {include_blank: 'Do not show in profile'}, class: "form-control"
+-          %span.help-block This email will be displayed on your public profile.
++          = f.select :public_email, options_for_select(@user.all_emails, selected: @user.public_email), {include_blank: 'プロフィールに表示しない'}, class: "form-control"
++          %span.help-block このメールアドレスはあなたの公開プロフィールに表示されます。
+       .form-group
+         = f.label :skype, class: "control-label"
+         .col-sm-10= f.text_field :skype, class: "form-control"
 @@ -56,16 +57,16 @@
          = f.label :twitter, class: "control-label"
          .col-sm-10= f.text_field :twitter, class: "form-control"
@@ -8188,7 +8228,7 @@ diff -urN gitlab-rails.bk/app/views/projects/issues/_discussion.html.haml gitlab
        #votes= render 'votes/votes_block', votable: @issue
      .participants
 -      %span= pluralize(@issue.participants(current_user).count, 'participant')
-+      %span #{@issue.participants(current_user).count} 人の参加者
++      %span= #{@issue.participants(current_user).count} 人の参加者
        - @issue.participants(current_user).each do |participant|
          = link_to_member(@project, participant, name: false, size: 24)
      .voting_notes#notes= render "projects/notes/notes_with_form"
@@ -8395,6 +8435,18 @@ diff -urN gitlab-rails.bk/app/views/projects/issues/show.html.haml gitlab-rails/
  
      %hr
      %h2.issue-title
+diff -urN gitlab-rails.bk/app/views/projects/issues/update.js.haml gitlab-rails/app/views/projects/issues/update.js.haml
+--- gitlab-rails.bk/app/views/projects/issues/update.js.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/issues/update.js.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -6,7 +6,7 @@
+   $('.context').html("#{escape_javascript(render partial: 'issue_context', locals: { issue: @issue })}");
+   $('.context').effect('highlight');
+   - if @issue.milestone
+-    $('.milestone-nav-link').replaceWith("<span class='milestone-nav-link'>| <span class='light'>Milestone</span> #{escape_javascript(link_to @issue.milestone.title, namespace_project_milestone_path(@issue.project.namespace, @issue.project, @issue.milestone))}</span>")
++    $('.milestone-nav-link').replaceWith("<span class='milestone-nav-link'>| <span class='light'>マイルストーン</span> #{escape_javascript(link_to @issue.milestone.title, namespace_project_milestone_path(@issue.project.namespace, @issue.project, @issue.milestone))}</span>")
+   - else
+     $('.milestone-nav-link').html('')
+ 
 diff -urN gitlab-rails.bk/app/views/projects/labels/edit.html.haml gitlab-rails/app/views/projects/labels/edit.html.haml
 --- gitlab-rails.bk/app/views/projects/labels/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/labels/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -9584,6 +9636,15 @@ diff -urN gitlab-rails.bk/app/views/projects/new.html.haml gitlab-rails/app/view
            .col-sm-10
              = f.select :namespace_id, namespaces_options(params[:namespace_id] || :current_user), {}, {class: 'select2', tabindex: 2}
  
+@@ -24,7 +24,7 @@
+ 
+       .project-import.js-toggle-container
+         .form-group
+-          %label.control-label Import project from
++          %label.control-label インポート
+           .col-sm-10
+             - if github_import_enabled?
+               = link_to status_import_github_path, class: 'btn' do
 @@ -89,28 +89,28 @@
  
        .form-group
@@ -11062,7 +11123,7 @@ diff -urN gitlab-rails.bk/app/views/shared/_issuable_filter.html.haml gitlab-rai
  
    .issues-details-filters
      = form_tag page_filter_path(without: [:assignee_id, :author_id, :milestone_id, :label_name]), method: :get, class: 'filter-form' do
-@@ -24,11 +24,11 @@
+@@ -24,18 +24,18 @@
        .issues-other-filters
          .filter-item.inline
            = users_select_tag(:assignee_id, selected: params[:assignee_id],
@@ -11075,7 +11136,29 @@ diff -urN gitlab-rails.bk/app/views/shared/_issuable_filter.html.haml gitlab-rai
 +            placeholder: '作成', class: 'trigger-submit', any_user: true, first_user: true)
  
          .filter-item.inline.milestone-filter
-           = select_tag('milestone_id', projects_milestones_options, class: "select2 trigger-submit", prompt: 'Milestone')
+-          = select_tag('milestone_id', projects_milestones_options, class: "select2 trigger-submit", prompt: 'Milestone')
++          = select_tag('milestone_id', projects_milestones_options, class: "select2 trigger-submit", prompt: 'マイルストーン')
+ 
+         - if @project
+           .filter-item.inline.labels-filter
+-            = select_tag('label_name', project_labels_options(@project), class: "select2 trigger-submit", prompt: 'Label')
++            = select_tag('label_name', project_labels_options(@project), class: "select2 trigger-submit", prompt: 'ラベル')
+ 
+         .pull-right
+           = render 'shared/sort_dropdown'
+@@ -43,9 +43,9 @@
+     - if controller.controller_name == 'issues'
+       .issues_bulk_update.hide
+         = form_tag bulk_update_namespace_project_issues_path(@project.namespace, @project), method: :post  do
+-          = select_tag('update[state_event]', options_for_select([['Open', 'reopen'], ['Closed', 'close']]), prompt: "Status", class: 'form-control')
+-          = users_select_tag('update[assignee_id]', placeholder: 'Assignee', null_user: true)
+-          = select_tag('update[milestone_id]', bulk_update_milestone_options, prompt: "Milestone")
++          = select_tag('update[state_event]', options_for_select([['オープン', 'reopen'], ['クローズ', 'close']]), prompt: "ステータス", class: 'form-control')
++          = users_select_tag('update[assignee_id]', placeholder: '担当者', null_user: true)
++          = select_tag('update[milestone_id]', bulk_update_milestone_options, prompt: "マイルストーン")
+           = hidden_field_tag 'update[issues_ids]', []
+           = hidden_field_tag :state_event, params[:state_event]
+           = button_tag "Update issues", class: "btn update_selected_issues btn-save"
 diff -urN gitlab-rails.bk/app/views/shared/_issuable_search_form.html.haml gitlab-rails/app/views/shared/_issuable_search_form.html.haml
 --- gitlab-rails.bk/app/views/shared/_issuable_search_form.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/shared/_issuable_search_form.html.haml	2014-03-22 09:00:00.000000000 +0900

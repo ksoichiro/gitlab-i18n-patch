@@ -37,8 +37,8 @@ GitLabはi18nに対応しないとのことですが、
 | ソフトウェア | バージョン等                                     |
 | ------------ | ------------------------------------------------ |
 | マシン       | MacBookPro                                       |
-| OS           | OS X 10.9.3                                      |
-| VM           | VirtualBox 4.3.12                                |
+| OS           | OS X 10.10.1                                      |
+| VM           | VirtualBox 4.3.20                                |
 | ゲストOS     | Ubuntu Precise 64 VirtualBox                     |
 | GitLab       | GitLab Omnibus Package                           |
 | Vagrant      | Vagrant 1.5.4                                    |
@@ -103,6 +103,7 @@ Webのポート番号(80)は、 `config/config.rb` に定義する `$base_port` 
 バージョン番号(v6.6.4なら664)を加えた番号にポートフォワードします。  
 例えば、 `$base_port = 9000` の状態で `vagrant up v664` を実行した場合は  
 `http://localhost:9664` でGitLabにアクセスできます。  
+v7.10.0の場合は(番号が飛びますが)7100 + 9000で16100です。
 
 ## ライセンス
 

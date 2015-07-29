@@ -1891,6 +1891,16 @@ diff -urN gitlab-rails.bk/app/services/system_note_service.rb gitlab-rails/app/s
 +    "* #{commit_ids} - `#{branch}`ブランチから #{commits_text}\n"
    end
  end
+diff -urN gitlab-rails.bk/app/views/admin/applications/edit.html.haml gitlab-rails/app/views/admin/applications/edit.html.haml
+--- gitlab-rails.bk/app/views/admin/applications/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/admin/applications/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title "Edit", @application.name, "Applications"
+-%h3.page-title Edit application
++- page_title "編集", @application.name, "アプリケーション"
++%h3.page-title アプリケーションの編集
+ - @url = admin_application_path(@application)
+ = render 'form', application: @application
 diff -urN gitlab-rails.bk/app/views/admin/applications/_form.html.haml gitlab-rails/app/views/admin/applications/_form.html.haml
 --- gitlab-rails.bk/app/views/admin/applications/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/admin/applications/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -1928,7 +1938,8 @@ diff -urN gitlab-rails.bk/app/views/admin/applications/index.html.haml gitlab-ra
 --- gitlab-rails.bk/app/views/admin/applications/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/admin/applications/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,16 +1,16 @@
- - page_title "Applications"
+-- page_title "Applications"
++- page_title "アプリケーション"
  %h3.page-title
 -  System OAuth applications
 +  システムOAuthアプリケーション
@@ -1967,6 +1978,15 @@ diff -urN gitlab-rails.bk/app/views/admin/applications/new.html.haml gitlab-rail
 +%h3.page-title 新しいアプリケーション
  - @url = admin_applications_path
  = render 'form', application: @application
+diff -urN gitlab-rails.bk/app/views/admin/applications/show.html.haml gitlab-rails/app/views/admin/applications/show.html.haml
+--- gitlab-rails.bk/app/views/admin/applications/show.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/admin/applications/show.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title @application.name, "Applications"
++- page_title @application.name, "アプリケーション"
+ %h3.page-title
+   Application: #{@application.name}
+ 
 diff -urN gitlab-rails.bk/app/views/admin/application_settings/_form.html.haml gitlab-rails/app/views/admin/application_settings/_form.html.haml
 --- gitlab-rails.bk/app/views/admin/application_settings/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/admin/application_settings/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -2124,7 +2144,8 @@ diff -urN gitlab-rails.bk/app/views/admin/broadcast_messages/index.html.haml git
 --- gitlab-rails.bk/app/views/admin/broadcast_messages/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/admin/broadcast_messages/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,11 +1,11 @@
- - page_title "Broadcast Messages"
+-- page_title "Broadcast Messages"
++- page_title "ブロードキャストメッセージ"
  %h3.page-title
 -  Broadcast Messages
 +  ブロードキャストメッセージ
@@ -2306,6 +2327,30 @@ diff -urN gitlab-rails.bk/app/views/admin/dashboard/index.html.haml gitlab-rails
        %hr
        - @groups.each do |group|
          %p
+diff -urN gitlab-rails.bk/app/views/admin/deploy_keys/index.html.haml gitlab-rails/app/views/admin/deploy_keys/index.html.haml
+--- gitlab-rails.bk/app/views/admin/deploy_keys/index.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/admin/deploy_keys/index.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,9 +1,9 @@
+-- page_title "Deploy Keys"
++- page_title "デプロイキー"
+ .panel.panel-default
+   .panel-heading
+     Public deploy keys (#{@deploy_keys.count})
+     .panel-head-actions
+-      = link_to 'New Deploy Key', new_admin_deploy_key_path, class: "btn btn-new btn-sm"
++      = link_to '新しいデプロイキー', new_admin_deploy_key_path, class: "btn btn-new btn-sm"
+   - if @deploy_keys.any?
+     %table.table
+       %thead.panel-heading
+diff -urN gitlab-rails.bk/app/views/admin/deploy_keys/new.html.haml gitlab-rails/app/views/admin/deploy_keys/new.html.haml
+--- gitlab-rails.bk/app/views/admin/deploy_keys/new.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/admin/deploy_keys/new.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title "New Deploy Key"
++- page_title "新しいデプロイキー"
+ %h3.page-title New public deploy key
+ %hr
+ 
 diff -urN gitlab-rails.bk/app/views/admin/groups/edit.html.haml gitlab-rails/app/views/admin/groups/edit.html.haml
 --- gitlab-rails.bk/app/views/admin/groups/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/admin/groups/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -2348,7 +2393,8 @@ diff -urN gitlab-rails.bk/app/views/admin/groups/index.html.haml gitlab-rails/ap
 --- gitlab-rails.bk/app/views/admin/groups/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/admin/groups/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,23 +1,23 @@
- - page_title "Groups"
+-- page_title "Groups"
++- page_title "グループ"
  %h3.page-title
 -  Groups (#{@groups.total_count})
 -  = link_to 'New Group', new_admin_group_path, class: "btn btn-new pull-right"
@@ -2503,7 +2549,8 @@ diff -urN gitlab-rails.bk/app/views/admin/hooks/index.html.haml gitlab-rails/app
 --- gitlab-rails.bk/app/views/admin/hooks/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/admin/hooks/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,10 +1,10 @@
- - page_title "System Hooks"
+-- page_title "System Hooks"
++- page_title "システムフック"
  %h3.page-title
 -  System hooks
 +  システムフック
@@ -2543,6 +2590,12 @@ diff -urN gitlab-rails.bk/app/views/admin/hooks/index.html.haml gitlab-rails/app
 diff -urN gitlab-rails.bk/app/views/admin/logs/show.html.haml gitlab-rails/app/views/admin/logs/show.html.haml
 --- gitlab-rails.bk/app/views/admin/logs/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/admin/logs/show.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title "Logs"
++- page_title "ログ"
+ - loggers = [Gitlab::GitLogger, Gitlab::AppLogger,
+              Gitlab::ProductionLogger, Gitlab::SidekiqLogger]
+ %ul.nav.nav-tabs.log-tabs
 @@ -6,7 +6,7 @@
      %li{ class: (klass == Gitlab::GitLogger ? 'active' : '') }
        = link_to klass::file_name, "##{klass::file_name_noext}",
@@ -2564,6 +2617,12 @@ diff -urN gitlab-rails.bk/app/views/admin/logs/show.html.haml gitlab-rails/app/v
 diff -urN gitlab-rails.bk/app/views/admin/projects/index.html.haml gitlab-rails/app/views/admin/projects/index.html.haml
 --- gitlab-rails.bk/app/views/admin/projects/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/admin/projects/index.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title "Projects"
++- page_title "プロジェクト"
+ = render 'shared/show_aside'
+ 
+ .row
 @@ -6,26 +6,26 @@
      .admin-filter
        = form_tag admin_namespaces_projects_path, method: :get, class: '' do
@@ -2819,7 +2878,8 @@ diff -urN gitlab-rails.bk/app/views/admin/users/edit.html.haml gitlab-rails/app/
 --- gitlab-rails.bk/app/views/admin/users/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/admin/users/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,8 +1,8 @@
- - page_title "Edit", @user.name, "Users"
+-- page_title "Edit", @user.name, "Users"
++- page_title "編集", @user.name, "ユーザ"
  %h3.page-title
 -  Edit user: #{@user.name}
 +  ユーザを編集: #{@user.name}
@@ -2937,6 +2997,12 @@ diff -urN gitlab-rails.bk/app/views/admin/users/_form.html.haml gitlab-rails/app
 diff -urN gitlab-rails.bk/app/views/admin/users/index.html.haml gitlab-rails/app/views/admin/users/index.html.haml
 --- gitlab-rails.bk/app/views/admin/users/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/admin/users/index.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title "Users"
++- page_title "ユーザ"
+ = render 'shared/show_aside'
+ 
+ .row
 @@ -7,37 +7,37 @@
        %ul.nav.nav-pills.nav-stacked
          %li{class: "#{'active' unless params[:filter]}"}
@@ -3023,7 +3089,8 @@ diff -urN gitlab-rails.bk/app/views/admin/users/new.html.haml gitlab-rails/app/v
 --- gitlab-rails.bk/app/views/admin/users/new.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/admin/users/new.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,5 +1,5 @@
- - page_title "New User"
+-- page_title "New User"
++- page_title "新しいユーザ"
  %h3.page-title
 -  New user
 +  新しいユーザ
@@ -3301,7 +3368,8 @@ diff -urN gitlab-rails.bk/app/views/dashboard/groups/index.html.haml gitlab-rail
 --- gitlab-rails.bk/app/views/dashboard/groups/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/dashboard/groups/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,17 +1,17 @@
- - page_title "Groups"
+-- page_title "Groups"
++- page_title "グループ"
  %h3.page-title
 -  Group Membership
 +  グループ
@@ -3353,7 +3421,11 @@ diff -urN gitlab-rails.bk/app/views/dashboard/groups/index.html.haml gitlab-rail
 diff -urN gitlab-rails.bk/app/views/dashboard/issues.html.haml gitlab-rails/app/views/dashboard/issues.html.haml
 --- gitlab-rails.bk/app/views/dashboard/issues.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/dashboard/issues.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -4,10 +4,10 @@
+@@ -1,13 +1,13 @@
+-- page_title "Issues"
++- page_title "課題"
+ = content_for :meta_tags do
+   - if current_user
      = auto_discovery_link_tag(:atom, issues_dashboard_url(format: :atom, private_token: current_user.private_token), title: "#{current_user.name} issues")
  
  %h3.page-title
@@ -3370,7 +3442,8 @@ diff -urN gitlab-rails.bk/app/views/dashboard/merge_requests.html.haml gitlab-ra
 --- gitlab-rails.bk/app/views/dashboard/merge_requests.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/dashboard/merge_requests.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,10 +1,10 @@
- - page_title "Merge Requests"
+-- page_title "Merge Requests"
++- page_title "マージリクエスト"
  %h3.page-title
 -  Merge Requests
 +  マージリクエスト
@@ -3386,7 +3459,8 @@ diff -urN gitlab-rails.bk/app/views/dashboard/milestones/index.html.haml gitlab-
 --- gitlab-rails.bk/app/views/dashboard/milestones/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/dashboard/milestones/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,10 +1,10 @@
- - page_title "Milestones"
+-- page_title "Milestones"
++- page_title "マイルストーン"
  %h3.page-title
 -  Milestones
 -  %span.pull-right #{@dashboard_milestones.count} milestones
@@ -3525,6 +3599,12 @@ diff -urN gitlab-rails.bk/app/views/dashboard/milestones/show.html.haml gitlab-r
 diff -urN gitlab-rails.bk/app/views/dashboard/projects/starred.html.haml gitlab-rails/app/views/dashboard/projects/starred.html.haml
 --- gitlab-rails.bk/app/views/dashboard/projects/starred.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/dashboard/projects/starred.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title "Starred Projects"
++- page_title "スターをつけたプロジェクト"
+ - if @projects.any?
+   = render 'shared/show_aside'
+ 
 @@ -9,15 +9,15 @@
        .panel.panel-default
          .panel-heading.clearfix
@@ -3786,6 +3866,15 @@ diff -urN gitlab-rails.bk/app/views/devise/registrations/edit.html.erb gitlab-ra
  
 -<%= link_to "Back", :back %>
 +<%= link_to "戻る", :back %>
+diff -urN gitlab-rails.bk/app/views/devise/registrations/new.html.haml gitlab-rails/app/views/devise/registrations/new.html.haml
+--- gitlab-rails.bk/app/views/devise/registrations/new.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/devise/registrations/new.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title "Sign up"
++- page_title "サインアップ"
+ = render 'devise/shared/signup_box'
+ 
+ = render 'devise/shared/sign_in_link'
 diff -urN gitlab-rails.bk/app/views/devise/sessions/_new_base.html.haml gitlab-rails/app/views/devise/sessions/_new_base.html.haml
 --- gitlab-rails.bk/app/views/devise/sessions/_new_base.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/devise/sessions/_new_base.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -3807,6 +3896,15 @@ diff -urN gitlab-rails.bk/app/views/devise/sessions/_new_base.html.haml gitlab-r
    %div
 -    = f.submit "Sign in", class: "btn btn-save"
 +    = f.submit "サインイン", class: "btn btn-save"
+diff -urN gitlab-rails.bk/app/views/devise/sessions/new.html.haml gitlab-rails/app/views/devise/sessions/new.html.haml
+--- gitlab-rails.bk/app/views/devise/sessions/new.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/devise/sessions/new.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title "Sign in"
++- page_title "サインイン"
+ %div
+   - if signin_enabled? || ldap_enabled?
+     = render 'devise/shared/signin_box'
 diff -urN gitlab-rails.bk/app/views/devise/sessions/two_factor.html.haml gitlab-rails/app/views/devise/sessions/two_factor.html.haml
 --- gitlab-rails.bk/app/views/devise/sessions/two_factor.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/devise/sessions/two_factor.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -3914,6 +4012,14 @@ diff -urN gitlab-rails.bk/app/views/devise/shared/_signup_box.html.haml gitlab-r
      = succeed '.' do
 -      = link_to "Request a new one", new_confirmation_path(resource_name)
 +      = link_to "もう一度送信", new_confirmation_path(resource_name)
+diff -urN gitlab-rails.bk/app/views/doorkeeper/applications/edit.html.haml gitlab-rails/app/views/doorkeeper/applications/edit.html.haml
+--- gitlab-rails.bk/app/views/doorkeeper/applications/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/doorkeeper/applications/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,3 +1,3 @@
+-- page_title "Edit", @application.name, "Applications"
++- page_title "編集", @application.name, "アプリケーション"
+ %h3.page-title Edit application
+ = render 'form', application: @application
 diff -urN gitlab-rails.bk/app/views/doorkeeper/applications/_form.html.haml gitlab-rails/app/views/doorkeeper/applications/_form.html.haml
 --- gitlab-rails.bk/app/views/doorkeeper/applications/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/doorkeeper/applications/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -3986,6 +4092,17 @@ diff -urN gitlab-rails.bk/app/views/doorkeeper/applications/new.html.haml gitlab
 \ No newline at end of file
 +%h3.page-title 新しいアプリケーション
 += render 'form', application: @application
+diff -urN gitlab-rails.bk/app/views/errors/encoding.html.haml gitlab-rails/app/views/errors/encoding.html.haml
+--- gitlab-rails.bk/app/views/errors/encoding.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/errors/encoding.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,5 +1,5 @@
+-- page_title "Encoding Error"
++- page_title "エンコーディングエラー"
+ %h1 500
+-%h3 Encoding Error
++%h3 エンコーディングエラー
+ %hr
+ %p Page can't be loaded because of an encoding error.
 diff -urN gitlab-rails.bk/app/views/events/event/_common.html.haml gitlab-rails/app/views/events/event/_common.html.haml
 --- gitlab-rails.bk/app/views/events/event/_common.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/events/event/_common.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -4127,7 +4244,11 @@ diff -urN gitlab-rails.bk/app/views/events/_event_last_push.html.haml gitlab-rai
 diff -urN gitlab-rails.bk/app/views/explore/groups/index.html.haml gitlab-rails/app/views/explore/groups/index.html.haml
 --- gitlab-rails.bk/app/views/explore/groups/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/explore/groups/index.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -4,14 +4,14 @@
+@@ -1,17 +1,17 @@
+-- page_title "Groups"
++- page_title "グループ"
+ .clearfix
+   .pull-left
      = form_tag explore_groups_path, method: :get, class: 'form-inline form-tiny' do |f|
        = hidden_field_tag :sort, @sort
        .form-group
@@ -4220,6 +4341,12 @@ diff -urN gitlab-rails.bk/app/views/explore/projects/_filter.html.haml gitlab-ra
 diff -urN gitlab-rails.bk/app/views/explore/projects/index.html.haml gitlab-rails/app/views/explore/projects/index.html.haml
 --- gitlab-rails.bk/app/views/explore/projects/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/explore/projects/index.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title "Projects"
++- page_title "プロジェクト"
+ .clearfix
+   = render 'filter'
+ 
 @@ -7,6 +7,6 @@
    %ul.bordered-list.top-list
      = render @projects
@@ -4250,7 +4377,9 @@ diff -urN gitlab-rails.bk/app/views/explore/projects/_project.html.haml gitlab-r
 diff -urN gitlab-rails.bk/app/views/explore/projects/starred.html.haml gitlab-rails/app/views/explore/projects/starred.html.haml
 --- gitlab-rails.bk/app/views/explore/projects/starred.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/explore/projects/starred.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -2,7 +2,7 @@
+@@ -1,8 +1,8 @@
+-- page_title "Starred Projects"
++- page_title "人気プロジェクト"
  .explore-trending-block
    %p.lead
      %i.fa.fa-star
@@ -4289,7 +4418,9 @@ diff -urN gitlab-rails.bk/app/views/explore/projects/trending.html.haml gitlab-r
 diff -urN gitlab-rails.bk/app/views/groups/edit.html.haml gitlab-rails/app/views/groups/edit.html.haml
 --- gitlab-rails.bk/app/views/groups/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/groups/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -2,7 +2,7 @@
+@@ -1,8 +1,8 @@
+-- page_title "Settings"
++- page_title "設定"
  .panel.panel-default
    .panel-heading
      %strong= @group.name
@@ -4387,7 +4518,9 @@ diff -urN gitlab-rails.bk/app/views/groups/group_members/_group_member.html.haml
 diff -urN gitlab-rails.bk/app/views/groups/group_members/index.html.haml gitlab-rails/app/views/groups/group_members/index.html.haml
 --- gitlab-rails.bk/app/views/groups/group_members/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/groups/group_members/index.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -2,25 +2,26 @@
+@@ -1,26 +1,27 @@
+-- page_title "Members"
++- page_title "メンバー"
  - show_roles = should_user_see_group_roles?(current_user, @group)
  
  %h3.page-title
@@ -4462,7 +4595,11 @@ diff -urN gitlab-rails.bk/app/views/groups/group_members/_new_group_member.html.
 diff -urN gitlab-rails.bk/app/views/groups/issues.html.haml gitlab-rails/app/views/groups/issues.html.haml
 --- gitlab-rails.bk/app/views/groups/issues.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/groups/issues.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -4,14 +4,13 @@
+@@ -1,17 +1,16 @@
+-- page_title "Issues"
++- page_title "課題"
+ = content_for :meta_tags do
+   - if current_user
      = auto_discovery_link_tag(:atom, issues_group_url(@group, format: :atom, private_token: current_user.private_token), title: "#{@group.name} issues")
  
  %h3.page-title
@@ -4484,7 +4621,8 @@ diff -urN gitlab-rails.bk/app/views/groups/merge_requests.html.haml gitlab-rails
 --- gitlab-rails.bk/app/views/groups/merge_requests.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/groups/merge_requests.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,13 +1,12 @@
- - page_title "Merge Requests"
+-- page_title "Merge Requests"
++- page_title "マージリクエスト"
  %h3.page-title
 -  Merge Requests
 +  マージリクエスト
@@ -4504,7 +4642,8 @@ diff -urN gitlab-rails.bk/app/views/groups/milestones/index.html.haml gitlab-rai
 --- gitlab-rails.bk/app/views/groups/milestones/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/groups/milestones/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,12 +1,11 @@
- - page_title "Milestones"
+-- page_title "Milestones"
++- page_title "マイルストーン"
  %h3.page-title
 -  Milestones
 -  %span.pull-right #{@group_milestones.count} milestones
@@ -4666,6 +4805,14 @@ diff -urN gitlab-rails.bk/app/views/groups/milestones/show.html.haml gitlab-rail
 diff -urN gitlab-rails.bk/app/views/groups/new.html.haml gitlab-rails/app/views/groups/new.html.haml
 --- gitlab-rails.bk/app/views/groups/new.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/groups/new.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,5 +1,5 @@
+-- page_title    'New Group'
+-- header_title  'New Group'
++- page_title    '新しいグループ'
++- header_title  '新しいグループ'
+ = form_for @group, html: { class: 'group-form form-horizontal' } do |f|
+   - if @group.errors.any?
+     .alert.alert-danger
 @@ -8,7 +8,7 @@
    = render 'shared/group_form', f: f, autofocus: true
  
@@ -4700,7 +4847,9 @@ diff -urN gitlab-rails.bk/app/views/groups/_projects.html.haml gitlab-rails/app/
 diff -urN gitlab-rails.bk/app/views/groups/projects.html.haml gitlab-rails/app/views/groups/projects.html.haml
 --- gitlab-rails.bk/app/views/groups/projects.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/groups/projects.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -2,12 +2,12 @@
+@@ -1,13 +1,13 @@
+-- page_title "Projects"
++- page_title "プロジェクト"
  .panel.panel-default
    .panel-heading
      %strong= @group.name
@@ -5049,6 +5198,62 @@ diff -urN gitlab-rails.bk/app/views/help/_shortcuts.html.haml gitlab-rails/app/v
                %tr
                  %td.shortcut
                    .key r
+diff -urN gitlab-rails.bk/app/views/import/bitbucket/status.html.haml gitlab-rails/app/views/import/bitbucket/status.html.haml
+--- gitlab-rails.bk/app/views/import/bitbucket/status.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/import/bitbucket/status.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title "Bitbucket import"
++- page_title "Bitbucketインポート"
+ %h3.page-title
+   %i.fa.fa-bitbucket
+   Import projects from Bitbucket
+diff -urN gitlab-rails.bk/app/views/import/github/status.html.haml gitlab-rails/app/views/import/github/status.html.haml
+--- gitlab-rails.bk/app/views/import/github/status.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/import/github/status.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title "GitHub import"
++- page_title "GitHubインポート"
+ %h3.page-title
+   %i.fa.fa-github
+   Import projects from GitHub
+diff -urN gitlab-rails.bk/app/views/import/gitorious/status.html.haml gitlab-rails/app/views/import/gitorious/status.html.haml
+--- gitlab-rails.bk/app/views/import/gitorious/status.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/import/gitorious/status.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title "Gitorious import"
++- page_title "Gitoriousインポート"
+ %h3.page-title
+   %i.icon-gitorious.icon-gitorious-big
+   Import projects from Gitorious.org
+diff -urN gitlab-rails.bk/app/views/import/google_code/new.html.haml gitlab-rails/app/views/import/google_code/new.html.haml
+--- gitlab-rails.bk/app/views/import/google_code/new.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/import/google_code/new.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title "Google Code import"
++- page_title "Google Codeインポート"
+ %h3.page-title
+   %i.fa.fa-google
+   Import projects from Google Code
+diff -urN gitlab-rails.bk/app/views/import/google_code/new_user_map.html.haml gitlab-rails/app/views/import/google_code/new_user_map.html.haml
+--- gitlab-rails.bk/app/views/import/google_code/new_user_map.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/import/google_code/new_user_map.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title "User map", "Google Code import"
++- page_title "ユーザマップ", "Google Codeインポート"
+ %h3.page-title
+   %i.fa.fa-google
+   Import projects from Google Code
+diff -urN gitlab-rails.bk/app/views/invites/show.html.haml gitlab-rails/app/views/invites/show.html.haml
+--- gitlab-rails.bk/app/views/invites/show.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/invites/show.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,5 +1,5 @@
+-- page_title "Invitation"
+-%h3.page-title Invitation
++- page_title "招待"
++%h3.page-title 招待
+ 
+ %p
+   You have been invited
 diff -urN gitlab-rails.bk/app/views/layouts/admin.html.haml gitlab-rails/app/views/layouts/admin.html.haml
 --- gitlab-rails.bk/app/views/layouts/admin.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/layouts/admin.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -5174,6 +5379,16 @@ diff -urN gitlab-rails.bk/app/views/layouts/_head_panel.html.haml gitlab-rails/a
 +            = image_tag avatar_icon(current_user.email, 60), alt: 'ユーザアクティビティ'
 +
 += render 'shared/outdated_browser'
+diff -urN gitlab-rails.bk/app/views/layouts/help.html.haml gitlab-rails/app/views/layouts/help.html.haml
+--- gitlab-rails.bk/app/views/layouts/help.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/layouts/help.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title    "Help"
+-- header_title  "Help", help_path
++- page_title    "ヘルプ"
++- header_title  "ヘルプ", help_path
+ 
+ = render template: "layouts/application"
 diff -urN gitlab-rails.bk/app/views/layouts/nav/_admin.html.haml gitlab-rails/app/views/layouts/nav/_admin.html.haml
 --- gitlab-rails.bk/app/views/layouts/nav/_admin.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/layouts/nav/_admin.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -5711,6 +5926,15 @@ diff -urN gitlab-rails.bk/app/views/layouts/profile.html.haml gitlab-rails/app/v
  - sidebar       "profile"
  
  = render template: "layouts/application"
+diff -urN gitlab-rails.bk/app/views/layouts/project_settings.html.haml gitlab-rails/app/views/layouts/project_settings.html.haml
+--- gitlab-rails.bk/app/views/layouts/project_settings.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/layouts/project_settings.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title  "Settings"
++- page_title  "設定"
+ - sidebar     "project_settings"
+ 
+ = render template: "layouts/project"
 diff -urN gitlab-rails.bk/app/views/layouts/_public_head_panel.html.haml gitlab-rails/app/views/layouts/_public_head_panel.html.haml
 --- gitlab-rails.bk/app/views/layouts/_public_head_panel.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/layouts/_public_head_panel.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -5745,6 +5969,17 @@ diff -urN gitlab-rails.bk/app/views/layouts/search.html.haml gitlab-rails/app/vi
 -- header_title  "Search", search_path
 +- page_title    "検索"
 +- header_title  "検索", search_path
+ 
+ = render template: "layouts/application"
+diff -urN gitlab-rails.bk/app/views/layouts/snippets.html.haml gitlab-rails/app/views/layouts/snippets.html.haml
+--- gitlab-rails.bk/app/views/layouts/snippets.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/layouts/snippets.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,5 +1,5 @@
+-- page_title    'Snippets'
+-- header_title  'Snippets', snippets_path
++- page_title    'スニペット'
++- header_title  'スニペット', snippets_path
+ - sidebar       "snippets"
  
  = render template: "layouts/application"
 diff -urN gitlab-rails.bk/app/views/notify/closed_issue_email.html.haml gitlab-rails/app/views/notify/closed_issue_email.html.haml
@@ -6040,7 +6275,14 @@ diff -urN gitlab-rails.bk/app/views/notify/repository_push_email.html.haml gitla
 diff -urN gitlab-rails.bk/app/views/profiles/accounts/show.html.haml gitlab-rails/app/views/profiles/accounts/show.html.haml
 --- gitlab-rails.bk/app/views/profiles/accounts/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/profiles/accounts/show.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -6,43 +6,44 @@
+@@ -1,48 +1,49 @@
+-- page_title "Account"
++- page_title "アカウント"
+ %h3.page-title
+   = page_title
+ %p.light
+-  Change your username and basic account settings.
++  ユーザ名と基本的なアカウントの設定を行います。
  %hr
  - if current_user.ldap_user?
    .alert.alert-info
@@ -6171,7 +6413,10 @@ diff -urN gitlab-rails.bk/app/views/profiles/accounts/show.html.haml gitlab-rail
 diff -urN gitlab-rails.bk/app/views/profiles/applications.html.haml gitlab-rails/app/views/profiles/applications.html.haml
 --- gitlab-rails.bk/app/views/profiles/applications.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/profiles/applications.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -3,25 +3,25 @@
+@@ -1,27 +1,27 @@
+-- page_title "Applications"
++- page_title "アプリケーション"
+ %h3.page-title
    = page_title
  %p.light
    - if user_oauth_applications?
@@ -6242,7 +6487,7 @@ diff -urN gitlab-rails.bk/app/views/profiles/design.html.haml gitlab-rails/app/v
 --- gitlab-rails.bk/app/views/profiles/design.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/profiles/design.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -0,0 +1,54 @@
-+- page_title "Design"
++- page_title "デザイン"
 +%h3.page-title
 +  デザイン設定
 +%p.light
@@ -6417,7 +6662,8 @@ diff -urN gitlab-rails.bk/app/views/profiles/history.html.haml gitlab-rails/app/
 --- gitlab-rails.bk/app/views/profiles/history.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/profiles/history.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,8 +1,8 @@
- - page_title "History"
+-- page_title "History"
++- page_title "アカウント履歴"
  %h3.page-title
 -  Your Account History
 +  アカウント履歴
@@ -6550,6 +6796,13 @@ diff -urN gitlab-rails.bk/app/views/profiles/keys/new.html.haml gitlab-rails/app
  %hr
  = render 'form'
  
+diff -urN gitlab-rails.bk/app/views/profiles/keys/show.html.haml gitlab-rails/app/views/profiles/keys/show.html.haml
+--- gitlab-rails.bk/app/views/profiles/keys/show.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/profiles/keys/show.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,2 +1,2 @@
+-- page_title @key.title, "SSH Keys"
++- page_title @key.title, "SSHキー"
+ = render "key_details"
 diff -urN gitlab-rails.bk/app/views/profiles/notifications/show.html.haml gitlab-rails/app/views/profiles/notifications/show.html.haml
 --- gitlab-rails.bk/app/views/profiles/notifications/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/profiles/notifications/show.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -6752,10 +7005,21 @@ diff -urN gitlab-rails.bk/app/views/profiles/passwords/new.html.haml gitlab-rail
    .form-actions
 -    = f.submit 'Set new password', class: "btn btn-create"
 +    = f.submit '新しいパスワードを設定', class: "btn btn-create"
+diff -urN gitlab-rails.bk/app/views/profiles/preferences/show.html.haml gitlab-rails/app/views/profiles/preferences/show.html.haml
+--- gitlab-rails.bk/app/views/profiles/preferences/show.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/profiles/preferences/show.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title 'Preferences'
++- page_title '設定'
+ %h3.page-title
+   = page_title
+ %p.light
 diff -urN gitlab-rails.bk/app/views/profiles/show.html.haml gitlab-rails/app/views/profiles/show.html.haml
 --- gitlab-rails.bk/app/views/profiles/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/profiles/show.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -2,9 +2,9 @@
+@@ -1,10 +1,10 @@
+-- page_title "Profile"
++- page_title "プロフィール"
  %h3.page-title
    = page_title
  %p.light
@@ -6886,6 +7150,24 @@ diff -urN gitlab-rails.bk/app/views/profiles/show.html.haml gitlab-rails/app/vie
          .col-sm-10
 -          = f.submit 'Save changes', class: "btn btn-success"
 +          = f.submit '変更を保存', class: "btn btn-success"
+diff -urN gitlab-rails.bk/app/views/profiles/two_factor_auths/create.html.haml gitlab-rails/app/views/profiles/two_factor_auths/create.html.haml
+--- gitlab-rails.bk/app/views/profiles/two_factor_auths/create.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/profiles/two_factor_auths/create.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title 'Two-factor Authentication', 'Account'
++- page_title '二段階認証', 'アカウント'
+ 
+ .alert.alert-success
+   Congratulations! You have enabled Two-factor Authentication!
+diff -urN gitlab-rails.bk/app/views/profiles/two_factor_auths/new.html.haml gitlab-rails/app/views/profiles/two_factor_auths/new.html.haml
+--- gitlab-rails.bk/app/views/profiles/two_factor_auths/new.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/profiles/two_factor_auths/new.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title 'Two-factor Authentication', 'Account'
++- page_title '二段階認証', 'アカウント'
+ 
+ %h2.page-title Two-Factor Authentication (2FA)
+ %p
 diff -urN gitlab-rails.bk/app/views/profiles/update_username.js.haml gitlab-rails/app/views/profiles/update_username.js.haml
 --- gitlab-rails.bk/app/views/profiles/update_username.js.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/profiles/update_username.js.haml	2014-03-22 09:00:00.000000000 +0900
@@ -7019,7 +7301,11 @@ diff -urN gitlab-rails.bk/app/views/projects/blob/_actions.html.haml gitlab-rail
 diff -urN gitlab-rails.bk/app/views/projects/blob/edit.html.haml gitlab-rails/app/views/projects/blob/edit.html.haml
 --- gitlab-rails.bk/app/views/projects/blob/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/blob/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -4,7 +4,7 @@
+@@ -1,10 +1,10 @@
+-- page_title "Edit", @blob.path, @ref
++- page_title "編集", @blob.path, @ref
+ .file-editor
+   %ul.nav.nav-tabs.js-edit-mode
      %li.active
        = link_to '#editor' do
          %i.fa.fa-edit
@@ -7155,7 +7441,8 @@ diff -urN gitlab-rails.bk/app/views/projects/branches/index.html.haml gitlab-rai
 --- gitlab-rails.bk/app/views/projects/branches/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/branches/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,25 +1,25 @@
- - page_title "Branches"
+-- page_title "Branches"
++- page_title "ブランチ"
  = render "projects/commits/head"
  %h3.page-title
 -  Branches
@@ -7188,7 +7475,12 @@ diff -urN gitlab-rails.bk/app/views/projects/branches/index.html.haml gitlab-rai
 diff -urN gitlab-rails.bk/app/views/projects/branches/new.html.haml gitlab-rails/app/views/projects/branches/new.html.haml
 --- gitlab-rails.bk/app/views/projects/branches/new.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/branches/new.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -5,19 +5,19 @@
+@@ -1,23 +1,23 @@
+-- page_title "New Branch"
++- page_title "新しいブランチ"
+ - if @error
+   .alert.alert-danger
+     %button{ type: "button", class: "close", "data-dismiss" => "alert"} &times;
      = @error
  %h3.page-title
    %i.fa.fa-code-fork
@@ -7346,6 +7638,12 @@ diff -urN gitlab-rails.bk/app/views/projects/commits/_head.html.haml gitlab-rail
 diff -urN gitlab-rails.bk/app/views/projects/commits/show.html.haml gitlab-rails/app/views/projects/commits/show.html.haml
 --- gitlab-rails.bk/app/views/projects/commits/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/commits/show.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title "Commits", @ref
++- page_title "コミット", @ref
+ = content_for :meta_tags do
+   - if current_user
+     = auto_discovery_link_tag(:atom, namespace_project_commits_url(@project.namespace, @project, @ref, format: :atom, private_token: current_user.private_token), title: "#{@project.name}:#{@ref} commits")
 @@ -12,12 +12,12 @@
    - if create_mr_button?(@repository.root_ref, @ref)
      = link_to create_mr_path(@repository.root_ref, @ref), class: 'btn btn-success' do
@@ -7391,7 +7689,9 @@ diff -urN gitlab-rails.bk/app/views/projects/compare/_form.html.haml gitlab-rail
 diff -urN gitlab-rails.bk/app/views/projects/compare/index.html.haml gitlab-rails/app/views/projects/compare/index.html.haml
 --- gitlab-rails.bk/app/views/projects/compare/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/compare/index.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -2,16 +2,16 @@
+@@ -1,17 +1,17 @@
+-- page_title "Compare"
++- page_title "比較"
  = render "projects/commits/head"
  
  %h3.page-title
@@ -7500,7 +7800,8 @@ diff -urN gitlab-rails.bk/app/views/projects/deploy_keys/index.html.haml gitlab-
 --- gitlab-rails.bk/app/views/projects/deploy_keys/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/deploy_keys/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,42 +1,39 @@
- - page_title "Deploy Keys"
+-- page_title "Deploy Keys"
++- page_title "デプロイキー"
  %h3.page-title
 -  Deploy keys allow read-only access to the repository
 +  デプロイキーでリポジトリの読み取り専用アクセス
@@ -7567,7 +7868,7 @@ diff -urN gitlab-rails.bk/app/views/projects/deploy_keys/show.html.haml gitlab-r
 --- gitlab-rails.bk/app/views/projects/deploy_keys/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/deploy_keys/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -0,0 +1,14 @@
-+- page_title @key.title, "Deploy Keys"
++- page_title @key.title, "デプロイキー"
 +%h3.page-title
 +  デプロイキー:
 +  = @key.title
@@ -7982,6 +8283,15 @@ diff -urN gitlab-rails.bk/app/views/projects/empty.html.haml gitlab-rails/app/vi
    .prepend-top-20
 -    = link_to 'Remove project', [@project.namespace.becomes(Namespace), @project], data: { confirm: remove_project_message(@project)}, method: :delete, class: "btn btn-remove pull-right"
 +    = link_to 'プロジェクトを削除', [@project.namespace.becomes(Namespace), @project], data: { confirm: remove_project_message(@project)}, method: :delete, class: "btn btn-remove pull-right"
+diff -urN gitlab-rails.bk/app/views/projects/forks/error.html.haml gitlab-rails/app/views/projects/forks/error.html.haml
+--- gitlab-rails.bk/app/views/projects/forks/error.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/forks/error.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title "Fork project"
++- page_title "プロジェクトのフォーク"
+ - if @forked_project && !@forked_project.saved?
+   .alert.alert-danger.alert-block
+     %h4
 diff -urN gitlab-rails.bk/app/views/projects/forks/new.html.haml gitlab-rails/app/views/projects/forks/new.html.haml
 --- gitlab-rails.bk/app/views/projects/forks/new.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/forks/new.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -8057,10 +8367,23 @@ diff -urN gitlab-rails.bk/app/views/projects/_gitlab_import_modal.html.haml gitl
 \ No newline at end of file
 +          管理者が
 +        == #{link_to 'OAuthによる統合をセットアップ', 'https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/integration/gitlab.md'}する必要があります。
+diff -urN gitlab-rails.bk/app/views/projects/graphs/commits.html.haml gitlab-rails/app/views/projects/graphs/commits.html.haml
+--- gitlab-rails.bk/app/views/projects/graphs/commits.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/graphs/commits.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title "Commit statistics"
++- page_title "コミット統計"
+ = render 'head'
+ 
+ %p.lead
 diff -urN gitlab-rails.bk/app/views/projects/graphs/show.html.haml gitlab-rails/app/views/projects/graphs/show.html.haml
 --- gitlab-rails.bk/app/views/projects/graphs/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/graphs/show.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -4,14 +4,14 @@
+@@ -1,17 +1,17 @@
+-- page_title "Contributor statistics"
++- page_title "コントリビュータ統計"
+ = render 'head'
+ .loading-graph
    .center
      %h3.page-title
        %i.fa.fa-spinner.fa-spin
@@ -8105,7 +8428,8 @@ diff -urN gitlab-rails.bk/app/views/projects/hooks/index.html.haml gitlab-rails/
 --- gitlab-rails.bk/app/views/projects/hooks/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/hooks/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,10 +1,10 @@
- - page_title "Web Hooks"
+-- page_title "Web Hooks"
++- page_title "Webフック"
  %h3.page-title
 -  Web hooks
 +  Webフック
@@ -8184,6 +8508,24 @@ diff -urN gitlab-rails.bk/app/views/projects/hooks/index.html.haml gitlab-rails/
            .clearfix
              %span.monospace= hook.url
            %p
+diff -urN gitlab-rails.bk/app/views/projects/imports/new.html.haml gitlab-rails/app/views/projects/imports/new.html.haml
+--- gitlab-rails.bk/app/views/projects/imports/new.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/imports/new.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title "Import repository"
++- page_title "リポジトリのインポート"
+ %h3.page-title
+   - if @project.import_failed?
+     Import failed. Retry?
+diff -urN gitlab-rails.bk/app/views/projects/imports/show.html.haml gitlab-rails/app/views/projects/imports/show.html.haml
+--- gitlab-rails.bk/app/views/projects/imports/show.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/imports/show.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title "Import in progress"
++- page_title "処理中のインポート"
+ .save-project-loader
+   .center
+     %h2
 diff -urN gitlab-rails.bk/app/views/projects/_issuable_form.html.haml gitlab-rails/app/views/projects/_issuable_form.html.haml
 --- gitlab-rails.bk/app/views/projects/_issuable_form.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/_issuable_form.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -8336,6 +8678,13 @@ diff -urN gitlab-rails.bk/app/views/projects/issues/_discussion.html.haml gitlab
          .issue-show-labels
            - @issue.labels.each do |label|
              = link_to_label(label)
+diff -urN gitlab-rails.bk/app/views/projects/issues/edit.html.haml gitlab-rails/app/views/projects/issues/edit.html.haml
+--- gitlab-rails.bk/app/views/projects/issues/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/issues/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,2 +1,2 @@
+-- page_title "Edit", "#{@issue.title} (##{@issue.iid})", "Issues"
++- page_title "編集", "#{@issue.title} (##{@issue.iid})", "課題"
+ = render "form"
 diff -urN gitlab-rails.bk/app/views/projects/issues/_form.html.haml gitlab-rails/app/views/projects/issues/_form.html.haml
 --- gitlab-rails.bk/app/views/projects/issues/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/issues/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -8349,6 +8698,12 @@ diff -urN gitlab-rails.bk/app/views/projects/issues/_form.html.haml gitlab-rails
 diff -urN gitlab-rails.bk/app/views/projects/issues/index.html.haml gitlab-rails/app/views/projects/issues/index.html.haml
 --- gitlab-rails.bk/app/views/projects/issues/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/issues/index.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title "Issues"
++- page_title "課題"
+ = content_for :meta_tags do
+   - if current_user
+     = auto_discovery_link_tag(:atom, namespace_project_issues_url(@project.namespace, @project, :atom, private_token: current_user.private_token), title: "#{@project.name} issues")
 @@ -14,9 +14,9 @@
        = render 'shared/issuable_search_form', path: namespace_project_issues_path(@project.namespace, @project)
  
@@ -8464,10 +8819,21 @@ diff -urN gitlab-rails.bk/app/views/projects/issues/_issues.html.haml gitlab-rai
 +    個の課題に絞り込まれています
  
    = paginate @issues, theme: "gitlab"
+diff -urN gitlab-rails.bk/app/views/projects/issues/new.html.haml gitlab-rails/app/views/projects/issues/new.html.haml
+--- gitlab-rails.bk/app/views/projects/issues/new.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/issues/new.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,2 +1,2 @@
+-- page_title "New Issue"
++- page_title "新しい課題"
+ = render "form"
 diff -urN gitlab-rails.bk/app/views/projects/issues/show.html.haml gitlab-rails/app/views/projects/issues/show.html.haml
 --- gitlab-rails.bk/app/views/projects/issues/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/issues/show.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -4,27 +4,27 @@
+@@ -1,30 +1,30 @@
+-- page_title "#{@issue.title} (##{@issue.iid})", "Issues"
++- page_title "#{@issue.title} (##{@issue.iid})", "課題"
+ .issue
+   .issue-details
      %h4.page-title
        .issue-box{ class: issue_box_class(@issue) }
          - if @issue.closed?
@@ -8519,7 +8885,8 @@ diff -urN gitlab-rails.bk/app/views/projects/labels/edit.html.haml gitlab-rails/
 --- gitlab-rails.bk/app/views/projects/labels/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/labels/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,9 +1,9 @@
- - page_title "Edit", @label.name, "Labels"
+-- page_title "Edit", @label.name, "Labels"
++- page_title "編集", @label.name, "ラベル"
  %h3
 -  Edit label
 +  ラベルを編集
@@ -8570,7 +8937,8 @@ diff -urN gitlab-rails.bk/app/views/projects/labels/index.html.haml gitlab-rails
 --- gitlab-rails.bk/app/views/projects/labels/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/labels/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,9 +1,9 @@
- - page_title "Labels"
+-- page_title "Labels"
++- page_title "ラベル"
  - if can? current_user, :admin_label, @project
    = link_to new_namespace_project_label_path(@project.namespace, @project), class: "pull-right btn btn-new" do
 -    New label
@@ -8672,7 +9040,8 @@ diff -urN gitlab-rails.bk/app/views/projects/merge_requests/edit.html.haml gitla
 --- gitlab-rails.bk/app/views/projects/merge_requests/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/merge_requests/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,5 +1,5 @@
- - page_title "Edit", "#{@merge_request.title} (##{@merge_request.iid})", "Merge Requests"
+-- page_title "Edit", "#{@merge_request.title} (##{@merge_request.iid})", "Merge Requests"
++- page_title "編集", "#{@merge_request.title} (##{@merge_request.iid})", "マージリクエスト"
  %h3.page-title
 -  = "Edit merge request ##{@merge_request.iid}"
 +  = "マージリクエスト ##{@merge_request.iid} を編集"
@@ -8691,7 +9060,12 @@ diff -urN gitlab-rails.bk/app/views/projects/merge_requests/_head.html.haml gitl
 diff -urN gitlab-rails.bk/app/views/projects/merge_requests/index.html.haml gitlab-rails/app/views/projects/merge_requests/index.html.haml
 --- gitlab-rails.bk/app/views/projects/merge_requests/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/merge_requests/index.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -5,9 +5,9 @@
+@@ -1,13 +1,13 @@
+-- page_title "Merge Requests"
++- page_title "マージリクエスト"
+ .append-bottom-10
+   .pull-right
+     = render 'shared/issuable_search_form', path: namespace_project_merge_requests_path(@project.namespace, @project)
  
      - if can? current_user, :write_merge_request, @project
        .pull-left.hidden-xs
@@ -8706,7 +9080,12 @@ diff -urN gitlab-rails.bk/app/views/projects/merge_requests/index.html.haml gitl
 diff -urN gitlab-rails.bk/app/views/projects/merge_requests/invalid.html.haml gitlab-rails/app/views/projects/merge_requests/invalid.html.haml
 --- gitlab-rails.bk/app/views/projects/merge_requests/invalid.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/merge_requests/invalid.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -5,20 +5,22 @@
+@@ -1,24 +1,26 @@
+-- page_title "#{@merge_request.title} (##{@merge_request.iid})", "Merge Requests"
++- page_title "#{@merge_request.title} (##{@merge_request.iid})", "マージリクエスト"
+ .merge-request
+   = render "projects/merge_requests/show/mr_title"
+   = render "projects/merge_requests/show/mr_box"
  
    .alert.alert-danger
      %p
@@ -8839,6 +9218,15 @@ diff -urN gitlab-rails.bk/app/views/projects/merge_requests/_new_compare.html.ha
        $(".mr-compare-errors").fadeIn()
        event.preventDefault()
        return
+diff -urN gitlab-rails.bk/app/views/projects/merge_requests/new.html.haml gitlab-rails/app/views/projects/merge_requests/new.html.haml
+--- gitlab-rails.bk/app/views/projects/merge_requests/new.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/merge_requests/new.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title "New Merge Request"
++- page_title "新しいマージリクエスト"
+ - if @merge_request.can_be_created
+   = render 'new_submit'
+ - else
 diff -urN gitlab-rails.bk/app/views/projects/merge_requests/_new_submit.html.haml gitlab-rails/app/views/projects/merge_requests/_new_submit.html.haml
 --- gitlab-rails.bk/app/views/projects/merge_requests/_new_submit.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/merge_requests/_new_submit.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -9221,6 +9609,12 @@ diff -urN gitlab-rails.bk/app/views/projects/merge_requests/show/_state_widget.h
 diff -urN gitlab-rails.bk/app/views/projects/merge_requests/_show.html.haml gitlab-rails/app/views/projects/merge_requests/_show.html.haml
 --- gitlab-rails.bk/app/views/projects/merge_requests/_show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/merge_requests/_show.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title "#{@merge_request.title} (##{@merge_request.iid})", "Merge Requests"
++- page_title "#{@merge_request.title} (##{@merge_request.iid})", "マージリクエスト"
+ .merge-request{'data-url' => merge_request_path(@merge_request)}
+   .merge-request-details
+     = render "projects/merge_requests/show/mr_title"
 @@ -7,7 +7,6 @@
      %hr
      .append-bottom-20
@@ -9304,6 +9698,13 @@ diff -urN gitlab-rails.bk/app/views/projects/merge_requests/widget/open/_missing
    %br
 -  %strong Please close this merge request or change branches with existing one
 +  %strong このマージリクエストをクローズするか、存在するブランチを選び直してください。
+diff -urN gitlab-rails.bk/app/views/projects/milestones/edit.html.haml gitlab-rails/app/views/projects/milestones/edit.html.haml
+--- gitlab-rails.bk/app/views/projects/milestones/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/milestones/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,2 +1,2 @@
+-- page_title "Edit", @milestone.title, "Milestones"
++- page_title "編集", @milestone.title, "マイルストーン"
+ = render "form"
 diff -urN gitlab-rails.bk/app/views/projects/milestones/_form.html.haml gitlab-rails/app/views/projects/milestones/_form.html.haml
 --- gitlab-rails.bk/app/views/projects/milestones/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/milestones/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -9366,7 +9767,8 @@ diff -urN gitlab-rails.bk/app/views/projects/milestones/index.html.haml gitlab-r
 --- gitlab-rails.bk/app/views/projects/milestones/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/milestones/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,9 +1,9 @@
- - page_title "Milestones"
+-- page_title "Milestones"
++- page_title "マイルストーン"
  .pull-right
    - if can? current_user, :admin_milestone, @project
 -    = link_to new_namespace_project_milestone_path(@project.namespace, @project), class: "pull-right btn btn-new", title: "New Milestone" do
@@ -9432,10 +9834,19 @@ diff -urN gitlab-rails.bk/app/views/projects/milestones/_milestone.html.haml git
 +      %span.light #{milestone.percent_complete}% 完了
      .col-sm-6
        = milestone_progress_bar(milestone)
+diff -urN gitlab-rails.bk/app/views/projects/milestones/new.html.haml gitlab-rails/app/views/projects/milestones/new.html.haml
+--- gitlab-rails.bk/app/views/projects/milestones/new.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/milestones/new.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,2 +1,2 @@
+-- page_title "New Milestone"
++- page_title "新しいマイルストーン"
+ = render "form"
 diff -urN gitlab-rails.bk/app/views/projects/milestones/show.html.haml gitlab-rails/app/views/projects/milestones/show.html.haml
 --- gitlab-rails.bk/app/views/projects/milestones/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/milestones/show.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -2,28 +2,28 @@
+@@ -1,29 +1,29 @@
+-- page_title @milestone.title, "Milestones"
++- page_title @milestone.title, "マイルストーン"
  %h4.page-title
    .issue-box{ class: issue_box_class(@milestone) }
      - if @milestone.closed?
@@ -9556,7 +9967,10 @@ diff -urN gitlab-rails.bk/app/views/projects/network/_head.html.haml gitlab-rail
 diff -urN gitlab-rails.bk/app/views/projects/network/show.html.haml gitlab-rails/app/views/projects/network/show.html.haml
 --- gitlab-rails.bk/app/views/projects/network/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/network/show.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -3,14 +3,14 @@
+@@ -1,16 +1,16 @@
+-- page_title "Network", @ref
++- page_title "ネットワーク", @ref
+ = render "head"
  .project-network
    .controls
      = form_tag namespace_project_network_path(@project.namespace, @project, @id), method: :get, class: 'form-inline network-form' do |f|
@@ -9588,6 +10002,14 @@ diff -urN gitlab-rails.bk/app/views/projects/network/show.json.erb gitlab-rails/
 diff -urN gitlab-rails.bk/app/views/projects/new.html.haml gitlab-rails/app/views/projects/new.html.haml
 --- gitlab-rails.bk/app/views/projects/new.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/new.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,5 +1,5 @@
+-- page_title    'New Project'
+-- header_title  'New Project'
++- page_title    '新しいプロジェクト'
++- header_title  '新しいプロジェクト'
+ .project-edit-container
+   .project-edit-errors
+     = render 'projects/errors'
 @@ -8,7 +8,7 @@
      = form_for @project, html: { class: 'new_project form-horizontal' } do |f|
        .form-group.project-name-holder
@@ -9817,7 +10239,8 @@ diff -urN gitlab-rails.bk/app/views/projects/project_members/import.html.haml gi
 --- gitlab-rails.bk/app/views/projects/project_members/import.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/project_members/import.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,15 +1,15 @@
- - page_title "Import members"
+-- page_title "Import members"
++- page_title "メンバーのインポート"
  %h3.page-title
 -  Import members from another project
 +  別のプロジェクトからメンバーをインポート
@@ -9842,7 +10265,8 @@ diff -urN gitlab-rails.bk/app/views/projects/project_members/index.html.haml git
 --- gitlab-rails.bk/app/views/projects/project_members/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/project_members/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,26 +1,27 @@
- - page_title "Members"
+-- page_title "Members"
++- page_title "メンバー"
  %h3.page-title
 -  Users with access to this project
 +  このプロジェクトにアクセスできるユーザ
@@ -10120,6 +10544,13 @@ diff -urN gitlab-rails.bk/app/views/projects/_section.html.haml gitlab-rails/app
                %i.fa.fa-rss
  
        = render 'shared/event_filter'
+diff -urN gitlab-rails.bk/app/views/projects/services/edit.html.haml gitlab-rails/app/views/projects/services/edit.html.haml
+--- gitlab-rails.bk/app/views/projects/services/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/services/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,2 +1,2 @@
+-- page_title @service.title, "Services"
++- page_title @service.title, "サービス"
+ = render 'form'
 diff -urN gitlab-rails.bk/app/views/projects/services/_form.html.haml gitlab-rails/app/views/projects/services/_form.html.haml
 --- gitlab-rails.bk/app/views/projects/services/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/services/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -10206,7 +10637,8 @@ diff -urN gitlab-rails.bk/app/views/projects/snippets/edit.html.haml gitlab-rail
 --- gitlab-rails.bk/app/views/projects/snippets/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/snippets/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,5 +1,5 @@
- - page_title "Edit", @snippet.title, "Snippets"
+-- page_title "Edit", @snippet.title, "Snippets"
++- page_title "編集", @snippet.title, "スニペット"
  %h3.page-title
 -  Edit snippet
 +  スニペットを編集
@@ -10216,7 +10648,8 @@ diff -urN gitlab-rails.bk/app/views/projects/snippets/index.html.haml gitlab-rai
 --- gitlab-rails.bk/app/views/projects/snippets/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/snippets/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,16 +1,16 @@
- - page_title "Snippets"
+-- page_title "Snippets"
++- page_title "スニペット"
  %h3.page-title
 -  Snippets
 +  スニペット
@@ -10237,10 +10670,22 @@ diff -urN gitlab-rails.bk/app/views/projects/snippets/index.html.haml gitlab-rai
      %li
 -      .nothing-here-block Nothing here.
 +      .nothing-here-block スニペットはありません
+diff -urN gitlab-rails.bk/app/views/projects/snippets/new.html.haml gitlab-rails/app/views/projects/snippets/new.html.haml
+--- gitlab-rails.bk/app/views/projects/snippets/new.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/snippets/new.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title "New Snippets"
++- page_title "新しいスニペット"
+ %h3.page-title
+   New snippet
+ %hr
 diff -urN gitlab-rails.bk/app/views/projects/snippets/show.html.haml gitlab-rails/app/views/projects/snippets/show.html.haml
 --- gitlab-rails.bk/app/views/projects/snippets/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/snippets/show.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -3,8 +3,8 @@
+@@ -1,10 +1,10 @@
+-- page_title @snippet.title, "Snippets"
++- page_title @snippet.title, "スニペット"
+ %h3.page-title
    = @snippet.title
  
    .pull-right
@@ -10276,7 +10721,9 @@ diff -urN gitlab-rails.bk/app/views/projects/snippets/show.html.haml gitlab-rail
 diff -urN gitlab-rails.bk/app/views/projects/tags/index.html.haml gitlab-rails/app/views/projects/tags/index.html.haml
 --- gitlab-rails.bk/app/views/projects/tags/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/tags/index.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -2,15 +2,15 @@
+@@ -1,16 +1,16 @@
+-- page_title "Tags"
++- page_title "タグ"
  = render "projects/commits/head"
  
  %h3.page-title
@@ -10310,7 +10757,12 @@ diff -urN gitlab-rails.bk/app/views/projects/tags/index.html.haml gitlab-rails/a
 diff -urN gitlab-rails.bk/app/views/projects/tags/new.html.haml gitlab-rails/app/views/projects/tags/new.html.haml
 --- gitlab-rails.bk/app/views/projects/tags/new.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/tags/new.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -5,25 +5,25 @@
+@@ -1,29 +1,29 @@
+-- page_title "New Tag"
++- page_title "新しいタグ"
+ - if @error
+   .alert.alert-danger
+     %button{ type: "button", class: "close", "data-dismiss" => "alert"} &times;
      = @error
  %h3.page-title
    %i.fa.fa-code-fork
@@ -10378,6 +10830,15 @@ diff -urN gitlab-rails.bk/app/views/projects/team_members/index.html.haml gitlab
 += render "team", members: @project_members
 +- if @group
 +  = render "group_members"
+diff -urN gitlab-rails.bk/app/views/projects/tree/show.html.haml gitlab-rails/app/views/projects/tree/show.html.haml
+--- gitlab-rails.bk/app/views/projects/tree/show.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/tree/show.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,4 +1,4 @@
+-- page_title @path.presence || "Files", @ref
++- page_title @path.presence || "ファイル", @ref
+ = content_for :meta_tags do
+   - if current_user
+     = auto_discovery_link_tag(:atom, namespace_project_commits_url(@project.namespace, @project, @ref, format: :atom, private_token: current_user.private_token), title: "#{@project.name}:#{@ref} commits")
 diff -urN gitlab-rails.bk/app/views/projects/tree/_spinner.html.haml gitlab-rails/app/views/projects/tree/_spinner.html.haml
 --- gitlab-rails.bk/app/views/projects/tree/_spinner.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/tree/_spinner.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -10460,7 +10921,10 @@ diff -urN gitlab-rails.bk/app/views/projects/_visibility_level.html.haml gitlab-
 diff -urN gitlab-rails.bk/app/views/projects/wikis/edit.html.haml gitlab-rails/app/views/projects/wikis/edit.html.haml
 --- gitlab-rails.bk/app/views/projects/wikis/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/wikis/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -3,12 +3,12 @@
+@@ -1,14 +1,14 @@
+-- page_title "Edit", @page.title, "Wiki"
++- page_title "編集", @page.title, "Wiki"
+ = render 'nav'
  .pull-right
    = render 'main_links'
  %h3.page-title
@@ -10542,7 +11006,10 @@ diff -urN gitlab-rails.bk/app/views/projects/wikis/_form.html.haml gitlab-rails/
 diff -urN gitlab-rails.bk/app/views/projects/wikis/git_access.html.haml gitlab-rails/app/views/projects/wikis/git_access.html.haml
 --- gitlab-rails.bk/app/views/projects/wikis/git_access.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/wikis/git_access.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -3,26 +3,26 @@
+@@ -1,28 +1,28 @@
+-- page_title "Git Access", "Wiki"
++- page_title "Gitでのアクセス", "Wiki"
+ = render 'nav'
  .row
    .col-sm-6
      %h3.page-title
@@ -10577,7 +11044,8 @@ diff -urN gitlab-rails.bk/app/views/projects/wikis/history.html.haml gitlab-rail
 --- gitlab-rails.bk/app/views/projects/wikis/history.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/wikis/history.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,17 +1,17 @@
- - page_title "History", @page.title, "Wiki"
+-- page_title "History", @page.title, "Wiki"
++- page_title "履歴", @page.title, "Wiki"
  = render 'nav'
  %h3.page-title
 -  %span.light History for
@@ -10666,7 +11134,8 @@ diff -urN gitlab-rails.bk/app/views/projects/wikis/pages.html.haml gitlab-rails/
 --- gitlab-rails.bk/app/views/projects/wikis/pages.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/wikis/pages.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,7 +1,7 @@
- - page_title "All Pages", "Wiki"
+-- page_title "All Pages", "Wiki"
++- page_title "すべてのページ", "Wiki"
  = render 'nav'
  %h3.page-title
 -  All Pages
@@ -11396,7 +11865,8 @@ diff -urN gitlab-rails.bk/app/views/snippets/edit.html.haml gitlab-rails/app/vie
 --- gitlab-rails.bk/app/views/snippets/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/snippets/edit.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,5 +1,5 @@
- - page_title "Edit", @snippet.title, "Snippets"
+-- page_title "Edit", @snippet.title, "Snippets"
++- page_title "編集", @snippet.title, "スニペット"
  %h3.page-title
 -  Edit snippet
 +  スニペットを編集
@@ -11406,7 +11876,8 @@ diff -urN gitlab-rails.bk/app/views/snippets/index.html.haml gitlab-rails/app/vi
 --- gitlab-rails.bk/app/views/snippets/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/snippets/index.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,16 +1,16 @@
- - page_title "Public Snippets"
+-- page_title "Public Snippets"
++- page_title "公開スニペット"
  %h3.page-title
 -  Public snippets
 +  公開スニペット
@@ -11431,7 +11902,8 @@ diff -urN gitlab-rails.bk/app/views/snippets/new.html.haml gitlab-rails/app/view
 --- gitlab-rails.bk/app/views/snippets/new.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/snippets/new.html.haml	2014-03-22 09:00:00.000000000 +0900
 @@ -1,5 +1,5 @@
- - page_title "New Snippet"
+-- page_title "New Snippet"
++- page_title "新しいスニペット"
  %h3.page-title
 -  New snippet
 +  新しいスニペット
@@ -11440,7 +11912,12 @@ diff -urN gitlab-rails.bk/app/views/snippets/new.html.haml gitlab-rails/app/view
 diff -urN gitlab-rails.bk/app/views/snippets/show.html.haml gitlab-rails/app/views/snippets/show.html.haml
 --- gitlab-rails.bk/app/views/snippets/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/snippets/show.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -5,11 +5,11 @@
+@@ -1,15 +1,15 @@
+-- page_title @snippet.title, "Snippets"
++- page_title @snippet.title, "スニペット"
+ %h3.page-title
+   = @snippet.title
+ 
    - if @snippet.private?
      %span.label.label-success
        %i.fa.fa-lock
@@ -11505,7 +11982,11 @@ diff -urN gitlab-rails.bk/app/views/snippets/_snippets.html.haml gitlab-rails/ap
 diff -urN gitlab-rails.bk/app/views/snippets/user_index.html.haml gitlab-rails/app/views/snippets/user_index.html.haml
 --- gitlab-rails.bk/app/views/snippets/user_index.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/snippets/user_index.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -4,10 +4,10 @@
+@@ -1,13 +1,13 @@
+-- page_title "Snippets", @user.name
++- page_title "スニペット", @user.name
+ %h3.page-title
+   = image_tag avatar_icon(@user.email), class: "avatar s24"
    = @user.name
    %span
      \/

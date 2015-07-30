@@ -768,7 +768,16 @@ diff -urN gitlab-rails.bk/app/helpers/application_helper.rb gitlab-rails/app/hel
      end
    end
  
-@@ -327,8 +328,10 @@
+@@ -214,7 +215,7 @@
+   def time_ago_with_tooltip(date, placement = 'top', html_class = 'time_ago')
+     capture_haml do
+       haml_tag :time, date.to_s,
+-        class: html_class, datetime: date.getutc.iso8601, title: date.in_time_zone.stamp('Aug 21, 2011 9:23pm'),
++        class: html_class, datetime: date.getutc.iso8601, title: date.in_time_zone.stamp('2011/08/21 21:23'),
+         data: { toggle: 'tooltip', placement: placement }
+ 
+       haml_tag :script, "$('." + html_class + "').timeago().tooltip()"
+@@ -327,8 +328,11 @@
  
    def state_filters_text_for(entity, project)
      titles = {
@@ -777,7 +786,8 @@ diff -urN gitlab-rails.bk/app/helpers/application_helper.rb gitlab-rails/app/hel
 +      opened: "オープン",
 +      closed: "クローズ",
 +      all: "すべて",
-+      merged:  "承認済み"
++      merged: "承認済み",
++      rejected: "却下済み"
      }
      
      entity_title = titles[entity] || entity.to_s.humanize
@@ -5327,6 +5337,57 @@ diff -urN gitlab-rails.bk/app/views/layouts/explore.html.haml gitlab-rails/app/v
  - sidebar       "explore"
  
  = render template: "layouts/application"
+diff -urN gitlab-rails.bk/app/views/layouts/header/_default.html.haml gitlab-rails/app/views/layouts/header/_default.html.haml
+--- gitlab-rails.bk/app/views/layouts/header/_default.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/layouts/header/_default.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,7 +1,7 @@
+ %header.navbar.navbar-fixed-top.navbar-gitlab{ class: nav_header_class }
+   .container
+     .header-logo
+-      = link_to root_path, class: 'home', title: 'Dashboard', id: 'js-shortcuts-home', data: {toggle: 'tooltip', placement: 'bottom'} do
++      = link_to root_path, class: 'home', title: 'ダッシュボード', id: 'js-shortcuts-home', data: {toggle: 'tooltip', placement: 'bottom'} do
+         = brand_header_logo
+         %h3 GitLab
+     .header-content
+@@ -17,30 +17,30 @@
+           %li.hidden-sm.hidden-xs
+             = render 'layouts/search'
+           %li.visible-sm.visible-xs
+-            = link_to search_path, title: 'Search', data: {toggle: 'tooltip', placement: 'bottom'} do
++            = link_to search_path, title: '検索', data: {toggle: 'tooltip', placement: 'bottom'} do
+               = icon('search')
+           %li.hidden-xs
+-            = link_to help_path, title: 'Help', data: {toggle: 'tooltip', placement: 'bottom'} do
++            = link_to help_path, title: 'ヘルプ', data: {toggle: 'tooltip', placement: 'bottom'} do
+               = icon('question-circle fw')
+           %li
+-            = link_to explore_root_path, title: 'Explore', data: {toggle: 'tooltip', placement: 'bottom'} do
++            = link_to explore_root_path, title: '探索', data: {toggle: 'tooltip', placement: 'bottom'} do
+               = icon('globe fw')
+           %li
+-            = link_to user_snippets_path(current_user), title: 'Your snippets', data: {toggle: 'tooltip', placement: 'bottom'} do
++            = link_to user_snippets_path(current_user), title: 'マイスニペット', data: {toggle: 'tooltip', placement: 'bottom'} do
+               = icon('clipboard fw')
+           - if current_user.is_admin?
+             %li
+-              = link_to admin_root_path, title: 'Admin area', data: {toggle: 'tooltip', placement: 'bottom'} do
++              = link_to admin_root_path, title: '管理', data: {toggle: 'tooltip', placement: 'bottom'} do
+                 = icon('wrench fw')
+           - if current_user.can_create_project?
+             %li.hidden-xs
+-              = link_to new_project_path, title: 'New project', data: {toggle: 'tooltip', placement: 'bottom'} do
++              = link_to new_project_path, title: '新しいプロジェクト', data: {toggle: 'tooltip', placement: 'bottom'} do
+                 = icon('plus fw')
+           %li
+-            = link_to profile_path, title: 'Profile settings', data: {toggle: 'tooltip', placement: 'bottom'} do
++            = link_to profile_path, title: 'プロフィール設定', data: {toggle: 'tooltip', placement: 'bottom'} do
+               = icon('cog fw')
+           %li
+-            = link_to destroy_user_session_path, class: 'logout', method: :delete, title: 'Sign out', data: {toggle: 'tooltip', placement: 'bottom'} do
++            = link_to destroy_user_session_path, class: 'logout', method: :delete, title: 'サインアウト', data: {toggle: 'tooltip', placement: 'bottom'} do
+               = icon('sign-out')
+ 
+ = render 'shared/outdated_browser'
 diff -urN gitlab-rails.bk/app/views/layouts/_head_panel.html.haml gitlab-rails/app/views/layouts/_head_panel.html.haml
 --- gitlab-rails.bk/app/views/layouts/_head_panel.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/layouts/_head_panel.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -5716,7 +5777,7 @@ diff -urN gitlab-rails.bk/app/views/layouts/nav/_profile.html.haml gitlab-rails/
 diff -urN gitlab-rails.bk/app/views/layouts/nav/_project.html.haml gitlab-rails/app/views/layouts/nav/_project.html.haml
 --- gitlab-rails.bk/app/views/layouts/nav/_project.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/layouts/nav/_project.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -1,59 +1,59 @@
+@@ -1,74 +1,74 @@
  %ul.project-navigation.nav.nav-sidebar
    = nav_link(path: 'projects#show', html_options: {class: 'home'}) do
 -    = link_to project_path(@project), title: 'Project', class: 'shortcuts-project', data: {placement: 'right'} do
@@ -5792,7 +5853,13 @@ diff -urN gitlab-rails.bk/app/views/layouts/nav/_project.html.haml gitlab-rails/
            %span.count.merge_counter= @project.merge_requests.opened.count
  
    - if project_nav_tab? :settings
-@@ -65,10 +65,10 @@
+     = nav_link(controller: [:project_members, :teams]) do
+-      = link_to namespace_project_project_members_path(@project.namespace, @project), title: 'Members', class: 'team-tab tab', data: {placement: 'right'} do
++      = link_to namespace_project_project_members_path(@project.namespace, @project), title: 'メンバー', class: 'team-tab tab', data: {placement: 'right'} do
+         = icon('users fw')
+         %span
+-          Members
++          メンバー
  
    - if project_nav_tab? :labels
      = nav_link(controller: :labels) do
@@ -6559,20 +6626,24 @@ diff -urN gitlab-rails.bk/app/views/profiles/emails/index.html.haml gitlab-rails
    %li
 -    Your
 -    %b Primary Email
+-    will be used for avatar detection and web based operations, such as edits and merges.
 +    %b プライマリメールアドレス
-     will be used for avatar detection and web based operations, such as edits and merges.
++    はアバターの検出やWebベースの操作(編集やマージなど)に使用されます。
    %li
 -    Your
 -    %b Notification Email
+-    will be used for account notifications.
 +    %b 通知メールアドレス
-     will be used for account notifications.
++    はアカウントの通知に使用されます。
    %li
 -    Your
 -    %b Public Email
+-    will be displayed on your public profile.
 +    %b 公開メールアドレス
-     will be displayed on your public profile.
++    はあなたの公開プロフィールに表示されます。
    %li
-     All email addresses will be used to identify your commits.
+-    All email addresses will be used to identify your commits.
++    すべてのメールアドレスはあなたのコミットの識別に使用されます。
  
  .panel.panel-default
    .panel-heading
@@ -8850,7 +8921,8 @@ diff -urN gitlab-rails.bk/app/views/projects/issues/show.html.haml gitlab-rails/
  
        .pull-right
          - if can?(current_user, :write_issue, @project)
-           = link_to new_namespace_project_issue_path(@project.namespace, @project), class: 'btn btn-grouped new-issue-link', title: 'New Issue', id: 'new_issue_link' do
+-          = link_to new_namespace_project_issue_path(@project.namespace, @project), class: 'btn btn-grouped new-issue-link', title: 'New Issue', id: 'new_issue_link' do
++          = link_to new_namespace_project_issue_path(@project.namespace, @project), class: 'btn btn-grouped new-issue-link', title: '新しい課題', id: 'new_issue_link' do
              = icon('plus')
 -            New Issue
 +            新しい課題
@@ -10235,6 +10307,25 @@ diff -urN gitlab-rails.bk/app/views/projects/notes/_note.html.haml gitlab-rails/
 +                title: '添付ファイルの削除', method: :delete, remote: true, data: { confirm: '本当に添付ファイルを削除しますか？' }, class: 'danger js-note-attachment-delete' do
                  = icon('trash-o', class: 'cred')
        .clear
+diff -urN gitlab-rails.bk/app/views/projects/project_members/_group_members.html.haml gitlab-rails/app/views/projects/project_members/_group_members.html.haml
+--- gitlab-rails.bk/app/views/projects/project_members/_group_members.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/projects/project_members/_group_members.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,13 +1,13 @@
+ .panel.panel-default
+   .panel-heading
+     %strong #{@group.name}
+-    group members
++    グループのメンバー
+     %small
+       (#{members.count})
+     .panel-head-actions
+       = link_to group_group_members_path(@group), class: 'btn btn-sm' do
+         %i.fa.fa-pencil-square-o
+-        Edit group members
++        グループメンバーを編集
+   %ul.well-list
+     - members.each do |member|
+       = render 'groups/group_members/group_member', member: member, show_controls: false
 diff -urN gitlab-rails.bk/app/views/projects/project_members/import.html.haml gitlab-rails/app/views/projects/project_members/import.html.haml
 --- gitlab-rails.bk/app/views/projects/project_members/import.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/projects/project_members/import.html.haml	2014-03-22 09:00:00.000000000 +0900

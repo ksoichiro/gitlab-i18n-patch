@@ -37,6 +37,7 @@ Vagrant.configure("2") do |config|
     "7.12.0" => "https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_7.12.0~omnibus.1-1_amd64.deb/download",
     "7.13.0" => "https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_7.13.0-ce.0_amd64.deb/download",
     "7.13.1" => "https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_7.13.1-ce.0_amd64.deb/download",
+    "7.13.2" => "https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_7.13.2-ce.0_amd64.deb/download",
   }.each do |ver, url|
     config.vm.define "v#{ver.gsub(/\./, "")}" do |gl|
       gl.vm.network "forwarded_port", guest: 80, host: web_port(ver)

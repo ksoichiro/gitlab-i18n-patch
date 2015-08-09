@@ -2742,6 +2742,26 @@ diff -urN gitlab-rails.bk/app/views/admin/hooks/index.html.haml gitlab-rails/app
 -            = link_to 'Remove', admin_hook_path(hook), data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-remove btn-sm"
 +            = link_to 'フックをテスト', admin_hook_test_path(hook), class: "btn btn-sm"
 +            = link_to '削除', admin_hook_path(hook), data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn btn-remove btn-sm"
+diff -urN gitlab-rails.bk/app/views/admin/identities/index.html.haml gitlab-rails/app/views/admin/identities/index.html.haml
+--- gitlab-rails.bk/app/views/admin/identities/index.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/admin/identities/index.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -1,13 +1,13 @@
+-- page_title "Identities", @user.name, "Users"
++- page_title "ユーザ情報", @user.name, "Users"
+ = render 'admin/users/head'
+ 
+ - if @identities.present?
+   %table.table
+     %thead
+       %tr
+-        %th Provider
++        %th プロバイダ
+         %th Identifier
+         %th
+     = render @identities
+ - else
+-  %h4 This user has no identities
++  %h4 このユーザにはユーザ情報がありません
 diff -urN gitlab-rails.bk/app/views/admin/logs/show.html.haml gitlab-rails/app/views/admin/logs/show.html.haml
 --- gitlab-rails.bk/app/views/admin/logs/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/admin/logs/show.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -3148,6 +3168,15 @@ diff -urN gitlab-rails.bk/app/views/admin/users/_form.html.haml gitlab-rails/app
 -        = link_to 'Cancel', admin_user_path(@user), class: "btn btn-cancel"
 +        = f.submit '変更を保存', class: "btn btn-save"
 +        = link_to 'キャンセル', admin_user_path(@user), class: "btn btn-cancel"
+diff -urN gitlab-rails.bk/app/views/admin/users/groups.html.haml gitlab-rails/app/views/admin/users/groups.html.haml
+--- gitlab-rails.bk/app/views/admin/users/groups.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/admin/users/groups.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -16,4 +16,4 @@
+               = link_to group_group_member_path(group, group_member), data: { confirm: remove_user_from_group_message(group, group_member) }, method: :delete, remote: true, class: "btn-xs btn btn-remove", title: 'Remove user from group' do
+                 %i.fa.fa-times.fa-inverse
+ - else
+-  .nothing-here-block This user has no groups.
++  .nothing-here-block このユーザにはグループがありません
 diff -urN gitlab-rails.bk/app/views/admin/users/_head.html.haml gitlab-rails/app/views/admin/users/_head.html.haml
 --- gitlab-rails.bk/app/views/admin/users/_head.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/admin/users/_head.html.haml	2014-03-22 09:00:00.000000000 +0900
@@ -3298,6 +3327,24 @@ diff -urN gitlab-rails.bk/app/views/admin/users/new.html.haml gitlab-rails/app/v
 +  新しいユーザ
  %hr
  = render 'form'
+diff -urN gitlab-rails.bk/app/views/admin/users/projects.html.haml gitlab-rails/app/views/admin/users/projects.html.haml
+--- gitlab-rails.bk/app/views/admin/users/projects.html.haml	2014-03-22 09:00:00.000000000 +0900
++++ gitlab-rails/app/views/admin/users/projects.html.haml	2014-03-22 09:00:00.000000000 +0900
+@@ -16,12 +16,12 @@
+     - if @personal_projects.present?
+       = render 'users/projects', projects: @personal_projects
+     - else
+-      .nothing-here-block This user has no personal projects.
++      .nothing-here-block このユーザには個人プロジェクトはありません
+ 
+ 
+   .col-md-6
+     .panel.panel-default
+-      .panel-heading Joined projects (#{@joined_projects.count})
++      .panel-heading 参加中のプロジェクト (#{@joined_projects.count})
+       %ul.well-list
+         - @joined_projects.sort_by(&:name_with_namespace).each do |project|
+           - member = project.team.find_member(@user.id)
 diff -urN gitlab-rails.bk/app/views/admin/users/show.html.haml gitlab-rails/app/views/admin/users/show.html.haml
 --- gitlab-rails.bk/app/views/admin/users/show.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/admin/users/show.html.haml	2014-03-22 09:00:00.000000000 +0900

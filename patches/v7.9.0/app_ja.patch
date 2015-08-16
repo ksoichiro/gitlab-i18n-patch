@@ -1491,6 +1491,15 @@ diff -urN gitlab-rails.bk/app/models/commit.rb gitlab-rails/app/models/commit.rb
  class Commit
    include ActiveModel::Conversion
    include StaticModel
+@@ -62,7 +63,7 @@
+   #
+   #   "Commit: Alex Denisov - Project git clone panel"
+   def link_title
+-    "Commit: #{author_name} - #{title}"
++    "コミット: #{author_name} - #{title}"
+   end
+ 
+   # Returns the commits title.
 @@ -123,7 +124,7 @@
  
    # Mentionable override.
@@ -11366,7 +11375,7 @@ diff -urN gitlab-rails.bk/app/views/snippets/show.html.haml gitlab-rails/app/vie
          = link_to "raw", raw_snippet_path(@snippet), class: "btn btn-sm", target: "_blank"
        - if can?(current_user, :admin_personal_snippet, @snippet)
 -        = link_to "remove", snippet_path(@snippet), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-remove", title: 'Delete Snippet'
-+        = link_to "削除", snippet_path(@snippet), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-remove", title: スニペットを削除'
++        = link_to "削除", snippet_path(@snippet), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-remove", title: 'スニペットを削除'
    = render 'shared/snippets/blob'
 diff -urN gitlab-rails.bk/app/views/snippets/_snippet.html.haml gitlab-rails/app/views/snippets/_snippet.html.haml
 --- gitlab-rails.bk/app/views/snippets/_snippet.html.haml	2014-03-22 09:00:00.000000000 +0900

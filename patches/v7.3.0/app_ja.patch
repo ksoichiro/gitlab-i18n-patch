@@ -6206,7 +6206,7 @@ diff -urN gitlab-rails.bk/app/views/projects/deploy_keys/_form.html.haml gitlab-
          %p.light
 -          Paste a machine public key here. Read more about how to generate it
 -          = link_to "here", help_page_path("ssh", "README")
-+          マシンの公開鍵をペースとしてください。生成方法の詳細は
++          マシンの公開鍵をペーストしてください。生成方法の詳細は
 +          = link_to "こちら", help_page_path("ssh", "README")
          = f.text_area :key, class: "form-control thin_area", rows: 5
  

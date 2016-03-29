@@ -2100,7 +2100,7 @@ diff -urN gitlab-rails.bk/app/views/admin/applications/show.html.haml gitlab-rai
 diff -urN gitlab-rails.bk/app/views/admin/application_settings/_form.html.haml gitlab-rails/app/views/admin/application_settings/_form.html.haml
 --- gitlab-rails.bk/app/views/admin/application_settings/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/admin/application_settings/_form.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -6,9 +6,9 @@
+@@ -6,104 +6,104 @@
            %p= msg
  
    %fieldset
@@ -2112,7 +2112,13 @@ diff -urN gitlab-rails.bk/app/views/admin/application_settings/_form.html.haml g
        .col-sm-10
          = f.select :default_branch_protection, options_for_select(Gitlab::Access.protection_options, @application_setting.default_branch_protection), {}, class: 'form-control'
      .form-group.project-visibility-level-holder
-@@ -20,41 +20,41 @@
+-      = f.label :default_project_visibility, class: 'control-label col-sm-2'
++      = f.label :default_project_visibility, 'デフォルトのプロジェクトの可視性', class: 'control-label col-sm-2'
+       .col-sm-10
+         = render('shared/visibility_radios', model_method: :default_project_visibility, form: f, selected_level: @application_setting.default_project_visibility, form_model: 'Project')
+     .form-group.project-visibility-level-holder
+-      = f.label :default_snippet_visibility, class: 'control-label col-sm-2'
++      = f.label :default_snippet_visibility, 'デフォルトのスニペットの可視性', class: 'control-label col-sm-2'
        .col-sm-10
          = render('shared/visibility_radios', model_method: :default_snippet_visibility, form: f, selected_level: @application_setting.default_snippet_visibility, form_model: 'Snippet')
      .form-group
@@ -2135,7 +2141,8 @@ diff -urN gitlab-rails.bk/app/views/admin/application_settings/_form.html.haml g
 +            バージョンチェックを利用
  
    %fieldset
-     %legend Account and Limit Settings
+-    %legend Account and Limit Settings
++    %legend アカウントと制限の設定
      .form-group
        .col-sm-offset-2.col-sm-10
          .checkbox
@@ -2165,7 +2172,25 @@ diff -urN gitlab-rails.bk/app/views/admin/application_settings/_form.html.haml g
        .col-sm-10
          = f.number_field :max_attachment_size, class: 'form-control'
      .form-group
-@@ -75,35 +75,35 @@
+-      = f.label :session_expire_delay, 'Session duration (minutes)', class: 'control-label col-sm-2'
++      = f.label :session_expire_delay, 'セッション期間 (分)', class: 'control-label col-sm-2'
+       .col-sm-10
+         = f.number_field :session_expire_delay, class: 'form-control'
+-        %span.help-block#session_expire_delay_help_block GitLab restart is required to apply changes
++        %span.help-block#session_expire_delay_help_block 変更を反映するにはGitLabの再起動が必要です
+     .form-group
+-      = f.label :user_oauth_applications, 'User OAuth applications', class: 'control-label col-sm-2'
++      = f.label :user_oauth_applications, 'OAuthアプリケーションの利用', class: 'control-label col-sm-2'
+       .col-sm-10
+         .checkbox
+           = f.label :user_oauth_applications do
+             = f.check_box :user_oauth_applications
+-            Allow users to register any application to use GitLab as an OAuth provider
++            OAuthプロバイダとしてGitLabを使えるようにアプリケーションを登録することをユーザを許可する
+ 
+   %fieldset
+-    %legend Sign-in Restrictions
++    %legend サインインの制限
      .form-group
        .col-sm-offset-2.col-sm-10
          .checkbox
@@ -2183,7 +2208,8 @@ diff -urN gitlab-rails.bk/app/views/admin/application_settings/_form.html.haml g
 -            Sign-in enabled
 +            サインインを利用
      .form-group
-       = f.label :restricted_signup_domains, 'Restricted domains for sign-ups', class: 'control-label col-sm-2'
+-      = f.label :restricted_signup_domains, 'Restricted domains for sign-ups', class: 'control-label col-sm-2'
++      = f.label :restricted_signup_domains, 'サインアップ可能なドメイン', class: 'control-label col-sm-2'
        .col-sm-10
          = f.text_area :restricted_signup_domains_raw, placeholder: 'domain.com', class: 'form-control'
          .help-block Only users with e-mail addresses that match these domain(s) will be able to sign-up. Wildcards allowed. Use separate lines for multiple entries. Ex: domain.com, *.domain.com

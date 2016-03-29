@@ -37,6 +37,17 @@ if [ ! -d /opt/gitlab ]; then
       sed -i -e "s/^external_url .*$/external_url 'http:\/\/gitlab.example.com'/" /etc/gitlab/gitlab.rb
   fi
 
+  # Postgresql does not start since v8.0.0
+  # https://gitlab.com/gitlab-org/omnibus-gitlab/blob/8c605bedcc8deecac4ae2bae7c99f6e6211732f3/README.md#postgres-error-fatal-could-not-create-shared-memory-segment-cannot-allocate-memory
+  if [ ${GITLAB_VERSION_INT} -ge 800 ]; then
+    # Change kernel shared memory size to 128MB (default: 32MB)
+    echo "kernel.shmmax = 134217728" >> /etc/sysctl.conf
+    sysctl -p > /dev/null 2>&1
+
+    # Change shared memory size for postgresql to 100MB
+    sed -i -e "s/^# postgresql\['shared_buffers'\] = \"[^\"]*\"/postgresql['shared_buffers'] = \"100MB\"/" /etc/gitlab/gitlab.rb
+  fi
+
   echo "Reconfiguring gitlab..."
   gitlab-ctl reconfigure > /dev/null 2>&1
   popd > /dev/null 2>&1

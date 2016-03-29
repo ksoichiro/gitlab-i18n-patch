@@ -5676,7 +5676,7 @@ diff -urN gitlab-rails.bk/app/views/layouts/help.html.haml gitlab-rails/app/view
 diff -urN gitlab-rails.bk/app/views/layouts/nav/_admin.html.haml gitlab-rails/app/views/layouts/nav/_admin.html.haml
 --- gitlab-rails.bk/app/views/layouts/nav/_admin.html.haml	2014-03-22 09:00:00.000000000 +0900
 +++ gitlab-rails/app/views/layouts/nav/_admin.html.haml	2014-03-22 09:00:00.000000000 +0900
-@@ -1,61 +1,68 @@
+@@ -1,61 +1,61 @@
  %ul.nav.nav-sidebar
    = nav_link(controller: :dashboard, html_options: {class: 'home'}) do
 -    = link_to admin_root_path, title: "Stats" do
@@ -5757,17 +5757,10 @@ diff -urN gitlab-rails.bk/app/views/layouts/nav/_admin.html.haml gitlab-rails/ap
        %span
 -        Service Templates
 +        サービステンプレート
-+
-+  = nav_link(controller: :abuse_reports) do
-+    = link_to admin_abuse_reports_path, title: "Abuse reports" do
-+      = icon('exclamation-circle fw')
-+      %span
-+        Abuse Reports
-+        %span.count= AbuseReport.count(:all)
  
    = nav_link(controller: :abuse_reports) do
      = link_to admin_abuse_reports_path, title: "Abuse reports" do
-@@ -65,7 +72,7 @@
+@@ -65,7 +65,7 @@
          %span.count= AbuseReport.count(:all)
  
    = nav_link(controller: :application_settings, html_options: { class: 'separate-item'}) do

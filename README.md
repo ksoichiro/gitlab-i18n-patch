@@ -11,6 +11,7 @@ GitLabはi18nに対応しないとのことですが、
 
 ## 対応バージョン
 
+1. [GitLab CE v8.2.0](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.2.0 "GitLab CE v8.2.0") → [patches/v8.2.0ディレクトリ](patches/v8.2.0)
 1. [GitLab CE v8.1.0](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.1.0 "GitLab CE v8.1.0") → [patches/v8.1.0ディレクトリ](patches/v8.1.0)
 1. [GitLab CE v8.0.0](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.0.0 "GitLab CE v8.0.0") → [patches/v8.0.0ディレクトリ](patches/v8.0.0)
 1. [GitLab CE v7.14.0](https://gitlab.com/gitlab-org/gitlab-ce/commits/v7.14.0 "GitLab CE v7.14.0") → [patches/v7.14.0ディレクトリ](patches/v7.14.0)

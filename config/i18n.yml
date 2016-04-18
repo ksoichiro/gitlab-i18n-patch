@@ -1,0 +1,619 @@
+translations:
+
+# CoffeeScript
+- src: '**/*.coffee'
+  named-patterns:
+  - name: singleQuoted
+    pattern: "'{word}'"
+    replace: "'${{key}}'"
+    params: ['word', 'key']
+  - name: doubleQuoted
+    pattern: "\"{word}\""
+    replace: "\"${{key}}\""
+    params: ['word', 'key']
+  patterns:
+  - pattern: preview.text "Nothing to preview."
+    replace: preview.text "${nothingToPreview}"
+  - pattern: preview.text "Loading..."
+    replace: preview.text "${loading}"
+  - name: singleQuoted
+    params:
+    - {word: Close, key: close}
+    - {word: 'Comment & reopen', key: commentAndReopen}
+    - {word: 'Comment & close', key: commentAndClose}
+    - {word: Reopen, key: reopen}
+    - {word: Unassigned, key: unassigned}
+    - {word: Any, key: any}
+  - name: doubleQuoted
+    params:
+    - {word: 'Search for namespace', key: searchForNamespace}
+    - {word: Unsubscribe, key: unsubscribe}
+    - {word: Subscribe, key: subscribe}
+    - {word: 'Search for a user', key: searchForAUser}
+  - pattern: '" commits"'
+    replace: '" ${commits}"'
+  - pattern: 'd3.time.format("%B %e %Y")'
+    replace: 'd3.time.format("${d3TimeFormat}")'
+
+# JavaScript
+- src: 'app/assets/javascripts/lib/jquery.timeago.js'
+  patterns:
+  - insert:
+      at: end
+      value: jQueryTimeago
+
+# Ruby
+- src: '**/*.rb'
+  conditionals:
+    - insert:
+        at: begin
+        value: encodingHeader
+
+  named-patterns:
+  - name: sthWasSuccessfullyDone
+    pattern: "(notice: ['\"]|alert: ['\"]|flash\\[[^\\]]+\\] = ['\"]){obj}s? (?:was|were) successfully {done}\\.?(['\"])"
+    replace: "$1${sthWasSuccessfullyDone}$2"
+    args:
+    - replace: '${{objKey}}'
+    - replace: '${{doneKey}}'
+    params: ['obj', 'objKey', 'done', 'doneKey']
+  - name: sthNamedWasSuccessfullyDone
+    pattern: "(notice: ['\"]|alert: ['\"]|flash\\[[^\\]]+\\] = ['\"]){obj} ([^ ]*) was(?: successfully)? {done}\\.?(['\"])"
+    replace: "$1${sthWasSuccessfullyDone}$3"
+    args:
+    - replace: '${{objKey}} $2 '
+    - replace: '${{doneKey}}'
+    params: ['obj', 'objKey', 'done', 'doneKey']
+  - name: successfullyDone
+    pattern: '"Successfully {done}"'
+    replace: '"${successfullyDone}"'
+    args:
+    - replace: '${{doneKey}}'
+    params: ['done', 'doneKey']
+  - name: errorOccurredObjWasNotDone
+    pattern: "alert: \"Error occurred. {obj}s? (?:was|were) not {done}\\.?\""
+    replace: "alert: \"${errorOccurredObjWasNotDone}\""
+    args:
+    - replace: '${{objKey}}'
+    - replace: '${{doneKey}}'
+    params: ['obj', 'objKey', 'done', 'doneKey']
+  - name: sthCountsDone
+    pattern: "\"([^\"]*) {obj} {done}\""
+    replace: "\"${sthCountsDone}\""
+    args:
+    - '$1'
+    - '${{objKey}}'
+    - '${{doneKey}}'
+  - name: quotedWord
+    pattern: "(\"){word}?\"|('){word}?'"
+    replace: '$1$2${{key}}$1$2'
+    params: ['word', 'key']
+
+  patterns:
+  # Normal, non-named patterns
+  - pattern: "'Application settings saved successfully'"
+    replace: "'${applicationSettingsSavedSuccessfully}'"
+  - pattern: '"Are you sure you want to leave \"#{group}\" group?"'
+    replace: '"${areYouSureYouDoSomething}"'
+    args:
+    - replace: '${leaveSth}'
+      args:
+      - '\"#{group}\"'
+  - pattern: "\"Service is unknown or it doesn't exist\""
+    replace: "\"${serviceIsUnknownOrItDoesntExist}\""
+  - pattern: '"Groups"'
+    replace: '"${group}"'
+  - pattern: '"Users"'
+    replace: '"${user}"'
+  - pattern: "alert: 'You must provide a valid current password'"
+    replace: "alert: '${youMustProvideAValidCurrentPassword}'"
+  - pattern: "notice: 'Password successfully changed'"
+    replace: "notice: '${passwordSuccessfullyChanged}'"
+  - pattern: "Password was successfully updated. Please login with it"
+    replace: "${passwordWasSuccessfullyUpdatedPleaseLoginWithIt}"
+  - pattern: "notice: 'We sent you an email with reset password instructions'"
+    replace: "notice: '${weSentYouAnEmailWithResetPasswordInstructions}'"
+  - pattern: "Failed to update profile. #{messages}"
+    replace: "${failedToUpdateProfileAndMessages}"
+  - pattern: "Your changes have been successfully committed"
+    replace: "${yourChangesHaveBeenSuccessfullyCommitted}"
+  - pattern: "Could not create Wiki Repository at this time. Please try again later."
+    replace: "${couldNotCreateWikiRepositoryAtThisTimePleaseTryAgainLater}"
+  - pattern: "Page not found"
+    replace: "${pageNotFound}"
+  - pattern: "Account successfully removed."
+    replace: "${accountSuccessfullyRemoved}"
+  - pattern: "Leave edit mode?\\nAll unsaved changes will be lost."
+    replace: "${leaveEditModeAllUnsavedChangesWillBeLost}"
+  - pattern: "Browse File »"
+    replace: "${browseSth} »"
+    args:
+    - replace: '${file}'
+  - pattern: "Browse Dir »"
+    replace: "${browseSth} »"
+    args:
+    - replace: '${directory}'
+  - pattern: "Browse Code »"
+    replace: "${browseSth} »"
+    args:
+    - replace: '${code}'
+  - pattern: "View file @"
+    replace: "${viewFileAt}"
+  - pattern: !!js/regexp /"Filter by ([^"]+)"/
+    replace: '"${filterBySth}"'
+    args:
+    - '$1'
+  - pattern: !!js/regexp /"([^"]*) issues updated"/
+    replace: "\"${sthCountsDone}\""
+    args:
+    - '$1'
+    - '${issue}'
+    - '${update}'
+
+  # Named patterns
+  - name: sthWasSuccessfullyDone
+    params:
+    - {obj: 'Broadcast Message', objKey: broadcastMessage, done: created, doneKey: create}
+    - {obj: Group, objKey: group, done: created, doneKey: create}
+    - {obj: Group, objKey: group, done: updated, doneKey: update}
+    - {obj: Group, objKey: group, done: deleted, doneKey: delete}
+    - {obj: User, objKey: user, done: created, doneKey: create}
+    - {obj: User, objKey: user, done: added, doneKey: add}
+    - {obj: User, objKey: user, done: updated, doneKey: update}
+
+    - {obj: User, objKey: user, done: 'removed from group', doneKey: removeFromGroup }
+    - {obj: Hook, objKey: hook, done: created, doneKey: create}
+    - {obj: Project, objKey: project, done: forked, doneKey: fork}
+    - {obj: Username, objKey: username, done: changed, doneKey: change}
+    - {obj: Wiki, objKey: wiki, done: updated, doneKey: update}
+    - {obj: Page, objKey: page, done: deleted, doneKey: delete}
+    - {obj: Profile, objKey: profile, done: updated, doneKey: update}
+    - {obj: Token, objKey: token, done: updated, doneKey: update}
+  - name: sthNamedWasSuccessfullyDone
+    params:
+    - {obj: Group, objKey: group, done: created, doneKey: create}
+    - {obj: Group, objKey: group, done: updated, doneKey: update}
+    - {obj: Group, objKey: group, done: deleted, doneKey: delete}
+    - {obj: Project, objKey: project, done: created, doneKey: create}
+    - {obj: Project, objKey: project, done: updated, doneKey: update}
+    - {obj: Project, objKey: project, done: deleted, doneKey: delete}
+  - name: successfullyDone
+    params:
+    - {done: blocked, doneKey: block}
+    - {done: unblocked, doneKey: unblock}
+  - name: errorOccurredObjWasNotDone
+    params:
+    - {obj: User, objKey: user, done: blocked, doneKey: block}
+    - {obj: User, objKey: user, done: unblocked, doneKey: unblock}
+  - name: quotedWord
+    params:
+    - {word: 'Branch(?:es)', key: branch}
+    - {word: 'Tags', key: tag}
+    - {word: 'Search', key: search}
+    - {word: 'Search snippets', key: searchSnippets}
+    - {word: 'Search in this project', key: searchInThisProject}
+    - {word: 'Search in this group', key: searchInThisGroup}
+    - {word: 'Aug 21, 2011 9:23pm', key: timestampAug212011923pm}
+    - {word: 'Open', key: open}
+    - {word: 'Edit', key: edit}
+    - {word: 'Preview', key: preview}
+    - {word: 'Preview changes', key: previewChanges}
+    - {word: 'Groups', key: group}
+    - {word: 'Users', key: user}
+    - {word: 'Inline', key: inline}
+
+- src: '**/*.haml'
+  named-patterns:
+  - name: singleWord
+    pattern: "{word}?$|(\"){word}?\"|('){word}?'|(\".* ){word}?(\")"
+    replace: '$1$2$3${{key}}$1$2$4'
+    params: ['word', 'key']
+  - name: wordInSentence
+    pattern: "(\"[^\"]* ){word}((?: [^\"]*)?)(\")|('[^']* ){word}((?: [^']*)?)(')|( +){word}$"
+    flags: 'gi'
+    exclude: '\s+(?:- if |= )'
+    replace: '$1$4$7${{key}}$2$3$5$6'
+    params: ['word', 'key']
+  - name: doSth
+    pattern: "(^\\s+|\"){verb} ([^\"]*)(\"|$)|(^\\s+|'){verb} ([^']*)('|$)|( +){verb} (.*)$"
+    replace: '$1$4$7${{key}}$3$6'
+    args:
+    - '$2$5$8'
+    params: ['verb', 'key']
+  patterns:
+  - pattern: "Edit in fullscreen"
+    replace: "${editInFullscreen}"
+  - pattern: 'New comment on diff for'
+    replace: '${newCommentOnDiffFor}'
+  - pattern: '"Create directory"'
+    replace: '"${createSth}"'
+    args:
+    - replace: '${directory}'
+  - pattern: "'Create branch'"
+    replace: "'${createSth}'"
+    args:
+    - replace: '${branch}'
+  - pattern: 'Edit file'
+    replace: '${editFile}'
+  - pattern: !!js/regexp /(')Edit'|(")Edit"/
+    replace: "$1$2${edit}$1$2"
+  - pattern: 'Git Access'
+    replace: '${gitAccess}'
+  - pattern: "Please don't use spaces."
+    replace: '${pleaseDontUseSpaces}'
+  - pattern: 'All Pages'
+    replace: '${allPages}'
+  - pattern: 'All activity'
+    replace: '${allActivity}'
+  - pattern: !!js/regexp /Last edited by ([^ ]*) ([^ ]*)$/
+    replace: '${lastEditedBy}'
+    args:
+    - '$1'
+    - '$2'
+  - pattern: !!js/regexp /Last edited ([^ ]*)$/
+    replace: '${lastEdited}'
+    args:
+    - '$1'
+  - pattern: 'This is an old version of this page.'
+    replace: '${thisIsAnOldVersionOfThisPage}'
+  - pattern: !!js/regexp /You can view the (#{link_to ")most recent version(", [^}]*}) or browse the (#{link_to ")history(", [^}]*})./
+    replace: '${youCanViewTheMostRecentVersionOrBrowseTheHistory}'
+    args:
+    - '$1'
+    - '$2'
+    - '$3'
+    - '$4'
+  - pattern: 'Choose File'
+    replace: '${chooseFile}'
+  - pattern: 'Empty File'
+    replace: '${emptyFile}'
+  - pattern: 'File name'
+    replace: '${fileName}'
+  - pattern: !!js/regexp /The maximum file size allowed is ([0-9A-Z]*)\.?/
+    replace: '${theMaximumFileSizeAllowedIs}'
+    args:
+    - '$1'
+  - pattern: 'Remove avatar'
+    replace: '${removeAvatar}'
+  - pattern: 'Avatar will be removed. Are you sure?'
+    replace: '${avatarWillBeRemovedAreYouSure}'
+  - pattern: 'Save changes'
+    replace: '${saveChanges}'
+  - pattern: 'Two-factor Authentication'
+    replace: '${twoFactorAuthentication}'
+  - pattern: 'Remove this label? Are you sure?'
+    replace: '${removeThisLabelAreYouSure}'
+  - pattern: 'No labels yet.'
+    replace: '${noLabelsYet}'
+  - pattern: 'Nothing here.'
+    replace: '${nothingHere}'
+  - pattern: 'No issues to show'
+    replace: '${noIssuesToShow}'
+  - pattern: 'No merge requests to show'
+    replace: '${noMergeRequestsToShow}'
+  - pattern: 'No public groups'
+    replace: '${noPublicGroups}'
+  - pattern: 'Your message here'
+    replace: '${yourMessagehere}'
+  - pattern: "Didn't receive confirmation instructions?"
+    replace: '${didntReceiveConfirmationInstructions}'
+  - pattern: 'Click the link below to unlock your account:'
+    replace: '${clickTheLinkBelowToUnlockYourAccount}'
+  - pattern: 'Your account has been locked due to an excessive amount of unsuccessful sign in attempts.'
+    replace: '${yourAccountHasBeenLockedDueToAnExcessiveAmountOfUnsuccessfulSignInAttempts}'
+  - pattern: 'Remember me'
+    replace: '${rememberMe}'
+  - pattern: 'Forgot your password?'
+    replace: '${forgotYourPassword}'
+  - pattern: 'Request a new one'
+    replace: '${requestANewOne}'
+  - pattern: 'Use one line per URI'
+    replace: '${useOneLinePerURI}'
+  - pattern: 'Congratulations! Why not share your accomplishment with the world?'
+    replace: '${congratulationsWhyNotShareYourAccomplishmentWithTheWorld}'
+  - pattern: 'Filter by name'
+    replace: '${filterByName}'
+  - pattern: ' sort:'
+    replace: ' ${sort}:'
+  - pattern: ' visibility:'
+    replace: ' ${visibility}:'
+  - pattern: 'group settings'
+    replace: '${groupSettings}'
+  - pattern: 'You can change your group avatar here'
+    replace: '${youCanChangeYourGroupAvatarHere}'
+  - pattern: 'You can upload a group avatar here'
+    replace: '${youCanUploadAGroupAvatarHere}'
+  - pattern: 'Removing group will cause all child projects and resources to be removed.'
+    replace: '${removingGroupWillCauseAllChildProjectsAndResourcesToBeRemoved}'
+  - pattern: 'Removed group can not be restored!'
+    replace: '${removedGroupCanNotBeRestored}'
+  - pattern: 'Transfer project'
+    replace: '${transferProject}'
+  - pattern: 'Reset link will be generated and sent to the user.'
+    replace: '${resetLinkWillBeGeneratedAndSentToTheUser}'
+  - pattern: 'New User'
+    replace: '${newUser}'
+  - pattern: 'Maximum attachment size'
+    replace: '${maximumAttachmentSize}'
+  - pattern: 'Session duration (minutes)'
+    replace: '${sessionDurationMinutes}'
+  - pattern: 'GitLab restart is required to apply changes'
+    replace: '${gitlabRestartIsRequiredToApplyChanges}'
+  - pattern: 'User OAuth applications'
+    replace: '${userOAuthApplications}'
+  - pattern: 'Allow users to register any application to use GitLab as an OAuth provider'
+    replace: '${allowUsersToRegisterAnyApplicationToUseGitlabAsAnOauthProvider}'
+  - pattern: 'Sign-in Restrictions'
+    replace: '${signInRestrictions}'
+  - pattern: '% complete'
+    replace: '% ${complete}'
+  - pattern: 'All issues for this milestone are closed. You may close the milestone now.'
+    replace: '${allIssuesForThisMilestoneAreClosedYouMayCloseTheMilestoneNow}'
+  - pattern: 'Progress:'
+    replace: '${progress}:'
+  - pattern: 'GitLab is open source software to collaborate on code.'
+    replace: '${gitlabIsOpenSourceSoftwareToCollaborateOnCode}'
+  - pattern: 'Quick help'
+    replace: '${quickHelp}'
+  - pattern: 'Manage git repositories with fine-grained access controls that keep your code secure.'
+    replace: '${manageGitRepositoriesWithFineGrainedAccessControlsThatKeepYourCodeSecure}'
+  - pattern: 'Perform code reviews and enhance collaboration with merge requests.'
+    replace: '${performCodeReviewsAndEnhanceCollaborationWithMergeRequests}'
+  - pattern: 'Each project can also have an issue tracker and a wiki.'
+    replace: '${eachProjectCanAlsoHaveAnIssueTrackerAndAWiki}'
+  - pattern: 'Used by more than 100,000 organizations, GitLab is the most popular solution to manage git repositories on-premises.'
+    replace: '${usedByMoreThan100000OrganizationsGitlabIsTheMostPopularSolutionToManageGitRepositoriesOnPremises}'
+  - pattern: !!js/regexp /Read more about GitLab at (.*)\.$/
+    replace: '${readMoreAboutGitlabAt}'
+    args:
+    - '$1'
+  - pattern: 'Keyboard Shortcuts'
+    replace: '${keyboardShortcuts}'
+  - pattern: 'Global Shortcuts'
+    replace: '${globalShortcuts}'
+  - pattern: 'Focus Search'
+    replace: '${focusSearch}'
+  - pattern: 'Show this dialog'
+    replace: '${showThisDialog}'
+  - pattern: 'Project Files browsing'
+    replace: '${projectFilesBrowsing}'
+  - pattern: 'You have (.*) access to this project.'
+    replace: '${youHaveAccessToThisProject}'
+    args:
+    - '$1'
+  - pattern: 'Tags give the ability to mark specific points in history as being important'
+    replace: '${tagsGiveTheAbilityToMarkSpecificPointsInHistoryAsBeingImportant}'
+  - pattern: 'Select assignee'
+    replace: '${selectSth}'
+    args:
+    - replace: '${assignee}'
+  - pattern: !!js/regexp /^(.*)History for\n([^\n]*)$/m
+    replace: '${historyFor}'
+  - pattern: !!js/regexp /^(.*)Git access for\n([\n]*)$/m
+    replace: '${gitAccessFor}'
+  - pattern: 'Install Gollum:'
+    replace: '${installGollum}:'
+  - pattern: 'Clone Your Wiki:'
+    replace: '${cloneYourWiki}:'
+  - pattern: 'Visibility level:'
+    replace: '${visibilityLevel}:'
+  - pattern: 'Start Gollum And Edit Locally:'
+    replace: '${startGollumAndEditLocally}:'
+  - pattern: 'New Wiki Page'
+    replace: '${newWikiPage}'
+  - pattern: 'Empty file'
+    replace: '${emptyFile}'
+  - pattern: 'Add an SSH key to your profile<br> to pull or push via SSH.'
+    replace: '${addAnSshKeyToYourProfileToPullOrPushViaSsh}'
+  - pattern: 'Set a password on your account<br> to pull or push via (.*)\.'
+    replace: '${setAPasswordOnYourAccountToPullOrPushVia}'
+  - pattern: 'Commit message'
+    replace: '${commitMessage}'
+  - pattern: 'Remove the <code>WIP</code> prefix from the title to allow this'
+    replace: '${removeTheWIPPrefixFromTheTitleToAllowThis}'
+  - pattern: !!js/regexp /^( +)Remove the <code>WIP<\/code> prefix from the title to allow this\n( +)<strong>Work In Progress<\/strong> merge request to be merged when it's ready\.$/m
+    replace: '${removeTheWIPPrefix}'
+  - pattern: !!js/regexp /^( +)Start the title with <code>\[WIP\]</code> or <code>WIP:</code> to prevent a\n( +)<strong>Work In Progress</strong> merge request from being merged before it's ready\.$/m
+    replace: '${startTheTitleWithWIP}'
+  - pattern: 'Share code pastes with others out of git repository'
+    replace: '${shareCodekuninPastesWithOthersOutOfGitRepository}'
+  - pattern: "\"Don't show again\""
+    replace: "\"${dontShowAgain}\""
+  - pattern: 'Confirmed at:'
+    replace: '${confirmedAt}:'
+  - pattern: !!js/regexp /^( +[^ ]+ )Confirmed:\n([^\n]*)\n( +)No$/m
+    replace: '${confirmedNo}'
+  - pattern: 'Current sign-in at:'
+    replace: '${currentSignInAt}:'
+  - pattern: !!js/regexp /^( +)never$/
+    replace: '$1${neverSignedIn}'
+  - pattern: 'Nov 12, 2031'
+    replace: '${nov122031}'
+  - pattern: 'Last sign-in at:'
+    replace: '${lastSignInAt}:'
+  - pattern: 'Sign-in count:'
+    replace: '${signInCount}:'
+  - pattern: 'Created by:'
+    replace: '${createdBy}:'
+  - pattern: 'This user is blocked'
+    replace: '${thisUserIsBlocked}'
+  - pattern: 'Blocking user has the following effects:'
+    replace: '${blockingUserHasTheFollowingEffects}'
+  - pattern: 'User will not be able to login'
+    replace: '${userWillNotBeAbleToLogin}'
+  - pattern: 'User will not be able to access git repositories'
+    replace: '${userWillNotBeAbleToAccessGitRepositories}'
+  - pattern: 'Personal projects will be left'
+    replace: '${personalProjectsWillBeLeft}'
+  - pattern: 'Owned groups will be left'
+    replace: '${ownedGroupsWillBeLeft}'
+  - pattern: 'Unblock user'
+    replace: '${unblockUser}'
+  - pattern: 'Block this user'
+    replace: '${blockThisUser}'
+  - pattern: 'Block user'
+    replace: '${blockUser}'
+  - pattern: 'Remove user'
+    replace: '${removeUser}'
+  - pattern: 'Deleting a user has the following effects:'
+    replace: '${deletingAUserHasTheFollowingEffects}'
+
+  - pattern: 'All user content like authored issues, snippets, comments will be removed'
+    replace: '${allUserContentLikeAuthoredIssues,Snippets,CommentsWillBeRemoved}'
+  - pattern: !!js/regexp /#{pluralize rp, '(personal project)'} will be removed and cannot be restored/
+    replace: '${personalProjectWillBeRemovedAndCannotBeRestored}'
+  - pattern: !!js/regexp /USER (#[^ ]+) WILL BE REMOVED! Are you sure\?/
+    replace: '${userWillBeRemovedAreYouSure}'
+  - pattern: 'This user is currently an owner in these groups:'
+    replace: '${thisUserIsCurrentlyAnOwnerInTheseGroups}'
+  - pattern: 'You must transfer ownership or delete these groups before you can delete this user.'
+    replace: '${youMustTransferOwnershipOrDeleteTheseGroupsBeforeYouCanDeleteThisUser}'
+  - pattern: 'Starred Projects'
+    replace: '${starredProjects}'
+  - pattern: 'List all milestones from all projects you have access to.'
+    replace: '${listAllMilestonesFromAllProjectsYouHaveAccessTo}'
+  - pattern: 'No milestones to show'
+    replace: '${noMilestonesToShow}'
+  - pattern: 'All issues for this milestone are closed. You may close the milestone now.'
+    replace: '${allIssuesForThisMilestoneAreClosedYouMayCloseTheMilestoneNow}'
+  - pattern: "You don't have starred projects yet"
+    replace: '${youDontHaveStarredProjectsYet}'
+  - pattern: 'Visit project page and press on star icon and it will appear on this page.'
+    replace: '${visitProjectPageAndPressOnStarIconAndItWillAppearOnThisPage}'
+  - pattern: 'Welcome to GitLab!'
+    replace: '${welcomeToGitLab}'
+  - pattern: 'Self hosted Git management application.'
+    replace: '${selfHostedGitManagementApplication}'
+  - pattern: "You don't have access to any projects right now."
+    replace: '${youDontHaveAccessToAnyProjectsRightNow}'
+  - pattern: !!js/regexp /( +)You can create up to\n( +[^ ]+ )pluralize\(([^,]+), "project"\)[^\n]+$/m
+    replace: '${youCanCreateUpToProject}'
+  - pattern: !!js/regexp /(#[^ ]+) profile page/
+    replace: '${profilePage}'
+  - pattern: "Browse Code »"
+    replace: "${browseSth} »"
+    args:
+    - replace: '${code}'
+  - pattern: 'Are you sure?'
+    replace: '${areYouSure}'
+  - name: singleWord
+    params:
+    - {word: 'Issues', key: issue}
+    - {word: 'Milestones', key: milestone}
+    - {word: 'Applications', key: application}
+    - {word: 'Labels', key: label}
+    - {word: 'Tags', key: tag}
+    - {word: 'Deploy Keys', key: deployKey}
+    - {word: 'Snippet Contents', key: snippet}
+    - {word: 'Snippets', key: snippet}
+    - {word: 'Password', key: password}
+    - {word: 'Merge [rR]equests', key: mergeRequest}
+    - {word: 'Projects', key: project}
+    - {word: 'Groups', key: group}
+    - {word: 'Files', key: file}
+    - {word: 'Branch(?:es)', key: branch}
+    - {word: 'Close', key: close}
+    - {word: 'Open', key: open}
+    - {word: 'Reopen', key: reopen}
+    - {word: 'Users', key: user}
+    - {word: 'Status', key: status}
+    - {word: 'Commit', key: commit}
+    - {word: 'State', key: state}
+    - {word: 'Due date', key: dueDate}
+    - {word: 'Sign in', key: signIn}
+    - {word: 'Sign up', key: signUp}
+    - {word: 'Home', key: home}
+    - {word: 'Page version', key: pageVersion}
+    - {word: 'Page History', key: pageHistory}
+    - {word: 'Pages', key: page}
+    - {word: 'Author', key: author}
+    - {word: 'Commit Message', key: commitMessage}
+    - {word: 'Last updated', key: lastUpdated}
+    - {word: 'Archive Format', key: archiveFormat}
+    - {word: 'Format', key: format}
+    - {word: 'Build', key: build}
+    - {word: 'History', key: history}
+    - {word: 'Code', key: code}
+    - {word: 'Comments', key: comment}
+    - {word: 'Titles and Filenames', key: titlesAndFilenames}
+    - {word: 'Unassigned', key: unassigned}
+    - {word: 'Any', key: any}
+    - {word: 'Search for projects, issues etc', key: searchForProjectsIssuesEtc}
+    - {word: 'Search', key: search}
+    - {word: 'Merged', key: merged}
+    - {word: 'Closed', key: close}
+    - {word: 'Account', key: account}
+    - {word: 'Source branch', key: sourceBranch}
+    - {word: 'Preview', key: preview}
+    - {word: 'Write', key: write}
+    - {word: 'Save', key: save}
+    - {word: 'Confirm', key: confirm}
+    - {word: 'Assignee', key: assignee}
+    - {word: 'Description', key: description}
+    - {word: 'License', key: license}
+    - {word: 'Web hooks', key: webHook}
+    - {word: 'Show all', key: showAll}
+    - {word: 'Assign to me', key: assignToMe}
+    - {word: 'Homepage', key: homepage}
+    - {word: 'Remind later', key: remindLater}
+    - {word: 'Trigger', key: trigger}
+    - {word: 'Change your password', key: changeYourPassword}
+    - {word: 'Back', key: back}
+    - {word: 'Email', key: email}
+    - {word: 'Submit', key: submit}
+    - {word: 'Cancel', key: cancel}
+    - {word: 'Encoding Error', key: encodingError}
+    - {word: 'Service', key: service}
+    - {word: 'Perticipant', key: perticipant}
+    - {word: 'User map', key: userMap}
+    - {word: 'Invitation', key: invitation}
+    - {word: 'Admin area', key: adminArea}
+    - {word: 'Dashboard', key: dashboard}
+    - {word: 'Contribution guide', key: contributionGuide}
+    - {word: 'Changelog', key: changelog}
+    - {word: 'Visibility [lL]evel', key: visibilityLevel}
+  - name: wordInSentence
+    params:
+    - {word: 'applications?', key: application}
+    - {word: 'public deploy keys?', key: publicDeployKey}
+    - {word: 'merge requests?', key: mergeRequest}
+    - {word: 'groups?', key: group}
+    - {word: 'labels?', key: label}
+    - {word: 'users?', key: user}
+    - {word: 'snippets?', key: snippet}
+    - {word: 'milestones?', key: milestone}
+    - {word: 'protected branches', key: protectedBranch}
+    - {word: 'branch(?:es)?', key: branch}
+    - {word: 'issues?', key: issue}
+    - {word: 'files?', key: file}
+    - {word: 'directory', key: directory}
+    - {word: 'tags?', key: tag}
+    - {word: 'deploy keys?', key: deployKey}
+    - {word: 'public projects?', key: publicProject}
+    - {word: 'projects?', key: project}
+    - {word: 'password', key: password}
+    - {word: 'builds?', key: build}
+    - {word: 'this user', key: thisUser}
+  - name: doSth
+    params:
+    - {verb: Edit, key: editSth}
+    - {verb: Create, key: createSth}
+    - {verb: Close, key: closeSth}
+    - {verb: Reopen, key: reopenSth}
+    - {verb: Browse, key: browseSth}
+    - {verb: New, key: newSth}
+    - {verb: Accept, key: acceptSth}
+    - {verb: Explore, key: exploreSth}
+    - {verb: Your, key: yourSth}
+    - {verb: Remove, key: removeSth}
+    - {verb: Select, key: selectSth}
+    - {verb: Block, key: blockSth}
+    - {verb: Latest, key: latestSth}
+    - {verb: Reset, key: resetSth}
+    - {verb: Add, key: addSth}
+  - name: sthCountsDone
+    params:
+    - {obj: issues, objKey: issue, done: updated, doneKey: update}
+
+#- src: '**/*.md'
+#  patterns:

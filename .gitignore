@@ -1,4 +1,5 @@
 /.vagrant/
 /packages/*.deb
 /gitlabhq/
+/node_modules/
 *.swp

@@ -1,0 +1,279 @@
+acceptSth: '{0}を承認'
+application: アプリケーション
+applicationSettingsSavedSuccessfully: アプリケーション設定を保存しました
+browseSth: '{0}を表示'
+close: クローズ
+commentAndReopen: コメント & 再オープン
+commentAndClose: コメント & クローズ
+commits: コミット
+create: 作成
+createSth: '{0}を作成'
+closeSth: '{0}をクローズ'
+d3TimeFormat: '%Y/%m/%d'
+deployKey: デプロイキー
+edit: 編集
+editSth: '{0}を編集'
+issue: 課題
+label: ラベル
+loading: 読み込み中...
+leaveSth: '{0}を離脱'
+newSth: '新しい{0}'
+nothingToPreview: プレビューする内容がありません
+milestone: マイルストーン
+mergeRequest: マージリクエスト
+password: パスワード
+searchForNamespace: ネームスペースを検索
+searchForAUser: ユーザを検索
+snippet: スニペット
+jQueryTimeago: |
+               // Japanese
+               jQuery.timeago.settings.strings = {
+                 prefixAgo: "",
+                 prefixFromNow: "今から",
+                 suffixAgo: "前",
+                 suffixFromNow: "後",
+                 seconds: "1 分未満",
+                 minute: "約 1 分",
+                 minutes: "%d 分",
+                 hour: "約 1 時間",
+                 hours: "約 %d 時間",
+                 day: "約 1 日",
+                 days: "約 %d 日",
+                 month: "約 1 月",
+                 months: "約 %d 月",
+                 year: "約 1 年",
+                 years: "約 %d 年",
+                 wordSeparator: ""
+               };
+tag: タグ
+encodingHeader: '# encoding: utf-8'
+areYouSureYouDoSomething: 本当に{0}しますか？
+group: グループ
+user: ユーザ
+reopen: 再オープン
+reopenSth: '{0}を再オープン'
+subscribe: 更新通知を受信
+unsubscribe: 更新通知の受信を解除
+unassigned: 担当なし
+any: 指定なし
+sthWasSuccessfullyDone: '{0}が{1}されました'
+successfullyDone: '正常に{0}しました'
+errorOccurredObjWasNotDone: 'エラーが発生しました。{0}は{1}されませんでした'
+broadcastMessage: ブロードキャストメッセージ
+update: 更新
+add: 追加
+delete: 削除
+removeFromGroup: グループから削除
+block: ブロック
+unblock: ブロック解除
+reset: リセット
+hook: フック
+profile: プロフィール
+serviceIsUnknownOrItDoesntExist: 不明なサービスまたは存在しないサービスです
+youMustProvideAValidCurrentPassword: 現在のパスワードを正しく入力してください
+passwordSuccessfullyChanged: パスワードは正常に変更されました
+token: トークン
+passwordWasSuccessfullyUpdatedPleaseLoginWithIt: パスワードは正常に更新されました。新しいパスワードでログインしてください
+weSentYouAnEmailWithResetPasswordInstructions: パスワードのリセット方法についてのご案内をメールでお送りしました
+failedToUpdateProfileAndMessages: プロフィールの更新に失敗しました。#{messages}
+editInFullscreen: フルスクリーンで編集
+project: プロジェクト
+newCommentOnDiffFor: 差分への新しいコメント
+file: ファイル
+branch: ブランチ
+exploreSth: '{0}を探索'
+yourSth: 'あなたの{0}'
+status: ステータス
+commit: コミット
+state: 状態
+dueDate: 期限
+signIn: サインイン
+signUp: サインアップ
+fork: フォーク
+sthCountsDone: '{0}件の{1}が{2}されました'
+page: ページ
+pageHistory: ページ更新履歴
+pageVersion: ページバージョン
+author: 作成者
+commitMessage: コミットメッセージ
+lastUpdated: 最終更新日
+archiveFormat: アーカイブ形式
+format: 形式
+home: ホーム
+gitAccess: Gitでのアクセス
+pleaseDontUseSpaces: スペースを使わないでください。
+build: ビルド
+allPages: すべてのページ
+allActivity: すべてのアクティビティ
+lastEditedBy: '{0}が{1}に更新'
+lastEdited: '最終更新：{0}'
+thisIsAnOldVersionOfThisPage: これはこのページの古いバージョンです。
+history: 履歴
+youCanViewTheMostRecentVersionOrBrowseTheHistory: '{0}最新バージョン{1}や{2}履歴{3}を見ることができます。'
+code: コード
+comment: コメント
+titlesAndFilenames: タイトル・ファイル名
+searchForProjectsIssuesEtc: プロジェクト, 課題等を検索
+search: 検索
+merged: マージ済み
+chooseFile: ファイルを選択
+fileName: ファイル名
+theMaximumFileSizeAllowedIs: ファイルの最大サイズは{0}です
+removeAvatar: アバターを削除
+avatarWillBeRemovedAreYouSure: アバターを削除します。よろしいですか？
+saveChanges: 変更を保存
+twoFactorAuthentication: 二段階認証
+account: アカウント
+username: ユーザ名
+change: 変更
+removeSth: '{0}を削除'
+sourceBranch: マージ元ブランチ
+selectSth: '{0}を選択'
+removeThisLabelAreYouSure: 本当にこのラベルを削除しますか？
+publicDeployKey: 公開デプロイキー
+publicProject: 公開プロジェクト
+directory: ディレクトリ
+write: 編集
+preview: プレビュー
+save: 保存
+blockSth: '{0}をブロック'
+resetSth: '{0}をリセット'
+addSth: '{0}を追加'
+emptyFile: 空のファイル
+protectedBranch: 保護ブランチ
+license: ライセンス
+webHook: Webフック
+showAll: すべて表示
+assignee: 担当者
+description: 説明
+open: オープン
+assignToMe: 自分に割り当てる
+noLabelsYet: ラベルがありません
+homepage: ホームページ
+remindLater: 後で表示
+nothingHere: 何もありません
+noIssuesToShow: 課題はありません
+noMergeRequestsToShow: マージリクエストはありません
+noPublicGroups: 公開グループはありません
+noMilestonesToShow: マイルストーンはありません
+trigger: トリガー
+yourMessageHere: メッセージがここに表示されます
+latestSth: 最新の{0}
+changeYourPassword: パスワードの変更
+didntReceiveConfirmationInstructions: 確認方法のメールを受信していませんか？
+clickTheLinkBelowToUnlockYourAccount: 以下のリンクをクリックすると、アカウントのロックを解除できます。
+yourAccountHasBeenLockedDueToAnExcessiveAmountOfUnsuccessfulSignInAttempts: サインインに何度も失敗したため、あなたのアカウントはロックされました。
+back: 戻る
+rememberMe: パスワードを記憶
+forgotYourPassword: パスワードを忘れた場合
+email: メールアドレス
+requestANewOne: もう一度送信
+useOneLinePerURI: 1行につき1つのURIを記述してください
+submit: 送信
+cancel: キャンセル
+encodingError: エンコーディングエラー
+congratulationsWhyNotShareYourAccomplishmentWithTheWorld: おめでとうございます! これをシェアしませんか？
+filterByName: 名前で絞り込み
+sort: 並び替え
+visibility: 可視性
+groupSettings: グループの設定
+youCanChangeYourGroupAvatarHere: アバターを変更することができます。
+youCanUploadAGroupAvatarHere: アバターをアップロードすることができます。
+removingGroupWillCauseAllChildProjectsAndResourcesToBeRemoved: グループを削除すると、子プロジェクトとリソースも削除されます。
+removedGroupCanNotBeRestored: グループの削除は元に戻せません！
+transferProject: プロジェクトを移譲
+service: サービス
+resetLinkWillBeGeneratedAndSentToTheUser: パスワードリセットのリンクが生成され、ユーザに送信されます。
+newUser: 新しいユーザ
+thisUser: このユーザ
+maximumAttachmentSize: 最大添付ファイルサイズ
+sessionDurationMinutes: セッション期間 (分)
+gitlabRestartIsRequiredToApplyChanges: 変更を反映するにはGitLabの再起動が必要です
+userOAuthApplications: OAuthアプリケーションの利用
+allowUsersToRegisterAnyApplicationToUseGitlabAsAnOauthProvider: OAuthプロバイダとしてGitLabを使えるようにアプリケーションを登録することをユーザを許可する
+signInRestrictions: サインインの制限
+complete: 完了
+progress: 進捗
+participant: 参加者
+gitlabIsOpenSourceSoftwareToCollaborateOnCode: GitLabはコードを共同編集するためのオープンソースソフトウェアです。
+manageGitRepositoriesWithFineGrainedAccessControlsThatKeepYourCodeSecure: Gitリポジトリをきめ細かくアクセス管理でき、あなたのソースコードを安全な状態に保ちます。
+performCodeReviewsAndEnhanceCollaborationWithMergeRequests: マージリクエストを使えば、ソースコードレビューや共同作業を向上することができます。
+eachProjectCanAlsoHaveAnIssueTrackerAndAWiki: 各プロジェクトには課題トラッカーとWikiを備えることができます。
+usedByMoreThan100000OrganizationsGitlabIsTheMostPopularSolutionToManageGitRepositoriesOnPremises: GitLabは5万以上の組織で使われており、もっともポピュラーなオンプレミスGitリポジトリ管理のソリューションです。
+readMoreAboutGitlabAt: 'GitLabについての詳細は {0} でご確認ください。'
+quickHelp: クイックヘルプ
+keyboardShortcuts: キーボードショートカット
+globalShortcuts: グローバルショートカット
+focusSearch: 検索バーにフォーカス
+showThisDialog: このダイアログを表示
+projectFilesBrowsing: プロジェクトのファイル閲覧
+userMap: ユーザマップ
+invitation: 招待
+adminArea: 管理エリア
+dashboard: ダッシュボード
+contributionGuide: コントリビューションガイド
+changelog: 更新履歴
+youHaveAccessToThisProject: 'あなたはこのプロジェクトで {0} の権限があります。'
+tagsGiveTheAbilityToMarkSpecificPointsInHistoryAsBeingImportant: タグを使うと、コミット履歴上で重要なポイントをマークすることができます。
+historyFor: "$2\n$1の更新履歴"
+gitAccessFor: "$2\n$1へのGitでのアクセス"
+installGollum: Gollumをインストール
+cloneYourWiki: このWikiをクローン
+startGollumAndEditLocally: Gollumを開始してローカルで編集
+newWikiPage: 新しいWikiページ
+addAnSshKeyToYourProfileToPullOrPushViaSsh: 'SSHでプル/プッシュするためにはプロフィールにSSHキーを追加してください'
+setAPasswordOnYourAccountToPullOrPushVia: '{0}でプル/プッシュするにはパスワードを設定してください'
+removeTheWIPPrefix: "$1マージできる状態になったら <code>WIP</code> プレフィクスをタイトルから削除して\n$2<strong>Work In Progress (仕掛かり)</strong>のマージリクエストをマージできるようにします。"
+startTheTitleWithWIP: "$1タイトルを <code>[WIP]</code> または <code>WIP:</code> で開始すると\n$2<strong>Work In Progress (仕掛かり)</strong>のマージリクエストがマージできないようになります。"
+shareCodekuninPastesWithOthersOutOfGitRepository: コードをGitリポジトリの外で共有しましょう。
+dontShowAgain: 次から表示しない
+visibilityLevel: 可視性レベル
+areYouSure: 本当によろしいですか？
+confirmedAt: 登録確認日
+confirmedNo: "$1登録確認:\n$2\n$3未確認"
+currentSignInAt: 現在のサインイン
+neverSignedIn: サインインなし
+nov122031: '2031/11/12'
+lastSignInAt: 最終サインイン
+signInCount: サインイン回数
+createdBy: 登録者
+thisUserIsBlocked: このユーザはブロックされています
+blockingUserHasTheFollowingEffects: ユーザをブロックすると以下の影響があります。
+userWillNotBeAbleToLogin: ユーザはログインできません。
+userWillNotBeAbleToAccessGitRepositories: ユーザはGitリポジトリにアクセスできません。
+personalProjectsWillBeLeft: パーソナルプロジェクトが残されます。
+ownedGroupsWillBeLeft: ユーザが所有するグループが残されます。
+unblockUser: ブロック解除
+blockThisUser: このユーザをブロック
+blockUser: ユーザをブロック
+removeUser: ユーザを削除
+deletingAUserHasTheFollowingEffects: ユーザを削除すると以下の影響があります。
+allUserContentLikeAuthoredIssues,Snippets,CommentsWillBeRemoved: このユーザが作成した課題, スニペット, コメントといったすべてのコンテンツが削除されます。
+personalProjectWillBeRemovedAndCannotBeRestored: '#{rp}個のパーソナルプロジェクトが削除され、復元できなくなります。'
+userWillBeRemovedAreYouSure: 'ユーザ $1 は削除されます！本当に削除しますか？'
+thisUserIsCurrentlyAnOwnerInTheseGroups: 'このユーザは現在次のグループの所有者です:'
+youMustTransferOwnershipOrDeleteTheseGroupsBeforeYouCanDeleteThisUser: このユーザを削除する前に、所有権を移譲するか、これらのグループを削除する必要があります。
+starredProjects: スターをつけたプロジェクト
+listAllMilestonesFromAllProjectsYouHaveAccessTo: 'アクセス権のあるすべてのプロジェクトのマイルストーンを表示しています。'
+allIssuesForThisMilestoneAreClosedYouMayCloseTheMilestoneNow: このマイルストーンの課題はすべてクローズされました。マイルストーンはクローズできます。
+youDontHaveStarredProjectsYet: スターをつけたプロジェクトはありません
+visitProjectPageAndPressOnStarIconAndItWillAppearOnThisPage: プロジェクトのページでスターのアイコンを押すとこのページで確認できます。
+welcomeToGitLab: GitLabへようこそ！
+selfHostedGitManagementApplication: GitLabはSelf HostedなGit管理アプリケーションです。
+youDontHaveAccessToAnyProjectsRightNow: アクセス権のあるプロジェクトはまだありません。
+youCanCreateUpToProject: "$1あなたは\n$2#{$3}件\n$1までプロジェクトを作ることができます。"
+profilePage: '$1のプロフィールページ'
+yourChangesHaveBeenSuccessfullyCommitted: 変更は正常にコミットされました
+wiki: Wiki
+pageNotFound: ページが見つかりません
+couldNotCreateWikiRepositoryAtThisTimePleaseTryAgainLater: Wikiのリポジトリを作成できませんでした。後ほどもう一度お試しください
+accountSuccessfullyRemoved: アカウントが削除されました
+searchSnippets: このプロジェクトを検索
+searchInThisProject: スニペットを検索
+searchInThisGroup: このグループを検索
+timestampAug212011923pm: '2011/08/21 21:23'
+leaveEditModeAllUnsavedChangesWillBeLost: 編集モードを終了しますか？\n保存していない変更は失われます。
+previewChanges: 変更をプレビュー
+viewFileAt: 'ファイルを表示 @'
+inline: インライン
+filterBySth: '{0}で絞り込み'

@@ -1,0 +1,10 @@
+{
+  "name": "gitlab-i18n-patch",
+  "private": "true",
+  "dependencies": {
+    "i18n-patch": "0.0.7"
+  },
+  "scripts": {
+    "build": "i18n-patch ja gitlabhq"
+  }
+}

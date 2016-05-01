@@ -26,6 +26,8 @@ GitLabはi18nに対応しないとのことですが、
 しばらくお待ちください。  
 (早くアップデートしてほしいというご要望があれば、Issue 等からご連絡いただければ対応します)
 
+i18n-patch を使って作成した v8.3.0 以降のパッチも patches フォルダにコミットしていますが、内容は作成中のものです。
+
 ## 対応バージョン
 
 1. [GitLab CE v8.2.0](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.2.0 "GitLab CE v8.2.0") → [patches/v8.2.0ディレクトリ](patches/v8.2.0)

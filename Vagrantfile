@@ -45,6 +45,11 @@ Vagrant.configure("2") do |config|
     "8.0.0" => "https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_8.0.0-ce.0_amd64.deb/download",
     "8.1.0" => "https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_8.1.0-ce.0_amd64.deb/download",
     "8.2.0" => "https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_8.2.0-ce.0_amd64.deb/download",
+    "8.3.0" => "https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_8.3.0-ce.0_amd64.deb/download",
+    "8.4.0" => "https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_8.4.0-ce.0_amd64.deb/download",
+    "8.5.0" => "https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_8.5.0-ce.0_amd64.deb/download",
+    "8.6.0" => "https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_8.6.0-ce.0_amd64.deb/download",
+    "8.7.0" => "https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_8.7.0-ce.0_amd64.deb/download",
   }.each do |ver, url|
     config.vm.define "v#{ver.gsub(/\./, "")}" do |gl|
       gl.vm.network "forwarded_port", guest: 80, host: web_port(ver)

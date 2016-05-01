@@ -87,6 +87,7 @@ translations:
   - name: quotedWord
     pattern: "(\"){word}?\"|('){word}?'"
     replace: '$1$2${{key}}$1$2'
+    exclude: '(?:\s+when .* then|.* class_name: )'
     params: ['word', 'key']
 
   patterns:
@@ -206,12 +207,13 @@ translations:
   named-patterns:
   - name: singleWord
     pattern: "{word}?$|(\"){word}?\"|('){word}?'|(\".* ){word}?(\")"
+    exclude: '\s+- when '
     replace: '$1$2$3${{key}}$1$2$4'
     params: ['word', 'key']
   - name: wordInSentence
     pattern: "(\"[^\"]* ){word}((?: [^\"]*)?)(\")|('[^']* ){word}((?: [^']*)?)(')|( +){word}$"
     flags: 'gi'
-    exclude: '\s+(?:- if |= )'
+    exclude: '\s+(?:- if |- when |= )'
     replace: '$1$4$7${{key}}$2$3$5$6'
     params: ['word', 'key']
   - name: doSth
@@ -297,10 +299,32 @@ translations:
     replace: '${yourMessagehere}'
   - pattern: "Didn't receive confirmation instructions?"
     replace: '${didntReceiveConfirmationInstructions}'
+  - pattern: "Didn't receive a confirmation email?"
+    replace: '${didntReceiveAConfirmationEmail}'
+  - pattern: "Open source software to collaborate on code"
+    replace: '${openSourceSoftwareToCollaborateOnCode}'
+  - pattern: "Manage git repositories with fine grained access controls that keep your code secure."
+    replace: '${manageGitRepositoriesWithFineGrainedAccessControlsThatKeepYourCodeSecure}'
+  - pattern: "Perform code reviews and enhance collaboration with merge requests."
+    replace: '${performCodeReviewsAndEnhanceCollaborationWithMergeRequests}'
+  - pattern: "Each project can also have an issue tracker and a wiki."
+    replace: '${eachProjectCanAlsoHaveAnIssueTrackerAndAWiki}'
+  - pattern: "Existing user? Sign in"
+    replace: '${existingUserSignIn}'
+  - pattern: "New user? Create an account"
+    replace: '${newUserCreateAnAccount}'
+  - pattern: "Create an account"
+    replace: '${createAnAccount}'
+  - pattern: "You can create a group for several dependent projects."
+    replace: '${youCanCreateAGroupForSeveralDependentProjects}'
+  - pattern: "Groups are the best way to manage projects and members."
+    replace: '${groupsAreTheBestWayToManageProjectsAndMembers}'
   - pattern: 'Click the link below to unlock your account:'
     replace: '${clickTheLinkBelowToUnlockYourAccount}'
   - pattern: 'Your account has been locked due to an excessive amount of unsuccessful sign in attempts.'
     replace: '${yourAccountHasBeenLockedDueToAnExcessiveAmountOfUnsuccessfulSignInAttempts}'
+  - pattern: "See most discussed projects for last month"
+    replace: '${seeMostDiscussedProjectsForLastMonth}'
   - pattern: 'Remember me'
     replace: '${rememberMe}'
   - pattern: 'Forgot your password?'

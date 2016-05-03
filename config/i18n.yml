@@ -652,5 +652,22 @@ translations:
     params:
     - {obj: issues, objKey: issue, done: updated, doneKey: update}
 
+- src: 'config/application.rb'
+  patterns:
+  - pattern: !!js/regexp /^    config.i18n.enforce_available_locales = false/
+    replace: '${configI18nLocale}'
+
+- locale:
+    include: [ja]
+  add:
+    path: 'config/locales/devise.ja.yml'
+    value: devise
+
+- locale:
+    include: [ja]
+  add:
+    path: 'config/locales/ja.yml'
+    value: configLocalesJa
+
 #- src: '**/*.md'
 #  patterns:

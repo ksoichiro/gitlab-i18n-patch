@@ -23,13 +23,16 @@ fi
 for v in ${versions[@]}; do
   echo "Translate ${v}"
   pushd gitlabhq > /dev/null
+  git clean -d -f > /dev/null
   git checkout $v > /dev/null
   popd > /dev/null
   npm run build
 
   mkdir -p patches/$v/
   pushd gitlabhq > /dev/null
-  git diff > ../patches/$v/app_ja.patch
+  git add .
+  git diff --cached > ../patches/$v/app_ja.patch
   git reset --hard HEAD > /dev/null
+  git clean -d -f > /dev/null
   popd > /dev/null
 done

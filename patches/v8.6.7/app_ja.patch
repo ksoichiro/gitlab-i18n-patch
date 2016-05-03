@@ -9464,6 +9464,367 @@ index bca816f..cb6d46f 100644
  
    %div{ class: container_class }
      .tab-content
+diff --git a/config/application.rb b/config/application.rb
+index 5a0ac70..469abdb 100644
+--- a/config/application.rb
++++ b/config/application.rb
+@@ -29,6 +29,8 @@ module Gitlab
+     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+     # config.i18n.default_locale = :de
+     config.i18n.enforce_available_locales = false
++    config.i18n.locale = :ja
++    config.i18n.default_locale = :ja
+ 
+     # Configure the default encoding used in templates for Ruby 1.9.
+     config.encoding = "utf-8"
+diff --git a/config/locales/devise.ja.yml b/config/locales/devise.ja.yml
+new file mode 100644
+index 0000000..ca863f7
+--- /dev/null
++++ b/config/locales/devise.ja.yml
+@@ -0,0 +1,100 @@
++#SOURCE https://gist.github.com/orzccc/3104030
++ 
++ja:
++  devise:
++    confirmations:
++      confirmed: 'アカウントを登録しました。'
++#      confirmed: 'Your account was successfully confirmed. You are now signed in.'
++      send_instructions: '登録方法を数分以内にメールでご連絡します。'
++#      send_instructions: 'You will receive an email with instructions about how to confirm your account in a few minutes.'
++      send_paranoid_instructions: 'もしあなたのEメールアドレスが見つかった場合、本人確認についてのメールが数分以内に送られます。'
++#      send_paranoid_instructions: 'If your email address exists in our database, you will receive an email with instructions about how to confirm your account in a few minutes.'
++    failure:
++      already_authenticated: '既にログインしています。'
++#      already_authenticated: 'You are already signed in.'
++      inactive: 'アカウントがアクティベートされていません。'
++#      inactive: 'Your account was not activated yet.'
++      invalid: 'メールアドレスかパスワードが違います。'
++#      invalid: 'Invalid email or password.'
++      invalid_token: '認証キーが不正です。'
++#      invalid_token: 'Invalid authentication token.'
++      locked: 'あなたのアカウントは凍結されています。'
++#      locked: 'Your account is locked.'
++      not_found_in_database: 'メールアドレスかパスワードが違います。'
++#      not_found_in_database: "Invalid email or password."
++      timeout: 'セッションがタイムアウトしました。もう一度ログインしてください。'
++#      timeout: 'Your session expired, please sign in again to continue.'
++      unauthenticated: 'ログインしてください。'
++#      unauthenticated: 'You need to sign in or sign up before continuing.'
++      unconfirmed: '本登録を行ってください。'
++#      unconfirmed: 'You have to confirm your account before continuing.'
++    mailer:
++      confirmation_instructions:
++        subject: 'アカウントの登録方法'
++#        subject: 'Confirmation instructions'
++      reset_password_instructions:
++        subject: 'パスワードの再設定'
++#        subject: 'Reset password instructions'
++      unlock_instructions:
++        subject: 'アカウントの凍結解除'
++#        subject: 'Unlock Instructions'
++    omniauth_callbacks:
++      success: '%{kind} アカウントによる個人認証に成功しました。'
++#      success: 'Successfully authenticated from %{kind} account.'
++      failure: '%{kind} アカウントによる個人認証に失敗しました（%{reason}）。'
++#      failure: 'Could not authenticate you from %{kind} because "%{reason}".'
++    passwords:
++      no_token: "このページにはアクセスできません。パスワード復元メールのリンクをコピーした場合には、正しい URL かどうかをお確かめください。"
++#      no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
++      send_instructions: 'パスワードのリセット方法を数分以内にメールでご連絡します。'
++#      send_instructions: 'You will receive an email with instructions about how to reset your password in a few minutes.'
++      send_paranoid_instructions: "もしあなたのEメールアドレスが見つかった場合、パスワード復元用のメールが数分以内に送られます。"
++#      send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
++      updated: 'パスワードを変更しました。'
++#      updated: 'Your password was changed successfully. You are now signed in.'
++      updated_not_active: 'パスワードが正しく変更されました。'
++#      updated_not_active: 'Your password was changed successfully.'
++    registrations:
++      destroyed: 'アカウントを削除しました。またのご利用をお待ちしております。'
++#      destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
++      signed_up: 'ようこそ！ アカウント登録を受け付けました。'
++#      signed_up: 'Welcome! You have signed up successfully.'
++      signed_up_but_inactive: 'アカウント登録を受け付けました。しかしまだ有効化されておらず、ログインできません。'
++#      signed_up_but_inactive: 'You have signed up successfully. However, we could not sign you in because your account is not yet activated.'
++      signed_up_but_locked: 'アカウント登録を受け付けました。しかし、アカウントが凍結されているためログインできません。'
++#      signed_up_but_locked: 'You have signed up successfully. However, we could not sign you in because your account is locked.'
++      signed_up_but_unconfirmed: '本人確認用のメールがあなたのEメールアドレスに送られました。メール内のリンクからアカウントを有効化させてください。'
++#      signed_up_but_unconfirmed: 'A message with a confirmation link has been sent to your email address. Please open the link to activate your account.'
++      updated: 'アカウント情報を変更しました。'
++#      updated: 'You updated your account successfully.'
++      update_needs_confirmation: "アカウント情報を変更しましたが、Eメールアドレスの本人確認用Eメールをお送りしましたので、中のリンクをクリックして証明してください。"
++#      update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and click on the confirm link to finalize confirming your new email address."
++    sessions:
++      signed_in: 'ログインしました。'
++#      signed_in: 'Signed in successfully.'
++      signed_out: 'ログアウトしました。'
++#      signed_out: 'Signed out successfully.'
++    unlocks:
++      send_instructions: 'アカウントの凍結解除方法を数分以内にメールでご連絡します。'
++#      send_instructions: 'You will receive an email with instructions about how to unlock your account in a few minutes.'
++      send_paranoid_instructions: 'アカウントが見つかった場合、アカウントの凍結解除方法を数分以内にメールでご連絡します。'
++#      send_paranoid_instructions: 'If your account exists, you will receive an email with instructions about how to unlock it in a few minutes.'
++      unlocked: 'アカウントを凍結解除しました。ログインしています。'
++#      unlocked: 'Your account was successfully unlocked. You are now signed in.'
++  errors:
++    messages:
++      already_confirmed: "は既に登録済みですのでログインしてください"
++#      already_confirmed: "was already confirmed, please try signing in"
++      confirmation_period_expired: "の確認期限が切れました。%{period}以内に確認する必要があります。 新しくリクエストしてください"
++#      confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
++      expired: "の期限が切れましたので、新しくリクエストしてください"
++#      expired: "has expired, please request a new one"
++      not_found: "は見つかりませんでした"
++#      not_found: "not found"
++      not_locked: "は凍結されていません"
++#      not_locked: "was not locked"
++      not_saved:
++        one: "1 つのエラーにより %{resource} は保存されませんでした:"
++#        one: "1 error prohibited this %{resource} from being saved:"
++        other: "%{count} つのエラーにより %{resource} は保存されませんでした:"
++#        other: "%{count} errors prohibited this %{resource} from being saved:"
+diff --git a/config/locales/ja.yml b/config/locales/ja.yml
+new file mode 100644
+index 0000000..cee0bea
+--- /dev/null
++++ b/config/locales/ja.yml
+@@ -0,0 +1,236 @@
++# svenfuchs/rails-i18n
++# MIT License
++# https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/ja.yml
++ja:
++  date:
++    abbr_day_names:
++    - 日
++    - 月
++    - 火
++    - 水
++    - 木
++    - 金
++    - 土
++    abbr_month_names:
++    - 
++    - 1月
++    - 2月
++    - 3月
++    - 4月
++    - 5月
++    - 6月
++    - 7月
++    - 8月
++    - 9月
++    - 10月
++    - 11月
++    - 12月
++    day_names:
++    - 日曜日
++    - 月曜日
++    - 火曜日
++    - 水曜日
++    - 木曜日
++    - 金曜日
++    formats:
++      default: "%Y/%m/%d"
++      long: "%Y年%m月%d日(%a)"
++      short: "%m/%d"
++    month_names:
++    - 
++    - 1月
++    - 2月
++    - 3月
++    - 4月
++    - 5月
++    - 6月
++    - 7月
++    - 8月
++    - 9月
++    - 10月
++    - 11月
++    - 12月
++    order:
++    - :year
++    - :month
++    - :day
++  datetime:
++    distance_in_words:
++      about_x_hours:
++        one: 約1時間
++        other: 約%{count}時間
++      about_x_months:
++        one: 約1ヶ月
++        other: 約%{count}ヶ月
++      about_x_years:
++        one: 約1年
++        other: 約%{count}年
++      almost_x_years:
++        one: 1年弱
++        other: "%{count}年弱"
++      half_a_minute: 30秒前後
++      less_than_x_minutes:
++        one: 1分以内
++        other: "%{count}分未満"
++      less_than_x_seconds:
++        one: 1秒以内
++        other: "%{count}秒未満"
++      over_x_years:
++        one: 1年以上
++        other: "%{count}年以上"
++      x_days:
++        one: 1日
++        other: "%{count}日"
++      x_minutes:
++        one: 1分
++        other: "%{count}分"
++      x_months:
++        one: 1ヶ月
++        other: "%{count}ヶ月"
++      x_seconds:
++        one: 1秒
++        other: "%{count}秒"
++    prompts:
++      day: 日
++      hour: 時
++      minute: 分
++      month: 月
++      second: 秒
++      year: 年
++  errors:
++    format: "%{attribute}%{message}"
++    messages:
++      accepted: を受諾してください。
++      blank: を入力してください。
++      present: は入力しないでください。
++      confirmation: と%{attribute}の入力が一致しません。
++      empty: を入力してください。
++      equal_to: は%{count}にしてください。
++      even: は偶数にしてください。
++      exclusion: は予約されています。
++      greater_than: は%{count}より大きい値にしてください。
++      greater_than_or_equal_to: は%{count}以上の値にしてください。
++      inclusion: は一覧にありません。
++      invalid: は不正な値です。
++      less_than: は%{count}より小さい値にしてください。
++      less_than_or_equal_to: は%{count}以下の値にしてください。
++      not_a_number: は数値で入力してください。
++      not_an_integer: は整数で入力してください。
++      odd: は奇数にしてください。
++      record_invalid: バリデーションに失敗しました。 %{errors}
++      restrict_dependent_destroy: "%{record}が存在しているので削除できません。"
++      taken: はすでに存在します。
++      too_long: は%{count}文字以内で入力してください。
++      too_short: は%{count}文字以上で入力してください。
++      wrong_length: は%{count}文字で入力してください。
++      other_than: は%{count}以外の値にしてください。
++    template:
++      body: 次の項目を確認してください。
++      header:
++        one: "%{model}にエラーが発生しました。"
++        other: "%{model}に%{count}個のエラーが発生しました。"
++  helpers:
++    select:
++      prompt: 選択してください。
++    submit:
++      create: 登録する
++      submit: 保存する
++      update: 更新する
++  number:
++    currency:
++      format:
++        delimiter: ","
++        format: "%n%u"
++        precision: 0
++        separator: "."
++        significant: false
++        strip_insignificant_zeros: false
++        unit: 円
++    format:
++      delimiter: ","
++      precision: 3
++      separator: "."
++      significant: false
++      strip_insignificant_zeros: false
++    human:
++      decimal_units:
++        format: "%n %u"
++        units:
++          billion: 十億
++          million: 百万
++          quadrillion: 千兆
++          thousand: 千
++          trillion: 兆
++          unit: ''
++      format:
++        delimiter: ''
++        precision: 3
++        significant: true
++        strip_insignificant_zeros: true
++      storage_units:
++        format: "%n%u"
++        units:
++          byte: バイト
++          gb: ギガバイト
++          kb: キロバイト
++          mb: メガバイト
++          tb: テラバイト
++    percentage:
++      format:
++        delimiter: ''
++        format: "%n%"
++    precision:
++      format:
++        delimiter: ''
++  support:
++    array:
++      last_word_connector: と
++      two_words_connector: と
++      words_connector: と
++  time:
++    am: 午前
++    formats:
++      default: "%Y/%m/%d %H:%M:%S"
++      long: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
++      short: "%y/%m/%d %H:%M"
++    pm: 午後
++  views:
++    pagination:
++      previous: 前へ
++      next: 次へ
++  activerecord:
++    models:
++      project: プロジェクト
++      issue: 課題
++      merge_request: マージリクエスト
++    attributes:
++      project:
++        name: プロジェクト名
++        path: リポジトリパス
++        import_url: インポートURL
++    errors:
++      models:
++        project:
++          attributes:
++            name:
++              blank: プロジェクトパスは必須です
++        group:
++          attributes:
++            name:
++              blank: グループ名は必須です
++        wiki:
++          attributes:
++            content:
++              blank: 内容は必須です
++        system_hook:
++          attributes:
++            url:
++              blank: URLは必須です
++        doorkeeper/application:
++          attributes:
++            name:
++              blank: 名前は必須です
++        doorkeeper/application:
++          attributes:
++            redirect_uri:
++              blank: リダイレクトURIは必須です
 diff --git a/db/migrate/20150421120000_remove_periods_at_ends_of_usernames.rb b/db/migrate/20150421120000_remove_periods_at_ends_of_usernames.rb
 index 3057ea3..9e9c37b 100644
 --- a/db/migrate/20150421120000_remove_periods_at_ends_of_usernames.rb

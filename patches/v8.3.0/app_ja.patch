@@ -2309,7 +2309,7 @@ index 64bd356..a4377ea 100644
 +    = link_to explore_groups_path, title: 'groupsを探索', data: {placement: 'bottom'} do
 +      グループを探索
 diff --git a/app/views/dashboard/_projects_head.html.haml b/app/views/dashboard/_projects_head.html.haml
-index 2e77afb..bedf0db 100644
+index 2e77afb..07b7968 100644
 --- a/app/views/dashboard/_projects_head.html.haml
 +++ b/app/views/dashboard/_projects_head.html.haml
 @@ -3,11 +3,11 @@
@@ -2326,8 +2326,9 @@ index 2e77afb..bedf0db 100644
 +    = link_to starred_dashboard_projects_path, title: 'スターをつけたプロジェクト', data: {placement: 'right'} do
 +      スターをつけたプロジェクト
    = nav_link(page: [explore_root_path, trending_explore_projects_path, starred_explore_projects_path, explore_projects_path], html_options: { class: 'hidden-xs' }) do
-     = link_to explore_root_path, title: 'Explore', data: {placement: 'right'} do
+-    = link_to explore_root_path, title: 'Explore', data: {placement: 'right'} do
 -      Explore Projects
++    = link_to explore_root_path, title: '探索', data: {placement: 'right'} do
 +      プロジェクトを探索
 diff --git a/app/views/dashboard/_snippets_head.html.haml b/app/views/dashboard/_snippets_head.html.haml
 index 0ae62d6..a452293 100644
@@ -2358,7 +2359,7 @@ index aa57df1..c36cf96 100644
  - page_title    "Activity"
  - header_title  "Activity", activity_dashboard_path
 diff --git a/app/views/dashboard/groups/index.html.haml b/app/views/dashboard/groups/index.html.haml
-index d5b7e72..84bca34 100644
+index d5b7e72..0187bf9 100644
 --- a/app/views/dashboard/groups/index.html.haml
 +++ b/app/views/dashboard/groups/index.html.haml
 @@ -1,5 +1,5 @@
@@ -2369,17 +2370,20 @@ index d5b7e72..84bca34 100644
  = render 'dashboard/groups_head'
  
  .gray-content-block
-@@ -7,7 +7,7 @@
+@@ -7,9 +7,9 @@
      %span.pull-right.hidden-xs
        = link_to new_group_path, class: "btn btn-new" do
          %i.fa.fa-plus
 -        New Group
 +        新しいグループ
    .oneline
-     Group members have access to all group projects.
+-    Group members have access to all group projects.
++    グループのメンバーは、そのグループに属するすべてのプロジェクトにアクセスできます。
  
+ %ul.content-list
+   - @group_members.each do |group_member|
 diff --git a/app/views/dashboard/issues.html.haml b/app/views/dashboard/issues.html.haml
-index 2d3da01..f33ca67 100644
+index 2d3da01..f076948 100644
 --- a/app/views/dashboard/issues.html.haml
 +++ b/app/views/dashboard/issues.html.haml
 @@ -1,5 +1,5 @@
@@ -2390,7 +2394,7 @@ index 2d3da01..f33ca67 100644
  = content_for :meta_tags do
    - if current_user
      = auto_discovery_link_tag(:atom, issues_dashboard_url(format: :atom, private_token: current_user.private_token), title: "#{current_user.name} issues")
-@@ -12,7 +12,7 @@
+@@ -12,12 +12,12 @@
            = link_to issues_dashboard_url(format: :atom, private_token: current_user.private_token), class: 'btn' do
              %i.fa.fa-rss
  
@@ -2399,11 +2403,17 @@ index 2d3da01..f33ca67 100644
  
    = render 'shared/issuable/filter', type: :issues
  
+ .gray-content-block.second-block
+-  List all issues from all projects you have access to.
++  アクセス権のあるすべてのプロジェクトの課題を表示しています。
+ 
+ .prepend-top-default
+   = render 'shared/issues'
 diff --git a/app/views/dashboard/merge_requests.html.haml b/app/views/dashboard/merge_requests.html.haml
-index c5a5ec2..48fe827 100644
+index c5a5ec2..6d80c0b 100644
 --- a/app/views/dashboard/merge_requests.html.haml
 +++ b/app/views/dashboard/merge_requests.html.haml
-@@ -1,9 +1,9 @@
+@@ -1,14 +1,14 @@
 -- page_title "Merge Requests"
 -- header_title  "Merge Requests", merge_requests_dashboard_path(assignee_id: current_user.id)
 +- page_title "マージリクエスト"
@@ -2416,6 +2426,12 @@ index c5a5ec2..48fe827 100644
  
    = render 'shared/issuable/filter', type: :merge_requests
  
+ .gray-content-block.second-block
+-  List all merge requests from all projects you have access to.
++  アクセス権のあるすべてのプロジェクトのマージリクエストを表示しています。
+ 
+ .prepend-top-default
+   = render 'shared/merge_requests'
 diff --git a/app/views/dashboard/milestones/_milestone.html.haml b/app/views/dashboard/milestones/_milestone.html.haml
 index 7c882a3..996a818 100644
 --- a/app/views/dashboard/milestones/_milestone.html.haml
@@ -3345,7 +3361,7 @@ index 1412b19..154f164 100644
 +      この1ヶ月で最も議論されたプロジェクトを見てみましょう
    = render 'projects', projects: @trending_projects
 diff --git a/app/views/explore/snippets/index.html.haml b/app/views/explore/snippets/index.html.haml
-index 0f100c3..5664381 100644
+index 0f100c3..cf3240b 100644
 --- a/app/views/explore/snippets/index.html.haml
 +++ b/app/views/explore/snippets/index.html.haml
 @@ -1,5 +1,5 @@
@@ -3356,7 +3372,7 @@ index 0f100c3..5664381 100644
  
  - if current_user
    = render 'dashboard/snippets_head'
-@@ -9,9 +9,9 @@
+@@ -9,11 +9,11 @@
  .gray-content-block
    - if current_user
      .pull-right
@@ -3367,7 +3383,10 @@ index 0f100c3..5664381 100644
 +        新しいスニペット
  
    .oneline
-     Public snippets created by you and other users are listed here
+-    Public snippets created by you and other users are listed here
++    あなたと他のユーザが作成した公開スニペットが表示されています
+ 
+ = render 'snippets/snippets'
 diff --git a/app/views/groups/_projects.html.haml b/app/views/groups/_projects.html.haml
 index 11d6997..9fe54a3 100644
 --- a/app/views/groups/_projects.html.haml
@@ -4039,9 +4058,15 @@ index 57bc91e..68e22de 100644
          %li= link_to 'See our website for getting help', promo_url + '/getting-help/'
          %li= link_to 'Use the search bar on the top of this page', '#', onclick: 'Shortcuts.focusSearch(event)'
 diff --git a/app/views/help/ui.html.haml b/app/views/help/ui.html.haml
-index d9ffda8..d7a0d2a 100644
+index d9ffda8..7e86c21 100644
 --- a/app/views/help/ui.html.haml
 +++ b/app/views/help/ui.html.haml
+@@ -1,4 +1,4 @@
+-- page_title "UI Development Kit", "Help"
++- page_title "UI Development Kit", "ヘルプ"
+ - lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum nisi sapien, non consequat lectus aliquam ultrices. Suspendisse sodales est euismod nunc condimentum, a consectetur diam ornare."
+ 
+ .gitlab-ui-dev-kit
 @@ -25,7 +25,7 @@
      %li
        = link_to 'Forms', '#forms'
@@ -4540,7 +4565,7 @@ index cb96bcc..fef7a4e 100644
  
  = render template: "layouts/application"
 diff --git a/app/views/layouts/devise.html.haml b/app/views/layouts/devise.html.haml
-index f08cb0a..64ae9dc 100644
+index f08cb0a..3a83b13 100644
 --- a/app/views/layouts/devise.html.haml
 +++ b/app/views/layouts/devise.html.haml
 @@ -17,12 +17,12 @@
@@ -4560,6 +4585,16 @@ index f08cb0a..64ae9dc 100644
  
              - if extra_sign_in_text.present?
                = markdown(extra_sign_in_text)
+@@ -30,6 +30,6 @@
+     %hr
+     .container
+       .footer-links
+-        = link_to "Explore", explore_root_path
+-        = link_to "Help", help_path
+-        = link_to "About GitLab", "https://about.gitlab.com/"
++        = link_to "探索", explore_root_path
++        = link_to "ヘルプ", help_path
++        = link_to "GitLabについて", "https://about.gitlab.com/"
 diff --git a/app/views/layouts/errors.html.haml b/app/views/layouts/errors.html.haml
 index 915acc4..d54dfcd 100644
 --- a/app/views/layouts/errors.html.haml
@@ -4574,11 +4609,12 @@ index 915acc4..d54dfcd 100644
      .container.navless-container
        = render "layouts/flash"
 diff --git a/app/views/layouts/explore.html.haml b/app/views/layouts/explore.html.haml
-index df65792..c615af5 100644
+index df65792..7b3d22b 100644
 --- a/app/views/layouts/explore.html.haml
 +++ b/app/views/layouts/explore.html.haml
 @@ -1,5 +1,5 @@
- - page_title    "Explore"
+-- page_title    "Explore"
++- page_title    "探索"
  - unless current_user
 -  - header_title  "Explore GitLab", explore_root_path
 +  - header_title  "GitLabを探索", explore_root_path
@@ -4619,6 +4655,17 @@ index a6a2651..603c31b 100644
  
        %h1.title= title
  
+diff --git a/app/views/layouts/help.html.haml b/app/views/layouts/help.html.haml
+index 224b24b..b9fb0d7 100644
+--- a/app/views/layouts/help.html.haml
++++ b/app/views/layouts/help.html.haml
+@@ -1,4 +1,4 @@
+-- page_title    "Help"
+-- header_title  "Help", help_path
++- page_title    "ヘルプ"
++- header_title  "ヘルプ", help_path
+ 
+ = render template: "layouts/application"
 diff --git a/app/views/layouts/nav/_admin.html.haml b/app/views/layouts/nav/_admin.html.haml
 index c60ac5e..36a356b 100644
 --- a/app/views/layouts/nav/_admin.html.haml
@@ -4693,10 +4740,10 @@ index c60ac5e..36a356b 100644
    = nav_link(controller: :abuse_reports) do
      = link_to admin_abuse_reports_path, title: "Abuse Reports" do
 diff --git a/app/views/layouts/nav/_dashboard.html.haml b/app/views/layouts/nav/_dashboard.html.haml
-index da69883..3b66809 100644
+index da69883..f5dddec 100644
 --- a/app/views/layouts/nav/_dashboard.html.haml
 +++ b/app/views/layouts/nav/_dashboard.html.haml
-@@ -1,41 +1,41 @@
+@@ -1,46 +1,46 @@
  %ul.nav.nav-sidebar
    = nav_link(path: ['root#index', 'projects#trending', 'projects#starred', 'dashboard/projects#index'], html_options: {class: 'home'}) do
 -    = link_to dashboard_projects_path, title: 'Projects' do
@@ -4748,13 +4795,20 @@ index da69883..3b66809 100644
 -        Snippets
 +        スニペット
    = nav_link(controller: :help) do
-     = link_to help_path, title: 'Help' do
+-    = link_to help_path, title: 'Help' do
++    = link_to help_path, title: 'ヘルプ' do
        = icon('question-circle fw')
+       %span
+-        Help
++        ヘルプ
+ 
+   %li.separate-item
+   = nav_link(controller: :profile) do
 diff --git a/app/views/layouts/nav/_explore.html.haml b/app/views/layouts/nav/_explore.html.haml
-index 48039ca..d763487 100644
+index 48039ca..d0546ed 100644
 --- a/app/views/layouts/nav/_explore.html.haml
 +++ b/app/views/layouts/nav/_explore.html.haml
-@@ -1,19 +1,19 @@
+@@ -1,21 +1,21 @@
  %ul.nav.nav-sidebar
    = nav_link(path: ['dashboard#show', 'root#show', 'projects#trending', 'projects#starred', 'projects#index'], html_options: {class: 'home'}) do
 -    = link_to explore_root_path, title: 'Projects' do
@@ -4778,8 +4832,12 @@ index 48039ca..d763487 100644
 -        Snippets
 +        スニペット
    = nav_link(controller: :help) do
-     = link_to help_path, title: 'Help' do
+-    = link_to help_path, title: 'Help' do
++    = link_to help_path, title: 'ヘルプ' do
        = icon('question-circle fw')
+       %span
+-        Help
++        ヘルプ
 diff --git a/app/views/layouts/nav/_group.html.haml b/app/views/layouts/nav/_group.html.haml
 index 68da8d5..f22277b 100644
 --- a/app/views/layouts/nav/_group.html.haml

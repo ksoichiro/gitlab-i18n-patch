@@ -2404,7 +2404,7 @@ index 3d17f74..46a2ebe 100644
 -        New Group
 +        新しいグループ
 diff --git a/app/views/dashboard/_projects_head.html.haml b/app/views/dashboard/_projects_head.html.haml
-index 9da3fcb..c0de3fd 100644
+index 9da3fcb..82d4528 100644
 --- a/app/views/dashboard/_projects_head.html.haml
 +++ b/app/views/dashboard/_projects_head.html.haml
 @@ -3,20 +3,20 @@
@@ -2421,8 +2421,9 @@ index 9da3fcb..c0de3fd 100644
 +      = link_to starred_dashboard_projects_path, title: 'スターをつけたプロジェクト', data: {placement: 'right'} do
 +        スターをつけたプロジェクト
      = nav_link(page: [explore_root_path, trending_explore_projects_path, starred_explore_projects_path, explore_projects_path]) do
-       = link_to explore_root_path, title: 'Explore', data: {placement: 'right'} do
+-      = link_to explore_root_path, title: 'Explore', data: {placement: 'right'} do
 -        Explore Projects
++      = link_to explore_root_path, title: '探索', data: {placement: 'right'} do
 +        プロジェクトを探索
  
    .nav-controls
@@ -3239,7 +3240,7 @@ index ec46175..f2fc3f9 100644
  - if current_user
    = render 'dashboard/projects_head'
 diff --git a/app/views/explore/snippets/index.html.haml b/app/views/explore/snippets/index.html.haml
-index 0f100c3..5664381 100644
+index 0f100c3..cf3240b 100644
 --- a/app/views/explore/snippets/index.html.haml
 +++ b/app/views/explore/snippets/index.html.haml
 @@ -1,5 +1,5 @@
@@ -3250,7 +3251,7 @@ index 0f100c3..5664381 100644
  
  - if current_user
    = render 'dashboard/snippets_head'
-@@ -9,9 +9,9 @@
+@@ -9,11 +9,11 @@
  .gray-content-block
    - if current_user
      .pull-right
@@ -3261,7 +3262,10 @@ index 0f100c3..5664381 100644
 +        新しいスニペット
  
    .oneline
-     Public snippets created by you and other users are listed here
+-    Public snippets created by you and other users are listed here
++    あなたと他のユーザが作成した公開スニペットが表示されています
+ 
+ = render 'snippets/snippets'
 diff --git a/app/views/groups/edit.html.haml b/app/views/groups/edit.html.haml
 index a698cbb..6a74474 100644
 --- a/app/views/groups/edit.html.haml
@@ -3820,9 +3824,15 @@ index 57bc91e..68e22de 100644
          %li= link_to 'See our website for getting help', promo_url + '/getting-help/'
          %li= link_to 'Use the search bar on the top of this page', '#', onclick: 'Shortcuts.focusSearch(event)'
 diff --git a/app/views/help/ui.html.haml b/app/views/help/ui.html.haml
-index f12df5c..034198c 100644
+index f12df5c..29730cc 100644
 --- a/app/views/help/ui.html.haml
 +++ b/app/views/help/ui.html.haml
+@@ -1,4 +1,4 @@
+-- page_title "UI Development Kit", "Help"
++- page_title "UI Development Kit", "ヘルプ"
+ - lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum nisi sapien, non consequat lectus aliquam ultrices. Suspendisse sodales est euismod nunc condimentum, a consectetur diam ornare."
+ 
+ .gitlab-ui-dev-kit
 @@ -27,7 +27,7 @@
      %li
        = link_to 'Forms', '#forms'
@@ -4484,7 +4494,7 @@ index cb96bcc..fef7a4e 100644
  
  = render template: "layouts/application"
 diff --git a/app/views/layouts/devise.html.haml b/app/views/layouts/devise.html.haml
-index f08cb0a..64ae9dc 100644
+index f08cb0a..3a83b13 100644
 --- a/app/views/layouts/devise.html.haml
 +++ b/app/views/layouts/devise.html.haml
 @@ -17,12 +17,12 @@
@@ -4504,6 +4514,30 @@ index f08cb0a..64ae9dc 100644
  
              - if extra_sign_in_text.present?
                = markdown(extra_sign_in_text)
+@@ -30,6 +30,6 @@
+     %hr
+     .container
+       .footer-links
+-        = link_to "Explore", explore_root_path
+-        = link_to "Help", help_path
+-        = link_to "About GitLab", "https://about.gitlab.com/"
++        = link_to "探索", explore_root_path
++        = link_to "ヘルプ", help_path
++        = link_to "GitLabについて", "https://about.gitlab.com/"
+diff --git a/app/views/layouts/devise_empty.html.haml b/app/views/layouts/devise_empty.html.haml
+index 7c061dd..2813ef3 100644
+--- a/app/views/layouts/devise_empty.html.haml
++++ b/app/views/layouts/devise_empty.html.haml
+@@ -12,6 +12,6 @@
+     %hr
+     .container
+       .footer-links
+-        = link_to "Explore", explore_root_path
+-        = link_to "Help", help_path
+-        = link_to "About GitLab", "https://about.gitlab.com/"
++        = link_to "探索", explore_root_path
++        = link_to "ヘルプ", help_path
++        = link_to "GitLabについて", "https://about.gitlab.com/"
 diff --git a/app/views/layouts/errors.html.haml b/app/views/layouts/errors.html.haml
 index 915acc4..d54dfcd 100644
 --- a/app/views/layouts/errors.html.haml
@@ -4518,11 +4552,12 @@ index 915acc4..d54dfcd 100644
      .container.navless-container
        = render "layouts/flash"
 diff --git a/app/views/layouts/explore.html.haml b/app/views/layouts/explore.html.haml
-index df65792..c615af5 100644
+index df65792..7b3d22b 100644
 --- a/app/views/layouts/explore.html.haml
 +++ b/app/views/layouts/explore.html.haml
 @@ -1,5 +1,5 @@
- - page_title    "Explore"
+-- page_title    "Explore"
++- page_title    "探索"
  - unless current_user
 -  - header_title  "Explore GitLab", explore_root_path
 +  - header_title  "GitLabを探索", explore_root_path
@@ -4559,6 +4594,17 @@ index 3beb8ff..f0f22c1 100644
  
  
        %h1.title= title
+diff --git a/app/views/layouts/help.html.haml b/app/views/layouts/help.html.haml
+index 224b24b..b9fb0d7 100644
+--- a/app/views/layouts/help.html.haml
++++ b/app/views/layouts/help.html.haml
+@@ -1,4 +1,4 @@
+-- page_title    "Help"
+-- header_title  "Help", help_path
++- page_title    "ヘルプ"
++- header_title  "ヘルプ", help_path
+ 
+ = render template: "layouts/application"
 diff --git a/app/views/layouts/nav/_admin.html.haml b/app/views/layouts/nav/_admin.html.haml
 index 280a1b9..f4cbf57 100644
 --- a/app/views/layouts/nav/_admin.html.haml
@@ -4633,7 +4679,7 @@ index 280a1b9..f4cbf57 100644
    = nav_link(controller: :abuse_reports) do
      = link_to admin_abuse_reports_path, title: "Abuse Reports" do
 diff --git a/app/views/layouts/nav/_dashboard.html.haml b/app/views/layouts/nav/_dashboard.html.haml
-index 5cef652..7b8bc12 100644
+index 5cef652..cbe5886 100644
 --- a/app/views/layouts/nav/_dashboard.html.haml
 +++ b/app/views/layouts/nav/_dashboard.html.haml
 @@ -1,9 +1,9 @@
@@ -4648,7 +4694,7 @@ index 5cef652..7b8bc12 100644
    = nav_link(controller: :todos) do
      = link_to dashboard_todos_path, title: 'Todos' do
        = icon('bell fw')
-@@ -16,32 +16,32 @@
+@@ -16,37 +16,37 @@
        %span
          Activity
    = nav_link(controller: :groups) do
@@ -4689,13 +4735,20 @@ index 5cef652..7b8bc12 100644
 -        Snippets
 +        スニペット
    = nav_link(controller: :help) do
-     = link_to help_path, title: 'Help' do
+-    = link_to help_path, title: 'Help' do
++    = link_to help_path, title: 'ヘルプ' do
        = icon('question-circle fw')
+       %span
+-        Help
++        ヘルプ
+ 
+   %li.separate-item
+   = nav_link(controller: :profile) do
 diff --git a/app/views/layouts/nav/_explore.html.haml b/app/views/layouts/nav/_explore.html.haml
-index f08c5ed..59c008e 100644
+index f08c5ed..d032ef0 100644
 --- a/app/views/layouts/nav/_explore.html.haml
 +++ b/app/views/layouts/nav/_explore.html.haml
-@@ -1,19 +1,19 @@
+@@ -1,21 +1,21 @@
  %ul.nav.nav-sidebar
    = nav_link(path: ['dashboard#show', 'root#show', 'projects#trending', 'projects#starred', 'projects#index'], html_options: {class: 'home'}) do
 -    = link_to explore_root_path, title: 'Projects' do
@@ -4719,8 +4772,12 @@ index f08c5ed..59c008e 100644
 -        Snippets
 +        スニペット
    = nav_link(controller: :help) do
-     = link_to help_path, title: 'Help' do
+-    = link_to help_path, title: 'Help' do
++    = link_to help_path, title: 'ヘルプ' do
        = icon('question-circle fw')
+       %span
+-        Help
++        ヘルプ
 diff --git a/app/views/layouts/nav/_group.html.haml b/app/views/layouts/nav/_group.html.haml
 index 5594074..1d4ec65 100644
 --- a/app/views/layouts/nav/_group.html.haml

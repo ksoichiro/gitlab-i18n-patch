@@ -494,6 +494,12 @@ translations:
     replace: '${youMustTransferOwnershipOrDeleteTheseGroupsBeforeYouCanDeleteThisUser}'
   - pattern: 'Starred Projects'
     replace: '${starredProjects}'
+  - pattern: 'List all merge requests from all projects you have access to.'
+    replace: '${listAllMergeRequestsFromAllProjectsYouHaveAccessTo}'
+  - pattern: 'List all issues from all projects you have access to.'
+    replace: '${listAllIssuesFromAllProjectsYouHaveAccessTo}'
+  - pattern: 'Public snippets created by you and other users are listed here'
+    replace: '${publicSnippetsCreatedByYouAndOtherUsersAreListedHere}'
   - pattern: 'List all milestones from all projects you have access to.'
     replace: '${listAllMilestonesFromAllProjectsYouHaveAccessTo}'
   - pattern: 'No milestones to show'
@@ -518,6 +524,10 @@ translations:
     replace: "${browseSth} »"
     args:
     - replace: '${code}'
+  - pattern: "Welcome to the groups!"
+    replace: '${welcomeToTheGroups}'
+  - pattern: "Group members have access to all group projects."
+    replace: '${groupMembersHaveAccessToAllGroupProjects}'
   - pattern: 'Are you sure?'
     replace: '${areYouSure}'
   - name: singleWord
@@ -596,6 +606,9 @@ translations:
     - {word: 'Contribution guide', key: contributionGuide}
     - {word: 'Changelog', key: changelog}
     - {word: 'Visibility [lL]evel', key: visibilityLevel}
+    - {word: 'Help', key: help}
+    - {word: 'Explore', key: explore}
+    - {word: 'About GitLab', key: aboutGitLab}
   - name: wordInSentence
     params:
     - {word: 'applications?', key: application}

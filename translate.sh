@@ -17,7 +17,7 @@ if [ -z $version ]; then
     "v8.7.0"
   )
 else
-  versions=(version)
+  versions=($version)
 fi
 
 for v in ${versions[@]}; do

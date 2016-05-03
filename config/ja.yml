@@ -210,6 +210,7 @@ gitlabIsOpenSourceSoftwareToCollaborateOnCode: GitLabはコードを共同編集
 usedByMoreThan100000OrganizationsGitlabIsTheMostPopularSolutionToManageGitRepositoriesOnPremises: GitLabは5万以上の組織で使われており、もっともポピュラーなオンプレミスGitリポジトリ管理のソリューションです。
 readMoreAboutGitlabAt: 'GitLabについての詳細は {0} でご確認ください。'
 quickHelp: クイックヘルプ
+help: ヘルプ
 keyboardShortcuts: キーボードショートカット
 globalShortcuts: グローバルショートカット
 focusSearch: 検索バーにフォーカス
@@ -262,7 +263,10 @@ userWillBeRemovedAreYouSure: 'ユーザ $1 は削除されます！本当に削�
 thisUserIsCurrentlyAnOwnerInTheseGroups: 'このユーザは現在次のグループの所有者です:'
 youMustTransferOwnershipOrDeleteTheseGroupsBeforeYouCanDeleteThisUser: このユーザを削除する前に、所有権を移譲するか、これらのグループを削除する必要があります。
 starredProjects: スターをつけたプロジェクト
-listAllMilestonesFromAllProjectsYouHaveAccessTo: 'アクセス権のあるすべてのプロジェクトのマイルストーンを表示しています。'
+listAllMergeRequestsFromAllProjectsYouHaveAccessTo: アクセス権のあるすべてのプロジェクトのマージリクエストを表示しています。
+listAllIssuesFromAllProjectsYouHaveAccessTo: アクセス権のあるすべてのプロジェクトの課題を表示しています。
+listAllMilestonesFromAllProjectsYouHaveAccessTo: アクセス権のあるすべてのプロジェクトのマイルストーンを表示しています。
+publicSnippetsCreatedByYouAndOtherUsersAreListedHere: あなたと他のユーザが作成した公開スニペットが表示されています
 allIssuesForThisMilestoneAreClosedYouMayCloseTheMilestoneNow: このマイルストーンの課題はすべてクローズされました。マイルストーンはクローズできます。
 youDontHaveStarredProjectsYet: スターをつけたプロジェクトはありません
 visitProjectPageAndPressOnStarIconAndItWillAppearOnThisPage: プロジェクトのページでスターのアイコンを押すとこのページで確認できます。
@@ -285,3 +289,7 @@ previewChanges: 変更をプレビュー
 viewFileAt: 'ファイルを表示 @'
 inline: インライン
 filterBySth: '{0}で絞り込み'
+welcomeToTheGroups: グループへようこそ！
+groupMembersHaveAccessToAllGroupProjects: グループのメンバーは、そのグループに属するすべてのプロジェクトにアクセスできます。
+explore: 探索
+aboutGitLab: GitLabについて

@@ -443,6 +443,7 @@ pleaseDontUseSpaces: スペースを使わないでください。
 build: ビルド
 allPages: すべてのページ
 allActivity: すべてのアクティビティ
+activity: アクティビティ
 lastEditedBy: '{0}が{1}に更新'
 lastEdited: '最終更新：{0}'
 thisIsAnOldVersionOfThisPage: これはこのページの古いバージョンです。
@@ -632,3 +633,23 @@ groupMembersHaveAccessToAllGroupProjects: グループのメンバーは、そ�
 explore: 探索
 aboutGitLab: GitLabについて
 configI18nLocale: !!str "    config.i18n.enforce_available_locales = false\n    config.i18n.locale = :ja\n    config.i18n.default_locale = :ja"
+profileSettings: プロフィール設定
+goToDashboard: ダッシュボードに戻る
+goToProject: プロジェクトに戻る
+notification: 通知
+sshKey: SSHキー
+preference: 設定
+auditLog: 監査ログ
+member: メンバー
+setting: 設定
+variable: 変数
+backgroundJob: バックグラウンドジョブ
+optional: 任意
+namespace: ネームスペース
+projectPath: プロジェクトパス
+groupPath: グループパス
+groupAvatar: グループアバター
+importProjectFrom: インポート
+theSnippetIsVisibleOnlyForMe: スニペットは自分だけが閲覧できます。
+theSnippetIsVisibleForAnyLoggedInUser: スニペットはログインしているユーザが閲覧できます。
+theSnippetCanBeAccessedWithoutAnyAuthentication: スニペットは誰でも認証せずに閲覧できます。

@@ -150,6 +150,14 @@ translations:
     - '$1'
     - '${issue}'
     - '${update}'
+  - pattern: !!js/regexp /The snippet is visible only (?:for|to) me./
+    replace: '${theSnippetIsVisibleOnlyForMe}'
+  - pattern: !!js/regexp /The snippet is visible (?:for|to) any logged in user./
+    replace: '${theSnippetIsVisibleForAnyLoggedInUser}'
+  - pattern: !!js/regexp /^(\s+haml_concat ")The snippet can be accessed"\n\s+haml_concat "without any"\n\s+haml_concat "authentication."$/m
+    replace: '$1${theSnippetCanBeAccessedWithoutAnyAuthentication}"'
+  - pattern: "The snippet can be accessed without any authentication."
+    replace: '${theSnippetCanBeAccessedWithoutAnyAuthentication}"'
 
   # Named patterns
   - name: sthWasSuccessfullyDone
@@ -207,13 +215,13 @@ translations:
   named-patterns:
   - name: singleWord
     pattern: "{word}?$|(\"){word}?\"|('){word}?'|(\".* ){word}?(\")"
-    exclude: '\s+- when '
+    exclude: '^\s*- when '
     replace: '$1$2$3${{key}}$1$2$4'
     params: ['word', 'key']
   - name: wordInSentence
     pattern: "(\"[^\"]* ){word}((?: [^\"]*)?)(\")|('[^']* ){word}((?: [^']*)?)(')|( +){word}$"
     flags: 'gi'
-    exclude: '\s+(?:- if |- when |= )'
+    exclude: '^\s*(?:- if |- when |= .*{word}$)'
     replace: '$1$4$7${{key}}$2$3$5$6'
     params: ['word', 'key']
   - name: doSth
@@ -528,8 +536,17 @@ translations:
     replace: '${welcomeToTheGroups}'
   - pattern: "Group members have access to all group projects."
     replace: '${groupMembersHaveAccessToAllGroupProjects}'
+  - pattern: !!js/regexp /Go to projects?/
+    replace: '${goToProject}'
+  - pattern: "Go to dashboard"
+    replace: '${goToDashboard}'
+  - pattern: "(optional)"
+    replace: '(${optional})'
   - pattern: 'Are you sure?'
     replace: '${areYouSure}'
+  - pattern: "Code?$|(\")Code?\"|(')Code?'|(\".* )Code?(\")"
+    exclude: '^\s*- when |Google Code'
+    replace: '$1$2$3${code}$1$2$4'
   - name: singleWord
     params:
     - {word: 'Issues', key: issue}
@@ -567,7 +584,6 @@ translations:
     - {word: 'Format', key: format}
     - {word: 'Build', key: build}
     - {word: 'History', key: history}
-    - {word: 'Code', key: code}
     - {word: 'Comments', key: comment}
     - {word: 'Titles and Filenames', key: titlesAndFilenames}
     - {word: 'Unassigned', key: unassigned}
@@ -593,7 +609,7 @@ translations:
     - {word: 'Trigger', key: trigger}
     - {word: 'Change your password', key: changeYourPassword}
     - {word: 'Back', key: back}
-    - {word: 'Email', key: email}
+    - {word: 'Emails', key: email}
     - {word: 'Submit', key: submit}
     - {word: 'Cancel', key: cancel}
     - {word: 'Encoding Error', key: encodingError}
@@ -601,14 +617,33 @@ translations:
     - {word: 'Perticipant', key: perticipant}
     - {word: 'User map', key: userMap}
     - {word: 'Invitation', key: invitation}
-    - {word: 'Admin area', key: adminArea}
+    - {word: 'Admin [aA]rea', key: adminArea}
     - {word: 'Dashboard', key: dashboard}
     - {word: 'Contribution guide', key: contributionGuide}
     - {word: 'Changelog', key: changelog}
     - {word: 'Visibility [lL]evel', key: visibilityLevel}
     - {word: 'Help', key: help}
+    - {word: 'Activity', key: activity}
     - {word: 'Explore', key: explore}
     - {word: 'About GitLab', key: aboutGitLab}
+    - {word: 'Profile [sS]ettings', key: profileSettings}
+    - {word: 'Notifications', key: notification}
+    - {word: 'SSH Keys', key: sshKey}
+    - {word: 'Preferences', key: preference}
+    - {word: 'Audit Log', key: auditLog}
+    - {word: 'Members', key: member}
+    - {word: 'Settings', key: setting}
+    - {word: 'Web Hooks', key: webHook}
+    - {word: 'Services', key: service}
+    - {word: 'Protected Branch(?:es)', key: protectedBranch}
+    - {word: 'Variables', key: variable}
+    - {word: 'Triggers', key: trigger}
+    - {word: 'Background Jobs', key: backgroundJob}
+    - {word: 'Namespace', key: namespace}
+    - {word: 'Project path', key: projectPath}
+    - {word: 'Group path', key: groupPath}
+    - {word: 'Group avatar', key: groupAvatar}
+    - {word: 'Import project from', key: importProjectFrom}
   - name: wordInSentence
     params:
     - {word: 'applications?', key: application}

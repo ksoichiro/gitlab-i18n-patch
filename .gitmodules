@@ -1,3 +1,3 @@
 [submodule "gitlabhq"]
 	path = gitlabhq
-	url = git@github.com:ksoichiro/gitlabhq.git
+	url = https://github.com/gitlabhq/gitlabhq.git

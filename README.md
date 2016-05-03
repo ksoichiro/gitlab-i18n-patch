@@ -30,6 +30,8 @@ i18n-patch を使って作成した v8.3.0 以降のパッチも patches フォ�
 
 ## 対応バージョン
 
+:mega: v8.3.0以降のパッチは動作確認できていません。
+
 1. [GitLab CE v8.2.0](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.2.0 "GitLab CE v8.2.0") → [patches/v8.2.0ディレクトリ](patches/v8.2.0)
 1. [GitLab CE v8.1.0](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.1.0 "GitLab CE v8.1.0") → [patches/v8.1.0ディレクトリ](patches/v8.1.0)
 1. [GitLab CE v8.0.0](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.0.0 "GitLab CE v8.0.0") → [patches/v8.0.0ディレクトリ](patches/v8.0.0)

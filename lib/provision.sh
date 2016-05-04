@@ -73,9 +73,13 @@ if [ ! -d ./gitlab-rails.bk ]; then
     # Since v6.8.1, permission error occurs in this directory
     chown -R git:root /var/opt/gitlab/gitlab-rails/tmp/cache
   fi
-  rm -rf ./public/assets > /dev/null 2>&1
   export PATH=/opt/gitlab/embedded/bin:$PATH
-  bundle exec rake assets:precompile RAILS_ENV=production > /dev/null 2>&1
+  if [ ${GITLAB_VERSION_INT} -ge 830 ]; then
+    bundle exec rake assets:clean assets:precompile cache:clear RAILS_ENV=production > /dev/null 2>&1
+  else
+    rm -rf ./public/assets > /dev/null 2>&1
+    bundle exec rake assets:precompile RAILS_ENV=production > /dev/null 2>&1
+  fi
   echo "Restarting gitlab..."
   gitlab-ctl restart > /dev/null 2>&1
 fi

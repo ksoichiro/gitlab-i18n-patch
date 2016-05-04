@@ -211,6 +211,31 @@ translations:
     - {word: 'Users', key: user}
     - {word: 'Inline', key: inline}
 
+- src: 'app/views/**/_shortcuts.html.haml'
+  patterns:
+  - pattern: "Go to projects"
+    replace: '${shortcutsGoToProjects}'
+  - pattern: "Go to the activity feed"
+    replace: '${shortcutsGoToTheActivityFeed}'
+  - pattern: "Go to issues"
+    replace: '${shortcutsGoToIssues}'
+  - pattern: "Go to merge requests"
+    replace: '${shortcutsGoToMergeRequests}'
+  - pattern: "Go to the project's home page"
+    replace: '${shortcutsGoToTheProjectsHomePage}'
+  - pattern: "Go to the project's activity feed"
+    replace: '${shortcutsGoToTheProjectsActivityFeed}'
+  - pattern: "Go to files"
+    replace: '${shortcutsGoToFiles}'
+  - pattern: "Go to commits"
+    replace: '${shortcutsGoToCommits}'
+  - pattern: "Go to network graph"
+    replace: '${shortcutsGoToNetworkGraph}'
+  - pattern: "Go to graphs"
+    replace: '${shortcutsGoToGraph}'
+  - pattern: "Go to snippets"
+    replace: '${shortcutsGoToSnippets}'
+
 - src: '**/*.haml'
   named-patterns:
   - name: singleWord
@@ -321,8 +346,6 @@ translations:
     replace: '${existingUserSignIn}'
   - pattern: "New user? Create an account"
     replace: '${newUserCreateAnAccount}'
-  - pattern: "Create an account"
-    replace: '${createAnAccount}'
   - pattern: "You can create a group for several dependent projects."
     replace: '${youCanCreateAGroupForSeveralDependentProjects}'
   - pattern: "Groups are the best way to manage projects and members."
@@ -540,8 +563,16 @@ translations:
     replace: '${goToProject}'
   - pattern: "Go to dashboard"
     replace: '${goToDashboard}'
+  - pattern: "Go to group"
+    replace: '${goToGroup}'
+  - pattern: "Go to your fork"
+    replace: '${goToYourFork}'
   - pattern: "(optional)"
     replace: '(${optional})'
+  - pattern: "Want to house several dependent projects under the same namespace?"
+    replace: '${wantToHouseSeveralDependentProjectsUnderTheSameNamespace}'
+  - pattern: "Set new password"
+    replace: '${setNewPassword}'
   - pattern: 'Are you sure?'
     replace: '${areYouSure}'
   - pattern: "Code?$|(\")Code?\"|(')Code?'|(\".* )Code?(\")"
@@ -644,11 +675,14 @@ translations:
     - {word: 'Group path', key: groupPath}
     - {word: 'Group avatar', key: groupAvatar}
     - {word: 'Import project from', key: importProjectFrom}
+    - {word: 'Network [gG]raph', key: networkGraph}
   - name: wordInSentence
     params:
     - {word: 'applications?', key: application}
     - {word: 'public deploy keys?', key: publicDeployKey}
     - {word: 'merge requests?', key: mergeRequest}
+    - {word: 'accounts?', key: account}
+    - {word: 'assignee', key: assignee}
     - {word: 'groups?', key: group}
     - {word: 'labels?', key: label}
     - {word: 'users?', key: user}
@@ -669,6 +703,7 @@ translations:
   - name: doSth
     params:
     - {verb: Edit, key: editSth}
+    - {verb: 'Create a[n]?', key: createSth}
     - {verb: Create, key: createSth}
     - {verb: Close, key: closeSth}
     - {verb: Reopen, key: reopenSth}
@@ -683,6 +718,7 @@ translations:
     - {verb: Latest, key: latestSth}
     - {verb: Reset, key: resetSth}
     - {verb: Add, key: addSth}
+    - {verb: Change, key: changeSth}
   - name: sthCountsDone
     params:
     - {obj: issues, objKey: issue, done: updated, doneKey: update}
@@ -704,5 +740,3151 @@ translations:
     path: 'config/locales/ja.yml'
     value: configLocalesJa
 
-#- src: '**/*.md'
-#  patterns:
+- src: 'doc/**/*.md'
+  named-patterns:
+  - name: headerOrComment
+    pattern: "^(#+ ){title}$"
+    replace: '$1${{key}}'
+    params: ['title', 'key']
+  patterns:
+  - pattern: !!js/regexp /From ([^\s]*) to ([^\s]*)/
+    replace: '${fromXToY}'
+    args:
+    - '$1'
+    - '$2'
+  - name: headerOrComment
+    params:
+    - title: 'Accept MR'
+      key: mdTitleAcceptMR
+    #- title: ' Making an existing Shared Runner Specific'
+    #  key: mdTitleMakingAnExistingSharedRunnerSpecific
+    #- title: ' Registering a Specific Runner with a Project Registration token'
+    #  key: mdTitleRegisteringASpecificRunnerWithAProjectRegistrationToken
+    #- title: ' Use the access token to access the API'
+    #  key: mdTitleUseTheAccessTokenToAccessTheApi
+    #- title: '"Work In Progress" Merge Requests'
+    #  key: mdTitleWorkInProgressMergeRequests
+    #- title: '0. Backup'
+    #  key: mdTitle0Backup
+    #- title: '0. Backup & prepare for update'
+    #  key: mdTitle0Backup&PrepareForUpdate
+    #- title: '0. Double-check your Git version'
+    #  key: mdTitle0DoubleCheckYourGitVersion
+    #- title: '0. Stop GitLab'
+    #  key: mdTitle0StopGitLab
+    #- title: '0. Stop server'
+    #  key: mdTitle0StopServer
+    #- title: '0. Updating Omnibus from versions prior to 7.13'
+    #  key: mdTitle0UpdatingOmnibusFromVersionsPriorTo713
+    #- title: '1. Backup'
+    #  key: mdTitle1Backup
+    #- title: '1. Check for valid path'
+    #  key: mdTitle1CheckForValidPath
+    #- title: '1. Check paths in script'
+    #  key: mdTitle1CheckPathsInScript
+    #- title: '1. Database encryption key'
+    #  key: mdTitle1DatabaseEncryptionKey
+    #- title: '1. GitLab sends a notification email'
+    #  key: mdTitle1GitLabSendsANotificationEmail
+    #- title: '1. Packages / Dependencies'
+    #  key: mdTitle1PackagesDependencies
+    #- title: '1. Registering the client'
+    #  key: mdTitle1RegisteringTheClient
+    #- title: '1. Revert the code to the previous version'
+    #  key: mdTitle1RevertTheCodeToThePreviousVersion
+    #- title: '1. Stop GitLab & Resque'
+    #  key: mdTitle1StopGitLab&Resque
+    #- title: '1. Stop server'
+    #  key: mdTitle1StopServer
+    #- title: '1. Stop server & Resque'
+    #  key: mdTitle1StopServer&Resque
+    #- title: '1. Stop server & resque'
+    #  key: mdTitle1StopServer&Resque
+    #- title: '1. Update Nginx configuration'
+    #  key: mdTitle1UpdateNginxConfiguration
+    #- title: '1. Upgrade GitLab to 8.0'
+    #  key: mdTitle1UpgradeGitLabTo80
+    #- title: '1. Use shell executor'
+    #  key: mdTitle1UseShellExecutor
+    #- title: '1. Verify that backups work'
+    #  key: mdTitle1VerifyThatBackupsWork
+    #- title: '1. add bash to git user'
+    #  key: mdTitle1AddBashToGitUser
+    #- title: '10. Check application status'
+    #  key: mdTitle10CheckApplicationStatus
+    #- title: '10. Use Redis v2.4.0+'
+    #  key: mdTitle10UseRedisV240+
+    #- title: '11. Start application'
+    #  key: mdTitle11StartApplication
+    #- title: '11. Update OmniAuth configuration'
+    #  key: mdTitle11UpdateOmniAuthConfiguration
+    #- title: '12. Check application status'
+    #  key: mdTitle12CheckApplicationStatus
+    #- title: '12. Optional optimizations for GitLab setups with MySQL databases'
+    #  key: mdTitle12OptionalOptimizationsForGitLabSetupsWithMySQLDatabases
+    #- title: '2. Backup'
+    #  key: mdTitle2Backup
+    #- title: '2. Check Nginx configuration'
+    #  key: mdTitle2CheckNginxConfiguration
+    #- title: '2. Check source and target database types'
+    #  key: mdTitle2CheckSourceAndTargetDatabaseTypes
+    #- title: '2. Disable CI on the GitLab server during the migration'
+    #  key: mdTitle2DisableCIOnTheGitLabServerDuringTheMigration
+    #- title: '2. Follow instructions'
+    #  key: mdTitle2FollowInstructions
+    #- title: '2. Get latest code'
+    #  key: mdTitle2GetLatestCode
+    #- title: '2. Get latest code for the stable branch'
+    #  key: mdTitle2GetLatestCodeForTheStableBranch
+    #- title: '2. Requesting authorization'
+    #  key: mdTitle2RequestingAuthorization
+    #- title: '2. Restore from the backup'
+    #  key: mdTitle2RestoreFromTheBackup
+    #- title: '2. Restore from the backup:'
+    #  key: mdTitle2RestoreFromTheBackup
+    #- title: '2. Ruby'
+    #  key: mdTitle2Ruby
+    #- title: '2. Run GitLab upgrade tool'
+    #  key: mdTitle2RunGitLabUpgradeTool
+    #- title: '2. Run script'
+    #  key: mdTitle2RunScript
+    #- title: '2. SQL data and build traces'
+    #  key: mdTitle2SQLDataAndBuildTraces
+    #- title: '2. Update GitLab'
+    #  key: mdTitle2UpdateGitLab
+    #- title: '2. Update Ruby'
+    #  key: mdTitle2UpdateRuby
+    #- title: '2. Update code & DB'
+    #  key: mdTitle2UpdateCode&DB
+    #- title: '2. Update code & db'
+    #  key: mdTitle2UpdateCode&Db
+    #- title: '2. Use docker-in-docker executor'
+    #  key: mdTitle2UseDockerInDockerExecutor
+    #- title: '2. You reply to the notification email'
+    #  key: mdTitle2YouReplyToTheNotificationEmail
+    #- title: '2. git clone gitlab-shell'
+    #  key: mdTitle2GitCloneGitlabShell
+    #- title: '3. CI settings are now in GitLab'
+    #  key: mdTitle3CISettingsAreNowInGitLab
+    #- title: "3. Check GitLab's status"
+    #  key: mdTitle3CheckGitLabsStatus
+    #- title: '3. Copy data to the GitLab server'
+    #  key: mdTitle3CopyDataToTheGitLabServer
+    #- title: '3. Get latest code'
+    #  key: mdTitle3GetLatestCode
+    #- title: '3. GitLab receives your reply to the notification email'
+    #  key: mdTitle3GitLabReceivesYourReplyToTheNotificationEmail
+    #- title: '3. Go'
+    #  key: mdTitle3Go
+    #- title: '3. Install libs, migrations, etc.'
+    #  key: mdTitle3InstallLibsMigrationsEtc
+    #- title: '3. Replace init.d script with a new one'
+    #  key: mdTitle3ReplaceInitdScriptWithANewOne
+    #- title: '3. Requesting the access token'
+    #  key: mdTitle3RequestingTheAccessToken
+    #- title: '3. Restart Nginx'
+    #  key: mdTitle3RestartNginx
+    #- title: '3. Start all'
+    #  key: mdTitle3StartAll
+    #- title: '3. Start application'
+    #  key: mdTitle3StartApplication
+    #- title: '3. Storage planning'
+    #  key: mdTitle3StoragePlanning
+    #- title: '3. Update gitlab-shell'
+    #  key: mdTitle3UpdateGitlabShell
+    #- title: '3. Update gitlab-shell \(and its config\)'
+    #  key: mdTitle3UpdateGitlabShellAndItsConfig
+    #- title: '3. Update gitlab-shell to the corresponding version'
+    #  key: mdTitle3UpdateGitlabShellToTheCorrespondingVersion
+    #- title: '3. Update post-receive hooks'
+    #  key: mdTitle3UpdatePostReceiveHooks
+    #- title: '3. Update post-receive hooks  \(Requires Gitolite v3 \)'
+    #  key: mdTitle3UpdatePostReceiveHooksRequiresGitoliteV3
+    #- title: '3. setup gitlab-shell'
+    #  key: mdTitle3SetupGitlabShell
+    #- title: "4. Check GitLab's status"
+    #  key: mdTitle4CheckGitLabsStatus
+    #- title: '4. Check app status'
+    #  key: mdTitle4CheckAppStatus
+    #- title: '4. Check application status'
+    #  key: mdTitle4CheckApplicationStatus
+    #- title: '4. Copy GitLab instance to git user'
+    #  key: mdTitle4CopyGitLabInstanceToGitUser
+    #- title: '4. Install additional packages'
+    #  key: mdTitle4InstallAdditionalPackages
+    #- title: '4. Install libs, migrations etc'
+    #  key: mdTitle4InstallLibsMigrationsEtc
+    #- title: '4. Install libs, migrations, etc.'
+    #  key: mdTitle4InstallLibsMigrationsEtc
+    #- title: '4. Install new system dependencies'
+    #  key: mdTitle4InstallNewSystemDependencies
+    #- title: '4. Move data to the GitLab backups folder'
+    #  key: mdTitle4MoveDataToTheGitLabBackupsFolder
+    #- title: '4. Replace config with new one'
+    #  key: mdTitle4ReplaceConfigWithNewOne
+    #- title: '4. Start all'
+    #  key: mdTitle4StartAll
+    #- title: '4. System Users'
+    #  key: mdTitle4SystemUsers
+    #- title: '4. Update config files'
+    #  key: mdTitle4UpdateConfigFiles
+    #- title: '4. Update gitlab-shell'
+    #  key: mdTitle4UpdateGitlabShell
+    #- title: '4. Update gitlab-shell \(and its config\)'
+    #  key: mdTitle4UpdateGitlabShellAndItsConfig
+    #- title: '4. Update gitlab-workhorse to the corresponding version'
+    #  key: mdTitle4UpdateGitlabWorkhorseToTheCorrespondingVersion
+    #- title: '4. Upgrade GitLab CI to 8.0'
+    #  key: mdTitle4UpgradeGitLabCITo80
+    #- title: '5. Configure Redis to use sockets'
+    #  key: mdTitle5ConfigureRedisToUseSockets
+    #- title: '5. Database'
+    #  key: mdTitle5Database
+    #- title: '5. Disable GitLab CI on the CI server'
+    #  key: mdTitle5DisableGitLabCIOnTheCIServer
+    #- title: '5. Disable ssh known_host check for own domain'
+    #  key: mdTitle5DisableSshKnownHostCheckForOwnDomain
+    #- title: '5. Import the CI data into GitLab.'
+    #  key: mdTitle5ImportTheCIDataIntoGitLab
+    #- title: '5. Install gitlab-git-http-server'
+    #  key: mdTitle5InstallGitlabGitHttpServer
+    #- title: '5. Install libs, migrations, etc.'
+    #  key: mdTitle5InstallLibsMigrationsEtc
+    #- title: '5. Replace gitlab-git-http-server with gitlab-workhorse'
+    #  key: mdTitle5ReplaceGitlabGitHttpServerWithGitlabWorkhorse
+    #- title: '5. Start GitLab & Sidekiq'
+    #  key: mdTitle5StartGitLabAndSidekiq
+    #- title: '5. Start all'
+    #  key: mdTitle5StartAll
+    #- title: '5. Start application'
+    #  key: mdTitle5StartApplication
+    #- title: '5. Update GitLab to recent version'
+    #  key: mdTitle5UpdateGitLabToRecentVersion
+    #- title: '5. Update Init script'
+    #  key: mdTitle5UpdateInitScript
+    #- title: '5. Update config files'
+    #  key: mdTitle5UpdateConfigFiles
+    #- title: '5. Update gitlab-git-http-server'
+    #  key: mdTitle5UpdateGitlabGitHttpServer
+    #- title: '5. Update gitlab-workhorse'
+    #  key: mdTitle5UpdateGitlabWorkhorse
+    #- title: '5. Update init.d script with a new one'
+    #  key: mdTitle5UpdateInitdScriptWithANewOne
+    #- title: '5. Upgrade GitLab Shell'
+    #  key: mdTitle5UpgradeGitLabShell
+    #- title: '500 error after login'
+    #  key: mdTitle500ErrorAfterLogin
+    #- title: "6. Check GitLab's status"
+    #  key: mdTitle6CheckGitLabsStatus
+    #- title: '6. Check application status'
+    #  key: mdTitle6CheckApplicationStatus
+    #- title: '6. Copy secrets'
+    #  key: mdTitle6CopySecrets
+    #- title: '6. Install libs, migrations, etc.'
+    #  key: mdTitle6InstallLibsMigrationsEtc
+    #- title: '6. MySQL grant privileges'
+    #  key: mdTitle6MySQLGrantPrivileges
+    #- title: '6. Redis'
+    #  key: mdTitle6Redis
+    #- title: '6. Remove old init.d script'
+    #  key: mdTitle6RemoveOldInitdScript
+    #- title: '6. Restart GitLab'
+    #  key: mdTitle6RestartGitLab
+    #- title: '6. Start application'
+    #  key: mdTitle6StartApplication
+    #- title: '6. Update Init script'
+    #  key: mdTitle6UpdateInitScript
+    #- title: '6. Update config files'
+    #  key: mdTitle6UpdateConfigFiles
+    #- title: '6. Update gitlab-shell'
+    #  key: mdTitle6UpdateGitlabShell
+    #- title: '6. Update init.d script and Nginx config'
+    #  key: mdTitle6UpdateInitdScriptAndNginxConfig
+    #- title: '6. Updates for PostgreSQL Users'
+    #  key: mdTitle6UpdatesForPostgreSQLUsers
+    #- title: '7. Check application status'
+    #  key: mdTitle7CheckApplicationStatus
+    #- title: '7. Create uploads directory'
+    #  key: mdTitle7CreateUploadsDirectory
+    #- title: '7. GitLab'
+    #  key: mdTitle7GitLab
+    #- title: '7. Install libs, migrations, etc.'
+    #  key: mdTitle7InstallLibsMigrationsEtc
+    #- title: '7. Optional optimizations for GitLab setups with MySQL databases'
+    #  key: mdTitle7OptionalOptimizationsForGitLabSetupsWithMySQLDatabases
+    #- title: '7. Start GitLab & Resque'
+    #  key: mdTitle7StartGitLab&Resque
+    #- title: '7. Start GitLab instance'
+    #  key: mdTitle7StartGitLabInstance
+    #- title: '7. Start application'
+    #  key: mdTitle7StartApplication
+    #- title: '7. Update Init script'
+    #  key: mdTitle7UpdateInitScript
+    #- title: '7. Update configuration files'
+    #  key: mdTitle7UpdateConfigurationFiles
+    #- title: '8. Check application status'
+    #  key: mdTitle8CheckApplicationStatus
+    #- title: '8. Check installation'
+    #  key: mdTitle8CheckInstallation
+    #- title: '8. Create uploads directory'
+    #  key: mdTitle8CreateUploadsDirectory
+    #- title: '8. GitHub settings \(if applicable\)'
+    #  key: mdTitle8GitHubSettingsIfApplicable
+    #- title: '8. Nginx'
+    #  key: mdTitle8Nginx
+    #- title: '8. Start application'
+    #  key: mdTitle8StartApplication
+    #- title: '8. Update config files'
+    #  key: mdTitle8UpdateConfigFiles
+    #- title: '8. Update configuration files'
+    #  key: mdTitle8UpdateConfigurationFiles
+    #- title: '8. Use Redis v2.8.0+'
+    #  key: mdTitle8UseRedisV280
+    #- title: '9. Check application status'
+    #  key: mdTitle9CheckApplicationStatus
+    #- title: '9. Cleanup'
+    #  key: mdTitle9Cleanup
+    #- title: '9. Migrate GitLab CI to GitLab CE/EE'
+    #  key: mdTitle9MigrateGitLabCIToGitLabCEEE
+    #- title: '9. Start application'
+    #  key: mdTitle9StartApplication
+    #- title: '9. Update OmniAuth configuration'
+    #  key: mdTitle9UpdateOmniAuthConfiguration
+    #- title: 'ADD YOUR INFORMATION'
+    #  key: mdTitleADDYOURINFORMATION
+    #- title: 'Accepting merge requests'
+    #  key: mdTitleAcceptingMergeRequests
+    #- title: 'Access private packages / dependencies'
+    #  key: mdTitleAccessPrivatePackagesDependencies
+    #- title: 'Accessing the services'
+    #  key: mdTitleAccessingTheServices
+    #- title: 'Activate the changes to redis.conf'
+    #  key: mdTitleActivateTheChangesToRedisconf
+    #- title: 'Add SSH key for user'
+    #  key: mdTitleAddSSHKeyForUser
+    #- title: 'Add a project to a group'
+    #  key: mdTitleAddAProjectToAGroup
+    #- title: 'Add a trigger'
+    #  key: mdTitleAddATrigger
+    #- title: 'Add a user'
+    #  key: mdTitleAddAUser
+    #- title: 'Add a webhook for \*\*ALL\*\* projects:'
+    #  key: mdTitleAddAWebhookForALLProjects
+    #- title: 'Add a webhook for projects in a given \*\*NAMESPACE\*\*:'
+    #  key: mdTitleAddAWebhookForProjectsInAGivenNAMESPACE
+    #- title: 'Add a welcome message to the sign-in page \(GitLab Community Edition\)'
+    #  key: mdTitleAddAWelcomeMessageToTheSignInPageGitLabCommunityEdition
+    #- title: 'Add all users to all groups'
+    #  key: mdTitleAddAllUsersToAllGroups
+    #- title: 'Add all users to all projects'
+    #  key: mdTitleAddAllUsersToAllProjects
+    #- title: 'Add changes to commit'
+    #  key: mdTitleAddChangesToCommit
+    #- title: 'Add deploy key'
+    #  key: mdTitleAddDeployKey
+    #- title: 'Add directory for uploads'
+    #  key: mdTitleAddDirectoryForUploads
+    #- title: 'Add email'
+    #  key: mdTitleAddEmail
+    #- title: 'Add email for user'
+    #  key: mdTitleAddEmailForUser
+    #- title: 'Add git to the redis group'
+    #  key: mdTitleAddGitToTheRedisGroup
+    #- title: 'Add group member'
+    #  key: mdTitleAddGroupMember
+    #- title: 'Add new system hook'
+    #  key: mdTitleAddNewSystemHook
+    #- title: 'Add project hook'
+    #  key: mdTitleAddProjectHook
+    #- title: 'Add project team member'
+    #  key: mdTitleAddProjectTeamMember
+    #- title: 'Add support for logrotate for better log file handling'
+    #  key: mdTitleAddSupportForLogrotateForBetterLogFileHandling
+    #- title: 'Add user as a developer to all groups'
+    #  key: mdTitleAddUserAsADeveloperToAllGroups
+    #- title: 'Add user as a developer to all projects'
+    #  key: mdTitleAddUserAsADeveloperToAllProjects
+    #- title: 'Add your Git username and set your email'
+    #  key: mdTitleAddYourGitUsernameAndSetYourEmail
+    #- title: 'Add your SSH Key'
+    #  key: mdTitleAddYourSSHKey
+    #- title: 'Adding an application through the profile'
+    #  key: mdTitleAddingAnApplicationThroughTheProfile
+    #- title: 'Adding deploy keys to multiple projects'
+    #  key: mdTitleAddingDeployKeysToMultipleProjects
+    #- title: 'Adding indices'
+    #  key: mdTitleAddingIndices
+    #- title: 'Adding more variables'
+    #  key: mdTitleAddingMoreVariables
+    #- title: 'Adding users to a group'
+    #  key: mdTitleAddingUsersToAGroup
+    #- title: 'Adding your Trusted Proxies'
+    #  key: mdTitleAddingYourTrustedProxies
+    #- title: 'Additional Markup Styles'
+    #  key: mdTitleAdditionalMarkupStyles
+    #- title: 'Admin Panel'
+    #  key: mdTitleAdminPanel
+    #- title: 'Admin fork relation'
+    #  key: mdTitleAdminForkRelation
+    #- title: 'Administrator documentation'
+    #  key: mdTitleAdministratorDocumentation
+    #- title: 'Advanced Setup Tips'
+    #  key: mdTitleAdvancedSetupTips
+    #- title: 'Advantages'
+    #  key: mdTitleAdvantages
+    #- title: 'Akismet'
+    #  key: mdTitleAkismet
+    #- title: 'All project owners should have an owner:'
+    #  key: mdTitleAllProjectOwnersShouldHaveAnOwner
+    #- title: 'Allowing only admins to create groups'
+    #  key: mdTitleAllowingOnlyAdminsToCreateGroups
+    #- title: 'Alternative backup strategies'
+    #  key: mdTitleAlternativeBackupStrategies
+    #- title: 'Always use the configurable git binary path for git commands'
+    #  key: mdTitleAlwaysUseTheConfigurableGitBinaryPathForGitCommands
+    #- title: 'Anchors'
+    #  key: mdTitleAnchors
+    #- title: 'Apache 2.4 / GitLab 8.6 update'
+    #  key: mdTitleApache24GitLab86Update
+    #- title: 'Application settings'
+    #  key: mdTitleApplicationSettings
+    #- title: 'Application theme'
+    #  key: mdTitleApplicationTheme
+    #- title: 'Applications'
+    #  key: mdTitleApplications
+    #- title: 'Apply retention policies and create continuous queries'
+    #  key: mdTitleApplyRetentionPoliciesAndCreateContinuousQueries
+    #- title: 'Archive a project'
+    #  key: mdTitleArchiveAProject
+    #- title: 'Are there points in the code the reviewer needs to double check?'
+    #  key: mdTitleAreTherePointsInTheCodeTheReviewerNeedsToDoubleCheck
+    #- title: "As the 'git' user"
+    #  key: mdTitleAsTheGitUser
+    #- title: 'As the git user'
+    #  key: mdTitleAsTheGitUser
+    #- title: 'Assigning issues'
+    #  key: mdTitleAssigningIssues
+    #- title: 'Atlassian Bamboo CI Service'
+    #  key: mdTitleAtlassianBambooCIService
+    #- title: 'Attack vectors in Runners'
+    #  key: mdTitleAttackVectorsInRunners
+    #- title: 'Auth0 OmniAuth Provider'
+    #  key: mdTitleAuth0OmniAuthProvider
+    #- title: 'Authentication'
+    #  key: mdTitleAuthentication
+    #- title: 'Authentication and Authorization'
+    #  key: mdTitleAuthenticationAndAuthorization
+    #- title: 'Authentication mechanisms'
+    #  key: mdTitleAuthenticationMechanisms
+    #- title: 'Authentication with OAuth2 token'
+    #  key: mdTitleAuthenticationWithOAuth2Token
+    #- title: 'Authorization for Merge requests'
+    #  key: mdTitleAuthorizationForMergeRequests
+    #- title: 'Authorized applications'
+    #  key: mdTitleAuthorizedApplications
+    #- title: 'Avoid user input at the start of path strings'
+    #  key: mdTitleAvoidUserInputAtTheStartOfPathStrings
+    #- title: 'Award emojis'
+    #  key: mdTitleAwardEmojis
+    #- title: 'Award emojis on issues and merge requests'
+    #  key: mdTitleAwardEmojisOnIssuesAndMergeRequests
+    #- title: 'Backup archive permissions'
+    #  key: mdTitleBackupArchivePermissions
+    #- title: 'Backup restore'
+    #  key: mdTitleBackupRestore
+    #- title: 'Basic Git commands'
+    #  key: mdTitleBasicGitCommands
+    #- title: 'Basic usage'
+    #  key: mdTitleBasicUsage
+    #- title: 'Be Careful with Sensitive Information'
+    #  key: mdTitleBeCarefulWithSensitiveInformation
+    #- title: 'Be kind'
+    #  key: mdTitleBeKind
+    #- title: 'Before upgrading'
+    #  key: mdTitleBeforeUpgrading
+    #- title: 'Behavior'
+    #  key: mdTitleBehavior
+    #- title: 'Best \(do not run a shell command at all\)'
+    #  key: mdTitleBestDoNotRunAShellCommandAtAll
+    #- title: 'Best \(do not use a shell command\)'
+    #  key: mdTitleBestDoNotUseAShellCommand
+    #- title: 'Better'
+    #  key: mdTitleBetter
+    #- title: 'Better \(separate tokens\)'
+    #  key: mdTitleBetterSeparateTokens
+    #- title: 'Bitbucket project import'
+    #  key: mdTitleBitbucketProjectImport
+    #- title: 'Block user'
+    #  key: mdTitleBlockUser
+    #- title: 'Blockquotes'
+    #  key: mdTitleBlockquotes
+    #- title: 'Branches'
+    #  key: mdTitleBranches
+    #- title: 'Browsing build artifacts'
+    #  key: mdTitleBrowsingBuildArtifacts
+    #- title: 'Build Variables'
+    #  key: mdTitleBuildVariables
+    #- title: 'Build configuration on .Semaphore.* for testing the .*'
+    #  key: BuildConfigurationOnSemaphoreForTestingTheGithubComRepo
+    #- title: 'Build triggers'
+    #  key: mdTitleBuildTriggers
+    #- title: 'Build your projects'
+    #  key: mdTitleBuildYourProjects
+    #- title: 'Buildkite'
+    #  key: mdTitleBuildkite
+    #- title: 'Builds'
+    #  key: mdTitleBuilds
+    #- title: 'Builds API'
+    #  key: mdTitleBuildsAPI
+    #- title: 'Builds badge'
+    #  key: mdTitleBuildsBadge
+    #- title: 'Bullet'
+    #  key: mdTitleBullet
+    #- title: 'Bypass the shell by splitting commands into separate tokens'
+    #  key: mdTitleBypassTheShellBySplittingCommandsIntoSeparateTokens
+    #- title: 'CAS OmniAuth Provider'
+    #  key: mdTitleCASOmniAuthProvider
+    #- title: 'CI Examples'
+    #  key: mdTitleCIExamples
+    #- title: 'CI User documentation'
+    #  key: mdTitleCIUserDocumentation
+    #- title: 'CI setup'
+    #  key: mdTitleCISetup
+    #- title: 'CPU'
+    #  key: mdTitleCPU
+    #- title: 'Campfire'
+    #  key: mdTitleCampfire
+    #- title: 'Cancel Merge When Build Succeeds'
+    #  key: mdTitleCancelMergeWhenBuildSucceeds
+    #- title: 'Cancel a build'
+    #  key: mdTitleCancelABuild
+    #- title: 'Canonical source'
+    #  key: mdTitleCanonicalSource
+    #- title: 'Carry out commands for which the account you are using lacks authority'
+    #  key: mdTitleCarryOutCommandsForWhichTheAccountYouAreUsingLacksAuthority
+    #- title: 'Catch-all mailbox'
+    #  key: mdTitleCatchAllMailbox
+    #- title: 'Change Nginx HTTPS settings'
+    #  key: mdTitleChangeNginxHTTPSSettings
+    #- title: 'Change Nginx settings'
+    #  key: mdTitleChangeNginxSettings
+    #- title: 'Change application settings'
+    #  key: mdTitleChangeApplicationSettings
+    #- title: 'Change the pattern'
+    #  key: mdTitleChangeThePattern
+    #- title: 'Change timeout for unicorn'
+    #  key: mdTitleChangeTimeoutForUnicorn
+    #- title: 'Changes for Stable Releases'
+    #  key: mdTitleChangesForStableReleases
+    #- title: 'Changing the appearance of the login page'
+    #  key: mdTitleChangingTheAppearanceOfTheLoginPage
+    #- title: 'Changing time zone in omnibus installations'
+    #  key: mdTitleChangingTimeZoneInOmnibusInstallations
+    #- title: 'Changing your time zone'
+    #  key: mdTitleChangingYourTimeZone
+    #- title: 'Check APP Status'
+    #  key: mdTitleCheckAPPStatus
+    #- title: 'Check Application Status'
+    #  key: mdTitleCheckApplicationStatus
+    #- title: 'Check GitLab'
+    #  key: mdTitleCheckGitLab
+    #- title: 'Check GitLab API access: OK'
+    #  key: mdTitleCheckGitLabAPIAccessOK
+    #- title: 'Check GitLab configuration'
+    #  key: mdTitleCheckGitLabConfiguration
+    #- title: 'Check Rake Tasks'
+    #  key: mdTitleCheckRakeTasks
+    #- title: 'Check all GitLab repositories'
+    #  key: mdTitleCheckAllGitLabRepositories
+    #- title: 'Check app status'
+    #  key: mdTitleCheckAppStatus
+    #- title: 'Check directories and files:'
+    #  key: mdTitleCheckDirectoriesAndFiles
+    #- title: 'Check if Git has already been installed'
+    #  key: mdTitleCheckIfGitHasAlreadyBeenInstalled
+    #- title: 'Check repositories for a specific user'
+    #  key: mdTitleCheckRepositoriesForASpecificUser
+    #- title: 'Check the version of /usr/local/bin/git'
+    #  key: mdTitleCheckTheVersionOfUsrLocalBinGit
+    #- title: 'Check using docker executor'
+    #  key: mdTitleCheckUsingDockerExecutor
+    #- title: 'Check using shell executor'
+    #  key: mdTitleCheckUsingShellExecutor
+    #- title: 'Check your information'
+    #  key: mdTitleCheckYourInformation
+    #- title: 'Checkout merge requests locally'
+    #  key: mdTitleCheckoutMergeRequestsLocally
+    #- title: 'Cherry-pick changes'
+    #  key: mdTitleCherryPickChanges
+    #- title: 'Cherry-picking a Commit'
+    #  key: mdTitleCherryPickingACommit
+    #- title: 'Cherry-picking a Merge Request'
+    #  key: mdTitleCherryPickingAMergeRequest
+    #- title: 'Choose an ID made of a-z and 0-9 . This ID will be stored in the database'
+    #  key: mdTitleChooseAnIDMadeOfAZAnd09ThisIDWillBeStoredInTheDatabase
+    #- title: 'Clean up assets and cache'
+    #  key: mdTitleCleanUpAssetsAndCache
+    #- title: 'Cleaning up stale Redis sessions'
+    #  key: mdTitleCleaningUpStaleRedisSessions
+    #- title: 'Cleanup'
+    #  key: mdTitleCleanup
+    #- title: 'Clear and precompile assets'
+    #  key: mdTitleClearAndPrecompileAssets
+    #- title: 'Clear redis cache'
+    #  key: mdTitleClearRedisCache
+    #- title: 'Clients'
+    #  key: mdTitleClients
+    #- title: 'Clone the Source'
+    #  key: mdTitleCloneTheSource
+    #- title: 'Clone the database converter'
+    #  key: mdTitleCloneTheDatabaseConverter
+    #- title: 'Clone your project'
+    #  key: mdTitleCloneYourProject
+    #- title: 'Close access to gitlab-satellites for others'
+    #  key: mdTitleCloseAccessToGitlabSatellitesForOthers
+    #- title: 'Closing JIRA issues'
+    #  key: mdTitleClosingJIRAIssues
+    #- title: 'Closing down the issue tracker on GitHub'
+    #  key: mdTitleClosingDownTheIssueTrackerOnGitHub
+    #- title: 'Closing policy for issues and merge requests'
+    #  key: mdTitleClosingPolicyForIssuesAndMergeRequests
+    #- title: 'Code Review Guidelines'
+    #  key: mdTitleCodeReviewGuidelines
+    #- title: 'Code and Syntax Highlighting'
+    #  key: mdTitleCodeAndSyntaxHighlighting
+    #- title: 'Code format'
+    #  key: mdTitleCodeFormat
+    #- title: 'Code of conduct'
+    #  key: mdTitleCodeOfConduct
+    #- title: 'Code, data and logs are in separate directories'
+    #  key: mdTitleCodeDataAndLogsAreInSeparateDirectories
+    #- title: 'Collaborate'
+    #  key: mdTitleCollaborate
+    #- title: 'Colors'
+    #  key: mdTitleColors
+    #- title: 'Command Line basic commands'
+    #  key: mdTitleCommandLineBasicCommands
+    #- title: 'Comment events'
+    #  key: mdTitleCommentEvents
+    #- title: 'Comment on code snippet'
+    #  key: mdTitleCommentOnCodeSnippet
+    #- title: 'Comment on commit'
+    #  key: mdTitleCommentOnCommit
+    #- title: 'Comment on issue'
+    #  key: mdTitleCommentOnIssue
+    #- title: 'Comment on merge request'
+    #  key: mdTitleCommentOnMergeRequest
+    #- title: 'Comments in the migration'
+    #  key: mdTitleCommentsInTheMigration
+    #- title: 'Comments on issues'
+    #  key: mdTitleCommentsOnIssues
+    #- title: 'Comments on merge requests'
+    #  key: mdTitleCommentsOnMergeRequests
+    #- title: 'Commit status'
+    #  key: mdTitleCommitStatus
+    #- title: 'Commits API'
+    #  key: mdTitleCommitsAPI
+    #- title: 'Committing often and with the right message'
+    #  key: mdTitleCommittingOftenAndWithTheRightMessage
+    #- title: 'Common actions'
+    #  key: mdTitleCommonActions
+    #- title: 'Community to Enterprise Edition'
+    #  key: mdTitleCommunityToEnterpriseEdition
+    #- title: 'Compare branches, tags or commits'
+    #  key: mdTitleCompareBranchesTagsOrCommits
+    #- title: 'Compile Assets'
+    #  key: mdTitleCompileAssets
+    #- title: 'Complete database variables'
+    #  key: mdTitleCompleteDatabaseVariables
+    #- title: 'Complete these steps in Bamboo:'
+    #  key: mdTitleCompleteTheseStepsInBamboo
+    #- title: 'Complete these steps in GitLab:'
+    #  key: mdTitleCompleteTheseStepsInGitLab
+    #- title: 'Complete these steps in HipChat:'
+    #  key: mdTitleCompleteTheseStepsInHipChat
+    #- title: 'Components'
+    #  key: mdTitleComponents
+    #- title: 'Composer stores all downloaded packages in the vendor/ directory.'
+    #  key: mdTitleComposerStoresAllDownloadedPackagesInTheVendorDirectory
+    #- title: 'Compress database backup'
+    #  key: mdTitleCompressDatabaseBackup
+    #- title: 'Compress existing .log.1 files because we turned off delaycompress in logrotate'
+    #  key: mdTitleCompressExistingLog1FilesBecauseWeTurnedOffDelaycompressInLogrotate
+    #- title: 'Configuration'
+    #  key: mdTitleConfiguration
+    #- title: 'Configuration of your builds with .gitlab-ci.yml'
+    #  key: mdTitleConfigurationOfYourBuildsWithGitlabCiyml
+    #- title: 'Configure GitLab DB Settings'
+    #  key: mdTitleConfigureGitLabDBSettings
+    #- title: 'Configure It'
+    #  key: mdTitleConfigureIt
+    #- title: 'Configure OmniAuth Providers as External'
+    #  key: mdTitleConfigureOmniAuthProvidersAsExternal
+    #- title: 'Configure Postfix to receive email from the internet'
+    #  key: mdTitleConfigurePostfixToReceiveEmailFromTheInternet
+    #- title: 'Configure Postfix to use Maildir-style mailboxes'
+    #  key: mdTitleConfigurePostfixToUseMaildirStyleMailboxes
+    #- title: 'Configure cron to make daily backups'
+    #  key: mdTitleConfigureCronToMakeDailyBackups
+    #- title: 'Configure project'
+    #  key: mdTitleConfigureProject
+    #- title: 'Configure redis to use sockets'
+    #  key: mdTitleConfigureRedisToUseSockets
+    #- title: 'Configure your server firewall'
+    #  key: mdTitleConfigureYourServerFirewall
+    #- title: 'Configuring GitLab'
+    #  key: mdTitleConfiguringGitLab
+    #- title: 'Configuring JIRA'
+    #  key: mdTitleConfiguringJIRA
+    #- title: 'Configuring a Runner'
+    #  key: mdTitleConfiguringARunner
+    #- title: 'Configuring services'
+    #  key: mdTitleConfiguringServices
+    #- title: 'Configuring the MemoryKiller'
+    #  key: mdTitleConfiguringTheMemoryKiller
+    #- title: 'Connection Refused'
+    #  key: mdTitleConnectionRefused
+    #- title: 'Consider the Omnibus package installation'
+    #  key: mdTitleConsiderTheOmnibusPackageInstallation
+    #- title: 'Contribute to GitLab'
+    #  key: mdTitleContributeToGitLab
+    #- title: 'Contribute to this guide'
+    #  key: mdTitleContributeToThisGuide
+    #- title: 'Contribution acceptance criteria'
+    #  key: mdTitleContributionAcceptanceCriteria
+    #- title: 'Contributor documentation'
+    #  key: mdTitleContributorDocumentation
+    #- title: 'Contributor license agreement'
+    #  key: mdTitleContributorLicenseAgreement
+    #- title: 'Contributors'
+    #  key: mdTitleContributors
+    #- title: 'Convert all tables to correct character set'
+    #  key: mdTitleConvertAllTablesToCorrectCharacterSet
+    #- title: 'Convert all tables to use the InnoDB storage engine \(added in GitLab 6.8\)'
+    #  key: mdTitleConvertAllTablesToUseTheInnoDBStorageEngineAddedInGitLab68
+    #- title: 'Convert gitlabhq_production.mysql'
+    #  key: mdTitleConvertGitlabhqProductionmysql
+    #- title: 'Converting a GitLab backup file from MySQL to Postgres'
+    #  key: mdTitleConvertingAGitLabBackupFileFromMySQLToPostgres
+    #- title: 'Copy & paste responses'
+    #  key: mdTitleCopy&PasteResponses
+    #- title: 'Copy rack attack middleware config'
+    #  key: mdTitleCopyRackAttackMiddlewareConfig
+    #- title: 'Copy your bare repositories inside this newly created folder:'
+    #  key: mdTitleCopyYourBareRepositoriesInsideThisNewlyCreatedFolder
+    #- title: 'Corporate contributor license agreement'
+    #  key: mdTitleCorporateContributorLicenseAgreement
+    #- title: 'Correct'
+    #  key: mdTitleCorrect
+    #- title: 'Create Heroku application'
+    #  key: mdTitleCreateHerokuApplication
+    #- title: 'Create MR'
+    #  key: mdTitleCreateMR
+    #- title: 'Create a README.md or file in directory'
+    #  key: mdTitleCreateAREADMEmdOrFileInDirectory
+    #- title: 'Create a backup of the GitLab system'
+    #  key: mdTitleCreateABackupOfTheGitLabSystem
+    #- title: 'Create a branch'
+    #  key: mdTitleCreateABranch
+    #- title: 'Create a directory'
+    #  key: mdTitleCreateADirectory
+    #- title: 'Create a file'
+    #  key: mdTitleCreateAFile
+    #- title: 'Create a forked from/to relation between existing projects.'
+    #  key: mdTitleCreateAForkedFrom/ToRelationBetweenExistingProjects
+    #- title: 'Create a full backup of the GitLab repositories and SQL database every day at 4am'
+    #  key: mdTitleCreateAFullBackupOfTheGitLabRepositoriesAndSQLDatabaseEveryDayAt4am
+    #- title: 'Create a group'
+    #  key: mdTitleCreateAGroup
+    #- title: 'Create a new admin user'
+    #  key: mdTitleCreateANewAdminUser
+    #- title: 'Create a new branch'
+    #  key: mdTitleCreateANewBranch
+    #- title: "Create a new branch from a project's dashboard"
+    #  key: mdTitleCreateANewBranchFromAProjectsDashboard
+    #- title: 'Create a new branch from an issue'
+    #  key: mdTitleCreateANewBranchFromAnIssue
+    #- title: 'Create a new folder inside the git repositories path. This will be the name of the new group.'
+    #  key: mdTitleCreateANewFolderInsideTheGitRepositoriesPathThisWillBeTheNameOfTheNewGroup
+    #- title: 'Create a new label'
+    #  key: mdTitleCreateANewLabel
+    #- title: 'Create a new release'
+    #  key: mdTitleCreateANewRelease
+    #- title: 'Create a new tag'
+    #  key: mdTitleCreateANewTag
+    #- title: 'Create a project trigger'
+    #  key: mdTitleCreateAProjectTrigger
+    #- title: 'Create a separate database dump with PostgreSQL compatibility'
+    #  key: mdTitleCreateASeparateDatabaseDumpWithPostgreSQLCompatibility
+    #- title: 'Create new file in repository'
+    #  key: mdTitleCreateNewFileInRepository
+    #- title: 'Create new issue note'
+    #  key: mdTitleCreateNewIssueNote
+    #- title: 'Create new merge request note'
+    #  key: mdTitleCreateNewMergeRequestNote
+    #- title: 'Create new milestone'
+    #  key: mdTitleCreateNewMilestone
+    #- title: 'Create new snippet'
+    #  key: mdTitleCreateNewSnippet
+    #- title: 'Create new snippet note'
+    #  key: mdTitleCreateNewSnippetNote
+    #- title: 'Create new user for GitLab \(changed in GitLab 6.4\)'
+    #  key: mdTitleCreateNewUserForGitLabChangedInGitLab64
+    #- title: 'Create project'
+    #  key: mdTitleCreateProject
+    #- title: 'Create project for user'
+    #  key: mdTitleCreateProjectForUser
+    #- title: 'Create repository branch'
+    #  key: mdTitleCreateRepositoryBranch
+    #- title: 'Create runner'
+    #  key: mdTitleCreateRunner
+    #- title: 'Create the `gitlab` database'
+    #  key: mdTitleCreateTheGitlabDatabase
+    #- title: 'Create the backup'
+    #  key: mdTitleCreateTheBackup
+    #- title: 'Create the directory which contains the socket'
+    #  key: mdTitleCreateTheDirectoryWhichContainsTheSocket
+    #- title: 'Create user'
+    #  key: mdTitleCreateUser
+    #- title: 'Create variable'
+    #  key: mdTitleCreateVariable
+    #- title: 'Create/Edit Asana service'
+    #  key: mdTitleCreate/EditAsanaService
+    #- title: 'Create/Edit Assembla service'
+    #  key: mdTitleCreate/EditAssemblaService
+    #- title: 'Create/Edit Atlassian Bamboo CI service'
+    #  key: mdTitleCreate/EditAtlassianBambooCIService
+    #- title: 'Create/Edit Buildkite service'
+    #  key: mdTitleCreate/EditBuildkiteService
+    #- title: 'Create/Edit Campfire service'
+    #  key: mdTitleCreate/EditCampfireService
+    #- title: 'Create/Edit Custom Issue Tracker service'
+    #  key: mdTitleCreate/EditCustomIssueTrackerService
+    #- title: 'Create/Edit Drone CI service'
+    #  key: mdTitleCreate/EditDroneCIService
+    #- title: 'Create/Edit Emails on push service'
+    #  key: mdTitleCreate/EditEmailsOnPushService
+    #- title: 'Create/Edit External Wiki service'
+    #  key: mdTitleCreate/EditExternalWikiService
+    #- title: 'Create/Edit Flowdock service'
+    #  key: mdTitleCreate/EditFlowdockService
+    #- title: 'Create/Edit Gemnasium service'
+    #  key: mdTitleCreate/EditGemnasiumService
+    #- title: 'Create/Edit GitLab CI service'
+    #  key: mdTitleCreate/EditGitLabCIService
+    #- title: 'Create/Edit HipChat service'
+    #  key: mdTitleCreate/EditHipChatService
+    #- title: 'Create/Edit Irker \(IRC gateway\) service'
+    #  key: mdTitleCreate/EditIrkerIRCGatewayService
+    #- title: 'Create/Edit JIRA service'
+    #  key: mdTitleCreate/EditJIRAService
+    #- title: 'Create/Edit JetBrains TeamCity CI service'
+    #  key: mdTitleCreate/EditJetBrainsTeamCityCIService
+    #- title: 'Create/Edit PivotalTracker service'
+    #  key: mdTitleCreate/EditPivotalTrackerService
+    #- title: 'Create/Edit Pushover service'
+    #  key: mdTitleCreate/EditPushoverService
+    #- title: 'Create/Edit Redmine service'
+    #  key: mdTitleCreate/EditRedmineService
+    #- title: 'Create/Edit Slack service'
+    #  key: mdTitleCreate/EditSlackService
+    #- title: 'Creating a `.gitlab-ci.yml` file'
+    #  key: mdTitleCreatingAGitlabCiymlFile
+    #- title: 'Creating a fork'
+    #  key: mdTitleCreatingAFork
+    #- title: 'Creating a simple `.gitlab-ci.yml` file'
+    #  key: mdTitleCreatingASimpleGitlabCiymlFile
+    #- title: 'Creating and Registering a Runner'
+    #  key: mdTitleCreatingAndRegisteringARunner
+    #- title: 'Credentials are always required when pushing an object'
+    #  key: mdTitleCredentialsAreAlwaysRequiredWhenPushingAnObject
+    #- title: 'Credits'
+    #  key: mdTitleCredits
+    #- title: 'Crowd OmniAuth Provider'
+    #  key: mdTitleCrowdOmniAuthProvider
+    #- title: 'Current user'
+    #  key: mdTitleCurrentUser
+    #- title: 'Custom Git Hooks'
+    #  key: mdTitleCustomGitHooks
+    #- title: 'Custom Issue Tracker'
+    #  key: mdTitleCustomIssueTracker
+    #- title: 'Custom PHP configuration in Docker builds'
+    #  key: mdTitleCustomPHPConfigurationInDockerBuilds
+    #- title: 'Custom Redis Connection'
+    #  key: mdTitleCustomRedisConnection
+    #- title: 'Custom SSH Connection'
+    #  key: mdTitleCustomSSHConnection
+    #- title: 'Custom password length limits'
+    #  key: mdTitleCustomPasswordLengthLimits
+    #- title: 'Customization'
+    #  key: mdTitleCustomization
+    #- title: 'Customize the complete sign-in page'
+    #  key: mdTitleCustomizeTheCompleteSignInPage
+    #- title: 'Data migration'
+    #  key: mdTitleDataMigration
+    #- title: 'Data validation and error reporting'
+    #  key: mdTitleDataValidationAndErrorReporting
+    #- title: 'Database'
+    #  key: mdTitleDatabase
+    #- title: 'Database MySQL'
+    #  key: mdTitleDatabaseMySQL
+    #- title: 'Dedicated email address'
+    #  key: mdTitleDedicatedEmailAddress
+    #- title: 'Default Dashboard'
+    #  key: mdTitleDefaultDashboard
+    #- title: 'Default Project view'
+    #  key: mdTitleDefaultProjectView
+    #- title: 'Default URL for missing images'
+    #  key: mdTitleDefaultURLForMissingImages
+    #- title: 'Default project features settings'
+    #  key: mdTitleDefaultProjectFeaturesSettings
+    #- title: 'Define an image from a private Docker registry'
+    #  key: mdTitleDefineAnImageFromAPrivateDockerRegistry
+    #- title: 'Define image and services from `.gitlab-ci.yml`'
+    #  key: mdTitleDefineImageAndServicesFromGitlabCiyml
+    #- title: 'Define image and services in `config.toml`'
+    #  key: mdTitleDefineImageAndServicesInConfigtoml
+    #- title: 'Defining artifacts in `.gitlab-ci.yml`'
+    #  key: mdTitleDefiningArtifactsInGitlabCiyml
+    #- title: 'Definition of done'
+    #  key: mdTitleDefinitionOfDone
+    #- title: 'Delete Asana service'
+    #  key: mdTitleDeleteAsanaService
+    #- title: 'Delete Assembla service'
+    #  key: mdTitleDeleteAssemblaService
+    #- title: 'Delete Atlassian Bamboo CI service'
+    #  key: mdTitleDeleteAtlassianBambooCIService
+    #- title: 'Delete Buildkite service'
+    #  key: mdTitleDeleteBuildkiteService
+    #- title: 'Delete Campfire service'
+    #  key: mdTitleDeleteCampfireService
+    #- title: 'Delete Custom Issue Tracker service'
+    #  key: mdTitleDeleteCustomIssueTrackerService
+    #- title: 'Delete Drone CI service'
+    #  key: mdTitleDeleteDroneCIService
+    #- title: 'Delete Emails on push service'
+    #  key: mdTitleDeleteEmailsOnPushService
+    #- title: 'Delete External Wiki service'
+    #  key: mdTitleDeleteExternalWikiService
+    #- title: 'Delete Flowdock service'
+    #  key: mdTitleDeleteFlowdockService
+    #- title: 'Delete Gemnasium service'
+    #  key: mdTitleDeleteGemnasiumService
+    #- title: 'Delete GitLab CI service'
+    #  key: mdTitleDeleteGitLabCIService
+    #- title: 'Delete HipChat service'
+    #  key: mdTitleDeleteHipChatService
+    #- title: 'Delete Irker \(IRC gateway\) service'
+    #  key: mdTitleDeleteIrkerIRCGatewayService
+    #- title: 'Delete JIRA service'
+    #  key: mdTitleDeleteJIRAService
+    #- title: 'Delete JetBrains TeamCity CI service'
+    #  key: mdTitleDeleteJetBrainsTeamCityCIService
+    #- title: 'Delete PivotalTracker service'
+    #  key: mdTitleDeletePivotalTrackerService
+    #- title: 'Delete Pushover service'
+    #  key: mdTitleDeletePushoverService
+    #- title: 'Delete Redmine service'
+    #  key: mdTitleDeleteRedmineService
+    #- title: 'Delete SSH key for current user'
+    #  key: mdTitleDeleteSSHKeyForCurrentUser
+    #- title: 'Delete SSH key for given user'
+    #  key: mdTitleDeleteSSHKeyForGivenUser
+    #- title: 'Delete Slack service'
+    #  key: mdTitleDeleteSlackService
+    #- title: 'Delete a label'
+    #  key: mdTitleDeleteALabel
+    #- title: 'Delete a merge request'
+    #  key: mdTitleDeleteAMergeRequest
+    #- title: 'Delete a merge request note'
+    #  key: mdTitleDeleteAMergeRequestNote
+    #- title: 'Delete a runner'
+    #  key: mdTitleDeleteARunner
+    #- title: 'Delete a snippet note'
+    #  key: mdTitleDeleteASnippetNote
+    #- title: 'Delete a tag'
+    #  key: mdTitleDeleteATag
+    #- title: 'Delete all changes in the Git repository, but leave unstaged things'
+    #  key: mdTitleDeleteAllChangesInTheGitRepositoryButLeaveUnstagedThings
+    #- title: 'Delete all changes in the Git repository, including untracked files'
+    #  key: mdTitleDeleteAllChangesInTheGitRepositoryIncludingUntrackedFiles
+    #- title: 'Delete an existing forked from relationship'
+    #  key: mdTitleDeleteAnExistingForkedFromRelationship
+    #- title: 'Delete an issue'
+    #  key: mdTitleDeleteAnIssue
+    #- title: 'Delete an issue note'
+    #  key: mdTitleDeleteAnIssueNote
+    #- title: 'Delete deploy key'
+    #  key: mdTitleDeleteDeployKey
+    #- title: 'Delete email for current user'
+    #  key: mdTitleDeleteEmailForCurrentUser
+    #- title: 'Delete email for given user'
+    #  key: mdTitleDeleteEmailForGivenUser
+    #- title: 'Delete existing file in repository'
+    #  key: mdTitleDeleteExistingFileInRepository
+    #- title: 'Delete project hook'
+    #  key: mdTitleDeleteProjectHook
+    #- title: 'Delete repository branch'
+    #  key: mdTitleDeleteRepositoryBranch
+    #- title: 'Delete snippet'
+    #  key: mdTitleDeleteSnippet
+    #- title: 'Delete system hook'
+    #  key: mdTitleDeleteSystemHook
+    #- title: 'Delete the old gitlab user'
+    #  key: mdTitleDeleteTheOldGitlabUser
+    #- title: 'Deploy Keys'
+    #  key: mdTitleDeployKeys
+    #- title: 'Deploy keys'
+    #  key: mdTitleDeployKeys
+    #- title: 'Deprecations'
+    #  key: mdTitleDeprecations
+    #- title: 'Description'
+    #  key: mdTitleDescription
+    #- title: 'Design reference'
+    #  key: mdTitleDesignReference
+    #- title: 'Details of a group'
+    #  key: mdTitleDetailsOfAGroup
+    #- title: 'Development'
+    #  key: mdTitleDevelopment
+    #- title: 'Disable Enterprise-only features'
+    #  key: mdTitleDisableEnterpriseOnlyFeatures
+    #- title: "Disable Redis listening on TCP by setting 'port' to 0"
+    #  key: mdTitleDisableRedisListeningOnTCPBySettingPortTo0
+    #- title: 'Disable Two-factor Authentication \(2FA\) for all users'
+    #  key: mdTitleDisableTwoFactorAuthentication2FAForAllUsers
+    #- title: 'Disable a runner from project'
+    #  key: mdTitleDisableARunnerFromProject
+    #- title: 'Disable relative URL in GitLab'
+    #  key: mdTitleDisableRelativeURLInGitLab
+    #- title: 'Disabling 2FA'
+    #  key: mdTitleDisabling2FA
+    #- title: 'Disabling 2FA for everyone'
+    #  key: mdTitleDisabling2FAForEveryone
+    #- title: 'Disabling build artifacts'
+    #  key: mdTitleDisablingBuildArtifacts
+    #- title: 'Disabling periodic checks'
+    #  key: mdTitleDisablingPeriodicChecks
+    #- title: 'Disadvantages'
+    #  key: mdTitleDisadvantages
+    #- title: 'Do not order commits with rebase'
+    #  key: mdTitleDoNotOrderCommitsWithRebase
+    #- title: 'Do not use the backticks'
+    #  key: mdTitleDoNotUseTheBackticks
+    #- title: 'Do not use the following if the vendor/ directory is commited to'
+    #  key: mdTitleDoNotUseTheFollowingIfTheVendorDirectoryIsCommitedTo
+    #- title: 'Do this once when you are done copying git repositories'
+    #  key: mdTitleDoThisOnceWhenYouAreDoneCopyingGitRepositories
+    #- title: 'Docker integration'
+    #  key: mdTitleDockerIntegration
+    #- title: 'Documentation'
+    #  key: mdTitleDocumentation
+    #- title: 'Documentation styleguide'
+    #  key: mdTitleDocumentationStyleguide
+    #- title: "Don't `describe` symbols"
+    #  key: mdTitleDontDescribeSymbols
+    #- title: "Don't `rescue Exception`"
+    #  key: mdTitleDontRescueException
+    #- title: "Don't use inline CoffeeScript in views"
+    #  key: mdTitleDontUseInlineCoffeeScriptInViews
+    #- title: 'Done!'
+    #  key: mdTitleDone
+    #- title: 'Done! TIMESTAMP_gitlab_backup.tar can now be restored into a Postgres GitLab'
+    #  key: mdTitleDoneTIMESTAMPGitlabBackuptarCanNowBeRestoredIntoAPostgresGitLab
+    #- title: 'Double-check Application Status'
+    #  key: mdTitleDoubleCheckApplicationStatus
+    #- title: 'Downgrade to CE'
+    #  key: mdTitleDowngradeToCE
+    #- title: 'Downgrading from EE to CE'
+    #  key: mdTitleDowngradingFromEEToCE
+    #- title: 'Download the artifacts file from build'
+    #  key: mdTitleDownloadTheArtifactsFileFromBuild
+    #- title: 'Download the latest changes in the project'
+    #  key: mdTitleDownloadTheLatestChangesInTheProject
+    #- title: 'Downloading build artifacts'
+    #  key: mdTitleDownloadingBuildArtifacts
+    #- title: 'Drone CI'
+    #  key: mdTitleDroneCI
+    #- title: 'Eclipse'
+    #  key: mdTitleEclipse
+    #- title: 'Edit an existing label'
+    #  key: mdTitleEditAnExistingLabel
+    #- title: 'Edit group team member'
+    #  key: mdTitleEditGroupTeamMember
+    #- title: 'Edit issue'
+    #  key: mdTitleEditIssue
+    #- title: 'Edit milestone'
+    #  key: mdTitleEditMilestone
+    #- title: 'Edit project'
+    #  key: mdTitleEditProject
+    #- title: 'Edit project hook'
+    #  key: mdTitleEditProjectHook
+    #- title: 'Edit project team member'
+    #  key: mdTitleEditProjectTeamMember
+    #- title: 'Editable labels'
+    #  key: mdTitleEditableLabels
+    #- title: 'Editions'
+    #  key: mdTitleEditions
+    #- title: 'Email sub-addressing'
+    #  key: mdTitleEmailSubAddressing
+    #- title: 'Emails on push'
+    #  key: mdTitleEmailsOnPush
+    #- title: 'Emoji'
+    #  key: mdTitleEmoji
+    #- title: 'Emphasis'
+    #  key: mdTitleEmphasis
+    #- title: 'Enable OmniAuth for an Existing User'
+    #  key: mdTitleEnableOmniAuthForAnExistingUser
+    #- title: 'Enable Redis socket for default Debian / Ubuntu path'
+    #  key: mdTitleEnableRedisSocketForDefaultDebianUbuntuPath
+    #- title: 'Enable Reply by email'
+    #  key: mdTitleEnableReplyByEmail
+    #- title: 'Enable a Service template'
+    #  key: mdTitleEnableAServiceTemplate
+    #- title: 'Enable a runner in project'
+    #  key: mdTitleEnableARunnerInProject
+    #- title: 'Enable internal issue IDs \(introduced in GitLab 6.1\)'
+    #  key: mdTitleEnableInternalIssueIDsIntroducedInGitLab61
+    #- title: 'Enable namespaces \(\*\*Warning!\*\* All projects in groups will be moved to subdirectories\)'
+    #  key: mdTitleEnableNamespacesWarningAllProjectsInGroupsWillBeMovedToSubdirectories
+    #- title: 'Enable or disable GitLab CI'
+    #  key: mdTitleEnableOrDisableGitLabCI
+    #- title: 'Enable relative URL in GitLab'
+    #  key: mdTitleEnableRelativeURLInGitLab
+    #- title: 'Enable usernames and namespaces for user projects'
+    #  key: mdTitleEnableUsernamesAndNamespacesForUserProjects
+    #- title: 'Enabling 2FA'
+    #  key: mdTitleEnabling2FA
+    #- title: 'Enabling LDAP sign-in for existing GitLab users'
+    #  key: mdTitleEnablingLDAPSignInForExistingGitLabUsers
+    #- title: 'Enabling build emails'
+    #  key: mdTitleEnablingBuildEmails
+    #- title: 'Enforce Two-factor Authentication \(2FA\)'
+    #  key: mdTitleEnforceTwoFactorAuthentication2FA
+    #- title: 'Enterprise to Community Edition'
+    #  key: mdTitleEnterpriseToCommunityEdition
+    #- title: 'Environment Variables'
+    #  key: mdTitleEnvironmentVariables
+    #- title: 'Environment branches with GitLab flow'
+    #  key: mdTitleEnvironmentBranchesWithGitLabFlow
+    #- title: 'Erase a build'
+    #  key: mdTitleEraseABuild
+    #- title: 'Escape special characters'
+    #  key: mdTitleEscapeSpecialCharacters
+    #- title: 'Every user should have a namespace:'
+    #  key: mdTitleEveryUserShouldHaveANamespace
+    #- title: 'Everyone'
+    #  key: mdTitleEveryone
+    #- title: 'Example'
+    #  key: mdTitleExample
+    #- title: 'Example \(continued\)'
+    #  key: mdTitleExampleContinued
+    #- title: 'Example of success output'
+    #  key: mdTitleExampleOfSuccessOutput
+    #- title: 'Example output'
+    #  key: mdTitleExampleOutput
+    #- title: 'Example project'
+    #  key: mdTitleExampleProject
+    #- title: 'Example webhook receiver'
+    #  key: mdTitleExampleWebhookReceiver
+    #- title: 'Examples'
+    #  key: mdTitleExamples
+    #- title: 'Expected behavior'
+    #  key: mdTitleExpectedBehavior
+    #- title: 'Export from MySQL and import into Postgres'
+    #  key: mdTitleExportFromMySQLAndImportIntoPostgres
+    #- title: 'Extend your tests'
+    #  key: mdTitleExtendYourTests
+    #- title: 'External Groups'
+    #  key: mdTitleExternalGroups
+    #- title: 'External Users'
+    #  key: mdTitleExternalUsers
+    #- title: 'External Wiki'
+    #  key: mdTitleExternalWiki
+    #- title: 'External issue tracker'
+    #  key: mdTitleExternalIssueTracker
+    #- title: 'Facebook OAuth2 OmniAuth Provider'
+    #  key: mdTitleFacebookOAuth2OmniAuthProvider
+    #- title: 'Factories'
+    #  key: mdTitleFactories
+    #- title: 'Feature branch workflow'
+    #  key: mdTitleFeatureBranchWorkflow
+    #- title: 'Feature proposals'
+    #  key: mdTitleFeatureProposals
+    #- title: 'Features'
+    #  key: mdTitleFeatures
+    #- title: 'Features / Integration'
+    #  key: mdTitleFeaturesIntegration
+    #- title: 'File finder'
+    #  key: mdTitleFileFinder
+    #- title: 'Files are owned by root by default'
+    #  key: mdTitleFilesAreOwnedByRootByDefault
+    #- title: 'Filtering your Todos'
+    #  key: mdTitleFilteringYourTodos
+    #- title: 'Find MySQL users'
+    #  key: mdTitleFindMySQLUsers
+    #- title: 'Find other common errors'
+    #  key: mdTitleFindOtherCommonErrors
+    #- title: 'Find projects with invalid project names'
+    #  key: mdTitleFindProjectsWithInvalidProjectNames
+    #- title: 'Finders'
+    #  key: mdTitleFinders
+    #- title: 'Fixing issues'
+    #  key: mdTitleFixingIssues
+    #- title: 'Flowdock'
+    #  key: mdTitleFlowdock
+    #- title: 'For GitLab Enterprise Edition: sudo -u git -H git checkout 6-1-stable-ee'
+    #  key: mdTitleForGitLabEnterpriseEditionSudoUGitHGitCheckout61StableEe
+    #- title: 'For GitLab Enterprise Edition: sudo -u git -H git checkout 6-2-stable-ee'
+    #  key: mdTitleForGitLabEnterpriseEditionSudoUGitHGitCheckout62StableEe
+    #- title: 'For GitLab Enterprise Edition: sudo -u git -H git checkout 6-3-stable-ee'
+    #  key: mdTitleForGitLabEnterpriseEditionSudoUGitHGitCheckout63StableEe
+    #- title: 'For GitLab Enterprise Edition: sudo -u git -H git checkout 6-4-stable-ee'
+    #  key: mdTitleForGitLabEnterpriseEditionSudoUGitHGitCheckout64StableEe
+    #- title: 'For HTTP'
+    #  key: mdTitleForHTTP
+    #- title: 'For HTTP configurations'
+    #  key: mdTitleForHTTPConfigurations
+    #- title: 'For HTTPS'
+    #  key: mdTitleForHTTPS
+    #- title: 'For HTTPS configurations'
+    #  key: mdTitleForHTTPSConfigurations
+    #- title: 'For Omnibus installations'
+    #  key: mdTitleForOmnibusInstallations
+    #- title: 'For admin'
+    #  key: mdTitleForAdmin
+    #- title: 'For admins'
+    #  key: mdTitleForAdmins
+    #- title: 'For group 1234:'
+    #  key: mdTitleForGroup1234
+    #- title: 'For http'
+    #  key: mdTitleForHttp
+    #- title: 'For https'
+    #  key: mdTitleForHttps
+    #- title: 'For installation from source:'
+    #  key: mdTitleForInstallationFromSource
+    #- title: 'For installations from source'
+    #  key: mdTitleForInstallationsFromSource
+    #- title: "For installations from source, uncomment the 'default_can_create_group'"
+    #  key: mdTitleForInstallationsFromSourceUncommentTheDefaultCanCreateGroup
+    #- title: 'For more information visit https://github.com/gitlabhq/gitlabhq/pull/1719'
+    #  key: mdTitleForMoreInformationVisitHttps//Githubcom/Gitlabhq/Gitlabhq/Pull/1719
+    #- title: 'For normal users'
+    #  key: mdTitleForNormalUsers
+    #- title: 'For omnibus installations'
+    #  key: mdTitleForOmnibusInstallations
+    #- title: 'For omnibus-gitlab, put the following in /etc/gitlab/gitlab.rb'
+    #  key: mdTitleForOmnibusGitlabPutTheFollowingIn/Etc/Gitlab/Gitlabrb
+    #- title: 'For reStructuredText markup language support install required package:'
+    #  key: mdTitleForReStructuredTextMarkupLanguageSupportInstallRequiredPackage
+    #- title: 'For user'
+    #  key: mdTitleForUser
+    #- title: 'Fork project'
+    #  key: mdTitleForkProject
+    #- title: 'Forking workflow'
+    #  key: mdTitleForkingWorkflow
+    #- title: 'Forks'
+    #  key: mdTitleForks
+    #- title: 'Formatting'
+    #  key: mdTitleFormatting
+    #- title: 'Functional labels'
+    #  key: mdTitleFunctionalLabels
+    #- title: 'Further Configuration'
+    #  key: mdTitleFurtherConfiguration
+    #- title: 'Further reading'
+    #  key: mdTitleFurtherReading
+    #- title: 'GITLAB CI'
+    #  key: mdTitleGITLABCI
+    #- title: 'Gather information about GitLab and the system it runs on'
+    #  key: mdTitleGatherInformationAboutGitLabAndTheSystemItRunsOn
+    #- title: 'Gemnasium'
+    #  key: mdTitleGemnasium
+    #- title: 'General Guidelines'
+    #  key: mdTitleGeneralGuidelines
+    #- title: 'Generate API documentation for project services \(e.g. Slack\)'
+    #  key: mdTitleGenerateAPIDocumentationForProjectServicesEgSlack
+    #- title: 'Generate searchable docs for source code'
+    #  key: mdTitleGenerateSearchableDocsForSourceCode
+    #- title: 'Generate your SSH Key'
+    #  key: mdTitleGenerateYourSSHKey
+    #- title: 'Get Asana service settings'
+    #  key: mdTitleGetAsanaServiceSettings
+    #- title: 'Get Assembla service settings'
+    #  key: mdTitleGetAssemblaServiceSettings
+    #- title: 'Get Atlassian Bamboo CI service settings'
+    #  key: mdTitleGetAtlassianBambooCIServiceSettings
+    #- title: 'Get Buildkite service settings'
+    #  key: mdTitleGetBuildkiteServiceSettings
+    #- title: 'Get Campfire service settings'
+    #  key: mdTitleGetCampfireServiceSettings
+    #- title: 'Get Custom Issue Tracker service settings'
+    #  key: mdTitleGetCustomIssueTrackerServiceSettings
+    #- title: 'Get Drone CI service settings'
+    #  key: mdTitleGetDroneCIServiceSettings
+    #- title: 'Get Emails on push service settings'
+    #  key: mdTitleGetEmailsOnPushServiceSettings
+    #- title: 'Get External Wiki service settings'
+    #  key: mdTitleGetExternalWikiServiceSettings
+    #- title: 'Get Flowdock service settings'
+    #  key: mdTitleGetFlowdockServiceSettings
+    #- title: 'Get Gemnasium service settings'
+    #  key: mdTitleGetGemnasiumServiceSettings
+    #- title: 'Get GitLab CI service settings'
+    #  key: mdTitleGetGitLabCIServiceSettings
+    #- title: 'Get HipChat service settings'
+    #  key: mdTitleGetHipChatServiceSettings
+    #- title: 'Get Irker \(IRC gateway\) service settings'
+    #  key: mdTitleGetIrkerIRCGatewayServiceSettings
+    #- title: 'Get JIRA service settings'
+    #  key: mdTitleGetJIRAServiceSettings
+    #- title: 'Get JetBrains TeamCity CI service settings'
+    #  key: mdTitleGetJetBrainsTeamCityCIServiceSettings
+    #- title: 'Get PivotalTracker service settings'
+    #  key: mdTitleGetPivotalTrackerServiceSettings
+    #- title: 'Get Pushover service settings'
+    #  key: mdTitleGetPushoverServiceSettings
+    #- title: 'Get Redmine service settings'
+    #  key: mdTitleGetRedmineServiceSettings
+    #- title: 'Get SSH key with user by ID of an SSH key'
+    #  key: mdTitleGetSSHKeyWithUserByIDOfAnSSHKey
+    #- title: 'Get Slack service settings'
+    #  key: mdTitleGetSlackServiceSettings
+    #- title: 'Get a single build'
+    #  key: mdTitleGetASingleBuild
+    #- title: 'Get a single commit'
+    #  key: mdTitleGetASingleCommit
+    #- title: 'Get a single repository tag'
+    #  key: mdTitleGetASingleRepositoryTag
+    #- title: 'Get all issues assigned to a single milestone'
+    #  key: mdTitleGetAllIssuesAssignedToASingleMilestone
+    #- title: 'Get build artifacts'
+    #  key: mdTitleGetBuildArtifacts
+    #- title: 'Get current application settings'
+    #  key: mdTitleGetCurrentApplicationSettings
+    #- title: 'Get file archive'
+    #  key: mdTitleGetFileArchive
+    #- title: 'Get file from repository'
+    #  key: mdTitleGetFileFromRepository
+    #- title: 'Get latest code'
+    #  key: mdTitleGetLatestCode
+    #- title: 'Get project events'
+    #  key: mdTitleGetProjectEvents
+    #- title: 'Get project hook'
+    #  key: mdTitleGetProjectHook
+    #- title: 'Get project team member'
+    #  key: mdTitleGetProjectTeamMember
+    #- title: "Get runner's details"
+    #  key: mdTitleGetRunnersDetails
+    #- title: 'Get single MR'
+    #  key: mdTitleGetSingleMR
+    #- title: 'Get single MR changes'
+    #  key: mdTitleGetSingleMRChanges
+    #- title: 'Get single MR commits'
+    #  key: mdTitleGetSingleMRCommits
+    #- title: 'Get single issue note'
+    #  key: mdTitleGetSingleIssueNote
+    #- title: 'Get single merge request note'
+    #  key: mdTitleGetSingleMergeRequestNote
+    #- title: 'Get single milestone'
+    #  key: mdTitleGetSingleMilestone
+    #- title: 'Get single project'
+    #  key: mdTitleGetSingleProject
+    #- title: 'Get single repository branch'
+    #  key: mdTitleGetSingleRepositoryBranch
+    #- title: 'Get single snippet note'
+    #  key: mdTitleGetSingleSnippetNote
+    #- title: 'Get started with GitLab'
+    #  key: mdTitleGetStartedWithGitLab
+    #- title: 'Get the comments of a commit'
+    #  key: mdTitleGetTheCommentsOfACommit
+    #- title: 'Get the diff of a commit'
+    #  key: mdTitleGetTheDiffOfACommit
+    #- title: 'Get the status of a commit'
+    #  key: mdTitleGetTheStatusOfACommit
+    #- title: 'Get trigger details'
+    #  key: mdTitleGetTriggerDetails
+    #- title: 'Getting help'
+    #  key: mdTitleGettingHelp
+    #- title: 'Git Annex'
+    #  key: mdTitleGitAnnex
+    #- title: 'Git LFS'
+    #  key: mdTitleGitLFS
+    #- title: 'Git configuration'
+    #  key: mdTitleGitConfiguration
+    #- title: 'Git flow and its problems'
+    #  key: mdTitleGitFlowAndItsProblems
+    #- title: 'GitHub flow as a simpler alternative'
+    #  key: mdTitleGitHubFlowAsASimplerAlternative
+    #- title: 'GitLab'
+    #  key: mdTitleGitLab
+    #- title: 'GitLab 8.6+'
+    #  key: mdTitleGitLab86+
+    #- title: 'GitLab < 8.6'
+    #  key: mdTitleGitLab86
+    #- title: 'GitLab API'
+    #  key: mdTitleGitLabAPI
+    #- title: 'GitLab Architecture Overview'
+    #  key: mdTitleGitLabArchitectureOverview
+    #- title: 'GitLab CI'
+    #  key: mdTitleGitLabCI
+    #- title: 'GitLab CI API'
+    #  key: mdTitleGitLabCIAPI
+    #- title: 'GitLab CI Documentation'
+    #  key: mdTitleGitLabCIDocumentation
+    #- title: 'GitLab CI Services'
+    #  key: mdTitleGitLabCIServices
+    #- title: 'GitLab Configuration'
+    #  key: mdTitleGitLabConfiguration
+    #- title: 'GitLab Contributing Process'
+    #  key: mdTitleGitLabContributingProcess
+    #- title: 'GitLab Docker images'
+    #  key: mdTitleGitLabDockerImages
+    #- title: 'GitLab EE only: add more LDAP servers'
+    #  key: mdTitleGitLabEEOnlyAddMoreLDAPServers
+    #- title: 'GitLab Flavored Markdown \(GFM\)'
+    #  key: mdTitleGitLabFlavoredMarkdownGFM
+    #- title: 'GitLab Git LFS Administration'
+    #  key: mdTitleGitLabGitLFSAdministration
+    #- title: 'GitLab Groups'
+    #  key: mdTitleGitLabGroups
+    #- title: 'GitLab Integration'
+    #  key: mdTitleGitLabIntegration
+    #- title: 'GitLab JIRA integration'
+    #  key: mdTitleGitLabJIRAIntegration
+    #- title: 'GitLab LDAP integration'
+    #  key: mdTitleGitLabLDAPIntegration
+    #- title: 'GitLab Maintenance Policy'
+    #  key: mdTitleGitLabMaintenancePolicy
+    #- title: 'GitLab Notification Emails'
+    #  key: mdTitleGitLabNotificationEmails
+    #- title: 'GitLab Performance Monitoring'
+    #  key: mdTitleGitLabPerformanceMonitoring
+    #- title: 'GitLab ToDos'
+    #  key: mdTitleGitLabToDos
+    #- title: 'GitLab UI development kit'
+    #  key: mdTitleGitLabUIDevelopmentKit
+    #- title: 'GitLab Upgrader \(deprecated\)'
+    #  key: mdTitleGitLabUpgraderDeprecated
+    #- title: 'GitLab Web Editor'
+    #  key: mdTitleGitLabWebEditor
+    #- title: 'GitLab as OAuth2 authentication service provider'
+    #  key: mdTitleGitLabAsOAuth2AuthenticationServiceProvider
+    #- title: 'GitLab as an OAuth2 client'
+    #  key: mdTitleGitLabAsAnOAuth2Client
+    #- title: 'GitLab basics'
+    #  key: mdTitleGitLabBasics
+    #- title: 'GitLab directory structure'
+    #  key: mdTitleGitLabDirectoryStructure
+    #- title: 'GitLab is unable to close a ticket'
+    #  key: mdTitleGitLabIsUnableToCloseATicket
+    #- title: 'GitLab is unable to comment on a ticket'
+    #  key: mdTitleGitLabIsUnableToCommentOnATicket
+    #- title: 'GitLab keyboard shortcuts'
+    #  key: mdTitleGitLabKeyboardShortcuts
+    #- title: 'GitLab operations'
+    #  key: mdTitleGitLabOperations
+    #- title: 'GitLab release cycle'
+    #  key: mdTitleGitLabReleaseCycle
+    #- title: 'GitLab server configuration'
+    #  key: mdTitleGitLabServerConfiguration
+    #- title: 'GitLab shell requires system ruby 1.9'
+    #  key: mdTitleGitLabShellRequiresSystemRuby19
+    #- title: 'GitLab specific config files'
+    #  key: mdTitleGitLabSpecificConfigFiles
+    #- title: 'Gitlab Runner'
+    #  key: mdTitleGitlabRunner
+    #- title: 'Gitolite 3'
+    #  key: mdTitleGitolite3
+    #- title: 'Gitolite v2'
+    #  key: mdTitleGitoliteV2
+    #- title: 'Gitolite v2:'
+    #  key: mdTitleGitoliteV2
+    #- title: 'Gitolite v3:'
+    #  key: mdTitleGitoliteV3
+    #- title: 'Gitolite version 3'
+    #  key: mdTitleGitoliteVersion3
+    #- title: 'Global Settings'
+    #  key: mdTitleGlobalSettings
+    #- title: 'Global issue numbers'
+    #  key: mdTitleGlobalIssueNumbers
+    #- title: 'Global projects'
+    #  key: mdTitleGlobalProjects
+    #- title: 'Gmail actions buttons for GitLab'
+    #  key: mdTitleGmailActionsButtonsForGitLab
+    #- title: 'Go back one directory or file'
+    #  key: mdTitleGoBackOneDirectoryOrFile
+    #- title: 'Go into a project, directory or file to work in it'
+    #  key: mdTitleGoIntoAProjectDirectoryOrFileToWorkInIt
+    #- title: 'Go to the master branch to pull the latest changes from there'
+    #  key: mdTitleGoToTheMasterBranchToPullTheLatestChangesFromThere
+    #- title: 'Google OAuth2 OmniAuth Provider'
+    #  key: mdTitleGoogleOAuth2OmniAuthProvider
+    #- title: 'Gotchas'
+    #  key: mdTitleGotchas
+    #- title: 'Grafana Configuration'
+    #  key: mdTitleGrafanaConfiguration
+    #- title: 'Grant permission to the socket to all members of the redis group'
+    #  key: mdTitleGrantPermissionToTheSocketToAllMembersOfTheRedisGroup
+    #- title: 'Grant the git user necessary permissions on the database'
+    #  key: mdTitleGrantTheGitUserNecessaryPermissionsOnTheDatabase
+    #- title: 'Group'
+    #  key: mdTitleGroup
+    #- title: 'Group Settings'
+    #  key: mdTitleGroupSettings
+    #- title: 'Group members'
+    #  key: mdTitleGroupMembers
+    #- title: 'Groups'
+    #  key: mdTitleGroups
+    #- title: 'Groups and milestones'
+    #  key: mdTitleGroupsAndMilestones
+    #- title: 'Groups as collections of users'
+    #  key: mdTitleGroupsAsCollectionsOfUsers
+    #- title: 'Guard against path traversal'
+    #  key: mdTitleGuardAgainstPathTraversal
+    #- title: 'Guidelines for shell commands in the GitLab codebase'
+    #  key: mdTitleGuidelinesForShellCommandsInTheGitLabCodebase
+    #- title: 'HTTPS? Disable gzip'
+    #  key: mdTitleHTTPSDisableGzip
+    #- title: 'Hardware requirements'
+    #  key: mdTitleHardwareRequirements
+    #- title: 'Having your code reviewed'
+    #  key: mdTitleHavingYourCodeReviewed
+    #- title: 'Header IDs and links'
+    #  key: mdTitleHeaderIDsAndLinks
+    #- title: 'Headers'
+    #  key: mdTitleHeaders
+    #- title: 'Headings'
+    #  key: mdTitleHeadings
+    #- title: 'Helping others'
+    #  key: mdTitleHelpingOthers
+    #- title: 'Here you can install any other extension that you need'
+    #  key: mdTitleHereYouCanInstallAnyOtherExtensionThatYouNeed
+    #- title: 'Hidden jobs'
+    #  key: mdTitleHiddenJobs
+    #- title: 'HipChat'
+    #  key: mdTitleHipChat
+    #- title: 'Hooks'
+    #  key: mdTitleHooks
+    #- title: 'Hooks request example'
+    #  key: mdTitleHooksRequestExample
+    #- title: 'Horizontal Rule'
+    #  key: mdTitleHorizontalRule
+    #- title: 'Housekeeping'
+    #  key: mdTitleHousekeeping
+    #- title: 'How Docker integration works'
+    #  key: mdTitleHowDockerIntegrationWorks
+    #- title: 'How a Todo is marked as Done'
+    #  key: mdTitleHowATodoIsMarkedAsDone
+    #- title: 'How is service linked to the build'
+    #  key: mdTitleHowIsServiceLinkedToTheBuild
+    #- title: 'How it works'
+    #  key: mdTitleHowItWorks
+    #- title: 'How it works?'
+    #  key: mdTitleHowItWorks
+    #- title: 'How to add a file'
+    #  key: mdTitleHowToAddAFile
+    #- title: 'How to add an image'
+    #  key: mdTitleHowToAddAnImage
+    #- title: 'How to change project visibility'
+    #  key: mdTitleHowToChangeProjectVisibility
+    #- title: 'How to create a branch'
+    #  key: mdTitleHowToCreateABranch
+    #- title: 'How to create a group in GitLab'
+    #  key: mdTitleHowToCreateAGroupInGitLab
+    #- title: 'How to create a merge request'
+    #  key: mdTitleHowToCreateAMergeRequest
+    #- title: 'How to create a project in GitLab'
+    #  key: mdTitleHowToCreateAProjectInGitLab
+    #- title: 'How to create an Issue in GitLab'
+    #  key: mdTitleHowToCreateAnIssueInGitLab
+    #- title: 'How to create your SSH Keys'
+    #  key: mdTitleHowToCreateYourSSHKeys
+    #- title: 'How to debug a build locally'
+    #  key: mdTitleHowToDebugABuildLocally
+    #- title: 'How to fork a project'
+    #  key: mdTitleHowToForkAProject
+    #- title: 'How to reset your root password'
+    #  key: mdTitleHowToResetYourRootPassword
+    #- title: 'How to restart GitLab'
+    #  key: mdTitleHowToRestartGitLab
+    #- title: 'How to use'
+    #  key: mdTitleHowToUse
+    #- title: 'How to use other images as services'
+    #  key: mdTitleHowToUseOtherImagesAsServices
+    #- title: 'How we manage the TLS protocol CRIME vulnerability'
+    #  key: mdTitleHowWeManageTheTLSProtocolCRIMEVulnerability
+    #- title: 'I want to contribute!'
+    #  key: mdTitleIWantToContribute
+    #- title: 'I. Upgrading'
+    #  key: mdTitleIUpgrading
+    #- title: 'ID-based CSS selectors need to be a bit more specific'
+    #  key: mdTitleIDBasedCSSSelectorsNeedToBeABitMoreSpecific
+    #- title: 'II. Moving data'
+    #  key: mdTitleIIMovingData
+    #- title: 'III. Redirecting traffic'
+    #  key: mdTitleIIIRedirectingTraffic
+    #- title: 'If both users exist skip to Delete gitlab user'
+    #  key: mdTitleIfBothUsersExistSkipToDeleteGitlabUser
+    #- title: 'If git user exists and gitlab user does not exist'
+    #  key: mdTitleIfGitUserExistsAndGitlabUserDoesNotExist
+    #- title: 'If git user exists and gitlab user does not exist'
+    #  key: mdTitleIfGitUserExistsAndGitlabUserDoesNotExist
+    #- title: "If not try to logout, also check replaced path from '/home/gitlab/' to '/home/git/'"
+    #  key: mdTitleIfNotTryToLogoutAlsoCheckReplacedPathFrom/Home/Gitlab/To/Home/Git/
+    #- title: 'If previous query returned results, copy & run all shown SQL statements'
+    #  key: mdTitleIfPreviousQueryReturnedResultsCopy&RunAllShownSQLStatements
+    #- title: "If there is no 'listen' line for 127.0.0.1:8080, add it:"
+    #  key: mdTitleIfThereIsNoListenLineFor1270018080AddIt
+    #- title: "If you don't know what Kerberos is, you can assume you don't need it."
+    #  key: mdTitleIfYouDontKnowWhatKerberosIsYouCanAssumeYouDontNeedIt
+    #- title: 'If you still use gitolite v2'
+    #  key: mdTitleIfYouStillUseGitoliteV2
+    #- title: 'If you want to use Kerberos with GitLab EE for user authentication, install Kerberos header files'
+    #  key: mdTitleIfYouWantToUseKerberosWithGitLabEEForUserAuthenticationInstallKerberosHeaderFiles
+    #- title: 'Ignore whitespace changes in Merge Request diff view'
+    #  key: mdTitleIgnoreWhitespaceChangesInMergeRequestDiffView
+    #- title: 'Ignoring issues'
+    #  key: mdTitleIgnoringIssues
+    #- title: 'Images'
+    #  key: mdTitleImages
+    #- title: 'Implement design & UI elements'
+    #  key: mdTitleImplementDesign&UIElements
+    #- title: 'Import Dashboards'
+    #  key: mdTitleImportDashboards
+    #- title: 'Import bare repositories into your GitLab instance'
+    #  key: mdTitleImportBareRepositoriesIntoYourGitLabInstance
+    #- title: 'Import the database dump as the application database user'
+    #  key: mdTitleImportTheDatabaseDumpAsTheApplicationDatabaseUser
+    #- title: 'Import users from another project'
+    #  key: mdTitleImportUsersFromAnotherProject
+    #- title: 'Import your project from Bitbucket to GitLab'
+    #  key: mdTitleImportYourProjectFromBitbucketToGitLab
+    #- title: 'Import your project from FogBugz to GitLab'
+    #  key: mdTitleImportYourProjectFromFogBugzToGitLab
+    #- title: 'Import your project from GitHub to GitLab'
+    #  key: mdTitleImportYourProjectFromGitHubToGitLab
+    #- title: 'Important Notes'
+    #  key: mdTitleImportantNotes
+    #- title: 'Important changes'
+    #  key: mdTitleImportantChanges
+    #- title: 'Importing a database dump into a staging environment'
+    #  key: mdTitleImportingADatabaseDumpIntoAStagingEnvironment
+    #- title: 'Improperly formatted issue'
+    #  key: mdTitleImproperlyFormattedIssue
+    #- title: 'Improperly formatted merge request'
+    #  key: mdTitleImproperlyFormattedMergeRequest
+    #- title: 'In /etc/gitlab/gitlab.rb, for omnibus packages'
+    #  key: mdTitleIn/Etc/Gitlab/GitlabrbForOmnibusPackages
+    #- title: 'In 5-10 seconds lets check gitlab-shell'
+    #  key: mdTitleIn510SecondsLetsCheckGitlabShell
+    #- title: 'In gitlab.yml, for installations from source:'
+    #  key: mdTitleInGitlabymlForInstallationsFromSource
+    #- title: 'Inactivity close of a merge request'
+    #  key: mdTitleInactivityCloseOfAMergeRequest
+    #- title: 'Inactivity close of an issue'
+    #  key: mdTitleInactivityCloseOfAnIssue
+    #- title: 'Incremental build trace update'
+    #  key: mdTitleIncrementalBuildTraceUpdate
+    #- title: 'Indentation'
+    #  key: mdTitleIndentation
+    #- title: 'Individual contributor license agreement'
+    #  key: mdTitleIndividualContributorLicenseAgreement
+    #- title: 'InfluxDB Configuration'
+    #  key: mdTitleInfluxDBConfiguration
+    #- title: 'InfluxDB Schema'
+    #  key: mdTitleInfluxDBSchema
+    #- title: 'InfluxDB Server Settings'
+    #  key: mdTitleInfluxDBServerSettings
+    #- title: 'Information exclusivity'
+    #  key: mdTitleInformationExclusivity
+    #- title: 'Init script'
+    #  key: mdTitleInitScript
+    #- title: 'Init scripts of the services'
+    #  key: mdTitleInitScriptsOfTheServices
+    #- title: 'Initial Login'
+    #  key: mdTitleInitialLogin
+    #- title: 'Initial OmniAuth Configuration'
+    #  key: mdTitleInitialOmniAuthConfiguration
+    #- title: 'Initialize Database and Activate Advanced Features'
+    #  key: mdTitleInitializeDatabaseAndActivateAdvancedFeatures
+    #- title: 'Inject keys in your build server'
+    #  key: mdTitleInjectKeysInYourBuildServer
+    #- title: 'Inline HTML'
+    #  key: mdTitleInlineHTML
+    #- title: 'Install Gems'
+    #  key: mdTitleInstallGems
+    #- title: 'Install GitLab Shell'
+    #  key: mdTitleInstallGitLabShell
+    #- title: 'Install GitLab under a relative URL'
+    #  key: mdTitleInstallGitLabUnderARelativeURL
+    #- title: 'Install Init Script'
+    #  key: mdTitleInstallInitScript
+    #- title: 'Install Redis 2.8 in Debian 7'
+    #  key: mdTitleInstallRedis28InDebian7
+    #- title: 'Install Redis 2.8 in Ubuntu 12.04'
+    #  key: mdTitleInstallRedis28InUbuntu1204
+    #- title: 'Install Redis on old distributions'
+    #  key: mdTitleInstallRedisOnOldDistributions
+    #- title: 'Install a development environment'
+    #  key: mdTitleInstallADevelopmentEnvironment
+    #- title: 'Install and Update'
+    #  key: mdTitleInstallAndUpdate
+    #- title: 'Install composer dependencies'
+    #  key: mdTitleInstallComposerDependencies
+    #- title: 'Install custom extensions'
+    #  key: mdTitleInstallCustomExtensions
+    #- title: 'Install dependencies'
+    #  key: mdTitleInstallDependencies
+    #- title: 'Install gems'
+    #  key: mdTitleInstallGems
+    #- title: 'Install gems for MySQL'
+    #  key: mdTitleInstallGemsForMySQL
+    #- title: "Install gems for PostgreSQL \\(note: the line below states '--without ... mysql'\\)"
+    #  key: mdTitleInstallGemsForPostgreSQLNoteTheLineBelowStatesWithoutMysql
+    #- title: "Install git \\(the php image doesn't have it\\) which is required by composer"
+    #  key: mdTitleInstallGitThePhpImageDoesntHaveItWhichIsRequiredByComposer
+    #- title: 'Install gitlab-workhorse'
+    #  key: mdTitleInstallGitlabWorkhorse
+    #- title: 'Install libs'
+    #  key: mdTitleInstallLibs
+    #- title: 'Install mysql driver'
+    #  key: mdTitleInstallMysqlDriver
+    #- title: 'Install new charlock_holmes'
+    #  key: mdTitleInstallNewCharlockHolmes
+    #- title: 'Install nodejs, javascript runtime required for assets'
+    #  key: mdTitleInstallNodejsJavascriptRuntimeRequiredForAssets
+    #- title: 'Install packages'
+    #  key: mdTitleInstallPackages
+    #- title: 'Install phpunit, the tool that we will use for testing'
+    #  key: mdTitleInstallPhpunitTheToolThatWeWillUseForTesting
+    #- title: 'Install pkg-config and cmake, which is needed for the latest versions of rugged'
+    #  key: mdTitleInstallPkgConfigAndCmakeWhichIsNeededForTheLatestVersionsOfRugged
+    #- title: 'Install the Courier IMAP server'
+    #  key: mdTitleInstallTheCourierIMAPServer
+    #- title: 'Installation'
+    #  key: mdTitleInstallation
+    #- title: 'Installation Folder Summary'
+    #  key: mdTitleInstallationFolderSummary
+    #- title: 'Installation from source'
+    #  key: mdTitleInstallationFromSource
+    #- title: 'Installation guide'
+    #  key: mdTitleInstallationGuide
+    #- title: 'Installation using Docker'
+    #  key: mdTitleInstallationUsingDocker
+    #- title: 'Installations from source'
+    #  key: mdTitleInstallationsFromSource
+    #- title: 'Instrumenting Ruby Code'
+    #  key: mdTitleInstrumentingRubyCode
+    #- title: 'Integrate your server with Bitbucket'
+    #  key: mdTitleIntegrateYourServerWithBitbucket
+    #- title: 'Integrate your server with GitHub'
+    #  key: mdTitleIntegrateYourServerWithGitHub
+    #- title: 'Integrate your server with GitLab.com'
+    #  key: mdTitleIntegrateYourServerWithGitLabcom
+    #- title: 'Internal projects'
+    #  key: mdTitleInternalProjects
+    #- title: 'Introduction'
+    #  key: mdTitleIntroduction
+    #- title: 'Introduction to GitLab Performance Monitoring'
+    #  key: mdTitleIntroductionToGitLabPerformanceMonitoring
+    #- title: 'Introduction to OAuth'
+    #  key: mdTitleIntroductionToOAuth
+    #- title: 'Introduction to build artifacts'
+    #  key: mdTitleIntroductionToBuildArtifacts
+    #- title: 'Invalid audience'
+    #  key: mdTitleInvalidAudience
+    #- title: 'Invalid credentials when logging in'
+    #  key: mdTitleInvalidCredentialsWhenLoggingIn
+    #- title: 'Invalid status for <url> : 501'
+    #  key: mdTitleInvalidStatusForUrl501
+    #- title: 'Invite people using their e-mail address'
+    #  key: mdTitleInvitePeopleUsingTheirEMailAddress
+    #- title: 'Irker \(IRC gateway\)'
+    #  key: mdTitleIrkerIRCGateway
+    #- title: 'Irker IRC Gateway'
+    #  key: mdTitleIrkerIRCGateway
+    #- title: 'Is it any good?'
+    #  key: mdTitleIsItAnyGood
+    #- title: 'Is it awesome?'
+    #  key: mdTitleIsItAwesome
+    #- title: 'Issue / Merge Request events'
+    #  key: mdTitleIssueMergeRequestEvents
+    #- title: 'Issue closing pattern'
+    #  key: mdTitleIssueClosingPattern
+    #- title: 'Issue fixed in newer version'
+    #  key: mdTitleIssueFixedInNewerVersion
+    #- title: 'Issue report for old version'
+    #  key: mdTitleIssueReportForOldVersion
+    #- title: 'Issue team'
+    #  key: mdTitleIssueTeam
+    #- title: 'Issue tracker'
+    #  key: mdTitleIssueTracker
+    #- title: 'Issue tracker guidelines'
+    #  key: mdTitleIssueTrackerGuidelines
+    #- title: 'Issue weight'
+    #  key: mdTitleIssueWeight
+    #- title: 'Issues'
+    #  key: mdTitleIssues
+    #- title: 'Issues events'
+    #  key: mdTitleIssuesEvents
+    #- title: 'Issues pagination'
+    #  key: mdTitleIssuesPagination
+    #- title: 'Issues with GitLab flow'
+    #  key: mdTitleIssuesWithGitLabFlow
+    #- title: 'JIRA'
+    #  key: mdTitleJIRA
+    #- title: 'JIRA issue closing example'
+    #  key: mdTitleJIRAIssueClosingExample
+    #- title: 'JIRA issues'
+    #  key: mdTitleJIRAIssues
+    #- title: 'JS My Selector'
+    #  key: mdTitleJSMySelector
+    #- title: 'JavaScript'
+    #  key: mdTitleJavaScript
+    #- title: 'JetBrains TeamCity CI'
+    #  key: mdTitleJetBrainsTeamCityCI
+    #- title: 'Jobs'
+    #  key: mdTitleJobs
+    #- title: 'Key validation error, Digest mismatch or Fingerprint mismatch'
+    #  key: mdTitleKeyValidationErrorDigestMismatchOrFingerprintMismatch
+    #- title: 'Keys'
+    #  key: mdTitleKeys
+    #- title: 'Known limitations'
+    #  key: mdTitleKnownLimitations
+    #- title: 'LDAP'
+    #  key: mdTitleLDAP
+    #- title: 'LDAP Authentication'
+    #  key: mdTitleLDAPAuthentication
+    #- title: 'LIKE & Indexes'
+    #  key: mdTitleLIKE&Indexes
+    #- title: 'Label colors'
+    #  key: mdTitleLabelColors
+    #- title: 'Labels'
+    #  key: mdTitleLabels
+    #- title: 'Legal'
+    #  key: mdTitleLegal
+    #- title: 'Licenses'
+    #  key: mdTitleLicenses
+    #- title: 'Limitations'
+    #  key: mdTitleLimitations
+    #- title: 'Line Breaks'
+    #  key: mdTitleLineBreaks
+    #- title: 'Linking and closing issues from merge requests'
+    #  key: mdTitleLinkingAndClosingIssuesFromMergeRequests
+    #- title: 'Links'
+    #  key: mdTitleLinks
+    #- title: 'Linting'
+    #  key: mdTitleLinting
+    #- title: 'List \*\*ALL\*\* webhooks:'
+    #  key: mdTitleListALLWebhooks
+    #- title: 'List ALL projects'
+    #  key: mdTitleListALLProjects
+    #- title: 'List SSH keys'
+    #  key: mdTitleListSSHKeys
+    #- title: 'List SSH keys for user'
+    #  key: mdTitleListSSHKeysForUser
+    #- title: "List a group's projects"
+    #  key: mdTitleListAGroupsProjects
+    #- title: 'List all merge request notes'
+    #  key: mdTitleListAllMergeRequestNotes
+    #- title: 'List all runners'
+    #  key: mdTitleListAllRunners
+    #- title: 'List all snippet notes'
+    #  key: mdTitleListAllSnippetNotes
+    #- title: 'List branches'
+    #  key: mdTitleListBranches
+    #- title: 'List commit builds'
+    #  key: mdTitleListCommitBuilds
+    #- title: 'List deploy keys'
+    #  key: mdTitleListDeployKeys
+    #- title: 'List emails'
+    #  key: mdTitleListEmails
+    #- title: 'List emails for user'
+    #  key: mdTitleListEmailsForUser
+    #- title: 'List group members'
+    #  key: mdTitleListGroupMembers
+    #- title: 'List groups'
+    #  key: mdTitleListGroups
+    #- title: 'List issues'
+    #  key: mdTitleListIssues
+    #- title: 'List issues that will close on merge'
+    #  key: mdTitleListIssuesThatWillCloseOnMerge
+    #- title: 'List labels'
+    #  key: mdTitleListLabels
+    #- title: 'List license templates'
+    #  key: mdTitleListLicenseTemplates
+    #- title: 'List merge requests'
+    #  key: mdTitleListMergeRequests
+    #- title: 'List namespaces'
+    #  key: mdTitleListNamespaces
+    #- title: 'List owned projects'
+    #  key: mdTitleListOwnedProjects
+    #- title: 'List owned runners'
+    #  key: mdTitleListOwnedRunners
+    #- title: 'List project builds'
+    #  key: mdTitleListProjectBuilds
+    #- title: 'List project hooks'
+    #  key: mdTitleListProjectHooks
+    #- title: 'List project issue notes'
+    #  key: mdTitleListProjectIssueNotes
+    #- title: 'List project issues'
+    #  key: mdTitleListProjectIssues
+    #- title: 'List project milestones'
+    #  key: mdTitleListProjectMilestones
+    #- title: 'List project repository tags'
+    #  key: mdTitleListProjectRepositoryTags
+    #- title: 'List project team members'
+    #  key: mdTitleListProjectTeamMembers
+    #- title: 'List project triggers'
+    #  key: mdTitleListProjectTriggers
+    #- title: 'List project variables'
+    #  key: mdTitleListProjectVariables
+    #- title: "List project's runners"
+    #  key: mdTitleListProjectsRunners
+    #- title: 'List projects'
+    #  key: mdTitleListProjects
+    #- title: 'List repository branches'
+    #  key: mdTitleListRepositoryBranches
+    #- title: 'List repository commits'
+    #  key: mdTitleListRepositoryCommits
+    #- title: 'List repository tree'
+    #  key: mdTitleListRepositoryTree
+    #- title: 'List single branch'
+    #  key: mdTitleListSingleBranch
+    #- title: 'List snippets'
+    #  key: mdTitleListSnippets
+    #- title: 'List starred projects'
+    #  key: mdTitleListStarredProjects
+    #- title: 'List system hooks'
+    #  key: mdTitleListSystemHooks
+    #- title: 'List the webhooks from projects in a given \*\*NAMESPACE\*\*:'
+    #  key: mdTitleListTheWebhooksFromProjectsInAGivenNAMESPACE
+    #- title: 'List users'
+    #  key: mdTitleListUsers
+    #- title: 'Listing repository directories'
+    #  key: mdTitleListingRepositoryDirectories
+    #- title: 'Lists'
+    #  key: mdTitleLists
+    #- title: 'Log arguments to Sidekiq jobs'
+    #  key: mdTitleLogArgumentsToSidekiqJobs
+    #- title: 'Log locations of the services'
+    #  key: mdTitleLogLocationsOfTheServices
+    #- title: 'Log system'
+    #  key: mdTitleLogSystem
+    #- title: 'Logging in with 2FA Enabled'
+    #  key: mdTitleLoggingInWith2FAEnabled
+    #- title: 'Login issues after upgrade?'
+    #  key: mdTitleLoginIssuesAfterUpgrade
+    #- title: 'Login to MySQL'
+    #  key: mdTitleLoginToMySQL
+    #- title: 'Main gitlab.com server'
+    #  key: mdTitleMainGitlabcomServer
+    #- title: 'Maintain tight control over the number of active users on your GitLab installation'
+    #  key: mdTitleMaintainTightControlOverTheNumberOfActiveUsersOnYourGitLabInstallation
+    #- title: 'Maintenance'
+    #  key: mdTitleMaintenance
+    #- title: 'Maintenance Tasks'
+    #  key: mdTitleMaintenanceTasks
+    #- title: 'Make some changes to Gitolite config'
+    #  key: mdTitleMakeSomeChangesToGitoliteConfig
+    #- title: 'Make some changes to gitolite v3 config'
+    #  key: mdTitleMakeSomeChangesToGitoliteV3Config
+    #- title: 'Make sure none of the following rails commands return results'
+    #  key: mdTitleMakeSureNoneOfTheFollowingRailsCommandsReturnResults
+    #- title: 'Making use of trigger variables'
+    #  key: mdTitleMakingUseOfTriggerVariables
+    #- title: 'Managing group memberships via LDAP'
+    #  key: mdTitleManagingGroupMembershipsViaLDAP
+    #- title: 'Markdown'
+    #  key: mdTitleMarkdown
+    #- title: 'Maximum access level'
+    #  key: mdTitleMaximumAccessLevel
+    #- title: 'Memory'
+    #  key: mdTitleMemory
+    #- title: 'Mentioning people'
+    #  key: mdTitleMentioningPeople
+    #- title: 'Merge Requests'
+    #  key: mdTitleMergeRequests
+    #- title: 'Merge When Build Succeeds'
+    #  key: mdTitleMergeWhenBuildSucceeds
+    #- title: 'Merge created branch with master branch'
+    #  key: mdTitleMergeCreatedBranchWithMasterBranch
+    #- title: 'Merge marshall & merge request coach'
+    #  key: mdTitleMergeMarshall&MergeRequestCoach
+    #- title: 'Merge request description format'
+    #  key: mdTitleMergeRequestDescriptionFormat
+    #- title: 'Merge request events'
+    #  key: mdTitleMergeRequestEvents
+    #- title: 'Merge request guidelines'
+    #  key: mdTitleMergeRequestGuidelines
+    #- title: 'Merge requests'
+    #  key: mdTitleMergeRequests
+    #- title: 'Merge/pull requests with GitLab flow'
+    #  key: mdTitleMerge/PullRequestsWithGitLabFlow
+    #- title: 'Merging in other code'
+    #  key: mdTitleMergingInOtherCode
+    #- title: 'Merging upstream'
+    #  key: mdTitleMergingUpstream
+    #- title: 'Method description'
+    #  key: mdTitleMethodDescription
+    #- title: 'Metric Types'
+    #  key: mdTitleMetricTypes
+    #- title: 'Microsoft Azure OAuth2 OmniAuth Provider'
+    #  key: mdTitleMicrosoftAzureOAuth2OmniAuthProvider
+    #- title: 'Migrate GitLab CI to GitLab CE or EE'
+    #  key: mdTitleMigrateGitLabCIToGitLabCEOrEE
+    #- title: 'Migrate db'
+    #  key: mdTitleMigrateDb
+    #- title: 'Migrating GitLab from MySQL to Postgres'
+    #  key: mdTitleMigratingGitLabFromMySQLToPostgres
+    #- title: 'Migrating from SVN to GitLab'
+    #  key: mdTitleMigratingFromSVNToGitLab
+    #- title: 'Migrating from self-hosted GitLab to GitLab.com'
+    #  key: mdTitleMigratingFromSelfHostedGitLabToGitLabcom
+    #- title: 'Migrating projects to a GitLab instance'
+    #  key: mdTitleMigratingProjectsToAGitLabInstance
+    #- title: 'Migration Style Guide'
+    #  key: mdTitleMigrationStyleGuide
+    #- title: 'Milestones'
+    #  key: mdTitleMilestones
+    #- title: 'Miscellaneous'
+    #  key: mdTitleMiscellaneous
+    #- title: 'Missing claims'
+    #  key: mdTitleMissingClaims
+    #- title: 'Modify existing issue note'
+    #  key: mdTitleModifyExistingIssueNote
+    #- title: 'Modify existing merge request note'
+    #  key: mdTitleModifyExistingMergeRequestNote
+    #- title: 'Modify existing snippet note'
+    #  key: mdTitleModifyExistingSnippetNote
+    #- title: 'Move an issue'
+    #  key: mdTitleMoveAnIssue
+    #- title: 'Move the backup file we will convert to its own directory'
+    #  key: mdTitleMoveTheBackupFileWeWillConvertToItsOwnDirectory
+    #- title: 'Moving repositories managed by GitLab'
+    #  key: mdTitleMovingRepositoriesManagedByGitLab
+    #- title: 'Multiple underscores in words'
+    #  key: mdTitleMultipleUnderscoresInWords
+    #- title: 'MySQL'
+    #  key: mdTitleMySQL
+    #- title: 'MySQL Databases: Update database.yml config file'
+    #  key: mdTitleMySQLDatabasesUpdateDatabaseymlConfigFile
+    #- title: "MySQL installations \\(note: the line below states '--without ... postgres'\\)"
+    #  key: mdTitleMySQLInstallationsNoteTheLineBelowStatesWithoutPostgres
+    #- title: "MySQL installations \\(note: the line below states '--without postgres'\\)"
+    #  key: mdTitleMySQLInstallationsNoteTheLineBelowStatesWithoutPostgres
+    #- title: 'MySQL service example'
+    #  key: mdTitleMySQLServiceExample
+    #- title: 'MySQL strings limits'
+    #  key: mdTitleMySQLStringsLimits
+    #- title: 'MySQL? Remove reaping frequency'
+    #  key: mdTitleMySQLRemoveReapingFrequency
+    #- title: 'Namespaces'
+    #  key: mdTitleNamespaces
+    #- title: 'Namespaces in groups'
+    #  key: mdTitleNamespacesInGroups
+    #- title: 'Naming'
+    #  key: mdTitleNaming
+    #- title: 'Needed setup'
+    #  key: mdTitleNeededSetup
+    #- title: 'Nessus'
+    #  key: mdTitleNessus
+    #- title: 'New Nginx configuration'
+    #  key: mdTitleNewNginxConfiguration
+    #- title: 'New configuration options for `gitlab.yml`'
+    #  key: mdTitleNewConfigurationOptionsForGitlabyml
+    #- title: 'New configuration options for gitlab.yml'
+    #  key: mdTitleNewConfigurationOptionsForGitlabyml
+    #- title: 'New features'
+    #  key: mdTitleNewFeatures
+    #- title: 'New group'
+    #  key: mdTitleNewGroup
+    #- title: 'New issue'
+    #  key: mdTitleNewIssue
+    #- title: 'New tag page with release notes text area'
+    #  key: mdTitleNewTagPageWithReleaseNotesTextArea
+    #- title: 'Newlines'
+    #  key: mdTitleNewlines
+    #- title: 'Nginx'
+    #  key: mdTitleNginx
+    #- title: 'Nginx configuration'
+    #  key: mdTitleNginxConfiguration
+    #- title: 'Non-Unix operating systems such as Windows'
+    #  key: mdTitleNonUnixOperatingSystemsSuchAsWindows
+    #- title: 'Note'
+    #  key: mdTitleNote
+    #- title: 'Note'
+    #  key: mdTitleNote
+    #- title: 'Note on Irker recipients'
+    #  key: mdTitleNoteOnIrkerRecipients
+    #- title: 'Note the filename of the backup that was created. We will call it'
+    #  key: mdTitleNoteTheFilenameOfTheBackupThatWasCreatedWeWillCallIt
+    #- title: 'Note to GitLab administrators'
+    #  key: mdTitleNoteToGitLabAdministrators
+    #- title: 'Note:'
+    #  key: mdTitleNote
+    #- title: 'Notes'
+    #  key: mdTitleNotes
+    #- title: 'Notification events'
+    #  key: mdTitleNotificationEvents
+    #- title: 'Notification settings'
+    #  key: mdTitleNotificationSettings
+    #- title: 'Now check GitLab instance'
+    #  key: mdTitleNowCheckGitLabInstance
+    #- title: 'Now check gitlab instance'
+    #  key: mdTitleNowCheckGitlabInstance
+    #- title: 'Now on the CI server'
+    #  key: mdTitleNowOnTheCIServer
+    #- title: 'OAuth applications in the admin area'
+    #  key: mdTitleOAuthApplicationsInTheAdminArea
+    #- title: 'OmniAuth'
+    #  key: mdTitleOmniAuth
+    #- title: 'Omnibus'
+    #  key: mdTitleOmnibus
+    #- title: 'Omnibus GitLab reconfigure'
+    #  key: mdTitleOmnibusGitLabReconfigure
+    #- title: 'Omnibus GitLab restart'
+    #  key: mdTitleOmnibusGitLabRestart
+    #- title: 'Omnibus Installation'
+    #  key: mdTitleOmnibusInstallation
+    #- title: 'Omnibus Packages'
+    #  key: mdTitleOmnibusPackages
+    #- title: 'Omnibus configuration'
+    #  key: mdTitleOmnibusConfiguration
+    #- title: 'Omnibus install'
+    #  key: mdTitleOmnibusInstall
+    #- title: 'Omnibus installations'
+    #  key: mdTitleOmnibusInstallations
+    #- title: 'Omnibus package installations'
+    #  key: mdTitleOmnibusPackageInstallations
+    #- title: 'Omnibus packages'
+    #  key: mdTitleOmnibusPackages
+    #- title: 'Omnibus-gitlab example'
+    #  key: mdTitleOmnibusGitlabExample
+    #- title: 'On GitLab'
+    #  key: mdTitleOnGitLab
+    #- title: 'On LOCAL MACHINE'
+    #  key: mdTitleOnLOCALMACHINE
+    #- title: 'On PRODUCTION'
+    #  key: mdTitleOnPRODUCTION
+    #- title: 'On STAGING'
+    #  key: mdTitleOnSTAGING
+    #- title: 'On Slack'
+    #  key: mdTitleOnSlack
+    #- title: 'On the command line'
+    #  key: mdTitleOnTheCommandLine
+    #- title: 'On your CI server:'
+    #  key: mdTitleOnYourCIServer
+    #- title: 'On your GitLab server:'
+    #  key: mdTitleOnYourGitLabServer
+    #- title: 'One line upgrade command'
+    #  key: mdTitleOneLineUpgradeCommand
+    #- title: 'Online, Offline, errors?'
+    #  key: mdTitleOnlineOfflineErrors
+    #- title: 'Only accepting merge requests with green tests'
+    #  key: mdTitleOnlyAcceptingMergeRequestsWithGreenTests
+    #- title: 'Open a shell'
+    #  key: mdTitleOpenAShell
+    #- title: 'Open source software to collaborate on code'
+    #  key: mdTitleOpenSourceSoftwareToCollaborateOnCode
+    #- title: 'Operating Systems'
+    #  key: mdTitleOperatingSystems
+    #- title: 'Optional: clean up old gems'
+    #  key: mdTitleOptionalCleanUpOldGems
+    #- title: 'Optionally, change the storage path location. Defaults to'
+    #  key: mdTitleOptionallyChangeTheStoragePathLocationDefaultsTo
+    #- title: 'Ordering by Creation Date'
+    #  key: mdTitleOrderingByCreationDate
+    #- title: 'Organize'
+    #  key: mdTitleOrganize
+    #- title: 'Other pagination headers'
+    #  key: mdTitleOtherPaginationHeaders
+    #- title: "Our company's internal GitLab server"
+    #  key: mdTitleOurCompanysInternalGitLabServer
+    #- title: 'Output of checks'
+    #  key: mdTitleOutputOfChecks
+    #- title: 'Outside the documentation'
+    #  key: mdTitleOutsideTheDocumentation
+    #- title: 'Overview'
+    #  key: mdTitleOverview
+    #- title: 'Overwrite image and services'
+    #  key: mdTitleOverwriteImageAndServices
+    #- title: 'PROCESS_file_descriptors'
+    #  key: mdTitlePROCESSFileDescriptors
+    #- title: 'PROCESS_gc_statistics'
+    #  key: mdTitlePROCESSGcStatistics
+    #- title: 'PROCESS_memory_usage'
+    #  key: mdTitlePROCESSMemoryUsage
+    #- title: 'PROCESS_method_calls'
+    #  key: mdTitlePROCESSMethodCalls
+    #- title: 'PROCESS_object_counts'
+    #  key: mdTitlePROCESSObjectCounts
+    #- title: 'PROCESS_transactions'
+    #  key: mdTitlePROCESSTransactions
+    #- title: 'PROCESS_views'
+    #  key: mdTitlePROCESSViews
+    #- title: 'Pagination'
+    #  key: mdTitlePagination
+    #- title: 'Pagination Link header'
+    #  key: mdTitlePaginationLinkHeader
+    #- title: 'Parallel rsync for all repositories known to GitLab'
+    #  key: mdTitleParallelRsyncForAllRepositoriesKnownToGitLab
+    #- title: 'Parallel rsync only for repositories with recent activity'
+    #  key: mdTitleParallelRsyncOnlyForRepositoriesWithRecentActivity
+    #- title: 'Pass arrays to API calls'
+    #  key: mdTitlePassArraysToAPICalls
+    #- title: 'Pass build variables to a trigger'
+    #  key: mdTitlePassBuildVariablesToATrigger
+    #- title: 'Pending Migrations'
+    #  key: mdTitlePendingMigrations
+    #- title: 'Per-project user setting'
+    #  key: mdTitlePerProjectUserSetting
+    #- title: 'Periodic checks'
+    #  key: mdTitlePeriodicChecks
+    #- title: 'Permission denied when accessing /var/opt/gitlab/gitlab-ci/builds'
+    #  key: mdTitlePermissionDeniedWhenAccessing/Var/Opt/Gitlab/GitlabCi/Builds
+    #- title: 'Permissions'
+    #  key: mdTitlePermissions
+    #- title: 'Persist the directory which contains the socket, if applicable'
+    #  key: mdTitlePersistTheDirectoryWhichContainsTheSocketIfApplicable
+    #- title: 'Physical office analogy'
+    #  key: mdTitlePhysicalOfficeAnalogy
+    #- title: 'PivotalTracker'
+    #  key: mdTitlePivotalTracker
+    #- title: 'Plucking IDs'
+    #  key: mdTitlePluckingIDs
+    #- title: 'Possible fixes'
+    #  key: mdTitlePossibleFixes
+    #- title: 'Post comment to commit'
+    #  key: mdTitlePostCommentToCommit
+    #- title: 'Post data using JSON content'
+    #  key: mdTitlePostDataUsingJSONContent
+    #- title: "Post data using cURL's --data"
+    #  key: mdTitlePostDataUsingCURLsData
+    #- title: 'Post data using form-data'
+    #  key: mdTitlePostDataUsingFormData
+    #- title: 'Post the build status to a commit'
+    #  key: mdTitlePostTheBuildStatusToACommit
+    #- title: 'PostgreSQL'
+    #  key: mdTitlePostgreSQL
+    #- title: 'PostgreSQL Requirements'
+    #  key: mdTitlePostgreSQLRequirements
+    #- title: "PostgreSQL installations \\(note: the line below states '--without ... mysql'\\)"
+    #  key: mdTitlePostgreSQLInstallationsNoteTheLineBelowStatesWithoutMysql
+    #- title: "PostgreSQL installations \\(note: the line below states '--without mysql'\\)"
+    #  key: mdTitlePostgreSQLInstallationsNoteTheLineBelowStatesWithoutMysql
+    #- title: 'PostgreSQL service example'
+    #  key: mdTitlePostgreSQLServiceExample
+    #- title: 'Potential problems on the next upgrade'
+    #  key: mdTitlePotentialProblemsOnTheNextUpgrade
+    #- title: 'Precompile the assets'
+    #  key: mdTitlePrecompileTheAssets
+    #- title: 'Predefined variables \(Environment Variables\)'
+    #  key: mdTitlePredefinedVariablesEnvironmentVariables
+    #- title: 'Prerequisites'
+    #  key: mdTitlePrerequisites
+    #- title: 'Press: control + X'
+    #  key: mdTitlePressControl+X
+    #- title: 'Press: enter'
+    #  key: mdTitlePressEnter
+    #- title: 'Priorities of the issue team'
+    #  key: mdTitlePrioritiesOfTheIssueTeam
+    #- title: 'Prioritize'
+    #  key: mdTitlePrioritize
+    #- title: 'Problems when importing CI database to GitLab'
+    #  key: mdTitleProblemsWhenImportingCIDatabaseToGitLab
+    #- title: 'Processes'
+    #  key: mdTitleProcesses
+    #- title: 'Production branch with GitLab flow'
+    #  key: mdTitleProductionBranchWithGitLabFlow
+    #- title: 'Profile Preferences'
+    #  key: mdTitleProfilePreferences
+    #- title: 'Profile Settings'
+    #  key: mdTitleProfileSettings
+    #- title: 'Profiling'
+    #  key: mdTitleProfiling
+    #- title: 'Project'
+    #  key: mdTitleProject
+    #- title: 'Project Service'
+    #  key: mdTitleProjectService
+    #- title: 'Project Services'
+    #  key: mdTitleProjectServices
+    #- title: 'Project Settings'
+    #  key: mdTitleProjectSettings
+    #- title: 'Project features'
+    #  key: mdTitleProjectFeatures
+    #- title: 'Project forking workflow'
+    #  key: mdTitleProjectForkingWorkflow
+    #- title: 'Project importing from GitLab.com to your private GitLab instance'
+    #  key: mdTitleProjectImportingFromGitLabcomToYourPrivateGitLabInstance
+    #- title: 'Project services'
+    #  key: mdTitleProjectServices
+    #- title: 'Project snippets'
+    #  key: mdTitleProjectSnippets
+    #- title: 'Project users'
+    #  key: mdTitleProjectUsers
+    #- title: 'Project visibility level'
+    #  key: mdTitleProjectVisibilityLevel
+    #- title: 'Projects'
+    #  key: mdTitleProjects
+    #- title: 'Projects in the global namespace should not conflict with projects in the owner namespace:'
+    #  key: mdTitleProjectsInTheGlobalNamespaceShouldNotConflictWithProjectsInTheOwnerNamespace
+    #- title: 'Properly anchor regular expressions to the start and end of strings'
+    #  key: mdTitleProperlyAnchorRegularExpressionsToTheStartAndEndOfStrings
+    #- title: 'Protect repository branch'
+    #  key: mdTitleProtectRepositoryBranch
+    #- title: 'Protect single branch'
+    #  key: mdTitleProtectSingleBranch
+    #- title: 'Protected branch flow'
+    #  key: mdTitleProtectedBranchFlow
+    #- title: 'Protected branches'
+    #  key: mdTitleProtectedBranches
+    #- title: 'Public access'
+    #  key: mdTitlePublicAccess
+    #- title: 'Public projects'
+    #  key: mdTitlePublicProjects
+    #- title: 'Purpose'
+    #  key: mdTitlePurpose
+    #- title: 'Purpose of describing the contributing process'
+    #  key: mdTitlePurposeOfDescribingTheContributingProcess
+    #- title: 'Push `.gitlab-ci.yml` to GitLab'
+    #  key: mdTitlePushGitlabCiymlToGitLab
+    #- title: 'Push events'
+    #  key: mdTitlePushEvents
+    #- title: 'Pushing and removing branches'
+    #  key: mdTitlePushingAndRemovingBranches
+    #- title: 'Pushover'
+    #  key: mdTitlePushover
+    #- title: 'Quick Start'
+    #  key: mdTitleQuickStart
+    #- title: 'Quit the database session'
+    #  key: mdTitleQuitTheDatabaseSession
+    #- title: 'Quit the session'
+    #  key: mdTitleQuitTheSession
+    #- title: 'RSpec'
+    #  key: mdTitleRSpec
+    #- title: 'Rack attack'
+    #  key: mdTitleRackAttack
+    #- title: 'Rake tasks'
+    #  key: mdTitleRakeTasks
+    #- title: 'Rake tasks for developers'
+    #  key: mdTitleRakeTasksForDevelopers
+    #- title: 'Raw blob content'
+    #  key: mdTitleRawBlobContent
+    #- title: 'Raw file content'
+    #  key: mdTitleRawFileContent
+    #- title: 'Rebuild authorized_keys file'
+    #  key: mdTitleRebuildAuthorizedKeysFile
+    #- title: 'Recovery Codes'
+    #  key: mdTitleRecoveryCodes
+    #- title: 'Recreating directory structure'
+    #  key: mdTitleRecreatingDirectoryStructure
+    #- title: 'Redirect back to login screen with no evident error'
+    #  key: mdTitleRedirectBackToLoginScreenWithNoEvidentError
+    #- title: 'Redis and Sidekiq'
+    #  key: mdTitleRedisAndSidekiq
+    #- title: 'Redmine'
+    #  key: mdTitleRedmine
+    #- title: 'Redmine Service'
+    #  key: mdTitleRedmineService
+    #- title: 'References'
+    #  key: mdTitleReferences
+    #- title: 'Referencing JIRA Issues'
+    #  key: mdTitleReferencingJIRAIssues
+    #- title: 'Register a new runner'
+    #  key: mdTitleRegisterANewRunner
+    #- title: 'Register docker runner'
+    #  key: mdTitleRegisterDockerRunner
+    #- title: 'Registering a Shared Runner'
+    #  key: mdTitleRegisteringASharedRunner
+    #- title: 'Registering a Specific Runner'
+    #  key: mdTitleRegisteringASpecificRunner
+    #- title: 'Regression issues'
+    #  key: mdTitleRegressionIssues
+    #- title: 'Relative URL requirements'
+    #  key: mdTitleRelativeURLRequirements
+    #- title: 'Relative URL support'
+    #  key: mdTitleRelativeURLSupport
+    #- title: 'Release branches with GitLab flow'
+    #  key: mdTitleReleaseBranchesWithGitLabFlow
+    #- title: 'Release notes'
+    #  key: mdTitleReleaseNotes
+    #- title: 'Releases'
+    #  key: mdTitleReleases
+    #- title: 'Relevant logs and/or screenshots'
+    #  key: mdTitleRelevantLogsAnd/OrScreenshots
+    #- title: 'Remove Jenkins CI Service entries from the database'
+    #  key: mdTitleRemoveJenkinsCIServiceEntriesFromTheDatabase
+    #- title: 'Remove a directory and all of its contents'
+    #  key: mdTitleRemoveADirectoryAndAllOfItsContents
+    #- title: 'Remove a file'
+    #  key: mdTitleRemoveAFile
+    #- title: 'Remove a project trigger'
+    #  key: mdTitleRemoveAProjectTrigger
+    #- title: 'Remove a runner'
+    #  key: mdTitleRemoveARunner
+    #- title: 'Remove a webhook from \*\*ALL\*\* projects using:'
+    #  key: mdTitleRemoveAWebhookFromALLProjectsUsing
+    #- title: 'Remove a webhook from projects in a given \*\*NAMESPACE\*\*:'
+    #  key: mdTitleRemoveAWebhookFromProjectsInAGivenNAMESPACE
+    #- title: 'Remove garbage from filesystem. Important! Data loss!'
+    #  key: mdTitleRemoveGarbageFromFilesystemImportantDataLoss
+    #- title: 'Remove group'
+    #  key: mdTitleRemoveGroup
+    #- title: 'Remove project'
+    #  key: mdTitleRemoveProject
+    #- title: 'Remove project team member'
+    #  key: mdTitleRemoveProjectTeamMember
+    #- title: 'Remove the artifacts file from build'
+    #  key: mdTitleRemoveTheArtifactsFileFromBuild
+    #- title: 'Remove user team member'
+    #  key: mdTitleRemoveUserTeamMember
+    #- title: 'Remove variable'
+    #  key: mdTitleRemoveVariable
+    #- title: 'Removing indices'
+    #  key: mdTitleRemovingIndices
+    #- title: "Replace path from '/home/gitlab/' to '/home/git/'"
+    #  key: mdTitleReplacePathFrom/Home/Gitlab/To/Home/Git/
+    #- title: 'Replace the MySQL dump in TIMESTAMP_gitlab_backup.tar.'
+    #  key: mdTitleReplaceTheMySQLDumpInTIMESTAMPGitlabBackuptar
+    #- title: 'Reply by email'
+    #  key: mdTitleReplyByEmail
+    #- title: 'Repositories'
+    #  key: mdTitleRepositories
+    #- title: 'Repository Integrity'
+    #  key: mdTitleRepositoryIntegrity
+    #- title: 'Repository access'
+    #  key: mdTitleRepositoryAccess
+    #- title: 'Repository checks'
+    #  key: mdTitleRepositoryChecks
+    #- title: 'Repository files'
+    #  key: mdTitleRepositoryFiles
+    #- title: 'Requirement'
+    #  key: mdTitleRequirement
+    #- title: 'Requirements'
+    #  key: mdTitleRequirements
+    #- title: 'Resource Owner Password Credentials'
+    #  key: mdTitleResourceOwnerPasswordCredentials
+    #- title: 'Resources'
+    #  key: mdTitleResources
+    #- title: 'Restart'
+    #  key: mdTitleRestart
+    #- title: 'Restore a previously created backup'
+    #  key: mdTitleRestoreAPreviouslyCreatedBackup
+    #- title: 'Restore from backup'
+    #  key: mdTitleRestoreFromBackup
+    #- title: 'Restoring database backup using omnibus packages outputs warnings'
+    #  key: mdTitleRestoringDatabaseBackupUsingOmnibusPackagesOutputsWarnings
+    #- title: 'Restoring from backup after a failed upgrade'
+    #  key: mdTitleRestoringFromBackupAfterAFailedUpgrade
+    #- title: 'Restricting the use of public or internal projects'
+    #  key: mdTitleRestrictingTheUseOfPublicOrInternalProjects
+    #- title: 'Results of GitLab Application Check'
+    #  key: mdTitleResultsOfGitLabApplicationCheck
+    #- title: 'Results of GitLab Environment Info'
+    #  key: mdTitleResultsOfGitLabEnvironmentInfo
+    #- title: 'Retry a build'
+    #  key: mdTitleRetryABuild
+    #- title: 'Reversibility'
+    #  key: mdTitleReversibility
+    #- title: 'Reverting a Commit'
+    #  key: mdTitleRevertingACommit
+    #- title: 'Reverting a Merge Request'
+    #  key: mdTitleRevertingAMergeRequest
+    #- title: 'Reverting changes'
+    #  key: mdTitleRevertingChanges
+    #- title: 'Reviewing code'
+    #  key: mdTitleReviewingCode
+    #- title: 'Revoke a trigger'
+    #  key: mdTitleRevokeATrigger
+    #- title: 'Rewrite hook for gitolite 3'
+    #  key: mdTitleRewriteHookForGitolite3
+    #- title: 'Roll back to an earlier version and restore a backup'
+    #  key: mdTitleRollBackToAnEarlierVersionAndRestoreABackup
+    #- title: 'Ruby versions'
+    #  key: mdTitleRubyVersions
+    #- title: 'Rules'
+    #  key: mdTitleRules
+    #- title: 'Run database migrations'
+    #  key: mdTitleRunDatabaseMigrations
+    #- title: 'Run tests'
+    #  key: mdTitleRunTests
+    #- title: 'Run the command below depending on your type of installation:'
+    #  key: mdTitleRunTheCommandBelowDependingOnYourTypeOfInstallation
+    #- title: 'Run thorough check'
+    #  key: mdTitleRunThoroughCheck
+    #- title: 'Runners'
+    #  key: mdTitleRunners
+    #- title: 'Runners API'
+    #  key: mdTitleRunnersAPI
+    #- title: 'Runs oldest pending build by runner'
+    #  key: mdTitleRunsOldestPendingBuildByRunner
+    #- title: 'SAML OmniAuth Provider'
+    #  key: mdTitleSAMLOmniAuthProvider
+    #- title: 'SCSS styleguide'
+    #  key: mdTitleSCSSStyleguide
+    #- title: 'SQL Query Guidelines'
+    #  key: mdTitleSQLQueryGuidelines
+    #- title: 'SSH'
+    #  key: mdTitleSSH
+    #- title: 'SSH keys'
+    #  key: mdTitleSSHKeys
+    #- title: 'SSH keys when using the Docker executor'
+    #  key: mdTitleSSHKeysWhenUsingTheDockerExecutor
+    #- title: 'SSH keys when using the Shell executor'
+    #  key: mdTitleSSHKeysWhenUsingTheShellExecutor
+    #- title: 'SSL Verification'
+    #  key: mdTitleSSLVerification
+    #- title: 'SSL certificate errors'
+    #  key: mdTitleSSLCertificateErrors
+    #- title: 'Safe IO.popen example'
+    #  key: mdTitleSafeIOpopenExample
+    #- title: 'Sampled Metrics'
+    #  key: mdTitleSampledMetrics
+    #- title: 'Screenshots \(if relevant\)'
+    #  key: mdTitleScreenshotsIfRelevant
+    #- title: 'Search for group'
+    #  key: mdTitleSearchForGroup
+    #- title: 'Search for namespace'
+    #  key: mdTitleSearchForNamespace
+    #- title: 'Search for projects by name'
+    #  key: mdTitleSearchForProjectsByName
+    #- title: 'Secure secrets.yml'
+    #  key: mdTitleSecureSecretsyml
+    #- title: 'Secure your MySQL installation \(added in GitLab 6.2\)'
+    #  key: mdTitleSecureYourMySQLInstallationAddedInGitLab62
+    #- title: 'Security'
+    #  key: mdTitleSecurity
+    #- title: 'Security vulnerability disclosure'
+    #  key: mdTitleSecurityVulnerabilityDisclosure
+    #- title: 'See config/database.yml.mysql for latest recommended configuration details'
+    #  key: mdTitleSeeConfigDatabaseymlmysqlForLatestRecommendedConfigurationDetails
+    #- title: 'See https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/raketasks/backup_restore.md for more information about backups.'
+    #  key: mdTitleSeeGitlabcomBackupRestoremdForMoreInformationAboutBackups
+    #- title: 'Seeing the status of your build'
+    #  key: mdTitleSeeingTheStatusOfYourBuild
+    #- title: 'Select Version to Install'
+    #  key: mdTitleSelectVersionToInstall
+    #- title: 'Select image from https://hub.docker.com/_/php/'
+    #  key: mdTitleSelectImageFromHubdockercom
+    #- title: 'Selectors with a `js-` Prefix'
+    #  key: mdTitleSelectorsWithAJsPrefix
+    #- title: 'Self-hosted'
+    #  key: mdTitleSelfHosted
+    #- title: 'Semicolons'
+    #  key: mdTitleSemicolons
+    #- title: 'Send changes to gitlab.com'
+    #  key: mdTitleSendChangesToGitlabcom
+    #- title: 'Separate options from arguments with --'
+    #  key: mdTitleSeparateOptionsFromArgumentsWith
+    #- title: 'Service Template'
+    #  key: mdTitleServiceTemplate
+    #- title: 'Services'
+    #  key: mdTitleServices
+    #- title: 'Services Templates'
+    #  key: mdTitleServicesTemplates
+    #- title: 'Session'
+    #  key: mdTitleSession
+    #- title: 'Set it up'
+    #  key: mdTitleSetItUp
+    #- title: 'Set the working directory'
+    #  key: mdTitleSetTheWorkingDirectory
+    #- title: 'Set up Postfix for Reply by email'
+    #  key: mdTitleSetUpPostfixForReplyByEmail
+    #- title: 'Setup'
+    #  key: mdTitleSetup
+    #- title: 'Setup Logrotate'
+    #  key: mdTitleSetupLogrotate
+    #- title: 'Setup db with developer seeds'
+    #  key: mdTitleSetupDbWithDeveloperSeeds
+    #- title: 'Setup time zone \(optional\)'
+    #  key: mdTitleSetupTimeZoneOptional
+    #- title: 'Share Projects with other Groups'
+    #  key: mdTitleShareProjectsWithOtherGroups
+    #- title: 'Share project with group'
+    #  key: mdTitleShareProjectWithGroup
+    #- title: 'Shared Runners'
+    #  key: mdTitleSharedRunners
+    #- title: 'Shared files'
+    #  key: mdTitleSharedFiles
+    #- title: 'Shared vs. Specific Runners'
+    #  key: mdTitleSharedVsSpecificRunners
+    #- title: 'Sharing a project with a group'
+    #  key: mdTitleSharingAProjectWithAGroup
+    #- title: 'Sharing a project with a group of users'
+    #  key: mdTitleSharingAProjectWithAGroupOfUsers
+    #- title: 'Sherlock'
+    #  key: mdTitleSherlock
+    #- title: 'Shibboleth OmniAuth Provider'
+    #  key: mdTitleShibbolethOmniAuthProvider
+    #- title: 'Shorthand'
+    #  key: mdTitleShorthand
+    #- title: 'Show variable details'
+    #  key: mdTitleShowVariableDetails
+    #- title: 'Sidekiq MemoryKiller'
+    #  key: mdTitleSidekiqMemoryKiller
+    #- title: 'Sidekiq debugging'
+    #  key: mdTitleSidekiqDebugging
+    #- title: 'Simple cURL command'
+    #  key: mdTitleSimpleCURLCommand
+    #- title: 'Single SSH key'
+    #  key: mdTitleSingleSSHKey
+    #- title: 'Single deploy key'
+    #  key: mdTitleSingleDeployKey
+    #- title: 'Single email'
+    #  key: mdTitleSingleEmail
+    #- title: 'Single issue'
+    #  key: mdTitleSingleIssue
+    #- title: 'Single license template'
+    #  key: mdTitleSingleLicenseTemplate
+    #- title: 'Single rsync to another server'
+    #  key: mdTitleSingleRsyncToAnotherServer
+    #- title: 'Single snippet'
+    #  key: mdTitleSingleSnippet
+    #- title: 'Single user'
+    #  key: mdTitleSingleUser
+    #- title: 'Site Configuration'
+    #  key: mdTitleSiteConfiguration
+    #- title: 'Site-wide administrator setting'
+    #  key: mdTitleSiteWideAdministratorSetting
+    #- title: 'Skipping builds'
+    #  key: mdTitleSkippingBuilds
+    #- title: 'Slack'
+    #  key: mdTitleSlack
+    #- title: 'Slack integration'
+    #  key: mdTitleSlackIntegration
+    #- title: 'Snippet content'
+    #  key: mdTitleSnippetContent
+    #- title: 'Snippet visibility level'
+    #  key: mdTitleSnippetVisibilityLevel
+    #- title: 'Snippets'
+    #  key: mdTitleSnippets
+    #- title: 'Software delivery'
+    #  key: mdTitleSoftwareDelivery
+    #- title: 'Software stack'
+    #  key: mdTitleSoftwareStack
+    #- title: 'Solution'
+    #  key: mdTitleSolution
+    #- title: 'Sometimes a shell command is just the best solution. The example below has no'
+    #  key: mdTitleSometimesAShellCommandIsJustTheBestSolutionTheExampleBelowHasNo
+    #- title: 'Sort issues and merge requests on vote count'
+    #  key: mdTitleSortIssuesAndMergeRequestsOnVoteCount
+    #- title: 'Source'
+    #  key: mdTitleSource
+    #- title: 'Source install'
+    #  key: mdTitleSourceInstall
+    #- title: 'Special GitLab References'
+    #  key: mdTitleSpecialGitLabReferences
+    #- title: 'Special YAML features'
+    #  key: mdTitleSpecialYAMLFeatures
+    #- title: 'Spinach \(feature\) tests'
+    #  key: mdTitleSpinachFeatureTests
+    #- title: 'Squashing commits with rebase'
+    #  key: mdTitleSquashingCommitsWithRebase
+    #- title: 'Standard Markdown'
+    #  key: mdTitleStandardMarkdown
+    #- title: 'Star a project'
+    #  key: mdTitleStarAProject
+    #- title: 'Start GitLab'
+    #  key: mdTitleStartGitLab
+    #- title: 'Start Your GitLab Instance'
+    #  key: mdTitleStartYourGitLabInstance
+    #- title: 'Start from your laptop'
+    #  key: mdTitleStartFromYourLaptop
+    #- title: 'Start rails console'
+    #  key: mdTitleStartRailsConsole
+    #- title: 'Start using Git on the command line'
+    #  key: mdTitleStartUsingGitOnTheCommandLine
+    #- title: 'Start working on your project'
+    #  key: mdTitleStartWorkingOnYourProject
+    #- title: 'Stash changes'
+    #  key: mdTitleStashChanges
+    #- title: 'Status codes'
+    #  key: mdTitleStatusCodes
+    #- title: 'Step 1: Public key'
+    #  key: mdTitleStep1PublicKey
+    #- title: 'Step 2: Known hosts'
+    #  key: mdTitleStep2KnownHosts
+    #- title: 'Steps'
+    #  key: mdTitleSteps
+    #- title: 'Steps to reproduce'
+    #  key: mdTitleStepsToReproduce
+    #- title: 'Stop GitLab'
+    #  key: mdTitleStopGitLab
+    #- title: 'Stop processes that are connected to the database'
+    #  key: mdTitleStopProcessesThatAreConnectedToTheDatabase
+    #- title: 'Storage'
+    #  key: mdTitleStorage
+    #- title: 'Storage Engine'
+    #  key: mdTitleStorageEngine
+    #- title: 'Store API keys'
+    #  key: mdTitleStoreAPIKeys
+    #- title: 'Storing API keys'
+    #  key: mdTitleStoringAPIKeys
+    #- title: 'Storing build artifacts'
+    #  key: mdTitleStoringBuildArtifacts
+    #- title: 'Storing configuration files'
+    #  key: mdTitleStoringConfigurationFiles
+    #- title: 'Style guides'
+    #  key: mdTitleStyleGuides
+    #- title: 'Subscribe to a merge request'
+    #  key: mdTitleSubscribeToAMergeRequest
+    #- title: 'Subscribe to an issue'
+    #  key: mdTitleSubscribeToAnIssue
+    #- title: 'Sudo'
+    #  key: mdTitleSudo
+    #- title: 'Summary'
+    #  key: mdTitleSummary
+    #- title: 'Support requests and configuration questions'
+    #  key: mdTitleSupportRequestsAndConfigurationQuestions
+    #- title: 'Supported Providers'
+    #  key: mdTitleSupportedProviders
+    #- title: 'Supported Unix distributions'
+    #  key: mdTitleSupportedUnixDistributions
+    #- title: 'Supported environment variables'
+    #  key: mdTitleSupportedEnvironmentVariables
+    #- title: 'Supported web browsers'
+    #  key: mdTitleSupportedWebBrowsers
+    #- title: 'Suppose the user gave us a path and they are trying to trick us'
+    #  key: mdTitleSupposeTheUserGaveUsAPathAndTheyAreTryingToTrickUs
+    #- title: 'Syntax highlighting theme'
+    #  key: mdTitleSyntaxHighlightingTheme
+    #- title: 'System Layout'
+    #  key: mdTitleSystemLayout
+    #- title: 'System hooks'
+    #  key: mdTitleSystemHooks
+    #- title: 'TIMESTAMP_gitlab_backup.tar below.'
+    #  key: mdTitleTIMESTAMPGitlabBackuptarBelow
+    #- title: 'TLS Client Authentication'
+    #  key: mdTitleTLSClientAuthentication
+    #- title: 'TLS Server Authentication'
+    #  key: mdTitleTLSServerAuthentication
+    #- title: 'Table of Contents'
+    #  key: mdTitleTableOfContents
+    #- title: 'Tables'
+    #  key: mdTitleTables
+    #- title: 'Tag events'
+    #  key: mdTitleTagEvents
+    #- title: 'Tags'
+    #  key: mdTitleTags
+    #- title: 'Tags page with button to add or edit release notes for existing git tag'
+    #  key: mdTitleTagsPageWithButtonToAddOrEditReleaseNotesForExistingGitTag
+    #- title: 'Tar pipe to another server'
+    #  key: mdTitleTarPipeToAnotherServer
+    #- title: 'Target directory is empty: use a tar pipe'
+    #  key: mdTitleTargetDirectoryIsEmptyUseATarPipe
+    #- title: 'Task Lists'
+    #  key: mdTitleTaskLists
+    #- title: 'Team members'
+    #  key: mdTitleTeamMembers
+    #- title: 'Teams'
+    #  key: mdTitleTeams
+    #- title: 'Technical debt'
+    #  key: mdTitleTechnicalDebt
+    #- title: 'Tell Redis to expire each matched key after 600 seconds.'
+    #  key: mdTitleTellRedisToExpireEachMatchedKeyAfter600Seconds
+    #- title: 'Tell where you are'
+    #  key: mdTitleTellWhereYouAre
+    #- title: 'Temporary files and shared storage'
+    #  key: mdTitleTemporaryFilesAndSharedStorage
+    #- title: 'Test Configuration'
+    #  key: mdTitleTestConfiguration
+    #- title: 'Test PHP projects using the Docker executor'
+    #  key: mdTitleTestPHPProjectsUsingTheDockerExecutor
+    #- title: 'Test PHP projects using the Shell executor'
+    #  key: mdTitleTestPHPProjectsUsingTheShellExecutor
+    #- title: 'Test a Clojure application'
+    #  key: mdTitleTestAClojureApplication
+    #- title: 'Test against different PHP versions in Docker builds'
+    #  key: mdTitleTestAgainstDifferentPHPVersionsInDockerBuilds
+    #- title: 'Test against different PHP versions in Shell builds'
+    #  key: mdTitleTestAgainstDifferentPHPVersionsInShellBuilds
+    #- title: 'Test and Deploy'
+    #  key: mdTitleTestAndDeploy
+    #- title: 'Test and Deploy a python application'
+    #  key: mdTitleTestAndDeployAPythonApplication
+    #- title: 'Test and Deploy a ruby application'
+    #  key: mdTitleTestAndDeployARubyApplication
+    #- title: 'Test speed'
+    #  key: mdTitleTestSpeed
+    #- title: 'Test system hook'
+    #  key: mdTitleTestSystemHook
+    #- title: 'Test the final setup'
+    #  key: mdTitleTestTheFinalSetup
+    #- title: 'Test the out-of-the-box setup'
+    #  key: mdTitleTestTheOutOfTheBoxSetup
+    #- title: 'Testing'
+    #  key: mdTitleTesting
+    #- title: 'Testing PHP projects'
+    #  key: mdTitleTestingPHPProjects
+    #- title: 'Testing Standards and Style Guidelines'
+    #  key: mdTitleTestingStandardsAndStyleGuidelines
+    #- title: 'Testing before merging'
+    #  key: mdTitleTestingBeforeMerging
+    #- title: 'Testing things locally'
+    #  key: mdTitleTestingThingsLocally
+    #- title: 'Text'
+    #  key: mdTitleText
+    #- title: 'The compressed databasedump is not supported at 7.12.0 and older.'
+    #  key: mdTitleTheCompressedDatabasedumpIsNotSupportedAt7120AndOlder
+    #- title: 'The directory inside the mounted folder to copy backups to'
+    #  key: mdTitleTheDirectoryInsideTheMountedFolderToCopyBackupsTo
+    #- title: 'The intention of the code below is to open a file under repo_path, but'
+    #  key: mdTitleTheIntentionOfTheCodeBelowIsToOpenAFileUnderRepoPathBut
+    #- title: 'The response will be'
+    #  key: mdTitleTheResponseWillBe
+    #- title: 'The target directory contains an outdated copy of the repositories: use rsync'
+    #  key: mdTitleTheTargetDirectoryContainsAnOutdatedCopyOfTheRepositoriesUseRsync
+    #- title: 'Things went south? Revert to previous version \(5.1\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion51
+    #- title: 'Things went south? Revert to previous version \(5.2\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion52
+    #- title: 'Things went south? Revert to previous version \(5.3\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion53
+    #- title: 'Things went south? Revert to previous version \(6.0\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion60
+    #- title: 'Things went south? Revert to previous version \(6.1\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion61
+    #- title: 'Things went south? Revert to previous version \(6.2\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion62
+    #- title: 'Things went south? Revert to previous version \(6.3\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion63
+    #- title: 'Things went south? Revert to previous version \(6.4\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion64
+    #- title: 'Things went south? Revert to previous version \(6.5\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion65
+    #- title: 'Things went south? Revert to previous version \(6.6\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion66
+    #- title: 'Things went south? Revert to previous version \(6.7\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion67
+    #- title: 'Things went south? Revert to previous version \(6.8\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion68
+    #- title: 'Things went south? Revert to previous version \(6.9\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion69
+    #- title: 'Things went south? Revert to previous version \(7.0\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion70
+    #- title: 'Things went south? Revert to previous version \(7.1\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion71
+    #- title: 'Things went south? Revert to previous version \(7.10\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion710
+    #- title: 'Things went south? Revert to previous version \(7.11\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion711
+    #- title: 'Things went south? Revert to previous version \(7.12\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion712
+    #- title: 'Things went south? Revert to previous version \(7.13\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion713
+    #- title: 'Things went south? Revert to previous version \(7.14\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion714
+    #- title: 'Things went south? Revert to previous version \(7.2\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion72
+    #- title: 'Things went south? Revert to previous version \(7.3\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion73
+    #- title: 'Things went south? Revert to previous version \(7.4\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion74
+    #- title: 'Things went south? Revert to previous version \(7.5\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion75
+    #- title: 'Things went south? Revert to previous version \(7.6\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion76
+    #- title: 'Things went south? Revert to previous version \(7.7\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion77
+    #- title: 'Things went south? Revert to previous version \(7.8\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion78
+    #- title: 'Things went south? Revert to previous version \(7.9\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion79
+    #- title: 'Things went south? Revert to previous version \(8.0\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion80
+    #- title: 'Things went south? Revert to previous version \(8.1\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion81
+    #- title: 'Things went south? Revert to previous version \(8.2\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion82
+    #- title: 'Things went south? Revert to previous version \(8.3\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion83
+    #- title: 'Things went south? Revert to previous version \(8.4\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion84
+    #- title: 'Things went south? Revert to previous version \(8.5\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion85
+    #- title: 'Things went south? Revert to previous version \(8.6\)'
+    #  key: mdTitleThingsWentSouthRevertToPreviousVersion86
+    #- title: 'Third-party applications'
+    #  key: mdTitleThirdPartyApplications
+    #- title: 'This command will overwrite the contents of your GitLab database!'
+    #  key: mdTitleThisCommandWillOverwriteTheContentsOfYourGitLabDatabase
+    #- title: 'This header has Unicode in it: 한글'
+    #  key: mdTitleThisHeaderHasUnicodeInIt한글
+    #- title: 'This header has a :thumbsup: in it'
+    #  key: mdTitleThisHeaderHasAThumbsupInIt
+    #- title: 'This header has spaces in it'
+    #  key: mdTitleThisHeaderHasSpacesInIt
+    #- title: "This will print '\\(integer\\) 1' for each key that gets expired."
+    #  key: mdTitleThisWillPrintInteger1ForEachKeyThatGetsExpired
+    #- title: 'Thousands of Git repositories: use one rsync per repository'
+    #  key: mdTitleThousandsOfGitRepositoriesUseOneRsyncPerRepository
+    #- title: 'Tip: Non-default OpenSSH key file names or locations'
+    #  key: mdTitleTipNonDefaultOpenSSHKeyFileNamesOrLocations
+    #- title: 'Tips'
+    #  key: mdTitleTips
+    #- title: 'To generate an SSH Key on your command line'
+    #  key: mdTitleToGenerateAnSSHKeyOnYourCommandLine
+    #- title: 'Transaction Metrics'
+    #  key: mdTitleTransactionMetrics
+    #- title: 'Transfer project to group'
+    #  key: mdTitleTransferProjectToGroup
+    #- title: 'Transferring an existing project into a group'
+    #  key: mdTitleTransferringAnExistingProjectIntoAGroup
+    #- title: 'Trigger a build'
+    #  key: mdTitleTriggerABuild
+    #- title: 'Triggering Builds through the API'
+    #  key: mdTitleTriggeringBuildsThroughTheAPI
+    #- title: 'Triggering a build within `.gitlab-ci.yml`'
+    #  key: mdTitleTriggeringABuildWithinGitlabCiyml
+    #- title: 'Troubleshooting'
+    #  key: mdTitleTroubleshooting
+    #- title: 'Try connecting the the Redis server'
+    #  key: mdTitleTryConnectingTheTheRedisServer
+    #- title: 'Try connecting to the new database with the new user'
+    #  key: mdTitleTryConnectingToTheNewDatabaseWithTheNewUser
+    #- title: 'Tunables'
+    #  key: mdTitleTunables
+    #- title: 'Turn on asset compression'
+    #  key: mdTitleTurnOnAssetCompression
+    #- title: 'Twitter OAuth2 OmniAuth Provider'
+    #  key: mdTitleTwitterOAuth2OmniAuthProvider
+    #- title: 'Two-factor Authentication \(2FA\)'
+    #  key: mdTitleTwoFactorAuthentication2FA
+    #- title: 'Type the password you replaced $password with earlier'
+    #  key: mdTitleTypeThePasswordYouReplaced$PasswordWithEarlier
+    #- title: 'Type: Y'
+    #  key: mdTitleTypeY
+    #- title: 'UDP'
+    #  key: mdTitleUDP
+    #- title: 'UI Guide for building GitLab'
+    #  key: mdTitleUIGuideForBuildingGitLab
+    #- title: 'UI development kit'
+    #  key: mdTitleUIDevelopmentKit
+    #- title: 'URL auto-linking'
+    #  key: mdTitleURLAutoLinking
+    #- title: 'Unarchive a project'
+    #  key: mdTitleUnarchiveAProject
+    #- title: 'Unblock user'
+    #  key: mdTitleUnblockUser
+    #- title: 'Understanding Unicorn and unicorn-worker-killer'
+    #  key: mdTitleUnderstandingUnicornAndUnicornWorkerKiller
+    #- title: 'Unicorn'
+    #  key: mdTitleUnicorn
+    #- title: 'Unicorn Workers'
+    #  key: mdTitleUnicornWorkers
+    #- title: 'Universal update guide for patch versions'
+    #  key: mdTitleUniversalUpdateGuideForPatchVersions
+    #- title: 'Unprotect repository branch'
+    #  key: mdTitleUnprotectRepositoryBranch
+    #- title: 'Unprotect single branch'
+    #  key: mdTitleUnprotectSingleBranch
+    #- title: 'Unstar a project'
+    #  key: mdTitleUnstarAProject
+    #- title: 'Unsubscribe from a merge request'
+    #  key: mdTitleUnsubscribeFromAMergeRequest
+    #- title: 'Unsubscribe from an issue'
+    #  key: mdTitleUnsubscribeFromAnIssue
+    #- title: 'Unsupported Unix distributions'
+    #  key: mdTitleUnsupportedUnixDistributions
+    #- title: 'Update /home/git/gitlab/config/database.yml'
+    #  key: mdTitleUpdate/Home/Git/Gitlab/Config/Databaseyml
+    #- title: 'Update MR'
+    #  key: mdTitleUpdateMR
+    #- title: 'Update a release'
+    #  key: mdTitleUpdateARelease
+    #- title: 'Update database configuration details'
+    #  key: mdTitleUpdateDatabaseConfigurationDetails
+    #- title: 'Update details of an existing build'
+    #  key: mdTitleUpdateDetailsOfAnExistingBuild
+    #- title: 'Update existing file in repository'
+    #  key: mdTitleUpdateExistingFileInRepository
+    #- title: 'Update group'
+    #  key: mdTitleUpdateGroup
+    #- title: 'Update init.d script'
+    #  key: mdTitleUpdateInitdScript
+    #- title: 'Update repos permissions'
+    #  key: mdTitleUpdateReposPermissions
+    #- title: "Update runner's details"
+    #  key: mdTitleUpdateRunnersDetails
+    #- title: 'Update snippet'
+    #  key: mdTitleUpdateSnippet
+    #- title: 'Update the logrotate configuration \(keep logs for 90 days instead of 52 weeks\)'
+    #  key: mdTitleUpdateTheLogrotateConfigurationKeepLogsFor90DaysInsteadOf52Weeks
+    #- title: 'Update variable'
+    #  key: mdTitleUpdateVariable
+    #- title: 'Updating GitLab'
+    #  key: mdTitleUpdatingGitLab
+    #- title: 'Upgrading'
+    #  key: mdTitleUpgrading
+    #- title: 'Upgrading between editions'
+    #  key: mdTitleUpgradingBetweenEditions
+    #- title: 'Upload a file'
+    #  key: mdTitleUploadAFile
+    #- title: 'Upload artifacts to build'
+    #  key: mdTitleUploadArtifactsToBuild
+    #- title: 'Upload backups to remote \(cloud\) storage'
+    #  key: mdTitleUploadBackupsToRemoteCloudStorage
+    #- title: 'Uploading to locally mounted shares'
+    #  key: mdTitleUploadingToLocallyMountedShares
+    #- title: 'Uploads'
+    #  key: mdTitleUploads
+    #- title: 'Usage in staging and production'
+    #  key: mdTitleUsageInStagingAndProduction
+    #- title: "Use '.' to store them in the root directory"
+    #  key: mdTitleUseToStoreThemInTheRootDirectory
+    #- title: 'Use File and FileUtils instead of shell commands'
+    #  key: mdTitleUseFileAndFileUtilsInsteadOfShellCommands
+    #- title: 'Use Libravatar service with GitLab'
+    #  key: mdTitleUseLibravatarServiceWithGitLab
+    #- title: 'Use MySQL with the Docker executor'
+    #  key: mdTitleUseMySQLWithTheDockerExecutor
+    #- title: 'Use MySQL with the Shell executor'
+    #  key: mdTitleUseMySQLWithTheShellExecutor
+    #- title: 'Use PostgreSQL with the Docker executor'
+    #  key: mdTitleUsePostgreSQLWithTheDockerExecutor
+    #- title: 'Use PostgreSQL with the Shell executor'
+    #  key: mdTitleUsePostgreSQLWithTheShellExecutor
+    #- title: 'Use Redis with the Docker executor'
+    #  key: mdTitleUseRedisWithTheDockerExecutor
+    #- title: 'Use Redis with the Shell executor'
+    #  key: mdTitleUseRedisWithTheShellExecutor
+    #- title: 'Use Tags'
+    #  key: mdTitleUseTags
+    #- title: 'Use UNIONs'
+    #  key: mdTitleUseUNIONs
+    #- title: 'Use databases or other services'
+    #  key: mdTitleUseDatabasesOrOtherServices
+    #- title: 'Use the default Unicorn socket backlog value of 1024'
+    #  key: mdTitleUseTheDefaultUnicornSocketBacklogValueOf1024
+    #- title: 'Use variables'
+    #  key: mdTitleUseVariables
+    #- title: 'User File Uploads'
+    #  key: mdTitleUserFileUploads
+    #- title: 'User creation'
+    #  key: mdTitleUserCreation
+    #- title: 'User deletion'
+    #  key: mdTitleUserDeletion
+    #- title: 'User documentation'
+    #  key: mdTitleUserDocumentation
+    #- title: 'User management'
+    #  key: mdTitleUserManagement
+    #- title: 'User modification'
+    #  key: mdTitleUserModification
+    #- title: 'User-defined variables \(Secure Variables\)'
+    #  key: mdTitleUserDefinedVariablesSecureVariables
+    #- title: 'Users'
+    #  key: mdTitleUsers
+    #- title: 'Users Permissions'
+    #  key: mdTitleUsersPermissions
+    #- title: 'Using Composer'
+    #  key: mdTitleUsingComposer
+    #- title: 'Using Custom Omniauth Providers'
+    #  key: mdTitleUsingCustomOmniauthProviders
+    #- title: 'Using Docker Build'
+    #  key: mdTitleUsingDockerBuild
+    #- title: 'Using Docker Images'
+    #  key: mdTitleUsingDockerImages
+    #- title: 'Using Dpl as deployment tool'
+    #  key: mdTitleUsingDplAsDeploymentTool
+    #- title: 'Using Dpl with Docker'
+    #  key: mdTitleUsingDplWithDocker
+    #- title: 'Using Git LFS'
+    #  key: mdTitleUsingGitLFS
+    #- title: 'Using HTTPS'
+    #  key: mdTitleUsingHTTPS
+    #- title: 'Using LIKE Statements'
+    #  key: mdTitleUsingLIKEStatements
+    #- title: 'Using MySQL'
+    #  key: mdTitleUsingMySQL
+    #- title: 'Using PostgreSQL'
+    #  key: mdTitleUsingPostgreSQL
+    #- title: 'Using Redis'
+    #  key: mdTitleUsingRedis
+    #- title: 'Using SSH keys'
+    #  key: mdTitleUsingSSHKeys
+    #- title: 'Using Shared Runners Effectively'
+    #  key: mdTitleUsingSharedRunnersEffectively
+    #- title: 'Using an LDAP filter to limit access to your GitLab server'
+    #  key: mdTitleUsingAnLDAPFilterToLimitAccessToYourGitLabServer
+    #- title: 'Using atoum'
+    #  key: mdTitleUsingAtoum
+    #- title: 'Using cron to trigger nightly builds'
+    #  key: mdTitleUsingCronToTriggerNightlyBuilds
+    #- title: 'Validate the .gitlab-ci.yml'
+    #  key: mdTitleValidateTheGitlabCiyml
+    #- title: 'Variables'
+    #  key: mdTitleVariables
+    #- title: 'View history in the command line'
+    #  key: mdTitleViewHistoryInTheCommandLine
+    #- title: "View the changes you've made"
+    #  key: mdTitleViewTheChangesYouveMade
+    #- title: 'View what’s in the directory that you are in'
+    #  key: mdTitleViewWhat’SInTheDirectoryThatYouAreIn
+    #- title: 'Visibility of groups'
+    #  key: mdTitleVisibilityOfGroups
+    #- title: 'Visibility of projects'
+    #  key: mdTitleVisibilityOfProjects
+    #- title: 'Visibility of users'
+    #  key: mdTitleVisibilityOfUsers
+    #- title: 'Warning'
+    #  key: mdTitleWarning
+    #- title: 'Warning: If you have Gitlab 7.12.0 or older skip this step and import the database.sql directly into the backup with:'
+    #  key: mdTitleWarningIfYouHaveGitlab7120OrOlderSkipThisStepAndImportTheDatabasesqlDirectlyIntoTheBackupWith
+    #- title: 'Warning: if you forget to replace TIMESTAMP below, tar will create a new file'
+    #  key: mdTitleWarningIfYouForgetToReplaceTIMESTAMPBelowTarWillCreateANewFile
+    #- title: 'We look up the repo path somewhere'
+    #  key: mdTitleWeLookUpTheRepoPathSomewhere
+    #- title: 'We need to install dependencies only for Docker'
+    #  key: mdTitleWeNeedToInstallDependenciesOnlyForDocker
+    #- title: 'We test PHP5.6'
+    #  key: mdTitleWeTestPHP56
+    #- title: 'We test PHP7.0 \(good luck with that\)'
+    #  key: mdTitleWeTestPHP70GoodLuckWithThat
+    #- title: 'Web Application Flow'
+    #  key: mdTitleWebApplicationFlow
+    #- title: 'Webhooks'
+    #  key: mdTitleWebhooks
+    #- title: 'Webhooks and insecure internal web services'
+    #  key: mdTitleWebhooksAndInsecureInternalWebServices
+    #- title: 'Website'
+    #  key: mdTitleWebsite
+    #- title: 'What are the relevant issue numbers?'
+    #  key: mdTitleWhatAreTheRelevantIssueNumbers
+    #- title: 'What does this MR do?'
+    #  key: mdTitleWhatDoesThisMRDo
+    #- title: 'What is `.gitlab-ci.yml`'
+    #  key: mdTitleWhatIsGitlabCiyml
+    #- title: 'What is image'
+    #  key: mdTitleWhatIsImage
+    #- title: "What is not a 'shared file'"
+    #  key: mdTitleWhatIsNotASharedFile
+    #- title: 'What is service'
+    #  key: mdTitleWhatIsService
+    #- title: 'What to do if a check failed'
+    #  key: mdTitleWhatToDoIfACheckFailed
+    #- title: 'What triggers a Todo'
+    #  key: mdTitleWhatTriggersATodo
+    #- title: 'What you should know about omnibus packages'
+    #  key: mdTitleWhatYouShouldKnowAboutOmnibusPackages
+    #- title: 'Why was this MR needed?'
+    #  key: mdTitleWhyWasThisMRNeeded
+    #- title: 'Work on a branch that has already been created'
+    #  key: mdTitleWorkOnABranchThatHasAlreadyBeenCreated
+    #- title: 'Workflow'
+    #  key: mdTitleWorkflow
+    #- title: 'Workflow labels'
+    #  key: mdTitleWorkflowLabels
+    #- title: 'Wrong'
+    #  key: mdTitleWrong
+    #- title: 'YAML-defined variables'
+    #  key: mdTitleYAMLDefinedVariables
+    #- title: "You should now see a 'mysql>' prompt"
+    #  key: mdTitleYouShouldNowSeeAMysqlPrompt
+    #- title: 'Zero Units'
+    #  key: mdTitleZeroUnits
+    #- title: 'cURL Examples'
+    #  key: mdTitleCURLExamples
+    #- title: 'cURL commands'
+    #  key: mdTitleCURLCommands
+    #- title: 'cURL example with parameters passed in the URL'
+    #  key: mdTitleCURLExampleWithParametersPassedInTheURL

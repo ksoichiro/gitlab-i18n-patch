@@ -957,7 +957,7 @@ index dd4a64e..ee9db86 100644
 +                = password_field_tag :password, nil, class: "form-control bottom", placeholder: "パスワード"
 +                = button_tag "サインイン", class: "btn-create btn"
 diff --git a/app/views/admin/application_settings/_form.html.haml b/app/views/admin/application_settings/_form.html.haml
-index e0d8d16..c3c95d9 100644
+index e0d8d16..6ccbaa7 100644
 --- a/app/views/admin/application_settings/_form.html.haml
 +++ b/app/views/admin/application_settings/_form.html.haml
 @@ -67,7 +67,7 @@
@@ -1018,6 +1018,15 @@ index e0d8d16..c3c95d9 100644
            server threads).
      .form-group
        = f.label :metrics_timeout, 'Connection timeout', class: 'control-label col-sm-2'
+@@ -234,7 +234,7 @@
+           = f.label :recaptcha_enabled do
+             = f.check_box :recaptcha_enabled
+             Enable reCAPTCHA
+-          %span.help-block#recaptcha_help_block Helps prevent bots from creating accounts
++          %span.help-block#recaptcha_help_block Helps prevent bots from creating アカウント
+ 
+     .form-group
+       = f.label :recaptcha_site_key, 'reCAPTCHA Site Key', class: 'control-label col-sm-2'
 @@ -255,7 +255,7 @@
            = f.label :akismet_enabled do
              = f.check_box :akismet_enabled
@@ -2785,6 +2794,19 @@ index 49ab8aa..ddd90d0 100644
        .filter-item.inline
          = select_tag('type', todo_types_options,
            class: 'select2 trigger-submit', include_blank: true,
+diff --git a/app/views/devise/confirmations/almost_there.haml b/app/views/devise/confirmations/almost_there.haml
+index 3c3830a..a562224 100644
+--- a/app/views/devise/confirmations/almost_there.haml
++++ b/app/views/devise/confirmations/almost_there.haml
+@@ -2,7 +2,7 @@
+   %h1.prepend-top-0
+     Almost there...
+   %p.lead
+-    Please check your email to confirm your account
++    Please check your email to confirm your アカウント
+ %p.confirmation-content.text-center
+   No confirmation email received? Please check your spam folder or
+ .append-bottom-20.prepend-top-20.text-center
 diff --git a/app/views/devise/confirmations/new.html.haml b/app/views/devise/confirmations/new.html.haml
 index 970ba14..84406ab 100644
 --- a/app/views/devise/confirmations/new.html.haml
@@ -2799,10 +2821,10 @@ index 970ba14..84406ab 100644
          = f.submit "Resend confirmation instructions", class: 'btn btn-success'
  
 diff --git a/app/views/devise/mailer/unlock_instructions.html.haml b/app/views/devise/mailer/unlock_instructions.html.haml
-index 52b327e..c720516 100644
+index 52b327e..296ee43 100644
 --- a/app/views/devise/mailer/unlock_instructions.html.haml
 +++ b/app/views/devise/mailer/unlock_instructions.html.haml
-@@ -2,8 +2,8 @@
+@@ -2,9 +2,9 @@
  Hello #{@resource.name}!
  
  %p
@@ -2813,6 +2835,8 @@ index 52b327e..c720516 100644
    = time_ago_in_words(Devise.unlock_in.from_now)
    or you may click the link below to unlock now.
  
+-%p= link_to 'Unlock your account', unlock_url(@resource, unlock_token: @token)
++%p= link_to 'Unlock your アカウント', unlock_url(@resource, unlock_token: @token)
 diff --git a/app/views/devise/passwords/edit.html.haml b/app/views/devise/passwords/edit.html.haml
 index 56048e9..8ad1082 100644
 --- a/app/views/devise/passwords/edit.html.haml
@@ -2981,7 +3005,7 @@ index 2c15e2c..751c352 100644
      - if form_based_providers.any?
        %ul.nav-links
 diff --git a/app/views/devise/shared/_signup_box.html.haml b/app/views/devise/shared/_signup_box.html.haml
-index e5607da..fb33799 100644
+index e5607da..8ea8c6d 100644
 --- a/app/views/devise/shared/_signup_box.html.haml
 +++ b/app/views/devise/shared/_signup_box.html.haml
 @@ -1,10 +1,10 @@
@@ -2993,7 +3017,7 @@ index e5607da..fb33799 100644
    - else
      .login-heading
 -      %h3 Create an account
-+      %h3 アカウントの作成
++      %h3 アカウントを作成
    .login-body
      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
        .devise-errors
@@ -3740,7 +3764,7 @@ index 3d16ecb..7c9f281 100644
    .tab-content
      .tab-pane.active#projects
 diff --git a/app/views/help/_shortcuts.html.haml b/app/views/help/_shortcuts.html.haml
-index da3c371..c15af6c 100644
+index da3c371..a7c7269 100644
 --- a/app/views/help/_shortcuts.html.haml
 +++ b/app/views/help/_shortcuts.html.haml
 @@ -4,7 +4,7 @@
@@ -3789,7 +3813,7 @@ index da3c371..c15af6c 100644
                %tr
                  %td.shortcut
                    .key
-@@ -73,10 +73,10 @@
+@@ -73,108 +73,108 @@
  
          .col-lg-4
            %table.shortcut-mappings
@@ -3802,26 +3826,31 @@ index da3c371..c15af6c 100644
                %tr
                  %td.shortcut
                    .key g
-@@ -88,23 +88,23 @@
+                   .key a
+                 %td
+-                  Go to the activity feed
++                  アクティビティフィードを表示
+               %tr
+                 %td.shortcut
                    .key g
                    .key p
                  %td
 -                  Go to projects
-+                  プロジェクトに戻る
++                  プロジェクトを表示
                %tr
                  %td.shortcut
                    .key g
                    .key i
                  %td
 -                  Go to issues
-+                  Go to 課題
++                  課題を表示
                %tr
                  %td.shortcut
                    .key g
                    .key m
                  %td
 -                  Go to merge requests
-+                  Go to マージリクエスト
++                  マージリクエストを表示
              %tbody
                %tr
                  %th
@@ -3830,16 +3859,33 @@ index da3c371..c15af6c 100644
                %tr
                  %td.shortcut
                    .key g
-@@ -122,7 +122,7 @@
+                   .key p
+                 %td
+-                  Go to the project's home page
++                  プロジェクトのページを表示
+               %tr
+                 %td.shortcut
+                   .key g
+                   .key e
+                 %td
+-                  Go to the project's activity feed
++                  プロジェクトのアクティビティフィードを表示
+               %tr
+                 %td.shortcut
                    .key g
                    .key f
                  %td
 -                  Go to files
-+                  Go to ファイル
++                  ファイルを表示
                %tr
                  %td.shortcut
                    .key g
-@@ -134,7 +134,7 @@
+                   .key c
+                 %td
+-                  Go to commits
++                  コミットを表示
+               %tr
+                 %td.shortcut
                    .key g
                    .key b
                  %td
@@ -3848,26 +3894,38 @@ index da3c371..c15af6c 100644
                %tr
                  %td.shortcut
                    .key g
-@@ -152,23 +152,23 @@
+                   .key n
+                 %td
+-                  Go to network graph
++                  ネットワークグラフを表示
+               %tr
+                 %td.shortcut
+                   .key g
+                   .key g
+                 %td
+-                  Go to graphs
++                  グラフを表示
+               %tr
+                 %td.shortcut
                    .key g
                    .key i
                  %td
 -                  Go to issues
-+                  Go to 課題
++                  課題を表示
                %tr
                  %td.shortcut
                    .key g
                    .key m
                  %td
 -                  Go to merge requests
-+                  Go to マージリクエスト
++                  マージリクエストを表示
                %tr
                  %td.shortcut
                    .key g
                    .key s
                  %td
 -                  Go to snippets
-+                  Go to スニペット
++                  スニペットを表示
                %tr
                  %td.shortcut
                    .key t
@@ -3876,7 +3934,14 @@ index da3c371..c15af6c 100644
          .col-lg-4
            %table.shortcut-mappings
              %tbody{ class: 'hidden-shortcut network', style: 'display:none' }
-@@ -221,10 +221,10 @@
+               %tr
+                 %th
+-                %th Network Graph
++                %th ネットワークグラフ
+               %tr
+                 %td.shortcut
+                   .key
+@@ -221,18 +221,18 @@
                    .key
                      shift j
                  %td Scroll to bottom
@@ -3889,16 +3954,17 @@ index da3c371..c15af6c 100644
                %tr
                  %td.shortcut
                    .key a
-@@ -232,7 +232,7 @@
+-                %td Change assignee
++                %td 担当者を変更
                %tr
                  %td.shortcut
                    .key m
 -                %td Change milestone
-+                %td Change マイルストーン
++                %td マイルストーンを変更
                %tr
                  %td.shortcut
                    .key r
-@@ -240,11 +240,11 @@
+@@ -240,19 +240,19 @@
                %tr
                  %td.shortcut
                    .key e
@@ -3912,12 +3978,13 @@ index da3c371..c15af6c 100644
                %tr
                  %td.shortcut
                    .key a
-@@ -252,7 +252,7 @@
+-                %td Change assignee
++                %td 担当者を変更
                %tr
                  %td.shortcut
                    .key m
 -                %td Change milestone
-+                %td Change マイルストーン
++                %td マイルストーンを変更
                %tr
                  %td.shortcut
                    .key r
@@ -4441,7 +4508,7 @@ index 267eee4..49f1f13 100644
        - @already_added_projects.each do |project|
          %tr{id: "project_#{project.id}", class: "#{project_status_css_class(project.import_status)}"}
 diff --git a/app/views/import/google_code/new.html.haml b/app/views/import/google_code/new.html.haml
-index 5d2f149..0509572 100644
+index 5d2f149..6ba36be 100644
 --- a/app/views/import/google_code/new.html.haml
 +++ b/app/views/import/google_code/new.html.haml
 @@ -1,5 +1,5 @@
@@ -4456,7 +4523,7 @@ index 5d2f149..0509572 100644
      %li
        %p
 -        Make sure you're logged into the account that owns the projects you'd like to import.
-+        Make sure you're logged into the account that owns the プロジェクト you'd like to import.
++        Make sure you're logged into the アカウント that owns the プロジェクト you'd like to import.
      %li
        %p
 -        Click the <strong>Select none</strong> button on the right, since we only need "Google Code Project Hosting".
@@ -5066,18 +5133,18 @@ index 5594074..56234ad 100644
 -          Settings
 +          設定
 diff --git a/app/views/layouts/nav/_group_settings.html.haml b/app/views/layouts/nav/_group_settings.html.haml
-index 56a92fe..42e02b8 100644
+index 56a92fe..98110b2 100644
 --- a/app/views/layouts/nav/_group_settings.html.haml
 +++ b/app/views/layouts/nav/_group_settings.html.haml
 @@ -1,9 +1,9 @@
  %ul.nav.nav-sidebar
    = nav_link do
 -    = link_to group_path(@group), title: 'Go to group', class: 'back-link' do
-+    = link_to group_path(@group), title: 'Go to グループ', class: 'back-link' do
++    = link_to group_path(@group), title: 'グループに戻る', class: 'back-link' do
        = icon('caret-square-o-left fw')
        %span
 -        Go to group
-+        Go to グループ
++        グループに戻る
  
    %li.separate-item
  
@@ -5179,7 +5246,7 @@ index 3b9d31a..23a3026 100644
 -        Audit Log
 +        監査ログ
 diff --git a/app/views/layouts/nav/_project.html.haml b/app/views/layouts/nav/_project.html.haml
-index a15b775..3c2ca72 100644
+index a15b775..3e331af 100644
 --- a/app/views/layouts/nav/_project.html.haml
 +++ b/app/views/layouts/nav/_project.html.haml
 @@ -1,35 +1,35 @@
@@ -5187,11 +5254,11 @@ index a15b775..3c2ca72 100644
    - if @project.group
      = nav_link do
 -      = link_to group_path(@project.group), title: 'Go to group', class: 'back-link' do
-+      = link_to group_path(@project.group), title: 'Go to グループ', class: 'back-link' do
++      = link_to group_path(@project.group), title: 'グループに戻る', class: 'back-link' do
          = icon('caret-square-o-left fw')
          %span
 -          Go to group
-+          Go to グループ
++          グループに戻る
    - else
      = nav_link do
 -      = link_to root_path, title: 'Go to dashboard', class: 'back-link' do
@@ -5664,16 +5731,21 @@ index 53869e3..5a4492d 100644
    - @message.diffs.each do |diff|
      - if diff.deleted_file
 diff --git a/app/views/profiles/accounts/show.html.haml b/app/views/profiles/accounts/show.html.haml
-index 6efd119..11605f4 100644
+index 6efd119..5779afc 100644
 --- a/app/views/profiles/accounts/show.html.haml
 +++ b/app/views/profiles/accounts/show.html.haml
-@@ -1,4 +1,4 @@
+@@ -1,16 +1,16 @@
 -- page_title "Account"
 +- page_title "アカウント"
  - header_title page_title, profile_account_path
  
  - if current_user.ldap_user?
-@@ -10,7 +10,7 @@
+   .alert.alert-info
+-    Some options are unavailable for LDAP accounts
++    Some options are unavailable for LDAP アカウント
+ 
+ .row.prepend-top-default
+   .col-lg-3.profile-settings-sidebar
      %h4.prepend-top-0
        Private Token
      %p
@@ -5710,12 +5782,30 @@ index 6efd119..11605f4 100644
  %hr
  - if button_based_providers.any?
    .row.prepend-top-default
+@@ -55,7 +55,7 @@
+         Activate signin with one of the following services
+     .col-lg-9
+       %label.label-light
+-        Connected Accounts
++        Connected アカウント
+       %p Click on icon to activate signin with one of the following services
+       - button_based_providers.each do |provider|
+         .provider-btn-group
+@@ -72,7 +72,7 @@
+   .row.prepend-top-default
+     .col-lg-3.profile-settings-sidebar
+       %h4.prepend-top-0.change-username-title
+-        Change username
++        usernameを変更
+       %p
+         Changing your username will change path to all personal projects!
+     .col-lg-9
 @@ -96,21 +96,21 @@
    .row.prepend-top-default
      .col-lg-3.profile-settings-sidebar
        %h4.prepend-top-0.remove-account-title
 -        Remove account
-+        accountを削除
++        アカウントを削除
      .col-lg-9
        - if @user.can_be_removed?
          %p
@@ -5728,7 +5818,7 @@ index 6efd119..11605f4 100644
 -            %li #{pluralize rp, 'personal project'} will be removed and cannot be restored
 -        = link_to 'Delete account', user_registration_path, data: { confirm: "REMOVE #{current_user.name}? Are you sure?" }, method: :delete, class: "btn btn-remove"
 +            %li #{rp}個のパーソナルプロジェクトが削除され、復元できなくなります。
-+        = link_to 'Delete account', user_registration_path, data: { confirm: "REMOVE #{current_user.name}? 本当によろしいですか？" }, method: :delete, class: "btn btn-remove"
++        = link_to 'Delete アカウント', user_registration_path, data: { confirm: "REMOVE #{current_user.name}? 本当によろしいですか？" }, method: :delete, class: "btn btn-remove"
        - else
          - if @user.solo_owned_groups.present?
            %p
@@ -5748,7 +5838,7 @@ index f630c03..bcfbea5 100644
  
  .row.prepend-top-default
 diff --git a/app/views/profiles/emails/index.html.haml b/app/views/profiles/emails/index.html.haml
-index 3f328f9..7754067 100644
+index 3f328f9..17b5813 100644
 --- a/app/views/profiles/emails/index.html.haml
 +++ b/app/views/profiles/emails/index.html.haml
 @@ -1,4 +1,4 @@
@@ -5757,8 +5847,12 @@ index 3f328f9..7754067 100644
  - header_title page_title, profile_emails_path
  
  .row.prepend-top-default
-@@ -9,41 +9,41 @@
-       Control emails linked to your account
+@@ -6,44 +6,44 @@
+     %h4.prepend-top-0
+       = page_title
+     %p
+-      Control emails linked to your account
++      Control emails linked to your アカウント
    .col-lg-9
      %h4.prepend-top-0
 -      Add email address
@@ -5931,7 +6025,7 @@ index 5ac8a8b..c2f8d05 100644
 -          = link_to "I forgot my password", reset_profile_password_path, method: :put, class: "account-btn-link"
 +          = link_to "I forgot my パスワード", reset_profile_password_path, method: :put, class: "account-btn-link"
 diff --git a/app/views/profiles/passwords/new.html.haml b/app/views/profiles/passwords/new.html.haml
-index 2eb9fac..1d2a370 100644
+index 2eb9fac..6dbb944 100644
 --- a/app/views/profiles/passwords/new.html.haml
 +++ b/app/views/profiles/passwords/new.html.haml
 @@ -1,6 +1,6 @@
@@ -5949,7 +6043,7 @@ index 2eb9fac..1d2a370 100644
        = f.password_field :password_confirmation, required: true, class: 'form-control'
    .form-actions
 -    = f.submit 'Set new password', class: "btn btn-create"
-+    = f.submit 'Set new パスワード', class: "btn btn-create"
++    = f.submit '新しいパスワードを設定', class: "btn btn-create"
 diff --git a/app/views/profiles/preferences/show.html.haml b/app/views/profiles/preferences/show.html.haml
 index f802116..3adb617 100644
 --- a/app/views/profiles/preferences/show.html.haml
@@ -5976,7 +6070,7 @@ index f802116..3adb617 100644
 -      = f.submit 'Save changes', class: 'btn btn-save'
 +      = f.submit '変更を保存', class: 'btn btn-save'
 diff --git a/app/views/profiles/show.html.haml b/app/views/profiles/show.html.haml
-index f59d27f..8d81ebc 100644
+index f59d27f..a594ea3 100644
 --- a/app/views/profiles/show.html.haml
 +++ b/app/views/profiles/show.html.haml
 @@ -21,14 +21,14 @@
@@ -5997,6 +6091,15 @@ index f59d27f..8d81ebc 100644
    %hr
    .row
      .col-lg-3.profile-settings-sidebar
+@@ -37,7 +37,7 @@
+       %p
+         This information will appear on your profile.
+         - if current_user.ldap_user?
+-          Some options are unavailable for LDAP accounts
++          Some options are unavailable for LDAP アカウント
+     .col-lg-9
+       .form-group
+         = f.label :name, class: "label-light"
 @@ -49,7 +49,7 @@
          - if @user.ldap_user? && @user.ldap_email?
            = f.text_field :email, class: "form-control", required: true, readonly: true
@@ -6563,9 +6666,18 @@ index 1e4c46f..2846dd2 100644
 -            New file
 +            新しいファイル
 diff --git a/app/views/projects/buttons/_fork.html.haml b/app/views/projects/buttons/_fork.html.haml
-index 5fb5fe5..2956732 100644
+index 5fb5fe5..8399a3c 100644
 --- a/app/views/projects/buttons/_fork.html.haml
 +++ b/app/views/projects/buttons/_fork.html.haml
+@@ -1,7 +1,7 @@
+ - unless @project.empty_repo?
+   - if current_user && can?(current_user, :fork_project, @project)
+     - if current_user.already_forked?(@project) && current_user.manageable_namespaces.size < 2
+-      = link_to namespace_project_path(current_user, current_user.fork_of(@project)), title: 'Go to your fork', class: 'btn has-tooltip' do
++      = link_to namespace_project_path(current_user, current_user.fork_of(@project)), title: 'フォークに移動', class: 'btn has-tooltip' do
+         = icon('code-fork fw')
+         Fork
+       %div.count-with-arrow
 @@ -9,7 +9,7 @@
          %span.count
            = @project.forks_count
@@ -6793,7 +6905,7 @@ index f6565f8..57eebe2 100644
 +      = f.submit 'デプロイキーを作成', class: "btn-create btn"
 +      = link_to "キャンセル", namespace_project_deploy_keys_path(@project.namespace, @project), class: "btn btn-cancel"
 diff --git a/app/views/projects/deploy_keys/index.html.haml b/app/views/projects/deploy_keys/index.html.haml
-index 8e24c77..0cf838a 100644
+index 8e24c77..43d6207 100644
 --- a/app/views/projects/deploy_keys/index.html.haml
 +++ b/app/views/projects/deploy_keys/index.html.haml
 @@ -1,11 +1,11 @@
@@ -6824,7 +6936,7 @@ index 8e24c77..0cf838a 100644
        - if @enabled_keys.blank?
          .light-well
 -          .nothing-here-block Create a #{link_to 'new deploy key', new_namespace_project_deploy_key_path(@project.namespace, @project)} or add an existing one
-+          .nothing-here-block a #{link_to 'new デプロイキー', new_namespace_project_deploy_key_path(@project.namespace, @project)} or add an existing oneを作成
++          .nothing-here-block #{link_to 'new デプロイキー', new_namespace_project_deploy_key_path(@project.namespace, @project)} or add an existing oneを作成
    .col-md-6.available-keys
      - # If there are available public deploy keys but no available project deploy keys, only public deploy keys are shown.
      - if @available_project_keys.any? || @available_public_keys.blank?
@@ -7086,7 +7198,7 @@ index 76a4f41..e592424 100644
          .nothing-here-block Only the project owner can remove a project.
  
 diff --git a/app/views/projects/empty.html.haml b/app/views/projects/empty.html.haml
-index 52d0938..0e4a814 100644
+index 52d0938..a30ec00 100644
 --- a/app/views/projects/empty.html.haml
 +++ b/app/views/projects/empty.html.haml
 @@ -35,7 +35,7 @@
@@ -7094,7 +7206,7 @@ index 52d0938..0e4a814 100644
  
          %fieldset
 -          %h5 Create a new repository
-+          %h5 a new repositoryを作成
++          %h5 new repositoryを作成
            %pre.light-well
              :preserve
                git clone #{ content_tag(:span, default_url_to_repo, class: 'clone')}
@@ -7127,7 +7239,7 @@ index 3d0ab5b..2d4761a 100644
    .alert.alert-danger.alert-block
      %h4
 diff --git a/app/views/projects/forks/index.html.haml b/app/views/projects/forks/index.html.haml
-index 4bcf2d9..28eeb07 100644
+index 4bcf2d9..23fcfe5 100644
 --- a/app/views/projects/forks/index.html.haml
 +++ b/app/views/projects/forks/index.html.haml
 @@ -10,7 +10,7 @@
@@ -7139,7 +7251,12 @@ index 4bcf2d9..28eeb07 100644
          - if @sort.present?
            = sort_options_hash[@sort]
          - else
-@@ -34,7 +34,7 @@
+@@ -30,11 +30,11 @@
+ 
+     - if current_user && can?(current_user, :fork_project, @project)
+       - if current_user.already_forked?(@project) && current_user.manageable_namespaces.size < 2
+-        = link_to namespace_project_path(current_user, current_user.fork_of(@project)), title: 'Go to your fork', class: 'btn btn-new' do
++        = link_to namespace_project_path(current_user, current_user.fork_of(@project)), title: 'フォークに移動', class: 'btn btn-new' do
            = icon('code-fork fw')
            Fork
        - else
@@ -7663,7 +7780,7 @@ index b085245..4679140 100644
  :javascript
    new Compare({
 diff --git a/app/views/projects/merge_requests/_new_submit.html.haml b/app/views/projects/merge_requests/_new_submit.html.haml
-index 2f14a91..1931cd2 100644
+index 2f14a91..78b112e 100644
 --- a/app/views/projects/merge_requests/_new_submit.html.haml
 +++ b/app/views/projects/merge_requests/_new_submit.html.haml
 @@ -1,5 +1,5 @@
@@ -7678,7 +7795,7 @@ index 2f14a91..1931cd2 100644
  
    %span.pull-right
 -    = link_to 'Change branches', mr_change_branches_path(@merge_request)
-+    = link_to 'Change ブランチ', mr_change_branches_path(@merge_request)
++    = link_to 'ブランチを変更', mr_change_branches_path(@merge_request)
  %hr
  = form_for [@project.namespace.becomes(Namespace), @project, @merge_request], html: { class: 'merge-request-form form-horizontal common-note-form js-requires-input' } do |f|
    = render 'shared/issuable/form', f: f, issuable: @merge_request
@@ -8134,7 +8251,7 @@ index be63875..778de63 100644
          Delete
  
 diff --git a/app/views/projects/new.html.haml b/app/views/projects/new.html.haml
-index a4c6094..d73e9e1 100644
+index a4c6094..019b5d3 100644
 --- a/app/views/projects/new.html.haml
 +++ b/app/views/projects/new.html.haml
 @@ -1,8 +1,8 @@
@@ -8158,12 +8275,14 @@ index a4c6094..d73e9e1 100644
          .col-sm-10
            .input-group
              - if current_user.can_select_namespace?
-@@ -30,12 +30,12 @@
+@@ -29,13 +29,13 @@
+ 
            - if current_user.can_create_group?
              .help-block
-               Want to house several dependent projects under the same namespace?
+-              Want to house several dependent projects under the same namespace?
 -              = link_to "Create a group", new_group_path
-+              = link_to "a グループを作成", new_group_path
++              同じネームスペースで複数のプロジェクトを管理したい場合は
++              = link_to "グループを作成", new_group_path
  
        - if import_sources_enabled?
          .project-import.js-toggle-container
@@ -9565,6 +9684,19 @@ index c38d931..6a50e1c 100644
 -  = event_filter_link EventFilter.comments, 'Comments'
 +  = event_filter_link EventFilter.comments, 'コメント'
    = event_filter_link EventFilter.team, 'Team'
+diff --git a/app/views/shared/_field.html.haml b/app/views/shared/_field.html.haml
+index 8d6e16f..4d72944 100644
+--- a/app/views/shared/_field.html.haml
++++ b/app/views/shared/_field.html.haml
+@@ -9,7 +9,7 @@
+ 
+ .form-group
+   - if type == "password" && value.present?
+-    = form.label name, "Change #{title}", class: "control-label"
++    = form.label name, "#{title}を変更", class: "control-label"
+   - else
+     = form.label name, title, class: "control-label"
+   .col-sm-10
 diff --git a/app/views/shared/_group_form.html.haml b/app/views/shared/_group_form.html.haml
 index 67072b9..a3d82ab 100644
 --- a/app/views/shared/_group_form.html.haml
@@ -9667,14 +9799,14 @@ index 0c8ac48..aed155c 100644
          = text_field_tag 'target_branch', @target_branch || tree_edit_branch, required: true, class: "form-control js-target-branch"
  
 diff --git a/app/views/shared/_no_password.html.haml b/app/views/shared/_no_password.html.haml
-index a43bf33..52a3962 100644
+index a43bf33..f70c673 100644
 --- a/app/views/shared/_no_password.html.haml
 +++ b/app/views/shared/_no_password.html.haml
 @@ -1,8 +1,8 @@
  - if cookies[:hide_no_password_message].blank? && !current_user.hide_no_password && current_user.require_password?
    .no-password-message.alert.alert-warning.hidden-xs
 -    You won't be able to pull or push project code via #{gitlab_config.protocol.upcase} until you #{link_to 'set a password', edit_profile_password_path} on your account
-+    You won't be able to pull or push プロジェクト code via #{gitlab_config.protocol.upcase} until you #{link_to 'set a パスワード', edit_profile_password_path} on your account
++    You won't be able to pull or push プロジェクト code via #{gitlab_config.protocol.upcase} until you #{link_to 'set a パスワード', edit_profile_password_path} on your アカウント
  
      .pull-right
 -      = link_to "Don't show again", profile_path(user: {hide_no_password: true}), method: :put
@@ -9770,7 +9902,7 @@ index 40c6eb9..ec9b6dc 100644
  
    .stats
 diff --git a/app/views/shared/issuable/_filter.html.haml b/app/views/shared/issuable/_filter.html.haml
-index fc11016..1048a7d 100644
+index fc11016..46b02be 100644
 --- a/app/views/shared/issuable/_filter.html.haml
 +++ b/app/views/shared/issuable/_filter.html.haml
 @@ -9,14 +9,14 @@
@@ -9787,8 +9919,8 @@ index fc11016..1048a7d 100644
              = hidden_field_tag(:assignee_id, params[:assignee_id])
 -          = dropdown_tag(user_dropdown_label(params[:assignee_id], "Assignee"), options: { toggle_class: "js-user-search js-filter-submit js-assignee-search", title: "Filter by assignee", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable dropdown-menu-assignee js-filter-submit",
 -            placeholder: "Search assignee", data: { any_user: "Any Assignee", first_user: (current_user.username if current_user), null_user: true, current_user: true, project_id: (@project.id if @project), selected: params[:assignee_id], field_name: "assignee_id", default_label: "Assignee" } })
-+          = dropdown_tag(user_dropdown_label(params[:assignee_id], "担当者"), options: { toggle_class: "js-user-search js-filter-submit js-assignee-search", title: "Filter by assignee", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable dropdown-menu-assignee js-filter-submit",
-+            placeholder: "Search assignee", data: { any_user: "Any 担当者", first_user: (current_user.username if current_user), null_user: true, current_user: true, project_id: (@project.id if @project), selected: params[:assignee_id], field_name: "assignee_id", default_label: "Assignee" } })
++          = dropdown_tag(user_dropdown_label(params[:assignee_id], "担当者"), options: { toggle_class: "js-user-search js-filter-submit js-assignee-search", title: "Filter by 担当者", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable dropdown-menu-assignee js-filter-submit",
++            placeholder: "Search 担当者", data: { any_user: "Any 担当者", first_user: (current_user.username if current_user), null_user: true, current_user: true, project_id: (@project.id if @project), selected: params[:assignee_id], field_name: "assignee_id", default_label: "Assignee" } })
  
          .filter-item.inline.milestone-filter
            = render "shared/issuable/milestone_dropdown"
@@ -9797,7 +9929,7 @@ index fc11016..1048a7d 100644
          = form_tag bulk_update_namespace_project_issues_path(@project.namespace, @project), method: :post  do
            .filter-item.inline
 -            = dropdown_tag("Status", options: { toggle_class: "js-issue-status", title: "Change status", dropdown_class: "dropdown-menu-status dropdown-menu-selectable", data: { field_name: "update[state_event]" } } ) do
-+            = dropdown_tag("ステータス", options: { toggle_class: "js-issue-status", title: "Change status", dropdown_class: "dropdown-menu-status dropdown-menu-selectable", data: { field_name: "update[state_event]" } } ) do
++            = dropdown_tag("ステータス", options: { toggle_class: "js-issue-status", title: "statusを変更", dropdown_class: "dropdown-menu-status dropdown-menu-selectable", data: { field_name: "update[state_event]" } } ) do
                %ul
                  %li
 -                  %a{href: "#", data: {id: "reopen"}} Open
@@ -9821,7 +9953,7 @@ index fc11016..1048a7d 100644
    - if !@labels.nil?
      .gray-content-block.second-block.filtered-labels{ class: ("hidden" if !@labels.any?) }
 diff --git a/app/views/shared/issuable/_form.html.haml b/app/views/shared/issuable/_form.html.haml
-index 18b091d..9773a78 100644
+index 18b091d..1900ed4 100644
 --- a/app/views/shared/issuable/_form.html.haml
 +++ b/app/views/shared/issuable/_form.html.haml
 @@ -10,7 +10,7 @@
@@ -9924,7 +10056,7 @@ index 18b091d..9773a78 100644
        - if @merge_request.new_record?
          &nbsp;
 -        = link_to 'Change branches', mr_change_branches_path(@merge_request)
-+        = link_to 'Change ブランチ', mr_change_branches_path(@merge_request)
++        = link_to 'ブランチを変更', mr_change_branches_path(@merge_request)
  
  - is_footer = !(issuable.is_a?(MergeRequest) && issuable.new_record?)
  .gray-content-block{class: (is_footer ? "footer-block" : "middle-block")}
@@ -10082,7 +10214,7 @@ index afad484..3afa8f2 100644
    = hidden_field_tag :scope, params['scope']
    = hidden_field_tag :assignee_id, params['assignee_id']
 diff --git a/app/views/shared/issuable/_sidebar.html.haml b/app/views/shared/issuable/_sidebar.html.haml
-index 04b834b..b07ea95 100644
+index 04b834b..4b7f0fd 100644
 --- a/app/views/shared/issuable/_sidebar.html.haml
 +++ b/app/views/shared/issuable/_sidebar.html.haml
 @@ -28,10 +28,10 @@
@@ -10098,7 +10230,15 @@ index 04b834b..b07ea95 100644
          .value.bold.hide-collapsed
            - if issuable.assignee
              = link_to_member(@project, issuable.assignee, size: 32) do
-@@ -49,7 +49,7 @@
+@@ -42,14 +42,14 @@
+                 = issuable.assignee.to_reference
+           - else
+             %span.assign-yourself
+-              No assignee
++              No 担当者
+               - if can_edit_issuable
+                 %a.js-assign-yourself{ href: '#' }
+                   \- assign yourself
  
          .selectbox.hide-collapsed
            = f.hidden_field 'assignee_id', value: issuable.assignee_id, id: 'issue_assignee_id'
@@ -10962,6 +11102,479 @@ index 244637e..3ade7da 100644
    end
  
    def down
+diff --git a/doc/api/merge_requests.md b/doc/api/merge_requests.md
+index 2057f9d..a042763 100644
+--- a/doc/api/merge_requests.md
++++ b/doc/api/merge_requests.md
+@@ -404,7 +404,7 @@ DELETE /projects/:id/merge_requests/:merge_request_id
+ curl -X DELETE -H "PRIVATE-TOKEN: 9koXpg98eAheJpvBs5tK" https://gitlab.example.com/api/v3/projects/4/merge_request/85
+ ```
+ 
+-## Accept MR
++## マージリクエストの承認
+ 
+ Merge changes submitted with MR using this API.
+ 
+diff --git a/doc/update/2.6-to-3.0.md b/doc/update/2.6-to-3.0.md
+index 4827ef9..e375f71 100644
+--- a/doc/update/2.6-to-3.0.md
++++ b/doc/update/2.6-to-3.0.md
+@@ -1,4 +1,4 @@
+-# From 2.6 to 3.0
++# 2.6から3.0へ
+ *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/2.6-to-3.0.md) for the most up to date instructions.*
+ 
+ ## 1. Stop server & resque
+diff --git a/doc/update/2.9-to-3.0.md b/doc/update/2.9-to-3.0.md
+index f4a997a..2f0ee69 100644
+--- a/doc/update/2.9-to-3.0.md
++++ b/doc/update/2.9-to-3.0.md
+@@ -1,4 +1,4 @@
+-# From 2.9 to 3.0
++# 2.9から3.0へ
+ *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/2.9-to-3.0.md) for the most up to date instructions.*
+ 
+ ## 1. Stop server & resque
+diff --git a/doc/update/3.0-to-3.1.md b/doc/update/3.0-to-3.1.md
+index a30485c..60739de 100644
+--- a/doc/update/3.0-to-3.1.md
++++ b/doc/update/3.0-to-3.1.md
+@@ -1,4 +1,4 @@
+-# From 3.0 to 3.1
++# 3.0から3.1へ
+ *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/3.0-to-3.1.md) for the most up to date instructions.*
+ 
+ **IMPORTANT!**
+diff --git a/doc/update/3.1-to-4.0.md b/doc/update/3.1-to-4.0.md
+index f1ef4df..07dda79 100644
+--- a/doc/update/3.1-to-4.0.md
++++ b/doc/update/3.1-to-4.0.md
+@@ -1,4 +1,4 @@
+-# From 3.1 to 4.0
++# 3.1から4.0へ
+ *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/3.1-to-4.0.md) for the most up to date instructions.*
+ 
+ ## Important changes
+diff --git a/doc/update/4.0-to-4.1.md b/doc/update/4.0-to-4.1.md
+index d89d523..0d92dbf 100644
+--- a/doc/update/4.0-to-4.1.md
++++ b/doc/update/4.0-to-4.1.md
+@@ -1,4 +1,4 @@
+-# From 4.0 to 4.1
++# 4.0から4.1へ
+ *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/4.0-to-4.1.md) for the most up to date instructions.*
+ 
+ ## Important changes
+diff --git a/doc/update/4.1-to-4.2.md b/doc/update/4.1-to-4.2.md
+index 6fe4412..b77772d 100644
+--- a/doc/update/4.1-to-4.2.md
++++ b/doc/update/4.1-to-4.2.md
+@@ -1,4 +1,4 @@
+-# From 4.1 to 4.2
++# 4.1から4.2へ
+ *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/4.1-to-4.2.md) for the most up to date instructions.*
+ 
+ ## 1. Stop server & Resque
+diff --git a/doc/update/4.2-to-5.0.md b/doc/update/4.2-to-5.0.md
+index f9faf65..1f6b9c4 100644
+--- a/doc/update/4.2-to-5.0.md
++++ b/doc/update/4.2-to-5.0.md
+@@ -1,4 +1,4 @@
+-# From 4.2 to 5.0
++# 4.2から5.0へ
+ *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/4.2-to-5.0.md) for the most up to date instructions.*
+ 
+ ## Warning
+diff --git a/doc/update/5.0-to-5.1.md b/doc/update/5.0-to-5.1.md
+index 9fbd1f8..508d2b5 100644
+--- a/doc/update/5.0-to-5.1.md
++++ b/doc/update/5.0-to-5.1.md
+@@ -1,4 +1,4 @@
+-# From 5.0 to 5.1
++# 5.0から5.1へ
+ *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/5.0-to-5.1.md) for the most up to date instructions.*
+ 
+ ## Warning
+diff --git a/doc/update/5.1-to-5.2.md b/doc/update/5.1-to-5.2.md
+index cf9c4e4..76817c5 100644
+--- a/doc/update/5.1-to-5.2.md
++++ b/doc/update/5.1-to-5.2.md
+@@ -1,4 +1,4 @@
+-# From 5.1 to 5.2
++# 5.1から5.2へ
+ *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/5.1-to-5.2.md) for the most up to date instructions.*
+ 
+ ## Warning
+diff --git a/doc/update/5.1-to-5.4.md b/doc/update/5.1-to-5.4.md
+index 97a98ed..7f72fac 100644
+--- a/doc/update/5.1-to-5.4.md
++++ b/doc/update/5.1-to-5.4.md
+@@ -1,4 +1,4 @@
+-# From 5.1 to 5.4
++# 5.1から5.4へ
+ *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/5.1-to-5.4.md) for the most up to date instructions.*
+ 
+ Also works starting from 5.2.
+diff --git a/doc/update/5.1-to-6.0.md b/doc/update/5.1-to-6.0.md
+index a3fdd92..f3e8d44 100644
+--- a/doc/update/5.1-to-6.0.md
++++ b/doc/update/5.1-to-6.0.md
+@@ -1,4 +1,4 @@
+-# From 5.1 to 6.0
++# 5.1から6.0へ
+ *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/5.1-to-6.0.md) for the most up to date instructions.*
+ 
+ ## Warning
+diff --git a/doc/update/5.2-to-5.3.md b/doc/update/5.2-to-5.3.md
+index 27613ae..f5d7238 100644
+--- a/doc/update/5.2-to-5.3.md
++++ b/doc/update/5.2-to-5.3.md
+@@ -1,4 +1,4 @@
+-# From 5.2 to 5.3
++# 5.2から5.3へ
+ *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/5.2-to-5.3.md) for the most up to date instructions.*
+ 
+ ## Warning
+diff --git a/doc/update/5.3-to-5.4.md b/doc/update/5.3-to-5.4.md
+index 577b9a5..8192b4b 100644
+--- a/doc/update/5.3-to-5.4.md
++++ b/doc/update/5.3-to-5.4.md
+@@ -1,4 +1,4 @@
+-# From 5.3 to 5.4
++# 5.3から5.4へ
+ *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/5.3-to-5.4.md) for the most up to date instructions.*
+ 
+ ## 0. Backup
+diff --git a/doc/update/5.4-to-6.0.md b/doc/update/5.4-to-6.0.md
+index d9c6d9b..a7ead71 100644
+--- a/doc/update/5.4-to-6.0.md
++++ b/doc/update/5.4-to-6.0.md
+@@ -1,4 +1,4 @@
+-# From 5.4 to 6.0
++# 5.4から6.0へ
+ *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/5.4-to-6.0.md) for the most up to date instructions.*
+ 
+ ## Warning
+diff --git a/doc/update/6.0-to-6.1.md b/doc/update/6.0-to-6.1.md
+index c5eba1c..fd8670c 100644
+--- a/doc/update/6.0-to-6.1.md
++++ b/doc/update/6.0-to-6.1.md
+@@ -1,4 +1,4 @@
+-# From 6.0 to 6.1
++# 6.0から6.1へ
+ *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/6.0-to-6.1.md) for the most up to date instructions.*
+ 
+ ## Warning
+diff --git a/doc/update/6.1-to-6.2.md b/doc/update/6.1-to-6.2.md
+index a534528..28e171d 100644
+--- a/doc/update/6.1-to-6.2.md
++++ b/doc/update/6.1-to-6.2.md
+@@ -1,4 +1,4 @@
+-# From 6.1 to 6.2
++# 6.1から6.2へ
+ *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/6.1-to-6.2.md) for the most up to date instructions.*
+ 
+ **You should update to 6.1 before installing 6.2 so all the necessary conversions are run.**
+diff --git a/doc/update/6.2-to-6.3.md b/doc/update/6.2-to-6.3.md
+index b08ebde..db4815f 100644
+--- a/doc/update/6.2-to-6.3.md
++++ b/doc/update/6.2-to-6.3.md
+@@ -1,4 +1,4 @@
+-# From 6.2 to 6.3
++# 6.2から6.3へ
+ *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/6.2-to-6.3.md) for the most up to date instructions.*
+ 
+ **Requires version: 6.1 or 6.2.**
+diff --git a/doc/update/6.3-to-6.4.md b/doc/update/6.3-to-6.4.md
+index 951d92d..8373d56 100644
+--- a/doc/update/6.3-to-6.4.md
++++ b/doc/update/6.3-to-6.4.md
+@@ -1,4 +1,4 @@
+-# From 6.3 to 6.4
++# 6.3から6.4へ
+ *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/6.3-to-6.4.md) for the most up to date instructions.*
+ 
+ ## 0. Backup
+diff --git a/doc/update/6.4-to-6.5.md b/doc/update/6.4-to-6.5.md
+index 0dae9a9..d940114 100644
+--- a/doc/update/6.4-to-6.5.md
++++ b/doc/update/6.4-to-6.5.md
+@@ -1,4 +1,4 @@
+-# From 6.4 to 6.5
++# 6.4から6.5へ
+ *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/6.4-to-6.5.md) for the most up to date instructions.*
+ 
+ ## 0. Backup
+diff --git a/doc/update/6.5-to-6.6.md b/doc/update/6.5-to-6.6.md
+index c24e83e..7f0c180 100644
+--- a/doc/update/6.5-to-6.6.md
++++ b/doc/update/6.5-to-6.6.md
+@@ -1,4 +1,4 @@
+-# From 6.5 to 6.6
++# 6.5から6.6へ
+ *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/6.5-to-6.6.md) for the most up to date instructions.*
+ 
+ ## 0. Backup
+diff --git a/doc/update/6.6-to-6.7.md b/doc/update/6.6-to-6.7.md
+index b4298c9..e2b50a8 100644
+--- a/doc/update/6.6-to-6.7.md
++++ b/doc/update/6.6-to-6.7.md
+@@ -1,4 +1,4 @@
+-# From 6.6 to 6.7
++# 6.6から6.7へ
+ *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/6.6-to-6.7.md) for the most up to date instructions.*
+ 
+ ## 0. Backup
+diff --git a/doc/update/6.7-to-6.8.md b/doc/update/6.7-to-6.8.md
+index 4fb9063..914e0e7 100644
+--- a/doc/update/6.7-to-6.8.md
++++ b/doc/update/6.7-to-6.8.md
+@@ -1,4 +1,4 @@
+-# From 6.7 to 6.8
++# 6.7から6.8へ
+ *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/6.7-to-6.8.md) for the most up to date instructions.*
+ 
+ ## 0. Backup
+diff --git a/doc/update/6.8-to-6.9.md b/doc/update/6.8-to-6.9.md
+index b9b8b63..6854cc9 100644
+--- a/doc/update/6.8-to-6.9.md
++++ b/doc/update/6.8-to-6.9.md
+@@ -1,4 +1,4 @@
+-# From 6.8 to 6.9
++# 6.8から6.9へ
+ *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/6.8-to-6.9.md) for the most up to date instructions.*
+ 
+ ### 0. Backup
+diff --git a/doc/update/6.9-to-7.0.md b/doc/update/6.9-to-7.0.md
+index 236430b..99da73e 100644
+--- a/doc/update/6.9-to-7.0.md
++++ b/doc/update/6.9-to-7.0.md
+@@ -1,4 +1,4 @@
+-# From 6.9 to 7.0
++# 6.9から7.0へ
+ *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/6.9-to-7.0.md) for the most up to date instructions.*
+ 
+ ### 0. Backup
+diff --git a/doc/update/7.0-to-7.1.md b/doc/update/7.0-to-7.1.md
+index a4e9be9..f78c51c 100644
+--- a/doc/update/7.0-to-7.1.md
++++ b/doc/update/7.0-to-7.1.md
+@@ -1,4 +1,4 @@
+-# From 7.0 to 7.1
++# 7.0から7.1へ
+ *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/7.0-to-7.1.md) for the most up to date instructions.*
+ 
+ ### 0. Backup
+diff --git a/doc/update/7.1-to-7.2.md b/doc/update/7.1-to-7.2.md
+index 88cb63d..825f5e8 100644
+--- a/doc/update/7.1-to-7.2.md
++++ b/doc/update/7.1-to-7.2.md
+@@ -1,4 +1,4 @@
+-# From 7.1 to 7.2
++# 7.1から7.2へ
+ *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/7.1-to-7.2.md) for the most up to date instructions.*
+ 
+ ## Editable labels
+diff --git a/doc/update/7.10-to-7.11.md b/doc/update/7.10-to-7.11.md
+index 79bc6de..c03c207 100644
+--- a/doc/update/7.10-to-7.11.md
++++ b/doc/update/7.10-to-7.11.md
+@@ -1,4 +1,4 @@
+-# From 7.10 to 7.11
++# 7.10から7.11へ
+ 
+ ### 0. Stop server
+ 
+diff --git a/doc/update/7.11-to-7.12.md b/doc/update/7.11-to-7.12.md
+index cc14a13..8f0df69 100644
+--- a/doc/update/7.11-to-7.12.md
++++ b/doc/update/7.11-to-7.12.md
+@@ -1,4 +1,4 @@
+-# From 7.11 to 7.12
++# 7.11から7.12へ
+ 
+ ### 0. Double-check your Git version
+ 
+diff --git a/doc/update/7.12-to-7.13.md b/doc/update/7.12-to-7.13.md
+index 57ebe32..1908ccd 100644
+--- a/doc/update/7.12-to-7.13.md
++++ b/doc/update/7.12-to-7.13.md
+@@ -1,4 +1,4 @@
+-# From 7.12 to 7.13
++# 7.12から7.13へ
+ 
+ ### 0. Double-check your Git version
+ 
+diff --git a/doc/update/7.13-to-7.14.md b/doc/update/7.13-to-7.14.md
+index 6dd9727..ecd1c75 100644
+--- a/doc/update/7.13-to-7.14.md
++++ b/doc/update/7.13-to-7.14.md
+@@ -1,4 +1,4 @@
+-# From 7.13 to 7.14
++# 7.13から7.14へ
+ 
+ ### 0. Double-check your Git version
+ 
+diff --git a/doc/update/7.14-to-8.0.md b/doc/update/7.14-to-8.0.md
+index 305017b..4c82a82 100644
+--- a/doc/update/7.14-to-8.0.md
++++ b/doc/update/7.14-to-8.0.md
+@@ -1,4 +1,4 @@
+-# From 7.14 to 8.0
++# 7.14から8.0へ
+ 
+ ### 0. Double-check your Git version
+ 
+diff --git a/doc/update/7.2-to-7.3.md b/doc/update/7.2-to-7.3.md
+index 18f77d6..9dd182b 100644
+--- a/doc/update/7.2-to-7.3.md
++++ b/doc/update/7.2-to-7.3.md
+@@ -1,4 +1,4 @@
+-# From 7.2 to 7.3
++# 7.2から7.3へ
+ *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/7.2-to-7.3.md) for the most up to date instructions.*
+ 
+ ### 0. Backup
+diff --git a/doc/update/7.3-to-7.4.md b/doc/update/7.3-to-7.4.md
+index 53e739c..2456cde 100644
+--- a/doc/update/7.3-to-7.4.md
++++ b/doc/update/7.3-to-7.4.md
+@@ -1,4 +1,4 @@
+-# From 7.3 to 7.4
++# 7.3から7.4へ
+ *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/7.3-to-7.4.md) for the most up to date instructions.*
+ 
+ ### 0. Stop server
+diff --git a/doc/update/7.4-to-7.5.md b/doc/update/7.4-to-7.5.md
+index 673eab3..22c2df3 100644
+--- a/doc/update/7.4-to-7.5.md
++++ b/doc/update/7.4-to-7.5.md
+@@ -1,4 +1,4 @@
+-# From 7.4 to 7.5
++# 7.4から7.5へ
+ 
+ ### 0. Stop server
+ 
+diff --git a/doc/update/7.5-to-7.6.md b/doc/update/7.5-to-7.6.md
+index 35cd437..70edb64 100644
+--- a/doc/update/7.5-to-7.6.md
++++ b/doc/update/7.5-to-7.6.md
+@@ -1,4 +1,4 @@
+-# From 7.5 to 7.6
++# 7.5から7.6へ
+ 
+ ### 0. Stop server
+ 
+diff --git a/doc/update/7.6-to-7.7.md b/doc/update/7.6-to-7.7.md
+index 910c7dc..bdf7622 100644
+--- a/doc/update/7.6-to-7.7.md
++++ b/doc/update/7.6-to-7.7.md
+@@ -1,4 +1,4 @@
+-# From 7.6 to 7.7
++# 7.6から7.7へ
+ 
+ ### 0. Stop server
+ 
+diff --git a/doc/update/7.7-to-7.8.md b/doc/update/7.7-to-7.8.md
+index 46ca163..b26773d 100644
+--- a/doc/update/7.7-to-7.8.md
++++ b/doc/update/7.7-to-7.8.md
+@@ -1,4 +1,4 @@
+-# From 7.7 to 7.8
++# 7.7から7.8へ
+ 
+ ### 0. Stop server
+ 
+diff --git a/doc/update/7.8-to-7.9.md b/doc/update/7.8-to-7.9.md
+index 6ffa21c..5d83818 100644
+--- a/doc/update/7.8-to-7.9.md
++++ b/doc/update/7.8-to-7.9.md
+@@ -1,4 +1,4 @@
+-# From 7.8 to 7.9
++# 7.8から7.9へ
+ 
+ ### 0. Stop server
+ 
+diff --git a/doc/update/7.9-to-7.10.md b/doc/update/7.9-to-7.10.md
+index d1179dc..bbdf7ff 100644
+--- a/doc/update/7.9-to-7.10.md
++++ b/doc/update/7.9-to-7.10.md
+@@ -1,4 +1,4 @@
+-# From 7.9 to 7.10
++# 7.9から7.10へ
+ 
+ ### 0. Stop server
+ 
+diff --git a/doc/update/8.0-to-8.1.md b/doc/update/8.0-to-8.1.md
+index d57c0d0..9c665ad 100644
+--- a/doc/update/8.0-to-8.1.md
++++ b/doc/update/8.0-to-8.1.md
+@@ -1,4 +1,4 @@
+-# From 8.0 to 8.1
++# 8.0から8.1へ
+ 
+ **NOTE:** GitLab 8.0 introduced several significant changes related to
+ installation and configuration which *are not duplicated here*. Be sure you're
+diff --git a/doc/update/8.1-to-8.2.md b/doc/update/8.1-to-8.2.md
+index 46dfa22..c5a6e77 100644
+--- a/doc/update/8.1-to-8.2.md
++++ b/doc/update/8.1-to-8.2.md
+@@ -1,4 +1,4 @@
+-# From 8.1 to 8.2
++# 8.1から8.2へ
+ 
+ **NOTE:** GitLab 8.0 introduced several significant changes related to
+ installation and configuration which *are not duplicated here*. Be sure you're
+diff --git a/doc/update/8.2-to-8.3.md b/doc/update/8.2-to-8.3.md
+index 9f5c6c4..9bdcbda 100644
+--- a/doc/update/8.2-to-8.3.md
++++ b/doc/update/8.2-to-8.3.md
+@@ -1,4 +1,4 @@
+-# From 8.2 to 8.3
++# 8.2から8.3へ
+ 
+ Make sure you view this update guide from the tag (version) of GitLab you would
+ like to install. In most cases this should be the highest numbered production
+diff --git a/doc/update/8.3-to-8.4.md b/doc/update/8.3-to-8.4.md
+index 9f6517d..dbf6963 100644
+--- a/doc/update/8.3-to-8.4.md
++++ b/doc/update/8.3-to-8.4.md
+@@ -1,4 +1,4 @@
+-# From 8.3 to 8.4
++# 8.3から8.4へ
+ 
+ Make sure you view this update guide from the tag (version) of GitLab you would
+ like to install. In most cases this should be the highest numbered production
+diff --git a/doc/update/8.4-to-8.5.md b/doc/update/8.4-to-8.5.md
+index 0cb137a..3551fa7 100644
+--- a/doc/update/8.4-to-8.5.md
++++ b/doc/update/8.4-to-8.5.md
+@@ -1,4 +1,4 @@
+-# From 8.4 to 8.5
++# 8.4から8.5へ
+ 
+ Make sure you view this update guide from the tag (version) of GitLab you would
+ like to install. In most cases this should be the highest numbered production
+diff --git a/doc/update/8.5-to-8.6.md b/doc/update/8.5-to-8.6.md
+index 6267f14..a1014b4 100644
+--- a/doc/update/8.5-to-8.6.md
++++ b/doc/update/8.5-to-8.6.md
+@@ -1,4 +1,4 @@
+-# From 8.5 to 8.6
++# 8.5から8.6へ
+ 
+ Make sure you view this update guide from the tag (version) of GitLab you would
+ like to install. In most cases this should be the highest numbered production
+diff --git a/doc/update/8.6-to-8.7.md b/doc/update/8.6-to-8.7.md
+index 8599133..ffbf089 100644
+--- a/doc/update/8.6-to-8.7.md
++++ b/doc/update/8.6-to-8.7.md
+@@ -1,4 +1,4 @@
+-# From 8.6 to 8.7
++# 8.6から8.7へ
+ 
+ Make sure you view this update guide from the tag (version) of GitLab you would
+ like to install. In most cases this should be the highest numbered production
 diff --git a/features/steps/admin/active_tab.rb b/features/steps/admin/active_tab.rb
 index 90d13ab..ebbea0e 100644
 --- a/features/steps/admin/active_tab.rb

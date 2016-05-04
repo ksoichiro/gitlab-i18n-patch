@@ -12,10 +12,10 @@ translations:
     replace: "\"${{key}}\""
     params: ['word', 'key']
   patterns:
-  - pattern: preview.text "Nothing to preview."
-    replace: preview.text "${nothingToPreview}"
-  - pattern: preview.text "Loading..."
-    replace: preview.text "${loading}"
+  - pattern: "Nothing to preview."
+    replace: "${nothingToPreview}"
+  - pattern: "Loading..."
+    replace: "${loading}"
   - name: singleQuoted
     params:
     - {word: Close, key: close}
@@ -157,7 +157,7 @@ translations:
   - pattern: !!js/regexp /^(\s+haml_concat ")The snippet can be accessed"\n\s+haml_concat "without any"\n\s+haml_concat "authentication."$/m
     replace: '$1${theSnippetCanBeAccessedWithoutAnyAuthentication}"'
   - pattern: "The snippet can be accessed without any authentication."
-    replace: '${theSnippetCanBeAccessedWithoutAnyAuthentication}"'
+    replace: '${theSnippetCanBeAccessedWithoutAnyAuthentication}'
 
   # Named patterns
   - name: sthWasSuccessfullyDone
@@ -545,6 +545,11 @@ translations:
     replace: '${welcomeToGitLab}'
   - pattern: 'Self hosted Git management application.'
     replace: '${selfHostedGitManagementApplication}'
+  - pattern: !!js/regexp /Paste your public key here. Read more about how to generate a key on ([^"]*")the SSH help page(.*)./
+    replace: '${pasteYourPublicKeyHereReadMoreAboutHowToGenerateAKeyOnTheSSHKeyOnTheSSHHelpPage}'
+    args:
+    - '$1'
+    - '$2'
   - pattern: "You don't have access to any projects right now."
     replace: '${youDontHaveAccessToAnyProjectsRightNow}'
   - pattern: !!js/regexp /( +)You can create up to\n( +[^ ]+ )pluralize\(([^,]+), "project"\)[^\n]+$/m
@@ -569,10 +574,58 @@ translations:
     replace: '${goToYourFork}'
   - pattern: "(optional)"
     replace: '(${optional})'
+  - pattern: "Separate tags with commas."
+    replace: '${separateTagsWithCommas}'
+  - pattern: "Features:"
+    replace: '${features}:'
   - pattern: "Want to house several dependent projects under the same namespace?"
     replace: '${wantToHouseSeveralDependentProjectsUnderTheSameNamespace}'
   - pattern: "Set new password"
     replace: '${setNewPassword}'
+  - pattern: "You can change your avatar here"
+    replace: '${youCanChangeYourAvatarHere}'
+  - pattern: "This information will appear on your profile."
+    replace: '${thisInformationWillAppearOnYourProfile}'
+  - pattern: "Some options are unavailable for LDAP accounts"
+    replace: '${someOptionsAreUnavailableForLDAPAccounts}'
+  - pattern: "Your private token is used to access application resources without authentication."
+    replace: '${yourPrivateTokenIsUsedToAccessApplicationResourcesWithoutAuthentication}'
+  - pattern: "It can be used for atom feeds or the API."
+    replace: '${itCanBeUsedForAtomFeedsOrTheAPI}'
+  - pattern: "Keep it secret!"
+    replace: '${keepItSecret}'
+  - pattern: "You don`t have one yet. Click generate to fix it."
+    replace: '${youDontHaveOneYetClickGenerateToFixIt}'
+  - pattern: "Changing your username will change path to all personal projects!"
+    replace: '${changingYourUsernameWillChangePathToAllPersonalProjects}'
+  - pattern: "Saving new username"
+    replace: '${savingNewUsername}'
+  - pattern: "Deleting an account has the following effects:"
+    replace: '${deletingAnAccountHasTheFollowingEffects}:'
+  - pattern: "You don't have any authorized applications"
+    replace: '${youDontHaveAnyAuthorizedApplications}'
+  - pattern: "Control emails linked to your account"
+    replace: '${controlEmailsLinkedToYourAccount}'
+  - pattern: "= f.label :email, class"
+    replace: "= f.label :email, '${email}', class"
+  - pattern: "Add email address"
+    replace: '${addEmailAddress}'
+  - pattern: !!js/regexp /^( *)Emails /
+    replace: '$1${email} '
+  - pattern: "History of authentications"
+    replace: '${historyOfAuthentications}'
+  - pattern: "Setup new password"
+    replace: '${setupNewPassword}'
+  - pattern: "Please set a new password before proceeding."
+    replace: '${pleaseSetANewPasswordBeforeProceeding}'
+  - pattern: "After a successful password update you will be redirected to login screen."
+    replace: '${afterASuccessfulPasswordUpdateYouWillBeRedirectedToLoginScreen}'
+  - pattern: "= f.label :current_password, class"
+    replace: "= f.label :current_password, '${currentPassword}', class"
+  - pattern: "= f.label :password, class"
+    replace: "= f.label :password, '${newPassword}', class"
+  - pattern: "= f.label :password_confirmation, class"
+    replace: "= f.label :password_confirmation, 'New Password (${confirmation})', class"
   - pattern: 'Are you sure?'
     replace: '${areYouSure}'
   - pattern: "Code?$|(\")Code?\"|(')Code?'|(\".* )Code?(\")"
@@ -598,6 +651,7 @@ translations:
     - {word: 'Open', key: open}
     - {word: 'Reopen', key: reopen}
     - {word: 'Users', key: user}
+    - {word: 'Username', key: username}
     - {word: 'Status', key: status}
     - {word: 'Commit', key: commit}
     - {word: 'State', key: state}
@@ -674,8 +728,16 @@ translations:
     - {word: 'Project path', key: projectPath}
     - {word: 'Group path', key: groupPath}
     - {word: 'Group avatar', key: groupAvatar}
+    - {word: 'Project avatar', key: projectAvatar}
     - {word: 'Import project from', key: importProjectFrom}
     - {word: 'Network [gG]raph', key: networkGraph}
+    - {word: 'Project [sS]ettings', key: projectSetting}
+    - {word: 'Project name', key: projectName}
+    - {word: 'Project description', key: projectDescription}
+    - {word: 'Key', key: key}
+    - {word: 'Title', key: title}
+    - {word: 'Private [tT]oken', key: privateToken}
+    - {word: 'Generate', key: generate}
   - name: wordInSentence
     params:
     - {word: 'applications?', key: application}
@@ -703,7 +765,7 @@ translations:
   - name: doSth
     params:
     - {verb: Edit, key: editSth}
-    - {verb: 'Create a[n]?', key: createSth}
+    - {verb: 'Create an?', key: createSth}
     - {verb: Create, key: createSth}
     - {verb: Close, key: closeSth}
     - {verb: Reopen, key: reopenSth}
@@ -717,8 +779,14 @@ translations:
     - {verb: Block, key: blockSth}
     - {verb: Latest, key: latestSth}
     - {verb: Reset, key: resetSth}
+    - {verb: 'Add an?', key: addSth}
     - {verb: Add, key: addSth}
     - {verb: Change, key: changeSth}
+    - {verb: Archive, key: archiveSth}
+    - {verb: Rename, key: renameSth}
+    - {verb: Save, key: saveSth}
+    - {verb: Enable, key: enableSth}
+    - {verb: Disable, key: disableSth}
   - name: sthCountsDone
     params:
     - {obj: issues, objKey: issue, done: updated, doneKey: update}
@@ -1906,8 +1974,8 @@ translations:
     #  key: mdTitleFacebookOAuth2OmniAuthProvider
     #- title: 'Factories'
     #  key: mdTitleFactories
-    #- title: 'Feature branch workflow'
-    #  key: mdTitleFeatureBranchWorkflow
+    - title: 'Feature branch workflow'
+      key: mdTitleFeatureBranchWorkflow
     #- title: 'Feature proposals'
     #  key: mdTitleFeatureProposals
     #- title: 'Features'

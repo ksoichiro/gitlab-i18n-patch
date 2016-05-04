@@ -25,6 +25,23 @@ index cc17aa7..ac84c5e 100644
 +  years: "約 %d 年",
 +  wordSeparator: ""
 +};
+diff --git a/app/assets/javascripts/markdown_preview.js.coffee b/app/assets/javascripts/markdown_preview.js.coffee
+index 2a0b947..2630928 100644
+--- a/app/assets/javascripts/markdown_preview.js.coffee
++++ b/app/assets/javascripts/markdown_preview.js.coffee
+@@ -13,10 +13,10 @@ class @MarkdownPreview
+     mdText  = form.find('textarea.markdown-area').val()
+ 
+     if mdText.trim().length == 0
+-      preview.text('Nothing to preview.')
++      preview.text('プレビューする内容がありません')
+       @hideReferencedUsers(form)
+     else
+-      preview.text('Loading...')
++      preview.text('読み込み中...')
+       @renderMarkdown mdText, (response) =>
+         preview.html(response.body)
+         preview.syntaxHighlight()
 diff --git a/app/assets/javascripts/namespace_select.js.coffee b/app/assets/javascripts/namespace_select.js.coffee
 index a02c451..d966f34 100644
 --- a/app/assets/javascripts/namespace_select.js.coffee
@@ -760,7 +777,7 @@ index faba418..681d4a1 100644
      options = []
      options << group_opts
 diff --git a/app/helpers/visibility_level_helper.rb b/app/helpers/visibility_level_helper.rb
-index 3a83ae1..6258971 100644
+index 3a83ae1..3a71480 100644
 --- a/app/helpers/visibility_level_helper.rb
 +++ b/app/helpers/visibility_level_helper.rb
 @@ -1,3 +1,4 @@
@@ -780,7 +797,7 @@ index 3a83ae1..6258971 100644
 +      "スニペットはログインしているユーザが閲覧できます。"
      when Gitlab::VisibilityLevel::PUBLIC
 -      "The snippet can be accessed without any authentication."
-+      "スニペットは誰でも認証せずに閲覧できます。""
++      "スニペットは誰でも認証せずに閲覧できます。"
      end
    end
  
@@ -938,7 +955,7 @@ index dd4a64e..ee9db86 100644
 +                = password_field_tag :password, nil, class: "form-control bottom", placeholder: "パスワード"
 +                = button_tag "サインイン", class: "btn-create btn"
 diff --git a/app/views/admin/application_settings/_form.html.haml b/app/views/admin/application_settings/_form.html.haml
-index 0350995..ac407dd 100644
+index 0350995..a1d55ee 100644
 --- a/app/views/admin/application_settings/_form.html.haml
 +++ b/app/views/admin/application_settings/_form.html.haml
 @@ -30,7 +30,7 @@
@@ -950,6 +967,15 @@ index 0350995..ac407dd 100644
      .form-group
        = f.label :import_sources, class: 'control-label col-sm-2'
        .col-sm-10
+@@ -59,7 +59,7 @@
+             Include author name in notification email body
+           .help-block
+             Some email servers do not support overriding the email sender name.
+-            Enable this option to include the name of the author of the issue,
++            this option to include the name of the author of the issue,を有効にする
+             merge request or comment in the email body instead.
+     .form-group
+       = f.label :admin_notification_email, class: 'control-label col-sm-2'
 @@ -69,7 +69,7 @@
            Abuse reports will be sent to this address if it is set. Abuse reports are always available in the admin area.
  
@@ -995,10 +1021,19 @@ index 0350995..ac407dd 100644
            = f.label :shared_runners_enabled do
              = f.check_box :shared_runners_enabled
 -            Enable shared runners for new projects
-+            Enable shared runners for new プロジェクト
++            shared runners for new プロジェクトを有効にする
  
      .form-group
        = f.label :max_artifacts_size, 'Maximum artifacts size (MB)', class: 'control-label col-sm-2'
+@@ -179,7 +179,7 @@
+         .checkbox
+           = f.label :metrics_enabled do
+             = f.check_box :metrics_enabled
+-            Enable InfluxDB Metrics
++            InfluxDB Metricsを有効にする
+     .form-group
+       = f.label :metrics_host, 'InfluxDB host', class: 'control-label col-sm-2'
+       .col-sm-10
 @@ -200,7 +200,7 @@
          .help-block
            The amount of InfluxDB connections to open. Connections are opened
@@ -1008,24 +1043,37 @@ index 0350995..ac407dd 100644
            server threads).
      .form-group
        = f.label :metrics_timeout, 'Connection timeout', class: 'control-label col-sm-2'
-@@ -232,7 +232,7 @@
+@@ -231,8 +231,8 @@
+         .checkbox
            = f.label :recaptcha_enabled do
              = f.check_box :recaptcha_enabled
-             Enable reCAPTCHA
+-            Enable reCAPTCHA
 -          %span.help-block#recaptcha_help_block Helps prevent bots from creating accounts
++            reCAPTCHAを有効にする
 +          %span.help-block#recaptcha_help_block Helps prevent bots from creating アカウント
  
      .form-group
        = f.label :recaptcha_site_key, 'reCAPTCHA Site Key', class: 'control-label col-sm-2'
-@@ -253,7 +253,7 @@
+@@ -252,8 +252,8 @@
+         .checkbox
            = f.label :akismet_enabled do
              = f.check_box :akismet_enabled
-             Enable Akismet
+-            Enable Akismet
 -          %span.help-block#akismet_help_block Helps prevent bots from creating issues
++            Akismetを有効にする
 +          %span.help-block#akismet_help_block Helps prevent bots from creating 課題
  
      .form-group
        = f.label :akismet_api_key, 'Akismet API Key', class: 'control-label col-sm-2'
+@@ -272,7 +272,7 @@
+         .checkbox
+           = f.label :sentry_enabled do
+             = f.check_box :sentry_enabled
+-            Enable Sentry
++            Sentryを有効にする
+           .help-block
+             Sentry is an error reporting and logging tool which is currently not shipped with GitLab, get it here:
+             %a{ href: 'https://getsentry.com', target: '_blank' } https://getsentry.com
 @@ -283,4 +283,4 @@
          = f.text_field :sentry_dsn, class: 'form-control'
  
@@ -1357,10 +1405,10 @@ index 3274ba5..ead8bac 100644
        - @groups.each do |group|
          %p
 diff --git a/app/views/admin/deploy_keys/index.html.haml b/app/views/admin/deploy_keys/index.html.haml
-index 41c4389..258508e 100644
+index 41c4389..e049b51 100644
 --- a/app/views/admin/deploy_keys/index.html.haml
 +++ b/app/views/admin/deploy_keys/index.html.haml
-@@ -1,9 +1,9 @@
+@@ -1,15 +1,15 @@
 -- page_title "Deploy Keys"
 +- page_title "デプロイキー"
  .panel.panel-default
@@ -1372,6 +1420,13 @@ index 41c4389..258508e 100644
    - if @deploy_keys.any?
      .table-holder
        %table.table
+         %thead.panel-heading
+           %tr
+-            %th Title
++            %th タイトル
+             %th Fingerprint
+             %th Added at
+             %th
 @@ -24,4 +24,4 @@
                  %span.cgray
                    added #{time_ago_with_tooltip(deploy_key.created_at)}
@@ -1542,12 +1597,15 @@ index f309e80..b88d63d 100644
        .panel-footer
          = paginate @members, param_name: 'members_page', theme: 'gitlab'
 diff --git a/app/views/admin/hooks/index.html.haml b/app/views/admin/hooks/index.html.haml
-index 53b3cd0..cc1e64a 100644
+index 53b3cd0..f8deaa8 100644
 --- a/app/views/admin/hooks/index.html.haml
 +++ b/app/views/admin/hooks/index.html.haml
-@@ -26,7 +26,7 @@
+@@ -24,9 +24,9 @@
+       .checkbox
+         = f.label :enable_ssl_verification do
            = f.check_box :enable_ssl_verification
-           %strong Enable SSL verification
+-          %strong Enable SSL verification
++          %strong SSL verificationを有効にする
    .form-actions
 -    = f.submit "Add System Hook", class: "btn btn-create"
 +    = f.submit "System Hookを追加", class: "btn btn-create"
@@ -1985,7 +2043,7 @@ index 8aea67f..d50e409 100644
 -    = link_to 'Remove log', [:admin, spam_log], remote: true, method: :delete, class: "btn btn-xs btn-close js-remove-tr"
 +    = link_to 'logを削除', [:admin, spam_log], remote: true, method: :delete, class: "btn btn-xs btn-close js-remove-tr"
 diff --git a/app/views/admin/spam_logs/index.html.haml b/app/views/admin/spam_logs/index.html.haml
-index 0fdd5bd..3e1580a 100644
+index 0fdd5bd..81d3e71 100644
 --- a/app/views/admin/spam_logs/index.html.haml
 +++ b/app/views/admin/spam_logs/index.html.haml
 @@ -7,12 +7,12 @@
@@ -1997,14 +2055,15 @@ index 0fdd5bd..3e1580a 100644
            %th Source IP
            %th API?
            %th Type
-           %th Title
+-          %th Title
 -          %th Description
++          %th タイトル
 +          %th 説明
            %th Primary Action
            %th
        = render @spam_logs
 diff --git a/app/views/admin/users/_form.html.haml b/app/views/admin/users/_form.html.haml
-index d2527ed..a0e8f42 100644
+index d2527ed..3dbaedf 100644
 --- a/app/views/admin/users/_form.html.haml
 +++ b/app/views/admin/users/_form.html.haml
 @@ -7,7 +7,7 @@
@@ -2016,14 +2075,23 @@ index d2527ed..a0e8f42 100644
        .form-group
          = f.label :name, class: 'control-label'
          .col-sm-10
-@@ -26,17 +26,17 @@
+@@ -19,29 +19,29 @@
+           = f.text_field :username, required: true, autocomplete: "off", class: 'form-control'
+           %span.help-inline * required
+       .form-group
+-        = f.label :email, class: 'control-label'
++        = f.label :email, 'メールアドレス', class: 'control-label'
+         .col-sm-10
+           = f.text_field :email, required: true, autocomplete: "off", class: 'form-control'
+           %span.help-inline * required
  
      - if @user.new_record?
        %fieldset
 -        %legend Password
 +        %legend パスワード
          .form-group
-           = f.label :password, class: 'control-label'
+-          = f.label :password, class: 'control-label'
++          = f.label :password, '新しいパスワード', class: 'control-label'
            .col-sm-10
              %strong
 -              Reset link will be generated and sent to the user.
@@ -2035,8 +2103,15 @@ index d2527ed..a0e8f42 100644
 -        %legend Password
 +        %legend パスワード
          .form-group
-           = f.label :password, class: 'control-label'
+-          = f.label :password, class: 'control-label'
++          = f.label :password, '新しいパスワード', class: 'control-label'
            .col-sm-10= f.password_field :password, disabled: f.object.force_random_password, class: 'form-control'
+         .form-group
+-          = f.label :password_confirmation, class: 'control-label'
++          = f.label :password_confirmation, '新しいパスワード (確認)', class: 'control-label'
+           .col-sm-10= f.password_field :password_confirmation, disabled: f.object.force_random_password, class: 'form-control'
+ 
+     %fieldset
 @@ -89,8 +89,8 @@
  
      .form-actions
@@ -2211,7 +2286,7 @@ index b655b2a..bb3f51a 100644
                        %i.fa.fa-times
  
 diff --git a/app/views/admin/users/show.html.haml b/app/views/admin/users/show.html.haml
-index d37489b..186ca3e 100644
+index d37489b..237902c 100644
 --- a/app/views/admin/users/show.html.haml
 +++ b/app/views/admin/users/show.html.haml
 @@ -1,4 +1,4 @@
@@ -2235,7 +2310,7 @@ index d37489b..186ca3e 100644
              - if @user.two_factor_enabled?
                Enabled
 -              = link_to 'Disable', disable_two_factor_admin_user_path(@user), data: {confirm: 'Are you sure?'}, method: :patch, class: 'btn btn-xs btn-remove pull-right', title: 'Disable Two-factor Authentication'
-+              = link_to 'Disable', disable_two_factor_admin_user_path(@user), data: {confirm: '本当によろしいですか？'}, method: :patch, class: 'btn btn-xs btn-remove pull-right', title: 'Disable 二段階認証'
++              = link_to 'Disable', disable_two_factor_admin_user_path(@user), data: {confirm: '本当によろしいですか？'}, method: :patch, class: 'btn btn-xs btn-remove pull-right', title: '二段階認証を無効にする'
              - else
                Disabled
  
@@ -2887,13 +2962,14 @@ index 9f55206..4b335f7 100644
 -    = f.submit "Sign in", class: "btn btn-save"
 +    = f.submit "サインイン", class: "btn btn-save"
 diff --git a/app/views/devise/sessions/_new_crowd.html.haml b/app/views/devise/sessions/_new_crowd.html.haml
-index 4974bb7..70c1f52 100644
+index 4974bb7..6cbadef 100644
 --- a/app/views/devise/sessions/_new_crowd.html.haml
 +++ b/app/views/devise/sessions/_new_crowd.html.haml
 @@ -1,9 +1,9 @@
  = form_tag(user_omniauth_authorize_path("crowd"), id: 'new_crowd_user' ) do
-   = text_field_tag :username, nil, {class: "form-control top", placeholder: "Username", autofocus: "autofocus"}
+-  = text_field_tag :username, nil, {class: "form-control top", placeholder: "Username", autofocus: "autofocus"}
 -  = password_field_tag :password, nil, {class: "form-control bottom", placeholder: "Password"}
++  = text_field_tag :username, nil, {class: "form-control top", placeholder: "ユーザ名", autofocus: "autofocus"}
 +  = password_field_tag :password, nil, {class: "form-control bottom", placeholder: "パスワード"}
    - if devise_mapping.rememberable?
      .remember-me.checkbox
@@ -2972,7 +3048,7 @@ index 2c15e2c..751c352 100644
      - if form_based_providers.any?
        %ul.nav-links
 diff --git a/app/views/devise/shared/_signup_box.html.haml b/app/views/devise/shared/_signup_box.html.haml
-index cb93ff2..209c7cb 100644
+index cb93ff2..7d5761e 100644
 --- a/app/views/devise/shared/_signup_box.html.haml
 +++ b/app/views/devise/shared/_signup_box.html.haml
 @@ -1,10 +1,10 @@
@@ -2988,9 +3064,12 @@ index cb93ff2..209c7cb 100644
    .login-body
      - user = params[:user].present? ? params[:user] : {}
      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-@@ -15,17 +15,17 @@
+@@ -13,19 +13,19 @@
        %div
-         = f.text_field :username, class: "form-control middle", value: user[:username], placeholder: "Username", required: true
+         = f.text_field :name, class: "form-control top", value: user[:name], placeholder: "Name", required: true
+       %div
+-        = f.text_field :username, class: "form-control middle", value: user[:username], placeholder: "Username", required: true
++        = f.text_field :username, class: "form-control middle", value: user[:username], placeholder: "ユーザ名", required: true
        %div
 -        = f.email_field :email, class: "form-control middle", value: user[:email], placeholder: "Email", required: true
 +        = f.email_field :email, class: "form-control middle", value: user[:email], placeholder: "メールアドレス", required: true
@@ -3041,7 +3120,7 @@ index 001a711..aaeddec 100644
 -    = submit_tag 'Destroy', data: { confirm: "Are you sure?" }, class: submit_btn_css
 +    = submit_tag 'Destroy', data: { confirm: "本当によろしいですか？" }, class: submit_btn_css
 diff --git a/app/views/doorkeeper/applications/_form.html.haml b/app/views/doorkeeper/applications/_form.html.haml
-index 906b067..2ff41f8 100644
+index 906b067..f43e35e 100644
 --- a/app/views/doorkeeper/applications/_form.html.haml
 +++ b/app/views/doorkeeper/applications/_form.html.haml
 @@ -14,7 +14,7 @@
@@ -3058,7 +3137,7 @@ index 906b067..2ff41f8 100644
  
    .prepend-top-default
 -    = f.submit 'Save application', class: "btn btn-create"
-+    = f.submit 'Save アプリケーション', class: "btn btn-create"
++    = f.submit 'アプリケーションを保存', class: "btn btn-create"
 diff --git a/app/views/doorkeeper/applications/edit.html.haml b/app/views/doorkeeper/applications/edit.html.haml
 index fb6aa30..1b14ed1 100644
 --- a/app/views/doorkeeper/applications/edit.html.haml
@@ -3070,7 +3149,7 @@ index fb6aa30..1b14ed1 100644
 +%h3.page-title アプリケーションを編集
  = render 'form', application: @application
 diff --git a/app/views/doorkeeper/applications/index.html.haml b/app/views/doorkeeper/applications/index.html.haml
-index ea0b66c..06d841e 100644
+index ea0b66c..124cd1d 100644
 --- a/app/views/doorkeeper/applications/index.html.haml
 +++ b/app/views/doorkeeper/applications/index.html.haml
 @@ -1,4 +1,4 @@
@@ -3109,7 +3188,7 @@ index ea0b66c..06d841e 100644
        - else
          .profile-settings-message.text-center
 -          You don't have any authorized applications
-+          You don't have any authorized アプリケーション
++          認可済みアプリケーションはありません
 diff --git a/app/views/doorkeeper/applications/new.html.haml b/app/views/doorkeeper/applications/new.html.haml
 index fd32a46..54768cb 100644
 --- a/app/views/doorkeeper/applications/new.html.haml
@@ -3393,7 +3472,7 @@ index f73e1d9..351a31a 100644
  %section.activities
    = render 'activities'
 diff --git a/app/views/groups/edit.html.haml b/app/views/groups/edit.html.haml
-index ea5a035..159e992 100644
+index ea5a035..a30d01c 100644
 --- a/app/views/groups/edit.html.haml
 +++ b/app/views/groups/edit.html.haml
 @@ -1,4 +1,4 @@
@@ -3429,7 +3508,7 @@ index ea5a035..159e992 100644
  
        .form-actions
 -        = f.submit 'Save group', class: "btn btn-save"
-+        = f.submit 'Save グループ', class: "btn btn-save"
++        = f.submit 'グループを保存', class: "btn btn-save"
  
  .panel.panel-danger
 -  .panel-heading Remove group
@@ -3605,10 +3684,10 @@ index ab30770..435c941 100644
        - @milestones.each do |milestone|
          = render 'milestone', milestone: milestone
 diff --git a/app/views/groups/milestones/new.html.haml b/app/views/groups/milestones/new.html.haml
-index a8e1ed7..5d4ad65 100644
+index a8e1ed7..f052939 100644
 --- a/app/views/groups/milestones/new.html.haml
 +++ b/app/views/groups/milestones/new.html.haml
-@@ -1,11 +1,11 @@
+@@ -1,29 +1,29 @@
 -- page_title "Milestones"
 -- header_title group_title(@group, "Milestones", group_milestones_path(@group))
 +- page_title "マイルストーン"
@@ -3624,7 +3703,11 @@ index a8e1ed7..5d4ad65 100644
  %hr
  
  = form_for @milestone, url: group_milestones_path(@group), html: { class: 'form-horizontal milestone-form gfm-form js-quick-submit js-requires-input' }  do |f|
-@@ -16,14 +16,14 @@
+   .row
+     .col-md-6
+       .form-group
+-        = f.label :title, "Title", class: "control-label"
++        = f.label :title, "タイトル", class: "control-label"
          .col-sm-10
            = f.text_field :title, maxlength: 255, class: "form-control", required: true, autofocus: true
        .form-group.milestone-description
@@ -4020,7 +4103,7 @@ index 57bc91e..68e22de 100644
          %li= link_to 'See our website for getting help', promo_url + '/getting-help/'
          %li= link_to 'Use the search bar on the top of this page', '#', onclick: 'Shortcuts.focusSearch(event)'
 diff --git a/app/views/help/ui.html.haml b/app/views/help/ui.html.haml
-index d084559..15cee1f 100644
+index d084559..8c2f538 100644
 --- a/app/views/help/ui.html.haml
 +++ b/app/views/help/ui.html.haml
 @@ -1,4 +1,4 @@
@@ -4038,21 +4121,25 @@ index d084559..15cee1f 100644
      %li
        = link_to 'Markdown', '#markdown'
  
-@@ -104,15 +104,15 @@
+@@ -103,16 +103,16 @@
+     %ul.content-list
        %li
          = image_tag 'no_avatar.png', class: 'avatar s40'
-         .title Title
+-        .title Title
 -        .description Description
++        .title タイトル
 +        .description 説明
        %li
          = image_tag 'no_avatar.png', class: 'avatar s40'
-         .title Title
+-        .title Title
 -        .description Description
++        .title タイトル
 +        .description 説明
        %li
          = image_tag 'no_avatar.png', class: 'avatar s40'
-         .title Title
+-        .title Title
 -        .description Description
++        .title タイトル
 +        .description 説明
  
    .lead
@@ -4066,6 +4153,15 @@ index d084559..15cee1f 100644
        %ul.well-list
          %li
            One item
+@@ -148,7 +148,7 @@
+           %th #
+           %th First Name
+           %th Last Name
+-          %th Username
++          %th ユーザ名
+       %tbody
+         %tr
+           %td 1
 @@ -176,9 +176,9 @@
      .top-area
        %ul.nav-links
@@ -4099,20 +4195,24 @@ index d084559..15cee1f 100644
  
  
    %h2#buttons Buttons
-@@ -253,7 +253,7 @@
+@@ -252,8 +252,8 @@
+           = icon('chevron-down')
          .dropdown-menu.dropdown-select.dropdown-menu-selectable
            .dropdown-title
-             %span Dropdown Title
+-            %span Dropdown Title
 -            %button.dropdown-title-button.dropdown-menu-close{aria: {label: "Close"}}
++            %span Dropdown タイトル
 +            %button.dropdown-title-button.dropdown-menu-close{aria: {label: "クローズ"}}
                = icon('times')
            .dropdown-input
              %input.dropdown-input-field{type: "search", placeholder: "Filter results"}
-@@ -292,7 +292,7 @@
+@@ -291,8 +291,8 @@
+           = icon('chevron-down')
          .dropdown-menu.dropdown-select.dropdown-menu-selectable.is-loading
            .dropdown-title
-             %span Dropdown Title
+-            %span Dropdown Title
 -            %button.dropdown-title-button.dropdown-menu-close{aria: {label: "Close"}}
++            %span Dropdown タイトル
 +            %button.dropdown-title-button.dropdown-menu-close{aria: {label: "クローズ"}}
                = icon('times')
            .dropdown-input
@@ -4126,17 +4226,20 @@ index d084559..15cee1f 100644
            = icon('chevron-down')
          .dropdown-menu.dropdown-select.dropdown-menu-selectable.dropdown-menu-user
            .dropdown-title
-             %span Dropdown Title
+-            %span Dropdown Title
 -            %button.dropdown-title-button.dropdown-menu-close{aria: {label: "Close"}}
++            %span Dropdown タイトル
 +            %button.dropdown-title-button.dropdown-menu-close{aria: {label: "クローズ"}}
                = icon('times')
            .dropdown-input
              %input.dropdown-input-field{type: "search", placeholder: "Filter results"}
-@@ -363,7 +363,7 @@
+@@ -362,8 +362,8 @@
+             .dropdown-title
                %button.dropdown-title-button.dropdown-menu-back{aria: {label: "Go back"}}
                  = icon('arrow-left')
-               %span Dropdown Title
+-              %span Dropdown Title
 -              %button.dropdown-title-button.dropdown-menu-close{aria: {label: "Close"}}
++              %span Dropdown タイトル
 +              %button.dropdown-title-button.dropdown-menu-close{aria: {label: "クローズ"}}
                  = icon('times')
              .dropdown-input
@@ -5333,10 +5436,10 @@ index 86b46e8..a0b479b 100644
    -# Global shortcut to network page for compatibility
    - if project_nav_tab? :network
 diff --git a/app/views/layouts/nav/_project_settings.html.haml b/app/views/layouts/nav/_project_settings.html.haml
-index dc3050f..a57fecd 100644
+index dc3050f..51b6f2a 100644
 --- a/app/views/layouts/nav/_project_settings.html.haml
 +++ b/app/views/layouts/nav/_project_settings.html.haml
-@@ -1,9 +1,9 @@
+@@ -1,44 +1,44 @@
  %ul.nav.nav-sidebar
    = nav_link do
 -    = link_to project_path(@project), title: 'Go to project', class: 'back-link' do
@@ -5348,8 +5451,10 @@ index dc3050f..a57fecd 100644
  
    %li.separate-item
  
-@@ -12,33 +12,33 @@
-       = link_to edit_project_path(@project), title: 'Project Settings' do
+   %ul.sidebar-subnav
+     = nav_link(path: 'projects#edit') do
+-      = link_to edit_project_path(@project), title: 'Project Settings' do
++      = link_to edit_project_path(@project), title: 'プロジェクト設定' do
          = icon('pencil-square-o fw')
          %span
 -          Project Settings
@@ -5666,11 +5771,22 @@ index 53869e3..5a4492d 100644
    \
    - @message.diffs.each do |diff|
      - if diff.deleted_file
+diff --git a/app/views/profiles/_event_table.html.haml b/app/views/profiles/_event_table.html.haml
+index 879fc17..0b9f4ea 100644
+--- a/app/views/profiles/_event_table.html.haml
++++ b/app/views/profiles/_event_table.html.haml
+@@ -1,5 +1,5 @@
+ %h5.prepend-top-0
+-  History of authentications
++  認証の履歴です。
+ 
+ %ul.well-list
+   - events.each do |event|
 diff --git a/app/views/profiles/accounts/show.html.haml b/app/views/profiles/accounts/show.html.haml
-index 6efd119..5779afc 100644
+index 6efd119..4f1d72b 100644
 --- a/app/views/profiles/accounts/show.html.haml
 +++ b/app/views/profiles/accounts/show.html.haml
-@@ -1,16 +1,16 @@
+@@ -1,36 +1,36 @@
 -- page_title "Account"
 +- page_title "アカウント"
  - header_title page_title, profile_account_path
@@ -5678,26 +5794,36 @@ index 6efd119..5779afc 100644
  - if current_user.ldap_user?
    .alert.alert-info
 -    Some options are unavailable for LDAP accounts
-+    Some options are unavailable for LDAP アカウント
++    いくつかのオプションはLDAPアカウントでは利用できません。
  
  .row.prepend-top-default
    .col-lg-3.profile-settings-sidebar
      %h4.prepend-top-0
-       Private Token
+-      Private Token
++      プライベートトークン
      %p
 -      Your private token is used to access application resources without authentication.
-+      あなたのprivate token is used to access application resources without authentication.
++      プライベートトークンは認証なしでアプリケーションのリソースにアクセスするのに使われます。
    .col-lg-9
      = form_for @user, url: reset_private_token_profile_path, method: :put, html: {class: "private-token"} do |f|
        %p.cgray
-@@ -23,14 +23,14 @@
-         It can be used for atom feeds or the API. Keep it secret!
+         - if current_user.private_token
+-          = label_tag "token", "Private token", class: "label-light"
++          = label_tag "token", "プライベートトークン", class: "label-light"
+           = text_field_tag "token", current_user.private_token, class: "form-control"
+         - else
+-          %span You don`t have one yet. Click generate to fix it.
++          %span トークンがありません。「生成」をクリックして生成してください。
+       %p.help-block
+-        It can be used for atom feeds or the API. Keep it secret!
++        ATOMフィードやAPIでのアクセスに利用できます。 厳重に保管してください。
        .prepend-top-default
          - if current_user.private_token
 -          = f.submit 'Reset private token', data: { confirm: "Are you sure?" }, class: "btn btn-default"
 +          = f.submit 'private tokenをリセット', data: { confirm: "本当によろしいですか？" }, class: "btn btn-default"
          - else
-           = f.submit 'Generate', class: "btn btn-default"
+-          = f.submit 'Generate', class: "btn btn-default"
++          = f.submit '生成', class: "btn btn-default"
  %hr
  .row.prepend-top-default
    .col-lg-3.profile-settings-sidebar
@@ -5707,13 +5833,16 @@ index 6efd119..5779afc 100644
      %p
        Increase your account's security by enabling two-factor authentication (2FA).
    .col-lg-9
-@@ -43,8 +43,8 @@
+@@ -41,10 +41,10 @@
+         Download the Google Authenticator application from App Store for iOS or Google Play for Android and scan this code.
+         More information is available in the #{link_to('documentation', help_page_path('profile', 'two_factor_authentication'))}.
        .append-bottom-10
-         = link_to 'Enable two-factor authentication', new_profile_two_factor_auth_path, class: 'btn btn-success'
+-        = link_to 'Enable two-factor authentication', new_profile_two_factor_auth_path, class: 'btn btn-success'
++        = link_to 'two-factor authenticationを有効にする', new_profile_two_factor_auth_path, class: 'btn btn-success'
      - else
 -      = link_to 'Disable Two-factor Authentication', profile_two_factor_auth_path, method: :delete, class: 'btn btn-danger',
 -              data: { confirm: 'Are you sure?' }
-+      = link_to 'Disable 二段階認証', profile_two_factor_auth_path, method: :delete, class: 'btn btn-danger',
++      = link_to '二段階認証を無効にする', profile_two_factor_auth_path, method: :delete, class: 'btn btn-danger',
 +              data: { confirm: '本当によろしいですか？' }
  %hr
  - if button_based_providers.any?
@@ -5727,15 +5856,18 @@ index 6efd119..5779afc 100644
        %p Click on icon to activate signin with one of the following services
        - button_based_providers.each do |provider|
          .provider-btn-group
-@@ -72,7 +72,7 @@
+@@ -72,9 +72,9 @@
    .row.prepend-top-default
      .col-lg-3.profile-settings-sidebar
        %h4.prepend-top-0.change-username-title
 -        Change username
 +        usernameを変更
        %p
-         Changing your username will change path to all personal projects!
+-        Changing your username will change path to all personal projects!
++        ユーザ名を変更すると、あなたの所有するすべてのプロジェクトのパスが変更されます！
      .col-lg-9
+       = form_for @user, url: update_username_profile_path, method: :put, remote: true, html: {class: "update-username"} do |f|
+         .form-group
 @@ -96,21 +96,21 @@
    .row.prepend-top-default
      .col-lg-3.profile-settings-sidebar
@@ -5745,7 +5877,8 @@ index 6efd119..5779afc 100644
      .col-lg-9
        - if @user.can_be_removed?
          %p
-           Deleting an account has the following effects:
+-          Deleting an account has the following effects:
++          アカウントを削除すると以下の影響があります:
          %ul
 -          %li All user content like authored issues, snippets, comments will be removed
 +          %li このユーザが作成した課題, スニペット, コメントといったすべてのコンテンツが削除されます。
@@ -5774,7 +5907,7 @@ index f630c03..bcfbea5 100644
  
  .row.prepend-top-default
 diff --git a/app/views/profiles/emails/index.html.haml b/app/views/profiles/emails/index.html.haml
-index 3f328f9..17b5813 100644
+index 3f328f9..07d9cd7 100644
 --- a/app/views/profiles/emails/index.html.haml
 +++ b/app/views/profiles/emails/index.html.haml
 @@ -1,4 +1,4 @@
@@ -5788,18 +5921,19 @@ index 3f328f9..17b5813 100644
        = page_title
      %p
 -      Control emails linked to your account
-+      Control emails linked to your アカウント
++      あなたのアカウントに紐付くメールアドレスを管理します。
    .col-lg-9
      %h4.prepend-top-0
 -      Add email address
-+      email addressを追加
++      メールアドレスを追加
      = form_for 'email', url: profile_emails_path do |f|
        .form-group
-         = f.label :email, class: 'label-light'
+-        = f.label :email, class: 'label-light'
++        = f.label :email, 'メールアドレス', class: 'label-light'
          = f.text_field :email, class: 'form-control'
        .prepend-top-default
 -        = f.submit 'Add email address', class: 'btn btn-create'
-+        = f.submit 'email addressを追加', class: 'btn btn-create'
++        = f.submit 'メールアドレスを追加', class: 'btn btn-create'
      %hr
      %h4.prepend-top-0
        Linked emails (#{@emails.count + 1})
@@ -5882,7 +6016,7 @@ index dd76154..27f43be 100644
 -      = link_to 'Remove', path_to_key(@key, is_admin), data: {confirm: 'Are you sure?'}, method: :delete, class: "btn btn-remove delete-key"
 +      = link_to 'Remove', path_to_key(@key, is_admin), data: {confirm: '本当によろしいですか？'}, method: :delete, class: "btn btn-remove delete-key"
 diff --git a/app/views/profiles/keys/index.html.haml b/app/views/profiles/keys/index.html.haml
-index e0f8c9a..2d9455e 100644
+index e0f8c9a..256408e 100644
 --- a/app/views/profiles/keys/index.html.haml
 +++ b/app/views/profiles/keys/index.html.haml
 @@ -1,4 +1,4 @@
@@ -5896,7 +6030,7 @@ index e0f8c9a..2d9455e 100644
    .col-lg-9
      %h5.prepend-top-0
 -      Add an SSH key
-+      an SSH keyを追加
++      SSH keyを追加
      %p.profile-settings-content
        Before you can add an SSH key you need to
        = link_to "generate it.", help_page_path("ssh", "README")
@@ -5939,7 +6073,7 @@ index de80abd..1d19151 100644
  
  = form_for @user, url: profile_notifications_path, method: :put, html: { class: 'update-notifications prepend-top-default' } do |f|
 diff --git a/app/views/profiles/passwords/edit.html.haml b/app/views/profiles/passwords/edit.html.haml
-index afd4f99..86eaa56 100644
+index afd4f99..c531f70 100644
 --- a/app/views/profiles/passwords/edit.html.haml
 +++ b/app/views/profiles/passwords/edit.html.haml
 @@ -1,4 +1,4 @@
@@ -5957,7 +6091,13 @@ index afd4f99..86eaa56 100644
        - unless @user.password_automatically_set?
          or recover your current one
      = form_for @user, url: profile_password_path, method: :put, html: {class: "update-password"} do |f|
-@@ -25,11 +25,11 @@
+@@ -20,16 +20,16 @@
+               %li= msg
+       - unless @user.password_automatically_set?
+         .form-group
+-          = f.label :current_password, class: 'label-light'
++          = f.label :current_password, '現在のパスワード', class: 'label-light'
+           = f.password_field :current_password, required: true, class: 'form-control'
            %p.help-block
              You must provide your current password in order to change it.
          .form-group
@@ -5965,28 +6105,50 @@ index afd4f99..86eaa56 100644
 +          = f.label :password, '新しいパスワード', class: 'label-light'
            = f.password_field :password, required: true, class: 'form-control'
          .form-group
-           = f.label :password_confirmation, class: 'label-light'
+-          = f.label :password_confirmation, class: 'label-light'
++          = f.label :password_confirmation, '新しいパスワード (確認)', class: 'label-light'
            = f.password_field :password_confirmation, required: true, class: 'form-control'
          .prepend-top-default.append-bottom-default
 -          = f.submit 'Save password', class: "btn btn-create append-right-10"
 -          = link_to "I forgot my password", reset_profile_password_path, method: :put, class: "account-btn-link"
-+          = f.submit 'Save パスワード', class: "btn btn-create append-right-10"
++          = f.submit 'パスワードを保存', class: "btn btn-create append-right-10"
 +          = link_to "I forgot my パスワード", reset_profile_password_path, method: :put, class: "account-btn-link"
 diff --git a/app/views/profiles/passwords/new.html.haml b/app/views/profiles/passwords/new.html.haml
-index d165f75..e5a59ae 100644
+index d165f75..fe6201a 100644
 --- a/app/views/profiles/passwords/new.html.haml
 +++ b/app/views/profiles/passwords/new.html.haml
-@@ -1,6 +1,6 @@
+@@ -1,12 +1,12 @@
 -- page_title    "New Password"
 -- header_title  "New Password"
 -%h3.page-title Setup new password
 +- page_title    "新しいパスワード"
 +- header_title  "新しいパスワード"
-+%h3.page-title Setup new パスワード
++%h3.page-title 新しいパスワードの設定
  %hr
  = form_for @user, url: profile_password_path, method: :post, html: { class: 'form-horizontal '} do |f|
    %p.slead
-@@ -25,4 +25,4 @@
+-    Please set a new password before proceeding.
++    新しいパスワードを設定してください。
+     %br
+-    After a successful password update you will be redirected to login screen.
++    正常に更新された場合、ログイン画面にリダイレクトします。
+   -if @user.errors.any?
+     .alert.alert-danger
+       %ul
+@@ -15,14 +15,14 @@
+ 
+   - unless @user.password_automatically_set?
+     .form-group
+-      = f.label :current_password, class: 'control-label'
++      = f.label :current_password, '現在のパスワード', class: 'control-label'
+       .col-sm-10= f.password_field :current_password, required: true, class: 'form-control'
+   .form-group
+-    = f.label :password, class: 'control-label'
++    = f.label :password, '新しいパスワード', class: 'control-label'
+     .col-sm-10= f.password_field :password, required: true, class: 'form-control'
+   .form-group
+-    = f.label :password_confirmation, class: 'control-label'
++    = f.label :password_confirmation, '新しいパスワード (確認)', class: 'control-label'
      .col-sm-10
        = f.password_field :password_confirmation, required: true, class: 'form-control'
    .form-actions
@@ -6018,10 +6180,19 @@ index f802116..3adb617 100644
 -      = f.submit 'Save changes', class: 'btn btn-save'
 +      = f.submit '変更を保存', class: 'btn btn-save'
 diff --git a/app/views/profiles/show.html.haml b/app/views/profiles/show.html.haml
-index cd582ba..4032e8b 100644
+index cd582ba..39a15d9 100644
 --- a/app/views/profiles/show.html.haml
 +++ b/app/views/profiles/show.html.haml
-@@ -24,14 +24,14 @@
+@@ -10,7 +10,7 @@
+         Public Avatar
+       %p
+         - if @user.avatar?
+-          You can change your avatar here
++          アバターを変更
+           - if Gitlab.config.gravatar.enabled
+             or remove the current avatar to revert to #{link_to Gitlab.config.gravatar.host, "http://" + Gitlab.config.gravatar.host}
+         - else
+@@ -24,23 +24,23 @@
          Upload new avatar
        .prepend-top-5.append-bottom-10
          %a.btn.js-choose-user-avatar-button
@@ -6039,16 +6210,23 @@ index cd582ba..4032e8b 100644
    %hr
    .row
      .col-lg-3.profile-settings-sidebar
-@@ -40,7 +40,7 @@
+       %h4.prepend-top-0
+         Main settings
        %p
-         This information will appear on your profile.
+-        This information will appear on your profile.
++        この情報はあなたのプロフィールに表示されます。
          - if current_user.ldap_user?
 -          Some options are unavailable for LDAP accounts
-+          Some options are unavailable for LDAP アカウント
++          いくつかのオプションはLDAPアカウントでは利用できません。
      .col-lg-9
        .form-group
          = f.label :name, class: "label-light"
-@@ -52,7 +52,7 @@
+@@ -48,11 +48,11 @@
+         %span.help-block Enter your name, so people you know can recognize you.
+ 
+       .form-group
+-        = f.label :email, class: "label-light"
++        = f.label :email, 'メールアドレス', class: "label-light"
          - if @user.ldap_user? && @user.ldap_email?
            = f.text_field :email, class: "form-control", required: true, readonly: true
            %span.help-block.light
@@ -6089,7 +6267,7 @@ index e330aad..1bcaac1 100644
  
  = render 'codes'
 diff --git a/app/views/profiles/two_factor_auths/new.html.haml b/app/views/profiles/two_factor_auths/new.html.haml
-index 5d342ef..19e4093 100644
+index 5d342ef..5f010b0 100644
 --- a/app/views/profiles/two_factor_auths/new.html.haml
 +++ b/app/views/profiles/two_factor_auths/new.html.haml
 @@ -1,9 +1,9 @@
@@ -6104,6 +6282,13 @@ index 5d342ef..19e4093 100644
      %p
        Increase your account's security by enabling two-factor authentication (2FA).
    .col-lg-9
+@@ -37,5 +37,5 @@
+         = label_tag :pin_code, nil, class: "label-light"
+         = text_field_tag :pin_code, nil, class: "form-control", required: true
+       .prepend-top-default
+-        = submit_tag 'Enable two-factor authentication', class: 'btn btn-success'
++        = submit_tag 'two-factor authenticationを有効にする', class: 'btn btn-success'
+         = link_to 'Configure it later', skip_profile_two_factor_auth_path, :method => :patch,  class: 'btn btn-cancel' if two_factor_skippable?
 diff --git a/app/views/projects/_builds_settings.html.haml b/app/views/projects/_builds_settings.html.haml
 index 95ab9ec..c36711c 100644
 --- a/app/views/projects/_builds_settings.html.haml
@@ -6946,14 +7131,32 @@ index ea2a3e0..e6a58d7 100644
      %strong.cgreen #{diff_files.sum(&:added_lines)} additions
      and
 diff --git a/app/views/projects/edit.html.haml b/app/views/projects/edit.html.haml
-index 6d872cd..6139cdd 100644
+index 6d872cd..f9a8c58 100644
 --- a/app/views/projects/edit.html.haml
 +++ b/app/views/projects/edit.html.haml
-@@ -18,20 +18,20 @@
+@@ -3,57 +3,57 @@
+   .project-edit-content
+     .panel.panel-default
+       .panel-heading
+-        Project settings
++        プロジェクト設定
+       .panel-body
+         = form_for [@project.namespace.becomes(Namespace), @project], remote: true, html: { multipart: true, class: "edit_project form-horizontal fieldset-form" }, authenticity_token: true do |f|
+ 
+           %fieldset
+             .form-group.project_name_holder
+               = f.label :name, class: 'control-label' do
+-                Project name
++                プロジェクト名
+               .col-sm-10
+                 = f.text_field :name, class: "form-control", id: "project_name_edit"
+ 
+ 
              .form-group
                = f.label :description, class: 'control-label' do
-                 Project description
+-                Project description
 -                %span.light (optional)
++                説明
 +                %span.light (任意)
                .col-sm-10
                  = f.text_area :description, class: "form-control", rows: 3, maxlength: 250
@@ -6972,8 +7175,15 @@ index 6d872cd..6139cdd 100644
 +            = f.label :tag_list, "タグ", class: 'control-label'
              .col-sm-10
                = f.text_field :tag_list, value: @project.tag_list.to_s, maxlength: 2000, class: "form-control"
-               %p.help-block Separate tags with commas.
-@@ -44,16 +44,16 @@
+-              %p.help-block Separate tags with commas.
++              %p.help-block タグはカンマで区切ります
+ 
+           %fieldset.features
+             %legend
+-              Features:
++              機能:
+             .form-group
+               .col-sm-offset-2.col-sm-10
                  .checkbox
                    = f.label :issues_enabled do
                      = f.check_box :issues_enabled
@@ -7060,17 +7270,17 @@ index 6d872cd..6139cdd 100644
            .panel.panel-warning
              .panel-heading
 -              Archive project
-+              Archive プロジェクト
++              プロジェクトをアーカイブ
              .panel-body
                %p
                  Archiving the project will mark its repository as read-only.
-@@ -162,11 +162,11 @@
+@@ -162,20 +162,20 @@
                  %strong Archived projects cannot be committed to!
  
                .form-actions
 -                = link_to 'Archive project', archive_namespace_project_path(@project.namespace, @project),
 -                    data: { confirm: "Are you sure that you want to archive this project?\nAn archived project cannot be committed to." },
-+                = link_to 'Archive プロジェクト', archive_namespace_project_path(@project.namespace, @project),
++                = link_to 'プロジェクトをアーカイブ', archive_namespace_project_path(@project.namespace, @project),
 +                    data: { confirm: "Are you sure that you want to archive this project?\nAn archived プロジェクト cannot be committed to." },
                      method: :post, class: "btn btn-warning"
        - else
@@ -7078,13 +7288,24 @@ index 6d872cd..6139cdd 100644
 +        .nothing-here-block Only the project owner can archive a プロジェクト
  
        .panel.panel-default.panel.panel-warning
-         .panel-heading Rename repository
+-        .panel-heading Rename repository
++        .panel-heading repositoryをリネーム
+         .errors-holder
+         .panel-body
+           = form_for([@project.namespace.becomes(Namespace), @project], html: { class: 'form-horizontal' }) do |f|
+             .form-group.project_name_holder
+               = f.label :name, class: 'control-label' do
+-                Project name
++                プロジェクト名
+               .col-sm-9
+                 .form-group
+                   = f.text_field :name, class: "form-control"
 @@ -192,48 +192,48 @@
                    %li Be careful. Renaming a project's repository can have unintended side effects.
                    %li You will need to update your local repositories to point to the new location.
              .form-actions
 -              = f.submit 'Rename project', class: "btn btn-warning"
-+              = f.submit 'Rename プロジェクト', class: "btn btn-warning"
++              = f.submit 'プロジェクトをリネーム', class: "btn btn-warning"
  
        - if can?(current_user, :change_namespace, @project)
          .panel.panel-default.panel.panel-danger
@@ -7271,7 +7492,7 @@ index 13f5fc1..46c69d1 100644
            = groups_select_tag(:link_group_id, skip_group: @project.group.try(:path))
        .form-group
 diff --git a/app/views/projects/hooks/index.html.haml b/app/views/projects/hooks/index.html.haml
-index 67d016b..5cf1c7a 100644
+index 67d016b..5057763 100644
 --- a/app/views/projects/hooks/index.html.haml
 +++ b/app/views/projects/hooks/index.html.haml
 @@ -18,7 +18,7 @@
@@ -7292,9 +7513,12 @@ index 67d016b..5cf1c7a 100644
            %p.light
              This url will be triggered when someone adds a comment
        %div
-@@ -70,7 +70,7 @@
+@@ -68,9 +68,9 @@
+       .checkbox
+         = f.label :enable_ssl_verification do
            = f.check_box :enable_ssl_verification
-           %strong Enable SSL verification
+-          %strong Enable SSL verification
++          %strong SSL verificationを有効にする
    .form-actions
 -    = f.submit "Add Webhook", class: "btn btn-create"
 +    = f.submit "Webhookを追加", class: "btn btn-create"
@@ -7980,10 +8204,15 @@ index c9f0762..5155bb5 100644
      does not exist
    %p
 diff --git a/app/views/projects/milestones/_form.html.haml b/app/views/projects/milestones/_form.html.haml
-index 23f2bca..d717548 100644
+index 23f2bca..0c44930 100644
 --- a/app/views/projects/milestones/_form.html.haml
 +++ b/app/views/projects/milestones/_form.html.haml
-@@ -11,7 +11,7 @@
+@@ -7,11 +7,11 @@
+   .row
+     .col-md-6
+       .form-group
+-        = f.label :title, "Title", class: "control-label"
++        = f.label :title, "タイトル", class: "control-label"
          .col-sm-10
            = f.text_field :title, maxlength: 255, class: "form-control", required: true, autofocus: true
        .form-group.milestone-description
@@ -8206,14 +8435,16 @@ index 720957e..8217c33 100644
 -    = link_to 'Remove project', project_path(@project), data: { confirm: remove_project_message(@project)}, method: :delete, class: "btn btn-remove pull-right"
 +    = link_to 'プロジェクトを削除', project_path(@project), data: { confirm: remove_project_message(@project)}, method: :delete, class: "btn btn-remove pull-right"
 diff --git a/app/views/projects/notes/_edit_form.html.haml b/app/views/projects/notes/_edit_form.html.haml
-index 2999bef..1249509 100644
+index 2999bef..68c380f 100644
 --- a/app/views/projects/notes/_edit_form.html.haml
 +++ b/app/views/projects/notes/_edit_form.html.haml
-@@ -7,4 +7,4 @@
+@@ -6,5 +6,5 @@
+       = render 'projects/notes/hints'
  
      .note-form-actions.clearfix
-       = f.submit 'Save Comment', class: 'btn btn-nr btn-save btn-grouped js-comment-button'
+-      = f.submit 'Save Comment', class: 'btn btn-nr btn-save btn-grouped js-comment-button'
 -      = link_to  'Cancel', '#', class: 'btn btn-nr btn-cancel note-edit-cancel'
++      = f.submit 'Commentを保存', class: 'btn btn-nr btn-save btn-grouped js-comment-button'
 +      = link_to  'キャンセル', '#', class: 'btn btn-nr btn-cancel note-edit-cancel'
 diff --git a/app/views/projects/notes/_form.html.haml b/app/views/projects/notes/_form.html.haml
 index f675f09..4080599 100644
@@ -8480,7 +8711,7 @@ index 2465831..c602d11 100644
        %li
          = link_to archive_namespace_project_repository_path(@project.namespace, @project, ref: ref, format: 'zip'), rel: 'nofollow' do
 diff --git a/app/views/projects/runners/_runner.html.haml b/app/views/projects/runners/_runner.html.haml
-index 47ec420..fddf68b 100644
+index 47ec420..59f192b 100644
 --- a/app/views/projects/runners/_runner.html.haml
 +++ b/app/views/projects/runners/_runner.html.haml
 @@ -13,14 +13,14 @@
@@ -8492,24 +8723,30 @@ index 47ec420..fddf68b 100644
          - else
            - runner_project = @project.runner_projects.find_by(runner_id: runner)
 -          = link_to 'Disable for this project', namespace_project_runner_project_path(@project.namespace, @project, runner_project), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger btn-sm'
-+          = link_to 'Disable for this プロジェクト', namespace_project_runner_project_path(@project.namespace, @project, runner_project), data: { confirm: "本当によろしいですか？" }, method: :delete, class: 'btn btn-danger btn-sm'
++          = link_to 'for this プロジェクトを無効にする', namespace_project_runner_project_path(@project.namespace, @project, runner_project), data: { confirm: "本当によろしいですか？" }, method: :delete, class: 'btn btn-danger btn-sm'
        - elsif runner.specific?
          = form_for [@project.namespace.becomes(Namespace), @project, @project.runner_projects.new] do |f|
            = f.hidden_field :runner_id, value: runner.id
 -          = f.submit 'Enable for this project', class: 'btn btn-sm'
-+          = f.submit 'Enable for this プロジェクト', class: 'btn btn-sm'
++          = f.submit 'for this プロジェクトを有効にする', class: 'btn btn-sm'
    .pull-right
      %small.light
        \##{runner.id}
 diff --git a/app/views/projects/runners/_shared_runners.html.haml b/app/views/projects/runners/_shared_runners.html.haml
-index 6a37f44..85f6bb8 100644
+index 6a37f44..a025e25 100644
 --- a/app/views/projects/runners/_shared_runners.html.haml
 +++ b/app/views/projects/runners/_shared_runners.html.haml
-@@ -9,7 +9,7 @@
+@@ -5,11 +5,11 @@
+   %hr
+   - if @project.shared_runners_enabled?
+     = link_to toggle_shared_runners_namespace_project_runners_path(@project.namespace, @project), class: 'btn btn-warning', method: :post do
+-      Disable shared runners
++      shared runnersを無効にする
    - else
      = link_to toggle_shared_runners_namespace_project_runners_path(@project.namespace, @project), class: 'btn btn-success', method: :post do
-       Enable shared runners
+-      Enable shared runners
 -  &nbsp; for this project
++      shared runnersを有効にする
 +  &nbsp; for this プロジェクト
  
  - if @shared_runners_count.zero?
@@ -9062,7 +9299,7 @@ index bd346c4..946c990 100644
  %hr.clearfix
  
 diff --git a/app/views/projects/variables/show.html.haml b/app/views/projects/variables/show.html.haml
-index efe1e6f..554f0fd 100644
+index efe1e6f..f095d9b 100644
 --- a/app/views/projects/variables/show.html.haml
 +++ b/app/views/projects/variables/show.html.haml
 @@ -1,6 +1,6 @@
@@ -9083,6 +9320,15 @@ index efe1e6f..554f0fd 100644
        .alert.alert-error
          %ul
            - @project.errors.full_messages.each do |msg|
+@@ -23,7 +23,7 @@
+ 
+   = f.fields_for :variables do |variable_form|
+     .form-group
+-      = variable_form.label :key, 'Key', class: 'control-label'
++      = variable_form.label :key, 'キー', class: 'control-label'
+       .col-sm-10
+         = variable_form.text_field :key, class: 'form-control', placeholder: "PROJECT_VARIABLE"
+ 
 @@ -32,11 +32,11 @@
        .col-sm-10
          = variable_form.text_area :value, class: 'form-control', rows: 2, placeholder: ""
@@ -9093,7 +9339,7 @@ index efe1e6f..554f0fd 100644
    %p
      .clearfix
 -      = f.link_to_add "Add a variable", :variables, class: 'btn btn-success pull-right'
-+      = f.link_to_add "a variableを追加", :variables, class: 'btn btn-success pull-right'
++      = f.link_to_add "variableを追加", :variables, class: 'btn btn-success pull-right'
  
    .form-actions
 -    = f.submit 'Save changes', class: 'btn btn-save', return_to: request.original_url
@@ -11336,6 +11582,16 @@ index 712e9fd..c5ff80e 100644
  
  Make sure you view this update guide from the tag (version) of GitLab you would
  like to install. In most cases this should be the highest numbered production
+diff --git a/doc/workflow/workflow.md b/doc/workflow/workflow.md
+index f70e41d..50deaea 100644
+--- a/doc/workflow/workflow.md
++++ b/doc/workflow/workflow.md
+@@ -1,4 +1,4 @@
+-# Feature branch workflow
++# フィーチャーブランチワークフロー
+ 
+ 1.  Clone project:
+ 
 diff --git a/features/steps/admin/active_tab.rb b/features/steps/admin/active_tab.rb
 index 90d13ab..ebbea0e 100644
 --- a/features/steps/admin/active_tab.rb

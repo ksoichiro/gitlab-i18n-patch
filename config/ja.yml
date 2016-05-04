@@ -485,6 +485,9 @@ webHook: Webフック
 showAll: すべて表示
 assignee: 担当者
 description: 説明
+projectDescription: 説明
+projectSetting: プロジェクト設定
+projectName: プロジェクト名
 open: オープン
 assignToMe: 自分に割り当てる
 noLabelsYet: ラベルがありません
@@ -1247,7 +1250,7 @@ mdTitleAcceptMR: マージリクエストの承認
 #mdTitleExternalIssueTracker: 
 #mdTitleFacebookOAuth2OmniAuthProvider: 
 #mdTitleFactories: 
-#mdTitleFeatureBranchWorkflow: 
+mdTitleFeatureBranchWorkflow: フィーチャーブランチワークフロー
 #mdTitleFeatureProposals: 
 #mdTitleFeatures: 
 #mdTitleFeaturesIntegration: 
@@ -2238,3 +2241,36 @@ mdTitleAcceptMR: マージリクエストの承認
 #mdTitleCURLExamples: 
 #mdTitleCURLCommands: 
 #mdTitleCURLExampleWithParametersPassedInTheURL: 
+separateTagsWithCommas: タグはカンマで区切ります
+features: 機能
+projectAvatar: プロジェクトアバター
+archiveSth: '{0}をアーカイブ'
+renameSth: '{0}をリネーム'
+key: キー
+title: タイトル
+pasteYourPublicKeyHereReadMoreAboutHowToGenerateAKeyOnTheSSHKeyOnTheSSHHelpPage: '公開鍵をペーストしてください。SSHキーの生成方法についての詳細は {0}SSHヘルプページ{1} をご確認ください。'
+youCanChangeYourAvatarHere: アバターを変更
+thisInformationWillAppearOnYourProfile: この情報はあなたのプロフィールに表示されます。
+someOptionsAreUnavailableForLDAPAccounts: いくつかのオプションはLDAPアカウントでは利用できません。
+saveSth: '{0}を保存'
+privateToken: プライベートトークン
+yourPrivateTokenIsUsedToAccessApplicationResourcesWithoutAuthentication: プライベートトークンは認証なしでアプリケーションのリソースにアクセスするのに使われます。
+itCanBeUsedForAtomFeedsOrTheAPI: ATOMフィードやAPIでのアクセスに利用できます。
+keepItSecret: 厳重に保管してください。
+youDontHaveOneYetClickGenerateToFixIt: トークンがありません。「生成」をクリックして生成してください。
+generate: 生成
+enableSth: '{0}を有効にする'
+disableSth: '{0}を無効にする'
+changingYourUsernameWillChangePathToAllPersonalProjects: ユーザ名を変更すると、あなたの所有するすべてのプロジェクトのパスが変更されます！
+savingNewUsername: ユーザ名を保存しています
+deletingAnAccountHasTheFollowingEffects: アカウントを削除すると以下の影響があります
+youDontHaveAnyAuthorizedApplications: 認可済みアプリケーションはありません
+controlEmailsLinkedToYourAccount: あなたのアカウントに紐付くメールアドレスを管理します。
+addEmailAddress: メールアドレスを追加
+historyOfAuthentications: 認証の履歴です。
+setupNewPassword: 新しいパスワードの設定
+pleaseSetANewPasswordBeforeProceeding: 新しいパスワードを設定してください。
+afterASuccessfulPasswordUpdateYouWillBeRedirectedToLoginScreen: 正常に更新された場合、ログイン画面にリダイレクトします。
+confirmation: 確認
+newPassword: 新しいパスワード
+currentPassword: 現在のパスワード

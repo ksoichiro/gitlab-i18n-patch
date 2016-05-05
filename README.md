@@ -30,7 +30,15 @@ i18n-patch を使って作成した v8.3.0 以降のパッチも patches フォ�
 
 ## 対応バージョン
 
-:mega: v8.3.0以降のパッチは動作確認できていません。
+:mega: v8.3.0以降のパッチは起動することまで確認できていますが、翻訳できていない部分が多々あります。
+
+1. [GitLab CE v8.7.0](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.7.0 "GitLab CE v8.7.0") → [patches/v8.7.0ディレクトリ](patches/v8.7.0)
+1. [GitLab CE v8.6.0](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.6.0 "GitLab CE v8.6.0") → [patches/v8.6.0ディレクトリ](patches/v8.6.0)
+1. [GitLab CE v8.5.0](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.5.0 "GitLab CE v8.5.0") → [patches/v8.5.0ディレクトリ](patches/v8.5.0)
+1. [GitLab CE v8.4.0](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.4.0 "GitLab CE v8.4.0") → [patches/v8.4.0ディレクトリ](patches/v8.4.0)
+1. [GitLab CE v8.3.0](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.3.0 "GitLab CE v8.3.0") → [patches/v8.3.0ディレクトリ](patches/v8.3.0)
+
+以下は旧来の方式で作成したパッチです。
 
 1. [GitLab CE v8.2.0](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.2.0 "GitLab CE v8.2.0") → [patches/v8.2.0ディレクトリ](patches/v8.2.0)
 1. [GitLab CE v8.1.0](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.1.0 "GitLab CE v8.1.0") → [patches/v8.1.0ディレクトリ](patches/v8.1.0)

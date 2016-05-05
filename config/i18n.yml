@@ -43,7 +43,7 @@ translations:
       value: jQueryTimeago
 
 # Ruby
-- src: '**/*.rb'
+- src: 'app/**/*.rb'
   conditionals:
     - insert:
         at: begin
@@ -236,7 +236,7 @@ translations:
   - pattern: "Go to snippets"
     replace: '${shortcutsGoToSnippets}'
 
-- src: '**/*.haml'
+- src: 'app/views/**/*.haml'
   named-patterns:
   - name: singleWord
     pattern: "{word}?$|(\"){word}?\"|('){word}?'|(\".* ){word}?(\")"

@@ -612,7 +612,7 @@ index 059b88e..a05dfb0 100644
    end
  
 diff --git a/app/helpers/application_helper.rb b/app/helpers/application_helper.rb
-index 3e0074d..48ecf26 100644
+index 3e0074d..a3c65f9 100644
 --- a/app/helpers/application_helper.rb
 +++ b/app/helpers/application_helper.rb
 @@ -1,3 +1,4 @@
@@ -631,12 +631,15 @@ index 3e0074d..48ecf26 100644
      ]
  
      # If reference is commit id - we should add it to branch/tag selectbox
-@@ -299,7 +300,7 @@ module ApplicationHelper
+@@ -299,7 +300,10 @@ module ApplicationHelper
  
    def state_filters_text_for(entity, project)
      titles = {
 -      opened: "Open"
-+      opened: "オープン"
++      opened: "オープン",
++      closed: "クローズ",
++      merged: "マージ済み",
++      all: "すべて"
      }
  
      entity_title = titles[entity] || entity.to_s.humanize
@@ -919,18 +922,22 @@ index 2ab0170..d17240d 100644
 -    = link_to 'Remove report', [:admin, abuse_report], remote: true, method: :delete, class: "btn btn-xs btn-close js-remove-tr"
 +    = link_to 'reportを削除', [:admin, abuse_report], remote: true, method: :delete, class: "btn btn-xs btn-close js-remove-tr"
 diff --git a/app/views/admin/abuse_reports/index.html.haml b/app/views/admin/abuse_reports/index.html.haml
-index bc4a9ce..cd48a5b 100644
+index bc4a9ce..6cbecaa 100644
 --- a/app/views/admin/abuse_reports/index.html.haml
 +++ b/app/views/admin/abuse_reports/index.html.haml
-@@ -6,7 +6,7 @@
+@@ -6,9 +6,9 @@
      %table.table
        %thead
          %tr
 -          %th User
+-          %th Reported by
+-          %th Message
 +          %th ユーザ
-           %th Reported by
-           %th Message
++          %th 報告者
++          %th メッセージ
            %th Primary action
+           %th
+       = render @abuse_reports
 diff --git a/app/views/admin/appearances/_form.html.haml b/app/views/admin/appearances/_form.html.haml
 index d88f3ad..d404d30 100644
 --- a/app/views/admin/appearances/_form.html.haml
@@ -963,7 +970,7 @@ index d88f3ad..d404d30 100644
        = link_to 'Preview last save', preview_admin_appearances_path, class: 'btn', target: '_blank'
  
 diff --git a/app/views/admin/appearances/preview.html.haml b/app/views/admin/appearances/preview.html.haml
-index dd4a64e..ee9db86 100644
+index dd4a64e..efd239c 100644
 --- a/app/views/admin/appearances/preview.html.haml
 +++ b/app/views/admin/appearances/preview.html.haml
 @@ -1,6 +1,6 @@
@@ -983,13 +990,22 @@ index dd4a64e..ee9db86 100644
 -                = password_field_tag :password, nil, class: "form-control bottom", placeholder: "Password"
 -                = button_tag "Sign in", class: "btn-create btn"
 +                %h3.page-title サインイン
-+                = text_field_tag :login, nil, class: "form-control top", placeholder: "Username or メールアドレス"
++                = text_field_tag :login, nil, class: "form-control top", placeholder: "ユーザ名またはメールアドレス"
 +                = password_field_tag :password, nil, class: "form-control bottom", placeholder: "パスワード"
 +                = button_tag "サインイン", class: "btn-create btn"
 diff --git a/app/views/admin/application_settings/_form.html.haml b/app/views/admin/application_settings/_form.html.haml
-index e0d8d16..83b7b43 100644
+index e0d8d16..8d9bf56 100644
 --- a/app/views/admin/application_settings/_form.html.haml
 +++ b/app/views/admin/application_settings/_form.html.haml
+@@ -48,7 +48,7 @@
+         .checkbox
+           = f.label :version_check_enabled do
+             = f.check_box :version_check_enabled
+-            Version check enabled
++            Version check を利用
+     .form-group
+       .col-sm-offset-2.col-sm-10
+         .checkbox
 @@ -57,7 +57,7 @@
              Include author name in notification email body
            .help-block
@@ -999,16 +1015,21 @@ index e0d8d16..83b7b43 100644
              merge request or comment in the email body instead.
      .form-group
        = f.label :admin_notification_email, class: 'control-label col-sm-2'
-@@ -67,7 +67,7 @@
+@@ -67,48 +67,48 @@
            Abuse reports will be sent to this address if it is set. Abuse reports are always available in the admin area.
  
    %fieldset
 -    %legend Account and Limit Settings
-+    %legend Account and Limit 設定
++    %legend アカウントと制限の設定
      .form-group
        .col-sm-offset-2.col-sm-10
          .checkbox
-@@ -79,24 +79,24 @@
+           = f.label :gravatar_enabled do
+             = f.check_box :gravatar_enabled
+-            Gravatar enabled
++            Gravatar を利用
+     .form-group
+       = f.label :default_projects_limit, class: 'control-label col-sm-2'
        .col-sm-10
          = f.number_field :default_projects_limit, class: 'form-control'
      .form-group
@@ -1039,7 +1060,36 @@ index e0d8d16..83b7b43 100644
      .form-group
        .col-sm-offset-2.col-sm-10
          .checkbox
-@@ -154,7 +154,7 @@
+           = f.label :signup_enabled do
+             = f.check_box :signup_enabled
+-            Sign-up enabled
++            Sign-up を利用
+     .form-group
+       .col-sm-offset-2.col-sm-10
+         .checkbox
+           = f.label :signin_enabled do
+             = f.check_box :signin_enabled
+-            Sign-in enabled
++            Sign-in を利用
+     .form-group
+       = f.label :two_factor_authentication, 'Two-factor authentication', class: 'control-label col-sm-2'
+       .col-sm-10
+@@ -140,12 +140,12 @@
+       = f.label :sign_in_text, class: 'control-label col-sm-2'
+       .col-sm-10
+         = f.text_area :sign_in_text, class: 'form-control', rows: 4
+-        .help-block Markdown enabled
++        .help-block Markdown を利用
+     .form-group
+       = f.label :help_page_text, class: 'control-label col-sm-2'
+       .col-sm-10
+         = f.text_area :help_page_text, class: 'form-control', rows: 4
+-        .help-block Markdown enabled
++        .help-block Markdown を利用
+ 
+   %fieldset
+     %legend Continuous Integration
+@@ -154,12 +154,12 @@
          .checkbox
            = f.label :shared_runners_enabled do
              = f.check_box :shared_runners_enabled
@@ -1047,6 +1097,12 @@ index e0d8d16..83b7b43 100644
 +            shared runners for new プロジェクトを有効にする
      .form-group
        = f.label :shared_runners_text, class: 'control-label col-sm-2'
+       .col-sm-10
+         = f.text_area :shared_runners_text, class: 'form-control', rows: 4
+-        .help-block Markdown enabled
++        .help-block Markdown を利用
+     .form-group
+       = f.label :max_artifacts_size, 'Maximum artifacts size (MB)', class: 'control-label col-sm-2'
        .col-sm-10
 @@ -174,7 +174,7 @@
          .checkbox
@@ -1171,10 +1227,10 @@ index c596866..1d70ce2 100644
  - @url = admin_application_path(@application)
  = render 'form', application: @application
 diff --git a/app/views/admin/applications/index.html.haml b/app/views/admin/applications/index.html.haml
-index f8cd98f..067a5b1 100644
+index f8cd98f..a3e8f77 100644
 --- a/app/views/admin/applications/index.html.haml
 +++ b/app/views/admin/applications/index.html.haml
-@@ -1,10 +1,10 @@
+@@ -1,14 +1,14 @@
 -- page_title "Applications"
 +- page_title "アプリケーション"
  %h3.page-title
@@ -1188,6 +1244,11 @@ index f8cd98f..067a5b1 100644
  %table.table.table-striped
    %thead
      %tr
+-      %th Name
++      %th 名前
+       %th Callback URL
+       %th Clients
+       %th
 @@ -19,5 +19,5 @@
          %td= link_to application.name, admin_application_path(application)
          %td= application.redirect_uri
@@ -1302,9 +1363,18 @@ index 3571eef..d958adc 100644
          - elsif defined?(allow_retry) && allow_retry && build.retryable?
            = link_to retry_namespace_project_build_path(build.project.namespace, build.project, build, return_to: request.original_url), method: :post, title: 'Retry' do
 diff --git a/app/views/admin/builds/index.html.haml b/app/views/admin/builds/index.html.haml
-index 5931efd..9ab44b7 100644
+index 5931efd..6f7aab7 100644
 --- a/app/views/admin/builds/index.html.haml
 +++ b/app/views/admin/builds/index.html.haml
+@@ -2,7 +2,7 @@
+   %ul.nav-links
+     %li{class: ('active' if @scope.nil?)}
+       = link_to admin_builds_path do
+-        All
++        すべて
+         %span.badge.js-totalbuilds-count= @all_builds.count(:id)
+ 
+     %li{class: ('active' if @scope == 'running')}
 @@ -17,10 +17,10 @@
  
    .nav-controls
@@ -1318,7 +1388,7 @@ index 5931efd..9ab44b7 100644
  
  %ul.content-list
    - if @builds.blank?
-@@ -31,10 +31,10 @@
+@@ -31,13 +31,13 @@
        %table.table.builds
          %thead
            %tr
@@ -1331,7 +1401,11 @@ index 5931efd..9ab44b7 100644
 +            %th コミット
              %th Ref
              %th Runner
-             %th Name
+-            %th Name
++            %th 名前
+             %th Duration
+             %th Finished at
+             %th
 diff --git a/app/views/admin/dashboard/index.html.haml b/app/views/admin/dashboard/index.html.haml
 index 6dd2fef..9b6667f 100644
 --- a/app/views/admin/dashboard/index.html.haml
@@ -1643,10 +1717,10 @@ index f309e80..b88d63d 100644
        .panel-footer
          = paginate @members, param_name: 'members_page', theme: 'gitlab'
 diff --git a/app/views/admin/hooks/index.html.haml b/app/views/admin/hooks/index.html.haml
-index 67d23c8..e72812a 100644
+index 67d23c8..2f6bbfa 100644
 --- a/app/views/admin/hooks/index.html.haml
 +++ b/app/views/admin/hooks/index.html.haml
-@@ -17,10 +17,10 @@
+@@ -17,17 +17,17 @@
      .col-sm-10
        = f.text_field :url, class: "form-control"
    .form-group
@@ -1659,6 +1733,14 @@ index 67d23c8..e72812a 100644
          or adding ssh key. But you can also enable extra triggers like Push events.
  
        %div.prepend-top-default
+         = f.check_box :push_events, class: 'pull-left'
+         .prepend-left-20
+           = f.label :push_events, class: 'list-label' do
+-            %strong Push events
++            %strong プッシュイベント
+           %p.light
+             This url will be triggered by a push to the repository
+       %div
 @@ -43,9 +43,9 @@
        .checkbox
          = f.label :enable_ssl_verification do
@@ -2852,10 +2934,10 @@ index 7070592..967b8fb 100644
 +  %h3 スターをつけたプロジェクトはありません
 +  %p.slead プロジェクトのページでスターのアイコンを押すとこのページで確認できます。
 diff --git a/app/views/dashboard/snippets/index.html.haml b/app/views/dashboard/snippets/index.html.haml
-index d4e7862..dfd3cc8 100644
+index d4e7862..819935c 100644
 --- a/app/views/dashboard/snippets/index.html.haml
 +++ b/app/views/dashboard/snippets/index.html.haml
-@@ -1,13 +1,13 @@
+@@ -1,36 +1,36 @@
 -- page_title    "Snippets"
 -- header_title  "Snippets", dashboard_snippets_path
 +- page_title    "スニペット"
@@ -2873,10 +2955,45 @@ index d4e7862..dfd3cc8 100644
  
    .nav-links.snippet-scope-menu
      %li{ class: ("active" unless params[:scope]) }
+       = link_to dashboard_snippets_path do
+-        All
++        すべて
+         %span.badge
+           = current_user.snippets.count
+ 
+     %li{ class: ("active" if params[:scope] == "are_private") }
+       = link_to dashboard_snippets_path(scope: 'are_private') do
+-        Private
++        プライベート
+         %span.badge
+           = current_user.snippets.are_private.count
+ 
+     %li{ class: ("active" if params[:scope] == "are_internal") }
+       = link_to dashboard_snippets_path(scope: 'are_internal') do
+-        Internal
++        内部
+         %span.badge
+           = current_user.snippets.are_internal.count
+ 
+     %li{ class: ("active" if params[:scope] == "are_public") }
+       = link_to dashboard_snippets_path(scope: 'are_public') do
+-        Public
++        公開
+         %span.badge
+           = current_user.snippets.are_public.count
+ 
 diff --git a/app/views/dashboard/todos/index.html.haml b/app/views/dashboard/todos/index.html.haml
-index 49ab8aa..ddd90d0 100644
+index 49ab8aa..82e0ddc 100644
 --- a/app/views/dashboard/todos/index.html.haml
 +++ b/app/views/dashboard/todos/index.html.haml
+@@ -1,5 +1,5 @@
+-- page_title "Todos"
+-- header_title "Todos", dashboard_todos_path
++- page_title "ToDo"
++- header_title "ToDo", dashboard_todos_path
+ 
+ .top-area
+   %ul.nav-links
 @@ -30,10 +30,10 @@
        .filter-item.inline
          = select_tag('project_id', todo_projects_options,
@@ -2890,6 +3007,15 @@ index 49ab8aa..ddd90d0 100644
        .filter-item.inline
          = select_tag('type', todo_types_options,
            class: 'select2 trigger-submit', include_blank: true,
+@@ -56,7 +56,7 @@
+           = render group[1]
+     = paginate @todos, theme: "gitlab"
+   - else
+-    .nothing-here-block You're all done!
++    .nothing-here-block すべて完了しました！
+ 
+ :javascript
+   new UsersSelect();
 diff --git a/app/views/devise/confirmations/almost_there.haml b/app/views/devise/confirmations/almost_there.haml
 index 3c3830a..a562224 100644
 --- a/app/views/devise/confirmations/almost_there.haml
@@ -2995,14 +3121,14 @@ index 42cfbbf..fa0bd16 100644
  
  = render 'devise/shared/sign_in_link'
 diff --git a/app/views/devise/sessions/_new_base.html.haml b/app/views/devise/sessions/_new_base.html.haml
-index 9f55206..4b335f7 100644
+index 9f55206..10bc16f 100644
 --- a/app/views/devise/sessions/_new_base.html.haml
 +++ b/app/views/devise/sessions/_new_base.html.haml
 @@ -1,12 +1,12 @@
  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
 -  = f.text_field :login, class: "form-control top", placeholder: "Username or Email", autofocus: "autofocus", autocapitalize: "off", autocorrect: "off"
 -  = f.password_field :password, class: "form-control bottom", placeholder: "Password"
-+  = f.text_field :login, class: "form-control top", placeholder: "Username or メールアドレス", autofocus: "autofocus", autocapitalize: "off", autocorrect: "off"
++  = f.text_field :login, class: "form-control top", placeholder: "ユーザ名またはメールアドレス", autofocus: "autofocus", autocapitalize: "off", autocorrect: "off"
 +  = f.password_field :password, class: "form-control bottom", placeholder: "パスワード"
    - if devise_mapping.rememberable?
      .remember-me.checkbox
@@ -3052,7 +3178,7 @@ index 689cd6e..4c77d41 100644
 +        %span パスワードを記憶
 +  = button_tag "サインイン", class: "btn-save btn"
 diff --git a/app/views/devise/sessions/new.html.haml b/app/views/devise/sessions/new.html.haml
-index d65fa60..8e00100 100644
+index d65fa60..8b637a9 100644
 --- a/app/views/devise/sessions/new.html.haml
 +++ b/app/views/devise/sessions/new.html.haml
 @@ -1,4 +1,4 @@
@@ -3061,6 +3187,15 @@ index d65fa60..8e00100 100644
  %div
    - if signin_enabled? || ldap_enabled? || crowd_enabled?
      = render 'devise/shared/signin_box'
+@@ -13,7 +13,7 @@
+     .prepend-top-20
+       = render 'devise/shared/signup_box'
+ 
+-  -# Show a message if none of the mechanisms above are enabled
++  -# Show a message if none of the mechanisms above are を利用
+   - if !signin_enabled? && !ldap_enabled? && !(omniauth_enabled? && devise_mapping.omniauthable?)
+     %div
+       No authentication methods configured.
 diff --git a/app/views/devise/sessions/two_factor.html.haml b/app/views/devise/sessions/two_factor.html.haml
 index 22b2c1a..5a734c6 100644
 --- a/app/views/devise/sessions/two_factor.html.haml
@@ -3102,10 +3237,10 @@ index 2c15e2c..751c352 100644
      - if form_based_providers.any?
        %ul.nav-links
 diff --git a/app/views/devise/shared/_signup_box.html.haml b/app/views/devise/shared/_signup_box.html.haml
-index e5607da..849ab78 100644
+index e5607da..02723dd 100644
 --- a/app/views/devise/shared/_signup_box.html.haml
 +++ b/app/views/devise/shared/_signup_box.html.haml
-@@ -1,10 +1,10 @@
+@@ -1,30 +1,30 @@
  .login-box
    - if signin_enabled?
      .login-heading
@@ -3118,9 +3253,10 @@ index e5607da..849ab78 100644
    .login-body
      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
        .devise-errors
-@@ -12,19 +12,19 @@
+         = devise_error_messages!
        %div
-         = f.text_field :name, class: "form-control top", placeholder: "Name", required: true
+-        = f.text_field :name, class: "form-control top", placeholder: "Name", required: true
++        = f.text_field :name, class: "form-control top", placeholder: "名前", required: true
        %div
 -        = f.text_field :username, class: "form-control middle", placeholder: "Username", required: true
 +        = f.text_field :username, class: "form-control middle", placeholder: "ユーザ名", required: true
@@ -3203,7 +3339,7 @@ index fb6aa30..1b14ed1 100644
 +%h3.page-title アプリケーションを編集
  = render 'form', application: @application
 diff --git a/app/views/doorkeeper/applications/index.html.haml b/app/views/doorkeeper/applications/index.html.haml
-index 0aff797..9072162 100644
+index 0aff797..4adce42 100644
 --- a/app/views/doorkeeper/applications/index.html.haml
 +++ b/app/views/doorkeeper/applications/index.html.haml
 @@ -1,4 +1,4 @@
@@ -3212,7 +3348,7 @@ index 0aff797..9072162 100644
  - header_title page_title, applications_profile_path
  
  .row.prepend-top-default
-@@ -14,13 +14,13 @@
+@@ -14,19 +14,19 @@
    .col-lg-9
      - if user_oauth_applications?
        %h5.prepend-top-0
@@ -3228,6 +3364,13 @@ index 0aff797..9072162 100644
          - if @applications.any?
            .table-responsive
              %table.table
+               %thead
+                 %tr
+-                  %th Name
++                  %th 名前
+                   %th Callback URL
+                   %th Clients
+                   %th.last-heading
 @@ -46,7 +46,7 @@
                        = render 'delete_form', application: application, small: true
          - else
@@ -3237,6 +3380,15 @@ index 0aff797..9072162 100644
      .oauth-authorized-applications.prepend-top-20.append-bottom-default
        - if user_oauth_applications?
          %h5
+@@ -57,7 +57,7 @@
+           %table.table.table-striped
+             %thead
+               %tr
+-                %th Name
++                %th 名前
+                 %th Authorized At
+                 %th Scope
+                 %th
 @@ -80,4 +80,4 @@
                    %td= render 'doorkeeper/authorized_applications/delete_form', token: token
        - else
@@ -3347,7 +3499,7 @@ index 235bd46..578f478 100644
 -            Create Merge Request
 +            マージリクエストを作成
 diff --git a/app/views/explore/_head.html.haml b/app/views/explore/_head.html.haml
-index d8a5756..e2e478c 100644
+index d8a5756..024020d 100644
 --- a/app/views/explore/_head.html.haml
 +++ b/app/views/explore/_head.html.haml
 @@ -1,6 +1,6 @@
@@ -3356,7 +3508,8 @@ index d8a5756..e2e478c 100644
 -    Explore GitLab
 +    GitLabを探索
    %p.lead
-     Discover projects, groups and snippets. Share your projects with others
+-    Discover projects, groups and snippets. Share your projects with others
++    プロジェクト、グループ、スニペットを見つけましょう。あなたのプロジェクトをシェアしましょう
    %br
 diff --git a/app/views/explore/groups/index.html.haml b/app/views/explore/groups/index.html.haml
 index 8ffca96..d7e499e 100644
@@ -3425,6 +3578,24 @@ index cd485da..5bdef49 100644
  
        - @tags.each do |tag|
          %li{ class: (tag.name == params[:tag]) ? 'active' : 'light' }
+diff --git a/app/views/explore/projects/_nav.html.haml b/app/views/explore/projects/_nav.html.haml
+index 614b543..15a7e87 100644
+--- a/app/views/explore/projects/_nav.html.haml
++++ b/app/views/explore/projects/_nav.html.haml
+@@ -1,10 +1,10 @@
+ %ul.nav-links
+   = nav_link(page: [trending_explore_projects_path, explore_root_path]) do
+     = link_to trending_explore_projects_path do
+-      Trending
++      トレンド
+   = nav_link(page: starred_explore_projects_path) do
+     = link_to starred_explore_projects_path do
+-      Most stars
++      スター数
+   = nav_link(page: explore_projects_path) do
+     = link_to explore_projects_path do
+-      All
++      すべて
 diff --git a/app/views/explore/projects/index.html.haml b/app/views/explore/projects/index.html.haml
 index 42b5048..9e6e4d7 100644
 --- a/app/views/explore/projects/index.html.haml
@@ -4137,7 +4308,7 @@ index 57bc91e..68e22de 100644
          %li= link_to 'See our website for getting help', promo_url + '/getting-help/'
          %li= link_to 'Use the search bar on the top of this page', '#', onclick: 'Shortcuts.focusSearch(event)'
 diff --git a/app/views/help/ui.html.haml b/app/views/help/ui.html.haml
-index f12df5c..0e61e51 100644
+index f12df5c..0819615 100644
 --- a/app/views/help/ui.html.haml
 +++ b/app/views/help/ui.html.haml
 @@ -1,4 +1,4 @@
@@ -4187,11 +4358,15 @@ index f12df5c..0e61e51 100644
        %ul.well-list
          %li
            One item
-@@ -148,7 +148,7 @@
+@@ -146,9 +146,9 @@
+       %thead
+         %tr
            %th #
-           %th First Name
-           %th Last Name
+-          %th First Name
+-          %th Last Name
 -          %th Username
++          %th First 名前
++          %th Last 名前
 +          %th ユーザ名
        %tbody
          %tr
@@ -4468,7 +4643,7 @@ index 5515fad..be244bc 100644
        = password_field_tag :password, nil, class: 'form-control'
    .form-actions
 diff --git a/app/views/import/fogbugz/new_user_map.html.haml b/app/views/import/fogbugz/new_user_map.html.haml
-index 0733873..6abfa54 100644
+index 0733873..4146a64 100644
 --- a/app/views/import/fogbugz/new_user_map.html.haml
 +++ b/app/views/import/fogbugz/new_user_map.html.haml
 @@ -1,5 +1,5 @@
@@ -4488,12 +4663,14 @@ index 0733873..6abfa54 100644
        %p
          Selecting a GitLab user will add a link to the GitLab user in the descriptions
          of issues and comments (e.g. "By <a href="#">@johnsmith</a>"). It will also
-@@ -32,8 +32,8 @@
+@@ -31,9 +31,9 @@
+       %thead
          %tr
            %th ID
-           %th Name
+-          %th Name
 -          %th Email
 -          %th GitLab User
++          %th 名前
 +          %th メールアドレス
 +          %th GitLab ユーザ
        %tbody
@@ -4928,7 +5105,7 @@ index a1a1fc2..8e62405 100644
  
  = render template: "layouts/group"
 diff --git a/app/views/layouts/header/_default.html.haml b/app/views/layouts/header/_default.html.haml
-index 3beb8ff..6974457 100644
+index 3beb8ff..216be02 100644
 --- a/app/views/layouts/header/_default.html.haml
 +++ b/app/views/layouts/header/_default.html.haml
 @@ -10,7 +10,7 @@
@@ -4940,7 +5117,7 @@ index 3beb8ff..6974457 100644
                = icon('search')
            - if current_user
              - if session[:impersonator_id]
-@@ -19,7 +19,7 @@
+@@ -19,15 +19,15 @@
                    = icon('user-secret fw')
              - if current_user.is_admin?
                %li
@@ -4948,8 +5125,9 @@ index 3beb8ff..6974457 100644
 +                = link_to admin_root_path, title: '管理エリア', data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
                    = icon('wrench fw')
              %li
-               = link_to dashboard_todos_path, title: 'Todos', data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
-@@ -27,7 +27,7 @@
+-              = link_to dashboard_todos_path, title: 'Todos', data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
++              = link_to dashboard_todos_path, title: 'ToDo', data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
+                 %span.badge.todos-pending-count
                    = todos_pending_count
              - if current_user.can_create_project?
                %li
@@ -4958,7 +5136,13 @@ index 3beb8ff..6974457 100644
                    = icon('plus fw')
              - if Gitlab::Sherlock.enabled?
                %li
-@@ -40,7 +40,7 @@
+@@ -35,12 +35,12 @@
+                   data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
+                   = icon('tachometer fw')
+             %li
+-              = link_to destroy_user_session_path, class: 'logout', method: :delete, title: 'Sign out', data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
++              = link_to destroy_user_session_path, class: 'logout', method: :delete, title: 'サインアウト', data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
+                 = icon('sign-out')
            - else
              %li
                %div
@@ -5075,10 +5259,10 @@ index 280a1b9..096383b 100644
 -        Settings
 +        設定
 diff --git a/app/views/layouts/nav/_dashboard.html.haml b/app/views/layouts/nav/_dashboard.html.haml
-index 5cef652..f759c11 100644
+index 5cef652..0454505 100644
 --- a/app/views/layouts/nav/_dashboard.html.haml
 +++ b/app/views/layouts/nav/_dashboard.html.haml
-@@ -1,9 +1,9 @@
+@@ -1,56 +1,56 @@
  %ul.nav.nav-sidebar
    = nav_link(path: ['root#index', 'projects#trending', 'projects#starred', 'dashboard/projects#index'], html_options: {class: 'home'}) do
 -    = link_to dashboard_projects_path, title: 'Projects' do
@@ -5088,10 +5272,12 @@ index 5cef652..f759c11 100644
 -        Projects
 +        プロジェクト
    = nav_link(controller: :todos) do
-     = link_to dashboard_todos_path, title: 'Todos' do
+-    = link_to dashboard_todos_path, title: 'Todos' do
++    = link_to dashboard_todos_path, title: 'ToDo' do
        = icon('bell fw')
-@@ -11,46 +11,46 @@
-         Todos
+       %span
+-        Todos
++        ToDo
          %span.count.todos-pending-count= number_with_delimiter(todos_pending_count)
    = nav_link(path: 'dashboard#activity') do
 -    = link_to activity_dashboard_path, class: 'shortcuts-activity', title: 'Activity' do
@@ -5993,7 +6179,7 @@ index f630c03..bcfbea5 100644
  
  .row.prepend-top-default
 diff --git a/app/views/profiles/emails/index.html.haml b/app/views/profiles/emails/index.html.haml
-index 3f328f9..07d9cd7 100644
+index 3f328f9..01c0d3b 100644
 --- a/app/views/profiles/emails/index.html.haml
 +++ b/app/views/profiles/emails/index.html.haml
 @@ -1,4 +1,4 @@
@@ -6044,7 +6230,7 @@ index 3f328f9..07d9cd7 100644
 +          %span.label.label-success Primary メールアドレス
            - if @primary === current_user.public_email
 -            %span.label.label-info Public Email
-+            %span.label.label-info Public メールアドレス
++            %span.label.label-info 公開メールアドレス
            - if @primary === current_user.notification_email
 -            %span.label.label-info Notification Email
 +            %span.label.label-info Notification メールアドレス
@@ -6054,7 +6240,7 @@ index 3f328f9..07d9cd7 100644
            %span.pull-right
              - if email.email === current_user.public_email
 -              %span.label.label-info Public Email
-+              %span.label.label-info Public メールアドレス
++              %span.label.label-info 公開メールアドレス
              - if email.email === current_user.notification_email
 -              %span.label.label-info Notification Email
 -          = link_to 'Remove', profile_email_path(email), data: { confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-sm btn-remove pull-right'
@@ -6329,7 +6515,7 @@ index addf356..66d156a 100644
  %hr
  = render 'codes'
 diff --git a/app/views/profiles/two_factor_auths/create.html.haml b/app/views/profiles/two_factor_auths/create.html.haml
-index e330aad..1bcaac1 100644
+index e330aad..7c46faf 100644
 --- a/app/views/profiles/two_factor_auths/create.html.haml
 +++ b/app/views/profiles/two_factor_auths/create.html.haml
 @@ -1,6 +1,6 @@
@@ -6338,7 +6524,7 @@ index e330aad..1bcaac1 100644
  
  .alert.alert-success
 -  Congratulations! You have enabled Two-factor Authentication!
-+  Congratulations! You have enabled 二段階認証!
++  Congratulations! You have を利用 二段階認証!
  
  = render 'codes'
 diff --git a/app/views/profiles/two_factor_auths/new.html.haml b/app/views/profiles/two_factor_auths/new.html.haml
@@ -6475,6 +6661,19 @@ index 69fa4ad..e564875 100644
  
  = render 'projects/last_push'
  
+diff --git a/app/views/projects/artifacts/browse.html.haml b/app/views/projects/artifacts/browse.html.haml
+index 84034c8..9b382b3 100644
+--- a/app/views/projects/artifacts/browse.html.haml
++++ b/app/views/projects/artifacts/browse.html.haml
+@@ -13,7 +13,7 @@
+     %table.table.tree-table
+       %thead
+         %tr
+-          %th Name
++          %th 名前
+           %th Size
+       = render partial: 'tree_directory', collection: @entry.directories(parent: true), as: :directory
+       = render partial: 'tree_file', collection: @entry.files, as: :file
 diff --git a/app/views/projects/blame/show.html.haml b/app/views/projects/blame/show.html.haml
 index 5f9a92f..ed12244 100644
 --- a/app/views/projects/blame/show.html.haml
@@ -6673,7 +6872,7 @@ index 57e507e..314c65f 100644
 -      Cant find HEAD commit for this branch
 +      Cant find HEAD commit for this ブランチ
 diff --git a/app/views/projects/branches/index.html.haml b/app/views/projects/branches/index.html.haml
-index 88266e2..bc4d869 100644
+index 88266e2..3f5ea41 100644
 --- a/app/views/projects/branches/index.html.haml
 +++ b/app/views/projects/branches/index.html.haml
 @@ -1,4 +1,4 @@
@@ -6691,6 +6890,21 @@ index 88266e2..bc4d869 100644
        &nbsp;
      .dropdown.inline
        %button.dropdown-toggle.btn{type: 'button', 'data-toggle' => 'dropdown'}
+@@ -14,12 +14,12 @@
+         - if @sort.present?
+           = @sort.humanize
+         - else
+-          Name
++          名前
+         %b.caret
+       %ul.dropdown-menu.dropdown-menu-align-right
+         %li
+           = link_to namespace_project_branches_path(sort: nil) do
+-            Name
++            名前
+           = link_to namespace_project_branches_path(sort: 'recently_updated') do
+             = sort_title_recently_updated
+           = link_to namespace_project_branches_path(sort: 'last_updated') do
 diff --git a/app/views/projects/branches/new.html.haml b/app/views/projects/branches/new.html.haml
 index c659af6..ac8701d 100644
 --- a/app/views/projects/branches/new.html.haml
@@ -6728,9 +6942,18 @@ index c659af6..ac8701d 100644
  :javascript
    var availableRefs = #{@project.repository.ref_names.to_json};
 diff --git a/app/views/projects/builds/index.html.haml b/app/views/projects/builds/index.html.haml
-index aa85f49..0e0712a 100644
+index aa85f49..c97d74c 100644
 --- a/app/views/projects/builds/index.html.haml
 +++ b/app/views/projects/builds/index.html.haml
+@@ -5,7 +5,7 @@
+   %ul.nav-links
+     %li{class: ('active' if @scope.nil?)}
+       = link_to project_builds_path(@project) do
+-        All
++        すべて
+         %span.badge.js-totalbuilds-count
+           = number_with_delimiter(@all_builds.count(:id))
+ 
 @@ -25,17 +25,17 @@
      - if can?(current_user, :update_build, @project)
        - if @all_builds.running_or_pending.any?
@@ -6752,7 +6975,7 @@ index aa85f49..0e0712a 100644
  
  %ul.content-list
    - if @builds.blank?
-@@ -46,9 +46,9 @@
+@@ -46,12 +46,12 @@
        %table.table.builds
          %thead
            %tr
@@ -6763,7 +6986,11 @@ index aa85f49..0e0712a 100644
 +            %th コミット
              %th Ref
              %th Stage
-             %th Name
+-            %th Name
++            %th 名前
+             %th Duration
+             %th Finished at
+             - if @project.build_coverage_enabled?
 diff --git a/app/views/projects/builds/show.html.haml b/app/views/projects/builds/show.html.haml
 index 6d4505e..73175e4 100644
 --- a/app/views/projects/builds/show.html.haml
@@ -6926,7 +7153,7 @@ index 2cf9115..32b4de4 100644
          - elsif defined?(allow_retry) && allow_retry && build.retryable?
            = link_to retry_namespace_project_build_path(build.project.namespace, build.project, build, return_to: request.original_url), method: :post, title: 'Retry' do
 diff --git a/app/views/projects/commit/_builds.html.haml b/app/views/projects/commit/_builds.html.haml
-index 003b7c1..b442d8b 100644
+index 003b7c1..32cd324 100644
 --- a/app/views/projects/commit/_builds.html.haml
 +++ b/app/views/projects/commit/_builds.html.haml
 @@ -5,7 +5,7 @@
@@ -6938,7 +7165,7 @@ index 003b7c1..b442d8b 100644
  
    .oneline
      = pluralize @statuses.count(:id), "build"
-@@ -32,7 +32,7 @@
+@@ -32,11 +32,11 @@
    %table.table.builds
      %thead
        %tr
@@ -6947,7 +7174,12 @@ index 003b7c1..b442d8b 100644
          %th Build ID
          %th Ref
          %th Stage
-@@ -48,13 +48,13 @@
+-        %th Name
++        %th 名前
+         %th Duration
+         %th Finished at
+         - if @ci_commit.project.build_coverage_enabled?
+@@ -48,17 +48,17 @@
  
  - if @ci_commit.retried.any?
    .gray-content-block.second-block
@@ -6963,6 +7195,11 @@ index 003b7c1..b442d8b 100644
            %th Build ID
            %th Ref
            %th Stage
+-          %th Name
++          %th 名前
+           %th Duration
+           %th Finished at
+           - if @ci_commit.project.build_coverage_enabled?
 diff --git a/app/views/projects/commit/_change.html.haml b/app/views/projects/commit/_change.html.haml
 index 44ef1fd..2b83e68 100644
 --- a/app/views/projects/commit/_change.html.haml
@@ -7562,10 +7799,10 @@ index 13f5fc1..46c69d1 100644
            = groups_select_tag(:link_group_id, skip_group: @project.group.try(:path))
        .form-group
 diff --git a/app/views/projects/hooks/index.html.haml b/app/views/projects/hooks/index.html.haml
-index aae3abc..5cdff9e 100644
+index aae3abc..61d636c 100644
 --- a/app/views/projects/hooks/index.html.haml
 +++ b/app/views/projects/hooks/index.html.haml
-@@ -16,7 +16,7 @@
+@@ -16,13 +16,13 @@
      .col-sm-10
        = f.text_field :url, class: "form-control", placeholder: 'http://example.com/trigger-ci.json'
    .form-group
@@ -7574,6 +7811,13 @@ index aae3abc..5cdff9e 100644
      .col-sm-10.prepend-top-10
        %div
          = f.check_box :push_events, class: 'pull-left'
+         .prepend-left-20
+           = f.label :push_events, class: 'list-label' do
+-            %strong Push events
++            %strong プッシュイベント
+           %p.light
+             This url will be triggered by a push to the repository
+       %div
 @@ -36,7 +36,7 @@
          = f.check_box :note_events, class: 'pull-left'
          .prepend-left-20
@@ -8980,10 +9224,15 @@ index 2d5b9f4..b663113 100644
  %hr
  
 diff --git a/app/views/projects/runners/show.html.haml b/app/views/projects/runners/show.html.haml
-index 5bf4c09..683fe22 100644
+index 5bf4c09..3302bdd 100644
 --- a/app/views/projects/runners/show.html.haml
 +++ b/app/views/projects/runners/show.html.haml
-@@ -18,7 +18,7 @@
+@@ -14,18 +14,18 @@
+   %table.table
+     %thead
+       %tr
+-        %th Property Name
++        %th Property 名前
          %th Value
      %tr
        %td
@@ -8992,6 +9241,14 @@ index 5bf4c09..683fe22 100644
        %td
          - @runner.tag_list.each do |tag|
            %span.label.label-primary
+             = tag
+     %tr
+       %td
+-        Name
++        名前
+       %td
+         = @runner.name
+     %tr
 @@ -50,7 +50,7 @@
          = @runner.architecture
      %tr
@@ -9317,11 +9574,15 @@ index 1dc9b79..cee90eb 100644
  
  .append-bottom-default.prepend-top-default
 diff --git a/app/views/projects/tree/_tree_content.html.haml b/app/views/projects/tree/_tree_content.html.haml
-index 558e614..2dd0520 100644
+index 558e614..2b8ab48 100644
 --- a/app/views/projects/tree/_tree_content.html.haml
 +++ b/app/views/projects/tree/_tree_content.html.haml
-@@ -6,7 +6,7 @@
-           %th Name
+@@ -3,10 +3,10 @@
+     %table.table#tree-slider{class: "table_#{@hex_path} tree-table" }
+       %thead
+         %tr
+-          %th Name
++          %th 名前
            %th Last Update
            %th.hidden-xs
 -            .pull-left Last Commit
@@ -9939,16 +10200,19 @@ index 0a38327..c1a48af 100644
      .commit-message-container
        .max-width-marker
 diff --git a/app/views/shared/_event_filter.html.haml b/app/views/shared/_event_filter.html.haml
-index c38d931..6a50e1c 100644
+index c38d931..7f122e0 100644
 --- a/app/views/shared/_event_filter.html.haml
 +++ b/app/views/shared/_event_filter.html.haml
 @@ -1,5 +1,5 @@
  %ul.nav-links.event-filter
-   = event_filter_link EventFilter.push, 'Push events'
-   = event_filter_link EventFilter.merged, 'Merge events'
+-  = event_filter_link EventFilter.push, 'Push events'
+-  = event_filter_link EventFilter.merged, 'Merge events'
 -  = event_filter_link EventFilter.comments, 'Comments'
+-  = event_filter_link EventFilter.team, 'Team'
++  = event_filter_link EventFilter.push, 'プッシュイベント'
++  = event_filter_link EventFilter.merged, 'マージイベント'
 +  = event_filter_link EventFilter.comments, 'コメント'
-   = event_filter_link EventFilter.team, 'Team'
++  = event_filter_link EventFilter.team, 'チーム'
 diff --git a/app/views/shared/_field.html.haml b/app/views/shared/_field.html.haml
 index 8d6e16f..4d72944 100644
 --- a/app/views/shared/_field.html.haml
@@ -10034,7 +10298,7 @@ index e74fc36..5dda461 100644
 -  .nothing-here-block No merge requests to show
 +  .nothing-here-block マージリクエストはありません
 diff --git a/app/views/shared/_milestones_filter.html.haml b/app/views/shared/_milestones_filter.html.haml
-index cf16c20..429a02d 100644
+index cf16c20..849162e 100644
 --- a/app/views/shared/_milestones_filter.html.haml
 +++ b/app/views/shared/_milestones_filter.html.haml
 @@ -1,10 +1,10 @@
@@ -10049,7 +10313,8 @@ index cf16c20..429a02d 100644
 +      クローズ
    %li{class: ("active" if params[:state] == 'all')}
      = link_to milestones_filter_path(state: 'all') do
-       All
+-      All
++      すべて
 diff --git a/app/views/shared/_new_commit_form.html.haml b/app/views/shared/_new_commit_form.html.haml
 index 0c8ac48..aed155c 100644
 --- a/app/views/shared/_new_commit_form.html.haml
@@ -10120,10 +10385,10 @@ index 09edf40..2e2b0c5 100644
    = link_to '@gitlab', 'https://twitter.com/gitlab'
    = link_to 'Requests', 'https://gitlab.com/gitlab-org/gitlab-ce/blob/master/CONTRIBUTING.md#feature-proposals'
 diff --git a/app/views/shared/_service_settings.html.haml b/app/views/shared/_service_settings.html.haml
-index 4eaf7c2..f4992e9 100644
+index 4eaf7c2..a5b374d 100644
 --- a/app/views/shared/_service_settings.html.haml
 +++ b/app/views/shared/_service_settings.html.haml
-@@ -12,7 +12,7 @@
+@@ -12,14 +12,14 @@
  
  - if @service.supported_events.length > 1
    .form-group
@@ -10132,6 +10397,14 @@ index 4eaf7c2..f4992e9 100644
      .col-sm-10
        - if @service.supported_events.include?("push")
          %div
+           = form.check_box :push_events, class: 'pull-left'
+           .prepend-left-20
+             = form.label :push_events, class: 'list-label' do
+-              %strong Push events
++              %strong プッシュイベント
+             %p.light
+               This url will be triggered by a push to the repository
+       - if @service.supported_events.include?("tag_push")
 @@ -35,7 +35,7 @@
            = form.check_box :note_events, class: 'pull-left'
            .prepend-left-20
@@ -11335,6 +11608,16 @@ index 0000000..cee0bea
 +          attributes:
 +            redirect_uri:
 +              blank: リダイレクトURIは必須です
+diff --git a/doc/README.md b/doc/README.md
+index e6ac479..5330843 100644
+--- a/doc/README.md
++++ b/doc/README.md
+@@ -1,4 +1,4 @@
+-# Documentation
++# ドキュメント
+ 
+ ## User documentation
+ 
 diff --git a/doc/api/merge_requests.md b/doc/api/merge_requests.md
 index 2057f9d..a042763 100644
 --- a/doc/api/merge_requests.md

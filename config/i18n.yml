@@ -158,6 +158,8 @@ translations:
     replace: '$1${theSnippetCanBeAccessedWithoutAnyAuthentication}"'
   - pattern: "The snippet can be accessed without any authentication."
     replace: '${theSnippetCanBeAccessedWithoutAnyAuthentication}'
+  - pattern: !!js/regexp /\s{4}titles = \{\n\s{6}opened. "Open"\n\s{4}\}/m
+    replace: "    titles = {\n      opened: \"${open}\",\n      closed: \"${closed}\",\n      merged: \"${merged}\",\n      all: \"${all}\"\n    }"
 
   # Named patterns
   - name: sthWasSuccessfullyDone
@@ -260,14 +262,6 @@ translations:
     replace: "${editInFullscreen}"
   - pattern: 'New comment on diff for'
     replace: '${newCommentOnDiffFor}'
-  - pattern: '"Create directory"'
-    replace: '"${createSth}"'
-    args:
-    - replace: '${directory}'
-  - pattern: "'Create branch'"
-    replace: "'${createSth}'"
-    args:
-    - replace: '${branch}'
   - pattern: 'Edit file'
     replace: '${editFile}'
   - pattern: !!js/regexp /(')Edit'|(")Edit"/
@@ -328,6 +322,8 @@ translations:
     replace: '${noMergeRequestsToShow}'
   - pattern: 'No public groups'
     replace: '${noPublicGroups}'
+  - pattern: 'No such projects'
+    replace: '${noSuchProjects}'
   - pattern: 'Your message here'
     replace: '${yourMessagehere}'
   - pattern: "Didn't receive confirmation instructions?"
@@ -626,6 +622,24 @@ translations:
     replace: "= f.label :password, '${newPassword}', class"
   - pattern: "= f.label :password_confirmation, class"
     replace: "= f.label :password_confirmation, 'New Password (${confirmation})', class"
+  - pattern: "Discover projects, groups and snippets. Share your projects with others"
+    replace: '${discoverProjectsGroupsAndSnippetsShareYourProjectsWithOthers}'
+  - pattern: "You're all done!"
+    replace: '${youreAllDone}'
+  - pattern: "Account and Limit Settings"
+    replace: '${accountAndLimitSettings}'
+  - pattern: "Congratulations! You have enabled Two-factor Authentication!"
+    replace: '${congratulationsYouHaveEnabledTwoFactorAuthentication}'
+  - pattern: !!js/regexp /^( +.* )is enabled/
+    replace: '${sthIsEnabled}'
+    args:
+    - '$1'
+  - pattern: !!js/regexp /^( +.* )enabled/
+    replace: '${sthEnabled}'
+    args:
+    - '$1'
+  - pattern: "Username or Email"
+    replace: '${usernameOrEmail}'
   - pattern: 'Are you sure?'
     replace: '${areYouSure}'
   - pattern: "Code?$|(\")Code?\"|(')Code?'|(\".* )Code?(\")"
@@ -658,6 +672,8 @@ translations:
     - {word: 'Due date', key: dueDate}
     - {word: 'Sign in', key: signIn}
     - {word: 'Sign up', key: signUp}
+    - {word: 'Sign out', key: signOut}
+    - {word: 'Todos', key: todos}
     - {word: 'Home', key: home}
     - {word: 'Page version', key: pageVersion}
     - {word: 'Page History', key: pageHistory}
@@ -694,6 +710,7 @@ translations:
     - {word: 'Trigger', key: trigger}
     - {word: 'Change your password', key: changeYourPassword}
     - {word: 'Back', key: back}
+    - {word: 'Public [eE]mails', key: publicEmail}
     - {word: 'Emails', key: email}
     - {word: 'Submit', key: submit}
     - {word: 'Cancel', key: cancel}
@@ -738,6 +755,19 @@ translations:
     - {word: 'Title', key: title}
     - {word: 'Private [tT]oken', key: privateToken}
     - {word: 'Generate', key: generate}
+    - {word: 'Name', key: name}
+    - {word: 'Trending', key: trending}
+    - {word: 'Most stars', key: mostStars}
+    - {word: 'All', key: all}
+    - {word: 'Reported by', key: reportedBy}
+    - {word: 'Reported at', key: reportedAt}
+    - {word: 'Message', key: message}
+    - {word: 'Push events', key: pushEvents}
+    - {word: 'Merge events', key: mergeEvents}
+    - {word: 'Team', key: team}
+    - {word: 'Private', key: private}
+    - {word: 'Internal', key: internal}
+    - {word: 'Public', key: public}
   - name: wordInSentence
     params:
     - {word: 'applications?', key: application}
@@ -765,8 +795,7 @@ translations:
   - name: doSth
     params:
     - {verb: Edit, key: editSth}
-    - {verb: 'Create an?', key: createSth}
-    - {verb: Create, key: createSth}
+    - {verb: 'Create(?: an?)?', key: createSth}
     - {verb: Close, key: closeSth}
     - {verb: Reopen, key: reopenSth}
     - {verb: Browse, key: browseSth}
@@ -779,8 +808,7 @@ translations:
     - {verb: Block, key: blockSth}
     - {verb: Latest, key: latestSth}
     - {verb: Reset, key: resetSth}
-    - {verb: 'Add an?', key: addSth}
-    - {verb: Add, key: addSth}
+    - {verb: 'Add(?: an?)?', key: addSth}
     - {verb: Change, key: changeSth}
     - {verb: Archive, key: archiveSth}
     - {verb: Rename, key: renameSth}
@@ -1844,8 +1872,8 @@ translations:
     #  key: mdTitleDoThisOnceWhenYouAreDoneCopyingGitRepositories
     #- title: 'Docker integration'
     #  key: mdTitleDockerIntegration
-    #- title: 'Documentation'
-    #  key: mdTitleDocumentation
+    - title: 'Documentation'
+      key: mdTitleDocumentation
     #- title: 'Documentation styleguide'
     #  key: mdTitleDocumentationStyleguide
     #- title: "Don't `describe` symbols"

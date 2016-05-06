@@ -455,6 +455,7 @@ titlesAndFilenames: タイトル・ファイル名
 searchForProjectsIssuesEtc: プロジェクト, 課題等を検索
 search: 検索
 merged: マージ済み
+closed: クローズ
 chooseFile: ファイルを選択
 fileName: ファイル名
 theMaximumFileSizeAllowedIs: ファイルの最大サイズは{0}です
@@ -1185,7 +1186,7 @@ mdTitleAcceptMR: マージリクエストの承認
 #mdTitleDoNotUseTheFollowingIfTheVendorDirectoryIsCommitedTo: 
 #mdTitleDoThisOnceWhenYouAreDoneCopyingGitRepositories: 
 #mdTitleDockerIntegration: 
-#mdTitleDocumentation: 
+mdTitleDocumentation: ドキュメント
 #mdTitleDocumentationStyleguide: 
 #mdTitleDontDescribeSymbols: 
 #mdTitleDontRescueException: 
@@ -2274,3 +2275,27 @@ afterASuccessfulPasswordUpdateYouWillBeRedirectedToLoginScreen: 正常に更新�
 confirmation: 確認
 newPassword: 新しいパスワード
 currentPassword: 現在のパスワード
+name: 名前
+trending: トレンド
+mostStars: スター数
+all: すべて
+discoverProjectsGroupsAndSnippetsShareYourProjectsWithOthers: プロジェクト、グループ、スニペットを見つけましょう。あなたのプロジェクトをシェアしましょう
+signOut: サインアウト
+todos: ToDo
+youreAllDone: すべて完了しました！
+publicEmail: 公開メールアドレス
+reportedBy: 報告者
+reportedAt: 報告日
+message: メッセージ
+accountAndLimitSettings: アカウントと制限の設定
+sthEnabled: '{0}を利用'
+sthIsEnabled: '{0}は有効です'
+congratulationsYouHaveEnabledTwoFactorAuthentication: おめでとうございます！二段階認証が有効になりました。
+usernameOrEmail: ユーザ名またはメールアドレス
+noSuchProjects: プロジェクトがありません
+pushEvents: プッシュイベント
+mergeEvents: マージイベント
+team: チーム
+private: プライベート
+internal: 内部
+public: 公開

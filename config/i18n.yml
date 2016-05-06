@@ -87,7 +87,7 @@ translations:
   - name: quotedWord
     pattern: "(\"){word}?\"|('){word}?'"
     replace: '$1$2${{key}}$1$2'
-    exclude: '(?:\s+when .* then|.* class_name: )'
+    exclude: "(?:\\s+when .* then|type == ['\"]{word}?['\"]|type: ['\"{word}?['\"]|.* class_name: )"
     params: ['word', 'key']
 
   patterns:

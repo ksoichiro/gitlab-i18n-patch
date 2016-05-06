@@ -424,7 +424,7 @@ index c780e09..867122c 100644
  
    private
 diff --git a/app/controllers/profiles_controller.rb b/app/controllers/profiles_controller.rb
-index 32fca6b..9791a73 100644
+index 32fca6b..0f35b84 100644
 --- a/app/controllers/profiles_controller.rb
 +++ b/app/controllers/profiles_controller.rb
 @@ -1,3 +1,4 @@
@@ -445,7 +445,7 @@ index 32fca6b..9791a73 100644
      end
  
      respond_to do |format|
-@@ -25,14 +26,14 @@ class ProfilesController < Profiles::ApplicationController
+@@ -25,7 +26,7 @@ class ProfilesController < Profiles::ApplicationController
  
    def reset_private_token
      if current_user.reset_authentication_token!
@@ -454,14 +454,6 @@ index 32fca6b..9791a73 100644
      end
  
      redirect_to profile_account_path
-   end
- 
-   def audit_log
--    @events = AuditEvent.where(entity_type: "User", entity_id: current_user.id).
-+    @events = AuditEvent.where(entity_type: "ユーザ", entity_id: current_user.id).
-       order("created_at DESC").
-       page(params[:page]).
-       per(PER_PAGE)
 diff --git a/app/controllers/projects/issues_controller.rb b/app/controllers/projects/issues_controller.rb
 index ce417ee..c0a0f20 100644
 --- a/app/controllers/projects/issues_controller.rb
@@ -821,51 +813,6 @@ index ef48207..2f9b04d 100644
 +      "オープン"
      end
    end
- 
-diff --git a/app/models/namespace.rb b/app/models/namespace.rb
-index 55842df..48d8e16 100644
---- a/app/models/namespace.rb
-+++ b/app/models/namespace.rb
-@@ -1,3 +1,4 @@
-+# encoding: utf-8
- # == Schema Information
- #
- # Table name: namespaces
-@@ -20,7 +21,7 @@ class Namespace < ActiveRecord::Base
-   has_many :projects, dependent: :destroy
-   belongs_to :owner, class_name: "User"
- 
--  validates :owner, presence: true, unless: ->(n) { n.type == "Group" }
-+  validates :owner, presence: true, unless: ->(n) { n.type == "グループ" }
-   validates :name,
-     length: { within: 0..255 },
-     namespace_name: true,
-@@ -153,7 +154,7 @@ class Namespace < ActiveRecord::Base
-   end
- 
-   def kind
--    type == 'Group' ? 'group' : 'user'
-+    type == 'グループ' ? 'group' : 'user'
-   end
- 
-   def find_fork_of(project)
-diff --git a/app/services/audit_event_service.rb b/app/services/audit_event_service.rb
-index a7f0906..3d6d41e 100644
---- a/app/services/audit_event_service.rb
-+++ b/app/services/audit_event_service.rb
-@@ -1,3 +1,4 @@
-+# encoding: utf-8
- class AuditEventService
-   def initialize(author, entity, details = {})
-     @author, @entity, @details = author, entity, details
-@@ -7,7 +8,7 @@ class AuditEventService
-     @details = {
-       with: @details[:with],
-       target_id: @author.id,
--      target_type: "User",
-+      target_type: "ユーザ",
-       target_details: @author.name,
-     }
  
 diff --git a/app/views/admin/abuse_reports/_abuse_report.html.haml b/app/views/admin/abuse_reports/_abuse_report.html.haml
 index 2ab0170..d17240d 100644

@@ -821,8 +821,68 @@ index 8a97a74..daa32f8 100644
          id: group.id,
          label: "#{search_result_sanitize(group.name)}",
          url: group_path(group)
+diff --git a/app/helpers/sorting_helper.rb b/app/helpers/sorting_helper.rb
+index 630e10e..1caf4a9 100644
+--- a/app/helpers/sorting_helper.rb
++++ b/app/helpers/sorting_helper.rb
+@@ -29,7 +29,7 @@ module SortingHelper
+   end
+ 
+   def sort_title_oldest_updated
+-    'Oldest updated'
++    '最近更新されていない'
+   end
+ 
+   def sort_title_recently_updated
+@@ -37,7 +37,7 @@ module SortingHelper
+   end
+ 
+   def sort_title_oldest_created
+-    'Oldest created'
++    '古い順'
+   end
+ 
+   def sort_title_recently_created
+@@ -45,11 +45,11 @@ module SortingHelper
+   end
+ 
+   def sort_title_milestone_soon
+-    'Milestone due soon'
++    'マイルストーンが近い順'
+   end
+ 
+   def sort_title_milestone_later
+-    'Milestone due later'
++    'マイルストーンが遠い順'
+   end
+ 
+   def sort_title_due_date_soon
+@@ -61,19 +61,19 @@ module SortingHelper
+   end
+ 
+   def sort_title_name
+-    'Name'
++    '名前'
+   end
+ 
+   def sort_title_largest_repo
+-    'Largest repository'
++    'リポジトリの大きさ'
+   end
+ 
+   def sort_title_recently_signin
+-    'Recent sign in'
++    '最近サインインした'
+   end
+ 
+   def sort_title_oldest_signin
+-    'Oldest sign in'
++    'サインインした順'
+   end
+ 
+   def sort_title_downvotes
 diff --git a/app/helpers/visibility_level_helper.rb b/app/helpers/visibility_level_helper.rb
-index 3a83ae1..130d3e9 100644
+index 3a83ae1..d794f7a 100644
 --- a/app/helpers/visibility_level_helper.rb
 +++ b/app/helpers/visibility_level_helper.rb
 @@ -1,3 +1,4 @@
@@ -830,6 +890,21 @@ index 3a83ae1..130d3e9 100644
  module VisibilityLevelHelper
    def visibility_level_color(level)
      case level
+@@ -29,11 +30,11 @@ module VisibilityLevelHelper
+   def project_visibility_level_description(level)
+     case level
+     when Gitlab::VisibilityLevel::PRIVATE
+-      "Project access must be granted explicitly to each user."
++      "明示的にアクセス権を付与したユーザだけがアクセスできます"
+     when Gitlab::VisibilityLevel::INTERNAL
+-      "The project can be cloned by any logged in user."
++      "ログインしたユーザは誰でもプロジェクトをクローンできます"
+     when Gitlab::VisibilityLevel::PUBLIC
+-      "The project can be cloned without any authentication."
++      "誰でも、認証せずにプロジェクトをクローンできます"
+     end
+   end
+ 
 @@ -54,12 +55,12 @@ module VisibilityLevelHelper
        if snippet.is_a? ProjectSnippet
          "The snippet is visible only to project members."
@@ -1639,7 +1714,7 @@ index c81ee55..c13c298 100644
  %hr
  = render 'form'
 diff --git a/app/views/admin/groups/show.html.haml b/app/views/admin/groups/show.html.haml
-index f309e80..b88d63d 100644
+index f309e80..bbbdfef 100644
 --- a/app/views/admin/groups/show.html.haml
 +++ b/app/views/admin/groups/show.html.haml
 @@ -1,4 +1,4 @@
@@ -1648,7 +1723,22 @@ index f309e80..b88d63d 100644
  %h3.page-title
    Group: #{@group.name}
  
-@@ -28,7 +28,7 @@
+@@ -15,7 +15,7 @@
+         %li
+           = image_tag group_icon(@group), class: "avatar s60"
+         %li
+-          %span.light Name:
++          %span.light 名前:
+           %strong= @group.name
+         %li
+           %span.light Path:
+@@ -23,12 +23,12 @@
+             = @group.path
+ 
+         %li
+-          %span.light Description:
++          %span.light 説明:
+           %strong
              = @group.description
  
          %li
@@ -1941,7 +2031,7 @@ index aa07afa..a510557 100644
            .nothing-here-block 0 projects matches
      = paginate @projects, theme: "gitlab"
 diff --git a/app/views/admin/projects/show.html.haml b/app/views/admin/projects/show.html.haml
-index 73986d2..6939474 100644
+index 73986d2..20ff8bd 100644
 --- a/app/views/admin/projects/show.html.haml
 +++ b/app/views/admin/projects/show.html.haml
 @@ -1,4 +1,4 @@
@@ -1950,6 +2040,20 @@ index 73986d2..6939474 100644
  %h3.page-title
    Project: #{@project.name_with_namespace}
    = link_to edit_project_path(@project), class: "btn btn-nr pull-right" do
+@@ -22,11 +22,11 @@
+         Project info:
+       %ul.well-list
+         %li
+-          %span.light Name:
++          %span.light 名前:
+           %strong
+             = link_to @project.name, project_path(@project)
+         %li
+-          %span.light Namespace:
++          %span.light ネームスペース:
+           %strong
+             - if @project.namespace
+               = link_to @project.namespace.human_name, [:admin, @project.group || @project.owner]
 @@ -41,7 +41,7 @@
                (deleted)
  
@@ -2214,7 +2318,7 @@ index 0fdd5bd..81d3e71 100644
            %th
        = render @spam_logs
 diff --git a/app/views/admin/users/_form.html.haml b/app/views/admin/users/_form.html.haml
-index fe0b9d3..fd70aff 100644
+index fe0b9d3..7f0fb0d 100644
 --- a/app/views/admin/users/_form.html.haml
 +++ b/app/views/admin/users/_form.html.haml
 @@ -3,7 +3,7 @@
@@ -2263,7 +2367,13 @@ index fe0b9d3..fd70aff 100644
            .col-sm-10= f.password_field :password_confirmation, disabled: f.object.force_random_password, class: 'form-control'
  
      %fieldset
-@@ -85,8 +85,8 @@
+@@ -80,13 +80,13 @@
+         = f.label :twitter, class: 'control-label'
+         .col-sm-10= f.text_field :twitter, class: 'form-control'
+       .form-group
+-        = f.label :website_url, 'Website', class: 'control-label'
++        = f.label :website_url, 'Webサイト', class: 'control-label'
+         .col-sm-10= f.text_field :website_url, class: 'form-control'
  
      .form-actions
        - if @user.new_record?
@@ -2295,6 +2405,22 @@ index ce5e21e..69deb18 100644
    = nav_link(path: 'users#keys') do
      = link_to "SSH keys", keys_admin_user_path(@user)
    = nav_link(controller: :identities) do
+diff --git a/app/views/admin/users/_profile.html.haml b/app/views/admin/users/_profile.html.haml
+index 6bc217f..9f510e5 100644
+--- a/app/views/admin/users/_profile.html.haml
++++ b/app/views/admin/users/_profile.html.haml
+@@ -23,9 +23,9 @@
+         %strong= link_to user.twitter, "https://twitter.com/#{user.twitter}"
+     - unless user.website_url.blank?
+       %li
+-        %span.light Website:
++        %span.light Webサイト:
+         %strong= link_to user.short_website_url, user.full_website_url
+     - unless user.location.blank?
+       %li
+-        %span.light Location:
++        %span.light 場所:
+         %strong= user.location
 diff --git a/app/views/admin/users/_projects.html.haml b/app/views/admin/users/_projects.html.haml
 index a126a85..3ff3bcc 100644
 --- a/app/views/admin/users/_projects.html.haml
@@ -2321,15 +2447,21 @@ index 3b6fd71..6a7d966 100644
  %hr
  = render 'form'
 diff --git a/app/views/admin/users/groups.html.haml b/app/views/admin/users/groups.html.haml
-index dbecb7b..30601ad 100644
+index dbecb7b..2ca8efd 100644
 --- a/app/views/admin/users/groups.html.haml
 +++ b/app/views/admin/users/groups.html.haml
-@@ -1,4 +1,4 @@
+@@ -1,9 +1,9 @@
 -- page_title "Groups", @user.name, "Users"
 +- page_title "グループ", @user.name, "ユーザ"
  = render 'admin/users/head'
  
  - if @user.group_members.present?
+   .panel.panel-default
+-    .panel-heading Groups:
++    .panel-heading グループ:
+     %ul.well-list
+       - @user.group_members.each do |group_member|
+         - group = group_member.group
 @@ -13,7 +13,7 @@
            .pull-right
              %span.light= group_member.human_access
@@ -2437,7 +2569,7 @@ index b655b2a..bb3f51a 100644
                        %i.fa.fa-times
  
 diff --git a/app/views/admin/users/show.html.haml b/app/views/admin/users/show.html.haml
-index d37489b..237902c 100644
+index d37489b..4f0e344 100644
 --- a/app/views/admin/users/show.html.haml
 +++ b/app/views/admin/users/show.html.haml
 @@ -1,4 +1,4 @@
@@ -2446,7 +2578,28 @@ index d37489b..237902c 100644
  = render 'admin/users/head'
  
  .row
-@@ -35,15 +35,15 @@
+@@ -18,37 +18,37 @@
+ 
+     .panel.panel-default
+       .panel-heading
+-        Account:
++        アカウント:
+       %ul.well-list
+         %li
+-          %span.light Name:
++          %span.light 名前:
+           %strong= @user.name
+         %li
+-          %span.light Username:
++          %span.light ユーザ名:
+           %strong
+             = @user.username
+         %li
+-          %span.light Email:
++          %span.light メールアドレス:
+           %strong
+             = mail_to @user.email
+         - @user.emails.each do |email|
            %li
              %span.light Secondary email:
              %strong= email.email
@@ -2465,6 +2618,12 @@ index d37489b..237902c 100644
              - else
                Disabled
  
+         %li
+-          %span.light External User:
++          %span.light External ユーザ:
+           %strong
+             = @user.external? ? "Yes" : "No"
+         %li
 @@ -65,14 +65,14 @@
              = @user.created_at.to_s(:medium)
          - if @user.confirmed_at
@@ -2626,6 +2785,27 @@ index d37489b..237902c 100644
                %p
 -                You must transfer ownership or delete these groups before you can delete this user.
 +                このユーザを削除する前に、所有権を移譲するか、これらのグループを削除する必要があります。
+diff --git a/app/views/ci/lints/_create.html.haml b/app/views/ci/lints/_create.html.haml
+index f7875e6..17963d8 100644
+--- a/app/views/ci/lints/_create.html.haml
++++ b/app/views/ci/lints/_create.html.haml
+@@ -1,6 +1,6 @@
+ - if @status
+   %p
+-    %b Status:
++    %b ステータス:
+     syntax is correct
+     %i.fa.fa-ok.correct-syntax
+ 
+@@ -36,7 +36,7 @@
+ 
+ -else
+   %p
+-    %b Status:
++    %b ステータス:
+     syntax is incorrect
+     %i.fa.fa-remove.incorrect-syntax
+   %b Error:
 diff --git a/app/views/ci/shared/_guide.html.haml b/app/views/ci/shared/_guide.html.haml
 index 09e7e65..533b48c 100644
 --- a/app/views/ci/shared/_guide.html.haml
@@ -3551,7 +3731,7 @@ index 8ffca96..d7e499e 100644
  
  = paginate @groups, theme: "gitlab"
 diff --git a/app/views/explore/projects/_filter.html.haml b/app/views/explore/projects/_filter.html.haml
-index cd485da..5bdef49 100644
+index cd485da..ec5b002 100644
 --- a/app/views/explore/projects/_filter.html.haml
 +++ b/app/views/explore/projects/_filter.html.haml
 @@ -6,12 +6,12 @@
@@ -3569,7 +3749,12 @@ index cd485da..5bdef49 100644
        - Gitlab::VisibilityLevel.values.each do |level|
          %li{ class: (level.to_s == params[:visibility_level]) ? 'active' : 'light' }
            = link_to filter_projects_path(visibility_level: level) do
-@@ -26,12 +26,12 @@
+@@ -22,16 +22,16 @@
+   .dropdown
+     %a.dropdown-toggle.btn{href: '#', "data-toggle" => "dropdown"}
+       = icon('tags')
+-      %span.light Tags:
++      %span.light タグ:
        - if params[:tag].present?
          = params[:tag]
        - else
@@ -3585,15 +3770,11 @@ index cd485da..5bdef49 100644
        - @tags.each do |tag|
          %li{ class: (tag.name == params[:tag]) ? 'active' : 'light' }
 diff --git a/app/views/explore/projects/_nav.html.haml b/app/views/explore/projects/_nav.html.haml
-index 614b543..15a7e87 100644
+index 614b543..0642bee 100644
 --- a/app/views/explore/projects/_nav.html.haml
 +++ b/app/views/explore/projects/_nav.html.haml
-@@ -1,10 +1,10 @@
- %ul.nav-links
-   = nav_link(page: [trending_explore_projects_path, explore_root_path]) do
-     = link_to trending_explore_projects_path do
--      Trending
-+      トレンド
+@@ -4,7 +4,7 @@
+       Trending
    = nav_link(page: starred_explore_projects_path) do
      = link_to starred_explore_projects_path do
 -      Most stars
@@ -5881,6 +6062,32 @@ index 80a0de2..4ec72d8 100644
 -  #{'Label'.pluralize(@label_names.size)} added:
 +  #{'ラベル'.pluralize(@label_names.size)} added:
    %em= @label_names.to_sentence
+diff --git a/app/views/notify/build_fail_email.html.haml b/app/views/notify/build_fail_email.html.haml
+index 81d6503..1fb4958 100644
+--- a/app/views/notify/build_fail_email.html.haml
++++ b/app/views/notify/build_fail_email.html.haml
+@@ -3,7 +3,7 @@
+     GitLab (build failed)
+ 
+ %h3
+-  Project:
++  プロジェクト:
+   = link_to namespace_project_url(@project.namespace, @project) do
+     = @project.name
+ 
+diff --git a/app/views/notify/build_success_email.html.haml b/app/views/notify/build_success_email.html.haml
+index 5d247eb..7f0dc5d 100644
+--- a/app/views/notify/build_success_email.html.haml
++++ b/app/views/notify/build_success_email.html.haml
+@@ -3,7 +3,7 @@
+     GitLab (build successful)
+ 
+ %h3
+-  Project:
++  プロジェクト:
+   = link_to namespace_project_url(@project.namespace, @project) do
+     = @project.name
+ 
 diff --git a/app/views/notify/group_access_granted_email.html.haml b/app/views/notify/group_access_granted_email.html.haml
 index f1916d6..d2d8949 100644
 --- a/app/views/notify/group_access_granted_email.html.haml
@@ -6303,10 +6510,10 @@ index 4dbaa66..236fbb6 100644
 +      %span.sr-only 削除
        = icon('trash')
 diff --git a/app/views/profiles/keys/_key_details.html.haml b/app/views/profiles/keys/_key_details.html.haml
-index dd76154..11eb115 100644
+index dd76154..a5b9655 100644
 --- a/app/views/profiles/keys/_key_details.html.haml
 +++ b/app/views/profiles/keys/_key_details.html.haml
-@@ -3,7 +3,7 @@
+@@ -3,10 +3,10 @@
    .col-md-4
      .panel.panel-default
        .panel-heading
@@ -6314,7 +6521,11 @@ index dd76154..11eb115 100644
 +        SSHキー
        %ul.well-list
          %li
-           %span.light Title:
+-          %span.light Title:
++          %span.light タイトル:
+           %strong= @key.title
+         %li
+           %span.light Created on:
 @@ -20,4 +20,4 @@
        = @key.key
    .col-md-12
@@ -6472,7 +6683,7 @@ index f802116..3adb617 100644
 -      = f.submit 'Save changes', class: 'btn btn-save'
 +      = f.submit '変更を保存', class: 'btn btn-save'
 diff --git a/app/views/profiles/show.html.haml b/app/views/profiles/show.html.haml
-index f59d27f..f15313a 100644
+index f59d27f..fba5b36 100644
 --- a/app/views/profiles/show.html.haml
 +++ b/app/views/profiles/show.html.haml
 @@ -7,7 +7,7 @@
@@ -6484,7 +6695,7 @@ index f59d27f..f15313a 100644
            - if Gitlab.config.gravatar.enabled
              or remove the current avatar to revert to #{link_to Gitlab.config.gravatar.host, "http://" + Gitlab.config.gravatar.host}
          - else
-@@ -21,23 +21,23 @@
+@@ -21,35 +21,35 @@
          Upload new avatar
        .prepend-top-5.append-bottom-10
          %a.btn.js-choose-user-avatar-button
@@ -6513,8 +6724,9 @@ index f59d27f..f15313a 100644
      .col-lg-9
        .form-group
          = f.label :name, class: "label-light"
-@@ -45,11 +45,11 @@
-         %span.help-block Enter your name, so people you know can recognize you.
+         = f.text_field :name, class: "form-control", required: true
+-        %span.help-block Enter your name, so people you know can recognize you.
++        %span.help-block 皆があなたを認識できるように、あなたの名前を入力してください。
  
        .form-group
 -        = f.label :email, class: "label-light"
@@ -6527,8 +6739,37 @@ index f59d27f..f15313a 100644
          - else
            - if @user.temp_oauth_email?
              = f.text_field :email, class: "form-control", required: true, value: nil
-@@ -90,7 +90,7 @@
-         %span.help-block Tell us about yourself in fewer than 250 characters.
+@@ -64,11 +64,11 @@
+               = link_to "Resend confirmation e-mail", user_confirmation_path(user: { email: @user.unconfirmed_email }), method: :post
+ 
+           - else
+-            %span.help-block We also use email for avatar detection if no avatar is uploaded.
++            %span.help-block メールアドレスはアバターの検出にも使用されます(アップロードされていない場合)。}
+       .form-group
+-        = f.label :public_email, class: "label-light"
++        = f.label :public_email, '公開メールアドレス', class: "label-light"
+         = f.select :public_email, options_for_select(@user.all_emails, selected: @user.public_email), {include_blank: 'Do not show on profile'}, class: "select2"
+-        %span.help-block This email will be displayed on your public profile.
++        %span.help-block このメールアドレスはあなたの公開プロフィールに表示されます。
+       .form-group
+         = f.label :skype, class: "label-light"
+         = f.text_field :skype, class: "form-control"
+@@ -79,18 +79,18 @@
+         = f.label :twitter, class: "label-light"
+         = f.text_field :twitter, class: "form-control"
+       .form-group
+-        = f.label :website_url, 'Website', class: "label-light"
++        = f.label :website_url, 'Webサイト', class: "label-light"
+         = f.text_field :website_url, class: "form-control"
+       .form-group
+-        = f.label :location, 'Location', class: "label-light"
++        = f.label :location, '場所', class: "label-light"
+         = f.text_field :location, class: "form-control"
+       .form-group
+         = f.label :bio, class: "label-light"
+         = f.text_area :bio, rows: 4, class: "form-control", maxlength: 250
+-        %span.help-block Tell us about yourself in fewer than 250 characters.
++        %span.help-block 250字以内で自己紹介してください。
        .prepend-top-default.append-bottom-default
          = f.submit 'Update profile settings', class: "btn btn-success"
 -        = link_to "Cancel", user_path(current_user), class: "btn btn-cancel"
@@ -6562,7 +6803,7 @@ index e330aad..7c46faf 100644
  
  = render 'codes'
 diff --git a/app/views/profiles/two_factor_auths/new.html.haml b/app/views/profiles/two_factor_auths/new.html.haml
-index 69fc81c..186ceed 100644
+index 69fc81c..b9c029f 100644
 --- a/app/views/profiles/two_factor_auths/new.html.haml
 +++ b/app/views/profiles/two_factor_auths/new.html.haml
 @@ -1,9 +1,9 @@
@@ -6577,6 +6818,19 @@ index 69fc81c..186ceed 100644
      %p
        Increase your account's security by enabling two-factor authentication (2FA).
    .col-lg-9
+@@ -20,10 +20,10 @@
+           %p.prepend-top-0.append-bottom-0
+             To add the entry manually, provide the following details to the application on your phone.
+           %p.prepend-top-0.append-bottom-0
+-            Account:
++            アカウント:
+             = current_user.email
+           %p.prepend-top-0.append-bottom-0
+-            Key:
++            キー:
+             = current_user.otp_secret.scan(/.{4}/).join(' ')
+           %p.two-factor-new-manual-content
+             Time based: Yes
 @@ -35,5 +35,5 @@
          = label_tag :pin_code, nil, class: "label-light"
          = text_field_tag :pin_code, nil, class: "form-control", required: true
@@ -7074,7 +7328,7 @@ index aa85f49..c97d74c 100644
              %th Finished at
              - if @project.build_coverage_enabled?
 diff --git a/app/views/projects/builds/show.html.haml b/app/views/projects/builds/show.html.haml
-index 6d4505e..73175e4 100644
+index 6d4505e..9ded779 100644
 --- a/app/views/projects/builds/show.html.haml
 +++ b/app/views/projects/builds/show.html.haml
 @@ -117,7 +117,7 @@
@@ -7095,7 +7349,16 @@ index 6d4505e..73175e4 100644
  
            %p
              %span.attr-name Token:
-@@ -173,7 +173,7 @@
+@@ -165,7 +165,7 @@
+ 
+           - if @build.trigger_request.variables
+             %p
+-              %span.attr-name Variables:
++              %span.attr-name 変数:
+ 
+             %code
+               - @build.trigger_request.variables.each do |key, value|
+@@ -173,31 +173,31 @@
  
        .build-widget
          %h4.title
@@ -7104,7 +7367,19 @@ index 6d4505e..73175e4 100644
            .pull-right
              %small
                = link_to @build.commit.short_sha, ci_status_path(@build.commit), class: "monospace"
-@@ -190,14 +190,14 @@
+         %p
+-          %span.attr-name Branch:
++          %span.attr-name ブランチ:
+           = link_to @build.ref, namespace_project_commits_path(@project.namespace, @project, @build.ref)
+         %p
+-          %span.attr-name Author:
++          %span.attr-name 作成者:
+           #{@build.commit.git_author_name}
+         %p
+-          %span.attr-name Message:
++          %span.attr-name メッセージ:
+           #{@build.commit.git_commit_message}
+ 
        - if @build.tags.any?
          .build-widget
            %h4.title
@@ -7520,7 +7795,7 @@ index ea2a3e0..e6a58d7 100644
      %strong.cgreen #{diff_files.sum(&:added_lines)} additions
      and
 diff --git a/app/views/projects/edit.html.haml b/app/views/projects/edit.html.haml
-index 76a4f41..9acad15 100644
+index 76a4f41..7170d63 100644
 --- a/app/views/projects/edit.html.haml
 +++ b/app/views/projects/edit.html.haml
 @@ -3,57 +3,57 @@
@@ -7601,7 +7876,7 @@ index 76a4f41..9acad15 100644
                      %br
                      %span.descr Test and deploy your changes before merge
  
-@@ -80,9 +80,9 @@
+@@ -80,15 +80,15 @@
                  .checkbox
                    = f.label :snippets_enabled do
                      = f.check_box :snippets_enabled
@@ -7613,6 +7888,13 @@ index 76a4f41..9acad15 100644
  
            = render 'builds_settings', f: f
  
+           %fieldset.features
+             %legend
+-              Project avatar:
++              プロジェクトアバター:
+             .form-group
+               .col-sm-offset-2.col-sm-10
+                 - if @project.avatar?
 @@ -103,18 +103,18 @@
                      You can upload a project avatar here
                  %a.choose-btn.btn.btn-sm.js-choose-project-avatar-button
@@ -8308,7 +8590,7 @@ index 675a805..c7f8616 100644
  %hr
  = render 'form'
 diff --git a/app/views/projects/labels/index.html.haml b/app/views/projects/labels/index.html.haml
-index cc41130..d184f64 100644
+index cc41130..5814d6f 100644
 --- a/app/views/projects/labels/index.html.haml
 +++ b/app/views/projects/labels/index.html.haml
 @@ -1,14 +1,14 @@
@@ -8334,7 +8616,7 @@ index cc41130..d184f64 100644
      .nothing-here-block
        - if can? current_user, :admin_label, @project
 -        Create first label or #{link_to 'generate', generate_namespace_project_labels_path(@project.namespace, @project), method: :post} default set of labels
-+        first label or #{link_to 'generate', generate_namespace_project_labels_path(@project.namespace, @project), method: :post} default set of ラベルを作成
++        最初のラベルを追加 または 標準のラベルセットを#{link_to '生成', generate_namespace_project_labels_path(@project.namespace, @project), method: :post}
        - else
          No labels created
 diff --git a/app/views/projects/labels/new.html.haml b/app/views/projects/labels/new.html.haml
@@ -10289,10 +10571,14 @@ index 2c3fca4..0eae5a8 100644
              = @search_results.milestones_count
  
 diff --git a/app/views/search/_filter.html.haml b/app/views/search/_filter.html.haml
-index 4ef5441..4fa8d30 100644
+index 4ef5441..bde5ed5 100644
 --- a/app/views/search/_filter.html.haml
 +++ b/app/views/search/_filter.html.haml
-@@ -4,18 +4,18 @@
+@@ -1,21 +1,21 @@
+ .dropdown.inline
+   %button.dropdown-toggle.btn.btn-sm{type: 'button', 'data-toggle' => 'dropdown'}
+-    %span.light Group:
++    %span.light グループ:
      - if @group.present?
        %strong= @group.name
      - else
@@ -10315,7 +10601,12 @@ index 4ef5441..4fa8d30 100644
          %li.divider
          - current_user.authorized_groups.sort_by(&:name).each do |group|
            %li
-@@ -28,18 +28,18 @@
+@@ -24,22 +24,22 @@
+ 
+ .dropdown.inline.prepend-left-10.project-filter
+   %button.dropdown-toggle.btn.btn-sm{type: 'button', 'data-toggle' => 'dropdown'}
+-    %span.light Project:
++    %span.light プロジェクト:
      - if @project.present?
        %strong= @project.name_with_namespace
      - else
@@ -11880,15 +12171,18 @@ index 0000000..cee0bea
 +            redirect_uri:
 +              blank: リダイレクトURIは必須です
 diff --git a/doc/README.md b/doc/README.md
-index e6ac479..5330843 100644
+index e6ac479..30a176f 100644
 --- a/doc/README.md
 +++ b/doc/README.md
-@@ -1,4 +1,4 @@
+@@ -1,6 +1,6 @@
 -# Documentation
 +# ドキュメント
  
- ## User documentation
+-## User documentation
++## ユーザ向けドキュメント
  
+ - [API](api/README.md) Automate GitLab via a simple and powerful API.
+ - [CI](ci/README.md) GitLab Continuous Integration (CI) getting started, `.gitlab-ci.yml` options, and examples.
 diff --git a/doc/api/merge_requests.md b/doc/api/merge_requests.md
 index 2057f9d..a042763 100644
 --- a/doc/api/merge_requests.md

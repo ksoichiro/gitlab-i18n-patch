@@ -2180,7 +2180,7 @@ mdTitleFeatureBranchWorkflow: フィーチャーブランチワークフロー
 #mdTitleUserFileUploads: 
 #mdTitleUserCreation: 
 #mdTitleUserDeletion: 
-#mdTitleUserDocumentation: 
+mdTitleUserDocumentation: ユーザ向けドキュメント
 #mdTitleUserManagement: 
 #mdTitleUserModification: 
 #mdTitleUserDefinedVariablesSecureVariables: 
@@ -2277,7 +2277,7 @@ confirmation: 確認
 newPassword: 新しいパスワード
 currentPassword: 現在のパスワード
 name: 名前
-trending: トレンド
+trendingProjects: トレンドプロジェクト
 mostStars: スター数
 all: すべて
 discoverProjectsGroupsAndSnippetsShareYourProjectsWithOthers: プロジェクト、グループ、スニペットを見つけましょう。あなたのプロジェクトをシェアしましょう
@@ -2336,3 +2336,24 @@ milestoneAllowsYouToGroupIssuesAndSetDueDateForIt: マイルストーンを使�
 labelsCanBeAppliedToIssuesAndMergeRequests: ラベルは課題とマージリクエストに適用することができます。
 attachSth: '{0}を添付'
 allPagesInThisWikiAreListedBelow: 以下はこのWikiに含まれるすべてのページの一覧です。
+oldestUpdated: 最近更新されていない
+recentlyUpdated: 最近更新された
+oldestCreated: 古い順
+recentlyCreated: 新しい順
+milestoneDueSoon: マイルストーンが近い順
+milestoneDueLater: マイルストーンが遠い順
+largestRepository: リポジトリの大きさ
+recentSignIn: 最近サインインした
+oldestSignIn: サインインした順
+location: 場所
+bio: 自己紹介
+enterYourNameSoPeopleYouKnowCanRecognizeYou: 皆があなたを認識できるように、あなたの名前を入力してください。
+weAlsoUseEmailForAvatarDetectionIfNoAvatarIsUploaded: メールアドレスはアバターの検出にも使用されます(アップロードされていない場合)。
+doNotShowInProfile: プロフィールに表示しない
+thisEmailWillBeDisplayedOnYourPublicProfile: このメールアドレスはあなたの公開プロフィールに表示されます。
+tellUsAboutYourselfInFewerThan250Characters: 250字以内で自己紹介してください。
+website: Webサイト
+projectAccessMustBeGrantedExplicitlyToEachUser: 明示的にアクセス権を付与したユーザだけがアクセスできます
+theProjectCanBeClonedByAnyLoggedInUser: ログインしたユーザは誰でもプロジェクトをクローンできます
+theProjectCanBeClonedWithoutAnyAuthentication: 誰でも、認証せずにプロジェクトをクローンできます
+createFirstLabelOrGenerateDefaultSetOfLabels: '最初のラベルを追加 または 標準のラベルセットを{0}生成{1}'

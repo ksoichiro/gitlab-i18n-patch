@@ -43,6 +43,35 @@ translations:
       value: jQueryTimeago
 
 # Ruby
+- src: 'app/helpers/**.rb'
+  patterns:
+  - pattern: "'Oldest updated'"
+    replace: "'${oldestUpdated}'"
+  - pattern: "'Recently updated'"
+    replace: "'${recentlyUpdated}'"
+  - pattern: "'Oldest created'"
+    replace: "'${oldestCreated}'"
+  - pattern: "'Recently created'"
+    replace: "'${recentlyCreated}'"
+  - pattern: "'Milestone due soon'"
+    replace: "'${milestoneDueSoon}'"
+  - pattern: "'Milestone due later'"
+    replace: "'${milestoneDueLater}'"
+  - pattern: "'Name'"
+    replace: "'${name}'"
+  - pattern: "'Largest repository'"
+    replace: "'${largestRepository}'"
+  - pattern: "'Recent sign in'"
+    replace: "'${recentSignIn}'"
+  - pattern: "'Oldest sign in'"
+    replace: "'${oldestSignIn}'"
+  - pattern: "Project access must be granted explicitly to each user."
+    replace: '${projectAccessMustBeGrantedExplicitlyToEachUser}'
+  - pattern: "The project can be cloned by any logged in user."
+    replace: '${theProjectCanBeClonedByAnyLoggedInUser}'
+  - pattern: "The project can be cloned without any authentication."
+    replace: '${theProjectCanBeClonedWithoutAnyAuthentication}'
+
 - src: 'app/**/*.rb'
   conditionals:
     - insert:
@@ -245,9 +274,9 @@ translations:
 - src: 'app/views/**/*.haml'
   named-patterns:
   - name: singleWord
-    pattern: "{word}?$|(\"){word}?\"|('){word}?'|(\".* ){word}?(\")"
+    pattern: "{word}?(:?)$|(\"){word}?\"|('){word}?'|(\".* ){word}?(\")"
     exclude: '^\s*- when '
-    replace: '$1$2$3${{key}}$1$2$4'
+    replace: '$2$3$4${{key}}$1$2$3$5'
     params: ['word', 'key']
   - name: wordInSentence
     pattern: "(\"[^\"]* ){word}((?: [^\"]*)?)(\")|('[^']* ){word}((?: [^']*)?)(')|( +){word}$"
@@ -626,6 +655,8 @@ translations:
     replace: "= f.label :password, '${newPassword}', class"
   - pattern: "= f.label :password_confirmation, class"
     replace: "= f.label :password_confirmation, 'New Password (${confirmation})', class"
+  - pattern: "= f.label :public_email, class"
+    replace: "= f.label :public_email, '${publicEmail}', class"
   - pattern: "Discover projects, groups and snippets. Share your projects with others"
     replace: '${discoverProjectsGroupsAndSnippetsShareYourProjectsWithOthers}'
   - pattern: "You're all done!"
@@ -702,6 +733,21 @@ translations:
     replace: '${labelsCanBeAppliedToIssuesAndMergeRequests}'
   - pattern: "All pages in this wiki are listed below."
     replace: '${allPagesInThisWikiAreListedBelow}'
+  - pattern: "Enter your name, so people you know can recognize you."
+    replace: '${enterYourNameSoPeopleYouKnowCanRecognizeYou}'
+  - pattern: "We also use email for avatar detection if no avatar is uploaded."
+    replace: '${weAlsoUseEmailForAvatarDetectionIfNoAvatarIsUploaded}}'
+  - pattern: "Do not show in profile"
+    replace: '${doNotShowInProfile}'
+  - pattern: "This email will be displayed on your public profile."
+    replace: '${thisEmailWillBeDisplayedOnYourPublicProfile}'
+  - pattern: "Tell us about yourself in fewer than 250 characters."
+    replace: '${tellUsAboutYourselfInFewerThan250Characters}'
+  - pattern: !!js/regexp /Create first label or ([^']+')generate([^}]+}) default set of labels/
+    replace: '${createFirstLabelOrGenerateDefaultSetOfLabels}'
+    args:
+    - '$1'
+    - '$2'
   - pattern: 'Are you sure?'
     replace: '${areYouSure}'
   - pattern: "Code?$|(\")Code?\"|(')Code?'|(\".* )Code?(\")"
@@ -818,7 +864,7 @@ translations:
     - {word: 'Private [tT]oken', key: privateToken}
     - {word: 'Generate', key: generate}
     - {word: 'Name', key: name}
-    - {word: 'Trending', key: trending}
+    - {word: 'Trending projects', key: trendingProjects}
     - {word: 'Most stars', key: mostStars}
     - {word: 'All', key: all}
     - {word: 'Reported by', key: reportedBy}
@@ -838,6 +884,9 @@ translations:
     - {word: 'Remove', key: remove}
     - {word: 'Destroy', key: destroy}
     - {word: 'Details', key: details}
+    - {word: 'Location', key: location}
+    - {word: 'Bio', key: bio}
+    - {word: 'Website', key: website}
   - name: wordInSentence
     params:
     - {word: 'applications?', key: application}
@@ -3933,8 +3982,8 @@ translations:
     #  key: mdTitleUserCreation
     #- title: 'User deletion'
     #  key: mdTitleUserDeletion
-    #- title: 'User documentation'
-    #  key: mdTitleUserDocumentation
+    - title: 'User documentation'
+      key: mdTitleUserDocumentation
     #- title: 'User management'
     #  key: mdTitleUserManagement
     #- title: 'User modification'

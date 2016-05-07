@@ -467,6 +467,7 @@ account: アカウント
 username: ユーザ名
 change: 変更
 removeSth: '{0}を削除'
+deleteSth: '{0}を削除'
 sourceBranch: マージ元ブランチ
 selectSth: '{0}を選択'
 removeThisLabelAreYouSure: 本当にこのラベルを削除しますか？
@@ -2285,6 +2286,8 @@ signOut: サインアウト
 todos: ToDo
 youreAllDone: すべて完了しました！
 publicEmail: 公開メールアドレス
+notificationEmail: 通知メールアドレス
+notificationLevel: 通知レベル
 reportedBy: 報告者
 reportedAt: 報告日
 message: メッセージ
@@ -2357,3 +2360,11 @@ projectAccessMustBeGrantedExplicitlyToEachUser: 明示的にアクセス権を�
 theProjectCanBeClonedByAnyLoggedInUser: ログインしたユーザは誰でもプロジェクトをクローンできます
 theProjectCanBeClonedWithoutAnyAuthentication: 誰でも、認証せずにプロジェクトをクローンできます
 createFirstLabelOrGenerateDefaultSetOfLabels: '最初のラベルを追加 または 標準のラベルセットを{0}生成{1}'
+deleteThisLabel: このラベルを削除しますか？
+manageApplicationsThatCanUseGitLabAsAnOAuthProviderAndApplicationsThatYouveAuthorizedToUseYourAccount: GitLabをOAuthプロバイダとして使用できるアプリケーション、あなたのアカウントを使用することを認可したアプリケーションを管理します。
+manageApplicationsThatYouveAuthorizedToUseYourAccount: あなたのアカウントを使用することを認可したアプリケーションを管理します。
+changeYourPasswordOrRecoverYourCurrentOne: パスワードを変更または復旧します。
+youMustProvideCurrentPasswordInOrderToChangeIt: パスワードを変更するには、現在のパスワードを入力してください。
+afterASuccessfulPasswordUpdateYouWillBeRedirectedToTheLoginPageWhereYouCanLogInWithYourNewPassword: 正常に更新された場合、ログイン画面にリダイレクトします。新しいパスワードでログインしてください。
+theseAreYourGlobalNotificationSettings: これらはグローバルな通知設定です。
+beforeYouCanAddAnSSHKeyYouNeedToGenerateIt: 'SSHキーを追加する前に{0}SSHキーを生成してください{1}'

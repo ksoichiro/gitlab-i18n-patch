@@ -1252,9 +1252,18 @@ index 042971e..fca19dd 100644
 -  = submit_tag 'Destroy', onclick: "return confirm('Are you sure?')", class: submit_btn_css
 +  = submit_tag '削除', onclick: "return confirm('本当によろしいですか？')", class: submit_btn_css
 diff --git a/app/views/admin/applications/_form.html.haml b/app/views/admin/applications/_form.html.haml
-index 4aacbb8..5ba7d39 100644
+index 4aacbb8..02bfb20 100644
 --- a/app/views/admin/applications/_form.html.haml
 +++ b/app/views/admin/applications/_form.html.haml
+@@ -2,7 +2,7 @@
+   = form_errors(application)
+ 
+   = content_tag :div, class: 'form-group' do
+-    = f.label :name, class: 'col-sm-2 control-label'
++    = f.label :name, '名前', class: 'col-sm-2 control-label'
+     .col-sm-10
+       = f.text_field :name, class: 'form-control'
+       = doorkeeper_errors_for application, :name
 @@ -12,12 +12,12 @@
        = f.text_area :redirect_uri, class: 'form-control'
        = doorkeeper_errors_for application, :redirect_uri
@@ -1911,7 +1920,7 @@ index 448aa95..2959c78 100644
  :javascript
    new Labels();
 diff --git a/app/views/admin/labels/_label.html.haml b/app/views/admin/labels/_label.html.haml
-index f417b2e..dbd5ce8 100644
+index f417b2e..5e5ed9c 100644
 --- a/app/views/admin/labels/_label.html.haml
 +++ b/app/views/admin/labels/_label.html.haml
 @@ -3,5 +3,5 @@
@@ -1921,7 +1930,7 @@ index f417b2e..dbd5ce8 100644
 -      = link_to 'Edit', edit_admin_label_path(label), class: 'btn btn-sm'
 -      = link_to 'Delete', admin_label_path(label), class: 'btn btn-sm btn-remove remove-row', method: :delete, remote: true, data: {confirm: "Delete this label? Are you sure?"}
 +      = link_to '編集', edit_admin_label_path(label), class: 'btn btn-sm'
-+      = link_to 'Delete', admin_label_path(label), class: 'btn btn-sm btn-remove remove-row', method: :delete, remote: true, data: {confirm: "Delete this label? 本当によろしいですか？"}
++      = link_to 'Delete', admin_label_path(label), class: 'btn btn-sm btn-remove remove-row', method: :delete, remote: true, data: {confirm: "このラベルを削除しますか？ 本当によろしいですか？"}
 diff --git a/app/views/admin/labels/edit.html.haml b/app/views/admin/labels/edit.html.haml
 index 309aedc..74c3c88 100644
 --- a/app/views/admin/labels/edit.html.haml
@@ -2318,18 +2327,21 @@ index 0fdd5bd..81d3e71 100644
            %th
        = render @spam_logs
 diff --git a/app/views/admin/users/_form.html.haml b/app/views/admin/users/_form.html.haml
-index fe0b9d3..7f0fb0d 100644
+index fe0b9d3..8d962be 100644
 --- a/app/views/admin/users/_form.html.haml
 +++ b/app/views/admin/users/_form.html.haml
-@@ -3,7 +3,7 @@
+@@ -3,9 +3,9 @@
      = form_errors(@user)
  
      %fieldset
 -      %legend Account
 +      %legend アカウント
        .form-group
-         = f.label :name, class: 'control-label'
+-        = f.label :name, class: 'control-label'
++        = f.label :name, '名前', class: 'control-label'
          .col-sm-10
+           = f.text_field :name, required: true, autocomplete: 'off', class: 'form-control'
+           %span.help-inline * required
 @@ -15,29 +15,29 @@
            = f.text_field :username, required: true, autocomplete: 'off', autocorrect: 'off', autocapitalize: 'off', spellcheck: false, class: 'form-control'
            %span.help-inline * required
@@ -2472,7 +2484,7 @@ index dbecb7b..2ca8efd 100644
  - else
    .nothing-here-block This user has no groups.
 diff --git a/app/views/admin/users/index.html.haml b/app/views/admin/users/index.html.haml
-index 0ee8dc9..cc542ce 100644
+index 0ee8dc9..98e1fce 100644
 --- a/app/views/admin/users/index.html.haml
 +++ b/app/views/admin/users/index.html.haml
 @@ -1,4 +1,4 @@
@@ -2490,7 +2502,7 @@ index 0ee8dc9..cc542ce 100644
          %small.badge= number_with_delimiter(User.without_projects.count)
  
    .gray-content-block.second-block
-@@ -59,7 +59,7 @@
+@@ -59,10 +59,10 @@
              = link_to admin_users_path(sort: sort_value_oldest_updated, filter: params[:filter]) do
                = sort_title_oldest_updated
  
@@ -2498,7 +2510,11 @@ index 0ee8dc9..cc542ce 100644
 +      = link_to '新しいユーザ', new_admin_user_path, class: "btn btn-new"
      = form_tag admin_users_path, method: :get, class: 'form-inline' do
        .form-group
-         = search_field_tag :name, params[:name], placeholder: 'Name, email or username', class: 'form-control', spellcheck: false
+-        = search_field_tag :name, params[:name], placeholder: 'Name, email or username', class: 'form-control', spellcheck: false
++        = search_field_tag :name, params[:name], placeholder: 'Name, email or ユーザ名', class: 'form-control', spellcheck: false
+         = hidden_field_tag "filter", params[:filter]
+       = button_tag class: 'btn btn-primary' do
+         %i.fa.fa-search
 @@ -90,18 +90,18 @@
              = mail_to user.email, user.email, class: 'light'
            &nbsp;
@@ -3487,9 +3503,18 @@ index 001a711..56c7a57 100644
 -    = submit_tag 'Destroy', data: { confirm: "Are you sure?" }, class: submit_btn_css
 +    = submit_tag '削除', data: { confirm: "本当によろしいですか？" }, class: submit_btn_css
 diff --git a/app/views/doorkeeper/applications/_form.html.haml b/app/views/doorkeeper/applications/_form.html.haml
-index 5c98265..32cd2b7 100644
+index 5c98265..a886874 100644
 --- a/app/views/doorkeeper/applications/_form.html.haml
 +++ b/app/views/doorkeeper/applications/_form.html.haml
+@@ -2,7 +2,7 @@
+   = form_errors(application)
+ 
+   .form-group
+-    = f.label :name, class: 'label-light'
++    = f.label :name, '名前', class: 'label-light'
+     = f.text_field :name, class: 'form-control', required: true
+ 
+   .form-group
 @@ -10,7 +10,7 @@
      = f.text_area :redirect_uri, class: 'form-control', required: true
  
@@ -3516,7 +3541,7 @@ index fb6aa30..1b14ed1 100644
 +%h3.page-title アプリケーションを編集
  = render 'form', application: @application
 diff --git a/app/views/doorkeeper/applications/index.html.haml b/app/views/doorkeeper/applications/index.html.haml
-index 0aff797..4adce42 100644
+index 0aff797..1be39b3 100644
 --- a/app/views/doorkeeper/applications/index.html.haml
 +++ b/app/views/doorkeeper/applications/index.html.haml
 @@ -1,4 +1,4 @@
@@ -3525,7 +3550,16 @@ index 0aff797..4adce42 100644
  - header_title page_title, applications_profile_path
  
  .row.prepend-top-default
-@@ -14,19 +14,19 @@
+@@ -7,26 +7,25 @@
+       = page_title
+     %p
+       - if user_oauth_applications?
+-        Manage applications that can use GitLab as an OAuth provider,
+-        and applications that you've authorized to use your account.
++        GitLabをOAuthプロバイダとして使用できるアプリケーション、あなたのアカウントを使用することを認可したアプリケーションを管理します。
+       - else
+-        Manage applications that you've authorized to use your account.
++        あなたのアカウントを使用することを認可したアプリケーションを管理します。
    .col-lg-9
      - if user_oauth_applications?
        %h5.prepend-top-0
@@ -3548,7 +3582,7 @@ index 0aff797..4adce42 100644
                    %th Callback URL
                    %th Clients
                    %th.last-heading
-@@ -46,7 +46,7 @@
+@@ -46,7 +45,7 @@
                        = render 'delete_form', application: application, small: true
          - else
            .profile-settings-message.text-center
@@ -3557,7 +3591,7 @@ index 0aff797..4adce42 100644
      .oauth-authorized-applications.prepend-top-20.append-bottom-default
        - if user_oauth_applications?
          %h5
-@@ -57,7 +57,7 @@
+@@ -57,7 +56,7 @@
            %table.table.table-striped
              %thead
                %tr
@@ -3566,7 +3600,7 @@ index 0aff797..4adce42 100644
                  %th Authorized At
                  %th Scope
                  %th
-@@ -80,4 +80,4 @@
+@@ -80,4 +79,4 @@
                    %td= render 'doorkeeper/authorized_applications/delete_form', token: token
        - else
          .profile-settings-message.text-center
@@ -3648,6 +3682,19 @@ index 90cfbeb..8e2820c 100644
 +%h3 エンコーディングエラー
  %hr
  %p Page can't be loaded because of an encoding error.
+diff --git a/app/views/errors/omniauth_error.html.haml b/app/views/errors/omniauth_error.html.haml
+index 3e70e98..bde7db8 100644
+--- a/app/views/errors/omniauth_error.html.haml
++++ b/app/views/errors/omniauth_error.html.haml
+@@ -7,7 +7,7 @@
+ 
+ %ul
+   %li Try logging in using your email
+-  %li Try logging in using your username
++  %li Try logging in using your ユーザ名
+   %li If you have forgotten your password, try recovering it using #{ link_to "Password recovery", new_password_path(resource_name) }
+ 
+ %p If none of the options work, try contacting the GitLab administrator.
 diff --git a/app/views/events/_event_last_push.html.haml b/app/views/events/_event_last_push.html.haml
 index 5753158..b75bbcf 100644
 --- a/app/views/events/_event_last_push.html.haml
@@ -5034,7 +5081,7 @@ index 5d2f149..cb7a916 100644
        %p
          Scroll down to <strong>Google Code Project Hosting</strong> and enable the switch on the right.
 diff --git a/app/views/import/google_code/new_user_map.html.haml b/app/views/import/google_code/new_user_map.html.haml
-index 0738b3d..cbf0332 100644
+index 0738b3d..41a7348 100644
 --- a/app/views/import/google_code/new_user_map.html.haml
 +++ b/app/views/import/google_code/new_user_map.html.haml
 @@ -1,8 +1,8 @@
@@ -5049,7 +5096,14 @@ index 0738b3d..cbf0332 100644
  %hr
  
  = form_tag create_user_map_import_google_code_path, class: 'form-horizontal' do
-@@ -19,7 +19,7 @@
+@@ -13,13 +13,13 @@
+     The user map is a JSON document mapping the Google Code users that participated on your projects to the way their email addresses and usernames will be imported into GitLab. You can change this by changing the value on the right hand side of <code>:</code>. Be sure to preserve the surrounding double quotes, other punctuation and the email address or username on the left hand side.
+   %ul
+     %li
+-      %strong Default: Directly import the Google Code email address or username
++      %strong Default: Directly import the Google Code email address or ユーザ名
+       %p
+         <code>"johnsmith@example.com": "johnsm...@example.com"</code>
          will add "By johnsm...@example.com" to all issues and comments originally created by johnsmith@example.com.
          The email address or username is masked to ensure the user's privacy.
      %li
@@ -5111,7 +5165,7 @@ index 5ada6b1..7f31183 100644
  - if @incompatible_repos.any?
    %p
 diff --git a/app/views/invites/show.html.haml b/app/views/invites/show.html.haml
-index 2fd4859..6f081be 100644
+index 2fd4859..ef409f5 100644
 --- a/app/views/invites/show.html.haml
 +++ b/app/views/invites/show.html.haml
 @@ -1,5 +1,5 @@
@@ -5142,7 +5196,7 @@ index 2fd4859..6f081be 100644
  - else
    .actions
 -    = link_to "Accept invitation", accept_invite_url(@token), method: :post, class: "btn btn-success"
-+    = link_to "invitationを承認", accept_invite_url(@token), method: :post, class: "btn btn-success"
++    = link_to "招待を承認", accept_invite_url(@token), method: :post, class: "btn btn-success"
      = link_to "Decline", decline_invite_url(@token), method: :post, class: "btn btn-danger prepend-left-10"
 diff --git a/app/views/layouts/_page.html.haml b/app/views/layouts/_page.html.haml
 index c799e9c..df28329 100644
@@ -6103,7 +6157,7 @@ index f9525d8..0fc7946 100644
    #{link_to @group.name, group_url(@group)}.
  
 diff --git a/app/views/notify/group_member_invited_email.html.haml b/app/views/notify/group_member_invited_email.html.haml
-index 163e88b..8ce3564 100644
+index 163e88b..02d7655 100644
 --- a/app/views/notify/group_member_invited_email.html.haml
 +++ b/app/views/notify/group_member_invited_email.html.haml
 @@ -3,12 +3,12 @@
@@ -6117,7 +6171,7 @@ index 163e88b..8ce3564 100644
  
  %p
 -  = link_to 'Accept invitation', invite_url(@token)
-+  = link_to 'invitationを承認', invite_url(@token)
++  = link_to '招待を承認', invite_url(@token)
    or
    = link_to 'decline', decline_invite_url(@token)
  
@@ -6221,7 +6275,7 @@ index c2d7e6f..3e541a2 100644
    #{link_to @project.name_with_namespace, namespace_project_url(@project.namespace, @project)}.
  
 diff --git a/app/views/notify/project_member_invited_email.html.haml b/app/views/notify/project_member_invited_email.html.haml
-index 79eb896..4eafb3a 100644
+index 79eb896..6c6e2a8 100644
 --- a/app/views/notify/project_member_invited_email.html.haml
 +++ b/app/views/notify/project_member_invited_email.html.haml
 @@ -3,11 +3,11 @@
@@ -6235,7 +6289,7 @@ index 79eb896..4eafb3a 100644
  
  %p
 -  = link_to 'Accept invitation', invite_url(@token)
-+  = link_to 'invitationを承認', invite_url(@token)
++  = link_to '招待を承認', invite_url(@token)
    or
    = link_to 'decline', decline_invite_url(@token)
 diff --git a/app/views/notify/repository_push_email.html.haml b/app/views/notify/repository_push_email.html.haml
@@ -6276,7 +6330,7 @@ index 879fc17..0b9f4ea 100644
  %ul.well-list
    - events.each do |event|
 diff --git a/app/views/profiles/accounts/show.html.haml b/app/views/profiles/accounts/show.html.haml
-index 6efd119..4f1d72b 100644
+index 6efd119..cddecfd 100644
 --- a/app/views/profiles/accounts/show.html.haml
 +++ b/app/views/profiles/accounts/show.html.haml
 @@ -1,36 +1,36 @@
@@ -6354,14 +6408,22 @@ index 6efd119..4f1d72b 100644
      .col-lg-3.profile-settings-sidebar
        %h4.prepend-top-0.change-username-title
 -        Change username
-+        usernameを変更
++        ユーザ名を変更
        %p
 -        Changing your username will change path to all personal projects!
 +        ユーザ名を変更すると、あなたの所有するすべてのプロジェクトのパスが変更されます！
      .col-lg-9
        = form_for @user, url: update_username_profile_path, method: :put, remote: true, html: {class: "update-username"} do |f|
          .form-group
-@@ -96,21 +96,21 @@
+@@ -89,28 +89,28 @@
+         .prepend-top-default
+           = f.button class: "btn btn-warning", type: "submit" do
+             = icon "spinner spin", class: "hidden loading-username"
+-            Update username
++            Update ユーザ名
+   %hr
+ 
+ - if signup_enabled?
    .row.prepend-top-default
      .col-lg-3.profile-settings-sidebar
        %h4.prepend-top-0.remove-account-title
@@ -6380,7 +6442,7 @@ index 6efd119..4f1d72b 100644
 -            %li #{pluralize rp, 'personal project'} will be removed and cannot be restored
 -        = link_to 'Delete account', user_registration_path, data: { confirm: "REMOVE #{current_user.name}? Are you sure?" }, method: :delete, class: "btn btn-remove"
 +            %li #{rp}個のパーソナルプロジェクトが削除され、復元できなくなります。
-+        = link_to 'Delete アカウント', user_registration_path, data: { confirm: "REMOVE #{current_user.name}? 本当によろしいですか？" }, method: :delete, class: "btn btn-remove"
++        = link_to 'アカウントを削除', user_registration_path, data: { confirm: "REMOVE #{current_user.name}? 本当によろしいですか？" }, method: :delete, class: "btn btn-remove"
        - else
          - if @user.solo_owned_groups.present?
            %p
@@ -6514,7 +6576,7 @@ index dd76154..a5b9655 100644
 -      = link_to 'Remove', path_to_key(@key, is_admin), data: {confirm: 'Are you sure?'}, method: :delete, class: "btn btn-remove delete-key"
 +      = link_to '削除', path_to_key(@key, is_admin), data: {confirm: '本当によろしいですか？'}, method: :delete, class: "btn btn-remove delete-key"
 diff --git a/app/views/profiles/keys/index.html.haml b/app/views/profiles/keys/index.html.haml
-index e0f8c9a..256408e 100644
+index e0f8c9a..08866c0 100644
 --- a/app/views/profiles/keys/index.html.haml
 +++ b/app/views/profiles/keys/index.html.haml
 @@ -1,4 +1,4 @@
@@ -6530,8 +6592,10 @@ index e0f8c9a..256408e 100644
 -      Add an SSH key
 +      SSH keyを追加
      %p.profile-settings-content
-       Before you can add an SSH key you need to
-       = link_to "generate it.", help_page_path("ssh", "README")
+-      Before you can add an SSH key you need to
+-      = link_to "generate it.", help_page_path("ssh", "README")
++      SSHキーを追加する前に
++      = link_to "SSHキーを生成してください", help_page_path("ssh", "README")
      = render 'form'
      %hr
      %h5
@@ -6548,7 +6612,7 @@ index 89f6f01..9e94432 100644
 +- page_title @key.title, "SSHキー"
  = render "key_details"
 diff --git a/app/views/profiles/notifications/show.html.haml b/app/views/profiles/notifications/show.html.haml
-index a2a505c..89d05b4 100644
+index a2a505c..ee46a2f 100644
 --- a/app/views/profiles/notifications/show.html.haml
 +++ b/app/views/profiles/notifications/show.html.haml
 @@ -1,4 +1,4 @@
@@ -6557,8 +6621,21 @@ index a2a505c..89d05b4 100644
  - header_title page_title, profile_notifications_path
  
  %div
+@@ -23,10 +23,10 @@
+ 
+       = form_for @user, url: profile_notifications_path, method: :put, html: { class: 'update-notifications prepend-top-default' } do |f|
+         .form-group
+-          = f.label :notification_email, class: "label-light"
++          = f.label :notification_email, '通知メールアドレス', class: "label-light"
+           = f.select :notification_email, @user.all_emails, { include_blank: false }, class: "select2"
+         .form-group
+-          = f.label :notification_level, class: 'label-light'
++          = f.label :notification_level, '通知レベル', class: 'label-light'
+           .radio
+             = f.label :notification_level, value: :disabled do
+               = f.radio_button :notification_level, :disabled
 diff --git a/app/views/profiles/passwords/edit.html.haml b/app/views/profiles/passwords/edit.html.haml
-index 5ac8a8b..cc01326 100644
+index 5ac8a8b..2c0afc3 100644
 --- a/app/views/profiles/passwords/edit.html.haml
 +++ b/app/views/profiles/passwords/edit.html.haml
 @@ -1,4 +1,4 @@
@@ -6567,8 +6644,12 @@ index 5ac8a8b..cc01326 100644
  - header_title page_title, edit_profile_password_path
  
  .row.prepend-top-default
-@@ -9,7 +9,7 @@
-       After a successful password update, you will be redirected to the login page where you can log in with your new password.
+@@ -6,10 +6,10 @@
+     %h4.prepend-top-0
+       = page_title
+     %p
+-      After a successful password update, you will be redirected to the login page where you can log in with your new password.
++      正常に更新された場合、ログイン画面にリダイレクトします。新しいパスワードでログインしてください。
    .col-lg-9
      %h5.prepend-top-0
 -      Change your password
@@ -6664,7 +6745,7 @@ index f802116..3adb617 100644
 -      = f.submit 'Save changes', class: 'btn btn-save'
 +      = f.submit '変更を保存', class: 'btn btn-save'
 diff --git a/app/views/profiles/show.html.haml b/app/views/profiles/show.html.haml
-index f59d27f..fba5b36 100644
+index f59d27f..26fb596 100644
 --- a/app/views/profiles/show.html.haml
 +++ b/app/views/profiles/show.html.haml
 @@ -7,7 +7,7 @@
@@ -6704,7 +6785,8 @@ index f59d27f..fba5b36 100644
 +          いくつかのオプションはLDAPアカウントでは利用できません。
      .col-lg-9
        .form-group
-         = f.label :name, class: "label-light"
+-        = f.label :name, class: "label-light"
++        = f.label :name, '名前', class: "label-light"
          = f.text_field :name, class: "form-control", required: true
 -        %span.help-block Enter your name, so people you know can recognize you.
 +        %span.help-block 皆があなたを認識できるように、あなたの名前を入力してください。
@@ -6728,9 +6810,10 @@ index f59d27f..fba5b36 100644
 +            %span.help-block メールアドレスはアバターの検出にも使用されます(アップロードされていない場合)。}
        .form-group
 -        = f.label :public_email, class: "label-light"
-+        = f.label :public_email, '公開メールアドレス', class: "label-light"
-         = f.select :public_email, options_for_select(@user.all_emails, selected: @user.public_email), {include_blank: 'Do not show on profile'}, class: "select2"
+-        = f.select :public_email, options_for_select(@user.all_emails, selected: @user.public_email), {include_blank: 'Do not show on profile'}, class: "select2"
 -        %span.help-block This email will be displayed on your public profile.
++        = f.label :public_email, '公開メールアドレス', class: "label-light"
++        = f.select :public_email, options_for_select(@user.all_emails, selected: @user.public_email), {include_blank: 'プロフィールに表示しない'}, class: "select2"
 +        %span.help-block このメールアドレスはあなたの公開プロフィールに表示されます。
        .form-group
          = f.label :skype, class: "label-light"
@@ -6747,7 +6830,8 @@ index f59d27f..fba5b36 100644
 +        = f.label :location, '場所', class: "label-light"
          = f.text_field :location, class: "form-control"
        .form-group
-         = f.label :bio, class: "label-light"
+-        = f.label :bio, class: "label-light"
++        = f.label :bio, '自己紹介', class: "label-light"
          = f.text_area :bio, rows: 4, class: "form-control", maxlength: 250
 -        %span.help-block Tell us about yourself in fewer than 250 characters.
 +        %span.help-block 250字以内で自己紹介してください。
@@ -7055,16 +7139,26 @@ index 8469420..65d3c92 100644
              - unless can?(current_user, :push_code, @project)
                .inline.prepend-left-10
 diff --git a/app/views/projects/blob/_remove.html.haml b/app/views/projects/blob/_remove.html.haml
-index 2e1f32f..705adc4 100644
+index 2e1f32f..aa782ad 100644
 --- a/app/views/projects/blob/_remove.html.haml
 +++ b/app/views/projects/blob/_remove.html.haml
-@@ -11,8 +11,8 @@
+@@ -3,16 +3,16 @@
+     .modal-content
+       .modal-header
+         %a.close{href: "#", "data-dismiss" => "modal"} ×
+-        %h3.page-title Delete #{@blob.name}
++        %h3.page-title #{@blob.name}を削除
+ 
+       .modal-body
+         = form_tag namespace_project_blob_path(@project.namespace, @project, @id), method: :delete, class: 'form-horizontal js-replace-blob-form js-quick-submit js-requires-input' do
+-          = render 'shared/new_commit_form', placeholder: "Delete #{@blob.name}"
++          = render 'shared/new_commit_form', placeholder: "#{@blob.name}を削除"
  
            .form-group
              .col-sm-offset-2.col-sm-10
 -              = button_tag 'Delete file', class: 'btn btn-remove btn-remove-file'
 -              = link_to "Cancel", '#', class: "btn btn-cancel", "data-dismiss" => "modal"
-+              = button_tag 'Delete ファイル', class: 'btn btn-remove btn-remove-file'
++              = button_tag 'ファイルを削除', class: 'btn btn-remove btn-remove-file'
 +              = link_to "キャンセル", '#', class: "btn btn-cancel", "data-dismiss" => "modal"
  
  :javascript
@@ -7152,7 +7246,7 @@ index 6988039..f18f460 100644
 -  = render 'projects/blob/upload', title: title, placeholder: title, button_title: 'Replace file', form_path: namespace_project_update_blob_path(@project.namespace, @project, @id), method: :put
 +  = render 'projects/blob/upload', title: title, placeholder: title, button_title: 'Replace ファイル', form_path: namespace_project_update_blob_path(@project.namespace, @project, @id), method: :put
 diff --git a/app/views/projects/branches/_branch.html.haml b/app/views/projects/branches/_branch.html.haml
-index 57e507e..314c65f 100644
+index 57e507e..c0365bf 100644
 --- a/app/views/projects/branches/_branch.html.haml
 +++ b/app/views/projects/branches/_branch.html.haml
 @@ -22,7 +22,7 @@
@@ -7169,7 +7263,7 @@ index 57e507e..314c65f 100644
  
        - if can_remove_branch?(@project, branch.name)
 -        = link_to namespace_project_branch_path(@project.namespace, @project, branch.name), class: 'btn btn-grouped btn-xs btn-remove remove-row has-tooltip', title: "Delete branch", method: :delete, data: { confirm: "Deleting the '#{branch.name}' branch cannot be undone. Are you sure?", container: 'body' }, remote: true do
-+        = link_to namespace_project_branch_path(@project.namespace, @project, branch.name), class: 'btn btn-grouped btn-xs btn-remove remove-row has-tooltip', title: "Delete ブランチ", method: :delete, data: { confirm: "Deleting the '#{branch.name}' ブランチ cannot be undone. 本当によろしいですか？", container: 'body' }, remote: true do
++        = link_to namespace_project_branch_path(@project.namespace, @project, branch.name), class: 'btn btn-grouped btn-xs btn-remove remove-row has-tooltip', title: "ブランチを削除", method: :delete, data: { confirm: "Deleting the '#{branch.name}' ブランチ cannot be undone. 本当によろしいですか？", container: 'body' }, remote: true do
            = icon("trash-o")
  
      - if branch.name != @repository.root_ref
@@ -7767,7 +7861,7 @@ index ea2a3e0..e6a58d7 100644
      %strong.cgreen #{diff_files.sum(&:added_lines)} additions
      and
 diff --git a/app/views/projects/edit.html.haml b/app/views/projects/edit.html.haml
-index 76a4f41..7170d63 100644
+index 76a4f41..b6ef1b6 100644
 --- a/app/views/projects/edit.html.haml
 +++ b/app/views/projects/edit.html.haml
 @@ -3,57 +3,57 @@
@@ -7781,8 +7875,9 @@ index 76a4f41..7170d63 100644
  
            %fieldset
              .form-group.project_name_holder
-               = f.label :name, class: 'control-label' do
+-              = f.label :name, class: 'control-label' do
 -                Project name
++              = f.label :name, '名前', class: 'control-label' do
 +                プロジェクト名
                .col-sm-10
                  = f.text_field :name, class: "form-control", id: "project_name_edit"
@@ -7937,8 +8032,9 @@ index 76a4f41..7170d63 100644
          .panel-body
            = form_for([@project.namespace.becomes(Namespace), @project], html: { class: 'form-horizontal' }) do |f|
              .form-group.project_name_holder
-               = f.label :name, class: 'control-label' do
+-              = f.label :name, class: 'control-label' do
 -                Project name
++              = f.label :name, '名前', class: 'control-label' do
 +                プロジェクト名
                .col-sm-9
                  .form-group
@@ -9341,7 +9437,7 @@ index 0b00204..ab63336 100644
 -    Attach a file
 +    ファイルを添付
 diff --git a/app/views/projects/notes/_note.html.haml b/app/views/projects/notes/_note.html.haml
-index aeb7c1d..0b81691 100644
+index aeb7c1d..f555d60 100644
 --- a/app/views/projects/notes/_note.html.haml
 +++ b/app/views/projects/notes/_note.html.haml
 @@ -19,9 +19,9 @@
@@ -9356,6 +9452,13 @@ index aeb7c1d..0b81691 100644
                = icon('trash-o')
        .note-body{class: note_editable ? 'js-task-list-container' : ''}
          .note-text
+@@ -41,5 +41,5 @@
+               = icon('paperclip')
+               = note.attachment_identifier
+               = link_to delete_attachment_namespace_project_note_path(note.project.namespace, note.project, note),
+-                title: 'Delete this attachment', method: :delete, remote: true, data: { confirm: 'Are you sure you want to remove the attachment?' }, class: 'danger js-note-attachment-delete' do
++                title: 'this attachmentを削除', method: :delete, remote: true, data: { confirm: 'Are you sure you want to remove the attachment?' }, class: 'danger js-note-attachment-delete' do
+                 = icon('trash-o', class: 'cred')
 diff --git a/app/views/projects/project_members/_header_title.html.haml b/app/views/projects/project_members/_header_title.html.haml
 index a31f0a3..cdc808c 100644
 --- a/app/views/projects/project_members/_header_title.html.haml
@@ -9818,7 +9921,7 @@ index d854ac2..775b83e 100644
  - if @repository.commit
    .content-block.second-block.white
 diff --git a/app/views/projects/snippets/_actions.html.haml b/app/views/projects/snippets/_actions.html.haml
-index 4a51546..9298cab 100644
+index 4a51546..d8c734c 100644
 --- a/app/views/projects/snippets/_actions.html.haml
 +++ b/app/views/projects/snippets/_actions.html.haml
 @@ -1,8 +1,8 @@
@@ -9829,7 +9932,7 @@ index 4a51546..9298cab 100644
 +  新しいスニペット
  - if can?(current_user, :admin_project_snippet, @snippet)
 -  = link_to namespace_project_snippet_path(@project.namespace, @project, @snippet), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-grouped btn-remove", title: 'Delete Snippet' do
-+  = link_to namespace_project_snippet_path(@project.namespace, @project, @snippet), method: :delete, data: { confirm: "本当によろしいですか？" }, class: "btn btn-grouped btn-remove", title: 'Delete スニペット' do
++  = link_to namespace_project_snippet_path(@project.namespace, @project, @snippet), method: :delete, data: { confirm: "本当によろしいですか？" }, class: "btn btn-grouped btn-remove", title: 'スニペットを削除' do
      = icon('trash-o')
      Delete
  - if can?(current_user, :update_project_snippet, @snippet)
@@ -9914,7 +10017,7 @@ index 093d1d1..4843c22 100644
      %li
        = link_to archive_namespace_project_repository_path(project.namespace, project, ref: ref, format: 'zip'), rel: 'nofollow' do
 diff --git a/app/views/projects/tags/_tag.html.haml b/app/views/projects/tags/_tag.html.haml
-index dbc35c1..9bc78e7 100644
+index dbc35c1..2ea93c1 100644
 --- a/app/views/projects/tags/_tag.html.haml
 +++ b/app/views/projects/tags/_tag.html.haml
 @@ -15,18 +15,18 @@
@@ -9927,7 +10030,7 @@ index dbc35c1..9bc78e7 100644
  
        - if can?(current_user, :admin_project, @project)
 -        = link_to namespace_project_tag_path(@project.namespace, @project, tag.name), class: 'btn btn-grouped btn-xs btn-remove remove-row has-tooltip', title: "Delete tag", method: :delete, data: { confirm: "Deleting the '#{tag.name}' tag cannot be undone. Are you sure?", container: 'body' }, remote: true do
-+        = link_to namespace_project_tag_path(@project.namespace, @project, tag.name), class: 'btn btn-grouped btn-xs btn-remove remove-row has-tooltip', title: "Delete タグ", method: :delete, data: { confirm: "Deleting the '#{tag.name}' タグ cannot be undone. 本当によろしいですか？", container: 'body' }, remote: true do
++        = link_to namespace_project_tag_path(@project.namespace, @project, tag.name), class: 'btn btn-grouped btn-xs btn-remove remove-row has-tooltip', title: "タグを削除", method: :delete, data: { confirm: "Deleting the '#{tag.name}' タグ cannot be undone. 本当によろしいですか？", container: 'body' }, remote: true do
            = icon("trash-o")
  
    - if commit
@@ -10006,7 +10109,7 @@ index b40a6e5..647ec1a 100644
  :javascript
    var availableRefs = #{@project.repository.ref_names.to_json};
 diff --git a/app/views/projects/tags/show.html.haml b/app/views/projects/tags/show.html.haml
-index 1dc9b79..cee90eb 100644
+index 1dc9b79..c8d9a8e 100644
 --- a/app/views/projects/tags/show.html.haml
 +++ b/app/views/projects/tags/show.html.haml
 @@ -1,21 +1,21 @@
@@ -10032,7 +10135,7 @@ index 1dc9b79..cee90eb 100644
      - if can?(current_user, :admin_project, @project)
        .pull-right
 -        = link_to namespace_project_tag_path(@project.namespace, @project, @tag.name), class: 'btn btn-remove remove-row grouped has-tooltip', title: "Delete tag", method: :delete, data: { confirm: "Deleting the '#{@tag.name}' tag cannot be undone. Are you sure?" } do
-+        = link_to namespace_project_tag_path(@project.namespace, @project, @tag.name), class: 'btn btn-remove remove-row grouped has-tooltip', title: "Delete タグ", method: :delete, data: { confirm: "Deleting the '#{@tag.name}' タグ cannot be undone. 本当によろしいですか？" } do
++        = link_to namespace_project_tag_path(@project.namespace, @project, @tag.name), class: 'btn btn-remove remove-row grouped has-tooltip', title: "タグを削除", method: :delete, data: { confirm: "Deleting the '#{@tag.name}' タグ cannot be undone. 本当によろしいですか？" } do
            %i.fa.fa-trash-o
    .title
      %span.item-title= @tag.name
@@ -10708,10 +10811,17 @@ index 8d6e16f..4d72944 100644
      = form.label name, title, class: "control-label"
    .col-sm-10
 diff --git a/app/views/shared/_group_form.html.haml b/app/views/shared/_group_form.html.haml
-index 67072b9..a3d82ab 100644
+index 67072b9..4a7d3b3 100644
 --- a/app/views/shared/_group_form.html.haml
 +++ b/app/views/shared/_group_form.html.haml
-@@ -7,7 +7,7 @@
+@@ -1,13 +1,13 @@
+ - if @group.persisted?
+   .form-group
+-    = f.label :name, class: 'control-label' do
++    = f.label :name, '名前', class: 'control-label' do
+       Group name
+     .col-sm-10
+       = f.text_field :name, placeholder: 'open-source', class: 'form-control'
  
  .form-group
    = f.label :path, class: 'control-label' do
@@ -11654,7 +11764,7 @@ index 47ec09f..9f9f307 100644
  :javascript
    var editor = ace.edit("editor");
 diff --git a/app/views/snippets/_actions.html.haml b/app/views/snippets/_actions.html.haml
-index 1979ae6..e1fbaa9 100644
+index 1979ae6..471c2f8 100644
 --- a/app/views/snippets/_actions.html.haml
 +++ b/app/views/snippets/_actions.html.haml
 @@ -1,11 +1,11 @@
@@ -11669,7 +11779,7 @@ index 1979ae6..e1fbaa9 100644
      Edit
  - if can?(current_user, :admin_personal_snippet, @snippet)
 -  = link_to snippet_path(@snippet), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-grouped btn-remove", title: 'Delete Snippet' do
-+  = link_to snippet_path(@snippet), method: :delete, data: { confirm: "本当によろしいですか？" }, class: "btn btn-grouped btn-remove", title: 'Delete スニペット' do
++  = link_to snippet_path(@snippet), method: :delete, data: { confirm: "本当によろしいですか？" }, class: "btn btn-grouped btn-remove", title: 'スニペットを削除' do
      = icon('trash-o')
      Delete
 diff --git a/app/views/snippets/_snippets.html.haml b/app/views/snippets/_snippets.html.haml

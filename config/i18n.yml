@@ -647,8 +647,21 @@ translations:
     replace: '${youDontHaveAnyAuthorizedApplications}'
   - pattern: "Control emails linked to your account"
     replace: '${controlEmailsLinkedToYourAccount}'
+  - pattern: "= f.label :name, class"
+    replace: "= f.label :name, '${name}', class"
   - pattern: "= f.label :email, class"
     replace: "= f.label :email, '${email}', class"
+  - pattern: "= f.label :bio, class"
+    replace: "= f.label :bio, '${bio}', class"
+  - pattern: "= f.label :notification_email, class"
+    replace: "= f.label :notification_email, '${notificationEmail}', class"
+  - pattern: "= f.label :notification_level, class"
+    replace: "= f.label :notification_level, '${notificationLevel}', class"
+  - pattern: !!js/regexp /(\s+)Before you can add an SSH key you need to(\n\s+[^"]+")generate it.([^\n]*)$/m
+    replace: '$1${beforeYouCanAddAnSSHKeyYouNeedToGenerateIt}'
+    args:
+    - '$2'
+    - '$3'
   - pattern: "Add email address"
     replace: '${addEmailAddress}'
   - pattern: !!js/regexp /^( *)Emails /
@@ -749,7 +762,7 @@ translations:
     replace: '${enterYourNameSoPeopleYouKnowCanRecognizeYou}'
   - pattern: "We also use email for avatar detection if no avatar is uploaded."
     replace: '${weAlsoUseEmailForAvatarDetectionIfNoAvatarIsUploaded}}'
-  - pattern: "Do not show in profile"
+  - pattern: !!js/regexp /Do not show (?:in|on) profile/
     replace: '${doNotShowInProfile}'
   - pattern: "This email will be displayed on your public profile."
     replace: '${thisEmailWillBeDisplayedOnYourPublicProfile}'
@@ -760,6 +773,20 @@ translations:
     args:
     - '$1'
     - '$2'
+  - pattern: "Change your password or recover your current one."
+    replace: '${changeYourPasswordOrRecoverYourCurrentOne}'
+  - pattern: "You must provide current password in order to change it."
+    replace: '${youMustProvideCurrentPasswordInOrderToChangeIt}'
+  - pattern: "After a successful password update, you will be redirected to the login page where you can log in with your new password."
+    replace: '${afterASuccessfulPasswordUpdateYouWillBeRedirectedToTheLoginPageWhereYouCanLogInWithYourNewPassword}'
+  - pattern: "These are your global notification settings."
+    replace: '${theseAreYourGlobalNotificationSettings}'
+  - pattern: !!js/regexp /(\s+)Manage applications that can use GitLab as an OAuth provider,\n(\s+)and applications that you've authorized to use your account./m
+    replace: '$1${manageApplicationsThatCanUseGitLabAsAnOAuthProviderAndApplicationsThatYouveAuthorizedToUseYourAccount}'
+  - pattern: "Manage applications that you've authorized to use your account."
+    replace: '${manageApplicationsThatYouveAuthorizedToUseYourAccount}'
+  - pattern: 'Delete this label?'
+    replace: '${deleteThisLabel}'
   - pattern: 'Are you sure?'
     replace: '${areYouSure}'
   - pattern: "Code?$|(\")Code?\"|(')Code?'|(\".* )Code?(\")"
@@ -924,6 +951,8 @@ translations:
     - {word: 'builds?', key: build}
     - {word: 'this user', key: thisUser}
     - {word: 'repository', key: repository}
+    - {word: 'username', key: username}
+    - {word: 'invitation', key: invitation}
   - name: doSth
     params:
     - {verb: Edit, key: editSth}
@@ -936,6 +965,7 @@ translations:
     - {verb: Explore, key: exploreSth}
     - {verb: Your, key: yourSth}
     - {verb: Remove, key: removeSth}
+    - {verb: Delete, key: deleteSth}
     - {verb: Select, key: selectSth}
     - {verb: Block, key: blockSth}
     - {verb: Latest, key: latestSth}

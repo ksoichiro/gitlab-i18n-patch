@@ -3287,7 +3287,7 @@ index 689cd6e..4c77d41 100644
 +        %span パスワードを記憶
 +  = button_tag "サインイン", class: "btn-save btn"
 diff --git a/app/views/devise/sessions/new.html.haml b/app/views/devise/sessions/new.html.haml
-index d65fa60..8b637a9 100644
+index d65fa60..8e00100 100644
 --- a/app/views/devise/sessions/new.html.haml
 +++ b/app/views/devise/sessions/new.html.haml
 @@ -1,4 +1,4 @@
@@ -3296,15 +3296,6 @@ index d65fa60..8b637a9 100644
  %div
    - if signin_enabled? || ldap_enabled? || crowd_enabled?
      = render 'devise/shared/signin_box'
-@@ -13,7 +13,7 @@
-     .prepend-top-20
-       = render 'devise/shared/signup_box'
- 
--  -# Show a message if none of the mechanisms above are enabled
-+  -# Show a message if none of the mechanisms above are を利用
-   - if !signin_enabled? && !ldap_enabled? && !(omniauth_enabled? && devise_mapping.omniauthable?)
-     %div
-       No authentication methods configured.
 diff --git a/app/views/devise/sessions/two_factor.html.haml b/app/views/devise/sessions/two_factor.html.haml
 index 22b2c1a..5a734c6 100644
 --- a/app/views/devise/sessions/two_factor.html.haml
@@ -5089,16 +5080,6 @@ index 2fd4859..6f081be 100644
 -    = link_to "Accept invitation", accept_invite_url(@token), method: :post, class: "btn btn-success"
 +    = link_to "invitationを承認", accept_invite_url(@token), method: :post, class: "btn btn-success"
      = link_to "Decline", decline_invite_url(@token), method: :post, class: "btn btn-danger prepend-left-10"
-diff --git a/app/views/kaminari/gitlab/_paginator.html.haml b/app/views/kaminari/gitlab/_paginator.html.haml
-index a12c53b..16acff1 100644
---- a/app/views/kaminari/gitlab/_paginator.html.haml
-+++ b/app/views/kaminari/gitlab/_paginator.html.haml
-@@ -1,4 +1,4 @@
---#  The container tag
-+-#  The container タグ
- -#  available local variables
- -#    current_page:  a page object for the currently displayed page
- -#    num_pages:     total number of pages
 diff --git a/app/views/layouts/_page.html.haml b/app/views/layouts/_page.html.haml
 index c799e9c..df28329 100644
 --- a/app/views/layouts/_page.html.haml
@@ -6458,19 +6439,6 @@ index 89f6f01..9e94432 100644
 -- page_title @key.title, "SSH Keys"
 +- page_title @key.title, "SSHキー"
  = render "key_details"
-diff --git a/app/views/profiles/notifications/_settings.html.haml b/app/views/profiles/notifications/_settings.html.haml
-index d0d0441..7f08fb3 100644
---- a/app/views/profiles/notifications/_settings.html.haml
-+++ b/app/views/profiles/notifications/_settings.html.haml
-@@ -6,7 +6,7 @@
-       = notification_icon(notification)
- 
-   %span.str-truncated
--    - if membership.kind_of? GroupMember
-+    - if membership.kind_of? Groupメンバー
-       = link_to membership.group.name, membership.group
-     - else
-       = link_to_project(membership.project)
 diff --git a/app/views/profiles/notifications/show.html.haml b/app/views/profiles/notifications/show.html.haml
 index de80abd..1d19151 100644
 --- a/app/views/profiles/notifications/show.html.haml
@@ -6919,18 +6887,9 @@ index 5f9a92f..ed12244 100644
  %h3.page-title Blame view
  
 diff --git a/app/views/projects/blob/_actions.html.haml b/app/views/projects/blob/_actions.html.haml
-index cdac50f..b9c3fd5 100644
+index cdac50f..7f6a422 100644
 --- a/app/views/projects/blob/_actions.html.haml
 +++ b/app/views/projects/blob/_actions.html.haml
-@@ -1,7 +1,7 @@
- .btn-group.tree-btn-group
-   = link_to 'Raw', namespace_project_raw_path(@project.namespace, @project, @id),
-       class: 'btn btn-sm', target: '_blank'
--  -# only show normal/blame view links for text files
-+  -# only show normal/blame view links for text ファイル
-   - if blob_text_viewable?(@blob)
-     - if current_page? namespace_project_blame_path(@project.namespace, @project, @id)
-       = link_to 'Normal View', namespace_project_blob_path(@project.namespace, @project, @id),
 @@ -9,7 +9,7 @@
      - else
        = link_to 'Blame', namespace_project_blame_path(@project.namespace, @project, @id),
@@ -8806,7 +8765,7 @@ index f3cc0e7..aec1838 100644
          by #{link_to_member(@project, @merge_request.closed_event.author, avatar: true)}
          #{time_ago_with_tooltip(@merge_request.closed_event.created_at)}
 diff --git a/app/views/projects/merge_requests/widget/_heading.html.haml b/app/views/projects/merge_requests/widget/_heading.html.haml
-index b05ab86..8c20601 100644
+index b05ab86..78f068a 100644
 --- a/app/views/projects/merge_requests/widget/_heading.html.haml
 +++ b/app/views/projects/merge_requests/widget/_heading.html.haml
 @@ -3,7 +3,7 @@
@@ -8818,14 +8777,7 @@ index b05ab86..8c20601 100644
          = ci_status_label(@ci_commit)
        for
        = succeed "." do
-@@ -13,13 +13,13 @@
- 
- - elsif @merge_request.has_ci?
-   - # Compatibility with old CI integrations (ex jenkins) when you request status from CI server via AJAX
--  - # Remove in later versions when services like Jenkins will set CI status via Commit status API
-+  - # in later versions when services like Jenkins will set CI status via Commit status APIを削除
-   .mr-widget-heading
-     - %w[success skipped canceled failed running pending].each do |status|
+@@ -19,7 +19,7 @@
        .ci_widget{class: "ci-#{status}", style: "display:none"}
          = ci_icon_for_status(status)
          %span
@@ -11165,16 +11117,6 @@ index 2b95b19..8ec8042 100644
            - subscribtion_status = subscribed ? 'subscribed' : 'unsubscribed'
            %button.btn.btn-block.btn-gray.subscribe-button.hide-collapsed{:type => 'button'}
              %span= subscribed ? 'Unsubscribe' : 'Subscribe'
-diff --git a/app/views/shared/milestones/_issuable.html.haml b/app/views/shared/milestones/_issuable.html.haml
-index 8588809..4ed10aa 100644
---- a/app/views/shared/milestones/_issuable.html.haml
-+++ b/app/views/shared/milestones/_issuable.html.haml
-@@ -1,4 +1,4 @@
---# @project is present when viewing Project's milestone
-+-# @project is present when viewing Project's マイルストーン
- - project = @project || issuable.project
- - assignee = issuable.assignee
- - issuable_type = issuable.class.table_name
 diff --git a/app/views/shared/milestones/_issues_tab.html.haml b/app/views/shared/milestones/_issues_tab.html.haml
 index a8db7f8..61609f7 100644
 --- a/app/views/shared/milestones/_issues_tab.html.haml

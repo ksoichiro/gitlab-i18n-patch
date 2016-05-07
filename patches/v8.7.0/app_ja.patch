@@ -680,6 +680,24 @@ index a4d7c42..5fc3480 100644
      else
        'Preview Changes'
      end
+diff --git a/app/helpers/button_helper.rb b/app/helpers/button_helper.rb
+index a9047ed..493ce02 100644
+--- a/app/helpers/button_helper.rb
++++ b/app/helpers/button_helper.rb
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ module ButtonHelper
+   # Output a "Copy to Clipboard" button
+   #
+@@ -50,7 +51,7 @@ module ButtonHelper
+         html: true,
+         placement: 'right',
+         container: 'body',
+-        title: 'Add an SSH key to your profile<br>to pull or push via SSH.'
++        title: 'SSHでプル/プッシュするためにはプロフィールにSSHキーを追加してください'
+       }
+   end
+ end
 diff --git a/app/helpers/commits_helper.rb b/app/helpers/commits_helper.rb
 index b59c398..85a4c6e 100644
 --- a/app/helpers/commits_helper.rb
@@ -804,7 +822,7 @@ index 8a97a74..daa32f8 100644
          label: "#{search_result_sanitize(group.name)}",
          url: group_path(group)
 diff --git a/app/helpers/visibility_level_helper.rb b/app/helpers/visibility_level_helper.rb
-index 3a83ae1..3a71480 100644
+index 3a83ae1..130d3e9 100644
 --- a/app/helpers/visibility_level_helper.rb
 +++ b/app/helpers/visibility_level_helper.rb
 @@ -1,3 +1,4 @@
@@ -828,6 +846,22 @@ index 3a83ae1..3a71480 100644
      end
    end
  
+@@ -81,7 +82,14 @@ module VisibilityLevelHelper
+   end
+ 
+   def visibility_level_label(level)
+-    Project.visibility_levels.key(level)
++    case level
++    when Gitlab::VisibilityLevel::PRIVATE
++      "プライベート"
++    when Gitlab::VisibilityLevel::INTERNAL
++      "内部"
++    when Gitlab::VisibilityLevel::PUBLIC
++      "公開"
++    end
+   end
+ 
+   def restricted_visibility_levels(show_all = false)
 diff --git a/app/models/merge_request.rb b/app/models/merge_request.rb
 index dbecc48..32ad421 100644
 --- a/app/models/merge_request.rb
@@ -941,7 +975,7 @@ index dd4a64e..efd239c 100644
 +                = password_field_tag :password, nil, class: "form-control bottom", placeholder: "パスワード"
 +                = button_tag "サインイン", class: "btn-create btn"
 diff --git a/app/views/admin/application_settings/_form.html.haml b/app/views/admin/application_settings/_form.html.haml
-index e0d8d16..8d9bf56 100644
+index e0d8d16..eb9a512 100644
 --- a/app/views/admin/application_settings/_form.html.haml
 +++ b/app/views/admin/application_settings/_form.html.haml
 @@ -48,7 +48,7 @@
@@ -1113,7 +1147,7 @@ index e0d8d16..8d9bf56 100644
      .form-group
        .col-sm-offset-2.col-sm-10
 -        = link_to 'Clear all repository checks', clear_repository_check_states_admin_application_settings_path, data: { confirm: 'This will clear repository check states for ALL projects in the database. This cannot be undone. Are you sure?' }, method: :put, class: "btn btn-sm btn-remove"
-+        = link_to 'Clear all repository checks', clear_repository_check_states_admin_application_settings_path, data: { confirm: 'This will clear repository check states for ALL プロジェクト in the database. This cannot be undone. 本当によろしいですか？' }, method: :put, class: "btn btn-sm btn-remove"
++        = link_to 'Clear all リポジトリ checks', clear_repository_check_states_admin_application_settings_path, data: { confirm: 'This will clear リポジトリ check states for ALL プロジェクト in the database. This cannot be undone. 本当によろしいですか？' }, method: :put, class: "btn btn-sm btn-remove"
          .help-block
            If you got a lot of false alarms from repository checks you can choose to clear all repository check information from the database.
  
@@ -1133,7 +1167,7 @@ index e9c7ca9..81093a5 100644
  %hr
  = render 'form'
 diff --git a/app/views/admin/applications/_delete_form.html.haml b/app/views/admin/applications/_delete_form.html.haml
-index 042971e..5ab3c58 100644
+index 042971e..fca19dd 100644
 --- a/app/views/admin/applications/_delete_form.html.haml
 +++ b/app/views/admin/applications/_delete_form.html.haml
 @@ -1,4 +1,4 @@
@@ -1141,7 +1175,7 @@ index 042971e..5ab3c58 100644
  = form_tag admin_application_path(application) do
    %input{:name => "_method", :type => "hidden", :value => "delete"}/
 -  = submit_tag 'Destroy', onclick: "return confirm('Are you sure?')", class: submit_btn_css
-+  = submit_tag 'Destroy', onclick: "return confirm('本当によろしいですか？')", class: submit_btn_css
++  = submit_tag '削除', onclick: "return confirm('本当によろしいですか？')", class: submit_btn_css
 diff --git a/app/views/admin/applications/_form.html.haml b/app/views/admin/applications/_form.html.haml
 index 4aacbb8..5ba7d39 100644
 --- a/app/views/admin/applications/_form.html.haml
@@ -1273,7 +1307,7 @@ index 6b157ab..41ce990 100644
 -      = f.submit "Add broadcast message", class: "btn btn-create"
 +      = f.submit "broadcast messageを追加", class: "btn btn-create"
 diff --git a/app/views/admin/broadcast_messages/index.html.haml b/app/views/admin/broadcast_messages/index.html.haml
-index c05538a..b62512f 100644
+index c05538a..f9be564 100644
 --- a/app/views/admin/broadcast_messages/index.html.haml
 +++ b/app/views/admin/broadcast_messages/index.html.haml
 @@ -14,8 +14,8 @@
@@ -1292,8 +1326,9 @@ index c05538a..b62512f 100644
              = message.ends_at
            %td
 -            = link_to icon('pencil-square-o'), edit_admin_broadcast_message_path(message), title: 'Edit', class: 'btn btn-xs'
+-            = link_to icon('times'), admin_broadcast_message_path(message), method: :delete, remote: true, title: 'Remove', class: 'js-remove-tr btn btn-xs btn-danger'
 +            = link_to icon('pencil-square-o'), edit_admin_broadcast_message_path(message), title: '編集', class: 'btn btn-xs'
-             = link_to icon('times'), admin_broadcast_message_path(message), method: :delete, remote: true, title: 'Remove', class: 'js-remove-tr btn btn-xs btn-danger'
++            = link_to icon('times'), admin_broadcast_message_path(message), method: :delete, remote: true, title: '削除', class: 'js-remove-tr btn btn-xs btn-danger'
  
    = paginate @broadcast_messages, theme: 'gitlab'
 diff --git a/app/views/admin/builds/_build.html.haml b/app/views/admin/builds/_build.html.haml
@@ -1463,7 +1498,7 @@ index 6dd2fef..9b6667f 100644
        - @groups.each do |group|
          %p
 diff --git a/app/views/admin/deploy_keys/index.html.haml b/app/views/admin/deploy_keys/index.html.haml
-index 149593e..2600c67 100644
+index 149593e..8d045c0 100644
 --- a/app/views/admin/deploy_keys/index.html.haml
 +++ b/app/views/admin/deploy_keys/index.html.haml
 @@ -1,15 +1,15 @@
@@ -1490,7 +1525,7 @@ index 149593e..2600c67 100644
                    added #{time_ago_with_tooltip(deploy_key.created_at)}
                %td
 -                = link_to 'Remove', admin_deploy_key_path(deploy_key), data: { confirm: 'Are you sure?'}, method: :delete, class: "btn btn-sm btn-remove delete-key pull-right"
-+                = link_to 'Remove', admin_deploy_key_path(deploy_key), data: { confirm: '本当によろしいですか？'}, method: :delete, class: "btn btn-sm btn-remove delete-key pull-right"
++                = link_to '削除', admin_deploy_key_path(deploy_key), data: { confirm: '本当によろしいですか？'}, method: :delete, class: "btn btn-sm btn-remove delete-key pull-right"
 diff --git a/app/views/admin/deploy_keys/new.html.haml b/app/views/admin/deploy_keys/new.html.haml
 index 15aa059..4ae0f24 100644
 --- a/app/views/admin/deploy_keys/new.html.haml
@@ -1539,7 +1574,7 @@ index 0cc4054..0ba3520 100644
 +      = f.submit '変更を保存', class: "btn btn-save"
 +      = link_to  'キャンセル', admin_group_path(@group), class: "btn btn-cancel"
 diff --git a/app/views/admin/groups/_group.html.haml b/app/views/admin/groups/_group.html.haml
-index 9025aaa..8fbe988 100644
+index 9025aaa..8722164 100644
 --- a/app/views/admin/groups/_group.html.haml
 +++ b/app/views/admin/groups/_group.html.haml
 @@ -3,8 +3,8 @@
@@ -1549,7 +1584,7 @@ index 9025aaa..8fbe988 100644
 -    = link_to 'Edit', edit_admin_group_path(group), id: "edit_#{dom_id(group)}", class: 'btn btn-grouped btn-sm'
 -    = link_to 'Destroy', [:admin, group], data: {confirm: "REMOVE #{group.name}? Are you sure?"}, method: :delete, class: 'btn btn-grouped btn-sm btn-remove'
 +    = link_to '編集', edit_admin_group_path(group), id: "edit_#{dom_id(group)}", class: 'btn btn-grouped btn-sm'
-+    = link_to 'Destroy', [:admin, group], data: {confirm: "REMOVE #{group.name}? 本当によろしいですか？"}, method: :delete, class: 'btn btn-grouped btn-sm btn-remove'
++    = link_to '削除', [:admin, group], data: {confirm: "REMOVE #{group.name}? 本当によろしいですか？"}, method: :delete, class: 'btn btn-grouped btn-sm btn-remove'
  
    .stats
      %span
@@ -1664,10 +1699,10 @@ index f309e80..b88d63d 100644
        .panel-footer
          = paginate @members, param_name: 'members_page', theme: 'gitlab'
 diff --git a/app/views/admin/hooks/index.html.haml b/app/views/admin/hooks/index.html.haml
-index 67d23c8..2f6bbfa 100644
+index 67d23c8..9ea3d30 100644
 --- a/app/views/admin/hooks/index.html.haml
 +++ b/app/views/admin/hooks/index.html.haml
-@@ -17,17 +17,17 @@
+@@ -17,35 +17,35 @@
      .col-sm-10
        = f.text_field :url, class: "form-control"
    .form-group
@@ -1684,16 +1719,28 @@ index 67d23c8..2f6bbfa 100644
          .prepend-left-20
            = f.label :push_events, class: 'list-label' do
 -            %strong Push events
-+            %strong プッシュイベント
++            %strong プッシュ
            %p.light
-             This url will be triggered by a push to the repository
+-            This url will be triggered by a push to the repository
++            リポジトリへのプッシュイベントがあったときにこのURLをリクエストします
        %div
-@@ -43,9 +43,9 @@
+         = f.check_box :tag_push_events, class: 'pull-left'
+         .prepend-left-20
+           = f.label :tag_push_events, class: 'list-label' do
+-            %strong Tag push events
++            %strong タグプッシュ
+           %p.light
+-            This url will be triggered when a new tag is pushed to the repository
++            新しいタグがリポジトリにプッシュされたときにこのURLをリクエストします
+   .form-group
+-    = f.label :enable_ssl_verification, "SSL verification", class: 'control-label checkbox'
++    = f.label :enable_ssl_verification, "SSL検証", class: 'control-label checkbox'
+     .col-sm-10
        .checkbox
          = f.label :enable_ssl_verification do
            = f.check_box :enable_ssl_verification
 -          %strong Enable SSL verification
-+          %strong SSL verificationを有効にする
++          %strong SSL検証を有効にする
    .form-actions
 -    = f.submit "Add System Hook", class: "btn btn-create"
 +    = f.submit "System Hookを追加", class: "btn btn-create"
@@ -1705,7 +1752,7 @@ index 67d23c8..2f6bbfa 100644
            .controls
              = link_to 'Test Hook', admin_hook_test_path(hook), class: "btn btn-sm"
 -            = link_to 'Remove', admin_hook_path(hook), data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-remove btn-sm"
-+            = link_to 'Remove', admin_hook_path(hook), data: { confirm: '本当によろしいですか？' }, method: :delete, class: "btn btn-remove btn-sm"
++            = link_to '削除', admin_hook_path(hook), data: { confirm: '本当によろしいですか？' }, method: :delete, class: "btn btn-remove btn-sm"
            .monospace= hook.url
            %div
              - %w(push_events tag_push_events issues_events note_events merge_requests_events build_events).each do |trigger|
@@ -1828,7 +1875,7 @@ index 0135ad0..0b9cf92 100644
  %hr
  = render 'form'
 diff --git a/app/views/admin/projects/index.html.haml b/app/views/admin/projects/index.html.haml
-index aa07afa..301b549 100644
+index aa07afa..a510557 100644
 --- a/app/views/admin/projects/index.html.haml
 +++ b/app/views/admin/projects/index.html.haml
 @@ -1,4 +1,4 @@
@@ -1882,17 +1929,19 @@ index aa07afa..301b549 100644
        %ul.well-list
          - @projects.each do |project|
            %li
-@@ -87,7 +87,7 @@
+@@ -87,8 +87,8 @@
                  %span.label.label-warning archived
                %span.label.label-gray
                  = repository_size(project)
 -              = link_to 'Edit', edit_namespace_project_path(project.namespace, project), id: "edit_#{dom_id(project)}", class: "btn btn-sm"
+-              = link_to 'Destroy', [project.namespace.becomes(Namespace), project], data: { confirm: remove_project_message(project) }, method: :delete, class: "btn btn-sm btn-remove"
 +              = link_to '編集', edit_namespace_project_path(project.namespace, project), id: "edit_#{dom_id(project)}", class: "btn btn-sm"
-               = link_to 'Destroy', [project.namespace.becomes(Namespace), project], data: { confirm: remove_project_message(project) }, method: :delete, class: "btn btn-sm btn-remove"
++              = link_to '削除', [project.namespace.becomes(Namespace), project], data: { confirm: remove_project_message(project) }, method: :delete, class: "btn btn-sm btn-remove"
          - if @projects.blank?
            .nothing-here-block 0 projects matches
+     = paginate @projects, theme: "gitlab"
 diff --git a/app/views/admin/projects/show.html.haml b/app/views/admin/projects/show.html.haml
-index 73986d2..eb446ea 100644
+index 73986d2..6939474 100644
 --- a/app/views/admin/projects/show.html.haml
 +++ b/app/views/admin/projects/show.html.haml
 @@ -1,4 +1,4 @@
@@ -1924,8 +1973,17 @@ index 73986d2..eb446ea 100644
              .col-sm-10
                = namespace_select_tag :new_namespace_id, selected: params[:namespace_id], class: 'input-large'
  
+@@ -129,7 +129,7 @@
+             = link_to icon('question-circle'), help_page_path('administration', 'repository_checks')
+ 
+           .form-group
+-            = f.submit 'Trigger repository check', class: 'btn btn-primary'
++            = f.submit 'Trigger リポジトリ check', class: 'btn btn-primary'
+ 
+   .col-md-6
+     - if @group
 diff --git a/app/views/admin/runners/_runner.html.haml b/app/views/admin/runners/_runner.html.haml
-index 6745e58d..1c76e4e 100644
+index 6745e58d..17d2fd2 100644
 --- a/app/views/admin/runners/_runner.html.haml
 +++ b/app/views/admin/runners/_runner.html.haml
 @@ -18,7 +18,7 @@
@@ -1950,7 +2008,7 @@ index 6745e58d..1c76e4e 100644
        - else
          = link_to 'Resume', [:resume, :admin, runner], method: :get, class: 'btn btn-success btn-sm'
 -      = link_to 'Remove', [:admin, runner], data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger btn-sm'
-+      = link_to 'Remove', [:admin, runner], data: { confirm: "本当によろしいですか？" }, method: :delete, class: 'btn btn-danger btn-sm'
++      = link_to '削除', [:admin, runner], data: { confirm: "本当によろしいですか？" }, method: :delete, class: 'btn btn-danger btn-sm'
  
 diff --git a/app/views/admin/runners/index.html.haml b/app/views/admin/runners/index.html.haml
 index 2dad64b..7f0ebb6 100644
@@ -2282,7 +2340,7 @@ index dbecb7b..30601ad 100644
  - else
    .nothing-here-block This user has no groups.
 diff --git a/app/views/admin/users/index.html.haml b/app/views/admin/users/index.html.haml
-index 0ee8dc9..571f75b 100644
+index 0ee8dc9..cc542ce 100644
 --- a/app/views/admin/users/index.html.haml
 +++ b/app/views/admin/users/index.html.haml
 @@ -1,4 +1,4 @@
@@ -2331,7 +2389,7 @@ index 0ee8dc9..571f75b 100644
 +                = link_to 'Unlock', unlock_admin_user_path(user), method: :put, class: 'btn-grouped btn btn-xs btn-success', data: { confirm: '本当によろしいですか？' }
                - if user.can_be_removed?
 -                = link_to 'Destroy', [:admin, user], data: { confirm: "USER #{user.name} WILL BE REMOVED! All issues, merge requests and groups linked to this user will also be removed! Maybe block the user instead? Are you sure?" }, method: :delete, class: 'btn-grouped btn btn-xs btn-remove'
-+                = link_to 'Destroy', [:admin, user], data: { confirm: "USER #{user.name} WILL BE REMOVED! All issues, マージリクエスト and グループ linked to このユーザ will also be removed! Maybe block the ユーザ instead? 本当によろしいですか？" }, method: :delete, class: 'btn-grouped btn btn-xs btn-remove'
++                = link_to '削除', [:admin, user], data: { confirm: "USER #{user.name} WILL BE REMOVED! All issues, マージリクエスト and グループ linked to このユーザ will also be removed! Maybe block the ユーザ instead? 本当によろしいですか？" }, method: :delete, class: 'btn-grouped btn btn-xs btn-remove'
  = paginate @users, theme: "gitlab"
 diff --git a/app/views/admin/users/keys.html.haml b/app/views/admin/users/keys.html.haml
 index 0f64412..c9c9622 100644
@@ -3241,7 +3299,7 @@ index 49c087c..6563ef9 100644
          = f.submit 'Resend unlock instructions', class: 'btn btn-success'
  
 diff --git a/app/views/doorkeeper/applications/_delete_form.html.haml b/app/views/doorkeeper/applications/_delete_form.html.haml
-index 001a711..aaeddec 100644
+index 001a711..56c7a57 100644
 --- a/app/views/doorkeeper/applications/_delete_form.html.haml
 +++ b/app/views/doorkeeper/applications/_delete_form.html.haml
 @@ -2,9 +2,9 @@
@@ -3251,11 +3309,12 @@ index 001a711..aaeddec 100644
 -    = button_tag type: "submit", class: "btn btn-transparent", data: { confirm: "Are you sure?" } do
 +    = button_tag type: "submit", class: "btn btn-transparent", data: { confirm: "本当によろしいですか？" } do
        %span.sr-only
-         Destroy
+-        Destroy
++        削除
        = icon('trash')
    - else
 -    = submit_tag 'Destroy', data: { confirm: "Are you sure?" }, class: submit_btn_css
-+    = submit_tag 'Destroy', data: { confirm: "本当によろしいですか？" }, class: submit_btn_css
++    = submit_tag '削除', data: { confirm: "本当によろしいですか？" }, class: submit_btn_css
 diff --git a/app/views/doorkeeper/applications/_form.html.haml b/app/views/doorkeeper/applications/_form.html.haml
 index 5c98265..32cd2b7 100644
 --- a/app/views/doorkeeper/applications/_form.html.haml
@@ -3921,7 +3980,7 @@ index 2b8bc26..136d6bb 100644
 +    = f.submit 'グループを作成', class: "btn btn-create", tabindex: 3
 +    = link_to 'キャンセル', dashboard_groups_path, class: 'btn btn-cancel'
 diff --git a/app/views/groups/projects.html.haml b/app/views/groups/projects.html.haml
-index dd75766..3329fed 100644
+index dd75766..bf16b9e 100644
 --- a/app/views/groups/projects.html.haml
 +++ b/app/views/groups/projects.html.haml
 @@ -1,5 +1,5 @@
@@ -3932,7 +3991,7 @@ index dd75766..3329fed 100644
  
  .panel.panel-default.prepend-top-default
    .panel-heading
-@@ -9,21 +9,21 @@
+@@ -9,22 +9,22 @@
        .controls
          = link_to new_project_path(namespace_id: @group.id), class: "btn btn-sm btn-success" do
            = icon('plus')
@@ -3953,11 +4012,13 @@ index dd75766..3329fed 100644
              = repository_size(project)
 -          = link_to 'Members', namespace_project_project_members_path(project.namespace, project), id: "edit_#{dom_id(project)}", class: "btn btn-sm"
 -          = link_to 'Edit', edit_namespace_project_path(project.namespace, project), id: "edit_#{dom_id(project)}", class: "btn btn-sm"
+-          = link_to 'Remove', project, data: { confirm: remove_project_message(project)}, method: :delete, class: "btn btn-sm btn-remove"
 +          = link_to 'メンバー', namespace_project_project_members_path(project.namespace, project), id: "edit_#{dom_id(project)}", class: "btn btn-sm"
 +          = link_to '編集', edit_namespace_project_path(project.namespace, project), id: "edit_#{dom_id(project)}", class: "btn btn-sm"
-           = link_to 'Remove', project, data: { confirm: remove_project_message(project)}, method: :delete, class: "btn btn-sm btn-remove"
++          = link_to '削除', project, data: { confirm: remove_project_message(project)}, method: :delete, class: "btn btn-sm btn-remove"
      - if @projects.blank?
        .nothing-here-block This group has no projects yet
+ 
 diff --git a/app/views/groups/show.html.haml b/app/views/groups/show.html.haml
 index 3d16ecb..7c9f281 100644
 --- a/app/views/groups/show.html.haml
@@ -4255,7 +4316,7 @@ index 57bc91e..68e22de 100644
          %li= link_to 'See our website for getting help', promo_url + '/getting-help/'
          %li= link_to 'Use the search bar on the top of this page', '#', onclick: 'Shortcuts.focusSearch(event)'
 diff --git a/app/views/help/ui.html.haml b/app/views/help/ui.html.haml
-index f12df5c..0819615 100644
+index f12df5c..5f2fd2e 100644
 --- a/app/views/help/ui.html.haml
 +++ b/app/views/help/ui.html.haml
 @@ -1,4 +1,4 @@
@@ -4490,7 +4551,7 @@ index f12df5c..0819615 100644
    %h4
      %code .file-holder
  
-@@ -529,7 +529,7 @@
+@@ -529,11 +529,11 @@
    .example
      .file-holder
        .file-title
@@ -4499,6 +4560,11 @@ index f12df5c..0819615 100644
          .file-actions
            .btn-group
              %a.btn Edit
+-            %a.btn.btn-danger Remove
++            %a.btn.btn-danger 削除
+       .file-contenta.code
+         = render 'shared/file_highlight', blob: blob
+ 
 diff --git a/app/views/import/base/create.js.haml b/app/views/import/base/create.js.haml
 index dfebf77..fe91cdb 100644
 --- a/app/views/import/base/create.js.haml
@@ -4513,7 +4579,7 @@ index dfebf77..fe91cdb 100644
    :plain
      job = $("tr#repo_#{@repo_id}")
 diff --git a/app/views/import/bitbucket/status.html.haml b/app/views/import/bitbucket/status.html.haml
-index 6e993e5..3605117 100644
+index 6e993e5..fe8b2e9 100644
 --- a/app/views/import/bitbucket/status.html.haml
 +++ b/app/views/import/bitbucket/status.html.haml
 @@ -1,21 +1,21 @@
@@ -4522,7 +4588,8 @@ index 6e993e5..3605117 100644
 +- header_title "プロジェクト", root_path
  %h3.page-title
    %i.fa.fa-bitbucket
-   Import projects from Bitbucket
+-  Import projects from Bitbucket
++  Bitbucketからプロジェクトをインポート
  
  - if @repos.any?
    %p.light
@@ -4533,12 +4600,12 @@ index 6e993e5..3605117 100644
    - if @incompatible_repos.any?
      = button_tag class: "btn btn-import btn-success js-import-all" do
 -      Import all compatible projects
-+      Import all compatible プロジェクト
++      all compatible プロジェクトをインポート
        = icon("spinner spin", class: "loading-icon")
    - else
      = button_tag class: "btn btn-success js-import-all" do
 -      Import all projects
-+      Import all プロジェクト
++      all プロジェクトをインポート
        = icon("spinner spin", class: "loading-icon")
  
  .table-responsive
@@ -4561,17 +4628,19 @@ index 6e993e5..3605117 100644
  - if @incompatible_repos.any?
    %p
 diff --git a/app/views/import/fogbugz/new.html.haml b/app/views/import/fogbugz/new.html.haml
-index 5515fad..be244bc 100644
+index 5515fad..66a8a3b 100644
 --- a/app/views/import/fogbugz/new.html.haml
 +++ b/app/views/import/fogbugz/new.html.haml
-@@ -1,5 +1,5 @@
+@@ -1,14 +1,14 @@
  - page_title "FogBugz Import"
 -- header_title "Projects", root_path
 +- header_title "プロジェクト", root_path
  %h3.page-title
    %i.fa.fa-bug
-   Import projects from FogBugz
-@@ -8,7 +8,7 @@
+-  Import projects from FogBugz
++  FogBugzからプロジェクトをインポート
+ %hr
+ 
  = form_tag callback_import_fogbugz_path, class: 'form-horizontal' do
    %p
      To get started you enter your FogBugz URL and login information below.
@@ -4590,17 +4659,21 @@ index 5515fad..be244bc 100644
        = password_field_tag :password, nil, class: 'form-control'
    .form-actions
 diff --git a/app/views/import/fogbugz/new_user_map.html.haml b/app/views/import/fogbugz/new_user_map.html.haml
-index 0733873..4146a64 100644
+index 0733873..233e1a1 100644
 --- a/app/views/import/fogbugz/new_user_map.html.haml
 +++ b/app/views/import/fogbugz/new_user_map.html.haml
-@@ -1,5 +1,5 @@
+@@ -1,8 +1,8 @@
 -- page_title 'User map', 'FogBugz import'
 -- header_title "Projects", root_path
 +- page_title 'ユーザマップ', 'FogBugz import'
 +- header_title "プロジェクト", root_path
  %h3.page-title
    %i.fa.fa-bug
-   Import projects from FogBugz
+-  Import projects from FogBugz
++  FogBugzからプロジェクトをインポート
+ %hr
+ 
+ = form_tag create_user_map_import_fogbugz_path, class: 'form-horizontal' do
 @@ -20,7 +20,7 @@
          It will also associate and/or assign these issues and comments with
          the project creator.
@@ -4624,7 +4697,7 @@ index 0733873..4146a64 100644
          - @user_map.each do |id, user|
            %tr
 diff --git a/app/views/import/fogbugz/status.html.haml b/app/views/import/fogbugz/status.html.haml
-index d3d3c59..54d0ec5 100644
+index d3d3c59..86796a7 100644
 --- a/app/views/import/fogbugz/status.html.haml
 +++ b/app/views/import/fogbugz/status.html.haml
 @@ -1,12 +1,12 @@
@@ -4633,7 +4706,8 @@ index d3d3c59..54d0ec5 100644
 +- header_title "プロジェクト", root_path
  %h3.page-title
    %i.fa.fa-bug
-   Import projects from FogBugz
+-  Import projects from FogBugz
++  FogBugzからプロジェクトをインポート
  
  - if @repos.any?
    %p.light
@@ -4647,7 +4721,7 @@ index d3d3c59..54d0ec5 100644
    %p
    = button_tag class: 'btn btn-import btn-success js-import-all' do
 -    Import all projects
-+    Import all プロジェクト
++    all プロジェクトをインポート
      = icon("spinner spin", class: "loading-icon")
  
  .table-responsive
@@ -4661,7 +4735,7 @@ index d3d3c59..54d0ec5 100644
        - @already_added_projects.each do |project|
          %tr{id: "project_#{project.id}", class: "#{project_status_css_class(project.import_status)}"}
 diff --git a/app/views/import/github/status.html.haml b/app/views/import/github/status.html.haml
-index 5b7f114..6bccad7 100644
+index 5b7f114..b4ec48a 100644
 --- a/app/views/import/github/status.html.haml
 +++ b/app/views/import/github/status.html.haml
 @@ -1,15 +1,15 @@
@@ -4670,7 +4744,8 @@ index 5b7f114..6bccad7 100644
 +- header_title "プロジェクト", root_path
  %h3.page-title
    %i.fa.fa-github
-   Import projects from GitHub
+-  Import projects from GitHub
++  GitHubからプロジェクトをインポート
  
  %p.light
 -  Select projects you want to import.
@@ -4679,7 +4754,7 @@ index 5b7f114..6bccad7 100644
  %p
    = button_tag class: "btn btn-import btn-success js-import-all" do
 -    Import all projects
-+    Import all プロジェクト
++    all プロジェクトをインポート
      = icon("spinner spin", class: "loading-icon")
  
  .table-responsive
@@ -4693,7 +4768,7 @@ index 5b7f114..6bccad7 100644
        - @already_added_projects.each do |project|
          %tr{id: "project_#{project.id}", class: "#{project_status_css_class(project.import_status)}"}
 diff --git a/app/views/import/gitlab/status.html.haml b/app/views/import/gitlab/status.html.haml
-index e3a356b..88cb6bb 100644
+index e3a356b..a5c6906 100644
 --- a/app/views/import/gitlab/status.html.haml
 +++ b/app/views/import/gitlab/status.html.haml
 @@ -1,15 +1,15 @@
@@ -4702,7 +4777,8 @@ index e3a356b..88cb6bb 100644
 +- header_title "プロジェクト", root_path
  %h3.page-title
    %i.fa.fa-heart
-   Import projects from GitLab.com
+-  Import projects from GitLab.com
++  GitLab.comからプロジェクトをインポート
  
  %p.light
 -  Select projects you want to import.
@@ -4711,7 +4787,7 @@ index e3a356b..88cb6bb 100644
  %p
    = button_tag class: "btn btn-import btn-success js-import-all" do
 -    Import all projects
-+    Import all プロジェクト
++    all プロジェクトをインポート
      = icon("spinner spin", class: "loading-icon")
  
  .table-responsive
@@ -4725,7 +4801,7 @@ index e3a356b..88cb6bb 100644
        - @already_added_projects.each do |project|
          %tr{id: "project_#{project.id}", class: "#{project_status_css_class(project.import_status)}"}
 diff --git a/app/views/import/gitorious/status.html.haml b/app/views/import/gitorious/status.html.haml
-index 267eee4..49f1f13 100644
+index 267eee4..d48db1b 100644
 --- a/app/views/import/gitorious/status.html.haml
 +++ b/app/views/import/gitorious/status.html.haml
 @@ -1,15 +1,15 @@
@@ -4734,7 +4810,8 @@ index 267eee4..49f1f13 100644
 +- header_title "プロジェクト", root_path
  %h3.page-title
    %i.icon-gitorious.icon-gitorious-big
-   Import projects from Gitorious.org
+-  Import projects from Gitorious.org
++  Gitorious.orgからプロジェクトをインポート
  
  %p.light
 -  Select projects you want to import.
@@ -4743,7 +4820,7 @@ index 267eee4..49f1f13 100644
  %p
    = button_tag class: "btn btn-import btn-success js-import-all" do
 -    Import all projects
-+    Import all プロジェクト
++    all プロジェクトをインポート
      = icon("spinner spin", class: "loading-icon")
  
  .table-responsive
@@ -4757,16 +4834,20 @@ index 267eee4..49f1f13 100644
        - @already_added_projects.each do |project|
          %tr{id: "project_#{project.id}", class: "#{project_status_css_class(project.import_status)}"}
 diff --git a/app/views/import/google_code/new.html.haml b/app/views/import/google_code/new.html.haml
-index 5d2f149..6ba36be 100644
+index 5d2f149..cb7a916 100644
 --- a/app/views/import/google_code/new.html.haml
 +++ b/app/views/import/google_code/new.html.haml
-@@ -1,5 +1,5 @@
+@@ -1,8 +1,8 @@
  - page_title "Google Code import"
 -- header_title "Projects", root_path
 +- header_title "プロジェクト", root_path
  %h3.page-title
    %i.fa.fa-google
-   Import projects from Google Code
+-  Import projects from Google Code
++  Google Codeからプロジェクトをインポート
+ %hr
+ 
+ = form_tag callback_import_google_code_path, class: 'form-horizontal', multipart: true do
 @@ -16,10 +16,10 @@
          #{link_to "Google Takeout", "https://www.google.com/settings/takeout", target: "_blank"}.
      %li
@@ -4781,17 +4862,21 @@ index 5d2f149..6ba36be 100644
        %p
          Scroll down to <strong>Google Code Project Hosting</strong> and enable the switch on the right.
 diff --git a/app/views/import/google_code/new_user_map.html.haml b/app/views/import/google_code/new_user_map.html.haml
-index 0738b3d..0c571f4 100644
+index 0738b3d..cbf0332 100644
 --- a/app/views/import/google_code/new_user_map.html.haml
 +++ b/app/views/import/google_code/new_user_map.html.haml
-@@ -1,5 +1,5 @@
+@@ -1,8 +1,8 @@
 -- page_title "User map", "Google Code import"
 -- header_title "Projects", root_path
 +- page_title "ユーザマップ", "Google Code import"
 +- header_title "プロジェクト", root_path
  %h3.page-title
    %i.fa.fa-google
-   Import projects from Google Code
+-  Import projects from Google Code
++  Google Codeからプロジェクトをインポート
+ %hr
+ 
+ = form_tag create_user_map_import_google_code_path, class: 'form-horizontal' do
 @@ -19,7 +19,7 @@
          will add "By johnsm...@example.com" to all issues and comments originally created by johnsmith@example.com.
          The email address or username is masked to ensure the user's privacy.
@@ -4802,7 +4887,7 @@ index 0738b3d..0c571f4 100644
          <code>"johnsmith@example.com": "@johnsmith"</code>
          will add "By <a href="#">@johnsmith</a>" to all issues and comments originally created by johnsmith@example.com,
 diff --git a/app/views/import/google_code/status.html.haml b/app/views/import/google_code/status.html.haml
-index 5ada6b1..b11eef2 100644
+index 5ada6b1..7f31183 100644
 --- a/app/views/import/google_code/status.html.haml
 +++ b/app/views/import/google_code/status.html.haml
 @@ -1,12 +1,12 @@
@@ -4811,7 +4896,8 @@ index 5ada6b1..b11eef2 100644
 +- header_title "プロジェクト", root_path
  %h3.page-title
    %i.fa.fa-google
-   Import projects from Google Code
+-  Import projects from Google Code
++  Google Codeからプロジェクトをインポート
  
  - if @repos.any?
    %p.light
@@ -4825,12 +4911,12 @@ index 5ada6b1..b11eef2 100644
    - if @incompatible_repos.any?
      = button_tag class: "btn btn-import btn-success js-import-all" do
 -      Import all compatible projects
-+      Import all compatible プロジェクト
++      all compatible プロジェクトをインポート
        = icon("spinner spin", class: "loading-icon")
    - else
      = button_tag class: "btn btn-import btn-success js-import-all" do
 -      Import all projects
-+      Import all プロジェクト
++      all プロジェクトをインポート
        = icon("spinner spin", class: "loading-icon")
  
  .table-responsive
@@ -6126,7 +6212,7 @@ index f630c03..bcfbea5 100644
  
  .row.prepend-top-default
 diff --git a/app/views/profiles/emails/index.html.haml b/app/views/profiles/emails/index.html.haml
-index 3f328f9..01c0d3b 100644
+index 3f328f9..a7cc237 100644
 --- a/app/views/profiles/emails/index.html.haml
 +++ b/app/views/profiles/emails/index.html.haml
 @@ -1,4 +1,4 @@
@@ -6192,7 +6278,7 @@ index 3f328f9..01c0d3b 100644
 -              %span.label.label-info Notification Email
 -          = link_to 'Remove', profile_email_path(email), data: { confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-sm btn-remove pull-right'
 +              %span.label.label-info Notification メールアドレス
-+          = link_to 'Remove', profile_email_path(email), data: { confirm: '本当によろしいですか？'}, method: :delete, class: 'btn btn-sm btn-remove pull-right'
++          = link_to '削除', profile_email_path(email), data: { confirm: '本当によろしいですか？'}, method: :delete, class: 'btn btn-sm btn-remove pull-right'
 diff --git a/app/views/profiles/keys/_form.html.haml b/app/views/profiles/keys/_form.html.haml
 index b3ed59a..de0530d 100644
 --- a/app/views/profiles/keys/_form.html.haml
@@ -6204,7 +6290,7 @@ index b3ed59a..de0530d 100644
 -      = f.submit 'Add key', class: "btn btn-create"
 +      = f.submit 'keyを追加', class: "btn btn-create"
 diff --git a/app/views/profiles/keys/_key.html.haml b/app/views/profiles/keys/_key.html.haml
-index 4dbaa66..aa04a61 100644
+index 4dbaa66..236fbb6 100644
 --- a/app/views/profiles/keys/_key.html.haml
 +++ b/app/views/profiles/keys/_key.html.haml
 @@ -9,6 +9,6 @@
@@ -6212,11 +6298,12 @@ index 4dbaa66..aa04a61 100644
      %span.key-created-at
        created #{time_ago_with_tooltip(key.created_at)}
 -    = link_to path_to_key(key, is_admin), data: { confirm: 'Are you sure?'}, method: :delete, class: "btn btn-transparent prepend-left-10" do
+-      %span.sr-only Remove
 +    = link_to path_to_key(key, is_admin), data: { confirm: '本当によろしいですか？'}, method: :delete, class: "btn btn-transparent prepend-left-10" do
-       %span.sr-only Remove
++      %span.sr-only 削除
        = icon('trash')
 diff --git a/app/views/profiles/keys/_key_details.html.haml b/app/views/profiles/keys/_key_details.html.haml
-index dd76154..27f43be 100644
+index dd76154..11eb115 100644
 --- a/app/views/profiles/keys/_key_details.html.haml
 +++ b/app/views/profiles/keys/_key_details.html.haml
 @@ -3,7 +3,7 @@
@@ -6233,7 +6320,7 @@ index dd76154..27f43be 100644
    .col-md-12
      .pull-right
 -      = link_to 'Remove', path_to_key(@key, is_admin), data: {confirm: 'Are you sure?'}, method: :delete, class: "btn btn-remove delete-key"
-+      = link_to 'Remove', path_to_key(@key, is_admin), data: {confirm: '本当によろしいですか？'}, method: :delete, class: "btn btn-remove delete-key"
++      = link_to '削除', path_to_key(@key, is_admin), data: {confirm: '本当によろしいですか？'}, method: :delete, class: "btn btn-remove delete-key"
 diff --git a/app/views/profiles/keys/index.html.haml b/app/views/profiles/keys/index.html.haml
 index e0f8c9a..256408e 100644
 --- a/app/views/profiles/keys/index.html.haml
@@ -6497,6 +6584,19 @@ index 69fc81c..186ceed 100644
 -        = submit_tag 'Enable two-factor authentication', class: 'btn btn-success'
 +        = submit_tag 'two-factor authenticationを有効にする', class: 'btn btn-success'
          = link_to 'Configure it later', skip_profile_two_factor_auth_path, :method => :patch,  class: 'btn btn-cancel' if two_factor_skippable?
+diff --git a/app/views/projects/_bitbucket_import_modal.html.haml b/app/views/projects/_bitbucket_import_modal.html.haml
+index 2987f6b..0eb0500 100644
+--- a/app/views/projects/_bitbucket_import_modal.html.haml
++++ b/app/views/projects/_bitbucket_import_modal.html.haml
+@@ -3,7 +3,7 @@
+     .modal-content
+       .modal-header
+         %a.close{href: "#", "data-dismiss" => "modal"} ×
+-        %h3 Import projects from Bitbucket
++        %h3 Bitbucketからプロジェクトをインポート
+       .modal-body
+         To enable importing projects from Bitbucket,
+         - if current_user.admin?
 diff --git a/app/views/projects/_builds_settings.html.haml b/app/views/projects/_builds_settings.html.haml
 index b607437..8aafd76 100644
 --- a/app/views/projects/_builds_settings.html.haml
@@ -6542,6 +6642,32 @@ index 640612c..b53fc4d 100644
              class: 'btn btn-cancel', data: {confirm: leave_edit_message}
  
    - unless can?(current_user, :push_code, @project)
+diff --git a/app/views/projects/_github_import_modal.html.haml b/app/views/projects/_github_import_modal.html.haml
+index 46ad155..0de0c3e 100644
+--- a/app/views/projects/_github_import_modal.html.haml
++++ b/app/views/projects/_github_import_modal.html.haml
+@@ -3,7 +3,7 @@
+     .modal-content
+       .modal-header
+         %a.close{href: "#", "data-dismiss" => "modal"} ×
+-        %h3 Import projects from GitHub
++        %h3 GitHubからプロジェクトをインポート
+       .modal-body
+         To enable importing projects from GitHub,
+         - if current_user.admin?
+diff --git a/app/views/projects/_gitlab_import_modal.html.haml b/app/views/projects/_gitlab_import_modal.html.haml
+index 377cf01..287d38b 100644
+--- a/app/views/projects/_gitlab_import_modal.html.haml
++++ b/app/views/projects/_gitlab_import_modal.html.haml
+@@ -3,7 +3,7 @@
+     .modal-content
+       .modal-header
+         %a.close{href: "#", "data-dismiss" => "modal"} ×
+-        %h3 Import projects from GitLab.com
++        %h3 GitLab.comからプロジェクトをインポート
+       .modal-body
+         To enable importing projects from GitLab.com,
+         - if current_user.admin?
 diff --git a/app/views/projects/_home_panel.html.haml b/app/views/projects/_home_panel.html.haml
 index 9b5de17..9aff46c 100644
 --- a/app/views/projects/_home_panel.html.haml
@@ -6728,9 +6854,18 @@ index d09cd73..a14daea 100644
 -      .nothing-here-block Empty file
 +      .nothing-here-block 空のファイル
 diff --git a/app/views/projects/blob/_upload.html.haml b/app/views/projects/blob/_upload.html.haml
-index b1f50eb..19e844c 100644
+index b1f50eb..f32acda 100644
 --- a/app/views/projects/blob/_upload.html.haml
 +++ b/app/views/projects/blob/_upload.html.haml
+@@ -9,7 +9,7 @@
+           .dropzone
+             .dropzone-previews.blob-upload-dropzone-previews
+               %p.dz-message.light
+-                Attach a file by drag &amp; drop or
++                file by drag &amp; drop orを添付
+                 = link_to 'click to upload', '#', class: "markdown-selector"
+           %br
+           .dropzone-alerts{class: "alert alert-danger data", style: "display:none"}
 @@ -18,7 +18,7 @@
  
            .form-actions
@@ -7260,7 +7395,7 @@ index dd590a4..c8b79ff 100644
  :javascript
    var availableTags = #{@project.repository.ref_names.to_json};
 diff --git a/app/views/projects/deploy_keys/_deploy_key.html.haml b/app/views/projects/deploy_keys/_deploy_key.html.haml
-index 8d66bae..2bd3569 100644
+index 8d66bae..7a3c674 100644
 --- a/app/views/projects/deploy_keys/_deploy_key.html.haml
 +++ b/app/views/projects/deploy_keys/_deploy_key.html.haml
 @@ -6,7 +6,7 @@
@@ -7268,7 +7403,7 @@ index 8d66bae..2bd3569 100644
      - else
        - if deploy_key.destroyed_when_orphaned? && deploy_key.almost_orphaned?
 -        = link_to 'Remove', disable_namespace_project_deploy_key_path(@project.namespace, @project, deploy_key), data: { confirm: 'You are going to remove deploy key. Are you sure?'}, method: :put, class: "btn btn-remove delete-key btn-sm pull-right"
-+        = link_to 'Remove', disable_namespace_project_deploy_key_path(@project.namespace, @project, deploy_key), data: { confirm: 'You are going to remove deploy key. 本当によろしいですか？'}, method: :put, class: "btn btn-remove delete-key btn-sm pull-right"
++        = link_to '削除', disable_namespace_project_deploy_key_path(@project.namespace, @project, deploy_key), data: { confirm: 'You are going to remove deploy key. 本当によろしいですか？'}, method: :put, class: "btn btn-remove delete-key btn-sm pull-right"
        - else
          = link_to disable_namespace_project_deploy_key_path(@project.namespace, @project, deploy_key), class: 'btn btn-sm', method: :put do
            = icon('power-off')
@@ -7294,7 +7429,7 @@ index f6565f8..57eebe2 100644
 +      = f.submit 'デプロイキーを作成', class: "btn-create btn"
 +      = link_to "キャンセル", namespace_project_deploy_keys_path(@project.namespace, @project), class: "btn btn-cancel"
 diff --git a/app/views/projects/deploy_keys/index.html.haml b/app/views/projects/deploy_keys/index.html.haml
-index 8e24c77..43d6207 100644
+index 8e24c77..a91b6b4 100644
 --- a/app/views/projects/deploy_keys/index.html.haml
 +++ b/app/views/projects/deploy_keys/index.html.haml
 @@ -1,11 +1,11 @@
@@ -7302,7 +7437,8 @@ index 8e24c77..43d6207 100644
 +- page_title "デプロイキー"
  
  %h3.page-title
-   Deploy keys allow read-only access to the repository
+-  Deploy keys allow read-only access to the repository
++  Deploy keys allow read-only access to the リポジトリ
  
 -  = link_to new_namespace_project_deploy_key_path(@project.namespace, @project), class: "btn btn-new pull-right", title: "New Deploy Key" do
 +  = link_to new_namespace_project_deploy_key_path(@project.namespace, @project), class: "btn btn-new pull-right", title: "新しいデプロイキー" do
@@ -7384,7 +7520,7 @@ index ea2a3e0..e6a58d7 100644
      %strong.cgreen #{diff_files.sum(&:added_lines)} additions
      and
 diff --git a/app/views/projects/edit.html.haml b/app/views/projects/edit.html.haml
-index 76a4f41..51ed218 100644
+index 76a4f41..9acad15 100644
 --- a/app/views/projects/edit.html.haml
 +++ b/app/views/projects/edit.html.haml
 @@ -3,57 +3,57 @@
@@ -7542,7 +7678,7 @@ index 76a4f41..51ed218 100644
  
        .panel.panel-default.panel.panel-warning
 -        .panel-heading Rename repository
-+        .panel-heading repositoryをリネーム
++        .panel-heading リポジトリをリネーム
          .errors-holder
          .panel-body
            = form_for([@project.namespace.becomes(Namespace), @project], html: { class: 'form-horizontal' }) do |f|
@@ -7623,18 +7759,52 @@ index 76a4f41..51ed218 100644
          .nothing-here-block Only the project owner can remove a project.
  
 diff --git a/app/views/projects/empty.html.haml b/app/views/projects/empty.html.haml
-index 52d0938..a30ec00 100644
+index 52d0938..7211146 100644
 --- a/app/views/projects/empty.html.haml
 +++ b/app/views/projects/empty.html.haml
-@@ -35,7 +35,7 @@
+@@ -9,10 +9,10 @@
+ 
+ .gray-content-block.second-block.center
+   %h3.page-title
+-    The repository for this project is empty
++    このプロジェクトのリポジトリは空です
+   - if can?(current_user, :push_code, @project)
+     %p
+-      If you already have files you can push them using command line instructions below.
++      すでにファイルがある場合は以下のコマンドラインでの手順に沿ってプッシュできます。
+     %p
+       Otherwise you can start with adding a
+       = link_to "README", new_readme_path, class: 'underlined-link'
+@@ -25,17 +25,17 @@
+     .prepend-top-20
+     .empty_wrapper
+       %h3.page-title-empty
+-        Command line instructions
++        コマンドラインでの手順
+       %div.git-empty
+         %fieldset
+-          %h5 Git global setup
++          %h5 Gitのグローバルなセットアップ
+           %pre.light-well
+             :preserve
+               git config --global user.name "#{h git_user_name}"
                git config --global user.email "#{h git_user_email}"
  
          %fieldset
 -          %h5 Create a new repository
-+          %h5 new repositoryを作成
++          %h5 リポジトリを新しく作成する場合
            %pre.light-well
              :preserve
                git clone #{ content_tag(:span, default_url_to_repo, class: 'clone')}
+@@ -46,7 +46,7 @@
+               git push -u origin master
+ 
+         %fieldset
+-          %h5 Existing folder or Git repository
++          %h5 既存のフォルダまたはGitリポジトリがある場合
+           %pre.light-well
+             :preserve
+               cd existing_folder
 @@ -58,4 +58,4 @@
  
            - if can? current_user, :remove_project, @project
@@ -7691,7 +7861,7 @@ index 4bcf2d9..23fcfe5 100644
            Fork
  
 diff --git a/app/views/projects/forks/new.html.haml b/app/views/projects/forks/new.html.haml
-index 73a7fc0..2fb44cc 100644
+index 73a7fc0..eaa7c97 100644
 --- a/app/views/projects/forks/new.html.haml
 +++ b/app/views/projects/forks/new.html.haml
 @@ -1,8 +1,8 @@
@@ -7724,6 +7894,26 @@ index 73a7fc0..2fb44cc 100644
    %p.slead
      You must have permission to create a project in a namespace before forking.
  
+@@ -41,5 +41,5 @@
+   .center
+     %h2
+       %i.fa.fa-spinner.fa-spin
+-      Forking repository
++      リポジトリをフォークしています
+     %p Please wait a moment, this page will automatically refresh when ready.
+diff --git a/app/views/projects/graphs/languages.html.haml b/app/views/projects/graphs/languages.html.haml
+index a7fab5b..a04b549 100644
+--- a/app/views/projects/graphs/languages.html.haml
++++ b/app/views/projects/graphs/languages.html.haml
+@@ -4,7 +4,7 @@
+ 
+ .gray-content-block.append-bottom-default
+   .oneline
+-    Programming languages used in this repository
++    このリポジトリで使用されているプログラミング言語
+ 
+ .row
+   .col-md-8
 diff --git a/app/views/projects/group_links/index.html.haml b/app/views/projects/group_links/index.html.haml
 index 13f5fc1..46c69d1 100644
 --- a/app/views/projects/group_links/index.html.haml
@@ -7746,10 +7936,10 @@ index 13f5fc1..46c69d1 100644
            = groups_select_tag(:link_group_id, skip_group: @project.group.try(:path))
        .form-group
 diff --git a/app/views/projects/hooks/index.html.haml b/app/views/projects/hooks/index.html.haml
-index aae3abc..61d636c 100644
+index aae3abc..409927c 100644
 --- a/app/views/projects/hooks/index.html.haml
 +++ b/app/views/projects/hooks/index.html.haml
-@@ -16,13 +16,13 @@
+@@ -16,59 +16,59 @@
      .col-sm-10
        = f.text_field :url, class: "form-control", placeholder: 'http://example.com/trigger-ci.json'
    .form-group
@@ -7761,25 +7951,64 @@ index aae3abc..61d636c 100644
          .prepend-left-20
            = f.label :push_events, class: 'list-label' do
 -            %strong Push events
-+            %strong プッシュイベント
++            %strong プッシュ
            %p.light
-             This url will be triggered by a push to the repository
+-            This url will be triggered by a push to the repository
++            リポジトリへのプッシュイベントがあったときにこのURLをリクエストします
        %div
-@@ -36,7 +36,7 @@
+         = f.check_box :tag_push_events, class: 'pull-left'
+         .prepend-left-20
+           = f.label :tag_push_events, class: 'list-label' do
+-            %strong Tag push events
++            %strong タグプッシュ
+           %p.light
+-            This url will be triggered when a new tag is pushed to the repository
++            新しいタグがリポジトリにプッシュされたときにこのURLをリクエストします
+       %div
          = f.check_box :note_events, class: 'pull-left'
          .prepend-left-20
            = f.label :note_events, class: 'list-label' do
 -            %strong Comments
 +            %strong コメント
            %p.light
-             This url will be triggered when someone adds a comment
+-            This url will be triggered when someone adds a comment
++            誰かがコメントを追加したときにこのURLをリクエストします
        %div
-@@ -66,9 +66,9 @@
+         = f.check_box :issues_events, class: 'pull-left'
+         .prepend-left-20
+           = f.label :issues_events, class: 'list-label' do
+-            %strong Issues events
++            %strong 課題
+           %p.light
+-            This url will be triggered when an issue is created/updated/merged
++            課題が作成されたときにこのURLをリクエストします/updated/merged
+       %div
+         = f.check_box :merge_requests_events, class: 'pull-left'
+         .prepend-left-20
+           = f.label :merge_requests_events, class: 'list-label' do
+-            %strong Merge Request events
++            %strong マージリクエスト
+           %p.light
+-            This url will be triggered when a merge request is created/updated/merged
++            マージリクエストが作成されたときにこのURLをリクエストします/updated/merged
+       %div
+         = f.check_box :build_events, class: 'pull-left'
+         .prepend-left-20
+           = f.label :build_events, class: 'list-label' do
+-            %strong Build events
++            %strong ビルド
+           %p.light
+-            This url will be triggered when the build status changes
++            ビルドのステータスが変更されたときにこのURLをリクエストします
+   .form-group
+-    = f.label :enable_ssl_verification, "SSL verification", class: 'control-label checkbox'
++    = f.label :enable_ssl_verification, "SSL検証", class: 'control-label checkbox'
+     .col-sm-10
        .checkbox
          = f.label :enable_ssl_verification do
            = f.check_box :enable_ssl_verification
 -          %strong Enable SSL verification
-+          %strong SSL verificationを有効にする
++          %strong SSL検証を有効にする
    .form-actions
 -    = f.submit "Add Webhook", class: "btn btn-create"
 +    = f.submit "Webhookを追加", class: "btn btn-create"
@@ -7791,10 +8020,42 @@ index aae3abc..61d636c 100644
            .controls
              = link_to 'Test Hook', test_namespace_project_hook_path(@project.namespace, @project, hook), class: "btn btn-sm btn-grouped"
 -            = link_to 'Remove', namespace_project_hook_path(@project.namespace, @project, hook), data: { confirm: 'Are you sure?'}, method: :delete, class: "btn btn-remove btn-sm btn-grouped"
-+            = link_to 'Remove', namespace_project_hook_path(@project.namespace, @project, hook), data: { confirm: '本当によろしいですか？'}, method: :delete, class: "btn btn-remove btn-sm btn-grouped"
++            = link_to '削除', namespace_project_hook_path(@project.namespace, @project, hook), data: { confirm: '本当によろしいですか？'}, method: :delete, class: "btn btn-remove btn-sm btn-grouped"
            .monospace= hook.url
            %div
              - %w(push_events tag_push_events issues_events note_events merge_requests_events build_events).each do |trigger|
+diff --git a/app/views/projects/imports/new.html.haml b/app/views/projects/imports/new.html.haml
+index 6027fb2..e73e34a 100644
+--- a/app/views/projects/imports/new.html.haml
++++ b/app/views/projects/imports/new.html.haml
+@@ -1,6 +1,6 @@
+-- page_title "Import repository"
++- page_title "リポジトリをインポート"
+ %h3.page-title
+-  Import repository
++  リポジトリをインポート
+ 
+ %hr
+ 
+diff --git a/app/views/projects/imports/show.html.haml b/app/views/projects/imports/show.html.haml
+index c0d1ce0..4ccf47d 100644
+--- a/app/views/projects/imports/show.html.haml
++++ b/app/views/projects/imports/show.html.haml
+@@ -1,4 +1,4 @@
+-- page_title "Import in progress"
++- page_title "in progressをインポート"
+ .save-project-loader
+   .center
+     %h2
+@@ -6,7 +6,7 @@
+       - if @project.forked?
+         Forking in progress.
+       - else
+-        Import in progress.
++        in progress.をインポート
+     - unless @project.forked?
+       %p.monospace git clone --bare #{@project.safe_import_url}
+     %p Please wait while we import the repository for you. Refresh at will.
 diff --git a/app/views/projects/issues/_discussion.html.haml b/app/views/projects/issues/_discussion.html.haml
 index b151393..e18843b 100644
 --- a/app/views/projects/issues/_discussion.html.haml
@@ -8047,16 +8308,19 @@ index 675a805..c7f8616 100644
  %hr
  = render 'form'
 diff --git a/app/views/projects/labels/index.html.haml b/app/views/projects/labels/index.html.haml
-index cc41130..e0339a7 100644
+index cc41130..d184f64 100644
 --- a/app/views/projects/labels/index.html.haml
 +++ b/app/views/projects/labels/index.html.haml
-@@ -1,4 +1,4 @@
+@@ -1,14 +1,14 @@
 -- page_title "Labels"
 +- page_title "ラベル"
  = render "header_title"
  
  .top-area
-@@ -8,7 +8,7 @@
+   .nav-text
+-    Labels can be applied to issues and merge requests.
++    ラベルは課題とマージリクエストに適用することができます。
+   .nav-controls
      - if can? current_user, :admin_label, @project
        = link_to new_namespace_project_label_path(@project.namespace, @project), class: "btn btn-new" do
          = icon('plus')
@@ -8753,19 +9017,29 @@ index a4c6094..019b5d3 100644
  .save-project-loader.hide
    .center
 diff --git a/app/views/projects/no_repo.html.haml b/app/views/projects/no_repo.html.haml
-index 720957e..8217c33 100644
+index 720957e..a14fd34 100644
 --- a/app/views/projects/no_repo.html.haml
 +++ b/app/views/projects/no_repo.html.haml
-@@ -10,7 +10,7 @@
+@@ -1,6 +1,6 @@
+ %h2
+   %i.fa.fa-warning
+-  No repository
++  No リポジトリ
+ 
+ %p.slead
+   The repository for this project does not exist.
+@@ -10,13 +10,13 @@
  
  .no-repo-actions
    = link_to namespace_project_repository_path(@project.namespace, @project), method: :post, class: 'btn btn-primary' do
 -    Create empty bare repository
-+    empty bare repositoryを作成
++    empty bare リポジトリを作成
  
    %strong.prepend-left-10.append-right-10 or
  
-@@ -19,4 +19,4 @@
+   = link_to new_namespace_project_import_path(@project.namespace, @project), class: 'btn' do
+-    Import repository
++    リポジトリをインポート
  
  - if can? current_user, :remove_project, @project
    .prepend-top-20
@@ -8810,7 +9084,7 @@ index d0ac380..f4e82cf 100644
 +    %a.btn.btn-cancel.js-note-discard{role: "button", data: {cancel_text: "キャンセル"}}
        Discard draft
 diff --git a/app/views/projects/notes/_hints.html.haml b/app/views/projects/notes/_hints.html.haml
-index 0b00204..0f6afc9 100644
+index 0b00204..ab63336 100644
 --- a/app/views/projects/notes/_hints.html.haml
 +++ b/app/views/projects/notes/_hints.html.haml
 @@ -5,4 +5,4 @@
@@ -8818,7 +9092,7 @@ index 0b00204..0f6afc9 100644
    %button.toolbar-button.markdown-selector{ type: 'button', tabindex: '-1' }
      = icon('file-image-o', class: 'toolbar-button-icon')
 -    Attach a file
-+    Attach a ファイル
++    ファイルを添付
 diff --git a/app/views/projects/notes/_note.html.haml b/app/views/projects/notes/_note.html.haml
 index aeb7c1d..0b81691 100644
 --- a/app/views/projects/notes/_note.html.haml
@@ -8910,15 +9184,17 @@ index e8dce30..8830584 100644
    %ul.content-list
      - members.each do |project_member|
 diff --git a/app/views/projects/project_members/import.html.haml b/app/views/projects/project_members/import.html.haml
-index 1899064..2ddbd3c 100644
+index 1899064..6f504fb 100644
 --- a/app/views/projects/project_members/import.html.haml
 +++ b/app/views/projects/project_members/import.html.haml
-@@ -2,16 +2,16 @@
+@@ -1,17 +1,17 @@
+-- page_title "Import members"
++- page_title "membersをインポート"
  = render "header_title"
  
  %h3.page-title
 -  Import members from another project
-+  Import members from another プロジェクト
++  members from another プロジェクトをインポート
  %p.light
    Only project members will be imported. Group members will be skipped.
  %hr
@@ -8932,14 +9208,14 @@ index 1899064..2ddbd3c 100644
    .form-actions
 -    = button_tag 'Import project members', class: "btn btn-create"
 -    = link_to "Cancel", namespace_project_project_members_path(@project.namespace, @project), class: "btn btn-cancel"
-+    = button_tag 'Import プロジェクト members', class: "btn btn-create"
++    = button_tag 'プロジェクト membersをインポート', class: "btn btn-create"
 +    = link_to "キャンセル", namespace_project_project_members_path(@project.namespace, @project), class: "btn btn-cancel"
  
 diff --git a/app/views/projects/project_members/index.html.haml b/app/views/projects/project_members/index.html.haml
-index ebcfc90..e88a1f3 100644
+index ebcfc90..4d77711 100644
 --- a/app/views/projects/project_members/index.html.haml
 +++ b/app/views/projects/project_members/index.html.haml
-@@ -1,13 +1,13 @@
+@@ -1,14 +1,14 @@
 -- page_title "Members"
 +- page_title "メンバー"
  = render "header_title"
@@ -8952,10 +9228,12 @@ index ebcfc90..e88a1f3 100644
 +        new user to プロジェクトを追加
          .controls
 -          = link_to import_namespace_project_project_members_path(@project.namespace, @project), class: "btn btn-grouped", title: "Import members from another project" do
-+          = link_to import_namespace_project_project_members_path(@project.namespace, @project), class: "btn btn-grouped", title: "Import members from another プロジェクト" do
-             Import members
+-            Import members
++          = link_to import_namespace_project_project_members_path(@project.namespace, @project), class: "btn btn-grouped", title: "members from another プロジェクトをインポート" do
++            membersをインポート
        .panel-body
          %p.light
+           Users with access to this project are listed below.
 diff --git a/app/views/projects/protected_branches/_branches_list.html.haml b/app/views/projects/protected_branches/_branches_list.html.haml
 index f68449b..2d7a04a 100644
 --- a/app/views/projects/protected_branches/_branches_list.html.haml
@@ -10147,7 +10425,7 @@ index 0a38327..c1a48af 100644
      .commit-message-container
        .max-width-marker
 diff --git a/app/views/shared/_event_filter.html.haml b/app/views/shared/_event_filter.html.haml
-index c38d931..7f122e0 100644
+index c38d931..20bfa85 100644
 --- a/app/views/shared/_event_filter.html.haml
 +++ b/app/views/shared/_event_filter.html.haml
 @@ -1,5 +1,5 @@
@@ -10156,8 +10434,8 @@ index c38d931..7f122e0 100644
 -  = event_filter_link EventFilter.merged, 'Merge events'
 -  = event_filter_link EventFilter.comments, 'Comments'
 -  = event_filter_link EventFilter.team, 'Team'
-+  = event_filter_link EventFilter.push, 'プッシュイベント'
-+  = event_filter_link EventFilter.merged, 'マージイベント'
++  = event_filter_link EventFilter.push, 'プッシュ'
++  = event_filter_link EventFilter.merged, 'マージ'
 +  = event_filter_link EventFilter.comments, 'コメント'
 +  = event_filter_link EventFilter.team, 'チーム'
 diff --git a/app/views/shared/_field.html.haml b/app/views/shared/_field.html.haml
@@ -10196,17 +10474,19 @@ index 67072b9..a3d82ab 100644
            %li It will change the git path to repositories under this group.
  
 diff --git a/app/views/shared/_group_tips.html.haml b/app/views/shared/_group_tips.html.haml
-index 46e4340..85fce8d 100644
+index 46e4340..1522b26 100644
 --- a/app/views/shared/_group_tips.html.haml
 +++ b/app/views/shared/_group_tips.html.haml
 @@ -1,5 +1,5 @@
  %ul
 -  %li A group is a collection of several projects
-+  %li A group is a collection of several プロジェクト
-   %li Members of a group may only view projects they have permission to access
-   %li Group project URLs are prefixed with the group namespace
+-  %li Members of a group may only view projects they have permission to access
+-  %li Group project URLs are prefixed with the group namespace
 -  %li Existing projects may be moved into a group
-+  %li Existing projects may be moved into a グループ
++  %li グループは複数のプロジェクトの集合です。
++  %li グループのメンバーはアクセス権のあるプロジェクトだけ参照することができます。
++  %li グループのプロジェクトのURLにはグループのネームスペースのプレフィクスが付きます。
++  %li 既存のプロジェクトをグループに移すこともできます。
 diff --git a/app/views/shared/_issues.html.haml b/app/views/shared/_issues.html.haml
 index 8ff9d4c..7a5af40 100644
 --- a/app/views/shared/_issues.html.haml
@@ -10292,14 +10572,14 @@ index a43bf33..f70c673 100644
 -      = link_to 'Remind later', '#', class: 'hide-no-password-message'
 +      = link_to '後で表示', '#', class: 'hide-no-password-message'
 diff --git a/app/views/shared/_no_ssh.html.haml b/app/views/shared/_no_ssh.html.haml
-index bb5fff2..58b3439 100644
+index bb5fff2..2672563 100644
 --- a/app/views/shared/_no_ssh.html.haml
 +++ b/app/views/shared/_no_ssh.html.haml
 @@ -1,8 +1,8 @@
  - if cookies[:hide_no_ssh_message].blank? && !current_user.hide_no_ssh_key && current_user.require_ssh_key?
    .no-ssh-key-message.alert.alert-warning.hidden-xs
 -    You won't be able to pull or push project code via SSH until you #{link_to 'add an SSH key', profile_keys_path, class: 'alert-link'} to your profile
-+    You won't be able to pull or push プロジェクト code via SSH until you #{link_to 'add an SSH key', profile_keys_path, class: 'alert-link'} to your profile
++    プロフィールに#{link_to 'SSHキーを追加', profile_keys_path, class: 'alert-link'}するまでプロジェクトのコードをSSH経由でプル、プッシュすることはできません
  
      .pull-right
 -      = link_to "Don't show again", profile_path(user: {hide_no_ssh_key: true}), method: :put, class: 'alert-link'
@@ -10332,10 +10612,10 @@ index 09edf40..2e2b0c5 100644
    = link_to '@gitlab', 'https://twitter.com/gitlab'
    = link_to 'Requests', 'https://gitlab.com/gitlab-org/gitlab-ce/blob/master/CONTRIBUTING.md#feature-proposals'
 diff --git a/app/views/shared/_service_settings.html.haml b/app/views/shared/_service_settings.html.haml
-index 4eaf7c2..a5b374d 100644
+index 4eaf7c2..363eb98 100644
 --- a/app/views/shared/_service_settings.html.haml
 +++ b/app/views/shared/_service_settings.html.haml
-@@ -12,14 +12,14 @@
+@@ -12,56 +12,56 @@
  
  - if @service.supported_events.length > 1
    .form-group
@@ -10348,19 +10628,63 @@ index 4eaf7c2..a5b374d 100644
            .prepend-left-20
              = form.label :push_events, class: 'list-label' do
 -              %strong Push events
-+              %strong プッシュイベント
++              %strong プッシュ
              %p.light
-               This url will be triggered by a push to the repository
+-              This url will be triggered by a push to the repository
++              リポジトリへのプッシュイベントがあったときにこのURLをリクエストします
        - if @service.supported_events.include?("tag_push")
-@@ -35,7 +35,7 @@
+         %div
+           = form.check_box :tag_push_events, class: 'pull-left'
+           .prepend-left-20
+             = form.label :tag_push_events, class: 'list-label' do
+-              %strong Tag push events
++              %strong タグプッシュ
+             %p.light
+-              This url will be triggered when a new tag is pushed to the repository
++              新しいタグがリポジトリにプッシュされたときにこのURLをリクエストします
+       - if @service.supported_events.include?("note")
+         %div
            = form.check_box :note_events, class: 'pull-left'
            .prepend-left-20
              = form.label :note_events, class: 'list-label' do
 -              %strong Comments
 +              %strong コメント
              %p.light
-               This url will be triggered when someone adds a comment
+-              This url will be triggered when someone adds a comment
++              誰かがコメントを追加したときにこのURLをリクエストします
        - if @service.supported_events.include?("issue")
+         %div
+           = form.check_box :issues_events, class: 'pull-left'
+           .prepend-left-20
+             = form.label :issues_events, class: 'list-label' do
+-              %strong Issues events
++              %strong 課題
+             %p.light
+-              This url will be triggered when an issue is created/updated/merged
++              課題が作成されたときにこのURLをリクエストします/updated/merged
+       - if @service.supported_events.include?("merge_request")
+         %div
+           = form.check_box :merge_requests_events, class: 'pull-left'
+           .prepend-left-20
+             = form.label :merge_requests_events, class: 'list-label' do
+-              %strong Merge Request events
++              %strong マージリクエスト
+             %p.light
+-              This url will be triggered when a merge request is created/updated/merged
++              マージリクエストが作成されたときにこのURLをリクエストします/updated/merged
+       - if @service.supported_events.include?("build")
+         %div
+           = form.check_box :build_events, class: 'pull-left'
+           .prepend-left-20
+             = form.label :build_events, class: 'list-label' do
+-              %strong Build events
++              %strong ビルド
+             %p.light
+-              This url will be triggered when a build status changes
++              ビルドのステータスが変更されたときにこのURLをリクエストします
+       - if @service.supported_events.include?("wiki_page")
+         %div
+           = form.check_box :wiki_page_events, class: 'pull-left'
 diff --git a/app/views/shared/_visibility_level.html.haml b/app/views/shared/_visibility_level.html.haml
 index 1c6ec19..d0c3c8a 100644
 --- a/app/views/shared/_visibility_level.html.haml

@@ -158,8 +158,12 @@ translations:
     replace: '$1${theSnippetCanBeAccessedWithoutAnyAuthentication}"'
   - pattern: "The snippet can be accessed without any authentication."
     replace: '${theSnippetCanBeAccessedWithoutAnyAuthentication}'
+  - pattern: 'Add an SSH key to your profile<br>to pull or push via SSH.'
+    replace: '${addAnSshKeyToYourProfileToPullOrPushViaSsh}'
   - pattern: !!js/regexp /\s{4}titles = \{\n\s{6}opened. "Open"\n\s{4}\}/m
     replace: "    titles = {\n      opened: \"${open}\",\n      closed: \"${closed}\",\n      merged: \"${merged}\",\n      all: \"${all}\"\n    }"
+  - pattern: !!js/regexp /  def visibility_level_label\(level\)\n    Project.visibility_levels.key\(level\)\n  end/m
+    replace: "  def visibility_level_label(level)\n    case level\n    when Gitlab::VisibilityLevel::PRIVATE\n      \"${private}\"\n    when Gitlab::VisibilityLevel::INTERNAL\n      \"${internal}\"\n    when Gitlab::VisibilityLevel::PUBLIC\n      \"${public}\"\n    end\n  end"
 
   # Named patterns
   - name: sthWasSuccessfullyDone
@@ -454,8 +458,6 @@ translations:
     replace: '${newWikiPage}'
   - pattern: 'Empty file'
     replace: '${emptyFile}'
-  - pattern: 'Add an SSH key to your profile<br> to pull or push via SSH.'
-    replace: '${addAnSshKeyToYourProfileToPullOrPushViaSsh}'
   - pattern: 'Set a password on your account<br> to pull or push via (.*)\.'
     replace: '${setAPasswordOnYourAccountToPullOrPushVia}'
   - pattern: 'Commit message'
@@ -596,6 +598,8 @@ translations:
     replace: '${changingYourUsernameWillChangePathToAllPersonalProjects}'
   - pattern: "Saving new username"
     replace: '${savingNewUsername}'
+  - pattern: "Forking repository"
+    replace: '${forkingRepository}'
   - pattern: "Deleting an account has the following effects:"
     replace: '${deletingAnAccountHasTheFollowingEffects}:'
   - pattern: "You don't have any authorized applications"
@@ -638,8 +642,66 @@ translations:
     replace: '${sthEnabled}'
     args:
     - '$1'
+  - pattern: "A group is a collection of several projects"
+    replace: '${aGroupIsACollectionOfSeveralProjects}'
+  - pattern: "Groups are private by default"
+    replace: '${groupsArePrivateByDefault}'
+  - pattern: "Members of a group may only view projects they have permission to access"
+    replace: '${membersOfAGroupMayOnlyViewProjectsTheyHavePermissionToAccess}'
+  - pattern: "Group project URLs are prefixed with the group namespace"
+    replace: '${groupProjectUrlsArePrefixedWithTheGroupNamespace}'
+  - pattern: "Existing projects may be moved into a group"
+    replace: '${existingProjectsMayBeMovedIntoAGroup}'
   - pattern: "Username or Email"
     replace: '${usernameOrEmail}'
+  - pattern: !!js/regexp /You won't be able to pull or push project code via SSH until you ([^']+')add an SSH key('.*) to your profile/
+    replace: '${youWontBeAbleToPullOrPushProjectCodeViaSSHUntilYouAddAnSSHKeyToYourProfile}'
+    args:
+    - '$1'
+    - '$2'
+  - pattern: "The repository for this project is empty"
+    replace: '${theRepositoryForThisProjectIsEmpty}'
+  - pattern: "If you already have files you can push them using command line instructions below."
+    replace: '${ifYouAlreadyHaveFilesYouCanPushThemUsingCommandLineInstructionsBelow}'
+  - pattern: !!js/regexp /^(\s+)Otherwise you can start with\n(\s+[^"]+")adding README([^\n]*)\n(\s+)file to this project./m
+    replace: '${otherwiseYouCanStartWithAddingReadmeFileToThisProject}'
+  - pattern: "Command line instructions"
+    replace: '${commandLineInstructions}'
+  - pattern: "Git global setup"
+    replace: '${gitGlobalSetup}'
+  - pattern: "Create a new repository"
+    replace: '${createANewRepository}'
+  - pattern: "Existing folder or Git repository"
+    replace: '${existingFolderOrGitRepository}'
+  - pattern: !!js/regexp /Import projects from (.*)$/
+    replace: '${importProjectsFromSth}'
+    args:
+    - '$1'
+  - pattern: "Programming languages used in this repository"
+    replace: '${programmingLanguagesUsedInThisRepository}'
+  - pattern: !!js/regexp /  ([^"]+")Web hooks ([^}]+}) can be\n  used for binding events when something is happening within the project\./m
+    replace: '${webHooksCanBeUsedForBindingEventsWhenSomethingIsHappeningWithinTheProject}'
+    args:
+    - '$1'
+    - '$2'
+  - pattern: "This url will be triggered by a push to the repository"
+    replace: '${thisUrlWillBeTriggeredByAPushToTheRepository}'
+  - pattern: "This url will be triggered when a new tag is pushed to the repository"
+    replace: '${thisUrlWillBeTriggeredWhenANewTagIsPushedToTheRepository}'
+  - pattern: "This url will be triggered when someone adds a comment"
+    replace: '${thisUrlWillBeTriggeredWhenSomeoneAddsAComment}'
+  - pattern: "This url will be triggered when an issue is created"
+    replace: '${thisUrlWillBeTriggeredWhenAnIssueIsCreated}'
+  - pattern: "This url will be triggered when a merge request is created"
+    replace: '${thisUrlWillBeTriggeredWhenAMergeRequestIsCreated}'
+  - pattern: !!js/regexp /This url will be triggered when (?:a|the) build status changes/
+    replace: '${thisUrlWillBeTriggeredWhenTheBuildStatusChanges}'
+  - pattern: "Milestone allows you to group issues and set due date for it"
+    replace: '${milestoneAllowsYouToGroupIssuesAndSetDueDateForIt}'
+  - pattern: "Labels can be applied to issues and merge requests."
+    replace: '${labelsCanBeAppliedToIssuesAndMergeRequests}'
+  - pattern: "All pages in this wiki are listed below."
+    replace: '${allPagesInThisWikiAreListedBelow}'
   - pattern: 'Are you sure?'
     replace: '${areYouSure}'
   - pattern: "Code?$|(\")Code?\"|(')Code?'|(\".* )Code?(\")"
@@ -762,12 +824,20 @@ translations:
     - {word: 'Reported by', key: reportedBy}
     - {word: 'Reported at', key: reportedAt}
     - {word: 'Message', key: message}
+    - {word: 'Tag push events', key: tagPushEvents}
     - {word: 'Push events', key: pushEvents}
     - {word: 'Merge events', key: mergeEvents}
+    - {word: 'Issues events', key: issuesEvents}
+    - {word: 'Merge Request events', key: mergeRequestEvents}
+    - {word: 'Build events', key: buildEvents}
+    - {word: 'SSL [vV]erification', key: sslVerification}
     - {word: 'Team', key: team}
     - {word: 'Private', key: private}
     - {word: 'Internal', key: internal}
     - {word: 'Public', key: public}
+    - {word: 'Remove', key: remove}
+    - {word: 'Destroy', key: destroy}
+    - {word: 'Details', key: details}
   - name: wordInSentence
     params:
     - {word: 'applications?', key: application}
@@ -792,6 +862,7 @@ translations:
     - {word: 'password', key: password}
     - {word: 'builds?', key: build}
     - {word: 'this user', key: thisUser}
+    - {word: 'repository', key: repository}
   - name: doSth
     params:
     - {verb: Edit, key: editSth}
@@ -815,6 +886,8 @@ translations:
     - {verb: Save, key: saveSth}
     - {verb: Enable, key: enableSth}
     - {verb: Disable, key: disableSth}
+    - {verb: Import, key: importSth}
+    - {verb: 'Attach(?: an?)?', key: attachSth}
   - name: sthCountsDone
     params:
     - {obj: issues, objKey: issue, done: updated, doneKey: update}

@@ -955,6 +955,25 @@ index dbecc48..32ad421 100644
      end
    end
  
+diff --git a/app/views/abuse_reports/new.html.haml b/app/views/abuse_reports/new.html.haml
+index 06be1a5..4ecb38d 100644
+--- a/app/views/abuse_reports/new.html.haml
++++ b/app/views/abuse_reports/new.html.haml
+@@ -7,12 +7,12 @@
+ 
+   = f.hidden_field :user_id
+   .form-group
+-    = f.label :user_id, class: 'control-label'
++    = f.label :user_id, 'ユーザID', class: 'control-label'
+     .col-sm-10
+       - name = "#{@abuse_report.user.name} (@#{@abuse_report.user.username})"
+       = text_field_tag :user_name, name, class: "form-control", readonly: true
+   .form-group
+-    = f.label :message, class: 'control-label'
++    = f.label :message, 'メッセージ', class: 'control-label'
+     .col-sm-10
+       = f.text_area :message, class: "form-control", rows: 2, required: true, value: sanitize(@ref_url)
+       .help-block
 diff --git a/app/views/admin/abuse_reports/_abuse_report.html.haml b/app/views/admin/abuse_reports/_abuse_report.html.haml
 index 2ab0170..d17240d 100644
 --- a/app/views/admin/abuse_reports/_abuse_report.html.haml
@@ -995,9 +1014,23 @@ index bc4a9ce..6cbecaa 100644
            %th
        = render @abuse_reports
 diff --git a/app/views/admin/appearances/_form.html.haml b/app/views/admin/appearances/_form.html.haml
-index d88f3ad..d404d30 100644
+index d88f3ad..a0cf47c 100644
 --- a/app/views/admin/appearances/_form.html.haml
 +++ b/app/views/admin/appearances/_form.html.haml
+@@ -5,11 +5,11 @@
+     %legend
+       Sign in/Sign up pages:
+   .form-group
+-    = f.label :title, class: 'control-label'
++    = f.label :title, 'タイトル', class: 'control-label'
+     .col-sm-10
+       = f.text_field :title, class: "form-control"
+   .form-group
+-    = f.label :description, class: 'control-label'
++    = f.label :description, '説明', class: 'control-label'
+     .col-sm-10
+       = f.text_area :description, class: "form-control", rows: 10
+       .hint
 @@ -21,7 +21,7 @@
          = image_tag @appearance.logo_url, class: 'appearance-logo-preview'
          - if @appearance.persisted?
@@ -1026,10 +1059,10 @@ index d88f3ad..d404d30 100644
        = link_to 'Preview last save', preview_admin_appearances_path, class: 'btn', target: '_blank'
  
 diff --git a/app/views/admin/appearances/preview.html.haml b/app/views/admin/appearances/preview.html.haml
-index dd4a64e..efd239c 100644
+index dd4a64e..d142f7f 100644
 --- a/app/views/admin/appearances/preview.html.haml
 +++ b/app/views/admin/appearances/preview.html.haml
-@@ -1,6 +1,6 @@
+@@ -1,11 +1,11 @@
  - page_title "Preview | Appearance"
  %h3.page-title
 -  Appearance settings - Preview
@@ -1037,6 +1070,12 @@ index dd4a64e..efd239c 100644
  %hr
  
  .ui-box
+   .title
+-    Sign-in page
++    Sign-in ページ
+   %div
+     .login-page
+       .container
 @@ -23,7 +23,7 @@
                  = brand_text
              .col-sm-4
@@ -1050,9 +1089,46 @@ index dd4a64e..efd239c 100644
 +                = password_field_tag :password, nil, class: "form-control bottom", placeholder: "パスワード"
 +                = button_tag "サインイン", class: "btn-create btn"
 diff --git a/app/views/admin/application_settings/_form.html.haml b/app/views/admin/application_settings/_form.html.haml
-index e0d8d16..eb9a512 100644
+index e0d8d16..be4a13f 100644
 --- a/app/views/admin/application_settings/_form.html.haml
 +++ b/app/views/admin/application_settings/_form.html.haml
+@@ -4,15 +4,15 @@
+   %fieldset
+     %legend Visibility and Access Controls
+     .form-group
+-      = f.label :default_branch_protection, class: 'control-label col-sm-2'
++      = f.label :default_branch_protection, 'ブランチ保護初期値', class: 'control-label col-sm-2'
+       .col-sm-10
+         = f.select :default_branch_protection, options_for_select(Gitlab::Access.protection_options, @application_setting.default_branch_protection), {}, class: 'form-control'
+     .form-group.project-visibility-level-holder
+-      = f.label :default_project_visibility, class: 'control-label col-sm-2'
++      = f.label :default_project_visibility, 'プロジェクト可視性初期値', class: 'control-label col-sm-2'
+       .col-sm-10
+         = render('shared/visibility_radios', model_method: :default_project_visibility, form: f, selected_level: @application_setting.default_project_visibility, form_model: Project.new)
+     .form-group.project-visibility-level-holder
+-      = f.label :default_snippet_visibility, class: 'control-label col-sm-2'
++      = f.label :default_snippet_visibility, 'スニペット可視性初期値', class: 'control-label col-sm-2'
+       .col-sm-10
+         = render('shared/visibility_radios', model_method: :default_snippet_visibility, form: f, selected_level: @application_setting.default_snippet_visibility, form_model: ProjectSnippet.new)
+     .form-group.group-visibility-level-holder
+@@ -20,7 +20,7 @@
+       .col-sm-10
+         = render('shared/visibility_radios', model_method: :default_group_visibility, form: f, selected_level: @application_setting.default_group_visibility, form_model: Group.new)
+     .form-group
+-      = f.label :restricted_visibility_levels, class: 'control-label col-sm-2'
++      = f.label :restricted_visibility_levels, '制限された可視性レベル', class: 'control-label col-sm-2'
+       .col-sm-10
+         - data_attrs = { toggle: 'buttons' }
+         .btn-group{ data: data_attrs }
+@@ -30,7 +30,7 @@
+           Selected levels cannot be used by non-admin users for projects or snippets.
+           If the public level is restricted, user profiles are only visible to logged in users.
+     .form-group
+-      = f.label :import_sources, class: 'control-label col-sm-2'
++      = f.label :import_sources, 'インポート元', class: 'control-label col-sm-2'
+       .col-sm-10
+         - data_attrs = { toggle: 'buttons' }
+         .btn-group{ data: data_attrs }
 @@ -48,7 +48,7 @@
          .checkbox
            = f.label :version_check_enabled do
@@ -1062,7 +1138,7 @@ index e0d8d16..eb9a512 100644
      .form-group
        .col-sm-offset-2.col-sm-10
          .checkbox
-@@ -57,7 +57,7 @@
+@@ -57,58 +57,58 @@
              Include author name in notification email body
            .help-block
              Some email servers do not support overriding the email sender name.
@@ -1070,8 +1146,11 @@ index e0d8d16..eb9a512 100644
 +            this option to include the name of the author of the issue,を有効にする
              merge request or comment in the email body instead.
      .form-group
-       = f.label :admin_notification_email, class: 'control-label col-sm-2'
-@@ -67,48 +67,48 @@
+-      = f.label :admin_notification_email, class: 'control-label col-sm-2'
++      = f.label :admin_notification_email, '管理者通知メールアドレス', class: 'control-label col-sm-2'
+       .col-sm-10
+         = f.text_field :admin_notification_email, class: 'form-control'
+         .help-block
            Abuse reports will be sent to this address if it is set. Abuse reports are always available in the admin area.
  
    %fieldset
@@ -1085,7 +1164,8 @@ index e0d8d16..eb9a512 100644
 -            Gravatar enabled
 +            Gravatar を利用
      .form-group
-       = f.label :default_projects_limit, class: 'control-label col-sm-2'
+-      = f.label :default_projects_limit, class: 'control-label col-sm-2'
++      = f.label :default_projects_limit, '上限プロジェクト数初期値', class: 'control-label col-sm-2'
        .col-sm-10
          = f.number_field :default_projects_limit, class: 'form-control'
      .form-group
@@ -1130,14 +1210,32 @@ index e0d8d16..eb9a512 100644
      .form-group
        = f.label :two_factor_authentication, 'Two-factor authentication', class: 'control-label col-sm-2'
        .col-sm-10
-@@ -140,12 +140,12 @@
-       = f.label :sign_in_text, class: 'control-label col-sm-2'
+@@ -127,25 +127,25 @@
+         = f.text_area :restricted_signup_domains_raw, placeholder: 'domain.com', class: 'form-control'
+         .help-block Only users with e-mail addresses that match these domain(s) will be able to sign-up. Wildcards allowed. Use separate lines for multiple entries. Ex: domain.com, *.domain.com
+     .form-group
+-      = f.label :home_page_url, 'Home page URL', class: 'control-label col-sm-2'
++      = f.label :home_page_url, 'Home ページ URL', class: 'control-label col-sm-2'
+       .col-sm-10
+         = f.text_field :home_page_url, class: 'form-control', placeholder: 'http://company.example.com', :'aria-describedby' => 'home_help_block'
+-        %span.help-block#home_help_block We will redirect non-logged in users to this page
++        %span.help-block#home_help_block We will redirect non-logged in users to this ページ
+     .form-group
+-      = f.label :after_sign_out_path, class: 'control-label col-sm-2'
++      = f.label :after_sign_out_path, 'サインアウト後パス', class: 'control-label col-sm-2'
+       .col-sm-10
+         = f.text_field :after_sign_out_path, class: 'form-control', placeholder: 'http://company.example.com', :'aria-describedby' => 'after_sign_out_path_help_block'
+         %span.help-block#after_sign_out_path_help_block We will redirect users to this page after they sign out
+     .form-group
+-      = f.label :sign_in_text, class: 'control-label col-sm-2'
++      = f.label :sign_in_text, 'サインイン文言', class: 'control-label col-sm-2'
        .col-sm-10
          = f.text_area :sign_in_text, class: 'form-control', rows: 4
 -        .help-block Markdown enabled
 +        .help-block Markdown を利用
      .form-group
-       = f.label :help_page_text, class: 'control-label col-sm-2'
+-      = f.label :help_page_text, class: 'control-label col-sm-2'
++      = f.label :help_page_text, 'ヘルプページ文言', class: 'control-label col-sm-2'
        .col-sm-10
          = f.text_area :help_page_text, class: 'form-control', rows: 4
 -        .help-block Markdown enabled
@@ -1178,7 +1276,7 @@ index e0d8d16..eb9a512 100644
            server threads).
      .form-group
        = f.label :metrics_timeout, 'Connection timeout', class: 'control-label col-sm-2'
-@@ -233,8 +233,8 @@
+@@ -233,11 +233,11 @@
          .checkbox
            = f.label :recaptcha_enabled do
              = f.check_box :recaptcha_enabled
@@ -1188,8 +1286,21 @@ index e0d8d16..eb9a512 100644
 +          %span.help-block#recaptcha_help_block Helps prevent bots from creating アカウント
  
      .form-group
-       = f.label :recaptcha_site_key, 'reCAPTCHA Site Key', class: 'control-label col-sm-2'
-@@ -254,8 +254,8 @@
+-      = f.label :recaptcha_site_key, 'reCAPTCHA Site Key', class: 'control-label col-sm-2'
++      = f.label :recaptcha_site_key, 'reCAPTCHA Site キー', class: 'control-label col-sm-2'
+       .col-sm-10
+         = f.text_field :recaptcha_site_key, class: 'form-control'
+         .help-block
+@@ -245,7 +245,7 @@
+           %a{ href: 'http://www.google.com/recaptcha', target: 'blank'} http://www.google.com/recaptcha
+ 
+     .form-group
+-      = f.label :recaptcha_private_key, 'reCAPTCHA Private Key', class: 'control-label col-sm-2'
++      = f.label :recaptcha_private_key, 'reCAPTCHA Private キー', class: 'control-label col-sm-2'
+       .col-sm-10
+         = f.text_field :recaptcha_private_key, class: 'form-control'
+ 
+@@ -254,11 +254,11 @@
          .checkbox
            = f.label :akismet_enabled do
              = f.check_box :akismet_enabled
@@ -1199,7 +1310,11 @@ index e0d8d16..eb9a512 100644
 +          %span.help-block#akismet_help_block Helps prevent bots from creating 課題
  
      .form-group
-       = f.label :akismet_api_key, 'Akismet API Key', class: 'control-label col-sm-2'
+-      = f.label :akismet_api_key, 'Akismet API Key', class: 'control-label col-sm-2'
++      = f.label :akismet_api_key, 'Akismet API キー', class: 'control-label col-sm-2'
+       .col-sm-10
+         = f.text_field :akismet_api_key, class: 'form-control'
+         .help-block
 @@ -274,7 +274,7 @@
          .checkbox
            = f.label :sentry_enabled do
@@ -1252,10 +1367,10 @@ index 042971e..fca19dd 100644
 -  = submit_tag 'Destroy', onclick: "return confirm('Are you sure?')", class: submit_btn_css
 +  = submit_tag '削除', onclick: "return confirm('本当によろしいですか？')", class: submit_btn_css
 diff --git a/app/views/admin/applications/_form.html.haml b/app/views/admin/applications/_form.html.haml
-index 4aacbb8..02bfb20 100644
+index 4aacbb8..2267d21 100644
 --- a/app/views/admin/applications/_form.html.haml
 +++ b/app/views/admin/applications/_form.html.haml
-@@ -2,7 +2,7 @@
+@@ -2,22 +2,22 @@
    = form_errors(application)
  
    = content_tag :div, class: 'form-group' do
@@ -1264,7 +1379,10 @@ index 4aacbb8..02bfb20 100644
      .col-sm-10
        = f.text_field :name, class: 'form-control'
        = doorkeeper_errors_for application, :name
-@@ -12,12 +12,12 @@
+   = content_tag :div, class: 'form-group' do
+-    = f.label :redirect_uri, class: 'col-sm-2 control-label'
++    = f.label :redirect_uri, 'リダイレクトURI', class: 'col-sm-2 control-label'
+     .col-sm-10
        = f.text_area :redirect_uri, class: 'form-control'
        = doorkeeper_errors_for application, :redirect_uri
        %span.help-block
@@ -1372,10 +1490,10 @@ index de5bc05..8a7297c 100644
              %th CPU
              %th MEM
 diff --git a/app/views/admin/broadcast_messages/_form.html.haml b/app/views/admin/broadcast_messages/_form.html.haml
-index 6b157ab..41ce990 100644
+index 6b157ab..5b7a6a6 100644
 --- a/app/views/admin/broadcast_messages/_form.html.haml
 +++ b/app/views/admin/broadcast_messages/_form.html.haml
-@@ -1,7 +1,7 @@
+@@ -1,13 +1,13 @@
  .broadcast-message-preview{ style: broadcast_message_style(@broadcast_message) }
    = icon('bullhorn')
    .js-broadcast-message-preview
@@ -1384,7 +1502,27 @@ index 6b157ab..41ce990 100644
  
  = form_for [:admin, @broadcast_message], html: { class: 'broadcast-message-form form-horizontal js-quick-submit js-requires-input'} do |f|
    = form_errors(@broadcast_message)
-@@ -35,4 +35,4 @@
+ 
+   .form-group
+-    = f.label :message, class: 'control-label'
++    = f.label :message, 'メッセージ', class: 'control-label'
+     .col-sm-10
+       = f.text_area :message, class: "form-control js-autosize",
+         required: true,
+@@ -24,15 +24,15 @@
+     .col-sm-10
+       = f.color_field :font, class: "form-control"
+   .form-group
+-    = f.label :starts_at, class: 'control-label'
++    = f.label :starts_at, '開始日', class: 'control-label'
+     .col-sm-10.datetime-controls
+       = f.datetime_select :starts_at, {}, class: 'form-control form-control-inline'
+   .form-group
+-    = f.label :ends_at, class: 'control-label'
++    = f.label :ends_at, '終了日', class: 'control-label'
+     .col-sm-10.datetime-controls
+       = f.datetime_select :ends_at, {}, class: 'form-control form-control-inline'
+   .form-actions
      - if @broadcast_message.persisted?
        = f.submit "Update broadcast message", class: "btn btn-create"
      - else
@@ -1611,7 +1749,7 @@ index 149593e..8d045c0 100644
 -                = link_to 'Remove', admin_deploy_key_path(deploy_key), data: { confirm: 'Are you sure?'}, method: :delete, class: "btn btn-sm btn-remove delete-key pull-right"
 +                = link_to '削除', admin_deploy_key_path(deploy_key), data: { confirm: '本当によろしいですか？'}, method: :delete, class: "btn btn-sm btn-remove delete-key pull-right"
 diff --git a/app/views/admin/deploy_keys/new.html.haml b/app/views/admin/deploy_keys/new.html.haml
-index 15aa059..4ae0f24 100644
+index 15aa059..d6d5f2c 100644
 --- a/app/views/admin/deploy_keys/new.html.haml
 +++ b/app/views/admin/deploy_keys/new.html.haml
 @@ -1,5 +1,5 @@
@@ -1622,6 +1760,19 @@ index 15aa059..4ae0f24 100644
  %hr
  
  %div
+@@ -7,10 +7,10 @@
+     = form_errors(@deploy_key)
+ 
+     .form-group
+-      = f.label :title, class: "control-label"
++      = f.label :title, 'タイトル', class: "control-label"
+       .col-sm-10= f.text_field :title, class: 'form-control'
+     .form-group
+-      = f.label :key, class: "control-label"
++      = f.label :key, 'キー', class: "control-label"
+       .col-sm-10
+         %p.light
+           Paste a machine public key here. Read more about how to generate it
 @@ -19,5 +19,5 @@
  
      .form-actions
@@ -1856,9 +2007,18 @@ index 67d23c8..9ea3d30 100644
            %div
              - %w(push_events tag_push_events issues_events note_events merge_requests_events build_events).each do |trigger|
 diff --git a/app/views/admin/identities/_form.html.haml b/app/views/admin/identities/_form.html.haml
-index 112a201..0c9390e 100644
+index 112a201..578aaef 100644
 --- a/app/views/admin/identities/_form.html.haml
 +++ b/app/views/admin/identities/_form.html.haml
+@@ -2,7 +2,7 @@
+   = form_errors(@identity)
+ 
+   .form-group
+-    = f.label :provider, class: 'control-label'
++    = f.label :provider, 'プロバイダ', class: 'control-label'
+     .col-sm-10
+       - values = Gitlab::OAuth::Provider.providers.map { |name| ["#{Gitlab::OAuth::Provider.label_for(name)} (#{name})", name] }
+       = f.select :provider, values, { allow_blank: false }, class: 'form-control'
 @@ -12,5 +12,5 @@
        = f.text_field :extern_uid, class: 'form-control', required: true
  
@@ -1905,9 +2065,23 @@ index e30bf0e..6e4314d 100644
  %hr
  = render 'form'
 diff --git a/app/views/admin/labels/_form.html.haml b/app/views/admin/labels/_form.html.haml
-index 448aa95..2959c78 100644
+index 448aa95..0c198fb 100644
 --- a/app/views/admin/labels/_form.html.haml
 +++ b/app/views/admin/labels/_form.html.haml
+@@ -2,11 +2,11 @@
+   = form_errors(@label)
+ 
+   .form-group
+-    = f.label :title, class: 'control-label'
++    = f.label :title, 'タイトル', class: 'control-label'
+     .col-sm-10
+       = f.text_field :title, class: "form-control", required: true
+   .form-group
+-    = f.label :description, class: 'control-label'
++    = f.label :description, '説明', class: 'control-label'
+     .col-sm-10
+       = f.text_field :description, class: "form-control js-quick-submit"
+   .form-group
 @@ -26,8 +26,8 @@
              &nbsp;
  
@@ -2327,10 +2501,10 @@ index 0fdd5bd..81d3e71 100644
            %th
        = render @spam_logs
 diff --git a/app/views/admin/users/_form.html.haml b/app/views/admin/users/_form.html.haml
-index fe0b9d3..8d962be 100644
+index fe0b9d3..a1c653f 100644
 --- a/app/views/admin/users/_form.html.haml
 +++ b/app/views/admin/users/_form.html.haml
-@@ -3,9 +3,9 @@
+@@ -3,55 +3,55 @@
      = form_errors(@user)
  
      %fieldset
@@ -2342,7 +2516,10 @@ index fe0b9d3..8d962be 100644
          .col-sm-10
            = f.text_field :name, required: true, autocomplete: 'off', class: 'form-control'
            %span.help-inline * required
-@@ -15,29 +15,29 @@
+       .form-group
+-        = f.label :username, class: 'control-label'
++        = f.label :username, 'ユーザ名', class: 'control-label'
+         .col-sm-10
            = f.text_field :username, required: true, autocomplete: 'off', autocorrect: 'off', autocapitalize: 'off', spellcheck: false, class: 'form-control'
            %span.help-inline * required
        .form-group
@@ -2375,10 +2552,36 @@ index fe0b9d3..8d962be 100644
            .col-sm-10= f.password_field :password, disabled: f.object.force_random_password, class: 'form-control'
          .form-group
 -          = f.label :password_confirmation, class: 'control-label'
-+          = f.label :password_confirmation, '新しいパスワード (確認)', class: 'control-label'
++          = f.label :password_confirmation, '新しいパスワード(確認)', class: 'control-label'
            .col-sm-10= f.password_field :password_confirmation, disabled: f.object.force_random_password, class: 'form-control'
  
      %fieldset
+       %legend Access
+       .form-group
+-        = f.label :projects_limit, class: 'control-label'
++        = f.label :projects_limit, '上限プロジェクト数', class: 'control-label'
+         .col-sm-10= f.number_field :projects_limit, class: 'form-control'
+ 
+       .form-group
+-        = f.label :can_create_group, class: 'control-label'
++        = f.label :can_create_group, 'グループ作成可能', class: 'control-label'
+         .col-sm-10= f.check_box :can_create_group
+ 
+       .form-group
+-        = f.label :admin, class: 'control-label'
++        = f.label :admin, '管理者', class: 'control-label'
+         - if current_user == @user
+           .col-sm-10= f.check_box :admin, disabled: true
+           .col-sm-10 You cannot remove your own admin rights.
+@@ -66,7 +66,7 @@
+     %fieldset
+       %legend Profile
+       .form-group
+-        = f.label :avatar, class: 'control-label'
++        = f.label :avatar, 'アバター', class: 'control-label'
+         .col-sm-10
+           = f.file_field :avatar
+ 
 @@ -80,13 +80,13 @@
          = f.label :twitter, class: 'control-label'
          .col-sm-10= f.text_field :twitter, class: 'form-control'
@@ -2823,7 +3026,7 @@ index f7875e6..17963d8 100644
      %i.fa.fa-remove.incorrect-syntax
    %b Error:
 diff --git a/app/views/ci/shared/_guide.html.haml b/app/views/ci/shared/_guide.html.haml
-index 09e7e65..533b48c 100644
+index 09e7e65..5627aa4 100644
 --- a/app/views/ci/shared/_guide.html.haml
 +++ b/app/views/ci/shared/_guide.html.haml
 @@ -1,13 +1,13 @@
@@ -2834,8 +3037,9 @@ index 09e7e65..533b48c 100644
    %ol
      %li
 -      Add at least one runner to the project.
+-      Go to #{link_to 'Runners page', runners_path(@project), target: :blank} for instructions.
 +      at least one runner to the project.を追加
-       Go to #{link_to 'Runners page', runners_path(@project), target: :blank} for instructions.
++      Go to #{link_to 'Runners ページ', runners_path(@project), target: :blank} for instructions.
      %li
        Put the .gitlab-ci.yml in the root of your repository. Examples can be found in
 -      #{link_to "Configuring project (.gitlab-ci.yml)", "http://doc.gitlab.com/ci/yaml/README.html", target: :blank}.
@@ -3503,10 +3707,10 @@ index 001a711..56c7a57 100644
 -    = submit_tag 'Destroy', data: { confirm: "Are you sure?" }, class: submit_btn_css
 +    = submit_tag '削除', data: { confirm: "本当によろしいですか？" }, class: submit_btn_css
 diff --git a/app/views/doorkeeper/applications/_form.html.haml b/app/views/doorkeeper/applications/_form.html.haml
-index 5c98265..a886874 100644
+index 5c98265..6295e63 100644
 --- a/app/views/doorkeeper/applications/_form.html.haml
 +++ b/app/views/doorkeeper/applications/_form.html.haml
-@@ -2,7 +2,7 @@
+@@ -2,15 +2,15 @@
    = form_errors(application)
  
    .form-group
@@ -3515,7 +3719,8 @@ index 5c98265..a886874 100644
      = f.text_field :name, class: 'form-control', required: true
  
    .form-group
-@@ -10,7 +10,7 @@
+-    = f.label :redirect_uri, class: 'label-light'
++    = f.label :redirect_uri, 'リダイレクトURI', class: 'label-light'
      = f.text_area :redirect_uri, class: 'form-control', required: true
  
      %span.help-block
@@ -4498,7 +4703,7 @@ index da3c371..a7c7269 100644
 -                %td Edit merge request
 +                %td マージリクエストを編集
 diff --git a/app/views/help/index.html.haml b/app/views/help/index.html.haml
-index 57bc91e..68e22de 100644
+index 57bc91e..6c061a4 100644
 --- a/app/views/help/index.html.haml
 +++ b/app/views/help/index.html.haml
 @@ -7,17 +7,17 @@
@@ -4525,7 +4730,7 @@ index 57bc91e..68e22de 100644
      - if current_application_settings.help_page_text.present?
        %hr
        = markdown(current_application_settings.help_page_text)
-@@ -32,7 +32,7 @@
+@@ -32,10 +32,10 @@
    .col-md-4
      .panel.panel-default
        .panel-heading
@@ -4533,9 +4738,13 @@ index 57bc91e..68e22de 100644
 +        クイックヘルプ
        %ul.well-list
          %li= link_to 'See our website for getting help', promo_url + '/getting-help/'
-         %li= link_to 'Use the search bar on the top of this page', '#', onclick: 'Shortcuts.focusSearch(event)'
+-        %li= link_to 'Use the search bar on the top of this page', '#', onclick: 'Shortcuts.focusSearch(event)'
++        %li= link_to 'Use the search bar on the top of this ページ', '#', onclick: 'Shortcuts.focusSearch(event)'
+         %li= link_to 'Use shortcuts', '#', onclick: 'Shortcuts.showHelp(event)'
+         %li= link_to 'Get a support subscription', 'https://about.gitlab.com/pricing/'
+         %li= link_to 'Compare GitLab editions', 'https://about.gitlab.com/features/#compare'
 diff --git a/app/views/help/ui.html.haml b/app/views/help/ui.html.haml
-index f12df5c..5f2fd2e 100644
+index f12df5c..09fe489 100644
 --- a/app/views/help/ui.html.haml
 +++ b/app/views/help/ui.html.haml
 @@ -1,4 +1,4 @@
@@ -4784,6 +4993,17 @@ index f12df5c..5f2fd2e 100644
        .file-contenta.code
          = render 'shared/file_highlight', blob: blob
  
+@@ -546,7 +546,7 @@
+   %ul
+     %li comment
+     %li issue, merge request description
+-    %li wiki page
+-    %li help page
++    %li wiki ページ
++    %li help ページ
+ 
+-  You can check how markdown rendered at #{link_to 'Markdown help page', help_page_path("markdown", "markdown")}.
++  You can check how markdown rendered at #{link_to 'Markdown help ページ', help_page_path("markdown", "markdown")}.
 diff --git a/app/views/import/base/create.js.haml b/app/views/import/base/create.js.haml
 index dfebf77..fe91cdb 100644
 --- a/app/views/import/base/create.js.haml
@@ -6293,7 +6513,7 @@ index 79eb896..6c6e2a8 100644
    or
    = link_to 'decline', decline_invite_url(@token)
 diff --git a/app/views/notify/repository_push_email.html.haml b/app/views/notify/repository_push_email.html.haml
-index f2e405b..9f10399 100644
+index f2e405b..e867d17 100644
 --- a/app/views/notify/repository_push_email.html.haml
 +++ b/app/views/notify/repository_push_email.html.haml
 @@ -21,7 +21,7 @@
@@ -6305,8 +6525,17 @@ index f2e405b..9f10399 100644
  
    %ul
      - @message.diffs.each_with_index do |diff, i|
+@@ -43,7 +43,7 @@
+             = diff.new_path
+ 
+   - unless @message.disable_diffs?
+-    %h4 Changes:
++    %h4 変更:
+     - @message.diffs.each_with_index do |diff, i|
+       %li{id: "diff-#{i}"}
+         %a{href: @message.target_url + "#diff-#{i}"}
 diff --git a/app/views/notify/repository_push_email.text.haml b/app/views/notify/repository_push_email.text.haml
-index 53869e3..5a4492d 100644
+index 53869e3..c92ff1d 100644
 --- a/app/views/notify/repository_push_email.text.haml
 +++ b/app/views/notify/repository_push_email.text.haml
 @@ -13,7 +13,7 @@
@@ -6318,6 +6547,15 @@ index 53869e3..5a4492d 100644
    \
    - @message.diffs.each do |diff|
      - if diff.deleted_file
+@@ -27,7 +27,7 @@
+   - unless @message.disable_diffs?
+     \
+     \
+-    Changes:
++    変更:
+     - @message.diffs.each do |diff|
+       \
+       \=====================================
 diff --git a/app/views/profiles/_event_table.html.haml b/app/views/profiles/_event_table.html.haml
 index 879fc17..0b9f4ea 100644
 --- a/app/views/profiles/_event_table.html.haml
@@ -6530,15 +6768,24 @@ index 7844dcb..a0d4bf3 100644
 +              %span.label.label-info Notification メールアドレス
 +            = link_to '削除', profile_email_path(email), data: { confirm: '本当によろしいですか？'}, method: :delete, class: 'btn btn-sm btn-warning prepend-left-10'
 diff --git a/app/views/profiles/keys/_form.html.haml b/app/views/profiles/keys/_form.html.haml
-index b3ed59a..de0530d 100644
+index b3ed59a..e696e66 100644
 --- a/app/views/profiles/keys/_form.html.haml
 +++ b/app/views/profiles/keys/_form.html.haml
-@@ -10,4 +10,4 @@
+@@ -3,11 +3,11 @@
+     = form_errors(@key)
+ 
+     .form-group
+-      = f.label :key, class: 'label-light'
++      = f.label :key, 'キー', class: 'label-light'
+       = f.text_area :key, class: "form-control", rows: 8, required: true
+     .form-group
+-      = f.label :title, class: 'label-light'
++      = f.label :title, 'タイトル', class: 'label-light'
        = f.text_field :title, class: "form-control", required: true
  
      .prepend-top-default
 -      = f.submit 'Add key', class: "btn btn-create"
-+      = f.submit 'keyを追加', class: "btn btn-create"
++      = f.submit 'キーを追加', class: "btn btn-create"
 diff --git a/app/views/profiles/keys/_key.html.haml b/app/views/profiles/keys/_key.html.haml
 index 4dbaa66..236fbb6 100644
 --- a/app/views/profiles/keys/_key.html.haml
@@ -6575,8 +6822,18 @@ index dd76154..a5b9655 100644
      .pull-right
 -      = link_to 'Remove', path_to_key(@key, is_admin), data: {confirm: 'Are you sure?'}, method: :delete, class: "btn btn-remove delete-key"
 +      = link_to '削除', path_to_key(@key, is_admin), data: {confirm: '本当によろしいですか？'}, method: :delete, class: "btn btn-remove delete-key"
+diff --git a/app/views/profiles/keys/_key_table.html.haml b/app/views/profiles/keys/_key_table.html.haml
+index 296cafa..95307c6 100644
+--- a/app/views/profiles/keys/_key_table.html.haml
++++ b/app/views/profiles/keys/_key_table.html.haml
+@@ -8,4 +8,4 @@
+     - if is_admin
+       There are no SSH keys associated with this account.
+     - else
+-      There are no SSH keys with access to your account.
++      あなたのアカウントにアクセスできるSSHキーはありません。
 diff --git a/app/views/profiles/keys/index.html.haml b/app/views/profiles/keys/index.html.haml
-index e0f8c9a..08866c0 100644
+index e0f8c9a..24331bf 100644
 --- a/app/views/profiles/keys/index.html.haml
 +++ b/app/views/profiles/keys/index.html.haml
 @@ -1,4 +1,4 @@
@@ -6590,7 +6847,7 @@ index e0f8c9a..08866c0 100644
    .col-lg-9
      %h5.prepend-top-0
 -      Add an SSH key
-+      SSH keyを追加
++      SSH キーを追加
      %p.profile-settings-content
 -      Before you can add an SSH key you need to
 -      = link_to "generate it.", help_page_path("ssh", "README")
@@ -6635,7 +6892,7 @@ index a2a505c..ee46a2f 100644
              = f.label :notification_level, value: :disabled do
                = f.radio_button :notification_level, :disabled
 diff --git a/app/views/profiles/passwords/edit.html.haml b/app/views/profiles/passwords/edit.html.haml
-index 5ac8a8b..2c0afc3 100644
+index 5ac8a8b..f308520 100644
 --- a/app/views/profiles/passwords/edit.html.haml
 +++ b/app/views/profiles/passwords/edit.html.haml
 @@ -1,4 +1,4 @@
@@ -6672,7 +6929,7 @@ index 5ac8a8b..2c0afc3 100644
          = f.password_field :password, required: true, class: 'form-control'
        .form-group
 -        = f.label :password_confirmation, class: 'label-light'
-+        = f.label :password_confirmation, '新しいパスワード (確認)', class: 'label-light'
++        = f.label :password_confirmation, '新しいパスワード(確認)', class: 'label-light'
          = f.password_field :password_confirmation, required: true, class: 'form-control'
        .prepend-top-default.append-bottom-default
 -        = f.submit 'Save password', class: "btn btn-create append-right-10"
@@ -6681,7 +6938,7 @@ index 5ac8a8b..2c0afc3 100644
 -          = link_to "I forgot my password", reset_profile_password_path, method: :put, class: "account-btn-link"
 +          = link_to "I forgot my パスワード", reset_profile_password_path, method: :put, class: "account-btn-link"
 diff --git a/app/views/profiles/passwords/new.html.haml b/app/views/profiles/passwords/new.html.haml
-index 2eb9fac..7d195b3 100644
+index 2eb9fac..37a9261 100644
 --- a/app/views/profiles/passwords/new.html.haml
 +++ b/app/views/profiles/passwords/new.html.haml
 @@ -1,25 +1,25 @@
@@ -6713,14 +6970,14 @@ index 2eb9fac..7d195b3 100644
      .col-sm-10= f.password_field :password, required: true, class: 'form-control'
    .form-group
 -    = f.label :password_confirmation, class: 'control-label'
-+    = f.label :password_confirmation, '新しいパスワード (確認)', class: 'control-label'
++    = f.label :password_confirmation, '新しいパスワード(確認)', class: 'control-label'
      .col-sm-10
        = f.password_field :password_confirmation, required: true, class: 'form-control'
    .form-actions
 -    = f.submit 'Set new password', class: "btn btn-create"
 +    = f.submit '新しいパスワードを設定', class: "btn btn-create"
 diff --git a/app/views/profiles/preferences/show.html.haml b/app/views/profiles/preferences/show.html.haml
-index f802116..3adb617 100644
+index f802116..ec6b799 100644
 --- a/app/views/profiles/preferences/show.html.haml
 +++ b/app/views/profiles/preferences/show.html.haml
 @@ -1,4 +1,4 @@
@@ -6729,16 +6986,20 @@ index f802116..3adb617 100644
  - header_title page_title, profile_preferences_path
  
  = form_for @user, url: profile_preferences_path, remote: true, method: :put, html: {class: 'row prepend-top-default js-preferences-form'} do |f|
-@@ -42,7 +42,7 @@
+@@ -42,15 +42,15 @@
          Choose between fixed (max. 1200px) and fluid (100%) application layout.
      .form-group
        = f.label :dashboard, class: 'label-light' do
 -        Default Dashboard
-+        Default ダッシュボード
++        デフォルトダッシュボード
          = link_to('(?)', help_page_path('profile', 'preferences') + '#default-dashboard', target: '_blank')
        = f.select :dashboard, dashboard_choices, {}, class: 'form-control'
      .form-group
-@@ -53,4 +53,4 @@
+       = f.label :project_view, class: 'label-light' do
+-        Project view
++        プロジェクトビュー
+         = link_to('(?)', help_page_path('profile', 'preferences') + '#default-project-view', target: '_blank')
+       = f.select :project_view, project_view_choices, {}, class: 'form-control'
        .help-block
          Choose what content you want to see on a project's home page.
      .form-group
@@ -7394,9 +7655,18 @@ index aa85f49..c97d74c 100644
              %th Finished at
              - if @project.build_coverage_enabled?
 diff --git a/app/views/projects/builds/show.html.haml b/app/views/projects/builds/show.html.haml
-index 6d4505e..9ded779 100644
+index 6d4505e..1f2dc4c 100644
 --- a/app/views/projects/builds/show.html.haml
 +++ b/app/views/projects/builds/show.html.haml
+@@ -62,7 +62,7 @@
+           %br
+           Go to
+           = link_to namespace_project_runners_path(@build.project.namespace, @build.project) do
+-            Runners page
++            Runners ページ
+ 
+   .row.prepend-top-default
+     .col-md-9
 @@ -117,7 +117,7 @@
              .center
                .btn-group{ role: :group }
@@ -7650,10 +7920,15 @@ index 44ef1fd..2b83e68 100644
              - unless can?(current_user, :push_code, @project)
                .inline.prepend-left-10
 diff --git a/app/views/projects/commit/_ci_menu.html.haml b/app/views/projects/commit/_ci_menu.html.haml
-index ea33aa4..e15a983 100644
+index ea33aa4..8200b36 100644
 --- a/app/views/projects/commit/_ci_menu.html.haml
 +++ b/app/views/projects/commit/_ci_menu.html.haml
-@@ -5,5 +5,5 @@
+@@ -1,9 +1,9 @@
+ %ul.nav-links.no-top.no-bottom.commit-ci-menu
+   = nav_link(path: 'commit#show') do
+     = link_to namespace_project_commit_path(@project.namespace, @project, @commit.id) do
+-      Changes
++      変更
        %span.badge= @diffs.count
    = nav_link(path: 'commit#builds') do
      = link_to builds_namespace_project_commit_path(@project.namespace, @project, @commit.id) do
@@ -7661,11 +7936,17 @@ index ea33aa4..e15a983 100644
 +      ビルド
        %span.badge= @statuses.count
 diff --git a/app/views/projects/commit/_commit_box.html.haml b/app/views/projects/commit/_commit_box.html.haml
-index d6c9e54..5ea7f1c 100644
+index d6c9e54..be2fe22 100644
 --- a/app/views/projects/commit/_commit_box.html.haml
 +++ b/app/views/projects/commit/_commit_box.html.haml
-@@ -15,14 +15,14 @@
-         %li= link_to "Plain Diff",    namespace_project_commit_path(@project.namespace, @project, @commit, format: :diff)
+@@ -11,18 +11,18 @@
+         %span.caret
+       %ul.dropdown-menu
+         - unless @commit.parents.length > 1
+-          %li= link_to "Email Patches", namespace_project_commit_path(@project.namespace, @project, @commit, format: :patch)
+-        %li= link_to "Plain Diff",    namespace_project_commit_path(@project.namespace, @project, @commit, format: :diff)
++          %li= link_to "メール用パッチ", namespace_project_commit_path(@project.namespace, @project, @commit, format: :patch)
++        %li= link_to "プレーンDiff",    namespace_project_commit_path(@project.namespace, @project, @commit, format: :diff)
      = link_to namespace_project_tree_path(@project.namespace, @project, @commit), class: "btn btn-grouped" do
        = icon('files-o')
 -      Browse Files
@@ -7758,9 +8039,22 @@ index 8d66bae..7a3c674 100644
      - deploy_key.projects.each do |project|
        - if can?(current_user, :read_project, project)
 diff --git a/app/views/projects/deploy_keys/_form.html.haml b/app/views/projects/deploy_keys/_form.html.haml
-index f6565f8..57eebe2 100644
+index f6565f8..6156ffb 100644
 --- a/app/views/projects/deploy_keys/_form.html.haml
 +++ b/app/views/projects/deploy_keys/_form.html.haml
+@@ -3,10 +3,10 @@
+     = form_errors(@key)
+ 
+     .form-group
+-      = f.label :title, class: "control-label"
++      = f.label :title, 'タイトル', class: "control-label"
+       .col-sm-10= f.text_field :title, class: 'form-control', autofocus: true, required: true
+     .form-group
+-      = f.label :key, class: "control-label"
++      = f.label :key, 'キー', class: "control-label"
+       .col-sm-10
+         %p.light
+           Paste a machine public key here. Read more about how to generate it
 @@ -14,5 +14,5 @@
          = f.text_area :key, class: "form-control thin_area", rows: 5, required: true
  
@@ -7861,10 +8155,10 @@ index ea2a3e0..e6a58d7 100644
      %strong.cgreen #{diff_files.sum(&:added_lines)} additions
      and
 diff --git a/app/views/projects/edit.html.haml b/app/views/projects/edit.html.haml
-index 76a4f41..b6ef1b6 100644
+index 76a4f41..c01c9c1 100644
 --- a/app/views/projects/edit.html.haml
 +++ b/app/views/projects/edit.html.haml
-@@ -3,57 +3,57 @@
+@@ -3,66 +3,66 @@
    .project-edit-content
      .panel.panel-default
        .panel-heading
@@ -7875,9 +8169,8 @@ index 76a4f41..b6ef1b6 100644
  
            %fieldset
              .form-group.project_name_holder
--              = f.label :name, class: 'control-label' do
+               = f.label :name, class: 'control-label' do
 -                Project name
-+              = f.label :name, '名前', class: 'control-label' do
 +                プロジェクト名
                .col-sm-10
                  = f.text_field :name, class: "form-control", id: "project_name_edit"
@@ -7932,9 +8225,11 @@ index 76a4f41..b6ef1b6 100644
 -                    %strong Merge Requests
 +                    %strong マージリクエスト
                      %br
-                     %span.descr Submit changes to be merged upstream
+-                    %span.descr Submit changes to be merged upstream
++                    %span.descr changes to be merged upstreamを送信
  
-@@ -62,7 +62,7 @@
+             .form-group
+               .col-sm-offset-2.col-sm-10
                  .checkbox
                    = f.label :builds_enabled do
                      = f.check_box :builds_enabled
@@ -8032,9 +8327,8 @@ index 76a4f41..b6ef1b6 100644
          .panel-body
            = form_for([@project.namespace.becomes(Namespace), @project], html: { class: 'form-horizontal' }) do |f|
              .form-group.project_name_holder
--              = f.label :name, class: 'control-label' do
+               = f.label :name, class: 'control-label' do
 -                Project name
-+              = f.label :name, '名前', class: 'control-label' do
 +                プロジェクト名
                .col-sm-9
                  .form-group
@@ -8605,9 +8899,23 @@ index bde80bb..eb4bd5f 100644
              = icon('pencil-square-o')
              Edit
 diff --git a/app/views/projects/labels/_form.html.haml b/app/views/projects/labels/_form.html.haml
-index aa143e5..e09b635 100644
+index aa143e5..c55d328 100644
 --- a/app/views/projects/labels/_form.html.haml
 +++ b/app/views/projects/labels/_form.html.haml
+@@ -2,11 +2,11 @@
+   = form_errors(@label)
+ 
+   .form-group
+-    = f.label :title, class: 'control-label'
++    = f.label :title, 'タイトル', class: 'control-label'
+     .col-sm-10
+       = f.text_field :title, class: "form-control", required: true, autofocus: true
+   .form-group
+-    = f.label :description, class: 'control-label'
++    = f.label :description, '説明', class: 'control-label'
+     .col-sm-10
+       = f.text_field :description, class: "form-control js-quick-submit"
+   .form-group
 @@ -27,7 +27,7 @@
  
    .form-actions
@@ -8837,7 +9145,7 @@ index b085245..4679140 100644
  :javascript
    new Compare({
 diff --git a/app/views/projects/merge_requests/_new_submit.html.haml b/app/views/projects/merge_requests/_new_submit.html.haml
-index 2f14a91..78b112e 100644
+index 2f14a91..9e565e4 100644
 --- a/app/views/projects/merge_requests/_new_submit.html.haml
 +++ b/app/views/projects/merge_requests/_new_submit.html.haml
 @@ -1,5 +1,5 @@
@@ -8856,7 +9164,7 @@ index 2f14a91..78b112e 100644
  %hr
  = form_for [@project.namespace.becomes(Namespace), @project, @merge_request], html: { class: 'merge-request-form form-horizontal common-note-form js-requires-input' } do |f|
    = render 'shared/issuable/form', f: f, issuable: @merge_request
-@@ -26,7 +26,7 @@
+@@ -26,11 +26,11 @@
      - if @ci_commit
        %li.builds-tab.active
          = link_to url_for(params), data: {target: 'div#builds', action: 'builds', toggle: 'tab'} do
@@ -8865,8 +9173,13 @@ index 2f14a91..78b112e 100644
            %span.badge= @statuses.size
      %li.diffs-tab.active
        = link_to url_for(params), data: {target: 'div#diffs', action: 'diffs', toggle: 'tab'} do
+-        Changes
++        変更
+         %span.badge= @diffs.real_size
+ 
+   .tab-content
 diff --git a/app/views/projects/merge_requests/_show.html.haml b/app/views/projects/merge_requests/_show.html.haml
-index 290753d..b66f57e 100644
+index 290753d..5e90214 100644
 --- a/app/views/projects/merge_requests/_show.html.haml
 +++ b/app/views/projects/merge_requests/_show.html.haml
 @@ -1,7 +1,7 @@
@@ -8888,7 +9201,18 @@ index 290753d..b66f57e 100644
  
            %span.dropdown
              %a.btn.btn-sm.dropdown-toggle{ data: {toggle: :dropdown} }
-@@ -43,7 +43,7 @@
+@@ -25,8 +25,8 @@
+               Download as
+               %span.caret
+             %ul.dropdown-menu
+-              %li= link_to "Email Patches", merge_request_path(@merge_request, format: :patch)
+-              %li= link_to "Plain Diff",    merge_request_path(@merge_request, format: :diff)
++              %li= link_to "メール用パッチ", merge_request_path(@merge_request, format: :patch)
++              %li= link_to "プレーンDiff",    merge_request_path(@merge_request, format: :diff)
+       .normal
+         %span Request to merge
+         %span.label-branch= source_branch_with_namespace(@merge_request)
+@@ -43,13 +43,13 @@
        .light.prepend-top-default
          You can also accept this merge request manually using the
          = succeed '.' do
@@ -8897,7 +9221,14 @@ index 290753d..b66f57e 100644
  
      - if @commits.present?
        %ul.merge-request-tabs.nav-links.no-top.no-bottom
-@@ -58,7 +58,7 @@
+         %li.notes-tab
+           = link_to namespace_project_merge_request_path(@project.namespace, @project, @merge_request), data: {target: 'div#notes', action: 'notes', toggle: 'tab'} do
+-            Discussion
++            ディスカッション
+             %span.badge= @merge_request.mr_and_commit_notes.user.nonawards.count
+         %li.commits-tab
+           = link_to commits_namespace_project_merge_request_path(@project.namespace, @project, @merge_request), data: {target: 'div#commits', action: 'commits', toggle: 'tab'} do
+@@ -58,11 +58,11 @@
          - if @ci_commit
            %li.builds-tab
              = link_to builds_namespace_project_merge_request_path(@project.namespace, @project, @merge_request), data: {target: '#builds', action: 'builds', toggle: 'tab'} do
@@ -8906,6 +9237,11 @@ index 290753d..b66f57e 100644
                %span.badge= @statuses.size
          %li.diffs-tab
            = link_to diffs_namespace_project_merge_request_path(@project.namespace, @project, @merge_request), data: {target: 'div#diffs', action: 'diffs', toggle: 'tab'} do
+-            Changes
++            変更
+             %span.badge= @merge_request.diff_size
+ 
+       .tab-content
 diff --git a/app/views/projects/merge_requests/edit.html.haml b/app/views/projects/merge_requests/edit.html.haml
 index b31ea5e..475cfeb 100644
 --- a/app/views/projects/merge_requests/edit.html.haml
@@ -9467,6 +9803,16 @@ index aeb7c1d..f555d60 100644
 -                title: 'Delete this attachment', method: :delete, remote: true, data: { confirm: 'Are you sure you want to remove the attachment?' }, class: 'danger js-note-attachment-delete' do
 +                title: 'this attachmentを削除', method: :delete, remote: true, data: { confirm: 'Are you sure you want to remove the attachment?' }, class: 'danger js-note-attachment-delete' do
                  = icon('trash-o', class: 'cred')
+diff --git a/app/views/projects/project_members/_group_members.html.haml b/app/views/projects/project_members/_group_members.html.haml
+index c53033e..3e259f4 100644
+--- a/app/views/projects/project_members/_group_members.html.haml
++++ b/app/views/projects/project_members/_group_members.html.haml
+@@ -14,4 +14,4 @@
+       = render 'groups/group_members/group_member', member: member, show_controls: false
+     - if members.count > 20
+       %li
+-        and #{members.count - 20} more. For full list visit #{link_to 'group members page', group_group_members_path(@group)}
++        and #{members.count - 20} more. For full list visit #{link_to 'group members ページ', group_group_members_path(@group)}
 diff --git a/app/views/projects/project_members/_header_title.html.haml b/app/views/projects/project_members/_header_title.html.haml
 index a31f0a3..cdc808c 100644
 --- a/app/views/projects/project_members/_header_title.html.haml
@@ -9516,10 +9862,10 @@ index 05bf3a7..02b2d99 100644
 -          = f.submit 'Save', class: 'btn btn-save'
 +          = f.submit '保存', class: 'btn btn-save'
 diff --git a/app/views/projects/project_members/_shared_group_members.html.haml b/app/views/projects/project_members/_shared_group_members.html.haml
-index ae13f84..565c96f 100644
+index ae13f84..78fc0b7 100644
 --- a/app/views/projects/project_members/_shared_group_members.html.haml
 +++ b/app/views/projects/project_members/_shared_group_members.html.haml
-@@ -12,7 +12,7 @@
+@@ -12,10 +12,10 @@
          .panel-head-actions
            = link_to group_group_members_path(shared_group), class: 'btn btn-sm' do
              %i.fa.fa-pencil-square-o
@@ -9528,6 +9874,10 @@ index ae13f84..565c96f 100644
      %ul.content-list
        - shared_group.group_members.order('access_level DESC').limit(20).each do |member|
          = render 'groups/group_members/group_member', member: member, show_controls: false, show_roles: false
+       - if shared_group_users_count > 20
+         %li
+-          and #{shared_group_users_count - 20} more. For full list visit #{link_to 'group members page', group_group_members_path(shared_group)}
++          and #{shared_group_users_count - 20} more. For full list visit #{link_to 'group members ページ', group_group_members_path(shared_group)}
 diff --git a/app/views/projects/project_members/_team.html.haml b/app/views/projects/project_members/_team.html.haml
 index e8dce30..8830584 100644
 --- a/app/views/projects/project_members/_team.html.haml
@@ -9655,6 +10005,19 @@ index 653b02d..9633d9b 100644
      .form-actions
        = f.submit 'Protect', class: "btn-create btn"
  = render 'branches_list'
+diff --git a/app/views/projects/refs/logs_tree.js.haml b/app/views/projects/refs/logs_tree.js.haml
+index 8ee2aef..abbfdfb 100644
+--- a/app/views/projects/refs/logs_tree.js.haml
++++ b/app/views/projects/refs/logs_tree.js.haml
+@@ -12,7 +12,7 @@
+   :plain
+     if($('#tree-slider').length) {
+       // Load more commit logs for each file in tree
+-      // if we still on the same page
++      // if we still on the same ページ
+       var url = "#{escape_javascript(@more_log_url)}";
+       ajaxGet(url);
+     }
 diff --git a/app/views/projects/releases/edit.html.haml b/app/views/projects/releases/edit.html.haml
 index 6f0b32a..68e4b19 100644
 --- a/app/views/projects/releases/edit.html.haml
@@ -10345,11 +10708,21 @@ index ca284b8..e70918b 100644
 -    = f.submit 'Save changes', class: 'btn btn-save', return_to: request.original_url
 +    = f.submit '変更を保存', class: 'btn btn-save', return_to: request.original_url
 diff --git a/app/views/projects/wikis/_form.html.haml b/app/views/projects/wikis/_form.html.haml
-index 797a1a5..8750523 100644
+index 797a1a5..24bd309 100644
 --- a/app/views/projects/wikis/_form.html.haml
 +++ b/app/views/projects/wikis/_form.html.haml
-@@ -11,7 +11,7 @@
-     = f.label :content, class: 'control-label'
+@@ -3,15 +3,15 @@
+ 
+   = f.hidden_field :title, value: @page.title
+   .form-group
+-    = f.label :format, class: 'control-label'
++    = f.label :format, '形式', class: 'control-label'
+     .col-sm-10
+       = f.select :format, options_for_select(ProjectWiki::MARKUPS, {selected: @page.format}), {}, class: "form-control"
+ 
+   .form-group
+-    = f.label :content, class: 'control-label'
++    = f.label :content, '内容', class: 'control-label'
      .col-sm-10
        = render layout: 'projects/md_preview', locals: { preview_class: "md-preview" } do
 -        = render 'projects/zen', f: f, attr: :content, classes: 'note-textarea', placeholder: 'Write your content or drag files here...'
@@ -10357,7 +10730,13 @@ index 797a1a5..8750523 100644
          = render 'projects/notes/hints'
  
        .clearfix
-@@ -27,8 +27,8 @@
+@@ -22,13 +22,13 @@
+         %code [Link Title](page-slug)
+         \.
+   .form-group
+-    = f.label :commit_message, class: 'control-label'
++    = f.label :commit_message, 'コミットメッセージ', class: 'control-label'
+     .col-sm-10= f.text_field :message, class: 'form-control', rows: 18
  
    .form-actions
      - if @page && @page.persisted?
@@ -10368,7 +10747,7 @@ index 797a1a5..8750523 100644
      - else
 -      = f.submit 'Create page', class: "btn-create btn"
 -      = link_to "Cancel", namespace_project_wiki_path(@project.namespace, @project, :home), class: "btn btn-cancel"
-+      = f.submit 'pageを作成', class: "btn-create btn"
++      = f.submit 'ページを作成', class: "btn-create btn"
 +      = link_to "キャンセル", namespace_project_wiki_path(@project.namespace, @project, :home), class: "btn btn-cancel"
 diff --git a/app/views/projects/wikis/_main_links.html.haml b/app/views/projects/wikis/_main_links.html.haml
 index 2b91b7e..0d2c0ed 100644
@@ -10411,7 +10790,7 @@ index a722fbc..02cdf42 100644
  
  = render 'projects/wikis/new'
 diff --git a/app/views/projects/wikis/_new.html.haml b/app/views/projects/wikis/_new.html.haml
-index 919daf0..d14ea3f 100644
+index 919daf0..5edc418 100644
 --- a/app/views/projects/wikis/_new.html.haml
 +++ b/app/views/projects/wikis/_new.html.haml
 @@ -3,7 +3,7 @@
@@ -10428,7 +10807,7 @@ index 919daf0..d14ea3f 100644
              = text_field_tag :new_wiki_path, nil, placeholder: 'how-to-setup', class: 'form-control', required: true, :'data-wikis-path' => namespace_project_wikis_path(@project.namespace, @project), autofocus: true
            .form-actions
 -            = button_tag 'Create Page', class: 'build-new-wiki btn btn-create'
-+            = button_tag 'Pageを作成', class: 'build-new-wiki btn btn-create'
++            = button_tag 'ページを作成', class: 'build-new-wiki btn btn-create'
 diff --git a/app/views/projects/wikis/edit.html.haml b/app/views/projects/wikis/edit.html.haml
 index 4dd818c..64b4164 100644
 --- a/app/views/projects/wikis/edit.html.haml
@@ -10448,6 +10827,19 @@ index 4dd818c..64b4164 100644
  
    .nav-controls
      = render 'main_links'
+diff --git a/app/views/projects/wikis/empty.html.haml b/app/views/projects/wikis/empty.html.haml
+index c7e490c..a303266 100644
+--- a/app/views/projects/wikis/empty.html.haml
++++ b/app/views/projects/wikis/empty.html.haml
+@@ -1,7 +1,7 @@
+ - page_title "Wiki"
+ = render "header_title"
+ 
+-%h3.page-title Empty page
++%h3.page-title Empty ページ
+ %hr
+ .error_message
+   You are not allowed to create wiki pages
 diff --git a/app/views/projects/wikis/git_access.html.haml b/app/views/projects/wikis/git_access.html.haml
 index dd27ea2..0d60607 100644
 --- a/app/views/projects/wikis/git_access.html.haml
@@ -10819,15 +11211,15 @@ index 8d6e16f..4d72944 100644
      = form.label name, title, class: "control-label"
    .col-sm-10
 diff --git a/app/views/shared/_group_form.html.haml b/app/views/shared/_group_form.html.haml
-index 67072b9..4a7d3b3 100644
+index 67072b9..707b33f 100644
 --- a/app/views/shared/_group_form.html.haml
 +++ b/app/views/shared/_group_form.html.haml
 @@ -1,13 +1,13 @@
  - if @group.persisted?
    .form-group
--    = f.label :name, class: 'control-label' do
-+    = f.label :name, '名前', class: 'control-label' do
-       Group name
+     = f.label :name, class: 'control-label' do
+-      Group name
++      グループ名
      .col-sm-10
        = f.text_field :name, placeholder: 'open-source', class: 'form-control'
  
@@ -10838,7 +11230,7 @@ index 67072b9..4a7d3b3 100644
    .col-sm-10
      .input-group
        .input-group-addon
-@@ -18,7 +18,7 @@
+@@ -18,12 +18,12 @@
        .alert.alert-warning.prepend-top-10
          %ul
            %li Changing group path can have unintended side effects.
@@ -10847,6 +11239,12 @@ index 67072b9..4a7d3b3 100644
            %li It will change web url for access group and group projects.
            %li It will change the git path to repositories under this group.
  
+ .form-group.group-description-holder
+-  = f.label :description, class: 'control-label'
++  = f.label :description, '説明', class: 'control-label'
+   .col-sm-10
+     = f.text_area :description, maxlength: 250,
+         class: 'form-control js-gfm-input', rows: 4
 diff --git a/app/views/shared/_group_tips.html.haml b/app/views/shared/_group_tips.html.haml
 index 46e4340..1522b26 100644
 --- a/app/views/shared/_group_tips.html.haml
@@ -11136,9 +11534,18 @@ index fc11016..46b02be 100644
    - if !@labels.nil?
      .gray-content-block.second-block.filtered-labels{ class: ("hidden" if !@labels.any?) }
 diff --git a/app/views/shared/issuable/_form.html.haml b/app/views/shared/issuable/_form.html.haml
-index 18b091d..1900ed4 100644
+index 18b091d..251e05c 100644
 --- a/app/views/shared/issuable/_form.html.haml
 +++ b/app/views/shared/issuable/_form.html.haml
+@@ -1,7 +1,7 @@
+ = form_errors(issuable)
+ 
+ .form-group
+-  = f.label :title, class: 'control-label'
++  = f.label :title, 'タイトル', class: 'control-label'
+   .col-sm-10
+     = f.text_field :title, maxlength: 255, autofocus: true, autocomplete: 'off',
+         class: 'form-control pad', required: true
 @@ -10,7 +10,7 @@
        %p.help-block
          .js-wip-explanation
@@ -11244,7 +11651,8 @@ index 18b091d..1900ed4 100644
  - is_footer = !(issuable.is_a?(MergeRequest) && issuable.new_record?)
  .gray-content-block{class: (is_footer ? "footer-block" : "middle-block")}
    - if issuable.new_record?
-     = f.submit "Submit #{issuable.class.model_name.human.downcase}", class: 'btn btn-create'
+-    = f.submit "Submit #{issuable.class.model_name.human.downcase}", class: 'btn btn-create'
++    = f.submit "#{issuable.class.model_name.human.downcase}を送信", class: 'btn btn-create'
    - else
 -    = f.submit 'Save changes', class: 'btn btn-save'
 +    = f.submit '変更を保存', class: 'btn btn-save'
@@ -11736,9 +12144,18 @@ index 773ce8a..0c10ac4 100644
 -    .nothing-here-block Empty file
 +    .nothing-here-block 空のファイル
 diff --git a/app/views/shared/snippets/_form.html.haml b/app/views/shared/snippets/_form.html.haml
-index 47ec09f..9f9f307 100644
+index 47ec09f..569d380 100644
 --- a/app/views/shared/snippets/_form.html.haml
 +++ b/app/views/shared/snippets/_form.html.haml
+@@ -3,7 +3,7 @@
+     = form_errors(@snippet)
+ 
+     .form-group
+-      = f.label :title, class: 'control-label'
++      = f.label :title, 'タイトル', class: 'control-label'
+       .col-sm-10
+         = f.text_field :title, class: 'form-control', required: true, autofocus: true
+ 
 @@ -11,25 +11,25 @@
  
      .file-editor
@@ -12256,6 +12673,16 @@ index e6ac479..30a176f 100644
  
  - [API](api/README.md) Automate GitLab via a simple and powerful API.
  - [CI](ci/README.md) GitLab Continuous Integration (CI) getting started, `.gitlab-ci.yml` options, and examples.
+diff --git a/doc/api/deploy_keys.md b/doc/api/deploy_keys.md
+index 9da1fe2..3ba8033 100644
+--- a/doc/api/deploy_keys.md
++++ b/doc/api/deploy_keys.md
+@@ -1,4 +1,4 @@
+-# Deploy Keys
++# デプロイキー
+ 
+ ## List deploy keys
+ 
 diff --git a/doc/api/merge_requests.md b/doc/api/merge_requests.md
 index 2057f9d..a042763 100644
 --- a/doc/api/merge_requests.md
@@ -12269,6 +12696,34 @@ index 2057f9d..a042763 100644
  
  Merge changes submitted with MR using this API.
  
+diff --git a/doc/ssh/README.md b/doc/ssh/README.md
+index a1198e5..c8bae01 100644
+--- a/doc/ssh/README.md
++++ b/doc/ssh/README.md
+@@ -1,6 +1,6 @@
+ # SSH
+ 
+-## SSH keys
++## SSHキー
+ 
+ An SSH key allows you to establish a secure connection between your
+ computer and GitLab. Before generating an SSH key in your shell, check if your system
+@@ -68,7 +68,7 @@ pbcopy < ~/.ssh/id_rsa.pub
+ xclip -sel clip < ~/.ssh/id_rsa.pub
+ ```
+ 
+-## Deploy keys
++## デプロイキー
+ 
+ Deploy keys allow read-only access to multiple projects with a single SSH
+ key.
+@@ -127,4 +127,4 @@ Note in the gitlab.com example above a username was specified to override the de
+ Due to the wide variety of SSH clients and their very large number of configuration options, further explanation of these topics is beyond the scope of this document.
+ 
+ Public SSH keys need to be unique, as they will bind to your account. Your SSH key is the only identifier you'll
+-have when pushing code via SSH. That's why it needs to uniquely map to a single user.
+\ No newline at end of file
++have when pushing code via SSH. That's why it needs to uniquely map to a single user.
 diff --git a/doc/update/2.6-to-3.0.md b/doc/update/2.6-to-3.0.md
 index 4827ef9..e375f71 100644
 --- a/doc/update/2.6-to-3.0.md

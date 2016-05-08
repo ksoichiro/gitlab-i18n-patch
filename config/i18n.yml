@@ -302,6 +302,11 @@ translations:
     args:
     - '$2$5$8'
     params: ['verb', 'key']
+  - name: formLabel
+    pattern: "= f\\.label :{symbol}, class"
+    exclude: " do$"
+    replace: "= f.label :{symbol}, '${{key}}', class"
+    params: ['symbol', 'key']
   patterns:
   - pattern: "Edit in fullscreen"
     replace: "${editInFullscreen}"
@@ -647,16 +652,6 @@ translations:
     replace: '${youDontHaveAnyAuthorizedApplications}'
   - pattern: "Control emails linked to your account"
     replace: '${controlEmailsLinkedToYourAccount}'
-  - pattern: "= f.label :name, class"
-    replace: "= f.label :name, '${name}', class"
-  - pattern: "= f.label :email, class"
-    replace: "= f.label :email, '${email}', class"
-  - pattern: "= f.label :bio, class"
-    replace: "= f.label :bio, '${bio}', class"
-  - pattern: "= f.label :notification_email, class"
-    replace: "= f.label :notification_email, '${notificationEmail}', class"
-  - pattern: "= f.label :notification_level, class"
-    replace: "= f.label :notification_level, '${notificationLevel}', class"
   - pattern: !!js/regexp /(\s+)Before you can add an SSH key you need to(\n\s+[^"]+")generate it.([^\n]*)$/m
     replace: '$1${beforeYouCanAddAnSSHKeyYouNeedToGenerateIt}'
     args:
@@ -674,14 +669,6 @@ translations:
     replace: '${pleaseSetANewPasswordBeforeProceeding}'
   - pattern: "After a successful password update you will be redirected to login screen."
     replace: '${afterASuccessfulPasswordUpdateYouWillBeRedirectedToLoginScreen}'
-  - pattern: "= f.label :current_password, class"
-    replace: "= f.label :current_password, '${currentPassword}', class"
-  - pattern: "= f.label :password, class"
-    replace: "= f.label :password, '${newPassword}', class"
-  - pattern: "= f.label :password_confirmation, class"
-    replace: "= f.label :password_confirmation, 'New Password (${confirmation})', class"
-  - pattern: "= f.label :public_email, class"
-    replace: "= f.label :public_email, '${publicEmail}', class"
   - pattern: "Discover projects, groups and snippets. Share your projects with others"
     replace: '${discoverProjectsGroupsAndSnippetsShareYourProjectsWithOthers}'
   - pattern: "You're all done!"
@@ -787,11 +774,57 @@ translations:
     replace: '${manageApplicationsThatYouveAuthorizedToUseYourAccount}'
   - pattern: 'Delete this label?'
     replace: '${deleteThisLabel}'
+  - pattern: 'There are no SSH keys with access to your account.'
+    replace: '${thereAreNoSSHKeysWithAccessToYourAccount}'
+  - pattern: 'Drag and drop available'
+    replace: '${dragAndDropAvailable}'
   - pattern: 'Are you sure?'
     replace: '${areYouSure}'
   - pattern: "Code?$|(\")Code?\"|(')Code?'|(\".* )Code?(\")"
     exclude: '^\s*- when |Google Code'
     replace: '$1$2$3${code}$1$2$4'
+  - name: formLabel
+    params:
+    - {symbol: admin, key: admin}
+    - {symbol: admin_notification_email, key: adminNotificationEmail}
+    - {symbol: after_sign_out_path, key: afterSignOutPath}
+    - {symbol: avatar, key: avatar}
+    - {symbol: bio, key: bio}
+    - {symbol: can_create_group, key: canCreateGroup}
+    - {symbol: commit_message, key: commitMessage}
+    - {symbol: content, key: content}
+    - {symbol: current_password, key: currentPassword}
+    - {symbol: dashboard, key: dashboard}
+    - {symbol: default_branch_protection, key: defaultBranchProtection}
+    - {symbol: default_project_visibility, key: defaultProjectVisibility}
+    - {symbol: default_projects_limit, key: defaultProjectsLimit}
+    - {symbol: default_snippet_visibility, key: defaultSnippetVisibility}
+    - {symbol: description, key: description}
+    - {symbol: email, key: email}
+    - {symbol: ends_at, key: endsAt}
+    - {symbol: format, key: format}
+    - {symbol: help_page_text, key: helpPageText}
+    - {symbol: import_sources, key: importSources}
+    - {symbol: key, key: key}
+    - {symbol: layout, key: layout}
+    - {symbol: message, key: message}
+    - {symbol: name, key: name}
+    - {symbol: notification_email, key: notificationEmail}
+    - {symbol: notification_level, key: notificationLevel}
+    - {symbol: password, key: newPassword}
+    - {symbol: password_confirmation, key: newPasswordConfirmation}
+    - {symbol: projects_limit, key: projectsLimit}
+    - {symbol: provider, key: provider}
+    - {symbol: public, key: public}
+    - {symbol: public_email, key: publicEmail}
+    - {symbol: redirect_uri, key: redirectUri}
+    - {symbol: restricted_visibility_levels, key: restrictedVisibilityLevels}
+    - {symbol: sign_in_text, key: signInText}
+    - {symbol: starts_at, key: startsAt}
+    - {symbol: tag_push_events, key: tagPushEvents}
+    - {symbol: title, key: title}
+    - {symbol: user_id, key: userId}
+    - {symbol: username, key: username}
   - name: singleWord
     params:
     - {word: 'Issues', key: issue}
@@ -867,6 +900,7 @@ translations:
     - {word: 'User map', key: userMap}
     - {word: 'Invitation', key: invitation}
     - {word: 'Admin [aA]rea', key: adminArea}
+    - {word: 'Default Dashboard', key: defaultDashboard}
     - {word: 'Dashboard', key: dashboard}
     - {word: 'Contribution guide', key: contributionGuide}
     - {word: 'Changelog', key: changelog}
@@ -926,6 +960,14 @@ translations:
     - {word: 'Location', key: location}
     - {word: 'Bio', key: bio}
     - {word: 'Website', key: website}
+    - {word: 'Group name', key: groupName}
+    - {word: 'Project view', key: projectView}
+    - {word: 'Discussion', key: discussion}
+    - {word: 'Plain Diff', key: plainDiff}
+    - {word: 'Diff', key: diff}
+    - {word: 'Required', key: required}
+    - {word: 'Changes', key: change}
+    - {word: 'Email Patches', key: emailPatch}
   - name: wordInSentence
     params:
     - {word: 'applications?', key: application}
@@ -935,6 +977,7 @@ translations:
     - {word: 'assignee', key: assignee}
     - {word: 'groups?', key: group}
     - {word: 'labels?', key: label}
+    - {word: 'page', key: page}
     - {word: 'users?', key: user}
     - {word: 'snippets?', key: snippet}
     - {word: 'milestones?', key: milestone}
@@ -953,6 +996,7 @@ translations:
     - {word: 'repository', key: repository}
     - {word: 'username', key: username}
     - {word: 'invitation', key: invitation}
+    - {word: 'key', key: key}
   - name: doSth
     params:
     - {verb: Edit, key: editSth}
@@ -979,6 +1023,7 @@ translations:
     - {verb: Disable, key: disableSth}
     - {verb: Import, key: importSth}
     - {verb: 'Attach(?: an?)?', key: attachSth}
+    - {verb: Submit, key: submitSth}
   - name: sthCountsDone
     params:
     - {obj: issues, objKey: issue, done: updated, doneKey: update}
@@ -1992,10 +2037,8 @@ translations:
     #  key: mdTitleDeleteSystemHook
     #- title: 'Delete the old gitlab user'
     #  key: mdTitleDeleteTheOldGitlabUser
-    #- title: 'Deploy Keys'
-    #  key: mdTitleDeployKeys
-    #- title: 'Deploy keys'
-    #  key: mdTitleDeployKeys
+    - title: 'Deploy [kK]eys'
+      key: deployKey
     #- title: 'Deprecations'
     #  key: mdTitleDeprecations
     #- title: 'Description'
@@ -3486,8 +3529,8 @@ translations:
     #  key: mdTitleSQLQueryGuidelines
     #- title: 'SSH'
     #  key: mdTitleSSH
-    #- title: 'SSH keys'
-    #  key: mdTitleSSHKeys
+    - title: 'SSH keys'
+      key: sshKey
     #- title: 'SSH keys when using the Docker executor'
     #  key: mdTitleSSHKeysWhenUsingTheDockerExecutor
     #- title: 'SSH keys when using the Shell executor'

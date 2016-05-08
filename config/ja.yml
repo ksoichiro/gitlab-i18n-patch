@@ -1165,8 +1165,6 @@ mdTitleAcceptMR: マージリクエストの承認
 #mdTitleDeleteSnippet: 
 #mdTitleDeleteSystemHook: 
 #mdTitleDeleteTheOldGitlabUser: 
-#mdTitleDeployKeys: 
-#mdTitleDeployKeys: 
 #mdTitleDeprecations: 
 #mdTitleDescription: 
 #mdTitleDesignReference: 
@@ -2368,3 +2366,36 @@ youMustProvideCurrentPasswordInOrderToChangeIt: パスワードを変更する�
 afterASuccessfulPasswordUpdateYouWillBeRedirectedToTheLoginPageWhereYouCanLogInWithYourNewPassword: 正常に更新された場合、ログイン画面にリダイレクトします。新しいパスワードでログインしてください。
 theseAreYourGlobalNotificationSettings: これらはグローバルな通知設定です。
 beforeYouCanAddAnSSHKeyYouNeedToGenerateIt: 'SSHキーを追加する前に{0}SSHキーを生成してください{1}'
+thereAreNoSSHKeysWithAccessToYourAccount: あなたのアカウントにアクセスできるSSHキーはありません。
+groupName: グループ名
+newPasswordConfirmation: '新しいパスワード(確認)'
+submitSth: '{0}を送信'
+admin: 管理者
+adminNotificationEmail: 管理者通知メールアドレス
+afterSignOutPath: サインアウト後パス
+avatar: アバター
+canCreateGroup: グループ作成可能
+content: 内容
+defaultBranchProtection: ブランチ保護初期値
+defaultProjectVisibility: プロジェクト可視性初期値
+defaultProjectsLimit: 上限プロジェクト数初期値
+defaultSnippetVisibility: スニペット可視性初期値
+endsAt: 終了日
+helpPageText: ヘルプページ文言
+importSources: インポート元
+layout: レイアウト
+projectsLimit: 上限プロジェクト数
+provider: プロバイダ
+redirectUri: リダイレクトURI
+restrictedVisibilityLevels: 制限された可視性レベル
+signInText: サインイン文言
+startsAt: 開始日
+userId: ユーザID
+projectView: プロジェクトビュー
+defaultDashboard: デフォルトダッシュボード
+discussion: ディスカッション
+diff: 差分
+required: 必須
+emailPatch: メール用パッチ
+plainDiff: プレーンDiff
+dragAndDropAvailable: 'ドラッグ &amp; ドロップできます'

@@ -2406,7 +2406,7 @@ index 0fdd5bd..81d3e71 100644
            %th
        = render @spam_logs
 diff --git a/app/views/admin/users/_form.html.haml b/app/views/admin/users/_form.html.haml
-index d2527ed..25d5e2d 100644
+index d2527ed..e3a8b11 100644
 --- a/app/views/admin/users/_form.html.haml
 +++ b/app/views/admin/users/_form.html.haml
 @@ -7,55 +7,55 @@
@@ -2420,19 +2420,22 @@ index d2527ed..25d5e2d 100644
 +        = f.label :name, '名前', class: 'control-label'
          .col-sm-10
            = f.text_field :name, required: true, autocomplete: "off", class: 'form-control'
-           %span.help-inline * required
+-          %span.help-inline * required
++          %span.help-inline * 必須
        .form-group
 -        = f.label :username, class: 'control-label'
 +        = f.label :username, 'ユーザ名', class: 'control-label'
          .col-sm-10
            = f.text_field :username, required: true, autocomplete: "off", class: 'form-control'
-           %span.help-inline * required
+-          %span.help-inline * required
++          %span.help-inline * 必須
        .form-group
 -        = f.label :email, class: 'control-label'
 +        = f.label :email, 'メールアドレス', class: 'control-label'
          .col-sm-10
            = f.text_field :email, required: true, autocomplete: "off", class: 'form-control'
-           %span.help-inline * required
+-          %span.help-inline * required
++          %span.help-inline * 必須
  
      - if @user.new_record?
        %fieldset
@@ -2446,7 +2449,8 @@ index d2527ed..25d5e2d 100644
 -              Reset link will be generated and sent to the user.
 +              パスワードリセットのリンクが生成され、ユーザに送信されます。
                %br
-               User will be forced to set the password on first sign in.
+-              User will be forced to set the password on first sign in.
++              ユーザは初回のサインイン時にパスワードを強制的に変更させられます。
      - else
        %fieldset
 -        %legend Password
@@ -3763,6 +3767,16 @@ index 47442b7..3d2f3a5 100644
 -  = link_to 'Edit', edit_oauth_application_path(@application), class: 'btn btn-primary wide pull-left'
 +  = link_to '編集', edit_oauth_application_path(@application), class: 'btn btn-primary wide pull-left'
    = render 'delete_form', application: @application, submit_btn_css: 'btn btn-danger prepend-left-10'
+diff --git a/app/views/doorkeeper/authorizations/new.html.haml b/app/views/doorkeeper/authorizations/new.html.haml
+index eae80e5..235d68b 100644
+--- a/app/views/doorkeeper/authorizations/new.html.haml
++++ b/app/views/doorkeeper/authorizations/new.html.haml
+@@ -1,4 +1,4 @@
+-%h3.page-title Authorize required
++%h3.page-title Authorize 必須
+ %main{:role => "main"}
+   %p.h4
+     Authorize
 diff --git a/app/views/doorkeeper/authorized_applications/_delete_form.html.haml b/app/views/doorkeeper/authorized_applications/_delete_form.html.haml
 index bfa95ce..4cec945 100644
 --- a/app/views/doorkeeper/authorized_applications/_delete_form.html.haml
@@ -10967,6 +10981,19 @@ index 7afbaed..2054eae 100644
    .col-sm-10
      .commit-message-container
        .max-width-marker
+diff --git a/app/views/shared/_confirm_modal.html.haml b/app/views/shared/_confirm_modal.html.haml
+index 34241cd..9929921 100644
+--- a/app/views/shared/_confirm_modal.html.haml
++++ b/app/views/shared/_confirm_modal.html.haml
+@@ -4,7 +4,7 @@
+       .modal-header
+         %a.close{href: "#", "data-dismiss" => "modal"} ×
+         %h3.page-title
+-          Confirmation required
++          Confirmation 必須
+ 
+       .modal-body
+         %p.cred.lead.js-confirm-text
 diff --git a/app/views/shared/_event_filter.html.haml b/app/views/shared/_event_filter.html.haml
 index c38d931..20bfa85 100644
 --- a/app/views/shared/_event_filter.html.haml

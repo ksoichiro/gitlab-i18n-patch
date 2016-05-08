@@ -542,6 +542,8 @@ translations:
     replace: '${userWillNotBeAbleToLogin}'
   - pattern: 'User will not be able to access git repositories'
     replace: '${userWillNotBeAbleToAccessGitRepositories}'
+  - pattern: 'User will be forced to set the password on first sign in.'
+    replace: '${userWillBeForcedToSetThePasswordOnFirstSignIn}'
   - pattern: 'Personal projects will be left'
     replace: '${personalProjectsWillBeLeft}'
   - pattern: 'Owned groups will be left'
@@ -997,6 +999,7 @@ translations:
     - {word: 'username', key: username}
     - {word: 'invitation', key: invitation}
     - {word: 'key', key: key}
+    - {word: 'required', key: required}
   - name: doSth
     params:
     - {verb: Edit, key: editSth}

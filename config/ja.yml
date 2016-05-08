@@ -624,8 +624,8 @@ wiki: Wiki
 pageNotFound: ページが見つかりません
 couldNotCreateWikiRepositoryAtThisTimePleaseTryAgainLater: Wikiのリポジトリを作成できませんでした。後ほどもう一度お試しください
 accountSuccessfullyRemoved: アカウントが削除されました
-searchSnippets: このプロジェクトを検索
-searchInThisProject: スニペットを検索
+searchSnippets: スニペットを検索
+searchInThisProject: このプロジェクトを検索
 searchInThisGroup: このグループを検索
 timestampAug212011923pm: '2011/08/21 21:23'
 leaveEditModeAllUnsavedChangesWillBeLost: 編集モードを終了しますか？\n保存していない変更は失われます。
@@ -2399,3 +2399,4 @@ required: 必須
 emailPatch: メール用パッチ
 plainDiff: プレーンDiff
 dragAndDropAvailable: 'ドラッグ &amp; ドロップできます'
+userWillBeForcedToSetThePasswordOnFirstSignIn: ユーザは初回のサインイン時にパスワードを強制的に変更させられます。

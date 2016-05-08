@@ -637,7 +637,7 @@ index 5efdd61..833a7a8 100644
    end
  
 diff --git a/app/helpers/application_helper.rb b/app/helpers/application_helper.rb
-index f3a2723..5749f93 100644
+index f3a2723..1b3abe2 100644
 --- a/app/helpers/application_helper.rb
 +++ b/app/helpers/application_helper.rb
 @@ -1,3 +1,4 @@
@@ -661,10 +661,10 @@ index f3a2723..5749f93 100644
    def search_placeholder
      if @project && @project.persisted?
 -      'Search in this project'
-+      'スニペットを検索'
++      'このプロジェクトを検索'
      elsif @snippet || @snippets || @show_snippets
 -      'Search snippets'
-+      'このプロジェクトを検索'
++      'スニペットを検索'
      elsif @group && @group.persisted?
 -      'Search in this group'
 +      'このグループを検索'
@@ -2332,7 +2332,7 @@ index 6a5986f..c541cb5 100644
      - @services.sort_by(&:title).each do |service|
        %tr
 diff --git a/app/views/admin/users/_form.html.haml b/app/views/admin/users/_form.html.haml
-index e18dd9b..aa62c14 100644
+index e18dd9b..75d2c53 100644
 --- a/app/views/admin/users/_form.html.haml
 +++ b/app/views/admin/users/_form.html.haml
 @@ -7,55 +7,55 @@
@@ -2346,19 +2346,22 @@ index e18dd9b..aa62c14 100644
 +        = f.label :name, '名前', class: 'control-label'
          .col-sm-10
            = f.text_field :name, required: true, autocomplete: "off", class: 'form-control'
-           %span.help-inline * required
+-          %span.help-inline * required
++          %span.help-inline * 必須
        .form-group
 -        = f.label :username, class: 'control-label'
 +        = f.label :username, 'ユーザ名', class: 'control-label'
          .col-sm-10
            = f.text_field :username, required: true, autocomplete: "off", class: 'form-control'
-           %span.help-inline * required
+-          %span.help-inline * required
++          %span.help-inline * 必須
        .form-group
 -        = f.label :email, class: 'control-label'
 +        = f.label :email, 'メールアドレス', class: 'control-label'
          .col-sm-10
            = f.text_field :email, required: true, autocomplete: "off", class: 'form-control'
-           %span.help-inline * required
+-          %span.help-inline * required
++          %span.help-inline * 必須
  
      - if @user.new_record?
        %fieldset
@@ -2372,7 +2375,8 @@ index e18dd9b..aa62c14 100644
 -              Reset link will be generated and sent to the user.
 +              パスワードリセットのリンクが生成され、ユーザに送信されます。
                %br
-               User will be forced to set the password on first sign in.
+-              User will be forced to set the password on first sign in.
++              ユーザは初回のサインイン時にパスワードを強制的に変更させられます。
      - else
        %fieldset
 -        %legend Password
@@ -3764,6 +3768,23 @@ index 47442b7..3d2f3a5 100644
 -  = link_to 'Edit', edit_oauth_application_path(@application), class: 'btn btn-primary wide pull-left'
 +  = link_to '編集', edit_oauth_application_path(@application), class: 'btn btn-primary wide pull-left'
    = render 'delete_form', application: @application, submit_btn_css: 'btn btn-danger prepend-left-10'
+diff --git a/app/views/doorkeeper/authorizations/new.html.haml b/app/views/doorkeeper/authorizations/new.html.haml
+index 15f9ee2..f80896a 100644
+--- a/app/views/doorkeeper/authorizations/new.html.haml
++++ b/app/views/doorkeeper/authorizations/new.html.haml
+@@ -1,4 +1,4 @@
+-%h3.page-title Authorize required
++%h3.page-title Authorize 必須
+ %main{:role => "main"}
+   %p.h4
+     Authorize
+@@ -25,4 +25,4 @@
+       = hidden_field_tag :state, @pre_auth.state
+       = hidden_field_tag :response_type, @pre_auth.response_type
+       = hidden_field_tag :scope, @pre_auth.scope
+-      = submit_tag "Deny", class: "btn btn-danger prepend-left-10"
+\ No newline at end of file
++      = submit_tag "Deny", class: "btn btn-danger prepend-left-10"
 diff --git a/app/views/doorkeeper/authorized_applications/_delete_form.html.haml b/app/views/doorkeeper/authorized_applications/_delete_form.html.haml
 index bfa95ce..4cec945 100644
 --- a/app/views/doorkeeper/authorized_applications/_delete_form.html.haml
@@ -11084,6 +11105,19 @@ index 7c57924..98a1e6f 100644
    .col-sm-10
      .commit-message-container
        .max-width-marker
+diff --git a/app/views/shared/_confirm_modal.html.haml b/app/views/shared/_confirm_modal.html.haml
+index 34241cd..9929921 100644
+--- a/app/views/shared/_confirm_modal.html.haml
++++ b/app/views/shared/_confirm_modal.html.haml
+@@ -4,7 +4,7 @@
+       .modal-header
+         %a.close{href: "#", "data-dismiss" => "modal"} ×
+         %h3.page-title
+-          Confirmation required
++          Confirmation 必須
+ 
+       .modal-body
+         %p.cred.lead.js-confirm-text
 diff --git a/app/views/shared/_event_filter.html.haml b/app/views/shared/_event_filter.html.haml
 index c38d931..20bfa85 100644
 --- a/app/views/shared/_event_filter.html.haml

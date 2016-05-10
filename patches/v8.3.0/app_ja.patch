@@ -1708,7 +1708,7 @@ index c81ee55..c13c298 100644
  %hr
  = render 'form'
 diff --git a/app/views/admin/groups/show.html.haml b/app/views/admin/groups/show.html.haml
-index 296497a..80a575f 100644
+index 296497a..4d59899 100644
 --- a/app/views/admin/groups/show.html.haml
 +++ b/app/views/admin/groups/show.html.haml
 @@ -1,4 +1,4 @@
@@ -1744,7 +1744,7 @@ index 296497a..80a575f 100644
            %span.badge
              #{@group.projects.count}
        %ul.well-list
-@@ -54,7 +54,7 @@
+@@ -54,11 +54,12 @@
      - if can?(current_user, :admin_group_member, @group)
        .panel.panel-default
          .panel-heading
@@ -1752,8 +1752,15 @@ index 296497a..80a575f 100644
 +          user(s) to the group:を追加
          .panel-body.form-holder
            %p.light
-             Read more about project permissions
-@@ -66,11 +66,11 @@
+-            Read more about project permissions
+-            %strong= link_to "here", help_page_path("permissions", "permissions"), class: "vlink"
++            アクセス権についての詳細は、
++            %strong= link_to "こちら", help_page_path("permissions", "permissions"), class: "vlink"
++            から確認できます。
+ 
+           = form_tag members_update_admin_group_path(@group), id: "new_project_member", class: "bulk_import", method: :put  do
+             %div
+@@ -66,11 +67,11 @@
              %div.prepend-top-10
                = select_tag :access_level, options_for_select(GroupMember.access_level_roles), class: "project-access-select select2"
              %hr
@@ -1767,7 +1774,7 @@ index 296497a..80a575f 100644
            %span.badge
              #{@group.group_members.count}
        %ul.well-list.group-users-list
-@@ -88,7 +88,7 @@
+@@ -88,7 +89,7 @@
              %span.pull-right.light
                = member.human_access
                - if can?(current_user, :destroy_group_member, member)
@@ -9730,7 +9737,7 @@ index 1899064..6f504fb 100644
 +    = link_to "キャンセル", namespace_project_project_members_path(@project.namespace, @project), class: "btn btn-cancel"
  
 diff --git a/app/views/projects/project_members/index.html.haml b/app/views/projects/project_members/index.html.haml
-index 29225a3..28a002f 100644
+index 29225a3..e2fd314 100644
 --- a/app/views/projects/project_members/index.html.haml
 +++ b/app/views/projects/project_members/index.html.haml
 @@ -1,4 +1,4 @@
@@ -9739,7 +9746,7 @@ index 29225a3..28a002f 100644
  = render "header_title"
  - @blank_container = true
  
-@@ -6,10 +6,10 @@
+@@ -6,13 +6,13 @@
    - if can?(current_user, :admin_project_member, @project)
      .panel.panel-default
        .panel-heading
@@ -9752,7 +9759,11 @@ index 29225a3..28a002f 100644
 +            membersをインポート
        .panel-body
          %p.light
-           Users with access to this project are listed below.
+-          Users with access to this project are listed below.
++          このプロジェクトにアクセスできるユーザは以下の通りです。
+         = render "new_project_member"
+ 
+   = render "team", members: @project_members
 diff --git a/app/views/projects/protected_branches/_branches_list.html.haml b/app/views/projects/protected_branches/_branches_list.html.haml
 index f68449b..2d7a04a 100644
 --- a/app/views/projects/protected_branches/_branches_list.html.haml

@@ -780,6 +780,14 @@ translations:
     replace: '${thereAreNoSSHKeysWithAccessToYourAccount}'
   - pattern: 'Drag and drop available'
     replace: '${dragAndDropAvailable}'
+  - pattern: 'Users with access to this project are listed below.'
+    replace: '${usersWithAccessToThisProjectAreListedBelow}'
+  - pattern: !!js/regexp /^(\s+)Read more about project permissions\n(\s+)([^"]+")here([^\n]+)$/m
+    replace: '$1${readMoreAboutProjectPermissionsHere}'
+    args:
+    - '$2'
+    - '$3'
+    - '$4'
   - pattern: 'Are you sure?'
     replace: '${areYouSure}'
   - pattern: "Code?$|(\")Code?\"|(')Code?'|(\".* )Code?(\")"

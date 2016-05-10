@@ -2400,3 +2400,5 @@ emailPatch: メール用パッチ
 plainDiff: プレーンDiff
 dragAndDropAvailable: 'ドラッグ &amp; ドロップできます'
 userWillBeForcedToSetThePasswordOnFirstSignIn: ユーザは初回のサインイン時にパスワードを強制的に変更させられます。
+usersWithAccessToThisProjectAreListedBelow: このプロジェクトにアクセスできるユーザは以下の通りです。
+readMoreAboutProjectPermissionsHere: "アクセス権についての詳細は、\n{0}{1}こちら{2}\n{0}から確認できます。"

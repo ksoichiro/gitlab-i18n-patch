@@ -788,6 +788,18 @@ translations:
     - '$2'
     - '$3'
     - '$4'
+  - pattern: !!js/regexp /^(\s+)Read more about role permissions\n(\s+)([^"]+")here([^\n]+)$/m
+    replace: '$1${readMoreAboutRolePermissionsHere}'
+    args:
+    - '$2'
+    - '$3'
+    - '$4'
+  - pattern: 'Add new user to project'
+    replace: '${addNewUserToProject}'
+  - pattern: 'Add new user to group'
+    replace: '${addNewUserToGroup}'
+  - pattern: 'Import members from another project'
+    replace: '${importMembersFromAnotherProject}'
   - pattern: 'Are you sure?'
     replace: '${areYouSure}'
   - pattern: "Code?$|(\")Code?\"|(')Code?'|(\".* )Code?(\")"
@@ -1008,6 +1020,7 @@ translations:
     - {word: 'invitation', key: invitation}
     - {word: 'key', key: key}
     - {word: 'required', key: required}
+    - {word: 'members?', key: member}
   - name: doSth
     params:
     - {verb: Edit, key: editSth}

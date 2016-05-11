@@ -2102,7 +2102,7 @@ index d9b4814..8f3c54f 100644
            .nothing-here-block 0 projects matches
      = paginate @projects, theme: "gitlab"
 diff --git a/app/views/admin/projects/show.html.haml b/app/views/admin/projects/show.html.haml
-index d734e60..3ddec67 100644
+index d734e60..29b9418 100644
 --- a/app/views/admin/projects/show.html.haml
 +++ b/app/views/admin/projects/show.html.haml
 @@ -1,4 +1,4 @@
@@ -2148,6 +2148,15 @@ index d734e60..3ddec67 100644
              .col-sm-10
                = namespace_select_tag :new_namespace_id, selected: params[:namespace_id], class: 'input-large'
  
+@@ -112,7 +112,7 @@
+ 
+     .panel.panel-default
+       .panel-heading
+-        Project members
++        Project メンバー
+         %small
+           (#{@project.users.count})
+         .pull-right
 diff --git a/app/views/admin/runners/_runner.html.haml b/app/views/admin/runners/_runner.html.haml
 index 6745e58d..17d2fd2 100644
 --- a/app/views/admin/runners/_runner.html.haml
@@ -4212,17 +4221,24 @@ index a79a0fc..3514f94 100644
 -          = f.submit 'Save', class: 'btn btn-save btn-sm'
 +          = f.submit '保存', class: 'btn btn-save btn-sm'
 diff --git a/app/views/groups/group_members/_new_group_member.html.haml b/app/views/groups/group_members/_new_group_member.html.haml
-index e7ab4f2..f1c4925 100644
+index e7ab4f2..99afaec 100644
 --- a/app/views/groups/group_members/_new_group_member.html.haml
 +++ b/app/views/groups/group_members/_new_group_member.html.haml
-@@ -15,4 +15,4 @@
-         %strong= link_to "here", help_page_path("permissions", "permissions"), class: "vlink"
+@@ -11,8 +11,9 @@
+     .col-sm-10
+       = select_tag :access_level, options_for_select(GroupMember.access_level_roles, @group_member.access_level), class: "project-access-select select2"
+       .help-block
+-        Read more about role permissions
+-        %strong= link_to "here", help_page_path("permissions", "permissions"), class: "vlink"
++        アクセス権についての詳細は、
++        %strong= link_to "こちら", help_page_path("permissions", "permissions"), class: "vlink"
++        から確認できます。
  
    .form-actions
 -    = f.submit 'Add users to group', class: "btn btn-create"
 +    = f.submit 'ユーザ to グループを追加', class: "btn btn-create"
 diff --git a/app/views/groups/group_members/index.html.haml b/app/views/groups/group_members/index.html.haml
-index 6a8acc4..b5444f2 100644
+index 6a8acc4..81ec7c6 100644
 --- a/app/views/groups/group_members/index.html.haml
 +++ b/app/views/groups/group_members/index.html.haml
 @@ -1,12 +1,12 @@
@@ -4237,15 +4253,24 @@ index 6a8acc4..b5444f2 100644
      .panel.panel-default
        .panel-heading
 -        Add new user to group
-+        new user to グループを追加
++        グループにユーザを追加
        .panel-body
          - if should_user_see_group_roles?(current_user, @group)
            %p.light
-@@ -24,7 +24,7 @@
+@@ -17,14 +17,14 @@
+   .panel.panel-default
+     .panel-heading
+       %strong #{@group.name}
+-      group members
++      group メンバー
+       %small
+         (#{@members.total_count})
+       .pull-right
          = form_tag group_group_members_path(@group), method: :get, class: 'form-inline member-search-form'  do
            .form-group
-             = search_field_tag :search, params[:search], { placeholder: 'Find existing member by name', class: 'form-control', spellcheck: false }
+-            = search_field_tag :search, params[:search], { placeholder: 'Find existing member by name', class: 'form-control', spellcheck: false }
 -          = button_tag class: 'btn', title: 'Search' do
++            = search_field_tag :search, params[:search], { placeholder: 'Find existing メンバー by name', class: 'form-control', spellcheck: false }
 +          = button_tag class: 'btn', title: '検索' do
              = icon("search")
      %ul.content-list
@@ -7850,7 +7875,7 @@ index 1335318..37c5eb8 100644
          Fork
        %div.count-with-arrow
 diff --git a/app/views/projects/buttons/_notifications.html.haml b/app/views/projects/buttons/_notifications.html.haml
-index 3e83ec3..de9f7a7 100644
+index 3e83ec3..838973c 100644
 --- a/app/views/projects/buttons/_notifications.html.haml
 +++ b/app/views/projects/buttons/_notifications.html.haml
 @@ -14,7 +14,7 @@
@@ -7858,7 +7883,7 @@ index 3e83ec3..de9f7a7 100644
  
  - when GroupMember
 -  .btn.disabled.notifications-btn.has_tooltip{title: "To change the notification level, you need to be a member of the project itself, not only its group."}
-+  .btn.disabled.notifications-btn.has_tooltip{title: "To change the notification level, you need to be a member of the プロジェクト itself, not only its group."}
++  .btn.disabled.notifications-btn.has_tooltip{title: "To change the notification level, you need to be a メンバー of the プロジェクト itself, not only its group."}
      = icon('bell')
      = notification_label(@membership)
      = icon('angle-down')
@@ -9789,15 +9814,30 @@ index 922535e..2b683c9 100644
                  = icon('trash-o', class: 'cred')
        .clear
 diff --git a/app/views/projects/project_members/_group_members.html.haml b/app/views/projects/project_members/_group_members.html.haml
-index 1c2458f..d7a132b 100644
+index 1c2458f..7329f3a 100644
 --- a/app/views/projects/project_members/_group_members.html.haml
 +++ b/app/views/projects/project_members/_group_members.html.haml
-@@ -14,4 +14,4 @@
+@@ -1,17 +1,17 @@
+ .panel.panel-default
+   .panel-heading
+     %strong #{@group.name}
+-    group members
++    group メンバー
+     %small
+       (#{members.count})
+     - if can?(current_user, :admin_group_member, @group)
+       .pull-right
+         = link_to group_group_members_path(@group), class: 'btn' do
+           = icon('pencil-square-o')
+-          Manage group members
++          Manage group メンバー
+   %ul.content-list
+     - members.limit(20).each do |member|
        = render 'groups/group_members/group_member', member: member, show_controls: false
      - if members.count > 20
        %li
 -        and #{members.count - 20} more. For full list visit #{link_to 'group members page', group_group_members_path(@group)}
-+        and #{members.count - 20} more. For full list visit #{link_to 'group members ページ', group_group_members_path(@group)}
++        and #{members.count - 20} more. For full list visit #{link_to 'group メンバー ページ', group_group_members_path(@group)}
 diff --git a/app/views/projects/project_members/_header_title.html.haml b/app/views/projects/project_members/_header_title.html.haml
 index a31f0a3..cdc808c 100644
 --- a/app/views/projects/project_members/_header_title.html.haml
@@ -9806,11 +9846,18 @@ index a31f0a3..cdc808c 100644
 -- header_title project_title(@project, "Members", namespace_project_project_members_path(@project.namespace, @project))
 +- header_title project_title(@project, "メンバー", namespace_project_project_members_path(@project.namespace, @project))
 diff --git a/app/views/projects/project_members/_new_project_member.html.haml b/app/views/projects/project_members/_new_project_member.html.haml
-index f0f3bb3..df52178 100644
+index f0f3bb3..dda6ce6 100644
 --- a/app/views/projects/project_members/_new_project_member.html.haml
 +++ b/app/views/projects/project_members/_new_project_member.html.haml
-@@ -15,4 +15,4 @@
-         %strong= link_to "here", help_page_path("permissions", "permissions"), class: "vlink"
+@@ -11,8 +11,9 @@
+     .col-sm-10
+       = select_tag :access_level, options_for_select(ProjectMember.access_roles, @project_member.access_level), class: "project-access-select select2"
+       .help-block
+-        Read more about role permissions
+-        %strong= link_to "here", help_page_path("permissions", "permissions"), class: "vlink"
++        アクセス権についての詳細は、
++        %strong= link_to "こちら", help_page_path("permissions", "permissions"), class: "vlink"
++        から確認できます。
  
    .form-actions
 -    = f.submit 'Add users to project', class: "btn btn-create"
@@ -9847,30 +9894,39 @@ index 05bf3a7..02b2d99 100644
 -          = f.submit 'Save', class: 'btn btn-save'
 +          = f.submit '保存', class: 'btn btn-save'
 diff --git a/app/views/projects/project_members/_team.html.haml b/app/views/projects/project_members/_team.html.haml
-index ccddab1..06af8d9 100644
+index ccddab1..39e9bdd 100644
 --- a/app/views/projects/project_members/_team.html.haml
 +++ b/app/views/projects/project_members/_team.html.haml
-@@ -8,7 +8,7 @@
+@@ -1,14 +1,14 @@
+ .panel.panel-default
+   .panel-heading
+     %strong #{@project.name}
+-    project members
++    project メンバー
+     %small
+       (#{members.count})
+     .pull-right
        = form_tag namespace_project_project_members_path(@project.namespace, @project), method: :get, class: 'form-inline member-search-form'  do
          .form-group
-           = search_field_tag :search, params[:search], { placeholder: 'Find existing member by name', class: 'form-control', spellcheck: false }
+-          = search_field_tag :search, params[:search], { placeholder: 'Find existing member by name', class: 'form-control', spellcheck: false }
 -        = button_tag class: 'btn', title: 'Search' do
++          = search_field_tag :search, params[:search], { placeholder: 'Find existing メンバー by name', class: 'form-control', spellcheck: false }
 +        = button_tag class: 'btn', title: '検索' do
            = icon("search")
    %ul.content-list
      - members.each do |project_member|
 diff --git a/app/views/projects/project_members/import.html.haml b/app/views/projects/project_members/import.html.haml
-index 1899064..6f504fb 100644
+index 1899064..3bbd177 100644
 --- a/app/views/projects/project_members/import.html.haml
 +++ b/app/views/projects/project_members/import.html.haml
 @@ -1,17 +1,17 @@
 -- page_title "Import members"
-+- page_title "membersをインポート"
++- page_title "メンバーをインポート"
  = render "header_title"
  
  %h3.page-title
 -  Import members from another project
-+  members from another プロジェクトをインポート
++  別のプロジェクトからメンバーをインポート
  %p.light
    Only project members will be imported. Group members will be skipped.
  %hr
@@ -9884,11 +9940,11 @@ index 1899064..6f504fb 100644
    .form-actions
 -    = button_tag 'Import project members', class: "btn btn-create"
 -    = link_to "Cancel", namespace_project_project_members_path(@project.namespace, @project), class: "btn btn-cancel"
-+    = button_tag 'プロジェクト membersをインポート', class: "btn btn-create"
++    = button_tag 'プロジェクト メンバーをインポート', class: "btn btn-create"
 +    = link_to "キャンセル", namespace_project_project_members_path(@project.namespace, @project), class: "btn btn-cancel"
  
 diff --git a/app/views/projects/project_members/index.html.haml b/app/views/projects/project_members/index.html.haml
-index 6239a14..6d953af 100644
+index 6239a14..f210a67 100644
 --- a/app/views/projects/project_members/index.html.haml
 +++ b/app/views/projects/project_members/index.html.haml
 @@ -1,4 +1,4 @@
@@ -9902,12 +9958,12 @@ index 6239a14..6d953af 100644
      .panel.panel-default
        .panel-heading
 -        Add new user to project
-+        new user to プロジェクトを追加
++        プロジェクトにユーザを追加
          .pull-right
 -          = link_to import_namespace_project_project_members_path(@project.namespace, @project), class: "btn btn-grouped", title: "Import members from another project" do
 -            Import members
-+          = link_to import_namespace_project_project_members_path(@project.namespace, @project), class: "btn btn-grouped", title: "members from another プロジェクトをインポート" do
-+            membersをインポート
++          = link_to import_namespace_project_project_members_path(@project.namespace, @project), class: "btn btn-grouped", title: "別のプロジェクトからメンバーをインポート" do
++            メンバーをインポート
        .panel-body
          %p.light
 -          Users with access to this project are listed below.

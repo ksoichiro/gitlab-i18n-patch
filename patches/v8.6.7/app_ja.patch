@@ -11735,7 +11735,7 @@ index 0e20e86..f0d7bc0 100644
            %button.btn.btn-block.btn-gray.subscribe-button.hide-collapsed{:type => 'button'}
              %span= subscribed ? 'Unsubscribe' : 'Subscribe'
 diff --git a/app/views/shared/milestones/_issues_tab.html.haml b/app/views/shared/milestones/_issues_tab.html.haml
-index a8db7f8..61609f7 100644
+index a8db7f8..8ad5a0b 100644
 --- a/app/views/shared/milestones/_issues_tab.html.haml
 +++ b/app/views/shared/milestones/_issues_tab.html.haml
 @@ -3,8 +3,8 @@
@@ -11743,13 +11743,13 @@ index a8db7f8..61609f7 100644
  .row.prepend-top-default
    .col-md-4
 -    = render 'shared/milestones/issuables', args.merge(title: 'Unstarted Issues (open and unassigned)', issuables: issues.opened.unassigned, id: 'unassigned', show_counter: true)
-+    = render 'shared/milestones/issuables', args.merge(title: 'Unstarted 課題 (open and unassigned)', issuables: issues.opened.unassigned, id: 'unassigned', show_counter: true)
++    = render 'shared/milestones/issuables', args.merge(title: '未着手の課題 (オープンかつ担当なし)', issuables: issues.opened.unassigned, id: 'unassigned', show_counter: true)
    .col-md-4
 -    = render 'shared/milestones/issuables', args.merge(title: 'Ongoing Issues (open and assigned)', issuables: issues.opened.assigned, id: 'ongoing', show_counter: true)
-+    = render 'shared/milestones/issuables', args.merge(title: 'Ongoing 課題 (open and assigned)', issuables: issues.opened.assigned, id: 'ongoing', show_counter: true)
++    = render 'shared/milestones/issuables', args.merge(title: '進行中の課題 (オープンかつ割当済み)', issuables: issues.opened.assigned, id: 'ongoing', show_counter: true)
    .col-md-4
 -    = render 'shared/milestones/issuables', args.merge(title: 'Completed Issues (closed)', issuables: issues.closed, id: 'closed', show_counter: true)
-+    = render 'shared/milestones/issuables', args.merge(title: 'Completed 課題 (closed)', issuables: issues.closed, id: 'closed', show_counter: true)
++    = render 'shared/milestones/issuables', args.merge(title: '完了した課題 (クローズ)', issuables: issues.closed, id: 'closed', show_counter: true)
 diff --git a/app/views/shared/milestones/_labels_tab.html.haml b/app/views/shared/milestones/_labels_tab.html.haml
 index 868b235..6b9f166 100644
 --- a/app/views/shared/milestones/_labels_tab.html.haml

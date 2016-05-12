@@ -3150,7 +3150,7 @@ index bec1692..cf3fa8e 100644
        - @milestones.each do |milestone|
          = render 'milestone', milestone: milestone
 diff --git a/app/views/dashboard/milestones/show.html.haml b/app/views/dashboard/milestones/show.html.haml
-index 3810267..edc3ebe 100644
+index 3810267..fed1d7c 100644
 --- a/app/views/dashboard/milestones/show.html.haml
 +++ b/app/views/dashboard/milestones/show.html.haml
 @@ -1,12 +1,12 @@
@@ -3227,7 +3227,7 @@ index 3810267..edc3ebe 100644
  
        .oneline
 -        All issues in this milestone
-+        All issues in this マイルストーン
++        このマイルストーンのすべての課題
  
      .row.prepend-top-default
        .col-md-6
@@ -3245,7 +3245,7 @@ index 3810267..edc3ebe 100644
  
        .oneline
 -        All merge requests in this milestone
-+        All merge requests in this マイルストーン
++        このマイルストーンのすべてのマージリクエスト
  
      .row.prepend-top-default
        .col-md-6
@@ -3259,7 +3259,7 @@ index 3810267..edc3ebe 100644
      .gray-content-block.middle-block
        .oneline
 -        All participants to this milestone
-+        All participants to this マイルストーン
++        このマイルストーンのすべての参加者
      %ul.bordered-list
        - @milestone.participants.each do |user|
          %li
@@ -4438,7 +4438,7 @@ index 3894a0e..80de727 100644
  
  :javascript
 diff --git a/app/views/groups/milestones/show.html.haml b/app/views/groups/milestones/show.html.haml
-index 1233da8..52bdec8 100644
+index 1233da8..3ec2c79 100644
 --- a/app/views/groups/milestones/show.html.haml
 +++ b/app/views/groups/milestones/show.html.haml
 @@ -1,20 +1,20 @@
@@ -4531,7 +4531,7 @@ index 1233da8..52bdec8 100644
  
        .oneline
 -        All issues in this milestone
-+        All issues in this マイルストーン
++        このマイルストーンのすべての課題
  
      .row.prepend-top-default
        .col-md-6
@@ -4549,7 +4549,7 @@ index 1233da8..52bdec8 100644
  
        .oneline
 -        All merge requests in this milestone
-+        All merge requests in this マイルストーン
++        このマイルストーンのすべてのマージリクエスト
  
      .row.prepend-top-default
        .col-md-6
@@ -4563,7 +4563,7 @@ index 1233da8..52bdec8 100644
      .gray-content-block.middle-block
        .oneline
 -        All participants to this milestone
-+        All participants to this マイルストーン
++        このマイルストーンのすべての参加者
  
      %ul.bordered-list
        - @milestone.participants.each do |user|
@@ -9530,7 +9530,7 @@ index 0d016f7..fdb8d1d 100644
  %hr
  
 diff --git a/app/views/projects/milestones/show.html.haml b/app/views/projects/milestones/show.html.haml
-index 1142c58..5f99fd9 100644
+index 1142c58..47cf6d6 100644
 --- a/app/views/projects/milestones/show.html.haml
 +++ b/app/views/projects/milestones/show.html.haml
 @@ -1,4 +1,4 @@
@@ -9611,18 +9611,18 @@ index 1142c58..5f99fd9 100644
  
        .oneline
 -        All issues in this milestone
-+        All issues in this マイルストーン
++        このマイルストーンのすべての課題
  
      .row.prepend-top-default
        .col-md-4
 -        = render('issues', title: 'Unstarted Issues (open and unassigned)', issues: @issues.opened.unassigned, id: 'unassigned')
-+        = render('issues', title: 'Unstarted 課題 (open and unassigned)', issues: @issues.opened.unassigned, id: 'unassigned')
++        = render('issues', title: '未着手の課題 (オープンかつ担当なし)', issues: @issues.opened.unassigned, id: 'unassigned')
        .col-md-4
 -        = render('issues', title: 'Ongoing Issues (open and assigned)', issues: @issues.opened.assigned, id: 'ongoing')
-+        = render('issues', title: 'Ongoing 課題 (open and assigned)', issues: @issues.opened.assigned, id: 'ongoing')
++        = render('issues', title: '進行中の課題 (オープンかつ割当済み)', issues: @issues.opened.assigned, id: 'ongoing')
        .col-md-4
 -        = render('issues', title: 'Completed Issues (closed)', issues: @issues.closed, id: 'closed')
-+        = render('issues', title: 'Completed 課題 (closed)', issues: @issues.closed, id: 'closed')
++        = render('issues', title: '完了した課題 (クローズ)', issues: @issues.closed, id: 'closed')
  
    .tab-pane#tab-merge-requests
      .gray-content-block.middle-block
@@ -9633,7 +9633,7 @@ index 1142c58..5f99fd9 100644
  
        .oneline
 -        All merge requests in this milestone
-+        All merge requests in this マイルストーン
++        このマイルストーンのすべてのマージリクエスト
  
      .row.prepend-top-default
        .col-md-3
@@ -9651,7 +9651,7 @@ index 1142c58..5f99fd9 100644
      .gray-content-block.middle-block
        .oneline
 -        All participants to this milestone
-+        All participants to this マイルストーン
++        このマイルストーンのすべての参加者
  
      %ul.bordered-list
        - @users.each do |user|

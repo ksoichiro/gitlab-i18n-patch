@@ -2406,3 +2406,9 @@ readMoreAboutRolePermissionsHere: "アクセス権についての詳細は、\n{
 addNewUserToProject: プロジェクトにユーザを追加
 addNewUserToGroup: グループにユーザを追加
 importMembersFromAnotherProject: 別のプロジェクトからメンバーをインポート
+allParticipantsToThisMilestone: このマイルストーンのすべての参加者
+allMergeRequestsInThisMilestone: このマイルストーンのすべてのマージリクエスト
+allIssuesInThisMilestone: このマイルストーンのすべての課題
+unstartedIssuesOpenAndUnassigned: 未着手の課題 (オープンかつ担当なし)
+ongoingIssuesOpenAndAssigned: 進行中の課題 (オープンかつ割当済み)
+completedIssuesClosed: 完了した課題 (クローズ)

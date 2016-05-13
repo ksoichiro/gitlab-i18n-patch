@@ -1675,10 +1675,10 @@ index 3274ba5..ead8bac 100644
        - @groups.each do |group|
          %p
 diff --git a/app/views/admin/deploy_keys/index.html.haml b/app/views/admin/deploy_keys/index.html.haml
-index 41c4389..6d5af56 100644
+index 41c4389..85cf34f 100644
 --- a/app/views/admin/deploy_keys/index.html.haml
 +++ b/app/views/admin/deploy_keys/index.html.haml
-@@ -1,15 +1,15 @@
+@@ -1,16 +1,16 @@
 -- page_title "Deploy Keys"
 +- page_title "デプロイキー"
  .panel.panel-default
@@ -1693,10 +1693,12 @@ index 41c4389..6d5af56 100644
          %thead.panel-heading
            %tr
 -            %th Title
+-            %th Fingerprint
 +            %th タイトル
-             %th Fingerprint
++            %th フィンガープリント
              %th Added at
              %th
+         %tbody
 @@ -24,4 +24,4 @@
                  %span.cgray
                    added #{time_ago_with_tooltip(deploy_key.created_at)}
@@ -1820,7 +1822,7 @@ index c81ee55..c13c298 100644
  %hr
  = render 'form'
 diff --git a/app/views/admin/groups/show.html.haml b/app/views/admin/groups/show.html.haml
-index f309e80..ad29e29 100644
+index f309e80..c0d5297 100644
 --- a/app/views/admin/groups/show.html.haml
 +++ b/app/views/admin/groups/show.html.haml
 @@ -1,4 +1,4 @@
@@ -1838,7 +1840,7 @@ index f309e80..ad29e29 100644
            %strong= @group.name
          %li
            %span.light Path:
-@@ -23,12 +23,12 @@
+@@ -23,24 +23,24 @@
              = @group.path
  
          %li
@@ -1853,7 +1855,12 @@ index f309e80..ad29e29 100644
            %strong
              = visibility_level_label(@group.visibility_level)
  
-@@ -40,7 +40,7 @@
+         %li
+-          %span.light Created on:
++          %span.light 作成日:
+           %strong
+             = @group.created_at.to_s(:medium)
+ 
      .panel.panel-default
        .panel-heading
          %h3.panel-title
@@ -2135,7 +2142,7 @@ index d39c0f4..9c79777 100644
            .nothing-here-block 0 projects matches
      = paginate @projects, theme: "gitlab"
 diff --git a/app/views/admin/projects/show.html.haml b/app/views/admin/projects/show.html.haml
-index c638c32..1e88f4d 100644
+index c638c32..8ee3aa3 100644
 --- a/app/views/admin/projects/show.html.haml
 +++ b/app/views/admin/projects/show.html.haml
 @@ -1,4 +1,4 @@
@@ -2158,7 +2165,7 @@ index c638c32..1e88f4d 100644
            %strong
              - if @project.namespace
                = link_to @project.namespace.human_name, [:admin, @project.group || @project.owner]
-@@ -31,7 +31,7 @@
+@@ -31,12 +31,12 @@
                (deleted)
  
          %li
@@ -2166,6 +2173,12 @@ index c638c32..1e88f4d 100644
 +          %span.light 登録者:
            %strong
              = @project.creator.try(:name) || '(deleted)'
+ 
+         %li
+-          %span.light Created on:
++          %span.light 作成日:
+           %strong
+             = @project.created_at.to_s(:medium)
  
 @@ -83,11 +83,11 @@
  
@@ -6500,7 +6513,7 @@ index 879fc17..0b9f4ea 100644
  %ul.well-list
    - events.each do |event|
 diff --git a/app/views/profiles/accounts/show.html.haml b/app/views/profiles/accounts/show.html.haml
-index 6efd119..cddecfd 100644
+index 6efd119..8da5e4b 100644
 --- a/app/views/profiles/accounts/show.html.haml
 +++ b/app/views/profiles/accounts/show.html.haml
 @@ -1,36 +1,36 @@
@@ -6537,7 +6550,7 @@ index 6efd119..cddecfd 100644
        .prepend-top-default
          - if current_user.private_token
 -          = f.submit 'Reset private token', data: { confirm: "Are you sure?" }, class: "btn btn-default"
-+          = f.submit 'private tokenをリセット', data: { confirm: "本当によろしいですか？" }, class: "btn btn-default"
++          = f.submit 'プライベートトークンをリセット', data: { confirm: "本当によろしいですか？" }, class: "btn btn-default"
          - else
 -          = f.submit 'Generate', class: "btn btn-default"
 +          = f.submit '生成', class: "btn btn-default"
@@ -6732,10 +6745,10 @@ index 4dbaa66..236fbb6 100644
 +      %span.sr-only 削除
        = icon('trash')
 diff --git a/app/views/profiles/keys/_key_details.html.haml b/app/views/profiles/keys/_key_details.html.haml
-index dd76154..a5b9655 100644
+index dd76154..aca31d3 100644
 --- a/app/views/profiles/keys/_key_details.html.haml
 +++ b/app/views/profiles/keys/_key_details.html.haml
-@@ -3,10 +3,10 @@
+@@ -3,21 +3,21 @@
    .col-md-4
      .panel.panel-default
        .panel-heading
@@ -6747,8 +6760,16 @@ index dd76154..a5b9655 100644
 +          %span.light タイトル:
            %strong= @key.title
          %li
-           %span.light Created on:
-@@ -20,4 +20,4 @@
+-          %span.light Created on:
++          %span.light 作成日:
+           %strong= @key.created_at.to_s(:medium)
+ 
+   .col-md-8
+     %p
+-      %span.light Fingerprint:
++      %span.light フィンガープリント:
+       %code.key-fingerprint= @key.fingerprint
+     %pre.well-pre
        = @key.key
    .col-md-12
      .pull-right
@@ -6910,7 +6931,7 @@ index d165f75..cedeff3 100644
 -    = f.submit 'Set new password', class: "btn btn-create"
 +    = f.submit '新しいパスワードを設定', class: "btn btn-create"
 diff --git a/app/views/profiles/preferences/show.html.haml b/app/views/profiles/preferences/show.html.haml
-index f802116..ec6b799 100644
+index f802116..00191d8 100644
 --- a/app/views/profiles/preferences/show.html.haml
 +++ b/app/views/profiles/preferences/show.html.haml
 @@ -1,4 +1,4 @@
@@ -6919,6 +6940,24 @@ index f802116..ec6b799 100644
  - header_title page_title, profile_preferences_path
  
  = form_for @user, url: profile_preferences_path, remote: true, method: :put, html: {class: 'row prepend-top-default js-preferences-form'} do |f|
+@@ -17,7 +17,7 @@
+     %hr
+   .col-lg-3.profile-settings-sidebar
+     %h4.prepend-top-0
+-      Syntax highlighting theme
++      シンタックスハイライトテーマ
+     %p
+       This setting allow you to customize the appearance of the syntax.
+   .col-lg-9.syntax-theme
+@@ -30,7 +30,7 @@
+     %hr
+   .col-lg-3.profile-settings-sidebar
+     %h4.prepend-top-0
+-      Behavior
++      動作
+     %p
+       This setting allows you to customize the behavior of the system layout and default views.
+   .col-lg-9
 @@ -42,15 +42,15 @@
          Choose between fixed (max. 1200px) and fluid (100%) application layout.
      .form-group
@@ -6934,7 +6973,8 @@ index f802116..ec6b799 100644
          = link_to('(?)', help_page_path('profile', 'preferences') + '#default-project-view', target: '_blank')
        = f.select :project_view, project_view_choices, {}, class: 'form-control'
        .help-block
-         Choose what content you want to see on a project's home page.
+-        Choose what content you want to see on a project's home page.
++        プロジェクトページを表示した時に閲覧したいコンテンツを選択してください。
      .form-group
 -      = f.submit 'Save changes', class: 'btn btn-save'
 +      = f.submit '変更を保存', class: 'btn btn-save'
@@ -9769,7 +9809,7 @@ index e8dce30..690967e 100644
    %ul.content-list
      - members.each do |project_member|
 diff --git a/app/views/projects/project_members/import.html.haml b/app/views/projects/project_members/import.html.haml
-index 1899064..3bbd177 100644
+index 1899064..90dab13 100644
 --- a/app/views/projects/project_members/import.html.haml
 +++ b/app/views/projects/project_members/import.html.haml
 @@ -1,17 +1,17 @@
@@ -9781,7 +9821,8 @@ index 1899064..3bbd177 100644
 -  Import members from another project
 +  別のプロジェクトからメンバーをインポート
  %p.light
-   Only project members will be imported. Group members will be skipped.
+-  Only project members will be imported. Group members will be skipped.
++  プロジェクトのメンバーだけがインポートされます。グループのメンバーはスキップされます。
  %hr
  = form_tag apply_import_namespace_project_project_members_path(@project.namespace, @project), method: 'post', class: 'form-horizontal' do
    .form-group
@@ -11414,7 +11455,7 @@ index ac20f7d..3507c41 100644
  - if @label
    .gray-content-block.second-block
 diff --git a/app/views/shared/issuable/_form.html.haml b/app/views/shared/issuable/_form.html.haml
-index 551f0cc..9f1baf9 100644
+index 551f0cc..a552ca7 100644
 --- a/app/views/shared/issuable/_form.html.haml
 +++ b/app/views/shared/issuable/_form.html.haml
 @@ -6,7 +6,7 @@
@@ -11481,7 +11522,7 @@ index 551f0cc..9f1baf9 100644
          &nbsp;
          - if can? current_user, :admin_milestone, issuable.project
 -          = link_to 'Create new milestone', new_namespace_project_milestone_path(issuable.project.namespace, issuable.project), target: :blank
-+          = link_to 'new マイルストーンを作成', new_namespace_project_milestone_path(issuable.project.namespace, issuable.project), target: :blank
++          = link_to '新しいマイルストーンを作成', new_namespace_project_milestone_path(issuable.project.namespace, issuable.project), target: :blank
    .form-group
 -    = f.label :label_ids, "Labels", class: 'control-label'
 +    = f.label :label_ids, "ラベル", class: 'control-label'
@@ -11497,7 +11538,7 @@ index 551f0cc..9f1baf9 100644
        &nbsp;
        - if can? current_user, :admin_label, issuable.project
 -        = link_to 'Create new label', new_namespace_project_label_path(issuable.project.namespace, issuable.project), target: :blank
-+        = link_to 'new ラベルを作成', new_namespace_project_label_path(issuable.project.namespace, issuable.project), target: :blank
++        = link_to '新しいラベルを作成', new_namespace_project_label_path(issuable.project.namespace, issuable.project), target: :blank
  
  - if issuable.can_move?(current_user)
    %hr
@@ -11551,7 +11592,7 @@ index 551f0cc..9f1baf9 100644
 -      = link_to 'Cancel', namespace_project_issue_path(@project.namespace, @project, issuable), class: 'btn btn-grouped btn-cancel'
 +      = link_to 'キャンセル', namespace_project_issue_path(@project.namespace, @project, issuable), class: 'btn btn-grouped btn-cancel'
 diff --git a/app/views/shared/issuable/_label_dropdown.html.haml b/app/views/shared/issuable/_label_dropdown.html.haml
-index 8761731..0e9de83 100644
+index 8761731..d99cf9e 100644
 --- a/app/views/shared/issuable/_label_dropdown.html.haml
 +++ b/app/views/shared/issuable/_label_dropdown.html.haml
 @@ -1,14 +1,14 @@
@@ -11590,7 +11631,7 @@ index 8761731..0e9de83 100644
      - if can? current_user, :admin_label, @project and @project
        .dropdown-page-two
 -        = dropdown_title("Create new label", back: true)
-+        = dropdown_title("new ラベルを作成", back: true)
++        = dropdown_title("新しいラベルを作成", back: true)
          = dropdown_content do
            %input#new_label_color{type: "hidden"}
 -          %input#new_label_name.dropdown-input-field{type: "text", placeholder: "Name new label"}

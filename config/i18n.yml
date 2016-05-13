@@ -812,6 +812,14 @@ translations:
     replace: '${ongoingIssuesOpenAndAssigned}'
   - pattern: 'Completed Issues (closed)'
     replace: '${completedIssuesClosed}'
+  - pattern: 'Only project members will be imported. Group members will be skipped.'
+    replace: '${onlyProjectMembersWillBeImportedGroupMembersWillBeSkipped}'
+  - pattern: 'Search for existing users or invite new ones using their email address.'
+    replace: '${searchForExistingUsersForInviteNewOnesUsingTheirEmailAddress}'
+  - pattern: 'Syntax highlighting theme'
+    replace: '${syntaxHighlightingTheme}'
+  - pattern: "Choose what content you want to see on a project's home page."
+    replace: '${chooseWhatContentYouWantToSeeOnAProjectsHomePage}'
   - pattern: 'Are you sure?'
     replace: '${areYouSure}'
   - pattern: "Code?$|(\")Code?\"|(')Code?'|(\".* )Code?(\")"
@@ -1002,6 +1010,9 @@ translations:
     - {word: 'Required', key: required}
     - {word: 'Changes', key: change}
     - {word: 'Email Patches', key: emailPatch}
+    - {word: 'Fingerprint', key: fingerprint}
+    - {word: 'Created on', key: createdOn}
+    - {word: 'Behavior', key: behavior}
   - name: wordInSentence
     params:
     - {word: 'applications?', key: application}
@@ -1033,9 +1044,11 @@ translations:
     - {word: 'key', key: key}
     - {word: 'required', key: required}
     - {word: 'members?', key: member}
+    - {word: '[pP]rivate token', key: privateToken}
   - name: doSth
     params:
     - {verb: Edit, key: editSth}
+    - {verb: 'Create new', key: createNewSth}
     - {verb: 'Create(?: an?)?', key: createSth}
     - {verb: Close, key: closeSth}
     - {verb: Reopen, key: reopenSth}

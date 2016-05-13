@@ -8,6 +8,7 @@ commentAndClose: コメント & クローズ
 commits: コミット
 create: 作成
 createSth: '{0}を作成'
+createNewSth: '新しい{0}を作成'
 closeSth: '{0}をクローズ'
 d3TimeFormat: '%Y/%m/%d'
 deployKey: デプロイキー
@@ -2412,3 +2413,10 @@ allIssuesInThisMilestone: このマイルストーンのすべての課題
 unstartedIssuesOpenAndUnassigned: 未着手の課題 (オープンかつ担当なし)
 ongoingIssuesOpenAndAssigned: 進行中の課題 (オープンかつ割当済み)
 completedIssuesClosed: 完了した課題 (クローズ)
+onlyProjectMembersWillBeImportedGroupMembersWillBeSkipped: プロジェクトのメンバーだけがインポートされます。グループのメンバーはスキップされます。
+searchForExistingUsersForInviteNewOnesUsingTheirEmailAddress: 既存のユーザを検索するかメールアドレスを指定して招待します
+fingerprint: フィンガープリント
+createdOn: 作成日
+syntaxHighlightingTheme: シンタックスハイライトテーマ
+behavior: 動作
+chooseWhatContentYouWantToSeeOnAProjectsHomePage: プロジェクトページを表示した時に閲覧したいコンテンツを選択してください。

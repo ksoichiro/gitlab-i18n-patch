@@ -1576,10 +1576,10 @@ index 8657d2c..8423b12 100644
        - @groups.each do |group|
          %p
 diff --git a/app/views/admin/deploy_keys/index.html.haml b/app/views/admin/deploy_keys/index.html.haml
-index 841e697..10cd7ba 100644
+index 841e697..d14c201 100644
 --- a/app/views/admin/deploy_keys/index.html.haml
 +++ b/app/views/admin/deploy_keys/index.html.haml
-@@ -1,15 +1,15 @@
+@@ -1,16 +1,16 @@
 -- page_title "Deploy Keys"
 +- page_title "デプロイキー"
  .panel.panel-default
@@ -1594,10 +1594,12 @@ index 841e697..10cd7ba 100644
          %thead.panel-heading
            %tr
 -            %th Title
+-            %th Fingerprint
 +            %th タイトル
-             %th Fingerprint
++            %th フィンガープリント
              %th Added at
              %th
+         %tbody
 @@ -24,4 +24,4 @@
                  %span.cgray
                    added #{time_ago_with_tooltip(deploy_key.created_at)}
@@ -1728,7 +1730,7 @@ index c81ee55..c13c298 100644
  %hr
  = render 'form'
 diff --git a/app/views/admin/groups/show.html.haml b/app/views/admin/groups/show.html.haml
-index 296497a..4d59899 100644
+index 296497a..729bc5d 100644
 --- a/app/views/admin/groups/show.html.haml
 +++ b/app/views/admin/groups/show.html.haml
 @@ -1,4 +1,4 @@
@@ -1746,7 +1748,7 @@ index 296497a..4d59899 100644
            %strong= @group.name
          %li
            %span.light Path:
-@@ -23,7 +23,7 @@
+@@ -23,19 +23,19 @@
              = @group.path
  
          %li
@@ -1755,7 +1757,12 @@ index 296497a..4d59899 100644
            %strong
              = @group.description
  
-@@ -35,7 +35,7 @@
+         %li
+-          %span.light Created on:
++          %span.light 作成日:
+           %strong
+             = @group.created_at.stamp("March 1, 1999")
+ 
      .panel.panel-default
        .panel-heading
          %h3.panel-title
@@ -2041,7 +2048,7 @@ index d9b4814..8f3c54f 100644
            .nothing-here-block 0 projects matches
      = paginate @projects, theme: "gitlab"
 diff --git a/app/views/admin/projects/show.html.haml b/app/views/admin/projects/show.html.haml
-index 5260ead..bd1f28f 100644
+index 5260ead..bc844b4 100644
 --- a/app/views/admin/projects/show.html.haml
 +++ b/app/views/admin/projects/show.html.haml
 @@ -1,4 +1,4 @@
@@ -2064,7 +2071,7 @@ index 5260ead..bd1f28f 100644
            %strong
              - if @project.namespace
                = link_to @project.namespace.human_name, [:admin, @project.group || @project.owner]
-@@ -31,7 +31,7 @@
+@@ -31,12 +31,12 @@
                (deleted)
  
          %li
@@ -2072,6 +2079,12 @@ index 5260ead..bd1f28f 100644
 +          %span.light 登録者:
            %strong
              = @project.creator.try(:name) || '(deleted)'
+ 
+         %li
+-          %span.light Created on:
++          %span.light 作成日:
+           %strong
+             = @project.created_at.stamp("March 1, 1999")
  
 @@ -83,11 +83,11 @@
  
@@ -4169,10 +4182,18 @@ index a79a0fc..3514f94 100644
 -          = f.submit 'Save', class: 'btn btn-save btn-sm'
 +          = f.submit '保存', class: 'btn btn-save btn-sm'
 diff --git a/app/views/groups/group_members/_new_group_member.html.haml b/app/views/groups/group_members/_new_group_member.html.haml
-index 3361d7e..beec9a5 100644
+index 3361d7e..5be54b6 100644
 --- a/app/views/groups/group_members/_new_group_member.html.haml
 +++ b/app/views/groups/group_members/_new_group_member.html.haml
-@@ -11,8 +11,9 @@
+@@ -4,15 +4,16 @@
+     .col-sm-10
+       = users_select_tag(:user_ids, multiple: true, class: 'input-large', scope: :all, email_user: true)
+       .help-block
+-        Search for existing users or invite new ones using their email address.
++        既存のユーザを検索するかメールアドレスを指定して招待します
+ 
+   .form-group
+     = f.label :access_level, "Group Access", class: 'control-label'
      .col-sm-10
        = select_tag :access_level, options_for_select(GroupMember.access_level_roles, @group_member.access_level), class: "project-access-select select2"
        .help-block
@@ -6436,7 +6457,7 @@ index aa0e263..62ed02f 100644
        \
        \=====================================
 diff --git a/app/views/profiles/accounts/show.html.haml b/app/views/profiles/accounts/show.html.haml
-index 17e47c6..d25c252 100644
+index 17e47c6..266c563 100644
 --- a/app/views/profiles/accounts/show.html.haml
 +++ b/app/views/profiles/accounts/show.html.haml
 @@ -1,54 +1,54 @@
@@ -6478,7 +6499,7 @@ index 17e47c6..d25c252 100644
          .form-actions
            - if current_user.private_token
 -            = f.submit 'Reset private token', data: { confirm: "Are you sure?" }, class: "btn btn-default"
-+            = f.submit 'private tokenをリセット', data: { confirm: "本当によろしいですか？" }, class: "btn btn-default"
++            = f.submit 'プライベートトークンをリセット', data: { confirm: "本当によろしいですか？" }, class: "btn btn-default"
            - else
 -            = f.submit 'Generate', class: "btn btn-default"
 +            = f.submit '生成', class: "btn btn-default"
@@ -6761,10 +6782,10 @@ index 9bbccbc..075064b 100644
 -    = link_to 'Remove', path_to_key(key, is_admin), data: { confirm: 'Are you sure?'}, method: :delete, class: "btn btn-sm btn-remove delete-key pull-right"
 +    = link_to '削除', path_to_key(key, is_admin), data: { confirm: '本当によろしいですか？'}, method: :delete, class: "btn btn-sm btn-remove delete-key pull-right"
 diff --git a/app/views/profiles/keys/_key_details.html.haml b/app/views/profiles/keys/_key_details.html.haml
-index 0ca8bd9..81aa899 100644
+index 0ca8bd9..47ea44b 100644
 --- a/app/views/profiles/keys/_key_details.html.haml
 +++ b/app/views/profiles/keys/_key_details.html.haml
-@@ -3,10 +3,10 @@
+@@ -3,21 +3,21 @@
    .col-md-4
      .panel.panel-default
        .panel-heading
@@ -6776,26 +6797,36 @@ index 0ca8bd9..81aa899 100644
 +          %span.light タイトル:
            %strong= @key.title
          %li
-           %span.light Created on:
-@@ -20,4 +20,4 @@
+-          %span.light Created on:
++          %span.light 作成日:
+           %strong= @key.created_at.stamp("Aug 21, 2011")
+ 
+   .col-md-8
+     %p
+-      %span.light Fingerprint:
++      %span.light フィンガープリント:
+       %code.key-fingerprint= @key.fingerprint
+     %pre.well-pre
        = @key.key
    .col-md-12
      .pull-right
 -      = link_to 'Remove', path_to_key(@key, is_admin), data: {confirm: 'Are you sure?'}, method: :delete, class: "btn btn-remove delete-key"
 +      = link_to '削除', path_to_key(@key, is_admin), data: {confirm: '本当によろしいですか？'}, method: :delete, class: "btn btn-remove delete-key"
 diff --git a/app/views/profiles/keys/_key_table.html.haml b/app/views/profiles/keys/_key_table.html.haml
-index 8c9d546..924813f 100644
+index 8c9d546..f559385 100644
 --- a/app/views/profiles/keys/_key_table.html.haml
 +++ b/app/views/profiles/keys/_key_table.html.haml
-@@ -4,7 +4,7 @@
+@@ -4,8 +4,8 @@
      %table.table
        %thead.panel-heading
          %tr
 -          %th Title
+-          %th Fingerprint
 +          %th タイトル
-           %th Fingerprint
++          %th フィンガープリント
            %th Added at
            %th
+       %tbody
 @@ -16,4 +16,4 @@
      - if is_admin
        User has no ssh keys
@@ -7001,7 +7032,7 @@ index d165f75..cedeff3 100644
 -    = f.submit 'Set new password', class: "btn btn-create"
 +    = f.submit '新しいパスワードを設定', class: "btn btn-create"
 diff --git a/app/views/profiles/preferences/show.html.haml b/app/views/profiles/preferences/show.html.haml
-index 877589d..924521e 100644
+index 877589d..49582a3 100644
 --- a/app/views/profiles/preferences/show.html.haml
 +++ b/app/views/profiles/preferences/show.html.haml
 @@ -1,4 +1,4 @@
@@ -7010,6 +7041,24 @@ index 877589d..924521e 100644
  - header_title page_title, profile_preferences_path
  - @blank_container = true
  
+@@ -20,7 +20,7 @@
+ 
+   .panel.panel-default.syntax-theme
+     .panel-heading
+-      Syntax highlighting theme
++      シンタックスハイライトテーマ
+     .panel-body
+       - Gitlab::ColorSchemes.each do |scheme|
+         = label_tag do
+@@ -30,7 +30,7 @@
+ 
+   .panel.panel-default
+     .panel-heading
+-      Behavior
++      動作
+     .panel-body
+       .form-group
+         = f.label :layout, class: 'control-label' do
 @@ -41,17 +41,17 @@
              Choose between fixed (max. 1200px) and fluid (100%) application layout.
        .form-group
@@ -7027,7 +7076,8 @@ index 877589d..924521e 100644
          .col-sm-10
            = f.select :project_view, project_view_choices, {}, class: 'form-control'
            .help-block
-             Choose what content you want to see on a project's home page.
+-            Choose what content you want to see on a project's home page.
++            プロジェクトページを表示した時に閲覧したいコンテンツを選択してください。
      .panel-footer
 -      = f.submit 'Save changes', class: 'btn btn-save'
 +      = f.submit '変更を保存', class: 'btn btn-save'
@@ -9719,10 +9769,18 @@ index a31f0a3..cdc808c 100644
 -- header_title project_title(@project, "Members", namespace_project_project_members_path(@project.namespace, @project))
 +- header_title project_title(@project, "メンバー", namespace_project_project_members_path(@project.namespace, @project))
 diff --git a/app/views/projects/project_members/_new_project_member.html.haml b/app/views/projects/project_members/_new_project_member.html.haml
-index d708b01..18c7225 100644
+index d708b01..ea70c84 100644
 --- a/app/views/projects/project_members/_new_project_member.html.haml
 +++ b/app/views/projects/project_members/_new_project_member.html.haml
-@@ -11,8 +11,9 @@
+@@ -4,15 +4,16 @@
+     .col-sm-10
+       = users_select_tag(:user_ids, multiple: true, class: 'input-large', scope: :all, email_user: true)
+       .help-block
+-        Search for existing users or invite new ones using their email address.
++        既存のユーザを検索するかメールアドレスを指定して招待します
+ 
+   .form-group
+     = f.label :access_level, "Project Access", class: 'control-label'
      .col-sm-10
        = select_tag :access_level, options_for_select(ProjectMember.access_roles, @project_member.access_level), class: "project-access-select select2"
        .help-block
@@ -9789,7 +9847,7 @@ index ccddab1..39e9bdd 100644
    %ul.content-list
      - members.each do |project_member|
 diff --git a/app/views/projects/project_members/import.html.haml b/app/views/projects/project_members/import.html.haml
-index 1899064..3bbd177 100644
+index 1899064..90dab13 100644
 --- a/app/views/projects/project_members/import.html.haml
 +++ b/app/views/projects/project_members/import.html.haml
 @@ -1,17 +1,17 @@
@@ -9801,7 +9859,8 @@ index 1899064..3bbd177 100644
 -  Import members from another project
 +  別のプロジェクトからメンバーをインポート
  %p.light
-   Only project members will be imported. Group members will be skipped.
+-  Only project members will be imported. Group members will be skipped.
++  プロジェクトのメンバーだけがインポートされます。グループのメンバーはスキップされます。
  %hr
  = form_tag apply_import_namespace_project_project_members_path(@project.namespace, @project), method: 'post', class: 'form-horizontal' do
    .form-group
@@ -11412,7 +11471,7 @@ index ac6c248..e450f27 100644
  :javascript
    new UsersSelect();
 diff --git a/app/views/shared/issuable/_form.html.haml b/app/views/shared/issuable/_form.html.haml
-index 90dc006..13073cf 100644
+index 90dc006..55137cc 100644
 --- a/app/views/shared/issuable/_form.html.haml
 +++ b/app/views/shared/issuable/_form.html.haml
 @@ -6,7 +6,7 @@
@@ -11473,7 +11532,7 @@ index 90dc006..13073cf 100644
          &nbsp;
          - if can? current_user, :admin_milestone, issuable.project
 -          = link_to 'Create new milestone', new_namespace_project_milestone_path(issuable.project.namespace, issuable.project), target: :blank
-+          = link_to 'new マイルストーンを作成', new_namespace_project_milestone_path(issuable.project.namespace, issuable.project), target: :blank
++          = link_to '新しいマイルストーンを作成', new_namespace_project_milestone_path(issuable.project.namespace, issuable.project), target: :blank
    .form-group
 -    = f.label :label_ids, "Labels", class: 'control-label'
 +    = f.label :label_ids, "ラベル", class: 'control-label'
@@ -11489,7 +11548,7 @@ index 90dc006..13073cf 100644
        &nbsp;
        - if can? current_user, :admin_label, issuable.project
 -        = link_to 'Create new label', new_namespace_project_label_path(issuable.project.namespace, issuable.project), target: :blank
-+        = link_to 'new ラベルを作成', new_namespace_project_label_path(issuable.project.namespace, issuable.project), target: :blank
++        = link_to '新しいラベルを作成', new_namespace_project_label_path(issuable.project.namespace, issuable.project), target: :blank
  
  - if issuable.is_a?(MergeRequest)
    %hr

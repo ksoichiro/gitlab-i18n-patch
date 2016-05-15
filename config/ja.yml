@@ -2420,3 +2420,13 @@ createdOn: 作成日
 syntaxHighlightingTheme: シンタックスハイライトテーマ
 behavior: 動作
 chooseWhatContentYouWantToSeeOnAProjectsHomePage: プロジェクトページを表示した時に閲覧したいコンテンツを選択してください。
+onlyMilestonesFromGroupAreListedHere: "{0}{2}\n{0}グループのマイルストーンだけが表示されています。"
+onlyIssuesFromGroupAreListedHere: "{0}{2}\n{0}グループの課題だけが表示されています。"
+toSeeAllIssuesYouShouldVisitDashboardPage: 'すべての課題を確認するには{0}ダッシュボード{1}を表示してください。'
+onlyMergeRequestsFromGroupAreListedHere: "{0}{2}\n{0}グループのマージリクエストだけが表示されています。"
+toSeeAllMergeRequestsYouShouldVisitDashboardPage: 'すべてのマージリクエストを確認するには{0}ダッシュボード{1}を表示してください。'
+thisWillCreateMilestoneInEverySelectedProject: 選択されたすべてのプロジェクトにマイルストーンが作成されます。
+membersOfGroupHaveAccessToAllGroupProjects: このグループのメンバーはこのグループのすべてのプロジェクトにアクセスできます。
+people: ユーザ
+groupAccess: グループアクセス権
+addAToB: '{0}を{1}に追加'

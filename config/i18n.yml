@@ -291,10 +291,10 @@ translations:
     replace: '$2$3$4${{key}}$1$2$3$5'
     params: ['word', 'key']
   - name: wordInSentence
-    pattern: "(\"[^\"]* ){word}((?: [^\"]*)?)(\")|('[^']* ){word}((?: [^']*)?)(')|( +){word}$"
+    pattern: "(\"[^\"]* ){word}((?: [^\"]*)?\")|('[^']* ){word}((?: [^']*)?')|( +){word}$"
     flags: 'gi'
     exclude: '^\s*(?:- if |- when |= .*{word}$)'
-    replace: '$1$4$7${{key}}$2$3$5$6'
+    replace: '$1$3$5${{key}}$2$4'
     params: ['word', 'key']
   - name: doSth
     pattern: "(^\\s+|\"){verb} ([^\"]*)(\"|$)|(^\\s+|'){verb} ([^']*)('|$)|( +){verb} (.*)$"
@@ -798,6 +798,8 @@ translations:
     replace: '${addNewUserToProject}'
   - pattern: 'Add new user to group'
     replace: '${addNewUserToGroup}'
+  - pattern: 'Add user(s) to the group'
+    replace: 'Add users to group'
   - pattern: 'Import members from another project'
     replace: '${importMembersFromAnotherProject}'
   - pattern: 'All participants to this milestone'
@@ -823,6 +825,41 @@ translations:
   - pattern: !!js/regexp /= pluralize[\( ]([^,]+), ['"]([^'"]+)['"]\)?/
     replace: '#{$1} $2'
     exclude: '[^ ]= pluralize'
+  - pattern: !!js/regexp /^(\s+)Only milestones from\n(\s+)([^\n]+)\n(\s+)group are listed here./m
+    replace: '${onlyMilestonesFromGroupAreListedHere}'
+    args:
+    - '$1'
+    - '$2'
+    - '$3'
+    - '$4'
+  - pattern: !!js/regexp /(\s+)Only issues from\n(\s+)([^\n]+)\n(\s+)group are listed here./m
+    replace: '${onlyIssuesFromGroupAreListedHere}'
+    args:
+    - '$1'
+    - '$2'
+    - '$3'
+    - '$4'
+  - pattern: !!js/regexp /To see all issues you should visit ([^']+')dashboard([^}]+}) page./
+    replace: '${toSeeAllIssuesYouShouldVisitDashboardPage}'
+    args:
+    - '$1'
+    - '$2'
+  - pattern: !!js/regexp /(\s+)Only merge requests from\n(\s+)([^\n]+)\n(\s+)group are listed here./m
+    replace: '${onlyMergeRequestsFromGroupAreListedHere}'
+    args:
+    - '$1'
+    - '$2'
+    - '$3'
+    - '$4'
+  - pattern: !!js/regexp /To see all merge requests you should visit ([^']+')dashboard([^}]+}) page./
+    replace: '${toSeeAllMergeRequestsYouShouldVisitDashboardPage}'
+    args:
+    - '$1'
+    - '$2'
+  - pattern: 'This will create milestone in every selected project'
+    replace: '${thisWillCreateMilestoneInEverySelectedProject}'
+  - pattern: 'Members of group have access to all group projects.'
+    replace: '${membersOfGroupHaveAccessToAllGroupProjects}'
   - pattern: 'Are you sure?'
     replace: '${areYouSure}'
   - pattern: "Code?$|(\")Code?\"|(')Code?'|(\".* )Code?(\")"
@@ -894,7 +931,7 @@ translations:
     - {word: 'Status', key: status}
     - {word: 'Commit', key: commit}
     - {word: 'State', key: state}
-    - {word: 'Due date', key: dueDate}
+    - {word: 'Due [dD]ate', key: dueDate}
     - {word: 'Sign in', key: signIn}
     - {word: 'Sign up', key: signUp}
     - {word: 'Sign out', key: signOut}
@@ -1016,6 +1053,10 @@ translations:
     - {word: 'Fingerprint', key: fingerprint}
     - {word: 'Created on', key: createdOn}
     - {word: 'Behavior', key: behavior}
+    - {word: 'Edit', key: edit}
+    - {word: 'Delete', key: delete}
+    - {word: 'People', key: people}
+    - {word: 'Group Access', key: groupAccess}
   - name: wordInSentence
     params:
     - {word: 'applications?', key: application}
@@ -1048,6 +1089,11 @@ translations:
     - {word: 'required', key: required}
     - {word: 'members?', key: member}
     - {word: '[pP]rivate token', key: privateToken}
+  - pattern: !!js/regexp /Add ([^\s]+) to ([^\s'":]+)/
+    replace: '${addAToB}'
+    args:
+    - '$1'
+    - '$2'
   - name: doSth
     params:
     - {verb: Edit, key: editSth}

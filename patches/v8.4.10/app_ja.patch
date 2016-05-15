@@ -1791,15 +1791,22 @@ index c81ee55..c13c298 100644
  %hr
  = render 'form'
 diff --git a/app/views/admin/groups/show.html.haml b/app/views/admin/groups/show.html.haml
-index f7fd156..11de797 100644
+index f7fd156..53d91c1 100644
 --- a/app/views/admin/groups/show.html.haml
 +++ b/app/views/admin/groups/show.html.haml
-@@ -1,4 +1,4 @@
+@@ -1,10 +1,10 @@
 -- page_title @group.name, "Groups"
 +- page_title @group.name, "グループ"
  %h3.page-title
    Group: #{@group.name}
  
+   = link_to edit_admin_group_path(@group), class: "btn pull-right" do
+     %i.fa.fa-pencil-square-o
+-    Edit
++    編集
+ %hr
+ .row
+   .col-md-6
 @@ -15,7 +15,7 @@
          %li
            = image_tag group_icon(@group), class: "avatar s60"
@@ -1837,7 +1844,7 @@ index f7fd156..11de797 100644
        .panel.panel-default
          .panel-heading
 -          Add user(s) to the group:
-+          user(s) to the group:を追加
++          usersをgroupに追加:
          .panel-body.form-holder
            %p.light
 -            Read more about project permissions
@@ -1853,7 +1860,7 @@ index f7fd156..11de797 100644
                = select_tag :access_level, options_for_select(GroupMember.access_level_roles), class: "project-access-select select2"
              %hr
 -            = button_tag 'Add users to group', class: "btn btn-create"
-+            = button_tag 'ユーザ to グループを追加', class: "btn btn-create"
++            = button_tag 'ユーザをグループに追加', class: "btn btn-create"
      .panel.panel-default
        .panel-heading
          %h3.panel-title
@@ -1919,6 +1926,21 @@ index 3a78855..3e0a20d 100644
 -    = f.submit 'Save changes', class: "btn btn-save"
 +    = f.submit '変更を保存', class: "btn btn-save"
  
+diff --git a/app/views/admin/identities/_identity.html.haml b/app/views/admin/identities/_identity.html.haml
+index 7362d90..b89cb2d 100644
+--- a/app/views/admin/identities/_identity.html.haml
++++ b/app/views/admin/identities/_identity.html.haml
+@@ -5,8 +5,8 @@
+     = identity.extern_uid
+   %td
+     = link_to edit_admin_user_identity_path(@user, identity), class: 'btn btn-xs btn-grouped' do
+-      Edit
++      編集
+     = link_to [:admin, @user, identity], method: :delete,
+       class: 'btn btn-xs btn-danger',
+       data: { confirm: "Are you sure you want to remove this identity?" } do
+-      Delete
++      削除
 diff --git a/app/views/admin/identities/edit.html.haml b/app/views/admin/identities/edit.html.haml
 index 515d46b..fdae704 100644
 --- a/app/views/admin/identities/edit.html.haml
@@ -1982,7 +2004,7 @@ index eaa94ed..2ab4f6b 100644
  :javascript
    new Labels();
 diff --git a/app/views/admin/labels/_label.html.haml b/app/views/admin/labels/_label.html.haml
-index e3ccbf6..0aef752 100644
+index e3ccbf6..201479f 100644
 --- a/app/views/admin/labels/_label.html.haml
 +++ b/app/views/admin/labels/_label.html.haml
 @@ -1,5 +1,5 @@
@@ -1992,7 +2014,7 @@ index e3ccbf6..0aef752 100644
 -    = link_to 'Edit', edit_admin_label_path(label), class: 'btn btn-sm'
 -    = link_to 'Delete', admin_label_path(label), class: 'btn btn-sm btn-remove remove-row', method: :delete, remote: true, data: {confirm: "Delete this label? Are you sure?"}
 +    = link_to '編集', edit_admin_label_path(label), class: 'btn btn-sm'
-+    = link_to 'Delete', admin_label_path(label), class: 'btn btn-sm btn-remove remove-row', method: :delete, remote: true, data: {confirm: "このラベルを削除しますか？ 本当によろしいですか？"}
++    = link_to '削除', admin_label_path(label), class: 'btn btn-sm btn-remove remove-row', method: :delete, remote: true, data: {confirm: "このラベルを削除しますか？ 本当によろしいですか？"}
 diff --git a/app/views/admin/labels/edit.html.haml b/app/views/admin/labels/edit.html.haml
 index 309aedc..74c3c88 100644
 --- a/app/views/admin/labels/edit.html.haml
@@ -2109,15 +2131,21 @@ index d9b4814..8f3c54f 100644
            .nothing-here-block 0 projects matches
      = paginate @projects, theme: "gitlab"
 diff --git a/app/views/admin/projects/show.html.haml b/app/views/admin/projects/show.html.haml
-index d734e60..dbde5d9 100644
+index d734e60..c52fe09 100644
 --- a/app/views/admin/projects/show.html.haml
 +++ b/app/views/admin/projects/show.html.haml
-@@ -1,4 +1,4 @@
+@@ -1,9 +1,9 @@
 -- page_title @project.name_with_namespace, "Projects"
 +- page_title @project.name_with_namespace, "プロジェクト"
  %h3.page-title
    Project: #{@project.name_with_namespace}
    = link_to edit_project_path(@project), class: "btn btn-nr pull-right" do
+     %i.fa.fa-pencil-square-o
+-    Edit
++    編集
+ %hr
+ .row
+   .col-md-6
 @@ -12,11 +12,11 @@
          Project info:
        %ul.well-list
@@ -2466,10 +2494,15 @@ index e18dd9b..75d2c53 100644
 +        = f.submit '変更を保存', class: "btn btn-save"
 +        = link_to 'キャンセル', admin_user_path(@user), class: "btn btn-cancel"
 diff --git a/app/views/admin/users/_head.html.haml b/app/views/admin/users/_head.html.haml
-index ce5e21e..69deb18 100644
+index ce5e21e..fb3a5e6 100644
 --- a/app/views/admin/users/_head.html.haml
 +++ b/app/views/admin/users/_head.html.haml
-@@ -14,11 +14,11 @@
+@@ -10,15 +10,15 @@
+       = link_to 'Impersonate', impersonate_admin_user_path(@user), method: :post, class: "btn btn-nr btn-grouped btn-info"
+     = link_to edit_admin_user_path(@user), class: "btn btn-nr btn-grouped" do
+       %i.fa.fa-pencil-square-o
+-      Edit
++      編集
  %hr
  %ul.nav-links
    = nav_link(path: 'users#show') do
@@ -4244,10 +4277,22 @@ index a79a0fc..3514f94 100644
 -          = f.submit 'Save', class: 'btn btn-save btn-sm'
 +          = f.submit '保存', class: 'btn btn-save btn-sm'
 diff --git a/app/views/groups/group_members/_new_group_member.html.haml b/app/views/groups/group_members/_new_group_member.html.haml
-index e7ab4f2..99afaec 100644
+index e7ab4f2..77c149c 100644
 --- a/app/views/groups/group_members/_new_group_member.html.haml
 +++ b/app/views/groups/group_members/_new_group_member.html.haml
-@@ -11,8 +11,9 @@
+@@ -1,18 +1,19 @@
+ = form_for @group_member, url: group_group_members_path(@group), html: { class: 'form-horizontal users-group-form' } do |f|
+   .form-group
+-    = f.label :user_ids, "People", class: 'control-label'
++    = f.label :user_ids, "ユーザ", class: 'control-label'
+     .col-sm-10
+       = users_select_tag(:user_ids, multiple: true, class: 'input-large', scope: :all, email_user: true)
+       .help-block
+         Search for users by name, username, or email, or invite new ones using their email address.
+ 
+   .form-group
+-    = f.label :access_level, "Group Access", class: 'control-label'
++    = f.label :access_level, "グループアクセス権", class: 'control-label'
      .col-sm-10
        = select_tag :access_level, options_for_select(GroupMember.access_level_roles, @group_member.access_level), class: "project-access-select select2"
        .help-block
@@ -4259,12 +4304,12 @@ index e7ab4f2..99afaec 100644
  
    .form-actions
 -    = f.submit 'Add users to group', class: "btn btn-create"
-+    = f.submit 'ユーザ to グループを追加', class: "btn btn-create"
++    = f.submit 'ユーザをグループに追加', class: "btn btn-create"
 diff --git a/app/views/groups/group_members/index.html.haml b/app/views/groups/group_members/index.html.haml
-index 6a8acc4..81ec7c6 100644
+index 6a8acc4..19aaa2b 100644
 --- a/app/views/groups/group_members/index.html.haml
 +++ b/app/views/groups/group_members/index.html.haml
-@@ -1,12 +1,12 @@
+@@ -1,30 +1,30 @@
 -- page_title "Members"
 -- header_title group_title(@group, "Members", group_group_members_path(@group))
 +- page_title "メンバー"
@@ -4280,7 +4325,11 @@ index 6a8acc4..81ec7c6 100644
        .panel-body
          - if should_user_see_group_roles?(current_user, @group)
            %p.light
-@@ -17,14 +17,14 @@
+-            Members of group have access to all group projects.
++            このグループのメンバーはこのグループのすべてのプロジェクトにアクセスできます。
+         .new-group-member-holder
+           = render "new_group_member"
+ 
    .panel.panel-default
      .panel-heading
        %strong #{@group.name}
@@ -4299,7 +4348,7 @@ index 6a8acc4..81ec7c6 100644
      %ul.content-list
        - @members.each do |member|
 diff --git a/app/views/groups/issues.html.haml b/app/views/groups/issues.html.haml
-index 90ade1e..8831fa0 100644
+index 90ade1e..054257c 100644
 --- a/app/views/groups/issues.html.haml
 +++ b/app/views/groups/issues.html.haml
 @@ -1,8 +1,8 @@
@@ -4314,7 +4363,7 @@ index 90ade1e..8831fa0 100644
  
  .project-issuable-filter
    .controls
-@@ -12,7 +12,7 @@
+@@ -12,16 +12,15 @@
            = link_to issues_group_url(@group, format: :atom, private_token: current_user.private_token), class: 'btn' do
              %i.fa.fa-rss
  
@@ -4323,11 +4372,22 @@ index 90ade1e..8831fa0 100644
  
    = render 'shared/issuable/filter', type: :issues
  
+ .gray-content-block.second-block
+-  Only issues from
+   %strong #{@group.name}
+-  group are listed here.
++  グループの課題だけが表示されています。
+   - if current_user
+-    To see all issues you should visit #{link_to 'dashboard', issues_dashboard_path} page.
++    すべての課題を確認するには#{link_to 'ダッシュボード', issues_dashboard_path}を表示してください。
+ 
+ .prepend-top-default
+   = render 'shared/issues'
 diff --git a/app/views/groups/merge_requests.html.haml b/app/views/groups/merge_requests.html.haml
-index f662f5a..b8bdf86 100644
+index f662f5a..a97e023 100644
 --- a/app/views/groups/merge_requests.html.haml
 +++ b/app/views/groups/merge_requests.html.haml
-@@ -1,9 +1,9 @@
+@@ -1,18 +1,17 @@
 -- page_title "Merge Requests"
 -- header_title group_title(@group, "Merge Requests", merge_requests_group_path(@group))
 +- page_title "マージリクエスト"
@@ -4340,6 +4400,17 @@ index f662f5a..b8bdf86 100644
  
    = render 'shared/issuable/filter', type: :merge_requests
  
+ .gray-content-block.second-block
+-  Only merge requests from
+   %strong #{@group.name}
+-  group are listed here.
++  グループのマージリクエストだけが表示されています。
+   - if current_user
+-    To see all merge requests you should visit #{link_to 'dashboard', merge_requests_dashboard_path} page.
++    すべてのマージリクエストを確認するには#{link_to 'ダッシュボード', merge_requests_dashboard_path}を表示してください。
+ 
+ .prepend-top-default
+   = render 'shared/merge_requests'
 diff --git a/app/views/groups/milestones/_header_title.html.haml b/app/views/groups/milestones/_header_title.html.haml
 index d7fabf5..940c865 100644
 --- a/app/views/groups/milestones/_header_title.html.haml
@@ -4379,7 +4450,7 @@ index a20bf75..b04a685 100644
 -          = link_to 'Close Milestone', group_milestone_path(@group, milestone.safe_title, title: milestone.title, milestone: {state_event: :close }), method: :put, class: "btn btn-xs btn-close"
 +          = link_to 'マイルストーンをクローズ', group_milestone_path(@group, milestone.safe_title, title: milestone.title, milestone: {state_event: :close }), method: :put, class: "btn btn-xs btn-close"
 diff --git a/app/views/groups/milestones/index.html.haml b/app/views/groups/milestones/index.html.haml
-index b221d3a..78ae654 100644
+index b221d3a..7f67384 100644
 --- a/app/views/groups/milestones/index.html.haml
 +++ b/app/views/groups/milestones/index.html.haml
 @@ -1,5 +1,5 @@
@@ -4390,7 +4461,7 @@ index b221d3a..78ae654 100644
  
  .project-issuable-filter
    .controls
-@@ -8,7 +8,7 @@
+@@ -8,20 +8,19 @@
          %span.pull-right.hidden-xs
            = link_to new_group_milestone_path(@group), class: "btn btn-new" do
              = icon('plus')
@@ -4399,7 +4470,13 @@ index b221d3a..78ae654 100644
  
    = render 'shared/milestones_filter'
  
-@@ -21,7 +21,7 @@
+ .gray-content-block
+-  Only milestones from
+   %strong #{@group.name}
+-  group are listed here.
++  グループのマイルストーンだけが表示されています。
+ 
+ .milestones
    %ul.content-list
      - if @milestones.blank?
        %li
@@ -4409,10 +4486,10 @@ index b221d3a..78ae654 100644
        - @milestones.each do |milestone|
          = render 'milestone', milestone: milestone
 diff --git a/app/views/groups/milestones/new.html.haml b/app/views/groups/milestones/new.html.haml
-index 3894a0e..80de727 100644
+index 3894a0e..a6e6bb5 100644
 --- a/app/views/groups/milestones/new.html.haml
 +++ b/app/views/groups/milestones/new.html.haml
-@@ -1,29 +1,29 @@
+@@ -1,43 +1,43 @@
 -- page_title "Milestones"
 -- header_title group_title(@group, "Milestones", group_milestones_path(@group))
 +- page_title "マイルストーン"
@@ -4424,7 +4501,7 @@ index 3894a0e..80de727 100644
  
  %p.light
 -  This will create milestone in every selected project
-+  This will create milestone in every selected プロジェクト
++  選択されたすべてのプロジェクトにマイルストーンが作成されます。
  %hr
  
  = form_for @milestone, url: group_milestones_path(@group), html: { class: 'form-horizontal milestone-form gfm-form js-requires-input' }  do |f|
@@ -4449,7 +4526,13 @@ index 3894a0e..80de727 100644
          .col-sm-10
            = f.collection_select :project_ids, @group.projects, :id, :name,
              { selected: @group.projects.map(&:id) }, multiple: true, class: 'select2'
-@@ -36,8 +36,8 @@
+ 
+     .col-md-6
+       .form-group
+-        = f.label :due_date, "Due Date", class: "control-label"
++        = f.label :due_date, "期限", class: "control-label"
+         .col-sm-10= f.hidden_field :due_date
+         .col-sm-10
            .datepicker
  
    .form-actions
@@ -4939,7 +5022,7 @@ index 57bc91e..6c061a4 100644
          %li= link_to 'Get a support subscription', 'https://about.gitlab.com/pricing/'
          %li= link_to 'Compare GitLab editions', 'https://about.gitlab.com/features/#compare'
 diff --git a/app/views/help/ui.html.haml b/app/views/help/ui.html.haml
-index 7b45bd0..f019694 100644
+index 7b45bd0..5ab9ed1 100644
 --- a/app/views/help/ui.html.haml
 +++ b/app/views/help/ui.html.haml
 @@ -1,4 +1,4 @@
@@ -5049,8 +5132,9 @@ index 7b45bd0..f019694 100644
 +        Awesome ファイル
          .file-actions
            .btn-group
-             %a.btn Edit
+-            %a.btn Edit
 -            %a.btn.btn-danger Remove
++            %a.btn 編集
 +            %a.btn.btn-danger 削除
        .file-contenta.code
          = render 'shared/file_highlight', blob: blob
@@ -8895,7 +8979,7 @@ index b317a0c..f7f0f46 100644
  
  = render "form"
 diff --git a/app/views/projects/issues/show.html.haml b/app/views/projects/issues/show.html.haml
-index 7ed898c..fc3d777 100644
+index 7ed898c..072dbfc 100644
 --- a/app/views/projects/issues/show.html.haml
 +++ b/app/views/projects/issues/show.html.haml
 @@ -1,4 +1,4 @@
@@ -8915,7 +8999,7 @@ index 7ed898c..fc3d777 100644
      %span.identifier
        Issue ##{@issue.iid}
      %span.creator
-@@ -23,12 +23,12 @@
+@@ -23,16 +23,16 @@
  
      .pull-right
        - if can?(current_user, :create_issue, @project)
@@ -8932,6 +9016,11 @@ index 7ed898c..fc3d777 100644
  
          = link_to edit_namespace_project_issue_path(@project.namespace, @project, @issue), class: 'btn btn-nr btn-grouped issuable-edit' do
            = icon('pencil-square-o')
+-          Edit
++          編集
+ 
+   .issue-details.issuable-details
+     .detail-page-description.gray-content-block.second-block
 diff --git a/app/views/projects/labels/_form.html.haml b/app/views/projects/labels/_form.html.haml
 index 5ce2a7b..a62063c 100644
 --- a/app/views/projects/labels/_form.html.haml
@@ -8964,7 +9053,7 @@ index abe28da..d712993 100644
 -- header_title project_title(@project, "Labels", namespace_project_labels_path(@project.namespace, @project))
 +- header_title project_title(@project, "ラベル", namespace_project_labels_path(@project.namespace, @project))
 diff --git a/app/views/projects/labels/_label.html.haml b/app/views/projects/labels/_label.html.haml
-index b70a9fc..101c231 100644
+index b70a9fc..a8dc47b 100644
 --- a/app/views/projects/labels/_label.html.haml
 +++ b/app/views/projects/labels/_label.html.haml
 @@ -3,8 +3,8 @@
@@ -8978,7 +9067,7 @@ index b70a9fc..101c231 100644
 -      = link_to 'Edit', edit_namespace_project_label_path(@project.namespace, @project, label), class: 'btn btn-sm'
 -      = link_to 'Delete', namespace_project_label_path(@project.namespace, @project, label), class: 'btn btn-sm btn-remove remove-row', method: :delete, remote: true, data: {confirm: "Remove this label? Are you sure?"}
 +      = link_to '編集', edit_namespace_project_label_path(@project.namespace, @project, label), class: 'btn btn-sm'
-+      = link_to 'Delete', namespace_project_label_path(@project.namespace, @project, label), class: 'btn btn-sm btn-remove remove-row', method: :delete, remote: true, data: {confirm: "本当にこのラベルを削除しますか？"}
++      = link_to '削除', namespace_project_label_path(@project.namespace, @project, label), class: 'btn btn-sm btn-remove remove-row', method: :delete, remote: true, data: {confirm: "本当にこのラベルを削除しますか？"}
 diff --git a/app/views/projects/labels/edit.html.haml b/app/views/projects/labels/edit.html.haml
 index 675a805..c7f8616 100644
 --- a/app/views/projects/labels/edit.html.haml
@@ -9303,7 +9392,7 @@ index 877cc3d..75cdea1 100644
          %pre.dark#merge-info-1
            - if @merge_request.for_fork?
 diff --git a/app/views/projects/merge_requests/show/_mr_title.html.haml b/app/views/projects/merge_requests/show/_mr_title.html.haml
-index fc6fb2a..80deba0 100644
+index fc6fb2a..b8a64e5 100644
 --- a/app/views/projects/merge_requests/show/_mr_title.html.haml
 +++ b/app/views/projects/merge_requests/show/_mr_title.html.haml
 @@ -17,9 +17,9 @@
@@ -9314,7 +9403,8 @@ index fc6fb2a..80deba0 100644
 +        = link_to 'クローズ', merge_request_path(@merge_request, merge_request: { state_event: :close }), method: :put, class: 'btn btn-nr btn-grouped btn-close', title: 'マージリクエストをクローズ'
          = link_to edit_namespace_project_merge_request_path(@project.namespace, @project, @merge_request), class: 'btn btn-nr btn-grouped issuable-edit', id: 'edit_merge_request' do
            %i.fa.fa-pencil-square-o
-           Edit
+-          Edit
++          編集
        - if @merge_request.closed?
 -        = link_to 'Reopen', merge_request_path(@merge_request, merge_request: {state_event: :reopen }), method: :put, class: 'btn btn-nr btn-grouped btn-reopen reopen-mr-link', title: 'Reopen merge request'
 +        = link_to '再オープン', merge_request_path(@merge_request, merge_request: {state_event: :reopen }), method: :put, class: 'btn btn-nr btn-grouped btn-reopen reopen-mr-link', title: 'マージリクエストを再オープン'
@@ -9441,7 +9531,7 @@ index c9f0762..5155bb5 100644
      does not exist
    %p
 diff --git a/app/views/projects/milestones/_form.html.haml b/app/views/projects/milestones/_form.html.haml
-index 39aa243..95eba11 100644
+index 39aa243..d5c4c36 100644
 --- a/app/views/projects/milestones/_form.html.haml
 +++ b/app/views/projects/milestones/_form.html.haml
 @@ -7,11 +7,11 @@
@@ -9458,7 +9548,15 @@ index 39aa243..95eba11 100644
          .col-sm-10
            = render layout: 'projects/md_preview', locals: { preview_class: "md-preview" } do
              = render 'projects/zen', f: f, attr: :description, classes: 'description form-control js-quick-submit'
-@@ -27,11 +27,11 @@
+@@ -20,18 +20,18 @@
+           .error-alert
+     .col-md-6
+       .form-group
+-        = f.label :due_date, "Due Date", class: "control-label"
++        = f.label :due_date, "期限", class: "control-label"
+         .col-sm-10= f.hidden_field :due_date
+         .col-sm-10
+           .datepicker
  
    .form-actions
      - if @milestone.new_record?
@@ -9502,7 +9600,7 @@ index 00889a5..d2f078a 100644
 -    %li.light.ui-sort-disabled Drag and drop available
 +    %li.light.ui-sort-disabled ドラッグ &amp; ドロップできます
 diff --git a/app/views/projects/milestones/_milestone.html.haml b/app/views/projects/milestones/_milestone.html.haml
-index 67d95ab..63cbe0c 100644
+index 67d95ab..3f56ad2 100644
 --- a/app/views/projects/milestones/_milestone.html.haml
 +++ b/app/views/projects/milestones/_milestone.html.haml
 @@ -5,14 +5,14 @@
@@ -9523,16 +9621,20 @@ index 67d95ab..63cbe0c 100644
      .col-sm-6
        = milestone_progress_bar(milestone)
  
-@@ -25,7 +25,7 @@
+@@ -23,9 +23,9 @@
+       - if can?(current_user, :admin_milestone, milestone.project) and milestone.active?
+         = link_to edit_namespace_project_milestone_path(milestone.project.namespace, milestone.project, milestone), class: "btn btn-xs" do
            = icon('pencil-square-o')
-           Edit
+-          Edit
++          編集
          \
 -        = link_to 'Close Milestone', namespace_project_milestone_path(@project.namespace, @project, milestone, milestone: {state_event: :close }), method: :put, remote: true, class: "btn btn-xs btn-close"
 -        = link_to namespace_project_milestone_path(milestone.project.namespace, milestone.project, milestone), data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-xs btn-remove" do
 +        = link_to 'マイルストーンをクローズ', namespace_project_milestone_path(@project.namespace, @project, milestone, milestone: {state_event: :close }), method: :put, remote: true, class: "btn btn-xs btn-close"
 +        = link_to namespace_project_milestone_path(milestone.project.namespace, milestone.project, milestone), data: { confirm: '本当によろしいですか？' }, method: :delete, class: "btn btn-xs btn-remove" do
            = icon('trash-o')
-           Delete
+-          Delete
++          削除
 diff --git a/app/views/projects/milestones/edit.html.haml b/app/views/projects/milestones/edit.html.haml
 index 43f8863..92973e5 100644
 --- a/app/views/projects/milestones/edit.html.haml
@@ -9599,7 +9701,7 @@ index 0d016f7..fdb8d1d 100644
  %hr
  
 diff --git a/app/views/projects/milestones/show.html.haml b/app/views/projects/milestones/show.html.haml
-index 1142c58..47cf6d6 100644
+index 1142c58..b6315c9 100644
 --- a/app/views/projects/milestones/show.html.haml
 +++ b/app/views/projects/milestones/show.html.haml
 @@ -1,4 +1,4 @@
@@ -9622,7 +9724,7 @@ index 1142c58..47cf6d6 100644
    %span.identifier
      Milestone ##{@milestone.iid}
    - if @milestone.expires_at
-@@ -20,11 +20,11 @@
+@@ -20,17 +20,17 @@
    .pull-right
      - if can?(current_user, :admin_milestone, @project)
        - if @milestone.active?
@@ -9635,8 +9737,16 @@ index 1142c58..47cf6d6 100644
 -      = link_to namespace_project_milestone_path(@project.namespace, @project, @milestone), data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-grouped btn-nr btn-remove" do
 +      = link_to namespace_project_milestone_path(@project.namespace, @project, @milestone), data: { confirm: '本当によろしいですか？' }, method: :delete, class: "btn btn-grouped btn-nr btn-remove" do
          = icon('trash-o')
-         Delete
+-        Delete
++        削除
  
+       = link_to edit_namespace_project_milestone_path(@project.namespace, @project, @milestone), class: "btn btn-grouped btn-nr" do
+         = icon('pencil-square-o')
+-        Edit
++        編集
+ 
+ .detail-page-description.gray-content-block.second-block
+   %h2.title
 @@ -48,23 +48,23 @@
  
  .context.prepend-top-default
@@ -9908,9 +10018,17 @@ index a31f0a3..cdc808c 100644
 -- header_title project_title(@project, "Members", namespace_project_project_members_path(@project.namespace, @project))
 +- header_title project_title(@project, "メンバー", namespace_project_project_members_path(@project.namespace, @project))
 diff --git a/app/views/projects/project_members/_new_project_member.html.haml b/app/views/projects/project_members/_new_project_member.html.haml
-index f0f3bb3..dda6ce6 100644
+index f0f3bb3..be6d00b 100644
 --- a/app/views/projects/project_members/_new_project_member.html.haml
 +++ b/app/views/projects/project_members/_new_project_member.html.haml
+@@ -1,6 +1,6 @@
+ = form_for @project_member, as: :project_member, url: namespace_project_project_members_path(@project.namespace, @project), html: { class: 'form-horizontal users-project-form' } do |f|
+   .form-group
+-    = f.label :user_ids, "People", class: 'control-label'
++    = f.label :user_ids, "ユーザ", class: 'control-label'
+     .col-sm-10
+       = users_select_tag(:user_ids, multiple: true, class: 'input-large', scope: :all, email_user: true)
+       .help-block
 @@ -11,8 +11,9 @@
      .col-sm-10
        = select_tag :access_level, options_for_select(ProjectMember.access_roles, @project_member.access_level), class: "project-access-select select2"
@@ -9923,7 +10041,7 @@ index f0f3bb3..dda6ce6 100644
  
    .form-actions
 -    = f.submit 'Add users to project', class: "btn btn-create"
-+    = f.submit 'ユーザ to プロジェクトを追加', class: "btn btn-create"
++    = f.submit 'ユーザをプロジェクトに追加', class: "btn btn-create"
 diff --git a/app/views/projects/project_members/_project_member.html.haml b/app/views/projects/project_members/_project_member.html.haml
 index 05bf3a7..02b2d99 100644
 --- a/app/views/projects/project_members/_project_member.html.haml
@@ -10398,10 +10516,10 @@ index 4310f03..fae884a 100644
  - if @repository.commit
    .content-block.second-block.white
 diff --git a/app/views/projects/snippets/_actions.html.haml b/app/views/projects/snippets/_actions.html.haml
-index 4a51546..d8c734c 100644
+index 4a51546..b617d3e 100644
 --- a/app/views/projects/snippets/_actions.html.haml
 +++ b/app/views/projects/snippets/_actions.html.haml
-@@ -1,8 +1,8 @@
+@@ -1,11 +1,11 @@
 -= link_to new_namespace_project_snippet_path(@project.namespace, @project), class: 'btn btn-grouped new-snippet-link', title: "New Snippet" do
 += link_to new_namespace_project_snippet_path(@project.namespace, @project), class: 'btn btn-grouped new-snippet-link', title: "新しいスニペット" do
    = icon('plus')
@@ -10411,8 +10529,13 @@ index 4a51546..d8c734c 100644
 -  = link_to namespace_project_snippet_path(@project.namespace, @project, @snippet), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-grouped btn-remove", title: 'Delete Snippet' do
 +  = link_to namespace_project_snippet_path(@project.namespace, @project, @snippet), method: :delete, data: { confirm: "本当によろしいですか？" }, class: "btn btn-grouped btn-remove", title: 'スニペットを削除' do
      = icon('trash-o')
-     Delete
+-    Delete
++    削除
  - if can?(current_user, :update_project_snippet, @snippet)
+   = link_to edit_namespace_project_snippet_path(@project.namespace, @project, @snippet), class: "btn btn-grouped snippable-edit" do
+     = icon('pencil-square-o')
+-    Edit
++    編集
 diff --git a/app/views/projects/snippets/_header_title.html.haml b/app/views/projects/snippets/_header_title.html.haml
 index 04f0bbe..3992c84 100644
 --- a/app/views/projects/snippets/_header_title.html.haml
@@ -10856,10 +10979,10 @@ index 1d25781..719f3e7 100644
 +      = f.submit 'ページを作成', class: "btn-create btn"
 +      = link_to "キャンセル", namespace_project_wiki_path(@project.namespace, @project, :home), class: "btn btn-cancel"
 diff --git a/app/views/projects/wikis/_main_links.html.haml b/app/views/projects/wikis/_main_links.html.haml
-index 29bf5d6..f818e38 100644
+index 29bf5d6..14d8feb 100644
 --- a/app/views/projects/wikis/_main_links.html.haml
 +++ b/app/views/projects/wikis/_main_links.html.haml
-@@ -1,7 +1,7 @@
+@@ -1,12 +1,12 @@
  %span.pull-right
    - if (@page && @page.persisted?)
      = link_to namespace_project_wiki_history_path(@project.namespace, @project, @page), class: "btn btn-grouped" do
@@ -10868,6 +10991,13 @@ index 29bf5d6..f818e38 100644
      - if can?(current_user, :create_wiki, @project)
        = link_to namespace_project_wiki_edit_path(@project.namespace, @project, @page), class: "btn btn-grouped" do
          %i.fa.fa-pencil-square-o
+-        Edit
++        編集
+     - if can?(current_user, :admin_wiki, @project)
+       = link_to namespace_project_wiki_path(@project.namespace, @project, @page), data: { confirm: "Are you sure you want to delete this page?"}, method: :delete, class: "btn btn-remove" do
+         = icon('trash')
+-        Delete
++        削除
 diff --git a/app/views/projects/wikis/_nav.html.haml b/app/views/projects/wikis/_nav.html.haml
 index 69ba301..87130a0 100644
 --- a/app/views/projects/wikis/_nav.html.haml
@@ -11930,7 +12060,7 @@ index 1041ecc..b2655f4 100644
  :javascript
    var editor = ace.edit("editor");
 diff --git a/app/views/snippets/_actions.html.haml b/app/views/snippets/_actions.html.haml
-index 1979ae6..471c2f8 100644
+index 1979ae6..c32fdaa 100644
 --- a/app/views/snippets/_actions.html.haml
 +++ b/app/views/snippets/_actions.html.haml
 @@ -1,11 +1,11 @@
@@ -11942,12 +12072,14 @@ index 1979ae6..471c2f8 100644
  - if can?(current_user, :update_personal_snippet, @snippet)
    = link_to edit_snippet_path(@snippet), class: "btn btn-grouped snippable-edit" do
      = icon('pencil-square-o')
-     Edit
+-    Edit
++    編集
  - if can?(current_user, :admin_personal_snippet, @snippet)
 -  = link_to snippet_path(@snippet), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-grouped btn-remove", title: 'Delete Snippet' do
 +  = link_to snippet_path(@snippet), method: :delete, data: { confirm: "本当によろしいですか？" }, class: "btn btn-grouped btn-remove", title: 'スニペットを削除' do
      = icon('trash-o')
-     Delete
+-    Delete
++    削除
 diff --git a/app/views/snippets/_snippets.html.haml b/app/views/snippets/_snippets.html.haml
 index d9aa4dd..4a5ede5 100644
 --- a/app/views/snippets/_snippets.html.haml

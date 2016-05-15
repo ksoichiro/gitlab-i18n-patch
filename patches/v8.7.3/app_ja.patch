@@ -803,6 +803,19 @@ index 94c6b54..3dd78e8 100644
      ]
  
      options = []
+diff --git a/app/helpers/projects_helper.rb b/app/helpers/projects_helper.rb
+index 3d5e61d..6c57d87 100644
+--- a/app/helpers/projects_helper.rb
++++ b/app/helpers/projects_helper.rb
+@@ -1,7 +1,7 @@
+ module ProjectsHelper
+   def remove_from_project_team_message(project, member)
+     if member.user
+-      "You are going to remove #{member.user.name} from #{project.name} project team. Are you sure?"
++      "#{member.user.name} をプロジェクト #{project.name} から削除します。本当によろしいですか？"
+     else
+       "You are going to revoke the invitation for #{member.invite_email} to join #{project.name} project team. Are you sure?"
+     end
 diff --git a/app/helpers/search_helper.rb b/app/helpers/search_helper.rb
 index 8a97a74..daa32f8 100644
 --- a/app/helpers/search_helper.rb

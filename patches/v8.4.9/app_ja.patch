@@ -849,6 +849,19 @@ index faba418..681d4a1 100644
  
      options = []
      options << group_opts
+diff --git a/app/helpers/projects_helper.rb b/app/helpers/projects_helper.rb
+index ee1ed49..ed80e61 100644
+--- a/app/helpers/projects_helper.rb
++++ b/app/helpers/projects_helper.rb
+@@ -1,7 +1,7 @@
+ module ProjectsHelper
+   def remove_from_project_team_message(project, member)
+     if member.user
+-      "You are going to remove #{member.user.name} from #{project.name} project team. Are you sure?"
++      "#{member.user.name} をプロジェクト #{project.name} から削除します。本当によろしいですか？"
+     else
+       "You are going to revoke the invitation for #{member.invite_email} to join #{project.name} project team. Are you sure?"
+     end
 diff --git a/app/helpers/sorting_helper.rb b/app/helpers/sorting_helper.rb
 index 241179b..ed9911c 100644
 --- a/app/helpers/sorting_helper.rb

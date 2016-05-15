@@ -73,6 +73,11 @@ translations:
     replace: '${theProjectCanBeClonedWithoutAnyAuthentication}'
   - pattern: !!js/regexp /  def visibility_level_label\(level\)\n    Project.visibility_levels.key\(level\)\n  end/m
     replace: "  def visibility_level_label(level)\n    case level\n    when Gitlab::VisibilityLevel::PRIVATE\n      \"${private}\"\n    when Gitlab::VisibilityLevel::INTERNAL\n      \"${internal}\"\n    when Gitlab::VisibilityLevel::PUBLIC\n      \"${public}\"\n    end\n  end"
+  - pattern: !!js/regexp /You are going to remove ([^\s]+) from ([^\s]+) project team. Are you sure\?/
+    replace: '${youAreGoingToRemoveFromProjectTeamAreYouSure}'
+    args:
+    - '$1'
+    - '$2'
 
 - src: 'app/**/*.rb'
   skip-patterns:

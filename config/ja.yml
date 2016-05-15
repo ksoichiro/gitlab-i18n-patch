@@ -2430,3 +2430,4 @@ membersOfGroupHaveAccessToAllGroupProjects: このグループのメンバーは
 people: ユーザ
 groupAccess: グループアクセス権
 addAToB: '{0}を{1}に追加'
+youAreGoingToRemoveFromProjectTeamAreYouSure: '{0} をプロジェクト {1} から削除します。本当によろしいですか？'

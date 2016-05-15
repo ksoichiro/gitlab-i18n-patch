@@ -3955,6 +3955,16 @@ index 5753158..b75bbcf 100644
 -          Create Merge Request
 +        = link_to new_mr_path_from_push_event(event), title: "新しいマージリクエスト", class: "btn btn-info btn-sm" do
 +          マージリクエストを作成
+diff --git a/app/views/events/_event_push.atom.haml b/app/views/events/_event_push.atom.haml
+index b271b9d..6d8a67e 100644
+--- a/app/views/events/_event_push.atom.haml
++++ b/app/views/events/_event_push.atom.haml
+@@ -11,4 +11,4 @@
+     %p
+       %i
+         \... and
+-        = pluralize(event.commits_count - 15, "more commit")
++        #{event.commits_count - 15} more commit
 diff --git a/app/views/events/event/_push.html.haml b/app/views/events/event/_push.html.haml
 index 235bd46..578f478 100644
 --- a/app/views/events/event/_push.html.haml
@@ -7932,10 +7942,10 @@ index 2cf9115..32b4de4 100644
          - elsif defined?(allow_retry) && allow_retry && build.retryable?
            = link_to retry_namespace_project_build_path(build.project.namespace, build.project, build, return_to: request.original_url), method: :post, title: 'Retry' do
 diff --git a/app/views/projects/commit/_builds.html.haml b/app/views/projects/commit/_builds.html.haml
-index 003b7c1..32cd324 100644
+index 003b7c1..a897e8e 100644
 --- a/app/views/projects/commit/_builds.html.haml
 +++ b/app/views/projects/commit/_builds.html.haml
-@@ -5,7 +5,7 @@
+@@ -5,10 +5,10 @@
          = link_to "Retry failed", retry_builds_namespace_project_commit_path(@ci_commit.project.namespace, @ci_commit.project, @ci_commit.sha), class: 'btn btn-grouped btn-primary', method: :post
  
        - if @ci_commit.builds.running_or_pending.any?
@@ -7943,7 +7953,11 @@ index 003b7c1..32cd324 100644
 +        = link_to "Cancel running", cancel_builds_namespace_project_commit_path(@ci_commit.project.namespace, @ci_commit.project, @ci_commit.sha), data: { confirm: '本当によろしいですか？' }, class: 'btn btn-grouped btn-danger', method: :post
  
    .oneline
-     = pluralize @statuses.count(:id), "build"
+-    = pluralize @statuses.count(:id), "build"
++    #{@statuses.count(:id)} ビルド
+     - if defined?(link_to_commit) && link_to_commit
+       for commit
+       = link_to @ci_commit.short_sha, namespace_project_commit_path(@ci_commit.project.namespace, @ci_commit.project, @ci_commit.sha), class: "monospace"
 @@ -32,11 +32,11 @@
    %table.table.builds
      %thead
@@ -8048,6 +8062,19 @@ index d6c9e54..be2fe22 100644
    = link_to @commit.id, namespace_project_commit_path(@project.namespace, @project, @commit), class: "monospace"
    = clipboard_button(clipboard_text: @commit.id)
  .commit-info-row
+diff --git a/app/views/projects/commits/_commits.html.haml b/app/views/projects/commits/_commits.html.haml
+index 64e8da9..47bdc14 100644
+--- a/app/views/projects/commits/_commits.html.haml
++++ b/app/views/projects/commits/_commits.html.haml
+@@ -10,7 +10,7 @@
+         %i.fa.fa-calendar
+         %span= day.strftime('%d %b, %Y')
+       .light
+-        = pluralize(commits.count, 'commit')
++        #{commits.count} commit
+     .col-md-10.col-sm-12
+       %ul.content-list
+         = render commits, project: project
 diff --git a/app/views/projects/commits/_head.html.haml b/app/views/projects/commits/_head.html.haml
 index 7a5b0d9..2f9296e 100644
 --- a/app/views/projects/commits/_head.html.haml
@@ -8821,14 +8848,14 @@ index f34f3c0..2dd30c2 100644
  - if @issues.present?
    = paginate @issues, theme: "gitlab"
 diff --git a/app/views/projects/issues/_merge_requests.html.haml b/app/views/projects/issues/_merge_requests.html.haml
-index d6b38b3..e352b57 100644
+index d6b38b3..9765561 100644
 --- a/app/views/projects/issues/_merge_requests.html.haml
 +++ b/app/views/projects/issues/_merge_requests.html.haml
 @@ -1,6 +1,6 @@
  - if @merge_requests.any?
    %h2.merge-requests-title
 -    = pluralize(@merge_requests.count, 'Related Merge Request')
-+    = pluralize(@merge_requests.count, 'Related マージリクエスト')
++    #{@merge_requests.count} Related マージリクエスト
    %ul.unstyled-list
      - has_any_ci = @merge_requests.any?(&:ci_commit)
      - @merge_requests.each do |merge_request|
@@ -8843,14 +8870,14 @@ index 6da8e4f..f5d7bd9 100644
 -      New Branch
 +      新しいブランチ
 diff --git a/app/views/projects/issues/_related_branches.html.haml b/app/views/projects/issues/_related_branches.html.haml
-index b10cd03..25800d6 100644
+index b10cd03..e5e9c58 100644
 --- a/app/views/projects/issues/_related_branches.html.haml
 +++ b/app/views/projects/issues/_related_branches.html.haml
 @@ -1,6 +1,6 @@
  - if @related_branches.any?
    %h2.related-branches-title
 -    = pluralize(@related_branches.count, 'Related Branch')
-+    = pluralize(@related_branches.count, 'Related ブランチ')
++    #{@related_branches.count} Related ブランチ
    %ul.unstyled-list
      - @related_branches.each do |branch|
        %li
@@ -9013,15 +9040,20 @@ index abe28da..d712993 100644
 -- header_title project_title(@project, "Labels", namespace_project_labels_path(@project.namespace, @project))
 +- header_title project_title(@project, "ラベル", namespace_project_labels_path(@project.namespace, @project))
 diff --git a/app/views/projects/labels/_label.html.haml b/app/views/projects/labels/_label.html.haml
-index 8bf544b..97dda8b 100644
+index 8bf544b..ced77a8 100644
 --- a/app/views/projects/labels/_label.html.haml
 +++ b/app/views/projects/labels/_label.html.haml
-@@ -8,7 +8,7 @@
+@@ -4,11 +4,11 @@
+   .pull-info-right
+     %span.append-right-20
+       = link_to_label(label, type: :merge_request) do
+-        = pluralize label.open_merge_requests_count, 'merge request'
++        #{label.open_merge_requests_count} マージリクエスト
  
      %span.append-right-20
        = link_to_label(label) do
 -        = pluralize label.open_issues_count(current_user), 'open issue'
-+        = pluralize label.open_issues_count(current_user), 'open 課題'
++        #{label.open_issues_count(current_user)} open 課題
  
      - if current_user
        .label-subscription{data: {url: toggle_subscription_namespace_project_label_path(@project.namespace, @project, label)}}
@@ -10366,9 +10398,26 @@ index c1356f6..7282f59 100644
      - @services.sort_by(&:title).each do |service|
        %tr
 diff --git a/app/views/projects/show.html.haml b/app/views/projects/show.html.haml
-index d854ac2..775b83e 100644
+index d854ac2..c164161 100644
 --- a/app/views/projects/show.html.haml
 +++ b/app/views/projects/show.html.haml
+@@ -16,13 +16,13 @@
+   %ul.nav
+     %li
+       = link_to namespace_project_commits_path(@project.namespace, @project, current_ref) do
+-        = pluralize(number_with_delimiter(@project.commit_count), 'commit')
++        #{number_with_delimiter(@project.commit_count)} commit
+     %li
+       = link_to namespace_project_branches_path(@project.namespace, @project) do
+-        = pluralize(number_with_delimiter(@repository.branch_names.count), 'branch')
++        #{number_with_delimiter(@repository.branch_names.count)} ブランチ
+     %li
+       = link_to namespace_project_tags_path(@project.namespace, @project) do
+-        = pluralize(number_with_delimiter(@repository.tag_names.count), 'tag')
++        #{number_with_delimiter(@repository.tag_names.count)} タグ
+ 
+     %li
+       = link_to project_files_path(@project) do
 @@ -34,7 +34,7 @@
  
      - if @repository.changelog
@@ -11927,6 +11976,19 @@ index 1d9b09a..ee5db37 100644
          #{state_filters_text_for(:closed, @project)}
  
    %li{class: ("active" if params[:state] == 'all')}
+diff --git a/app/views/shared/issuable/_participants.html.haml b/app/views/shared/issuable/_participants.html.haml
+index 33a9a49..74906bc 100644
+--- a/app/views/shared/issuable/_participants.html.haml
++++ b/app/views/shared/issuable/_participants.html.haml
+@@ -7,7 +7,7 @@
+     %span
+       = participants.count
+   .title.hide-collapsed
+-    = pluralize participants.count, "participant"
++    #{participants.count} participant
+   .hide-collapsed.participants-list
+     - participants.each do |participant|
+       .participants-author.js-participants-author
 diff --git a/app/views/shared/issuable/_search_form.html.haml b/app/views/shared/issuable/_search_form.html.haml
 index afad484..3afa8f2 100644
 --- a/app/views/shared/issuable/_search_form.html.haml
@@ -12434,13 +12496,15 @@ index 3028491..b7c6e51 100644
    %div{ class: container_class }
      .tab-content
 diff --git a/config/application.rb b/config/application.rb
-index 2e2ed48..ead6dbe 100644
+index 2e2ed48..9a234ee 100644
 --- a/config/application.rb
 +++ b/config/application.rb
-@@ -27,6 +27,8 @@ module Gitlab
+@@ -26,7 +26,9 @@ module Gitlab
+     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
      # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
      # config.i18n.default_locale = :de
-     config.i18n.enforce_available_locales = false
+-    config.i18n.enforce_available_locales = false
++    config.i18n.enforce_available_locales = false # done
 +    config.i18n.locale = :ja
 +    config.i18n.default_locale = :ja
  

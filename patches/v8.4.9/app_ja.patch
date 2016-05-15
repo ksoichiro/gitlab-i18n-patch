@@ -3111,7 +3111,7 @@ index c5a5ec2..6d80c0b 100644
  .prepend-top-default
    = render 'shared/merge_requests'
 diff --git a/app/views/dashboard/milestones/_milestone.html.haml b/app/views/dashboard/milestones/_milestone.html.haml
-index 7c882a3..996a818 100644
+index 7c882a3..7f22a60 100644
 --- a/app/views/dashboard/milestones/_milestone.html.haml
 +++ b/app/views/dashboard/milestones/_milestone.html.haml
 @@ -4,14 +4,14 @@
@@ -3124,11 +3124,11 @@ index 7c882a3..996a818 100644
      .col-sm-6
        = link_to issues_dashboard_path(milestone_title: milestone.title) do
 -        = pluralize milestone.issue_count, 'Issue'
-+        = pluralize milestone.issue_count, '課題'
++        #{milestone.issue_count} 課題
        &middot;
        = link_to merge_requests_dashboard_path(milestone_title: milestone.title) do
 -        = pluralize milestone.merge_requests_count, 'Merge Request'
-+        = pluralize milestone.merge_requests_count, 'マージリクエスト'
++        #{milestone.merge_requests_count} マージリクエスト
      .col-sm-6
        = milestone_progress_bar(milestone)
    .row
@@ -3885,6 +3885,16 @@ index abea86b..e077799 100644
 -          Create Merge Request
 +        = link_to new_mr_path_from_push_event(event), title: "新しいマージリクエスト", class: "btn btn-info btn-sm" do
 +          マージリクエストを作成
+diff --git a/app/views/events/_event_push.atom.haml b/app/views/events/_event_push.atom.haml
+index b271b9d..6d8a67e 100644
+--- a/app/views/events/_event_push.atom.haml
++++ b/app/views/events/_event_push.atom.haml
+@@ -11,4 +11,4 @@
+     %p
+       %i
+         \... and
+-        = pluralize(event.commits_count - 15, "more commit")
++        #{event.commits_count - 15} more commit
 diff --git a/app/views/events/event/_created_project.html.haml b/app/views/events/event/_created_project.html.haml
 index 8cf36c7..af31ccc 100644
 --- a/app/views/events/event/_created_project.html.haml
@@ -4338,7 +4348,7 @@ index d7fabf5..940c865 100644
 -- header_title group_title(@group, "Milestones", group_milestones_path(@group))
 +- header_title group_title(@group, "マイルストーン", group_milestones_path(@group))
 diff --git a/app/views/groups/milestones/_milestone.html.haml b/app/views/groups/milestones/_milestone.html.haml
-index a20bf75..7269a06 100644
+index a20bf75..b04a685 100644
 --- a/app/views/groups/milestones/_milestone.html.haml
 +++ b/app/views/groups/milestones/_milestone.html.haml
 @@ -4,14 +4,14 @@
@@ -4351,11 +4361,11 @@ index a20bf75..7269a06 100644
      .col-sm-6
        = link_to issues_group_path(@group, milestone_title: milestone.title) do
 -        = pluralize milestone.issue_count, 'Issue'
-+        = pluralize milestone.issue_count, '課題'
++        #{milestone.issue_count} 課題
        &middot;
        = link_to merge_requests_group_path(@group, milestone_title: milestone.title) do
 -        = pluralize milestone.merge_requests_count, 'Merge Request'
-+        = pluralize milestone.merge_requests_count, 'マージリクエスト'
++        #{milestone.merge_requests_count} マージリクエスト
      .col-sm-6
        = milestone_progress_bar(milestone)
    .row
@@ -7950,10 +7960,10 @@ index 21ba426..1bbb0cb 100644
      Star
    %div.count-with-arrow
 diff --git a/app/views/projects/commit/_builds.html.haml b/app/views/projects/commit/_builds.html.haml
-index befad27..e6aaa0a 100644
+index befad27..f372543 100644
 --- a/app/views/projects/commit/_builds.html.haml
 +++ b/app/views/projects/commit/_builds.html.haml
-@@ -5,7 +5,7 @@
+@@ -5,10 +5,10 @@
          = link_to "Retry failed", retry_builds_namespace_project_commit_path(@ci_commit.project.namespace, @ci_commit.project, @ci_commit.sha), class: 'btn btn-grouped btn-primary', method: :post
  
        - if @ci_commit.builds.running_or_pending.any?
@@ -7961,7 +7971,11 @@ index befad27..e6aaa0a 100644
 +        = link_to "Cancel running", cancel_builds_namespace_project_commit_path(@ci_commit.project.namespace, @ci_commit.project, @ci_commit.sha), data: { confirm: '本当によろしいですか？' }, class: 'btn btn-grouped btn-danger', method: :post
  
    .oneline
-     = pluralize @statuses.count(:id), "build"
+-    = pluralize @statuses.count(:id), "build"
++    #{@statuses.count(:id)} ビルド
+     - if defined?(link_to_commit) && link_to_commit
+       for commit
+       = link_to @ci_commit.short_sha, namespace_project_commit_path(@ci_commit.project.namespace, @ci_commit.project, @ci_commit.sha), class: "monospace"
 @@ -32,11 +32,11 @@
    %table.table.builds
      %thead
@@ -8050,6 +8064,19 @@ index c02c598..9a932be 100644
                %i.fa.fa-remove.cred
          - elsif defined?(allow_retry) && allow_retry && commit_status.retry_url
            = link_to commit_status.retry_url, method: :post, title: 'Retry' do
+diff --git a/app/views/projects/commits/_commits.html.haml b/app/views/projects/commits/_commits.html.haml
+index 6c63122..5665a4f 100644
+--- a/app/views/projects/commits/_commits.html.haml
++++ b/app/views/projects/commits/_commits.html.haml
+@@ -8,7 +8,7 @@
+         %i.fa.fa-calendar
+         %span= day.strftime('%d %b, %Y')
+       .light
+-        = pluralize(commits.count, 'commit')
++        #{commits.count} commit
+     .col-md-10.col-sm-12
+       %ul.bordered-list
+         = render commits, project: project
 diff --git a/app/views/projects/commits/_head.html.haml b/app/views/projects/commits/_head.html.haml
 index 498c5e0..90a445f 100644
 --- a/app/views/projects/commits/_head.html.haml
@@ -8805,14 +8832,14 @@ index e0e89b7..2e3f5e7 100644
  - if @issues.present?
    .issuable-filter-count
 diff --git a/app/views/projects/issues/_merge_requests.html.haml b/app/views/projects/issues/_merge_requests.html.haml
-index 640a196..f0d139f 100644
+index 640a196..81dddd9 100644
 --- a/app/views/projects/issues/_merge_requests.html.haml
 +++ b/app/views/projects/issues/_merge_requests.html.haml
 @@ -1,6 +1,6 @@
  -if @merge_requests.any?
    %h2.merge-requests-title
 -    = pluralize(@merge_requests.count, 'Related Merge Request')
-+    = pluralize(@merge_requests.count, 'Related マージリクエスト')
++    #{@merge_requests.count} Related マージリクエスト
    %ul.unstyled-list
      - has_any_ci = @merge_requests.any?(&:ci_commit)
      - @merge_requests.each do |merge_request|
@@ -8944,7 +8971,7 @@ index abe28da..d712993 100644
 -- header_title project_title(@project, "Labels", namespace_project_labels_path(@project.namespace, @project))
 +- header_title project_title(@project, "ラベル", namespace_project_labels_path(@project.namespace, @project))
 diff --git a/app/views/projects/labels/_label.html.haml b/app/views/projects/labels/_label.html.haml
-index b70a9fc..020f8fc 100644
+index b70a9fc..101c231 100644
 --- a/app/views/projects/labels/_label.html.haml
 +++ b/app/views/projects/labels/_label.html.haml
 @@ -3,8 +3,8 @@
@@ -8952,7 +8979,7 @@ index b70a9fc..020f8fc 100644
      %strong.append-right-20
        = link_to_label(label) do
 -        = pluralize label.open_issues_count, 'open issue'
-+        = pluralize label.open_issues_count, 'open 課題'
++        #{label.open_issues_count} open 課題
  
      - if can? current_user, :admin_label, @project
 -      = link_to 'Edit', edit_namespace_project_label_path(@project.namespace, @project, label), class: 'btn btn-sm'
@@ -9482,7 +9509,7 @@ index 00889a5..d2f078a 100644
 -    %li.light.ui-sort-disabled Drag and drop available
 +    %li.light.ui-sort-disabled ドラッグ &amp; ドロップできます
 diff --git a/app/views/projects/milestones/_milestone.html.haml b/app/views/projects/milestones/_milestone.html.haml
-index 67d95ab..2898a31 100644
+index 67d95ab..63cbe0c 100644
 --- a/app/views/projects/milestones/_milestone.html.haml
 +++ b/app/views/projects/milestones/_milestone.html.haml
 @@ -5,14 +5,14 @@
@@ -9495,11 +9522,11 @@ index 67d95ab..2898a31 100644
      .col-sm-6
        = link_to namespace_project_issues_path(milestone.project.namespace, milestone.project, milestone_title: milestone.title) do
 -        = pluralize milestone.issues.count, 'Issue'
-+        = pluralize milestone.issues.count, '課題'
++        #{milestone.issues.count} 課題
        &middot;
        = link_to namespace_project_merge_requests_path(milestone.project.namespace, milestone.project, milestone_title: milestone.title) do
 -        = pluralize milestone.merge_requests.count, 'Merge Request'
-+        = pluralize milestone.merge_requests.count, 'マージリクエスト'
++        #{milestone.merge_requests.count} マージリクエスト
      .col-sm-6
        = milestone_progress_bar(milestone)
  
@@ -10321,9 +10348,26 @@ index c1356f6..7282f59 100644
      - @services.sort_by(&:title).each do |service|
        %tr
 diff --git a/app/views/projects/show.html.haml b/app/views/projects/show.html.haml
-index 4310f03..781daa7 100644
+index 4310f03..fae884a 100644
 --- a/app/views/projects/show.html.haml
 +++ b/app/views/projects/show.html.haml
+@@ -16,13 +16,13 @@
+   %ul.nav
+     %li
+       = link_to namespace_project_commits_path(@project.namespace, @project, current_ref) do
+-        = pluralize(number_with_delimiter(@project.commit_count), 'commit')
++        #{number_with_delimiter(@project.commit_count)} commit
+     %li
+       = link_to namespace_project_branches_path(@project.namespace, @project) do
+-        = pluralize(number_with_delimiter(@repository.branch_names.count), 'branch')
++        #{number_with_delimiter(@repository.branch_names.count)} ブランチ
+     %li
+       = link_to namespace_project_tags_path(@project.namespace, @project) do
+-        = pluralize(number_with_delimiter(@repository.tag_names.count), 'tag')
++        #{number_with_delimiter(@repository.tag_names.count)} タグ
+ 
+     %li
+       = link_to project_files_path(@project) do
 @@ -34,29 +34,29 @@
  
      - if @repository.changelog
@@ -11731,6 +11775,17 @@ index 90dc006..55137cc 100644
      - cancel_project = issuable.project
 -  = link_to 'Cancel', [cancel_project.namespace.becomes(Namespace), cancel_project, issuable], class: 'btn btn-cancel'
 +  = link_to 'キャンセル', [cancel_project.namespace.becomes(Namespace), cancel_project, issuable], class: 'btn btn-cancel'
+diff --git a/app/views/shared/issuable/_participants.html.haml b/app/views/shared/issuable/_participants.html.haml
+index da6bacb..a58f0cd 100644
+--- a/app/views/shared/issuable/_participants.html.haml
++++ b/app/views/shared/issuable/_participants.html.haml
+@@ -1,5 +1,5 @@
+ .block.participants
+   .title
+-    = pluralize participants.count, "participant"
++    #{participants.count} participant
+   - participants.each do |participant|
+     = link_to_member(@project, participant, name: false, size: 24)
 diff --git a/app/views/shared/issuable/_sidebar.html.haml b/app/views/shared/issuable/_sidebar.html.haml
 index 9f4a709..cc4c5fe 100644
 --- a/app/views/shared/issuable/_sidebar.html.haml
@@ -11996,13 +12051,15 @@ index 3bfd781..945a133 100644
  %div{ class: container_class }
    .tab-content
 diff --git a/config/application.rb b/config/application.rb
-index 33d7b88..f8ff1c1 100644
+index 33d7b88..e68ceee 100644
 --- a/config/application.rb
 +++ b/config/application.rb
-@@ -26,6 +26,8 @@ module Gitlab
+@@ -25,7 +25,9 @@ module Gitlab
+     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
      # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
      # config.i18n.default_locale = :de
-     config.i18n.enforce_available_locales = false
+-    config.i18n.enforce_available_locales = false
++    config.i18n.enforce_available_locales = false # done
 +    config.i18n.locale = :ja
 +    config.i18n.default_locale = :ja
  

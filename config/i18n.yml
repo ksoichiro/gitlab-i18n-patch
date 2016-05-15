@@ -820,6 +820,9 @@ translations:
     replace: '${syntaxHighlightingTheme}'
   - pattern: "Choose what content you want to see on a project's home page."
     replace: '${chooseWhatContentYouWantToSeeOnAProjectsHomePage}'
+  - pattern: !!js/regexp /= pluralize[\( ]([^,]+), ['"]([^'"]+)['"]\)?/
+    replace: '#{$1} $2'
+    exclude: '[^ ]= pluralize'
   - pattern: 'Are you sure?'
     replace: '${areYouSure}'
   - pattern: "Code?$|(\")Code?\"|(')Code?'|(\".* )Code?(\")"
@@ -1081,6 +1084,7 @@ translations:
   patterns:
   - pattern: !!js/regexp /^    config.i18n.enforce_available_locales = false/
     replace: '${configI18nLocale}'
+    exclude: '# done'
 
 - locale:
     include: [ja]

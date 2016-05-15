@@ -638,7 +638,7 @@ welcomeToTheGroups: グループへようこそ！
 groupMembersHaveAccessToAllGroupProjects: グループのメンバーは、そのグループに属するすべてのプロジェクトにアクセスできます。
 explore: 探索
 aboutGitLab: GitLabについて
-configI18nLocale: !!str "    config.i18n.enforce_available_locales = false\n    config.i18n.locale = :ja\n    config.i18n.default_locale = :ja"
+configI18nLocale: !!str "    config.i18n.enforce_available_locales = false # done\n    config.i18n.locale = :ja\n    config.i18n.default_locale = :ja"
 profileSettings: プロフィール設定
 goToDashboard: ダッシュボードに戻る
 goToProject: プロジェクトに戻る

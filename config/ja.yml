@@ -2431,3 +2431,20 @@ people: ユーザ
 groupAccess: グループアクセス権
 addAToB: '{0}を{1}に追加'
 youAreGoingToRemoveFromProjectTeamAreYouSure: '{0} をプロジェクト {1} から削除します。本当によろしいですか？'
+crossProjectReference: プロジェクト外からの参照方法
+summaryOfIssuesMergeRequestsAndPushEvents: 課題、マージリクエスト、プッシュイベントのサマリー
+endALineWithTwoOrMoreSpacesForALineBreakOrSoftReturn: "改行は行末に2個以上のスペースを入れることで追加できます"
+inlineCodeCanBeDenotedBySurroundingItWithBackticks: "インラインコードは `前後をバックティックで括る` ことで表現できます"
+blocksOfCodeCanBeDenotedByThreeBackticksOrFourLeadingSpaces: "ソースコードのブロックは3つのバックティック(```)または行頭に4つのスペースを入れると表現できます"
+emojiCanBeAddedByEmojiNameForExampleThumbUp: "絵文字は :emoji_name: で追加できます。例) :thumbsup:"
+notifyOtherParticipantsUsingUserName: "@user_name を使うと他の参加者に通知できます"
+notifyASpecificGroupUsingGroupName: "@group_name を使うと特定のグループに通知できます"
+notifyTheEntireTeamUsingAll: "@all を使うとチーム全員に通知できます"
+referenceAnIssueUsingAHashForExampleIssue123: "'#'を使って課題を参照できます。例) 課題 #123"
+referenceAMergeRequestUsingAnExclamationPointForExampleMR123: "'!'を使ってマージリクエストを参照できます。例) MR !123"
+italicizeWordsOrPhrasesUsingAsterisksOrUnderscores: "*アスタリスク* または _アンダースコア_ で単語をイタリック体にできます"
+boldWordsOrPhrasesUsingDoubleAsterisksOrDoublsUnderscores: "**2つのアスタリスク** または __2つのアンダースコア__ で単語や文章を太字にできます"
+strikethroughWordsOrPhrasesUsingTwoTildes: "~~2つのチルダ~~ で取消線を引けます"
+makeABulletedListUsingPlusesMinusesOrAsterisks: "プラス(+)、マイナス(-)、アスタリスク(*)で箇条書きを作成できます"
+denoteBlockquotesUsingAtTheBeginningOfALine: "行頭に'>'を記述すると引用を表現できます"
+makeAHorizontalLineUsingThreeOrMoreHyphensAsterisksOrUnderscores: "3個以上のハイフン(---)、アスタリスク(***)、アンダースコア(___)で水平線を作成できます"

@@ -4913,7 +4913,7 @@ index 57bc91e..6c061a4 100644
          %li= link_to 'Get a support subscription', 'https://about.gitlab.com/pricing/'
          %li= link_to 'Compare GitLab editions', 'https://about.gitlab.com/features/#compare'
 diff --git a/app/views/help/ui.html.haml b/app/views/help/ui.html.haml
-index f12df5c..1a4c14f 100644
+index f12df5c..0e5da22 100644
 --- a/app/views/help/ui.html.haml
 +++ b/app/views/help/ui.html.haml
 @@ -1,4 +1,4 @@
@@ -5163,9 +5163,12 @@ index f12df5c..1a4c14f 100644
        .file-contenta.code
          = render 'shared/file_highlight', blob: blob
  
-@@ -546,7 +546,7 @@
+@@ -544,9 +544,9 @@
+   Markdown rendering has a bit different css and presented in next UI elements:
+ 
    %ul
-     %li comment
+-    %li comment
++    %li コメント
      %li issue, merge request description
 -    %li wiki page
 -    %li help page
@@ -9971,7 +9974,7 @@ index 720957e..a14fd34 100644
 -    = link_to 'Remove project', project_path(@project), data: { confirm: remove_project_message(@project)}, method: :delete, class: "btn btn-remove pull-right"
 +    = link_to 'プロジェクトを削除', project_path(@project), data: { confirm: remove_project_message(@project)}, method: :delete, class: "btn btn-remove pull-right"
 diff --git a/app/views/projects/notes/_edit_form.html.haml b/app/views/projects/notes/_edit_form.html.haml
-index c87a3fa..fb9f25e 100644
+index c87a3fa..a44dd8a 100644
 --- a/app/views/projects/notes/_edit_form.html.haml
 +++ b/app/views/projects/notes/_edit_form.html.haml
 @@ -2,10 +2,10 @@
@@ -9979,17 +9982,17 @@ index c87a3fa..fb9f25e 100644
      = note_target_fields(note)
      = render layout: 'projects/md_preview', locals: { preview_class: 'md-preview' } do
 -      = render 'projects/zen', f: f, attr: :note, classes: 'note-textarea js-note-text js-task-list-field', placeholder: "Write a comment or drag your files here..."
-+      = render 'projects/zen', f: f, attr: :note, classes: 'note-textarea js-note-text js-task-list-field', placeholder: "Write a comment or drag your ファイル here..."
++      = render 'projects/zen', f: f, attr: :note, classes: 'note-textarea js-note-text js-task-list-field', placeholder: "Write a コメント or drag your ファイル here..."
        = render 'projects/notes/hints'
  
      .note-form-actions.clearfix
 -      = f.submit 'Save Comment', class: 'btn btn-nr btn-save btn-grouped js-comment-button'
-+      = f.submit 'Commentを保存', class: 'btn btn-nr btn-save btn-grouped js-comment-button'
++      = f.submit 'コメントを保存', class: 'btn btn-nr btn-save btn-grouped js-comment-button'
        %button.btn.btn-nr.btn-cancel.note-edit-cancel{ type: 'button' }
 -        Cancel
 +        キャンセル
 diff --git a/app/views/projects/notes/_form.html.haml b/app/views/projects/notes/_form.html.haml
-index d0ac380..f4e82cf 100644
+index d0ac380..9be7094 100644
 --- a/app/views/projects/notes/_form.html.haml
 +++ b/app/views/projects/notes/_form.html.haml
 @@ -8,12 +8,12 @@
@@ -9997,7 +10000,7 @@ index d0ac380..f4e82cf 100644
  
    = render layout: 'projects/md_preview', locals: { preview_class: "md-preview", referenced_users: true } do
 -    = render 'projects/zen', f: f, attr: :note, classes: 'note-textarea js-note-text', placeholder: "Write a comment or drag your files here..."
-+    = render 'projects/zen', f: f, attr: :note, classes: 'note-textarea js-note-text', placeholder: "Write a comment or drag your ファイル here..."
++    = render 'projects/zen', f: f, attr: :note, classes: 'note-textarea js-note-text', placeholder: "Write a コメント or drag your ファイル here..."
      = render 'projects/notes/hints'
      .error-alert
  
@@ -10019,7 +10022,7 @@ index 0b00204..ab63336 100644
 -    Attach a file
 +    ファイルを添付
 diff --git a/app/views/projects/notes/_note.html.haml b/app/views/projects/notes/_note.html.haml
-index aeb7c1d..f555d60 100644
+index aeb7c1d..deb5cf7 100644
 --- a/app/views/projects/notes/_note.html.haml
 +++ b/app/views/projects/notes/_note.html.haml
 @@ -19,9 +19,9 @@
@@ -10027,10 +10030,10 @@ index aeb7c1d..f555d60 100644
                = access
            - if note_editable
 -            = link_to '#', title: 'Edit comment', class: 'note-action-button js-note-edit' do
-+            = link_to '#', title: 'commentを編集', class: 'note-action-button js-note-edit' do
++            = link_to '#', title: 'コメントを編集', class: 'note-action-button js-note-edit' do
                = icon('pencil')
 -            = link_to namespace_project_note_path(note.project.namespace, note.project, note), title: 'Remove comment', method: :delete, data: { confirm: 'Are you sure you want to remove this comment?' }, remote: true, class: 'note-action-button js-note-delete danger' do
-+            = link_to namespace_project_note_path(note.project.namespace, note.project, note), title: 'commentを削除', method: :delete, data: { confirm: 'Are you sure you want to remove this comment?' }, remote: true, class: 'note-action-button js-note-delete danger' do
++            = link_to namespace_project_note_path(note.project.namespace, note.project, note), title: 'コメントを削除', method: :delete, data: { confirm: 'Are you sure you want to remove this comment?' }, remote: true, class: 'note-action-button js-note-delete danger' do
                = icon('trash-o')
        .note-body{class: note_editable ? 'js-task-list-container' : ''}
          .note-text
@@ -10041,6 +10044,19 @@ index aeb7c1d..f555d60 100644
 -                title: 'Delete this attachment', method: :delete, remote: true, data: { confirm: 'Are you sure you want to remove the attachment?' }, class: 'danger js-note-attachment-delete' do
 +                title: 'this attachmentを削除', method: :delete, remote: true, data: { confirm: 'Are you sure you want to remove the attachment?' }, class: 'danger js-note-attachment-delete' do
                  = icon('trash-o', class: 'cred')
+diff --git a/app/views/projects/notes/_notes_with_form.html.haml b/app/views/projects/notes/_notes_with_form.html.haml
+index 1c39ce8..764d070 100644
+--- a/app/views/projects/notes/_notes_with_form.html.haml
++++ b/app/views/projects/notes/_notes_with_form.html.haml
+@@ -15,7 +15,7 @@
+           = link_to "register",new_user_session_path
+           or
+           = link_to "login",new_user_session_path
+-          to post a comment
++          to post a コメント
+ 
+ :javascript
+   var notes = new Notes("#{namespace_project_notes_path(namespace_id: @project.namespace, target_id: @noteable.id, target_type: @noteable.class.name.underscore)}", #{@notes.map(&:id).to_json}, #{Time.now.to_i}, "#{diff_view}")
 diff --git a/app/views/projects/project_members/_group_members.html.haml b/app/views/projects/project_members/_group_members.html.haml
 index c53033e..f579c19 100644
 --- a/app/views/projects/project_members/_group_members.html.haml
@@ -11858,7 +11874,7 @@ index fc11016..46b02be 100644
    - if !@labels.nil?
      .gray-content-block.second-block.filtered-labels{ class: ("hidden" if !@labels.any?) }
 diff --git a/app/views/shared/issuable/_form.html.haml b/app/views/shared/issuable/_form.html.haml
-index 18b091d..bdd1f37 100644
+index 18b091d..ffaf978 100644
 --- a/app/views/shared/issuable/_form.html.haml
 +++ b/app/views/shared/issuable/_form.html.haml
 @@ -1,7 +1,7 @@
@@ -11891,7 +11907,7 @@ index 18b091d..bdd1f37 100644
        = render 'projects/zen', f: f, attr: :description,
                                 classes: 'note-textarea',
 -                               placeholder: "Write a comment or drag your files here..."
-+                               placeholder: "Write a comment or drag your ファイル here..."
++                               placeholder: "Write a コメント or drag your ファイル here..."
        = render 'projects/notes/hints'
        .clearfix
        .error-alert
@@ -12125,7 +12141,7 @@ index 1d9b09a..ee5db37 100644
  
    %li{class: ("active" if params[:state] == 'all')}
 diff --git a/app/views/shared/issuable/_participants.html.haml b/app/views/shared/issuable/_participants.html.haml
-index 33a9a49..74906bc 100644
+index 33a9a49..c9d0e6e 100644
 --- a/app/views/shared/issuable/_participants.html.haml
 +++ b/app/views/shared/issuable/_participants.html.haml
 @@ -7,7 +7,7 @@
@@ -12133,7 +12149,7 @@ index 33a9a49..74906bc 100644
        = participants.count
    .title.hide-collapsed
 -    = pluralize participants.count, "participant"
-+    #{participants.count} participant
++    #{participants.count} 参加者
    .hide-collapsed.participants-list
      - participants.each do |participant|
        .participants-author.js-participants-author

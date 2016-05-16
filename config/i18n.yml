@@ -78,6 +78,36 @@ translations:
     args:
     - '$1'
     - '$2'
+  - pattern: "End a line with two or more spaces for a line-break, or soft-return"
+    replace: '${endALineWithTwoOrMoreSpacesForALineBreakOrSoftReturn}'
+  - pattern: "Inline code can be denoted by `surrounding it with backticks`"
+    replace: '${inlineCodeCanBeDenotedBySurroundingItWithBackticks}'
+  - pattern: "Blocks of code can be denoted by three backticks ``` or four leading spaces"
+    replace: '${blocksOfCodeCanBeDenotedByThreeBackticksOrFourLeadingSpaces}'
+  - pattern: "Emoji can be added by :emoji_name:, for example :thumbsup:"
+    replace: '${emojiCanBeAddedByEmojiNameForExampleThumbUp}'
+  - pattern: "Notify other participants using @user_name"
+    replace: '${notifyOtherParticipantsUsingUserName}'
+  - pattern: "Notify a specific group using @group_name"
+    replace: '${notifyASpecificGroupUsingGroupName}'
+  - pattern: "Notify the entire team using @all"
+    replace: '${notifyTheEntireTeamUsingAll}'
+  - pattern: "Reference an issue using a hash, for example issue #123"
+    replace: '${referenceAnIssueUsingAHashForExampleIssue123}'
+  - pattern: "Reference a merge request using an exclamation point, for example MR !123"
+    replace: '${referenceAMergeRequestUsingAnExclamationPointForExampleMR123}'
+  - pattern: "Italicize words or phrases using *asterisks* or _underscores_"
+    replace: '${italicizeWordsOrPhrasesUsingAsterisksOrUnderscores}'
+  - pattern: "Bold words or phrases using **double asterisks** or __double underscores__"
+    replace: '${boldWordsOrPhrasesUsingDoubleAsterisksOrDoublsUnderscores}'
+  - pattern: "Strikethrough words or phrases using ~~two tildes~~"
+    replace: '${strikethroughWordsOrPhrasesUsingTwoTildes}'
+  - pattern: "Make a bulleted list using + pluses, - minuses, or * asterisks"
+    replace: '${makeABulletedListUsingPlusesMinusesOrAsterisks}'
+  - pattern: "Denote blockquotes using > at the beginning of a line"
+    replace: '${denoteBlockquotesUsingAtTheBeginningOfALine}'
+  - pattern: "Make a horizontal line using three or more hyphens ---, asterisks ***, or underscores ___"
+    replace: '${makeAHorizontalLineUsingThreeOrMoreHyphensAsterisksOrUnderscores}'
 
 - src: 'app/**/*.rb'
   skip-patterns:
@@ -865,6 +895,10 @@ translations:
     replace: '${thisWillCreateMilestoneInEverySelectedProject}'
   - pattern: 'Members of group have access to all group projects.'
     replace: '${membersOfGroupHaveAccessToAllGroupProjects}'
+  - pattern: 'Cross-project reference'
+    replace: '${crossProjectReference}'
+  - pattern: 'Summary of issues, merge requests and push events'
+    replace: '${summaryOfIssuesMergeRequestsAndPushEvents}'
   - pattern: 'Are you sure?'
     replace: '${areYouSure}'
   - pattern: "Code?$|(\")Code?\"|(')Code?'|(\".* )Code?(\")"
@@ -1094,6 +1128,8 @@ translations:
     - {word: 'required', key: required}
     - {word: 'members?', key: member}
     - {word: '[pP]rivate token', key: privateToken}
+    - {word: 'participant', key: participant}
+    - {word: '[cC]omment', key: comment}
   - pattern: !!js/regexp /Add ([^\s]+) to ([^\s'":]+)/
     replace: '${addAToB}'
     args:

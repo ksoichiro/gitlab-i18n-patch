@@ -753,6 +753,47 @@ index a67a6b2..91e8bcf 100644
      }
  
      content_tag :li, class: active do
+diff --git a/app/helpers/gitlab_markdown_helper.rb b/app/helpers/gitlab_markdown_helper.rb
+index 2f760af..e7e04af 100644
+--- a/app/helpers/gitlab_markdown_helper.rb
++++ b/app/helpers/gitlab_markdown_helper.rb
+@@ -117,21 +117,21 @@ module GitlabMarkdownHelper
+   end
+ 
+   MARKDOWN_TIPS = [
+-    "End a line with two or more spaces for a line-break, or soft-return",
+-    "Inline code can be denoted by `surrounding it with backticks`",
+-    "Blocks of code can be denoted by three backticks ``` or four leading spaces",
+-    "Emoji can be added by :emoji_name:, for example :thumbsup:",
+-    "Notify other participants using @user_name",
+-    "Notify a specific group using @group_name",
+-    "Notify the entire team using @all",
+-    "Reference an issue using a hash, for example issue #123",
+-    "Reference a merge request using an exclamation point, for example MR !123",
+-    "Italicize words or phrases using *asterisks* or _underscores_",
+-    "Bold words or phrases using **double asterisks** or __double underscores__",
+-    "Strikethrough words or phrases using ~~two tildes~~",
+-    "Make a bulleted list using + pluses, - minuses, or * asterisks",
+-    "Denote blockquotes using > at the beginning of a line",
+-    "Make a horizontal line using three or more hyphens ---, asterisks ***, or underscores ___"
++    "改行は行末に2個以上のスペースを入れることで追加できます",
++    "インラインコードは `前後をバックティックで括る` ことで表現できます",
++    "ソースコードのブロックは3つのバックティック(```)または行頭に4つのスペースを入れると表現できます",
++    "絵文字は :emoji_name: で追加できます。例) :thumbsup:",
++    "@user_name を使うと他の参加者に通知できます",
++    "@group_name を使うと特定のグループに通知できます",
++    "@all を使うとチーム全員に通知できます",
++    "'#'を使って課題を参照できます。例) 課題 #123",
++    "'!'を使ってマージリクエストを参照できます。例) MR !123",
++    "*アスタリスク* または _アンダースコア_ で単語をイタリック体にできます",
++    "**2つのアスタリスク** または __2つのアンダースコア__ で単語や文章を太字にできます",
++    "~~2つのチルダ~~ で取消線を引けます",
++    "プラス(+)、マイナス(-)、アスタリスク(*)で箇条書きを作成できます",
++    "行頭に'>'を記述すると引用を表現できます",
++    "3個以上のハイフン(---)、アスタリスク(***)、アンダースコア(___)で水平線を作成できます"
+   ].freeze
+ 
+   # Returns a random markdown tip for use as a textarea placeholder
 diff --git a/app/helpers/groups_helper.rb b/app/helpers/groups_helper.rb
 index b1f0a76..3352e43 100644
 --- a/app/helpers/groups_helper.rb
@@ -4852,7 +4893,7 @@ index 57bc91e..6c061a4 100644
          %li= link_to 'Get a support subscription', 'https://about.gitlab.com/pricing/'
          %li= link_to 'Compare GitLab editions', 'https://about.gitlab.com/features/#compare'
 diff --git a/app/views/help/ui.html.haml b/app/views/help/ui.html.haml
-index d084559..fea1504 100644
+index d084559..deb404d 100644
 --- a/app/views/help/ui.html.haml
 +++ b/app/views/help/ui.html.haml
 @@ -1,4 +1,4 @@
@@ -5102,9 +5143,12 @@ index d084559..fea1504 100644
        .file-contenta.code
          = render 'shared/file_highlight', blob: blob
  
-@@ -546,7 +546,7 @@
+@@ -544,9 +544,9 @@
+   Markdown rendering has a bit different css and presented in next UI elements:
+ 
    %ul
-     %li comment
+-    %li comment
++    %li コメント
      %li issue, merge request description
 -    %li wiki page
 -    %li help page
@@ -9779,7 +9823,7 @@ index 720957e..a14fd34 100644
 -    = link_to 'Remove project', project_path(@project), data: { confirm: remove_project_message(@project)}, method: :delete, class: "btn btn-remove pull-right"
 +    = link_to 'プロジェクトを削除', project_path(@project), data: { confirm: remove_project_message(@project)}, method: :delete, class: "btn btn-remove pull-right"
 diff --git a/app/views/projects/notes/_edit_form.html.haml b/app/views/projects/notes/_edit_form.html.haml
-index 2999bef..68c380f 100644
+index 2999bef..60c592c 100644
 --- a/app/views/projects/notes/_edit_form.html.haml
 +++ b/app/views/projects/notes/_edit_form.html.haml
 @@ -6,5 +6,5 @@
@@ -9788,7 +9832,7 @@ index 2999bef..68c380f 100644
      .note-form-actions.clearfix
 -      = f.submit 'Save Comment', class: 'btn btn-nr btn-save btn-grouped js-comment-button'
 -      = link_to  'Cancel', '#', class: 'btn btn-nr btn-cancel note-edit-cancel'
-+      = f.submit 'Commentを保存', class: 'btn btn-nr btn-save btn-grouped js-comment-button'
++      = f.submit 'コメントを保存', class: 'btn btn-nr btn-save btn-grouped js-comment-button'
 +      = link_to  'キャンセル', '#', class: 'btn btn-nr btn-cancel note-edit-cancel'
 diff --git a/app/views/projects/notes/_form.html.haml b/app/views/projects/notes/_form.html.haml
 index f675f09..4080599 100644
@@ -9815,7 +9859,7 @@ index 6e7929b..6519b0b 100644
 -      Attach a file
 +      ファイルを添付
 diff --git a/app/views/projects/notes/_note.html.haml b/app/views/projects/notes/_note.html.haml
-index 2cf32e6..803fc53 100644
+index 2cf32e6..5710373 100644
 --- a/app/views/projects/notes/_note.html.haml
 +++ b/app/views/projects/notes/_note.html.haml
 @@ -7,10 +7,10 @@
@@ -9823,11 +9867,11 @@ index 2cf32e6..803fc53 100644
          - if note_editable?(note)
            .note-actions
 -            = link_to '#', title: 'Edit comment', class: 'js-note-edit' do
-+            = link_to '#', title: 'commentを編集', class: 'js-note-edit' do
++            = link_to '#', title: 'コメントを編集', class: 'js-note-edit' do
                = icon('pencil-square-o')
  
 -            = link_to namespace_project_note_path(note.project.namespace, note.project, note), title: 'Remove comment', method: :delete, data: { confirm: 'Are you sure you want to remove this comment?' }, remote: true, class: 'js-note-delete danger' do
-+            = link_to namespace_project_note_path(note.project.namespace, note.project, note), title: 'commentを削除', method: :delete, data: { confirm: 'Are you sure you want to remove this comment?' }, remote: true, class: 'js-note-delete danger' do
++            = link_to namespace_project_note_path(note.project.namespace, note.project, note), title: 'コメントを削除', method: :delete, data: { confirm: 'Are you sure you want to remove this comment?' }, remote: true, class: 'js-note-delete danger' do
                = icon('trash-o')
  
          - unless note.system
@@ -9838,6 +9882,19 @@ index 2cf32e6..803fc53 100644
 -                title: 'Delete this attachment', method: :delete, remote: true, data: { confirm: 'Are you sure you want to remove the attachment?' }, class: 'danger js-note-attachment-delete' do
 +                title: 'this attachmentを削除', method: :delete, remote: true, data: { confirm: 'Are you sure you want to remove the attachment?' }, class: 'danger js-note-attachment-delete' do
                  = icon('trash-o', class: 'cred')
+diff --git a/app/views/projects/notes/_notes_with_form.html.haml b/app/views/projects/notes/_notes_with_form.html.haml
+index 910eb6c..de4deef 100644
+--- a/app/views/projects/notes/_notes_with_form.html.haml
++++ b/app/views/projects/notes/_notes_with_form.html.haml
+@@ -14,7 +14,7 @@
+         = link_to "register",new_user_session_path
+         or
+         = link_to "login",new_user_session_path
+-        to post a comment
++        to post a コメント
+ 
+ :javascript
+   var notes = new Notes("#{namespace_project_notes_path(namespace_id: @project.namespace, target_id: @noteable.id, target_type: @noteable.class.name.underscore)}", #{@notes.map(&:id).to_json}, #{Time.now.to_i}, "#{diff_view}")
 diff --git a/app/views/projects/project_members/_group_members.html.haml b/app/views/projects/project_members/_group_members.html.haml
 index c53033e..f579c19 100644
 --- a/app/views/projects/project_members/_group_members.html.haml
@@ -11877,7 +11934,7 @@ index a6970b7..bfa34eb 100644
  
    %li{class: ("active" if params[:state] == 'all')}
 diff --git a/app/views/shared/issuable/_participants.html.haml b/app/views/shared/issuable/_participants.html.haml
-index 3fb409f..a8d78a2 100644
+index 3fb409f..de2e0ef 100644
 --- a/app/views/shared/issuable/_participants.html.haml
 +++ b/app/views/shared/issuable/_participants.html.haml
 @@ -7,7 +7,7 @@
@@ -11885,7 +11942,7 @@ index 3fb409f..a8d78a2 100644
        = participants.count
    .title.hide-collapsed
 -    = pluralize participants.count, "participant"
-+    #{participants.count} participant
++    #{participants.count} 参加者
    .hide-collapsed.participants-list
      - participants.each do |participant|
        .participants-author.js-participants-author
@@ -12336,6 +12393,16 @@ index a2b3656..9e14698 100644
  
  .snippet-holder
    = render 'shared/snippets/header'
+diff --git a/app/views/users/calendar.html.haml b/app/views/users/calendar.html.haml
+index 7f29918..688807f 100644
+--- a/app/views/users/calendar.html.haml
++++ b/app/views/users/calendar.html.haml
+@@ -7,4 +7,4 @@
+       '#{user_calendar_activities_path}'
+     );
+ 
+-.calendar-hint Summary of issues, merge requests and push events
++.calendar-hint 課題、マージリクエスト、プッシュイベントのサマリー
 diff --git a/app/views/users/show.html.haml b/app/views/users/show.html.haml
 index bca816f..c960e43 100644
 --- a/app/views/users/show.html.haml

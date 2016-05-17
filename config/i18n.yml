@@ -899,6 +899,10 @@ translations:
     replace: '${crossProjectReference}'
   - pattern: 'Summary of issues, merge requests and push events'
     replace: '${summaryOfIssuesMergeRequestsAndPushEvents}'
+  - pattern: 'Choose any color.'
+    replace: '${chooseAnyColor}'
+  - pattern: 'Or you can choose one of suggested colors below'
+    replace: '${orYouCanChooseOneOfSuggestedColorsBelow}'
   - pattern: 'Are you sure?'
     replace: '${areYouSure}'
   - pattern: "Code?$|(\")Code?\"|(')Code?'|(\".* )Code?(\")"
@@ -1096,6 +1100,7 @@ translations:
     - {word: 'Delete', key: delete}
     - {word: 'People', key: people}
     - {word: 'Group Access', key: groupAccess}
+    - {word: 'Background color', key: backgroundColor}
   - name: wordInSentence
     params:
     - {word: 'applications?', key: application}
@@ -1130,6 +1135,7 @@ translations:
     - {word: '[pP]rivate token', key: privateToken}
     - {word: 'participant', key: participant}
     - {word: '[cC]omment', key: comment}
+    - {word: '[cC]hanges?', key: change}
   - pattern: !!js/regexp /Add ([^\s]+) to ([^\s'":]+)/
     replace: '${addAToB}'
     args:
@@ -1163,6 +1169,7 @@ translations:
     - {verb: Import, key: importSth}
     - {verb: 'Attach(?: an?)?', key: attachSth}
     - {verb: Submit, key: submitSth}
+    - {verb: Commit, key: commitSth}
   - name: sthCountsDone
     params:
     - {obj: issues, objKey: issue, done: updated, doneKey: update}
@@ -1197,6 +1204,21 @@ translations:
     args:
     - '$1'
     - '$2'
+  # workflow.md
+  - pattern: '1.  Clone project:'
+    replace: '1.  ${cloneProject}:'
+  - pattern: '1.  Create branch with your feature:'
+    replace: '1.  ${createBranchWithYourFeature}:'
+  - pattern: '1.  Write code. Commit changes:'
+    replace: '1.  ${writeCodeCommitChanges}:'
+  - pattern: '1.  Push your branch to GitLab:'
+    replace: '1.  ${pushYourBranchToGitLab}:'
+  - pattern: '1.  Review your code on commits page.'
+    replace: '1.  ${reviewYourCodeOnCommitsPage}'
+  - pattern: '1.  Create a merge request.'
+    replace: '1.  ${createAMergeRequest}'
+  - pattern: '1.  Your team lead will review the code &amp; merge it to the main branch.'
+    replace: '1.  ${yourTeamLeadWillReviewTheCodeAndMergeItToTheMainBranch}'
   - name: headerOrComment
     params:
     - title: 'Accept MR'

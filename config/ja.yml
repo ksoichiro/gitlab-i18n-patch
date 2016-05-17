@@ -2448,3 +2448,14 @@ strikethroughWordsOrPhrasesUsingTwoTildes: "~~2つのチルダ~~ で取消線を
 makeABulletedListUsingPlusesMinusesOrAsterisks: "プラス(+)、マイナス(-)、アスタリスク(*)で箇条書きを作成できます"
 denoteBlockquotesUsingAtTheBeginningOfALine: "行頭に'>'を記述すると引用を表現できます"
 makeAHorizontalLineUsingThreeOrMoreHyphensAsterisksOrUnderscores: "3個以上のハイフン(---)、アスタリスク(***)、アンダースコア(___)で水平線を作成できます"
+commitSth: '{0}をコミット'
+cloneProject: プロジェクトをクローンします
+createBranchWithYourFeature: 機能追加用のブランチを作成します
+writeCodeCommitChanges: コードを書いて変更をコミットします
+pushYourBranchToGitLab: ブランチをGitLabにプッシュします
+reviewYourCodeOnCommitsPage: コミットのページでコードをレビューします
+createAMergeRequest: マージリクエストを作成します
+yourTeamLeadWillReviewTheCodeAndMergeItToTheMainBranch: チームリーダがコードレビューしメインのブランチにマージします
+backgroundColor: 背景色
+chooseAnyColor: 色を選択してください。
+orYouCanChooseOneOfSuggestedColorsBelow: もしくは、以下の色から選択します。

@@ -1973,10 +1973,10 @@ index e30bf0e..6e4314d 100644
  %hr
  = render 'form'
 diff --git a/app/views/admin/labels/_form.html.haml b/app/views/admin/labels/_form.html.haml
-index eaa94ed..2ab4f6b 100644
+index eaa94ed..a650435 100644
 --- a/app/views/admin/labels/_form.html.haml
 +++ b/app/views/admin/labels/_form.html.haml
-@@ -8,7 +8,7 @@
+@@ -8,19 +8,19 @@
              %br
  
    .form-group
@@ -1985,6 +1985,21 @@ index eaa94ed..2ab4f6b 100644
      .col-sm-10
        = f.text_field :title, class: "form-control", required: true
    .form-group
+-    = f.label :color, "Background color", class: 'control-label'
++    = f.label :color, "背景色", class: 'control-label'
+     .col-sm-10
+       .input-group
+         .input-group-addon.label-color-preview &nbsp;
+         = f.color_field :color, class: "form-control"
+       .help-block
+-        Choose any color.
++        色を選択してください。
+         %br
+-        Or you can choose one of suggested colors below
++        もしくは、以下の色から選択します。
+ 
+       .suggest-colors
+         - suggested_colors.each do |color|
 @@ -28,8 +28,8 @@
              &nbsp;
  
@@ -7386,6 +7401,16 @@ index 92dc58c..d911bed 100644
    .form-actions
 -    = submit_tag 'Submit', class: 'btn btn-success'
 +    = submit_tag '送信', class: 'btn btn-success'
+diff --git a/app/views/profiles/update_username.js.haml b/app/views/profiles/update_username.js.haml
+index 249680b..32ecf78 100644
+--- a/app/views/profiles/update_username.js.haml
++++ b/app/views/profiles/update_username.js.haml
+@@ -3,4 +3,4 @@
+     new Flash("Username sucessfully changed", "notice")
+ - else
+   :plain
+-    new Flash("Username change failed - #{@user.errors.full_messages.first}", "alert")
++    new Flash("Username 変更 failed - #{@user.errors.full_messages.first}", "alert")
 diff --git a/app/views/projects/_bitbucket_import_modal.html.haml b/app/views/projects/_bitbucket_import_modal.html.haml
 index 2987f6b..0eb0500 100644
 --- a/app/views/projects/_bitbucket_import_modal.html.haml
@@ -7400,13 +7425,14 @@ index 2987f6b..0eb0500 100644
          To enable importing projects from Bitbucket,
          - if current_user.admin?
 diff --git a/app/views/projects/_commit_button.html.haml b/app/views/projects/_commit_button.html.haml
-index 2fd3d9e..5b3fd20 100644
+index 2fd3d9e..83bb8b2 100644
 --- a/app/views/projects/_commit_button.html.haml
 +++ b/app/views/projects/_commit_button.html.haml
 @@ -1,4 +1,4 @@
  .form-actions
-   = button_tag 'Commit Changes', class: 'btn commit-btn js-commit-button btn-create'
+-  = button_tag 'Commit Changes', class: 'btn commit-btn js-commit-button btn-create'
 -  = link_to 'Cancel', cancel_path,
++  = button_tag '変更をコミット', class: 'btn commit-btn js-commit-button btn-create'
 +  = link_to 'キャンセル', cancel_path,
              class: 'btn btn-cancel', data: {confirm: leave_edit_message}
 diff --git a/app/views/projects/_github_import_modal.html.haml b/app/views/projects/_github_import_modal.html.haml
@@ -7967,7 +7993,7 @@ index 2d3abf0..1ac3df6 100644
          %span.count
            = @project.forks_count
 diff --git a/app/views/projects/buttons/_notifications.html.haml b/app/views/projects/buttons/_notifications.html.haml
-index 3e83ec3..838973c 100644
+index 3e83ec3..e81715e 100644
 --- a/app/views/projects/buttons/_notifications.html.haml
 +++ b/app/views/projects/buttons/_notifications.html.haml
 @@ -14,7 +14,7 @@
@@ -7975,7 +8001,7 @@ index 3e83ec3..838973c 100644
  
  - when GroupMember
 -  .btn.disabled.notifications-btn.has_tooltip{title: "To change the notification level, you need to be a member of the project itself, not only its group."}
-+  .btn.disabled.notifications-btn.has_tooltip{title: "To change the notification level, you need to be a メンバー of the プロジェクト itself, not only its group."}
++  .btn.disabled.notifications-btn.has_tooltip{title: "To 変更 the notification level, you need to be a メンバー of the プロジェクト itself, not only its group."}
      = icon('bell')
      = notification_label(@membership)
      = icon('angle-down')
@@ -8272,6 +8298,18 @@ index 01fab30..a88b7a1 100644
  %hr
  
  = render 'form'
+diff --git a/app/views/projects/diffs/_diffs.html.haml b/app/views/projects/diffs/_diffs.html.haml
+index f9d661d..daa3dab 100644
+--- a/app/views/projects/diffs/_diffs.html.haml
++++ b/app/views/projects/diffs/_diffs.html.haml
+@@ -25,6 +25,6 @@
+ - if @diff_timeout
+   .alert.alert-danger
+     %h4
+-      Failed to collect changes
++      Failed to collect 変更
+     %p
+       Maybe diff is really big and operation failed with timeout. Try to get diff locally
 diff --git a/app/views/projects/diffs/_file.html.haml b/app/views/projects/diffs/_file.html.haml
 index 327e7d9..f7a6d36 100644
 --- a/app/views/projects/diffs/_file.html.haml
@@ -8666,6 +8704,31 @@ index f0b0a11..5c35dc7 100644
 +      リポジトリをフォークしています
      %p Please wait a moment, this page will automatically refresh when ready.
  
+diff --git a/app/views/projects/graphs/ci/_build_times.haml b/app/views/projects/graphs/ci/_build_times.haml
+index c58223f..59c3807 100644
+--- a/app/views/projects/graphs/ci/_build_times.haml
++++ b/app/views/projects/graphs/ci/_build_times.haml
+@@ -1,6 +1,6 @@
+ %div
+   %p.light
+-    Commit duration in minutes for last 30 commits
++    duration in minutes for last 30 commitsをコミット
+ 
+   %canvas#build_timesChart{height: 200}
+ 
+diff --git a/app/views/projects/graphs/commits.html.haml b/app/views/projects/graphs/commits.html.haml
+index fc465ab..9421c18 100644
+--- a/app/views/projects/graphs/commits.html.haml
++++ b/app/views/projects/graphs/commits.html.haml
+@@ -9,7 +9,7 @@
+     = commits_breadcrumbs
+ 
+ %p.lead
+-  Commit statistics for
++  statistics forをコミット
+   %strong #{@ref}
+   #{@commits_graph.start_date.strftime('%b %d')} - #{@commits_graph.end_date.strftime('%b %d')}
+ 
 diff --git a/app/views/projects/graphs/languages.html.haml b/app/views/projects/graphs/languages.html.haml
 index a7fab5b..a04b549 100644
 --- a/app/views/projects/graphs/languages.html.haml
@@ -8966,10 +9029,10 @@ index 2fe6f88..51caaf2 100644
    .issue-details.issuable-details
      .detail-page-description.gray-content-block.second-block
 diff --git a/app/views/projects/labels/_form.html.haml b/app/views/projects/labels/_form.html.haml
-index 5ce2a7b..a62063c 100644
+index 5ce2a7b..573aaaf 100644
 --- a/app/views/projects/labels/_form.html.haml
 +++ b/app/views/projects/labels/_form.html.haml
-@@ -8,7 +8,7 @@
+@@ -8,19 +8,19 @@
              %br
  
    .form-group
@@ -8978,6 +9041,21 @@ index 5ce2a7b..a62063c 100644
      .col-sm-10
        = f.text_field :title, class: "form-control js-quick-submit", required: true, autofocus: true
    .form-group
+-    = f.label :color, "Background color", class: 'control-label'
++    = f.label :color, "背景色", class: 'control-label'
+     .col-sm-10
+       .input-group
+         .input-group-addon.label-color-preview &nbsp;
+         = f.color_field :color, class: "form-control"
+       .help-block
+-        Choose any color.
++        色を選択してください。
+         %br
+-        Or you can choose one of suggested colors below
++        もしくは、以下の色から選択します。
+ 
+       .suggest-colors
+         - suggested_colors.each do |color|
 @@ -29,7 +29,7 @@
  
    .form-actions
@@ -11270,6 +11348,19 @@ index 2efa616..5d5aca9 100644
      - elsif merge_request.closed?
 -      %span.label.label-danger Closed
 +      %span.label.label-danger クローズ
+diff --git a/app/views/search/results/_note.html.haml b/app/views/search/results/_note.html.haml
+index 5fcba2b..323ad60 100644
+--- a/app/views/search/results/_note.html.haml
++++ b/app/views/search/results/_note.html.haml
+@@ -10,7 +10,7 @@
+         = project.name_with_namespace
+       &middot;
+       = link_to namespace_project_commit_path(project.namespace, project, note.commit_id, anchor: dom_id(note)) do
+-        Commit #{truncate_sha(note.commit_id)}
++        #{truncate_sha(note.commit_id)}をコミット
+     - else
+       = link_to project do
+         = project.name_with_namespace
 diff --git a/app/views/search/results/_snippet_blob.html.haml b/app/views/search/results/_snippet_blob.html.haml
 index 9a4f9fb..e71f965 100644
 --- a/app/views/search/results/_snippet_blob.html.haml
@@ -11464,7 +11555,7 @@ index cbdecda..279c20c 100644
 -        All
 +        すべて
 diff --git a/app/views/shared/_new_commit_form.html.haml b/app/views/shared/_new_commit_form.html.haml
-index 111219f..f0d764d 100644
+index 111219f..a5bcd03 100644
 --- a/app/views/shared/_new_commit_form.html.haml
 +++ b/app/views/shared/_new_commit_form.html.haml
 @@ -2,7 +2,7 @@
@@ -11476,6 +11567,14 @@ index 111219f..f0d764d 100644
      .col-sm-10
        = text_field_tag 'new_branch', @new_branch || tree_edit_branch, required: true, class: "form-control js-new-branch"
  
+@@ -11,6 +11,6 @@
+           - nonce = SecureRandom.hex
+           = label_tag "create_merge_request-#{nonce}" do
+             = check_box_tag 'create_merge_request', 1, true, class: 'js-create-merge-request', id: "create_merge_request-#{nonce}"
+-            Start a <strong>new merge request</strong> with these changes
++            Start a <strong>new merge request</strong> with these 変更
+ 
+   = hidden_field_tag 'original_branch', @ref, class: 'js-original-branch'
 diff --git a/app/views/shared/_no_password.html.haml b/app/views/shared/_no_password.html.haml
 index a43bf33..f70c673 100644
 --- a/app/views/shared/_no_password.html.haml
@@ -12948,12 +13047,46 @@ index b7e1468..28f6e0d 100644
  **NOTE:** GitLab 8.0 introduced several significant changes related to
  installation and configuration which *are not duplicated here*. Be sure you're
 diff --git a/doc/workflow/workflow.md b/doc/workflow/workflow.md
-index f70e41d..50deaea 100644
+index f70e41d..84ec9ef 100644
 --- a/doc/workflow/workflow.md
 +++ b/doc/workflow/workflow.md
-@@ -1,4 +1,4 @@
+@@ -1,31 +1,31 @@
 -# Feature branch workflow
 +# フィーチャーブランチワークフロー
  
- 1.  Clone project:
+-1.  Clone project:
++1.  プロジェクトをクローンします:
  
+     ```bash
+     git clone git@example.com:project-name.git
+     ```
+ 
+-1.  Create branch with your feature:
++1.  機能追加用のブランチを作成します:
+ 
+     ```bash
+     git checkout -b $feature_name
+     ```
+ 
+-1.  Write code. Commit changes:
++1.  コードを書いて変更をコミットします:
+ 
+     ```bash
+     git commit -am "My feature is ready"
+     ```
+ 
+-1.  Push your branch to GitLab:
++1.  ブランチをGitLabにプッシュします:
+ 
+     ```bash
+     git push origin $feature_name
+     ```
+ 
+-1.  Review your code on commits page.
++1.  コミットのページでコードをレビューします
+ 
+-1.  Create a merge request.
++1.  マージリクエストを作成します
+ 
+-1.  Your team lead will review the code &amp; merge it to the main branch.
++1.  チームリーダがコードレビューしメインのブランチにマージします

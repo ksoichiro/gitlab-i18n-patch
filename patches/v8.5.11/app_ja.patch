@@ -8568,10 +8568,10 @@ index ea2a3e0..e6a58d7 100644
      %strong.cgreen #{diff_files.sum(&:added_lines)} additions
      and
 diff --git a/app/views/projects/edit.html.haml b/app/views/projects/edit.html.haml
-index f2e5608..1d1a155 100644
+index f2e5608..b5d895c 100644
 --- a/app/views/projects/edit.html.haml
 +++ b/app/views/projects/edit.html.haml
-@@ -3,66 +3,66 @@
+@@ -3,68 +3,68 @@
    .project-edit-content
      .panel.panel-default
        .panel-heading
@@ -8628,7 +8628,7 @@ index f2e5608..1d1a155 100644
 +                    %strong 課題
                      %br
 -                    %span.descr Lightweight issue tracking system for this project
-+                    %span.descr Lightweight issue tracking system for this プロジェクト
++                    %span.descr このプロジェクト用の軽量な課題トラッキングシステム
  
              .form-group
                .col-sm-offset-2.col-sm-10
@@ -8639,7 +8639,7 @@ index f2e5608..1d1a155 100644
 +                    %strong マージリクエスト
                      %br
 -                    %span.descr Submit changes to be merged upstream
-+                    %span.descr changes to be merged upstreamを送信
++                    %span.descr Upstreamにマージしてもらうように変更を送信
  
              .form-group
                .col-sm-offset-2.col-sm-10
@@ -8649,9 +8649,20 @@ index f2e5608..1d1a155 100644
 -                    %strong Builds
 +                    %strong ビルド
                      %br
-                     %span.descr Test and deploy your changes before merge
+-                    %span.descr Test and deploy your changes before merge
++                    %span.descr 変更をマージする前にテストとデプロイを実行
  
-@@ -80,13 +80,13 @@
+             .form-group
+               .col-sm-offset-2.col-sm-10
+@@ -73,20 +73,20 @@
+                     = f.check_box :wiki_enabled
+                     %strong Wiki
+                     %br
+-                    %span.descr Pages for project documentation
++                    %span.descr プロジェクトのドキュメントページ
+ 
+             .form-group
+               .col-sm-offset-2.col-sm-10
                  .checkbox
                    = f.label :snippets_enabled do
                      = f.check_box :snippets_enabled

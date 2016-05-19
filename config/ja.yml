@@ -2463,3 +2463,6 @@ lightweightIssueTrackingSystemForThisProject: このプロジェクト用の軽�
 submitChangesToBeMergedUpstream: Upstreamにマージしてもらうように変更を送信
 testAndDeployYourChangesBeforeMerge: 変更をマージする前にテストとデプロイを実行
 pagesForProjectDocumentation: プロジェクトのドキュメントページ
+youCanChangeYourProjectAvatarHere: プロジェクトアバターを変更できます
+youCanUploadAProjectAvatarHere: プロジェクトアバターをアップロードできます
+timeout: タイムアウト

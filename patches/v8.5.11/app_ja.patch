@@ -8568,7 +8568,7 @@ index ea2a3e0..e6a58d7 100644
      %strong.cgreen #{diff_files.sum(&:added_lines)} additions
      and
 diff --git a/app/views/projects/edit.html.haml b/app/views/projects/edit.html.haml
-index f2e5608..b5d895c 100644
+index f2e5608..8dd1e7f 100644
 --- a/app/views/projects/edit.html.haml
 +++ b/app/views/projects/edit.html.haml
 @@ -3,68 +3,68 @@
@@ -8679,8 +8679,15 @@ index f2e5608..b5d895c 100644
              .form-group
                .col-sm-offset-2.col-sm-10
                  - if @project.avatar?
-@@ -101,14 +101,14 @@
-                     You can upload a project avatar here
+@@ -96,19 +96,19 @@
+                     Project avatar in repository: #{ @project.avatar_in_git }
+                 %p.light
+                   - if @project.avatar?
+-                    You can change your project avatar here
++                    プロジェクトアバターを変更できます
+                   - else
+-                    You can upload a project avatar here
++                    プロジェクトアバターをアップロードできます
                  %a.choose-btn.btn.btn-sm.js-choose-project-avatar-button
                    %i.icon-paper-clip
 -                  %span Choose File ...
@@ -8707,6 +8714,15 @@ index f2e5608..b5d895c 100644
                  .radio
                    = f.label :build_allow_git_fetch_true do
                      = f.radio_button :build_allow_git_fetch, 'true'
+@@ -130,7 +130,7 @@
+                     %span.descr Faster
+ 
+             .form-group
+-              = f.label :build_timeout_in_minutes, 'Timeout', class: 'control-label'
++              = f.label :build_timeout_in_minutes, 'タイムアウト', class: 'control-label'
+               .col-sm-10
+                 = f.number_field :build_timeout_in_minutes, class: 'form-control', min: '0'
+                 %p.help-block per build in minutes
 @@ -162,8 +162,8 @@
                    .checkbox
                      = f.label :public_builds do

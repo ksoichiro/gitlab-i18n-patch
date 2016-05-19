@@ -7328,7 +7328,7 @@ index 2987f6b..0eb0500 100644
          To enable importing projects from Bitbucket,
          - if current_user.admin?
 diff --git a/app/views/projects/_builds_settings.html.haml b/app/views/projects/_builds_settings.html.haml
-index 95ab9ec..c36711c 100644
+index 95ab9ec..9f84598 100644
 --- a/app/views/projects/_builds_settings.html.haml
 +++ b/app/views/projects/_builds_settings.html.haml
 @@ -9,7 +9,7 @@
@@ -7340,6 +7340,15 @@ index 95ab9ec..c36711c 100644
        .radio
          = f.label :build_allow_git_fetch_true do
            = f.radio_button :build_allow_git_fetch, 'true'
+@@ -18,7 +18,7 @@
+           %span.descr Faster
+ 
+   .form-group
+-    = f.label :build_timeout_in_minutes, 'Timeout', class: 'control-label'
++    = f.label :build_timeout_in_minutes, 'タイムアウト', class: 'control-label'
+     .col-sm-10
+       = f.number_field :build_timeout_in_minutes, class: 'form-control', min: '0'
+       %p.help-block per build in minutes
 @@ -50,8 +50,8 @@
        .checkbox
          = f.label :public_builds do
@@ -8335,7 +8344,7 @@ index ea2a3e0..e6a58d7 100644
      %strong.cgreen #{diff_files.sum(&:added_lines)} additions
      and
 diff --git a/app/views/projects/edit.html.haml b/app/views/projects/edit.html.haml
-index 6d872cd..f42fc84 100644
+index 6d872cd..f3397c2 100644
 --- a/app/views/projects/edit.html.haml
 +++ b/app/views/projects/edit.html.haml
 @@ -3,68 +3,68 @@
@@ -8448,8 +8457,15 @@ index 6d872cd..f42fc84 100644
              .form-group
                .col-sm-offset-2.col-sm-10
                  - if @project.avatar?
-@@ -103,18 +103,18 @@
-                     You can upload a project avatar here
+@@ -98,23 +98,23 @@
+                     Project avatar in repository: #{ @project.avatar_in_git }
+                 %p.light
+                   - if @project.avatar?
+-                    You can change your project avatar here
++                    プロジェクトアバターを変更できます
+                   - else
+-                    You can upload a project avatar here
++                    プロジェクトアバターをアップロードできます
                  %a.choose-btn.btn.btn-sm.js-choose-project-avatar-button
                    %i.icon-paper-clip
 -                  %span Choose File ...

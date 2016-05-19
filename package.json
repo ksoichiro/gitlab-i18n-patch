@@ -2,9 +2,9 @@
   "name": "gitlab-i18n-patch",
   "private": "true",
   "dependencies": {
-    "i18n-patch": "0.0.12"
+    "i18n-patch": "0.0.13"
   },
   "scripts": {
-    "build": "i18n-patch ja gitlabhq"
+    "build": "i18n-patch --statistics -- ja gitlabhq"
   }
 }

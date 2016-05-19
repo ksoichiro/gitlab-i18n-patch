@@ -1,7 +1,8 @@
 translations:
 
 # CoffeeScript
-- src: '**/*.coffee'
+- name: 'coffee'
+  src: '**/*.coffee'
   named-patterns:
   - name: singleQuoted
     pattern: "'{word}'"
@@ -36,14 +37,16 @@ translations:
     replace: 'd3.time.format("${d3TimeFormat}")'
 
 # JavaScript
-- src: 'app/assets/javascripts/lib/jquery.timeago.js'
+- name: 'js:jquery.timeago'
+  src: 'app/assets/javascripts/lib/jquery.timeago.js'
   patterns:
   - insert:
       at: end
       value: jQueryTimeago
 
 # Ruby
-- src: 'app/helpers/**.rb'
+- name: 'rb:helpers'
+  src: 'app/helpers/**.rb'
   patterns:
   - pattern: "'Oldest updated'"
     replace: "'${oldestUpdated}'"
@@ -109,7 +112,8 @@ translations:
   - pattern: "Make a horizontal line using three or more hyphens ---, asterisks ***, or underscores ___"
     replace: '${makeAHorizontalLineUsingThreeOrMoreHyphensAsterisksOrUnderscores}'
 
-- src: 'app/**/*.rb'
+- name: 'rb'
+  src: 'app/**/*.rb'
   skip-patterns:
   - !!js/regexp /^\s*(?:(?:require|include|class|render|before_action) .*|private|end)?$/
 
@@ -284,7 +288,8 @@ translations:
     - {word: 'Users', key: user}
     - {word: 'Inline', key: inline}
 
-- src: 'app/views/**/_shortcuts.html.haml'
+- name: 'haml:shortcuts'
+  src: 'app/views/**/_shortcuts.html.haml'
   patterns:
   - pattern: "Go to projects"
     replace: '${shortcutsGoToProjects}'
@@ -309,7 +314,8 @@ translations:
   - pattern: "Go to snippets"
     replace: '${shortcutsGoToSnippets}'
 
-- src: 'app/views/**/*.haml'
+- name: 'haml'
+  src: 'app/views/**/*.haml'
   skip-patterns:
   # Empty
   - !!js/regexp /^\s*$/
@@ -911,6 +917,10 @@ translations:
     replace: '${testAndDeployYourChangesBeforeMerge}'
   - pattern: 'Pages for project documentation'
     replace: '${pagesForProjectDocumentation}'
+  - pattern: 'You can change your project avatar here'
+    replace: '${youCanChangeYourProjectAvatarHere}'
+  - pattern: 'You can upload a project avatar here'
+    replace: '${youCanUploadAProjectAvatarHere}'
   - pattern: 'Are you sure?'
     replace: '${areYouSure}'
   - pattern: "Code?$|(\")Code?\"|(')Code?'|(\".* )Code?(\")"
@@ -1109,6 +1119,7 @@ translations:
     - {word: 'People', key: people}
     - {word: 'Group Access', key: groupAccess}
     - {word: 'Background color', key: backgroundColor}
+    - {word: 'Timeout', key: timeout}
   - name: wordInSentence
     params:
     - {word: 'applications?', key: application}
@@ -1182,25 +1193,29 @@ translations:
     params:
     - {obj: issues, objKey: issue, done: updated, doneKey: update}
 
-- src: 'config/application.rb'
+- name: 'rb:application'
+  src: 'config/application.rb'
   patterns:
   - pattern: !!js/regexp /^    config.i18n.enforce_available_locales = false/
     replace: '${configI18nLocale}'
     exclude: '# done'
 
-- locale:
+- name: 'devise-ja'
+  locale:
     include: [ja]
   add:
     path: 'config/locales/devise.ja.yml'
     value: devise
 
-- locale:
+- name: 'locale-ja'
+  locale:
     include: [ja]
   add:
     path: 'config/locales/ja.yml'
     value: configLocalesJa
 
-- src: 'doc/**/*.md'
+- name: 'md'
+  src: 'doc/**/*.md'
   named-patterns:
   - name: headerOrComment
     pattern: "^(#+ ){title}$"

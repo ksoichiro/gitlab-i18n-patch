@@ -921,6 +921,40 @@ translations:
     replace: '${youCanChangeYourProjectAvatarHere}'
   - pattern: 'You can upload a project avatar here'
     replace: '${youCanUploadAProjectAvatarHere}'
+  - pattern: 'Archiving the project will mark its repository as read-only.'
+    replace: '${archivingTheProjectWillMarkItsRepositoryAsReadOnly}'
+  - pattern: "It is hidden from the dashboard and doesn't show up in searches."
+    replace: '${itIsHiddenFromTheDashboardAndDoesntShowUpInSearches}'
+  - pattern: 'Archived projects cannot be committed to!'
+    replace: '${archivedProjectsCannotBeCommittedTo}'
+  - pattern: 'Are you sure that you want to archive this project?\nAn archived project cannot be committed to.'
+    replace: '${areYouSureThatYouWantToArchiveThisProjectAnArchivedProjectCannotBeCommittedTo}'
+  - pattern: 'Only the project owner can archive a project'
+    replace: '${onlyTheProjectOwnerCanArchiveAProject}'
+  - pattern: 'Confirmation required'
+    replace: '${confirmationRequired}'
+  - pattern: 'This action can lead to data loss.'
+    replace: '${thisActionCanLeadToDataLoss}'
+  - pattern: 'To prevent accidental actions we ask you to confirm your intention.'
+    replace: '${toPreventAccidentalActionsWeAskYouToConfirmYourIntention}'
+  - pattern: !!js/regexp /(\s+)Please type\n([^\n]+)\n(\s+)to proceed or close this modal to cancel/m
+    replace: '${pleaseTypeToProceedOrCloseThisModalToCancel}'
+    args:
+    - '$1'
+    - '$2'
+    - '$3'
+  - pattern: 'Removing the project will delete its repository and all related resources including issues, merge requests etc.'
+    replace: '${removeingTheProjectWillDeleteItsRepositoryAndAllRelatedResourcesIncludingIssuesMergeRequestsEtc}'
+  - pattern: 'Removed projects cannot be restored!'
+    replace: '${removedProjectsCannotBeRestored}'
+  - pattern: "Be careful. Renaming a project's repository can have unintended side effects."
+    replace: '${beCarefulRenamingAProjectsRepositoryCanHaveUnintendedSideEffects}'
+  - pattern: 'You will need to update your local repositories to point to the new location.'
+    replace: '${youWillNeedToUpdateYourLocalRepositoriesToPointToTheNewLocation}'
+  - pattern: "Be careful. Changing the project's namespace can have unintended side effects."
+    replace: '${beCarefulChangingTheProjectsNamespaceCanHaveUnintendedSideEffects}'
+  - pattern: 'You can only transfer the project to namespaces you manage.'
+    replace: '${youCanOnlyTransferTheProjectToNamespacesYouManage}'
   - pattern: 'Are you sure?'
     replace: '${areYouSure}'
   - pattern: "Code?$|(\")Code?\"|(')Code?'|(\".* )Code?(\")"
@@ -970,16 +1004,75 @@ translations:
     - {symbol: username, key: username}
   - name: singleWord
     params:
+    - {word: 'Deploy Keys', key: deployKey}
+    - {word: 'Snippet Contents', key: snippet}
+    - {word: 'Merge [rR]equests', key: mergeRequest}
+    - {word: 'Trending projects', key: trendingProjects}
+    - {word: 'Project view', key: projectView}
+    - {word: 'Project path', key: projectPath}
+    - {word: 'Project avatar', key: projectAvatar}
+    - {word: 'Project [sS]ettings', key: projectSetting}
+    - {word: 'Project name', key: projectName}
+    - {word: 'Project description', key: projectDescription}
+    - {word: 'Protected Branch(?:es)', key: protectedBranch}
+    - {word: 'Import project from', key: importProjectFrom}
+    - {word: 'Search for projects, issues etc', key: searchForProjectsIssuesEtc}
+    - {word: 'Due [dD]ate', key: dueDate}
+    - {word: 'Sign in', key: signIn}
+    - {word: 'Sign up', key: signUp}
+    - {word: 'Sign out', key: signOut}
+    - {word: 'Page version', key: pageVersion}
+    - {word: 'Page History', key: pageHistory}
+    - {word: 'Commit Message', key: commitMessage}
+    - {word: 'Last updated', key: lastUpdated}
+    - {word: 'Archive Format', key: archiveFormat}
+    - {word: 'Titles and Filenames', key: titlesAndFilenames}
+    - {word: 'Source branch', key: sourceBranch}
+    - {word: 'Web hooks', key: webHook}
+    - {word: 'Show all', key: showAll}
+    - {word: 'Remind later', key: remindLater}
+    - {word: 'Public [eE]mails', key: publicEmail}
+    - {word: 'Encoding Error', key: encodingError}
+    - {word: 'User map', key: userMap}
+    - {word: 'Admin [aA]rea', key: adminArea}
+    - {word: 'Default Dashboard', key: defaultDashboard}
+    - {word: 'Contribution guide', key: contributionGuide}
+    - {word: 'Visibility [lL]evel', key: visibilityLevel}
+    - {word: 'About GitLab', key: aboutGitLab}
+    - {word: 'Profile [sS]ettings', key: profileSettings}
+    - {word: 'SSH Keys', key: sshKey}
+    - {word: 'Audit Log', key: auditLog}
+    - {word: 'Assign to me', key: assignToMe}
+    - {word: 'Change your password', key: changeYourPassword}
+    - {word: 'Web Hooks', key: webHook}
+    - {word: 'Background Jobs', key: backgroundJob}
+    - {word: 'Group path', key: groupPath}
+    - {word: 'Group avatar', key: groupAvatar}
+    - {word: 'Network [gG]raph', key: networkGraph}
+    - {word: 'Private [tT]oken', key: privateToken}
+    - {word: 'Most stars', key: mostStars}
+    - {word: 'Reported by', key: reportedBy}
+    - {word: 'Reported at', key: reportedAt}
+    - {word: 'Push events', key: pushEvents}
+    - {word: 'Merge events', key: mergeEvents}
+    - {word: 'Issues events', key: issuesEvents}
+    - {word: 'Build events', key: buildEvents}
+    - {word: 'SSL [vV]erification', key: sslVerification}
+    - {word: 'Group name', key: groupName}
+    - {word: 'Plain Diff', key: plainDiff}
+    - {word: 'Email Patches', key: emailPatch}
+    - {word: 'Created on', key: createdOn}
+    - {word: 'Group Access', key: groupAccess}
+    - {word: 'Background color', key: backgroundColor}
+    - {word: 'Tag push events', key: tagPushEvents}
+    - {word: 'Merge Request events', key: mergeRequestEvents}
     - {word: 'Issues', key: issue}
     - {word: 'Milestones', key: milestone}
     - {word: 'Applications', key: application}
     - {word: 'Labels', key: label}
     - {word: 'Tags', key: tag}
-    - {word: 'Deploy Keys', key: deployKey}
-    - {word: 'Snippet Contents', key: snippet}
     - {word: 'Snippets', key: snippet}
     - {word: 'Password', key: password}
-    - {word: 'Merge [rR]equests', key: mergeRequest}
     - {word: 'Projects', key: project}
     - {word: 'Groups', key: group}
     - {word: 'Files', key: file}
@@ -992,32 +1085,20 @@ translations:
     - {word: 'Status', key: status}
     - {word: 'Commit', key: commit}
     - {word: 'State', key: state}
-    - {word: 'Due [dD]ate', key: dueDate}
-    - {word: 'Sign in', key: signIn}
-    - {word: 'Sign up', key: signUp}
-    - {word: 'Sign out', key: signOut}
     - {word: 'Todos', key: todos}
     - {word: 'Home', key: home}
-    - {word: 'Page version', key: pageVersion}
-    - {word: 'Page History', key: pageHistory}
     - {word: 'Pages', key: page}
     - {word: 'Author', key: author}
-    - {word: 'Commit Message', key: commitMessage}
-    - {word: 'Last updated', key: lastUpdated}
-    - {word: 'Archive Format', key: archiveFormat}
     - {word: 'Format', key: format}
     - {word: 'Build', key: build}
     - {word: 'History', key: history}
     - {word: 'Comments', key: comment}
-    - {word: 'Titles and Filenames', key: titlesAndFilenames}
     - {word: 'Unassigned', key: unassigned}
     - {word: 'Any', key: any}
-    - {word: 'Search for projects, issues etc', key: searchForProjectsIssuesEtc}
     - {word: 'Search', key: search}
     - {word: 'Merged', key: merged}
     - {word: 'Closed', key: close}
     - {word: 'Account', key: account}
-    - {word: 'Source branch', key: sourceBranch}
     - {word: 'Preview', key: preview}
     - {word: 'Write', key: write}
     - {word: 'Save', key: save}
@@ -1025,74 +1106,34 @@ translations:
     - {word: 'Assignee', key: assignee}
     - {word: 'Description', key: description}
     - {word: 'License', key: license}
-    - {word: 'Web hooks', key: webHook}
-    - {word: 'Show all', key: showAll}
-    - {word: 'Assign to me', key: assignToMe}
     - {word: 'Homepage', key: homepage}
-    - {word: 'Remind later', key: remindLater}
     - {word: 'Trigger', key: trigger}
-    - {word: 'Change your password', key: changeYourPassword}
     - {word: 'Back', key: back}
-    - {word: 'Public [eE]mails', key: publicEmail}
     - {word: 'Emails', key: email}
     - {word: 'Submit', key: submit}
     - {word: 'Cancel', key: cancel}
-    - {word: 'Encoding Error', key: encodingError}
     - {word: 'Service', key: service}
     - {word: 'Perticipant', key: perticipant}
-    - {word: 'User map', key: userMap}
     - {word: 'Invitation', key: invitation}
-    - {word: 'Admin [aA]rea', key: adminArea}
-    - {word: 'Default Dashboard', key: defaultDashboard}
     - {word: 'Dashboard', key: dashboard}
-    - {word: 'Contribution guide', key: contributionGuide}
     - {word: 'Changelog', key: changelog}
-    - {word: 'Visibility [lL]evel', key: visibilityLevel}
     - {word: 'Help', key: help}
     - {word: 'Activity', key: activity}
     - {word: 'Explore', key: explore}
-    - {word: 'About GitLab', key: aboutGitLab}
-    - {word: 'Profile [sS]ettings', key: profileSettings}
     - {word: 'Notifications', key: notification}
-    - {word: 'SSH Keys', key: sshKey}
     - {word: 'Preferences', key: preference}
-    - {word: 'Audit Log', key: auditLog}
     - {word: 'Members', key: member}
     - {word: 'Settings', key: setting}
-    - {word: 'Web Hooks', key: webHook}
     - {word: 'Services', key: service}
-    - {word: 'Protected Branch(?:es)', key: protectedBranch}
     - {word: 'Variables', key: variable}
     - {word: 'Triggers', key: trigger}
-    - {word: 'Background Jobs', key: backgroundJob}
     - {word: 'Namespace', key: namespace}
-    - {word: 'Project path', key: projectPath}
-    - {word: 'Group path', key: groupPath}
-    - {word: 'Group avatar', key: groupAvatar}
-    - {word: 'Project avatar', key: projectAvatar}
-    - {word: 'Import project from', key: importProjectFrom}
-    - {word: 'Network [gG]raph', key: networkGraph}
-    - {word: 'Project [sS]ettings', key: projectSetting}
-    - {word: 'Project name', key: projectName}
-    - {word: 'Project description', key: projectDescription}
     - {word: 'Key', key: key}
     - {word: 'Title', key: title}
-    - {word: 'Private [tT]oken', key: privateToken}
     - {word: 'Generate', key: generate}
     - {word: 'Name', key: name}
-    - {word: 'Trending projects', key: trendingProjects}
-    - {word: 'Most stars', key: mostStars}
     - {word: 'All', key: all}
-    - {word: 'Reported by', key: reportedBy}
-    - {word: 'Reported at', key: reportedAt}
     - {word: 'Message', key: message}
-    - {word: 'Tag push events', key: tagPushEvents}
-    - {word: 'Push events', key: pushEvents}
-    - {word: 'Merge events', key: mergeEvents}
-    - {word: 'Issues events', key: issuesEvents}
-    - {word: 'Merge Request events', key: mergeRequestEvents}
-    - {word: 'Build events', key: buildEvents}
-    - {word: 'SSL [vV]erification', key: sslVerification}
     - {word: 'Team', key: team}
     - {word: 'Private', key: private}
     - {word: 'Internal', key: internal}
@@ -1103,22 +1144,15 @@ translations:
     - {word: 'Location', key: location}
     - {word: 'Bio', key: bio}
     - {word: 'Website', key: website}
-    - {word: 'Group name', key: groupName}
-    - {word: 'Project view', key: projectView}
     - {word: 'Discussion', key: discussion}
-    - {word: 'Plain Diff', key: plainDiff}
     - {word: 'Diff', key: diff}
     - {word: 'Required', key: required}
     - {word: 'Changes', key: change}
-    - {word: 'Email Patches', key: emailPatch}
     - {word: 'Fingerprint', key: fingerprint}
-    - {word: 'Created on', key: createdOn}
     - {word: 'Behavior', key: behavior}
     - {word: 'Edit', key: edit}
     - {word: 'Delete', key: delete}
     - {word: 'People', key: people}
-    - {word: 'Group Access', key: groupAccess}
-    - {word: 'Background color', key: backgroundColor}
     - {word: 'Timeout', key: timeout}
   - name: wordInSentence
     params:

@@ -6292,7 +6292,7 @@ index 86b46e8..a0b479b 100644
    -# Global shortcut to network page for compatibility
    - if project_nav_tab? :network
 diff --git a/app/views/layouts/nav/_project_settings.html.haml b/app/views/layouts/nav/_project_settings.html.haml
-index dc3050f..51b6f2a 100644
+index dc3050f..826c660 100644
 --- a/app/views/layouts/nav/_project_settings.html.haml
 +++ b/app/views/layouts/nav/_project_settings.html.haml
 @@ -1,44 +1,44 @@
@@ -6314,7 +6314,7 @@ index dc3050f..51b6f2a 100644
          = icon('pencil-square-o fw')
          %span
 -          Project Settings
-+          Project 設定
++          プロジェクト設定
      - if @project.allowed_to_share_with_group?
        = nav_link(controller: :group_links) do
 -        = link_to namespace_project_group_links_path(@project.namespace, @project), title: "Groups" do
@@ -6348,7 +6348,7 @@ index dc3050f..51b6f2a 100644
          = icon('lock fw')
          %span
 -          Protected Branches
-+          Protected ブランチ
++          保護ブランチ
  
      - if @project.builds_enabled?
        = nav_link(controller: :runners) do
@@ -8344,7 +8344,7 @@ index ea2a3e0..e6a58d7 100644
      %strong.cgreen #{diff_files.sum(&:added_lines)} additions
      and
 diff --git a/app/views/projects/edit.html.haml b/app/views/projects/edit.html.haml
-index 6d872cd..f3397c2 100644
+index 6d872cd..84610e1 100644
 --- a/app/views/projects/edit.html.haml
 +++ b/app/views/projects/edit.html.haml
 @@ -3,68 +3,68 @@
@@ -8497,7 +8497,7 @@ index 6d872cd..f3397c2 100644
              .panel-body
                %p
                  Unarchiving the project will mark its repository as active.
-@@ -146,13 +146,13 @@
+@@ -146,36 +146,36 @@
                  %strong Once active this project shows up in the search and on the dashboard.
  
                .form-actions
@@ -8513,19 +8513,24 @@ index 6d872cd..f3397c2 100644
 +              プロジェクトをアーカイブ
              .panel-body
                %p
-                 Archiving the project will mark its repository as read-only.
-@@ -162,20 +162,20 @@
-                 %strong Archived projects cannot be committed to!
+-                Archiving the project will mark its repository as read-only.
++                プロジェクトをアーカイブするとリポジトリは読み取り専用になります。
+                 %br
+-                It is hidden from the dashboard and doesn't show up in searches.
++                ダッシュボードからは非表示になり、検索結果にも表示されません。
+                 %br
+-                %strong Archived projects cannot be committed to!
++                %strong アーカイブされたプロジェクトにはコミットできません！
  
                .form-actions
 -                = link_to 'Archive project', archive_namespace_project_path(@project.namespace, @project),
 -                    data: { confirm: "Are you sure that you want to archive this project?\nAn archived project cannot be committed to." },
 +                = link_to 'プロジェクトをアーカイブ', archive_namespace_project_path(@project.namespace, @project),
-+                    data: { confirm: "Are you sure that you want to archive this project?\nAn archived プロジェクト cannot be committed to." },
++                    data: { confirm: "本当にこのプロジェクトをアーカイブしますか？\nアーカイブされたプロジェクトにはコミットすることができません。" },
                      method: :post, class: "btn btn-warning"
        - else
 -        .nothing-here-block Only the project owner can archive a project
-+        .nothing-here-block Only the project owner can archive a プロジェクト
++        .nothing-here-block プロジェクトの所有者だけがプロジェクトをアーカイブすることができます。
  
        .panel.panel-default.panel.panel-warning
 -        .panel-heading Rename repository
@@ -8540,9 +8545,14 @@ index 6d872cd..f3397c2 100644
                .col-sm-9
                  .form-group
                    = f.text_field :name, class: "form-control"
-@@ -192,48 +192,48 @@
-                   %li Be careful. Renaming a project's repository can have unintended side effects.
-                   %li You will need to update your local repositories to point to the new location.
+@@ -189,59 +189,59 @@
+                       #{URI.join(root_url, @project.namespace.path)}/
+                     = f.text_field :path, class: 'form-control'
+                 %ul
+-                  %li Be careful. Renaming a project's repository can have unintended side effects.
+-                  %li You will need to update your local repositories to point to the new location.
++                  %li リポジトリの名前変更は意図しない副作用を招く可能性があります。ご注意ください。
++                  %li ローカルリポジトリが新しい場所を指すように修正する必要があります。
              .form-actions
 -              = f.submit 'Rename project', class: "btn btn-warning"
 +              = f.submit 'プロジェクトをリネーム', class: "btn btn-warning"
@@ -8563,9 +8573,12 @@ index 6d872cd..f3397c2 100644
 -                    = select_tag :new_namespace_id, namespaces_options(@project.namespace_id), { prompt: 'Choose a project namespace', class: 'select2' }
 +                    = select_tag :new_namespace_id, namespaces_options(@project.namespace_id), { prompt: 'Choose a プロジェクト namespace', class: 'select2' }
                    %ul
-                     %li Be careful. Changing the project's namespace can have unintended side effects.
-                     %li You can only transfer the project to namespaces you manage.
-                     %li You will need to update your local repositories to point to the new location.
+-                    %li Be careful. Changing the project's namespace can have unintended side effects.
+-                    %li You can only transfer the project to namespaces you manage.
+-                    %li You will need to update your local repositories to point to the new location.
++                    %li プロジェクトのネームスペースの変更は意図しない副作用を招く可能性があります。ご注意ください。
++                    %li プロジェクトはあなたが管理するネームスペースにのみ移譲することができます。
++                    %li ローカルリポジトリが新しい場所を指すように修正する必要があります。
                .form-actions
 -                = f.submit 'Transfer project', class: "btn btn-remove js-confirm-danger", data: { "confirm-danger-message" => transfer_project_message(@project) }
 +                = f.submit 'プロジェクトを移譲', class: "btn btn-remove js-confirm-danger", data: { "confirm-danger-message" => transfer_project_message(@project) }
@@ -8599,9 +8612,11 @@ index 6d872cd..f3397c2 100644
            .panel-body
              = form_tag(namespace_project_path(@project.namespace, @project), method: :delete, class: 'form-horizontal') do
                %p
-@@ -241,7 +241,7 @@
+-                Removing the project will delete its repository and all related resources including issues, merge requests etc.
++                プロジェクトを削除すると、リポジトリや課題、マージリクエストなどの関連するリソースすべてが削除されます。
                  %br
-                 %strong Removed projects cannot be restored!
+-                %strong Removed projects cannot be restored!
++                %strong 削除されたプロジェクトは元に戻すことができません！
                .form-actions
 -                = button_to 'Remove project', '#', class: "btn btn-remove js-confirm-danger", data: { "confirm-danger-message" => remove_project_message(@project) }
 +                = button_to 'プロジェクトを削除', '#', class: "btn btn-remove js-confirm-danger", data: { "confirm-danger-message" => remove_project_message(@project) }
@@ -11445,18 +11460,33 @@ index 7afbaed..2054eae 100644
      .commit-message-container
        .max-width-marker
 diff --git a/app/views/shared/_confirm_modal.html.haml b/app/views/shared/_confirm_modal.html.haml
-index 34241cd..9929921 100644
+index 34241cd..2f1947d 100644
 --- a/app/views/shared/_confirm_modal.html.haml
 +++ b/app/views/shared/_confirm_modal.html.haml
-@@ -4,7 +4,7 @@
+@@ -4,18 +4,18 @@
        .modal-header
          %a.close{href: "#", "data-dismiss" => "modal"} ×
          %h3.page-title
 -          Confirmation required
-+          Confirmation 必須
++          確認が必要です
  
        .modal-body
          %p.cred.lead.js-confirm-text
+ 
+         %p
+-          This action can lead to data loss.
+-          To prevent accidental actions we ask you to confirm your intention.
++          このアクションはデータを損失する可能性があります。
++          誤った操作を防ぐため、意図した操作であるかどうかを確認します。
+           %br
+-          Please type
++          続行するには、
+           %code.js-confirm-danger-match #{phrase}
+-          to proceed or close this modal to cancel.
++          を入力するか、ダイアログを閉じてキャンセルしてください.
+ 
+         .form-group
+           = text_field_tag 'confirm_name_input', '', class: 'form-control js-confirm-danger-input'
 diff --git a/app/views/shared/_event_filter.html.haml b/app/views/shared/_event_filter.html.haml
 index c38d931..20bfa85 100644
 --- a/app/views/shared/_event_filter.html.haml

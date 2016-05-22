@@ -2486,3 +2486,10 @@ versionCheckEnabled: バージョンチェックを利用
 weWillRedirectNonLoggedInUsersToThisPage: ログインしていないユーザをこのページにリダイレクトします
 enableSharedRunnersForANewProjects: 新しいプロジェクトで共用ランナーを利用
 maximumArtifactsSize: 最大成果物サイズ
+cancelAll: すべてキャンセル
+pasteAMachinePublicKeyHereReadMoreAboutHowToGenerateItHere: "{0}マシンの公開鍵をペーストしてください。生成方法の詳細は\n{1}こちら{2}"
+createANewDeployKeyOrAddAnExistingOne: '{0}新しいデプロイキー{1}を作成 または 既存のキーを追加'
+toggleCommentsForThisFile: このファイルのコメントを表示/非表示
+deployKeysAllowReadOnlyAccessToTheRepository: デプロイキーでリポジトリの読み取り専用アクセス
+deployKeysCanBeUsedForCIStagingOrProductionServers: デプロイキーはCI、ステージング、本番サーバに使われます。
+youCanCreateADeployKeyOrAddAnExistingOne: デプロイキーを新規作成、または既存のものを追加することができます。

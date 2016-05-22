@@ -1093,12 +1093,15 @@ index 40a5fe4..964f44d 100644
            %th
        = render @abuse_reports
 diff --git a/app/views/admin/application_settings/_form.html.haml b/app/views/admin/application_settings/_form.html.haml
-index c8dc31f..28491fb 100644
+index c8dc31f..90a21ea 100644
 --- a/app/views/admin/application_settings/_form.html.haml
 +++ b/app/views/admin/application_settings/_form.html.haml
-@@ -8,27 +8,27 @@
+@@ -6,29 +6,29 @@
+           %p= msg
+ 
    %fieldset
-     %legend Visibility and Access Controls
+-    %legend Visibility and Access Controls
++    %legend 可視性とアクセス権制御
      .form-group
 -      = f.label :default_branch_protection, class: 'control-label col-sm-2'
 +      = f.label :default_branch_protection, 'ブランチ保護初期値', class: 'control-label col-sm-2'
@@ -1217,7 +1220,7 @@ index c8dc31f..28491fb 100644
        .col-sm-10
          = f.text_field :home_page_url, class: 'form-control', placeholder: 'http://company.example.com', :'aria-describedby' => 'home_help_block'
 -        %span.help-block#home_help_block We will redirect non-logged in users to this page
-+        %span.help-block#home_help_block We will redirect non-logged in users to this ページ
++        %span.help-block#home_help_block ログインしていないユーザをこのページにリダイレクトします
      .form-group
 -      = f.label :after_sign_out_path, class: 'control-label col-sm-2'
 +      = f.label :after_sign_out_path, 'サインアウト後パス', class: 'control-label col-sm-2'
@@ -1241,15 +1244,19 @@ index c8dc31f..28491fb 100644
  
    %fieldset
      %legend Continuous Integration
-@@ -137,7 +137,7 @@
+@@ -137,10 +137,10 @@
          .checkbox
            = f.label :shared_runners_enabled do
              = f.check_box :shared_runners_enabled
 -            Enable shared runners for a new projects
-+            shared runners for a new プロジェクトを有効にする
++            新しいプロジェクトで共用ランナーを利用
  
      .form-group
-       = f.label :max_artifacts_size, 'Maximum artifacts size (MB)', class: 'control-label col-sm-2'
+-      = f.label :max_artifacts_size, 'Maximum artifacts size (MB)', class: 'control-label col-sm-2'
++      = f.label :max_artifacts_size, '最大成果物サイズ (MB)', class: 'control-label col-sm-2'
+       .col-sm-10
+         = f.number_field :max_artifacts_size, class: 'form-control'
+ 
 @@ -151,20 +151,20 @@
          .checkbox
            = f.label :recaptcha_enabled do
@@ -1422,7 +1429,7 @@ index de5bc05..8a7297c 100644
              %th CPU
              %th MEM
 diff --git a/app/views/admin/broadcast_messages/index.html.haml b/app/views/admin/broadcast_messages/index.html.haml
-index 17dffeb..bc9ae67 100644
+index 17dffeb..ed9bf98 100644
 --- a/app/views/admin/broadcast_messages/index.html.haml
 +++ b/app/views/admin/broadcast_messages/index.html.haml
 @@ -5,7 +5,7 @@
@@ -1458,7 +1465,7 @@ index 17dffeb..bc9ae67 100644
        = f.datetime_select :ends_at
    .form-actions
 -    = f.submit "Add broadcast message", class: "btn btn-create"
-+    = f.submit "broadcast messageを追加", class: "btn btn-create"
++    = f.submit "ブロードキャストメッセージを追加", class: "btn btn-create"
  
  -if @broadcast_messages.any?
    %ul.bordered-list.broadcast-messages

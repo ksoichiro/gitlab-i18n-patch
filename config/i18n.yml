@@ -955,6 +955,16 @@ translations:
     replace: '${beCarefulChangingTheProjectsNamespaceCanHaveUnintendedSideEffects}'
   - pattern: 'You can only transfer the project to namespaces you manage.'
     replace: '${youCanOnlyTransferTheProjectToNamespacesYouManage}'
+  - pattern: 'Visibility and Access Controls'
+    replace: '${visibilityAndAccessControls}'
+  - pattern: 'Version check enabled'
+    replace: '${versionCheckEnabled}'
+  - pattern: 'We will redirect non-logged in users to this page'
+    replace: '${weWillRedirectNonLoggedInUsersToThisPage}'
+  - pattern: 'Enable shared runners for a new projects'
+    replace: '${enableSharedRunnersForANewProjects}'
+  - pattern: 'Maximum artifacts size'
+    replace: '${maximumArtifactsSize}'
   - pattern: 'Are you sure?'
     replace: '${areYouSure}'
   - pattern: "Code?$|(\")Code?\"|(')Code?'|(\".* )Code?(\")"
@@ -1156,6 +1166,7 @@ translations:
     - {word: 'Timeout', key: timeout}
   - name: wordInSentence
     params:
+    - {word: 'broadcast message', key: broadcastMessage}
     - {word: 'applications?', key: application}
     - {word: 'public deploy keys?', key: publicDeployKey}
     - {word: 'merge requests?', key: mergeRequest}

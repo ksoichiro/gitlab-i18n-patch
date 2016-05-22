@@ -20,6 +20,8 @@ if [ -z $version ]; then
     "v8.6.8"
     "v8.7.0"
     "v8.7.3"
+    "v8.7.6"
+    "v8.8.0"
   )
 else
   versions=($version)

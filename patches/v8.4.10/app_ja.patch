@@ -6635,7 +6635,7 @@ index 79eb896..6c6e2a8 100644
    or
    = link_to 'decline', decline_invite_url(@token)
 diff --git a/app/views/notify/repository_push_email.html.haml b/app/views/notify/repository_push_email.html.haml
-index 3dd2595..adf4d17 100644
+index 3dd2595..7e61dfc 100644
 --- a/app/views/notify/repository_push_email.html.haml
 +++ b/app/views/notify/repository_push_email.html.haml
 @@ -21,7 +21,7 @@
@@ -6656,6 +6656,12 @@ index 3dd2595..adf4d17 100644
      - @message.diffs.each_with_index do |diff, i|
        %li{id: "diff-#{i}"}
          %a{href: @message.target_url + "#diff-#{i}"}
+@@ -65,4 +65,4 @@
+         %br
+ 
+   - if @message.compare_timeout
+-    %h5 Huge diff. To prevent performance issues changes are hidden
++    %h5 差分が大きいため、パフォーマンス悪化を防ぐため差分は表示されていません。
 diff --git a/app/views/notify/repository_push_email.text.haml b/app/views/notify/repository_push_email.text.haml
 index 53869e3..c92ff1d 100644
 --- a/app/views/notify/repository_push_email.text.haml
@@ -6679,7 +6685,7 @@ index 53869e3..c92ff1d 100644
        \
        \=====================================
 diff --git a/app/views/profiles/accounts/show.html.haml b/app/views/profiles/accounts/show.html.haml
-index a42fd38..79bcdeb 100644
+index a42fd38..b604f62 100644
 --- a/app/views/profiles/accounts/show.html.haml
 +++ b/app/views/profiles/accounts/show.html.haml
 @@ -1,54 +1,54 @@
@@ -6751,7 +6757,7 @@ index a42fd38..79bcdeb 100644
              invalidating all previous codes.
  
          - else
-@@ -59,12 +59,12 @@
+@@ -59,15 +59,15 @@
              password as usual, plus a randomly-generated code from your phone.
  
            .form-actions
@@ -6765,7 +6771,11 @@ index a42fd38..79bcdeb 100644
 +        Connected アカウント
        .panel-body
          .oauth-buttons.append-bottom-10
-           %p Click on icon to activate signin with one of the following services
+-          %p Click on icon to activate signin with one of the following services
++          %p 以下の各サービスを使ったサインインを有効化するには、アイコンをクリックしてください。
+           - button_based_providers.each do |provider|
+             .btn-group
+               = link_to provider_image_tag(provider), user_omniauth_authorize_path(provider), method: :post, class: "btn btn-lg #{'active' if auth_active?(provider)}", "data-no-turbolink" => "true"
 @@ -79,11 +79,11 @@
    - if current_user.can_change_username?
      .panel.panel-warning.update-username
@@ -6900,10 +6910,10 @@ index 8fdba45..d78e218 100644
  .prepend-top-default
  = render 'event_table', events: @events
 diff --git a/app/views/profiles/emails/index.html.haml b/app/views/profiles/emails/index.html.haml
-index 1d14034..b7693c2 100644
+index 1d14034..3e711a6 100644
 --- a/app/views/profiles/emails/index.html.haml
 +++ b/app/views/profiles/emails/index.html.haml
-@@ -1,52 +1,52 @@
+@@ -1,52 +1,50 @@
 -- page_title "Emails"
 +- page_title "メールアドレス"
  - header_title page_title, profile_emails_path
@@ -6914,15 +6924,17 @@ index 1d14034..b7693c2 100644
  
  %ul.prepend-top-default
    %li
-     Your
+-    Your
 -    %b Primary Email
-+    %b Primary メールアドレス
-     will be used for avatar detection and web based operations, such as edits and merges.
+-    will be used for avatar detection and web based operations, such as edits and merges.
++    %b プライマリメールアドレス
++    はアバターの検出やWebベースの操作(編集やマージなど)に使用されます。
    %li
-     Your
+-    Your
 -    %b Notification Email
-+    %b Notification メールアドレス
-     will be used for account notifications.
+-    will be used for account notifications.
++    %b 通知メールアドレス
++    はアカウントの通知に使用されます。
    %li
      Your
 -    %b Public Email

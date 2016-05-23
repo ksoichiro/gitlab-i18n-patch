@@ -986,6 +986,22 @@ translations:
     replace: '${deployKeysCanBeUsedForCIStagingOrProductionServers}'
   - pattern: 'You can create a deploy key or add an existing one'
     replace: '${youCanCreateADeployKeyOrAddAnExistingOne}'
+  - pattern: 'Huge diff. To prevent performance issues changes are hidden'
+    replace: '${hugeDiffToPreventPerformanceIssuesChangesAreHidden}'
+  - pattern: 'Click on icon to activate signin with one of the following services'
+    replace: '${clickOnIconToActivateSigninWithOneOfTheFollowingServices}'
+  - pattern: !!js/regexp /(\s+)Your\n(\s+[^\s]+\s)Primary Email\n(\s+)will be used for avatar detection and web based operations, such as edits and merges\./m
+    replace: '${yourPrimaryEmailWillBeUsedForAvatarDetectionAndWebBasedOperationsSuchAsEditsAndMerges}'
+    args:
+    - '$1'
+    - '$2'
+    - '$3'
+  - pattern: !!js/regexp /(\s+)Your\n(\s+[^\s]+\s)Notification Email\n(\s+)will be used for account notifications\./m
+    replace: '${yourNotificationEmailWillBeUsedForAccountNotification}'
+    args:
+    - '$1'
+    - '$2'
+    - '$3'
   - pattern: 'Are you sure?'
     replace: '${areYouSure}'
   - pattern: "Code?$|(\")Code?\"|(')Code?'|(\".* )Code?(\")"

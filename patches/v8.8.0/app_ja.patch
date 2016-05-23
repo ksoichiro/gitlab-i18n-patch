@@ -6748,7 +6748,7 @@ index 879fc17..0b9f4ea 100644
  %ul.well-list
    - events.each do |event|
 diff --git a/app/views/profiles/accounts/show.html.haml b/app/views/profiles/accounts/show.html.haml
-index afd3d79..17061da 100644
+index afd3d79..5284f2d 100644
 --- a/app/views/profiles/accounts/show.html.haml
 +++ b/app/views/profiles/accounts/show.html.haml
 @@ -1,35 +1,35 @@
@@ -6811,15 +6811,17 @@ index afd3d79..17061da 100644
  %hr
  - if button_based_providers.any?
    .row.prepend-top-default
-@@ -54,7 +54,7 @@
+@@ -54,8 +54,8 @@
          Activate signin with one of the following services
      .col-lg-9
        %label.label-light
 -        Connected Accounts
+-      %p Click on icon to activate signin with one of the following services
 +        Connected アカウント
-       %p Click on icon to activate signin with one of the following services
++      %p 以下の各サービスを使ったサインインを有効化するには、アイコンをクリックしてください。
        - button_based_providers.each do |provider|
          .provider-btn-group
+           .provider-btn-image
 @@ -71,9 +71,9 @@
    .row.prepend-top-default
      .col-lg-3.profile-settings-sidebar

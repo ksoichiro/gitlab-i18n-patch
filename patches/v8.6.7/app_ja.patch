@@ -6615,7 +6615,7 @@ index 79eb896..6c6e2a8 100644
    or
    = link_to 'decline', decline_invite_url(@token)
 diff --git a/app/views/notify/repository_push_email.html.haml b/app/views/notify/repository_push_email.html.haml
-index f2e405b..e867d17 100644
+index f2e405b..218dfc5 100644
 --- a/app/views/notify/repository_push_email.html.haml
 +++ b/app/views/notify/repository_push_email.html.haml
 @@ -21,7 +21,7 @@
@@ -6636,6 +6636,12 @@ index f2e405b..e867d17 100644
      - @message.diffs.each_with_index do |diff, i|
        %li{id: "diff-#{i}"}
          %a{href: @message.target_url + "#diff-#{i}"}
+@@ -65,4 +65,4 @@
+         %br
+ 
+   - if @message.compare_timeout
+-    %h5 Huge diff. To prevent performance issues changes are hidden
++    %h5 差分が大きいため、パフォーマンス悪化を防ぐため差分は表示されていません。
 diff --git a/app/views/notify/repository_push_email.text.haml b/app/views/notify/repository_push_email.text.haml
 index 53869e3..c92ff1d 100644
 --- a/app/views/notify/repository_push_email.text.haml
@@ -6670,7 +6676,7 @@ index 879fc17..0b9f4ea 100644
  %ul.well-list
    - events.each do |event|
 diff --git a/app/views/profiles/accounts/show.html.haml b/app/views/profiles/accounts/show.html.haml
-index 6efd119..8da5e4b 100644
+index 6efd119..4108568 100644
 --- a/app/views/profiles/accounts/show.html.haml
 +++ b/app/views/profiles/accounts/show.html.haml
 @@ -1,36 +1,36 @@
@@ -6734,15 +6740,17 @@ index 6efd119..8da5e4b 100644
  %hr
  - if button_based_providers.any?
    .row.prepend-top-default
-@@ -55,7 +55,7 @@
+@@ -55,8 +55,8 @@
          Activate signin with one of the following services
      .col-lg-9
        %label.label-light
 -        Connected Accounts
+-      %p Click on icon to activate signin with one of the following services
 +        Connected アカウント
-       %p Click on icon to activate signin with one of the following services
++      %p 以下の各サービスを使ったサインインを有効化するには、アイコンをクリックしてください。
        - button_based_providers.each do |provider|
          .provider-btn-group
+           .provider-btn-image
 @@ -72,9 +72,9 @@
    .row.prepend-top-default
      .col-lg-3.profile-settings-sidebar

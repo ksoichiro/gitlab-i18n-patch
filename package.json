@@ -7,6 +7,6 @@
   },
   "scripts": {
     "build": "i18n-patch --statistics -- ja gitlabhq",
-    "translate": "node translate.js"
+    "translate": "node lib/translate.js"
   }
 }

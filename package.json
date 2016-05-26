@@ -3,6 +3,7 @@
   "private": "true",
   "dependencies": {
     "i18n-patch": "0.0.13",
+    "js-yaml": "^3.6.1",
     "shelljs": "^0.7.0"
   },
   "scripts": {

@@ -21,7 +21,7 @@ GitLab v8.3.0 以降については、基本的に i18n-patch を使ったパッ
 1. `npm install`
     * 過去に実行済みで i18n-patch がアップデートされているときは `npm update`
 1. `config/i18n.yml`, `config/ja.yml` を更新
-1. 対象バージョンを増やすときは `lib/translate.js` を更新
+1. 対象バージョンを増やすときは `config/gitlab.yml` を更新
 1. `npm run translate` で対象全バージョンのパッチを更新
 1. 対象となるVagrantのVMを起動 (必須ではない)
     * 英語と日本語の長さの差でデザインが崩れたり、翻訳の不備によりシンタックスエラーなどが発生したりする恐れがある場合は動作確認します。

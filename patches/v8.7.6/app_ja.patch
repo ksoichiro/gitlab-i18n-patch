@@ -446,7 +446,7 @@ index c780e09..867122c 100644
  
    private
 diff --git a/app/controllers/profiles_controller.rb b/app/controllers/profiles_controller.rb
-index c5fa756..04a0bda 100644
+index c5fa756..f78c1d1 100644
 --- a/app/controllers/profiles_controller.rb
 +++ b/app/controllers/profiles_controller.rb
 @@ -1,3 +1,4 @@
@@ -454,6 +454,15 @@ index c5fa756..04a0bda 100644
  class ProfilesController < Profiles::ApplicationController
    include ActionView::Helpers::SanitizeHelper
  
+@@ -18,7 +19,7 @@ class ProfilesController < Profiles::ApplicationController
+         format.json { render json: { message: message } }
+       else
+         message = @user.errors.full_messages.uniq.join('. ')
+-        format.html { redirect_back_or_default(default: { action: 'show' }, options: { alert: "Failed to update profile. #{message}" }) }
++        format.html { redirect_back_or_default(default: { action: 'show' }, options: { alert: "プロフィールの更新に失敗しました. #{message}" }) }
+         format.json { render json: { message: message }, status: :unprocessable_entity }
+       end
+     end
 @@ -26,7 +27,7 @@ class ProfilesController < Profiles::ApplicationController
  
    def reset_private_token

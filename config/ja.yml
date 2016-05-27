@@ -2497,3 +2497,7 @@ hugeDiffToPreventPerformanceIssuesChangesAreHidden: 差分が大きいため、�
 clickOnIconToActivateSigninWithOneOfTheFollowingServices: 以下の各サービスを使ったサインインを有効化するには、アイコンをクリックしてください。
 yourPrimaryEmailWillBeUsedForAvatarDetectionAndWebBasedOperationsSuchAsEditsAndMerges: "{1}プライマリメールアドレス\n{2}はアバターの検出やWebベースの操作(編集やマージなど)に使用されます。"
 yourNotificationEmailWillBeUsedForAccountNotification: "{1}通知メールアドレス\n{2}はアカウントの通知に使用されます。"
+appearanceSettingsSaved: デザイン設定が保存されました
+groupWasRemoved: グループが削除されました
+newGroup: 新しいグループ
+failedToUpdateProfile: プロフィールの更新に失敗しました

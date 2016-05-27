@@ -35,6 +35,8 @@ translations:
     replace: '" ${commits}"'
   - pattern: 'd3.time.format("%B %e %Y")'
     replace: 'd3.time.format("${d3TimeFormat}")'
+  - pattern: 'Appearance settings saved'
+    replace: '${appearanceSettingsSaved}'
 
 # JavaScript
 - name: 'js:jquery.timeago'
@@ -235,6 +237,14 @@ translations:
     replace: '${addAnSshKeyToYourProfileToPullOrPushViaSsh}'
   - pattern: !!js/regexp /\s{4}titles = \{\n\s{6}opened. "Open"\n\s{4}\}/m
     replace: "    titles = {\n      opened: \"${open}\",\n      closed: \"${closed}\",\n      merged: \"${merged}\",\n      all: \"${all}\"\n    }"
+  - pattern: 'Group was removed.'
+    replace: '${groupWasRemoved}'
+  - pattern: 'New Group'
+    replace: '${newGroup}'
+  - pattern: 'New password'
+    replace: '${newPassword}'
+  - pattern: 'Failed to update profile'
+    replace: '${failedToUpdateProfile}'
 
   # Named patterns
   - name: sthWasSuccessfullyDone

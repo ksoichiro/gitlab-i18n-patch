@@ -113,6 +113,10 @@ translations:
     replace: '${denoteBlockquotesUsingAtTheBeginningOfALine}'
   - pattern: "Make a horizontal line using three or more hyphens ---, asterisks ***, or underscores ___"
     replace: '${makeAHorizontalLineUsingThreeOrMoreHyphensAsterisksOrUnderscores}'
+  - pattern: 'Add a reply'
+    replace: '${addAReply}'
+  - pattern: ' Reply'
+    replace: ' ${reply}'
 
 - name: 'rb'
   src: 'app/**/*.rb'
@@ -245,6 +249,16 @@ translations:
     replace: '${newPassword}'
   - pattern: 'Failed to update profile'
     replace: '${failedToUpdateProfile}'
+  - pattern: !!js/regexp /Are you sure you want to remove ([^\s]+) from ([^\s]+)\?/
+    replace: '${areYouSureYouWantToRemoveAFromB}'
+    args:
+    - '$1'
+    - '$2'
+  - pattern: !!js/regexp /Are you sure you want to revoke the invitation for ([^\s]+) to join ([^\s]+)\?/
+    replace: '${areYouSureYouWantToRevokeTheInvitationForAToJoinB}'
+    args:
+    - '$1'
+    - '$2'
 
   # Named patterns
   - name: sthWasSuccessfullyDone

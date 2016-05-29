@@ -2501,3 +2501,7 @@ appearanceSettingsSaved: デザイン設定が保存されました
 groupWasRemoved: グループが削除されました
 newGroup: 新しいグループ
 failedToUpdateProfile: プロフィールの更新に失敗しました
+areYouSureYouWantToRemoveAFromB: '本当に {0} を {1} から削除しますか？'
+areYouSureYouWantToRevokeTheInvitationForAToJoinB: '本当に {0} への {1} への招待を取り消しますか？'
+addAReply: 返信を追加
+reply: 返信

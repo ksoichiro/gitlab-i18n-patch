@@ -2505,3 +2505,16 @@ areYouSureYouWantToRemoveAFromB: '本当に {0} を {1} から削除しますか
 areYouSureYouWantToRevokeTheInvitationForAToJoinB: '本当に {0} への {1} への招待を取り消しますか？'
 addAReply: 返信を追加
 reply: 返信
+yourProjectsDefault: 'あなたのプロジェクト (デフォルト)'
+yourProjectsActivity: あなたのプロジェクトのアクティビティ
+starredProjectsActivity: スターをつけたプロジェクトのアクティビティ
+adminSection: 管理セクション
+helpAPIHelp: 'ヘルプ: API'
+helpMarkdownHelp: 'ヘルプ: Markdown'
+helpPermissionsHelp: 'ヘルプ: 権限'
+helpPublicAccessHelp: 'ヘルプ: 公開アクセス'
+helpRakeTasksHelp: 'ヘルプ: Rakeタスク'
+helpSSHKeysHelp: 'ヘルプ: SSHキー'
+helpSystemHooksHelp: 'ヘルプ: システムフック'
+helpWebHooksHelp: 'ヘルプ: Webフック'
+helpWorkflowHelp: 'ヘルプ: ワークフロー'

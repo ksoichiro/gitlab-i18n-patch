@@ -911,6 +911,25 @@ index 53c543c..0dd78c3 100644
      end
    end
  end
+diff --git a/app/helpers/preferences_helper.rb b/app/helpers/preferences_helper.rb
+index c73cb30..b1440a6 100644
+--- a/app/helpers/preferences_helper.rb
++++ b/app/helpers/preferences_helper.rb
+@@ -9,10 +9,10 @@ module PreferencesHelper
+ 
+   # Maps `dashboard` values to more user-friendly option text
+   DASHBOARD_CHOICES = {
+-    projects: 'Your Projects (default)',
+-    stars:    'Starred Projects',
+-    project_activity: "Your Projects' Activity",
+-    starred_project_activity: "Starred Projects' Activity"
++    projects: 'あなたのプロジェクト (デフォルト)',
++    stars:    'スターをつけたプロジェクト',
++    project_activity: "あなたのプロジェクトのアクティビティ",
++    starred_project_activity: "スターをつけたプロジェクトのアクティビティ"
+   }.with_indifferent_access.freeze
+ 
+   # Returns an Array usable by a select field for more user-friendly option text
 diff --git a/app/helpers/projects_helper.rb b/app/helpers/projects_helper.rb
 index 77ba612..e7ad727 100644
 --- a/app/helpers/projects_helper.rb
@@ -924,6 +943,49 @@ index 77ba612..e7ad727 100644
      else
        "You are going to revoke the invitation for #{member.invite_email} to join #{project.name} project team. Are you sure?"
      end
+diff --git a/app/helpers/search_helper.rb b/app/helpers/search_helper.rb
+index d4f7825..d8cd067 100644
+--- a/app/helpers/search_helper.rb
++++ b/app/helpers/search_helper.rb
+@@ -23,25 +23,25 @@ module SearchHelper
+   # Autocomplete results for various settings pages
+   def default_autocomplete
+     [
+-      { label: "Profile settings", url: profile_path },
+-      { label: "SSH Keys",         url: profile_keys_path },
+-      { label: "Dashboard",        url: root_path },
+-      { label: "Admin Section",       url: admin_root_path },
++      { label: "プロフィール設定", url: profile_path },
++      { label: "SSHキー",         url: profile_keys_path },
++      { label: "ダッシュボード",        url: root_path },
++      { label: "管理セクション",       url: admin_root_path },
+     ]
+   end
+ 
+   # Autocomplete results for internal help pages
+   def help_autocomplete
+     [
+-      { label: "help: API Help",           url: help_page_path("api", "README") },
+-      { label: "help: Markdown Help",      url: help_page_path("markdown", "markdown") },
+-      { label: "help: Permissions Help",   url: help_page_path("permissions", "permissions") },
+-      { label: "help: Public Access Help", url: help_page_path("public_access", "public_access") },
+-      { label: "help: Rake Tasks Help",    url: help_page_path("raketasks", "README") },
+-      { label: "help: SSH Keys Help",      url: help_page_path("ssh", "README") },
+-      { label: "help: System Hooks Help",  url: help_page_path("system_hooks", "system_hooks") },
+-      { label: "help: Web Hooks Help",     url: help_page_path("web_hooks", "web_hooks") },
+-      { label: "help: Workflow Help",      url: help_page_path("workflow", "README") },
++      { label: "ヘルプ: API",           url: help_page_path("api", "README") },
++      { label: "ヘルプ: Markdown",      url: help_page_path("markdown", "markdown") },
++      { label: "ヘルプ: 権限",   url: help_page_path("permissions", "permissions") },
++      { label: "ヘルプ: 公開アクセス", url: help_page_path("public_access", "public_access") },
++      { label: "ヘルプ: Rakeタスク",    url: help_page_path("raketasks", "README") },
++      { label: "ヘルプ: SSHキー",      url: help_page_path("ssh", "README") },
++      { label: "ヘルプ: システムフック",  url: help_page_path("system_hooks", "system_hooks") },
++      { label: "ヘルプ: Webフック",     url: help_page_path("web_hooks", "web_hooks") },
++      { label: "ヘルプ: ワークフロー",      url: help_page_path("workflow", "README") },
+     ]
+   end
+ 
 diff --git a/app/helpers/sorting_helper.rb b/app/helpers/sorting_helper.rb
 index 241179b..ed9911c 100644
 --- a/app/helpers/sorting_helper.rb

@@ -851,6 +851,25 @@ index b401c83..b5903f0 100644
 +                           data: data, title: '返信を追加'
    end
  end
+diff --git a/app/helpers/preferences_helper.rb b/app/helpers/preferences_helper.rb
+index c3832cf..94adf50 100644
+--- a/app/helpers/preferences_helper.rb
++++ b/app/helpers/preferences_helper.rb
+@@ -9,10 +9,10 @@ module PreferencesHelper
+ 
+   # Maps `dashboard` values to more user-friendly option text
+   DASHBOARD_CHOICES = {
+-    projects: 'Your Projects (default)',
+-    stars:    'Starred Projects',
+-    project_activity: "Your Projects' Activity",
+-    starred_project_activity: "Starred Projects' Activity",
++    projects: 'あなたのプロジェクト (デフォルト)',
++    stars:    'スターをつけたプロジェクト',
++    project_activity: "あなたのプロジェクトのアクティビティ",
++    starred_project_activity: "スターをつけたプロジェクトのアクティビティ",
+     groups: "Your Groups",
+     todos: "Your Todos"
+   }.with_indifferent_access.freeze
 diff --git a/app/helpers/projects_helper.rb b/app/helpers/projects_helper.rb
 index 0825b5b..470b9d6 100644
 --- a/app/helpers/projects_helper.rb
@@ -865,7 +884,7 @@ index 0825b5b..470b9d6 100644
        "You are going to revoke the invitation for #{member.invite_email} to join #{project.name} project team. Are you sure?"
      end
 diff --git a/app/helpers/search_helper.rb b/app/helpers/search_helper.rb
-index d2f94d4..8e30038 100644
+index d2f94d4..e84fd60 100644
 --- a/app/helpers/search_helper.rb
 +++ b/app/helpers/search_helper.rb
 @@ -1,3 +1,4 @@
@@ -873,6 +892,21 @@ index d2f94d4..8e30038 100644
  module SearchHelper
  
    def search_autocomplete_opts(term)
+@@ -34,10 +35,10 @@ module SearchHelper
+   # Autocomplete results for various settings pages
+   def default_autocomplete
+     [
+-      { category: "Settings", label: "Profile settings", url: profile_path },
+-      { category: "Settings", label: "SSH Keys",         url: profile_keys_path },
+-      { category: "Settings", label: "Dashboard",        url: root_path },
+-      { category: "Settings", label: "Admin Section",    url: admin_root_path },
++      { category: "Settings", label: "プロフィール設定", url: profile_path },
++      { category: "Settings", label: "SSHキー",         url: profile_keys_path },
++      { category: "Settings", label: "ダッシュボード",        url: root_path },
++      { category: "Settings", label: "管理セクション",    url: admin_root_path },
+     ]
+   end
+ 
 @@ -82,7 +83,7 @@ module SearchHelper
    def groups_autocomplete(term, limit = 5)
      current_user.authorized_groups.search(term).limit(limit).map do |group|

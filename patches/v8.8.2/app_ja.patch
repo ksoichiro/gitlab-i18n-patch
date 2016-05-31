@@ -916,6 +916,19 @@ index d2f94d4..e84fd60 100644
          id: group.id,
          label: "#{search_result_sanitize(group.name)}",
          url: group_path(group)
+diff --git a/app/helpers/selects_helper.rb b/app/helpers/selects_helper.rb
+index bb395e3..6d6e0f0 100644
+--- a/app/helpers/selects_helper.rb
++++ b/app/helpers/selects_helper.rb
+@@ -11,7 +11,7 @@ module SelectsHelper
+     html = {
+       class: css_class,
+       data: {
+-        placeholder: opts[:placeholder]   || 'Search for a user',
++        placeholder: opts[:placeholder]   || 'ユーザを検索',
+         null_user: opts[:null_user]       || false,
+         any_user: opts[:any_user]         || false,
+         email_user: opts[:email_user]     || false,
 diff --git a/app/helpers/sorting_helper.rb b/app/helpers/sorting_helper.rb
 index 630e10e..1caf4a9 100644
 --- a/app/helpers/sorting_helper.rb

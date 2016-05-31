@@ -944,7 +944,7 @@ index 77ba612..e7ad727 100644
        "You are going to revoke the invitation for #{member.invite_email} to join #{project.name} project team. Are you sure?"
      end
 diff --git a/app/helpers/search_helper.rb b/app/helpers/search_helper.rb
-index d4f7825..d8cd067 100644
+index d4f7825..ed04706 100644
 --- a/app/helpers/search_helper.rb
 +++ b/app/helpers/search_helper.rb
 @@ -23,25 +23,25 @@ module SearchHelper
@@ -986,6 +986,62 @@ index d4f7825..d8cd067 100644
      ]
    end
  
+@@ -52,15 +52,15 @@ module SearchHelper
+       ref    = @ref || @project.repository.root_ref
+ 
+       [
+-        { label: "#{prefix} - Files",          url: namespace_project_tree_path(@project.namespace, @project, ref) },
+-        { label: "#{prefix} - Commits",        url: namespace_project_commits_path(@project.namespace, @project, ref) },
+-        { label: "#{prefix} - Network",        url: namespace_project_network_path(@project.namespace, @project, ref) },
+-        { label: "#{prefix} - Graph",          url: namespace_project_graph_path(@project.namespace, @project, ref) },
+-        { label: "#{prefix} - Issues",         url: namespace_project_issues_path(@project.namespace, @project) },
+-        { label: "#{prefix} - Merge Requests", url: namespace_project_merge_requests_path(@project.namespace, @project) },
+-        { label: "#{prefix} - Milestones",     url: namespace_project_milestones_path(@project.namespace, @project) },
+-        { label: "#{prefix} - Snippets",       url: namespace_project_snippets_path(@project.namespace, @project) },
+-        { label: "#{prefix} - Members",        url: namespace_project_project_members_path(@project.namespace, @project) },
++        { label: "#{prefix} - ファイル",          url: namespace_project_tree_path(@project.namespace, @project, ref) },
++        { label: "#{prefix} - コミット",        url: namespace_project_commits_path(@project.namespace, @project, ref) },
++        { label: "#{prefix} - ネットワーク",        url: namespace_project_network_path(@project.namespace, @project, ref) },
++        { label: "#{prefix} - グラフ",          url: namespace_project_graph_path(@project.namespace, @project, ref) },
++        { label: "#{prefix} - 課題",         url: namespace_project_issues_path(@project.namespace, @project) },
++        { label: "#{prefix} - マージリクエスト", url: namespace_project_merge_requests_path(@project.namespace, @project) },
++        { label: "#{prefix} - マイルストーン",     url: namespace_project_milestones_path(@project.namespace, @project) },
++        { label: "#{prefix} - スニペット",       url: namespace_project_snippets_path(@project.namespace, @project) },
++        { label: "#{prefix} - メンバー",        url: namespace_project_project_members_path(@project.namespace, @project) },
+         { label: "#{prefix} - Wiki",           url: namespace_project_wikis_path(@project.namespace, @project) },
+       ]
+     else
+@@ -72,7 +72,7 @@ module SearchHelper
+   def groups_autocomplete(term, limit = 5)
+     Group.search(term).limit(limit).map do |group|
+       {
+-        label: "group: #{search_result_sanitize(group.name)}",
++        label: "グループ: #{search_result_sanitize(group.name)}",
+         url: group_path(group)
+       }
+     end
+@@ -83,7 +83,7 @@ module SearchHelper
+     ProjectsFinder.new.execute(current_user).search_by_title(term).
+       sorted_by_stars.non_archived.limit(limit).map do |p|
+       {
+-        label: "project: #{search_result_sanitize(p.name_with_namespace)}",
++        label: "プロジェクト: #{search_result_sanitize(p.name_with_namespace)}",
+         url: namespace_project_path(p.namespace, p)
+       }
+     end
+diff --git a/app/helpers/selects_helper.rb b/app/helpers/selects_helper.rb
+index 05386d7..27f033e 100644
+--- a/app/helpers/selects_helper.rb
++++ b/app/helpers/selects_helper.rb
+@@ -4,7 +4,7 @@ module SelectsHelper
+     css_class << "multiselect " if opts[:multiple]
+     css_class << (opts[:class] || '')
+     value = opts[:selected] || ''
+-    placeholder = opts[:placeholder] || 'Search for a user'
++    placeholder = opts[:placeholder] || 'ユーザを検索'
+ 
+     null_user = opts[:null_user] || false
+     any_user = opts[:any_user] || false
 diff --git a/app/helpers/sorting_helper.rb b/app/helpers/sorting_helper.rb
 index 241179b..ed9911c 100644
 --- a/app/helpers/sorting_helper.rb

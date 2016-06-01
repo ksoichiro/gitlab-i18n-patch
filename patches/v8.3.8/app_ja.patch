@@ -7824,7 +7824,7 @@ index ecc90a3..de281aa 100644
  :javascript
    disableButtonIfEmptyField($('.js-upload-blob-form').find('.js-commit-message'), '.btn-upload-file');
 diff --git a/app/views/projects/blob/edit.html.haml b/app/views/projects/blob/edit.html.haml
-index a47fe7e..494d4a9 100644
+index a47fe7e..5584f80 100644
 --- a/app/views/projects/blob/edit.html.haml
 +++ b/app/views/projects/blob/edit.html.haml
 @@ -1,4 +1,4 @@
@@ -7842,6 +7842,15 @@ index a47fe7e..494d4a9 100644
  
      %li
        = link_to '#preview', 'data-preview-url' => namespace_project_preview_blob_path(@project.namespace, @project, @id) do
+@@ -15,7 +15,7 @@
+ 
+   = form_tag(namespace_project_update_blob_path(@project.namespace, @project, @id), method: :put, class: 'form-horizontal js-requires-input js-edit-blob-form') do
+     = render 'projects/blob/editor', ref: @ref, path: @path, blob_data: @blob.data
+-    = render 'shared/new_commit_form', placeholder: "Update #{@blob.name}"
++    = render 'shared/new_commit_form', placeholder: "#{@blob.name}を更新"
+ 
+     = hidden_field_tag 'last_commit', @last_commit
+     = hidden_field_tag 'content', '', id: "file-content"
 diff --git a/app/views/projects/blob/new.html.haml b/app/views/projects/blob/new.html.haml
 index 167fa61..1860ebd 100644
 --- a/app/views/projects/blob/new.html.haml
@@ -11968,7 +11977,7 @@ index a54c5fa..e070e0a 100644
  
    = image_tag group_icon(group), class: "avatar s46 hidden-xs"
 diff --git a/app/views/shared/issuable/_filter.html.haml b/app/views/shared/issuable/_filter.html.haml
-index ac6c248..e450f27 100644
+index ac6c248..71547c7 100644
 --- a/app/views/shared/issuable/_filter.html.haml
 +++ b/app/views/shared/issuable/_filter.html.haml
 @@ -31,21 +31,21 @@
@@ -12013,12 +12022,12 @@ index ac6c248..e450f27 100644
            = hidden_field_tag :state_event, params[:state_event]
            .filter-item.inline
 -            = button_tag "Update issues", class: "btn update_selected_issues btn-save"
-+            = button_tag "Update 課題", class: "btn update_selected_issues btn-save"
++            = button_tag "課題を更新", class: "btn update_selected_issues btn-save"
  
  :javascript
    new UsersSelect();
 diff --git a/app/views/shared/issuable/_form.html.haml b/app/views/shared/issuable/_form.html.haml
-index 90dc006..55137cc 100644
+index 90dc006..73fa7cd 100644
 --- a/app/views/shared/issuable/_form.html.haml
 +++ b/app/views/shared/issuable/_form.html.haml
 @@ -6,7 +6,7 @@
@@ -12075,7 +12084,8 @@ index 90dc006..55137cc 100644
 +            { include_blank: true }, { class: 'select2', data: { placeholder: 'マイルストーンを選択' } })
          - else
            .prepend-top-10
-           %span.light No open milestones available.
+-          %span.light No open milestones available.
++          %span.light オープン中のマイルストーンがありません。
          &nbsp;
          - if can? current_user, :admin_milestone, issuable.project
 -          = link_to 'Create new milestone', new_namespace_project_milestone_path(issuable.project.namespace, issuable.project), target: :blank

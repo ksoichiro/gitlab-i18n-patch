@@ -1086,6 +1086,15 @@ translations:
     - '$1'
     - '$2'
     - '$3'
+  - pattern: 'No open milestones available.'
+    replace: '${noOpenMilestonesAvailable}'
+  - pattern: !!js/regexp /(\s+)Please review the\n(\s+[^']+')guidelines for contribution([^\n]+)\n(\s+)to this repository\./
+    replace: '${pleaseReviewTheGuidelinesForContributionToThisRepository}'
+    args:
+    - '$1'
+    - '$2'
+    - '$3'
+    - '$4'
   - pattern: 'Are you sure?'
     replace: '${areYouSure}'
   - pattern: "Code?$|(\")Code?\"|(')Code?'|(\".* )Code?(\")"
@@ -1355,6 +1364,7 @@ translations:
     - {verb: 'Attach(?: an?)?', key: attachSth}
     - {verb: Submit, key: submitSth}
     - {verb: Commit, key: commitSth}
+    - {verb: Update, key: updateSth}
   - name: sthCountsDone
     params:
     - {obj: issues, objKey: issue, done: updated, doneKey: update}

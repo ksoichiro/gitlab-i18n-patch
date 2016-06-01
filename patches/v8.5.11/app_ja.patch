@@ -1669,7 +1669,7 @@ index de5bc05..8a7297c 100644
              %th CPU
              %th MEM
 diff --git a/app/views/admin/broadcast_messages/_form.html.haml b/app/views/admin/broadcast_messages/_form.html.haml
-index 5c9403f..7d13adc 100644
+index 5c9403f..3e4b64a 100644
 --- a/app/views/admin/broadcast_messages/_form.html.haml
 +++ b/app/views/admin/broadcast_messages/_form.html.haml
 @@ -1,7 +1,7 @@
@@ -1706,7 +1706,7 @@ index 5c9403f..7d13adc 100644
    .form-actions
      - if @broadcast_message.persisted?
 -      = f.submit "Update broadcast message", class: "btn btn-create"
-+      = f.submit "Update ブロードキャストメッセージ", class: "btn btn-create"
++      = f.submit "ブロードキャストメッセージを更新", class: "btn btn-create"
      - else
 -      = f.submit "Add broadcast message", class: "btn btn-create"
 +      = f.submit "ブロードキャストメッセージを追加", class: "btn btn-create"
@@ -7985,7 +7985,7 @@ index 676924d..4905f3d 100644
              - unless can?(current_user, :push_code, @project)
                .inline.prepend-left-10
 diff --git a/app/views/projects/blob/edit.html.haml b/app/views/projects/blob/edit.html.haml
-index a279e6e..ce29ca5 100644
+index a279e6e..177aa5a 100644
 --- a/app/views/projects/blob/edit.html.haml
 +++ b/app/views/projects/blob/edit.html.haml
 @@ -1,4 +1,4 @@
@@ -8003,6 +8003,15 @@ index a279e6e..ce29ca5 100644
  
      %li
        = link_to '#preview', 'data-preview-url' => namespace_project_preview_blob_path(@project.namespace, @project, @id) do
+@@ -15,7 +15,7 @@
+ 
+   = form_tag(namespace_project_update_blob_path(@project.namespace, @project, @id), method: :put, class: 'form-horizontal js-requires-input js-edit-blob-form') do
+     = render 'projects/blob/editor', ref: @ref, path: @path, blob_data: @blob.data
+-    = render 'shared/new_commit_form', placeholder: "Update #{@blob.name}"
++    = render 'shared/new_commit_form', placeholder: "#{@blob.name}を更新"
+ 
+     = hidden_field_tag 'last_commit', @last_commit
+     = hidden_field_tag 'content', '', id: "file-content"
 diff --git a/app/views/projects/blob/new.html.haml b/app/views/projects/blob/new.html.haml
 index 167fa61..1860ebd 100644
 --- a/app/views/projects/blob/new.html.haml
@@ -12230,7 +12239,7 @@ index 289b0bf..4e64f68 100644
  
    .stats
 diff --git a/app/views/shared/issuable/_filter.html.haml b/app/views/shared/issuable/_filter.html.haml
-index e55159d..e16c20b 100644
+index e55159d..b46afaa 100644
 --- a/app/views/shared/issuable/_filter.html.haml
 +++ b/app/views/shared/issuable/_filter.html.haml
 @@ -8,21 +8,21 @@
@@ -12275,12 +12284,12 @@ index e55159d..e16c20b 100644
            = hidden_field_tag :state_event, params[:state_event]
            .filter-item.inline
 -            = button_tag "Update issues", class: "btn update_selected_issues btn-save"
-+            = button_tag "Update 課題", class: "btn update_selected_issues btn-save"
++            = button_tag "課題を更新", class: "btn update_selected_issues btn-save"
  
  - if @label
    .gray-content-block.second-block
 diff --git a/app/views/shared/issuable/_form.html.haml b/app/views/shared/issuable/_form.html.haml
-index 90dc006..55137cc 100644
+index 90dc006..73fa7cd 100644
 --- a/app/views/shared/issuable/_form.html.haml
 +++ b/app/views/shared/issuable/_form.html.haml
 @@ -6,7 +6,7 @@
@@ -12337,7 +12346,8 @@ index 90dc006..55137cc 100644
 +            { include_blank: true }, { class: 'select2', data: { placeholder: 'マイルストーンを選択' } })
          - else
            .prepend-top-10
-           %span.light No open milestones available.
+-          %span.light No open milestones available.
++          %span.light オープン中のマイルストーンがありません。
          &nbsp;
          - if can? current_user, :admin_milestone, issuable.project
 -          = link_to 'Create new milestone', new_namespace_project_milestone_path(issuable.project.namespace, issuable.project), target: :blank

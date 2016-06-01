@@ -1642,7 +1642,7 @@ index de5bc05..8a7297c 100644
              %th CPU
              %th MEM
 diff --git a/app/views/admin/broadcast_messages/_form.html.haml b/app/views/admin/broadcast_messages/_form.html.haml
-index b748460..000ca2c 100644
+index b748460..e0fadee 100644
 --- a/app/views/admin/broadcast_messages/_form.html.haml
 +++ b/app/views/admin/broadcast_messages/_form.html.haml
 @@ -1,7 +1,7 @@
@@ -1679,7 +1679,7 @@ index b748460..000ca2c 100644
    .form-actions
      - if @broadcast_message.persisted?
 -      = f.submit "Update broadcast message", class: "btn btn-create"
-+      = f.submit "Update ブロードキャストメッセージ", class: "btn btn-create"
++      = f.submit "ブロードキャストメッセージを更新", class: "btn btn-create"
      - else
 -      = f.submit "Add broadcast message", class: "btn btn-create"
 +      = f.submit "ブロードキャストメッセージを追加", class: "btn btn-create"
@@ -6814,7 +6814,7 @@ index 879fc17..0b9f4ea 100644
  %ul.well-list
    - events.each do |event|
 diff --git a/app/views/profiles/accounts/show.html.haml b/app/views/profiles/accounts/show.html.haml
-index 6efd119..4108568 100644
+index 6efd119..db0f4c3 100644
 --- a/app/views/profiles/accounts/show.html.haml
 +++ b/app/views/profiles/accounts/show.html.haml
 @@ -1,36 +1,36 @@
@@ -6906,7 +6906,7 @@ index 6efd119..4108568 100644
            = f.button class: "btn btn-warning", type: "submit" do
              = icon "spinner spin", class: "hidden loading-username"
 -            Update username
-+            Update ユーザ名
++            ユーザ名を更新
    %hr
  
  - if signup_enabled?
@@ -7125,7 +7125,7 @@ index 89f6f01..9e94432 100644
 +- page_title @key.title, "SSHキー"
  = render "key_details"
 diff --git a/app/views/profiles/notifications/show.html.haml b/app/views/profiles/notifications/show.html.haml
-index 3d15c0d..cc9cffd 100644
+index 3d15c0d..8ea2b8f 100644
 --- a/app/views/profiles/notifications/show.html.haml
 +++ b/app/views/profiles/notifications/show.html.haml
 @@ -1,4 +1,4 @@
@@ -7147,6 +7147,15 @@ index 3d15c0d..cc9cffd 100644
          .radio
            = f.label :notification_level, value: Notification::N_DISABLED do
              = f.radio_button :notification_level, Notification::N_DISABLED
+@@ -54,7 +54,7 @@
+             %p You will receive notifications for any activity
+ 
+       .prepend-top-default
+-        = f.submit 'Update settings', class: "btn btn-create"
++        = f.submit 'settingsを更新', class: "btn btn-create"
+       %hr
+ .col-lg-9.col-lg-push-3
+   %h5
 diff --git a/app/views/profiles/passwords/edit.html.haml b/app/views/profiles/passwords/edit.html.haml
 index 44d758d..e24613c 100644
 --- a/app/views/profiles/passwords/edit.html.haml
@@ -7283,7 +7292,7 @@ index f802116..00191d8 100644
 -      = f.submit 'Save changes', class: 'btn btn-save'
 +      = f.submit '変更を保存', class: 'btn btn-save'
 diff --git a/app/views/profiles/show.html.haml b/app/views/profiles/show.html.haml
-index cd582ba..1f3cdfb 100644
+index cd582ba..ab77832 100644
 --- a/app/views/profiles/show.html.haml
 +++ b/app/views/profiles/show.html.haml
 @@ -10,7 +10,7 @@
@@ -7374,8 +7383,9 @@ index cd582ba..1f3cdfb 100644
 -        %span.help-block Tell us about yourself in fewer than 250 characters.
 +        %span.help-block 250字以内で自己紹介してください。
        .prepend-top-default.append-bottom-default
-         = f.submit 'Update profile settings', class: "btn btn-success"
+-        = f.submit 'Update profile settings', class: "btn btn-success"
 -        = link_to "Cancel", user_path(current_user), class: "btn btn-cancel"
++        = f.submit 'profile settingsを更新', class: "btn btn-success"
 +        = link_to "キャンセル", user_path(current_user), class: "btn btn-cancel"
 diff --git a/app/views/profiles/two_factor_auths/codes.html.haml b/app/views/profiles/two_factor_auths/codes.html.haml
 index addf356..66d156a 100644
@@ -7763,7 +7773,7 @@ index b1f50eb..f32acda 100644
              - unless can?(current_user, :push_code, @project)
                .inline.prepend-left-10
 diff --git a/app/views/projects/blob/edit.html.haml b/app/views/projects/blob/edit.html.haml
-index effcce5..0c7c2f8 100644
+index effcce5..e94fdcd 100644
 --- a/app/views/projects/blob/edit.html.haml
 +++ b/app/views/projects/blob/edit.html.haml
 @@ -1,4 +1,4 @@
@@ -7781,6 +7791,15 @@ index effcce5..0c7c2f8 100644
  
      %li
        = link_to '#preview', 'data-preview-url' => namespace_project_preview_blob_path(@project.namespace, @project, @id) do
+@@ -15,7 +15,7 @@
+ 
+   = form_tag(namespace_project_update_blob_path(@project.namespace, @project, @id), method: :put, class: 'form-horizontal js-quick-submit js-requires-input js-edit-blob-form') do
+     = render 'projects/blob/editor', ref: @ref, path: @path, blob_data: @blob.data
+-    = render 'shared/new_commit_form', placeholder: "Update #{@blob.name}"
++    = render 'shared/new_commit_form', placeholder: "#{@blob.name}を更新"
+ 
+     = hidden_field_tag 'last_commit', @last_commit
+     = hidden_field_tag 'content', '', id: "file-content"
 diff --git a/app/views/projects/blob/new.html.haml b/app/views/projects/blob/new.html.haml
 index 1dd2b5c..fe67e29 100644
 --- a/app/views/projects/blob/new.html.haml
@@ -11950,7 +11969,7 @@ index 28e2878..2fbb9d1 100644
  
    .stats
 diff --git a/app/views/shared/issuable/_filter.html.haml b/app/views/shared/issuable/_filter.html.haml
-index 2fd4be9..ed14bba 100644
+index 2fd4be9..e2ede5a 100644
 --- a/app/views/shared/issuable/_filter.html.haml
 +++ b/app/views/shared/issuable/_filter.html.haml
 @@ -9,14 +9,14 @@
@@ -11998,12 +12017,12 @@ index 2fd4be9..ed14bba 100644
            = hidden_field_tag :state_event, params[:state_event]
            .filter-item.inline
 -            = button_tag "Update issues", class: "btn update_selected_issues btn-save"
-+            = button_tag "Update 課題", class: "btn update_selected_issues btn-save"
++            = button_tag "課題を更新", class: "btn update_selected_issues btn-save"
  
  - if @label
    .gray-content-block.second-block
 diff --git a/app/views/shared/issuable/_form.html.haml b/app/views/shared/issuable/_form.html.haml
-index e2a9e5b..ad1844e 100644
+index e2a9e5b..b95cc24 100644
 --- a/app/views/shared/issuable/_form.html.haml
 +++ b/app/views/shared/issuable/_form.html.haml
 @@ -6,7 +6,7 @@
@@ -12066,7 +12085,8 @@ index e2a9e5b..ad1844e 100644
 +            { include_blank: true }, { class: 'select2', data: { placeholder: 'マイルストーンを選択' } })
          - else
            .prepend-top-10
-           %span.light No open milestones available.
+-          %span.light No open milestones available.
++          %span.light オープン中のマイルストーンがありません。
          &nbsp;
          - if can? current_user, :admin_milestone, issuable.project
 -          = link_to 'Create new milestone', new_namespace_project_milestone_path(issuable.project.namespace, issuable.project), target: :blank

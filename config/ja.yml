@@ -2520,3 +2520,6 @@ helpWebHooksHelp: 'ヘルプ: Webフック'
 helpWorkflowHelp: 'ヘルプ: ワークフロー'
 network: ネットワーク
 graph: グラフ
+noOpenMilestonesAvailable: オープン中のマイルストーンがありません。
+updateSth: '{0}を更新'
+pleaseReviewTheGuidelinesForContributionToThisRepository: "{0}このリポジトリの\n{1}コントリビューション・ガイドライン{2}\n{3}を確認してください"

@@ -319,6 +319,8 @@ translations:
     args:
     - '$1'
     - '$2'
+  - pattern: 'Status changed to closed'
+    replace: '${statusChangedToClosed}'
 
   # Named patterns
   - name: sthWasSuccessfullyDone
@@ -1095,6 +1097,10 @@ translations:
     - '$2'
     - '$3'
     - '$4'
+  - pattern: "System OAuth applications don't belong to any user and can only be managed by admins"
+    replace: '${systemOAuthApplicationsDontBelongToAnyUserAndCanOnlyBeManagedByAdmins}'
+  - pattern: 'System OAuth applications'
+    replace: '${systemOAuthApplications}'
   - pattern: 'Are you sure?'
     replace: '${areYouSure}'
   - pattern: "Code?$|(\")Code?\"|(')Code?'|(\".* )Code?(\")"

@@ -2523,3 +2523,6 @@ graph: グラフ
 noOpenMilestonesAvailable: オープン中のマイルストーンがありません。
 updateSth: '{0}を更新'
 pleaseReviewTheGuidelinesForContributionToThisRepository: "{0}このリポジトリの\n{1}コントリビューション・ガイドライン{2}\n{3}を確認してください"
+statusChangedToClosed: ステータスをクローズに変更しました
+systemOAuthApplications: システムOAuthアプリケーション
+systemOAuthApplicationsDontBelongToAnyUserAndCanOnlyBeManagedByAdmins: システムOAuthアプリケーションは特定のユーザのものではなく、管理者のみによって管理されます。

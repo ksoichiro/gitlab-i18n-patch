@@ -1174,6 +1174,42 @@ index ac25d38..7fea2c5 100644
      end
    end
  
+diff --git a/app/services/notification_service.rb b/app/services/notification_service.rb
+index bdf7b3a..3a9e2df 100644
+--- a/app/services/notification_service.rb
++++ b/app/services/notification_service.rb
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ # NotificationService class
+ #
+ # Used for notifying users with emails about different events
+@@ -110,7 +111,7 @@ class NotificationService
+     return true unless note.noteable_type.present?
+ 
+     # ignore gitlab service messages
+-    return true if note.note.start_with?('Status changed to closed')
++    return true if note.note.start_with?('ステータスをクローズに変更しました')
+     return true if note.cross_reference? && note.system == true
+     return true if note.is_award
+ 
+diff --git a/app/services/system_note_service.rb b/app/services/system_note_service.rb
+index 98a71cb..b31b91c 100644
+--- a/app/services/system_note_service.rb
++++ b/app/services/system_note_service.rb
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ # SystemNoteService
+ #
+ # Used for creating system notes (e.g., when a user references a merge request
+@@ -120,7 +121,7 @@ class SystemNoteService
+   #
+   #   "Status changed to merged"
+   #
+-  #   "Status changed to closed by bc17db76"
++  #   "ステータスをクローズに変更しました by bc17db76"
+   #
+   # Returns the created Note object
+   def self.change_status(noteable, project, author, status, source)
 diff --git a/app/views/abuse_reports/new.html.haml b/app/views/abuse_reports/new.html.haml
 index cffd768..c8c3233 100644
 --- a/app/views/abuse_reports/new.html.haml
@@ -1465,7 +1501,7 @@ index c596866..1d70ce2 100644
  - @url = admin_application_path(@application)
  = render 'form', application: @application
 diff --git a/app/views/admin/applications/index.html.haml b/app/views/admin/applications/index.html.haml
-index f8cd98f..a3e8f77 100644
+index f8cd98f..f49454d 100644
 --- a/app/views/admin/applications/index.html.haml
 +++ b/app/views/admin/applications/index.html.haml
 @@ -1,14 +1,14 @@
@@ -1473,9 +1509,10 @@ index f8cd98f..a3e8f77 100644
 +- page_title "アプリケーション"
  %h3.page-title
 -  System OAuth applications
-+  System OAuth アプリケーション
++  システムOAuthアプリケーション
  %p.light
-   System OAuth applications don't belong to any user and can only be managed by admins
+-  System OAuth applications don't belong to any user and can only be managed by admins
++  システムOAuthアプリケーションは特定のユーザのものではなく、管理者のみによって管理されます。
  %hr
 -%p= link_to 'New Application', new_admin_application_path, class: 'btn btn-success'
 +%p= link_to '新しいアプリケーション', new_admin_application_path, class: 'btn btn-success'

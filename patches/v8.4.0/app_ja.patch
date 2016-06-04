@@ -1151,6 +1151,24 @@ index 71d33b4..ef636d6 100644
    end
  
    def restricted_visibility_levels(show_all = false)
+diff --git a/app/mailers/emails/groups.rb b/app/mailers/emails/groups.rb
+index 1c43f95..12059f9 100644
+--- a/app/mailers/emails/groups.rb
++++ b/app/mailers/emails/groups.rb
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ module Emails
+   module Groups
+     def group_access_granted_email(group_member_id)
+@@ -8,7 +9,7 @@ module Emails
+       @current_user = @group_member.user
+ 
+       mail(to: @group_member.user.notification_email,
+-           subject: subject("Access to group was granted"))
++           subject: subject("グループへのアクセス権が付与されました"))
+     end
+ 
+     def group_member_invited_email(group_member_id, token)
 diff --git a/app/models/merge_request.rb b/app/models/merge_request.rb
 index 41dd248..309ae11 100644
 --- a/app/models/merge_request.rb

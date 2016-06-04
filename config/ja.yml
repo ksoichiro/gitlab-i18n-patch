@@ -2526,3 +2526,4 @@ pleaseReviewTheGuidelinesForContributionToThisRepository: "{0}このリポジト
 statusChangedToClosed: ステータスをクローズに変更しました
 systemOAuthApplications: システムOAuthアプリケーション
 systemOAuthApplicationsDontBelongToAnyUserAndCanOnlyBeManagedByAdmins: システムOAuthアプリケーションは特定のユーザのものではなく、管理者のみによって管理されます。
+accessToGroupWasGranted: グループへのアクセス権が付与されました

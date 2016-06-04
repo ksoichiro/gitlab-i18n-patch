@@ -321,6 +321,8 @@ translations:
     - '$2'
   - pattern: 'Status changed to closed'
     replace: '${statusChangedToClosed}'
+  - pattern: 'Access to group was granted'
+    replace: '${accessToGroupWasGranted}'
 
   # Named patterns
   - name: sthWasSuccessfullyDone

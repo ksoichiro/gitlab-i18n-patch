@@ -1816,10 +1816,19 @@ index ebf2b7b..dbe5bdf 100644
              %th Finished at
              %th
 diff --git a/app/views/admin/dashboard/index.html.haml b/app/views/admin/dashboard/index.html.haml
-index cc389c3..d1bf6aa 100644
+index cc389c3..02888d5 100644
 --- a/app/views/admin/dashboard/index.html.haml
 +++ b/app/views/admin/dashboard/index.html.haml
-@@ -8,11 +8,11 @@
+@@ -1,38 +1,38 @@
+ .admin-dashboard
+   .row
+     .col-md-4
+-      %h4 Statistics
++      %h4 統計
+       %hr
+       %p
+-        Forks
++        フォーク
          %span.light.pull-right
            = number_with_delimiter(ForkedProjectLink.count)
        %p
@@ -1833,7 +1842,8 @@ index cc389c3..d1bf6aa 100644
          %span.light.pull-right
            = number_with_delimiter(MergeRequest.count)
        %p
-@@ -20,19 +20,19 @@
+-        Notes
++        ノート
          %span.light.pull-right
            = number_with_delimiter(Note.count)
        %p
@@ -8323,27 +8333,31 @@ index 511863d..546023b 100644
 -            New file
 +            新しいファイル
 diff --git a/app/views/projects/buttons/_fork.html.haml b/app/views/projects/buttons/_fork.html.haml
-index 1335318..37c5eb8 100644
+index 1335318..ce90101 100644
 --- a/app/views/projects/buttons/_fork.html.haml
 +++ b/app/views/projects/buttons/_fork.html.haml
-@@ -1,7 +1,7 @@
+@@ -1,17 +1,17 @@
  - unless @project.empty_repo?
    - if current_user && can?(current_user, :fork_project, @project)
      - if current_user.already_forked?(@project) && current_user.manageable_namespaces.size < 2
 -      = link_to namespace_project_path(current_user, current_user.fork_of(@project)), title: 'Go to your fork', class: 'btn has_tooltip' do
 +      = link_to namespace_project_path(current_user, current_user.fork_of(@project)), title: 'フォークに移動', class: 'btn has_tooltip' do
          = icon('code-fork fw')
-         Fork
+-        Fork
++        フォーク
        %div.count-with-arrow
-@@ -9,7 +9,7 @@
+         %span.arrow
          %span.count
            = @project.forks_count
      - else
 -      = link_to new_namespace_project_fork_path(@project.namespace, @project), title: "Fork project", class: 'btn has_tooltip' do
 +      = link_to new_namespace_project_fork_path(@project.namespace, @project), title: "Fork プロジェクト", class: 'btn has_tooltip' do
          = icon('code-fork fw')
-         Fork
+-        Fork
++        フォーク
        %div.count-with-arrow
+         %span.arrow
+         %span.count
 diff --git a/app/views/projects/buttons/_notifications.html.haml b/app/views/projects/buttons/_notifications.html.haml
 index 3e83ec3..e81715e 100644
 --- a/app/views/projects/buttons/_notifications.html.haml
@@ -9078,7 +9092,7 @@ index 905f6bb..961e80c 100644
  .file-finder-holder.tree-holder.clearfix
    .gray-content-block.top-block
 diff --git a/app/views/projects/forks/error.html.haml b/app/views/projects/forks/error.html.haml
-index 3d0ab5b..2d4761a 100644
+index 3d0ab5b..0be076f 100644
 --- a/app/views/projects/forks/error.html.haml
 +++ b/app/views/projects/forks/error.html.haml
 @@ -1,4 +1,4 @@
@@ -9087,6 +9101,14 @@ index 3d0ab5b..2d4761a 100644
  - if @forked_project && !@forked_project.saved?
    .alert.alert-danger.alert-block
      %h4
+@@ -16,6 +16,6 @@
+         = @forked_project.errors.full_messages.first
+ 
+     %p
+-      = link_to new_namespace_project_fork_path(@project.namespace, @project), title: "Fork", class: "btn" do
++      = link_to new_namespace_project_fork_path(@project.namespace, @project), title: "フォーク", class: "btn" do
+         %i.fa.fa-code-fork
+         Try to Fork again
 diff --git a/app/views/projects/forks/new.html.haml b/app/views/projects/forks/new.html.haml
 index 8a2c027..008784f 100644
 --- a/app/views/projects/forks/new.html.haml

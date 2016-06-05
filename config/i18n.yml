@@ -1314,6 +1314,9 @@ translations:
     - {word: 'Delete', key: delete}
     - {word: 'People', key: people}
     - {word: 'Timeout', key: timeout}
+    - {word: 'Statistics', key: statistics}
+    - {word: 'Forks?', key: fork}
+    - {word: 'Notes?', key: note}
   - name: wordInSentence
     params:
     - {word: 'broadcast message', key: broadcastMessage}

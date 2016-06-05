@@ -177,6 +177,12 @@ translations:
     replace: 'label: "${project}: '
   - pattern: 'Search for a user'
     replace: '${searchForAUser}'
+  - pattern: !!js/regexp /^(\s+haml_concat )"Project access must be granted explicitly for each user."/
+    replace: '$1"${projectAccessMustBeGrantedExplicitlyToEachUser}"'
+  - pattern: !!js/regexp /^(\s+haml_concat )"The project can be cloned by"\n\s+haml_concat "any logged in user."$/
+    replace: '$1"${theProjectCanBeClonedByAnyLoggedInUser}"'
+  - pattern: !!js/regexp /^(\s+haml_concat )"The project can be cloned"\n\s+haml_concat "without any"\n\s+haml_concat "authentication."/
+    replace: '$1"${theProjectCanBeClonedWithoutAnyAuthentication}"'
 
 - name: 'rb'
   src: 'app/**/*.rb'
@@ -323,6 +329,12 @@ translations:
     replace: '${statusChangedToClosed}'
   - pattern: 'Access to group was granted'
     replace: '${accessToGroupWasGranted}'
+  - pattern: 'Account was created for you'
+    replace: '${accountWasCreatedForYou}'
+  - pattern: 'Email was added to your account'
+    replace: '${emailWasAddedToYourAccount}'
+  - pattern: 'SSH key was added to your account'
+    replace: '${sshKeyWasAddedToYourAccount}'
 
   # Named patterns
   - name: sthWasSuccessfullyDone

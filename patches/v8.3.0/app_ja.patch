@@ -1174,6 +1174,38 @@ index 1c43f95..12059f9 100644
      end
  
      def group_member_invited_email(group_member_id, token)
+diff --git a/app/mailers/emails/profile.rb b/app/mailers/emails/profile.rb
+index 3a83b08..c194174 100644
+--- a/app/mailers/emails/profile.rb
++++ b/app/mailers/emails/profile.rb
+@@ -1,23 +1,24 @@
++# encoding: utf-8
+ module Emails
+   module Profile
+     def new_user_email(user_id, token = nil)
+       @current_user = @user = User.find(user_id)
+       @target_url = user_url(@user)
+       @token = token
+-      mail(to: @user.notification_email, subject: subject("Account was created for you"))
++      mail(to: @user.notification_email, subject: subject("あなたのアカウントが作成されました"))
+     end
+ 
+     def new_email_email(email_id)
+       @email = Email.find(email_id)
+       @current_user = @user = @email.user
+-      mail(to: @user.notification_email, subject: subject("Email was added to your account"))
++      mail(to: @user.notification_email, subject: subject("メールアドレスがあなたのアカウントに追加されました"))
+     end
+ 
+     def new_ssh_key_email(key_id)
+       @key = Key.find(key_id)
+       @current_user = @user = @key.user
+       @target_url = user_url(@user)
+-      mail(to: @user.notification_email, subject: subject("SSH key was added to your account"))
++      mail(to: @user.notification_email, subject: subject("SSHキーがあなたのアカウントに追加されました"))
+     end
+   end
+ end
 diff --git a/app/models/merge_request.rb b/app/models/merge_request.rb
 index ac25d38..7fea2c5 100644
 --- a/app/models/merge_request.rb

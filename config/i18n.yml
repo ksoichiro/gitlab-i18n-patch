@@ -335,6 +335,10 @@ translations:
     replace: '${emailWasAddedToYourAccount}'
   - pattern: 'SSH key was added to your account'
     replace: '${sshKeyWasAddedToYourAccount}'
+  - pattern: 'Invalid repository path'
+    replace: '${invalidRepositoryPath}'
+  - pattern: "Can't check your ability to create project"
+    replace: '${cantCheckYourAbilityToCreateProject}'
 
   # Named patterns
   - name: sthWasSuccessfullyDone

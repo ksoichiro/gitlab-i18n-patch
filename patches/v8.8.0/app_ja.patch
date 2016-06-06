@@ -1114,6 +1114,33 @@ index 722c258..acb67a1 100644
      end
    end
  
+diff --git a/app/models/project.rb b/app/models/project.rb
+index 37de1df..1969f5e 100644
+--- a/app/models/project.rb
++++ b/app/models/project.rb
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ require 'carrierwave/orm/activerecord'
+ 
+ class Project < ActiveRecord::Base
+@@ -434,7 +435,7 @@ class Project < ActiveRecord::Base
+       self.errors.add(:limit_reached, "Your project limit is #{creator.projects_limit} projects! Please contact your administrator to increase it")
+     end
+   rescue
+-    self.errors.add(:base, "Can't check your ability to create project")
++    self.errors.add(:base, "プロジェクトの作成権限が確認できませんでした")
+   end
+ 
+   def visibility_level_allowed_by_group
+@@ -663,7 +664,7 @@ class Project < ActiveRecord::Base
+   def valid_repo?
+     repository.exists?
+   rescue
+-    errors.add(:path, 'Invalid repository path')
++    errors.add(:path, 'リポジトリのパスが無効です')
+     false
+   end
+ 
 diff --git a/app/services/notification_service.rb b/app/services/notification_service.rb
 index 42ec1ac..c974f05 100644
 --- a/app/services/notification_service.rb

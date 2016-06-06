@@ -2532,3 +2532,5 @@ emailWasAddedToYourAccount: メールアドレスがあなたのアカウント�
 sshKeyWasAddedToYourAccount: SSHキーがあなたのアカウントに追加されました
 statistics: 統計
 note: ノート
+invalidRepositoryPath: リポジトリのパスが無効です
+cantCheckYourAbilityToCreateProject: プロジェクトの作成権限が確認できませんでした

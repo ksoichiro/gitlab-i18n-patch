@@ -1092,6 +1092,33 @@ index dbecc48..32ad421 100644
      end
    end
  
+diff --git a/app/models/project.rb b/app/models/project.rb
+index 4ad0c1f..83d3320 100644
+--- a/app/models/project.rb
++++ b/app/models/project.rb
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ # == Schema Information
+ #
+ # Table name: projects
+@@ -479,7 +480,7 @@ class Project < ActiveRecord::Base
+       self.errors.add(:limit_reached, "Your project limit is #{creator.projects_limit} projects! Please contact your administrator to increase it")
+     end
+   rescue
+-    self.errors.add(:base, "Can't check your ability to create project")
++    self.errors.add(:base, "プロジェクトの作成権限が確認できませんでした")
+   end
+ 
+   def visibility_level_allowed_by_group
+@@ -708,7 +709,7 @@ class Project < ActiveRecord::Base
+   def valid_repo?
+     repository.exists?
+   rescue
+-    errors.add(:path, 'Invalid repository path')
++    errors.add(:path, 'リポジトリのパスが無効です')
+     false
+   end
+ 
 diff --git a/app/services/notification_service.rb b/app/services/notification_service.rb
 index 42ec1ac..c974f05 100644
 --- a/app/services/notification_service.rb

@@ -1119,6 +1119,41 @@ index 4ad0c1f..83d3320 100644
      false
    end
  
+diff --git a/app/services/files/create_service.rb b/app/services/files/create_service.rb
+index e4cde4a..b6d381f 100644
+--- a/app/services/files/create_service.rb
++++ b/app/services/files/create_service.rb
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ require_relative "base_service"
+ 
+ module Files
+@@ -11,14 +12,14 @@ module Files
+ 
+       if @file_path =~ Gitlab::Regex.directory_traversal_regex
+         raise_error(
+-          'Your changes could not be committed, because the file name ' +
++          '変更をコミットできません。ファイル名には' +
+           Gitlab::Regex.directory_traversal_regex_message
+         )
+       end
+ 
+       unless @file_path =~ Gitlab::Regex.file_path_regex
+         raise_error(
+-          'Your changes could not be committed, because the file name ' +
++          '変更をコミットできません。ファイル名には' +
+           Gitlab::Regex.file_path_regex_message
+         )
+       end
+@@ -29,7 +30,7 @@ module Files
+         blob = repository.blob_at_branch(@source_branch, @file_path)
+ 
+         if blob
+-          raise_error("Your changes could not be committed because a file with the same name already exists")
++          raise_error("この名前のファイルが存在しているため、変更をコミットできません")
+         end
+       end
+     end
 diff --git a/app/services/notification_service.rb b/app/services/notification_service.rb
 index 42ec1ac..c974f05 100644
 --- a/app/services/notification_service.rb

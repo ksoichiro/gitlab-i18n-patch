@@ -339,6 +339,18 @@ translations:
     replace: '${invalidRepositoryPath}'
   - pattern: "Can't check your ability to create project"
     replace: '${cantCheckYourAbilityToCreateProject}'
+  - pattern: 'Your changes could not be committed, because the file name '
+    replace: '${yourChangesCouldNotBeCommittedBecauseTheFileName}'
+  - pattern: 'Your changes could not be committed because a file with the same name already exists'
+    replace: '${yourChangesCouldNotBeCommittedBecauseAFileWithTheSameNameAlreadyExists}'
+  - pattern: !!js/regexp /(\s+body = ')Milestone ('\n\s+body \+= milestone.nil\? \? ')removed('\s:\s")changed to (#{milestone.title})(")/
+    replace: '${milestoneRemovedChangedTo}'
+    args:
+    - '$1'
+    - '$2'
+    - '$3'
+    - '$4'
+    - '$5'
 
   # Named patterns
   - name: sthWasSuccessfullyDone

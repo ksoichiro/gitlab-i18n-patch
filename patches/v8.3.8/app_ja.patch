@@ -1251,6 +1251,41 @@ index a660a51..e5cff31 100644
      false
    end
  
+diff --git a/app/services/files/create_service.rb b/app/services/files/create_service.rb
+index 2348920..1f95621 100644
+--- a/app/services/files/create_service.rb
++++ b/app/services/files/create_service.rb
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ require_relative "base_service"
+ 
+ module Files
+@@ -11,14 +12,14 @@ module Files
+ 
+       if @file_path =~ Gitlab::Regex.directory_traversal_regex
+         raise_error(
+-          'Your changes could not be committed, because the file name ' +
++          '変更をコミットできません。ファイル名には' +
+           Gitlab::Regex.directory_traversal_regex_message
+         )
+       end
+ 
+       unless @file_path =~ Gitlab::Regex.file_path_regex
+         raise_error(
+-          'Your changes could not be committed, because the file name ' +
++          '変更をコミットできません。ファイル名には' +
+           Gitlab::Regex.file_path_regex_message
+         )
+       end
+@@ -29,7 +30,7 @@ module Files
+         blob = repository.blob_at_branch(@current_branch, @file_path)
+ 
+         if blob
+-          raise_error("Your changes could not be committed because a file with the same name already exists")
++          raise_error("この名前のファイルが存在しているため、変更をコミットできません")
+         end
+       end
+     end
 diff --git a/app/services/notification_service.rb b/app/services/notification_service.rb
 index bdf7b3a..3a9e2df 100644
 --- a/app/services/notification_service.rb
@@ -1270,7 +1305,7 @@ index bdf7b3a..3a9e2df 100644
      return true if note.is_award
  
 diff --git a/app/services/system_note_service.rb b/app/services/system_note_service.rb
-index 98a71cb..b31b91c 100644
+index 98a71cb..198635d 100644
 --- a/app/services/system_note_service.rb
 +++ b/app/services/system_note_service.rb
 @@ -1,3 +1,4 @@
@@ -1278,6 +1313,17 @@ index 98a71cb..b31b91c 100644
  # SystemNoteService
  #
  # Used for creating system notes (e.g., when a user references a merge request
+@@ -102,8 +103,8 @@ class SystemNoteService
+   #
+   # Returns the created Note object
+   def self.change_milestone(noteable, project, author, milestone)
+-    body = 'Milestone '
+-    body += milestone.nil? ? 'removed' : "changed to #{milestone.title}"
++    body = 'マイルストーンが'
++    body += milestone.nil? ? '削除されました' : "#{milestone.title}に変更されました"
+ 
+     create_note(noteable: noteable, project: project, author: author, note: body)
+   end
 @@ -120,7 +121,7 @@ class SystemNoteService
    #
    #   "Status changed to merged"

@@ -2242,9 +2242,18 @@ index f7fd156..53d91c1 100644
        .panel-footer
          = paginate @members, param_name: 'members_page', theme: 'gitlab'
 diff --git a/app/views/admin/hooks/index.html.haml b/app/views/admin/hooks/index.html.haml
-index b120f4d..e3e738d 100644
+index b120f4d..a5358cf 100644
 --- a/app/views/admin/hooks/index.html.haml
 +++ b/app/views/admin/hooks/index.html.haml
+@@ -1,6 +1,6 @@
+-- page_title "System Hooks"
++- page_title "システムフック"
+ %h3.page-title
+-  System hooks
++  システムフック
+ 
+ %p.light
+   #{link_to "System hooks ", help_page_path("system_hooks", "system_hooks"), class: "vlink"} can be
 @@ -19,14 +19,14 @@
      .col-sm-10
        = f.text_field :url, class: "form-control"
@@ -2259,7 +2268,7 @@ index b120f4d..e3e738d 100644
 +          %strong SSL検証を有効にする
    .form-actions
 -    = f.submit "Add System Hook", class: "btn btn-create"
-+    = f.submit "System Hookを追加", class: "btn btn-create"
++    = f.submit "システムフックを追加", class: "btn btn-create"
  %hr
  
  -if @hooks.any?

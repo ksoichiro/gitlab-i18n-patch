@@ -2537,3 +2537,4 @@ cantCheckYourAbilityToCreateProject: プロジェクトの作成権限が確認�
 yourChangesCouldNotBeCommittedBecauseTheFileName: 変更をコミットできません。ファイル名には
 yourChangesCouldNotBeCommittedBecauseAFileWithTheSameNameAlreadyExists: この名前のファイルが存在しているため、変更をコミットできません
 milestoneRemovedChangedTo: "{0}マイルストーンが{1}削除されました{2}{3}に変更されました{4}"
+systemHook: システムフック

@@ -1221,6 +1221,7 @@ translations:
     - {word: 'Assign to me', key: assignToMe}
     - {word: 'Change your password', key: changeYourPassword}
     - {word: 'Web Hooks', key: webHook}
+    - {word: 'System [hH]ooks', key: systemHook}
     - {word: 'Background Jobs', key: backgroundJob}
     - {word: 'Group path', key: groupPath}
     - {word: 'Group avatar', key: groupAvatar}

@@ -1136,6 +1136,16 @@ translations:
   - pattern: "Code?$|(\")Code?\"|(')Code?'|(\".* )Code?(\")"
     exclude: '^\s*- when |Google Code'
     replace: '$1$2$3${code}$1$2$4'
+  - pattern: 'Sidekiq running processes'
+    replace: '${sidekiqRunningProcesses}'
+  - pattern: 'There are no running sidekiq processes. Please restart GitLab'
+    replace: '${thereAreNoRunningSidekiqProcessesPleaseRestartGitLab}'
+  - pattern: "If '[25 of 25 busy]' is shown, restart GitLab with 'sudo service gitlab reload'."
+    replace: '${if25of25busyIsShownRestartGitLabWithSudoServiceGitlabReload}'
+  - pattern: "If more than one sidekiq process is listed, stop GitLab, kill the remaining sidekiq processes (sudo pkill -u #{gitlab_config.user} -f sidekiq) and restart GitLab."
+    replace: '${ifMoreThanOneSidekiqProcessIsListedStopGitLabKillTheRemainingSidekiqProcessesSudoPkillAndRestartGitLab}'
+  - pattern: 'Broadcast Messages'
+    replace: '${broadcastMessage}'
   - name: formLabel
     params:
     - {symbol: admin, key: admin}

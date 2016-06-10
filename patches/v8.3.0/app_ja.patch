@@ -1684,10 +1684,10 @@ index 3eb9d61..9bcd45b 100644
 +  = link_to '編集', edit_admin_application_path(@application), class: 'btn btn-primary wide pull-left'
    = render 'delete_form', application: @application, submit_btn_css: 'btn btn-danger prepend-left-10'
 diff --git a/app/views/admin/background_jobs/show.html.haml b/app/views/admin/background_jobs/show.html.haml
-index de5bc05..8a7297c 100644
+index de5bc05..e8faac7 100644
 --- a/app/views/admin/background_jobs/show.html.haml
 +++ b/app/views/admin/background_jobs/show.html.haml
-@@ -1,5 +1,5 @@
+@@ -1,21 +1,21 @@
 -- page_title "Background Jobs"
 -%h3.page-title Background Jobs
 +- page_title "バックグラウンドジョブ"
@@ -1695,7 +1695,17 @@ index de5bc05..8a7297c 100644
  %p.light GitLab uses #{link_to "sidekiq", "http://sidekiq.org/"} library for async job processing
  
  %hr
-@@ -15,7 +15,7 @@
+ 
+ .panel.panel-default
+-  .panel-heading Sidekiq running processes
++  .panel-heading 実行中の Sidekiq プロセス
+   .panel-body
+     - if @sidekiq_processes.empty?
+       %h4.cred
+         %i.fa.fa-exclamation-triangle
+-        There are no running sidekiq processes. Please restart GitLab
++        実行中の Sidekiq プロセスはありません。GitLabを再起動してください。
+     - else
        .table-holder
          %table.table
            %thead
@@ -1704,11 +1714,30 @@ index de5bc05..8a7297c 100644
              %th PID
              %th CPU
              %th MEM
+@@ -35,10 +35,10 @@
+       .clearfix
+         %p
+           %i.fa.fa-exclamation-circle
+-          If '[25 of 25 busy]' is shown, restart GitLab with 'sudo service gitlab reload'.
++          もし '[25 of 25 busy]' と表示されていたら、'sudo service gitlab reload' でGitLabを再起動してください。
+         %p
+           %i.fa.fa-exclamation-circle
+-          If more than one sidekiq process is listed, stop GitLab, kill the remaining sidekiq processes (sudo pkill -u #{gitlab_config.user} -f sidekiq) and restart GitLab.
++          もし2つ以上の Sidekiq プロセスが表示されている場合、GitLabを停止し、残っている Sidekiq プロセスを kill し(sudo pkill -u #{gitlab_config.user} -f sidekiq)、GitLabを再起動してください。
+ 
+ 
+ 
 diff --git a/app/views/admin/broadcast_messages/index.html.haml b/app/views/admin/broadcast_messages/index.html.haml
-index 17dffeb..ed9bf98 100644
+index 17dffeb..7fb2db1 100644
 --- a/app/views/admin/broadcast_messages/index.html.haml
 +++ b/app/views/admin/broadcast_messages/index.html.haml
-@@ -5,7 +5,7 @@
+@@ -1,11 +1,11 @@
+-- page_title "Broadcast Messages"
++- page_title "ブロードキャストメッセージ"
+ %h3.page-title
+-  Broadcast Messages
++  ブロードキャストメッセージ
+ %p.light
    Broadcast messages are displayed for every user and can be used to notify users about scheduled maintenance, recent upgrades and more.
  .broadcast-message-preview
    %i.fa.fa-bullhorn

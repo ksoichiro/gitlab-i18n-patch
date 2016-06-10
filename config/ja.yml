@@ -2538,3 +2538,7 @@ yourChangesCouldNotBeCommittedBecauseTheFileName: 変更をコミットできま
 yourChangesCouldNotBeCommittedBecauseAFileWithTheSameNameAlreadyExists: この名前のファイルが存在しているため、変更をコミットできません
 milestoneRemovedChangedTo: "{0}マイルストーンが{1}削除されました{2}{3}に変更されました{4}"
 systemHook: システムフック
+thereAreNoRunningSidekiqProcessesPleaseRestartGitLab: 実行中の Sidekiq プロセスはありません。GitLabを再起動してください。
+sidekiqRunningProcesses: 実行中の Sidekiq プロセス
+if25of25busyIsShownRestartGitLabWithSudoServiceGitlabReload: "もし '[25 of 25 busy]' と表示されていたら、'sudo service gitlab reload' でGitLabを再起動してください。"
+ifMoreThanOneSidekiqProcessIsListedStopGitLabKillTheRemainingSidekiqProcessesSudoPkillAndRestartGitLab: "もし2つ以上の Sidekiq プロセスが表示されている場合、GitLabを停止し、残っている Sidekiq プロセスを kill し(sudo pkill -u #{gitlab_config.user} -f sidekiq)、GitLabを再起動してください。"

@@ -1146,6 +1146,8 @@ translations:
     replace: '${ifMoreThanOneSidekiqProcessIsListedStopGitLabKillTheRemainingSidekiqProcessesSudoPkillAndRestartGitLab}'
   - pattern: 'Broadcast Messages'
     replace: '${broadcastMessage}'
+  - pattern: 'Project info'
+    replace: '${projectInfo}'
   - name: formLabel
     params:
     - {symbol: admin, key: admin}

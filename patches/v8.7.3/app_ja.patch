@@ -2572,7 +2572,7 @@ index aa07afa..a510557 100644
            .nothing-here-block 0 projects matches
      = paginate @projects, theme: "gitlab"
 diff --git a/app/views/admin/projects/show.html.haml b/app/views/admin/projects/show.html.haml
-index 73986d2..4a704de 100644
+index 73986d2..46d5f54 100644
 --- a/app/views/admin/projects/show.html.haml
 +++ b/app/views/admin/projects/show.html.haml
 @@ -1,9 +1,9 @@
@@ -2587,8 +2587,12 @@ index 73986d2..4a704de 100644
  %hr
  - if @project.last_repository_check_failed?
    .row
-@@ -22,11 +22,11 @@
-         Project info:
+@@ -19,14 +19,14 @@
+   .col-md-6
+     .panel.panel-default
+       .panel-heading
+-        Project info:
++        プロジェクト情報:
        %ul.well-list
          %li
 -          %span.light Name:

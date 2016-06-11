@@ -2593,10 +2593,10 @@ index d39c0f4..9c79777 100644
            .nothing-here-block 0 projects matches
      = paginate @projects, theme: "gitlab"
 diff --git a/app/views/admin/projects/show.html.haml b/app/views/admin/projects/show.html.haml
-index c638c32..bde85c4 100644
+index c638c32..678b72d 100644
 --- a/app/views/admin/projects/show.html.haml
 +++ b/app/views/admin/projects/show.html.haml
-@@ -1,9 +1,9 @@
+@@ -1,22 +1,22 @@
 -- page_title @project.name_with_namespace, "Projects"
 +- page_title @project.name_with_namespace, "プロジェクト"
  %h3.page-title
@@ -2608,8 +2608,10 @@ index c638c32..bde85c4 100644
  %hr
  .row
    .col-md-6
-@@ -12,11 +12,11 @@
-         Project info:
+     .panel.panel-default
+       .panel-heading
+-        Project info:
++        プロジェクト情報:
        %ul.well-list
          %li
 -          %span.light Name:

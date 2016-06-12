@@ -1376,7 +1376,7 @@ index bc4a9ce..6cbecaa 100644
            %th
        = render @abuse_reports
 diff --git a/app/views/admin/application_settings/_form.html.haml b/app/views/admin/application_settings/_form.html.haml
-index c4020c8..9af39e2 100644
+index c4020c8..445d0cb 100644
 --- a/app/views/admin/application_settings/_form.html.haml
 +++ b/app/views/admin/application_settings/_form.html.haml
 @@ -6,29 +6,29 @@
@@ -1495,7 +1495,13 @@ index c4020c8..9af39e2 100644
      .form-group
        = f.label :two_factor_authentication, 'Two-Factor authentication', class: 'control-label col-sm-2'
        .col-sm-10
-@@ -122,25 +122,25 @@
+@@ -117,30 +117,30 @@
+         = f.number_field :two_factor_grace_period, min: 0, class: 'form-control', placeholder: '0'
+         .help-block Amount of time (in hours) that users are allowed to skip forced configuration of two-factor authentication
+     .form-group
+-      = f.label :restricted_signup_domains, 'Restricted domains for sign-ups', class: 'control-label col-sm-2'
++      = f.label :restricted_signup_domains, 'サインアップ可能なドメイン', class: 'control-label col-sm-2'
+       .col-sm-10
          = f.text_area :restricted_signup_domains_raw, placeholder: 'domain.com', class: 'form-control'
          .help-block Only users with e-mail addresses that match these domain(s) will be able to sign-up. Wildcards allowed. Use separate lines for multiple entries. Ex: domain.com, *.domain.com
      .form-group
@@ -1776,7 +1782,7 @@ index de5bc05..e8faac7 100644
  
  
 diff --git a/app/views/admin/broadcast_messages/_form.html.haml b/app/views/admin/broadcast_messages/_form.html.haml
-index 953b8b6..33ad471 100644
+index 953b8b6..ff8911d 100644
 --- a/app/views/admin/broadcast_messages/_form.html.haml
 +++ b/app/views/admin/broadcast_messages/_form.html.haml
 @@ -1,6 +1,6 @@
@@ -1787,7 +1793,7 @@ index 953b8b6..33ad471 100644
  
  = form_for [:admin, @broadcast_message], html: { class: 'broadcast-message-form form-horizontal js-requires-input'} do |f|
    -if @broadcast_message.errors.any?
-@@ -8,7 +8,7 @@
+@@ -8,30 +8,30 @@
        - @broadcast_message.errors.full_messages.each do |msg|
          %p= msg
    .form-group
@@ -1796,7 +1802,17 @@ index 953b8b6..33ad471 100644
      .col-sm-10
        = f.text_area :message, class: "form-control js-quick-submit", rows: 2, required: true
    .form-group.js-toggle-colors-container
-@@ -23,15 +23,15 @@
+     .col-sm-10.col-sm-offset-2
+-      = link_to 'Customize colors', '#', class: 'js-toggle-colors-link'
++      = link_to '色をカスタマイズ', '#', class: 'js-toggle-colors-link'
+   .form-group.js-toggle-colors-container.hide
+-    = f.label :color, "Background Color", class: 'control-label'
++    = f.label :color, "背景色", class: 'control-label'
+     .col-sm-10
+       = f.color_field :color, class: "form-control"
+   .form-group.js-toggle-colors-container.hide
+-    = f.label :font, "Font Color", class: 'control-label'
++    = f.label :font, "文字色", class: 'control-label'
      .col-sm-10
        = f.color_field :font, class: "form-control"
    .form-group
@@ -1920,10 +1936,10 @@ index ebf2b7b..dbe5bdf 100644
              %th Finished at
              %th
 diff --git a/app/views/admin/dashboard/index.html.haml b/app/views/admin/dashboard/index.html.haml
-index cc389c3..02888d5 100644
+index cc389c3..e497cb5 100644
 --- a/app/views/admin/dashboard/index.html.haml
 +++ b/app/views/admin/dashboard/index.html.haml
-@@ -1,38 +1,38 @@
+@@ -1,46 +1,46 @@
  .admin-dashboard
    .row
      .col-md-4
@@ -1971,8 +1987,9 @@ index cc389c3..02888d5 100644
          %span.light.pull-right
            = number_with_delimiter(User.active.count)
      .col-md-4
-@@ -40,7 +40,7 @@
-         Features
+       %h4
+-        Features
++        機能
        %hr
        %p
 -        Sign up

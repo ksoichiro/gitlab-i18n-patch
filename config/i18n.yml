@@ -1148,6 +1148,14 @@ translations:
     replace: '${broadcastMessage}'
   - pattern: 'Project info'
     replace: '${projectInfo}'
+  - pattern: 'Restricted domains for sign-ups'
+    replace: '${restrictedDomainsForSignUps}'
+  - pattern: 'Customize colors'
+    replace: '${customizeColors}'
+  - pattern: 'Background Color'
+    replace: '${backgroundColor}'
+  - pattern: 'Font Color'
+    replace: '${fontColor}'
   - name: formLabel
     params:
     - {symbol: admin, key: admin}
@@ -1346,6 +1354,7 @@ translations:
     - {word: 'Statistics', key: statistics}
     - {word: 'Forks?', key: fork}
     - {word: 'Notes?', key: note}
+    - {word: 'Features', key: features}
   - name: wordInSentence
     params:
     - {word: 'broadcast message', key: broadcastMessage}

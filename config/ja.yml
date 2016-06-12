@@ -2543,3 +2543,6 @@ sidekiqRunningProcesses: 実行中の Sidekiq プロセス
 if25of25busyIsShownRestartGitLabWithSudoServiceGitlabReload: "もし '[25 of 25 busy]' と表示されていたら、'sudo service gitlab reload' でGitLabを再起動してください。"
 ifMoreThanOneSidekiqProcessIsListedStopGitLabKillTheRemainingSidekiqProcessesSudoPkillAndRestartGitLab: "もし2つ以上の Sidekiq プロセスが表示されている場合、GitLabを停止し、残っている Sidekiq プロセスを kill し(sudo pkill -u #{gitlab_config.user} -f sidekiq)、GitLabを再起動してください。"
 projectInfo: プロジェクト情報
+restrictedDomainsForSignUps: サインアップ可能なドメイン
+customizeColors: 色をカスタマイズ
+fontColor: 文字色

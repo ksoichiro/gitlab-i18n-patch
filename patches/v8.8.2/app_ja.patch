@@ -1346,7 +1346,7 @@ index dd4a64e..d142f7f 100644
 +                = password_field_tag :password, nil, class: "form-control bottom", placeholder: "パスワード"
 +                = button_tag "サインイン", class: "btn-create btn"
 diff --git a/app/views/admin/application_settings/_form.html.haml b/app/views/admin/application_settings/_form.html.haml
-index df28685..a160711 100644
+index df28685..ba7598e 100644
 --- a/app/views/admin/application_settings/_form.html.haml
 +++ b/app/views/admin/application_settings/_form.html.haml
 @@ -2,17 +2,17 @@
@@ -1472,7 +1472,13 @@ index df28685..a160711 100644
      - if omniauth_enabled? && button_based_providers.any?
        .form-group
          = f.label :enabled_oauth_sign_in_sources, 'Enabled OAuth Sign-In sources', class: 'control-label col-sm-2'
-@@ -140,25 +140,25 @@
+@@ -135,30 +135,30 @@
+         = f.number_field :two_factor_grace_period, min: 0, class: 'form-control', placeholder: '0'
+         .help-block Amount of time (in hours) that users are allowed to skip forced configuration of two-factor authentication
+     .form-group
+-      = f.label :restricted_signup_domains, 'Restricted domains for sign-ups', class: 'control-label col-sm-2'
++      = f.label :restricted_signup_domains, 'サインアップ可能なドメイン', class: 'control-label col-sm-2'
+       .col-sm-10
          = f.text_area :restricted_signup_domains_raw, placeholder: 'domain.com', class: 'form-control'
          .help-block Only users with e-mail addresses that match these domain(s) will be able to sign-up. Wildcards allowed. Use separate lines for multiple entries. Ex: domain.com, *.domain.com
      .form-group
@@ -1779,10 +1785,10 @@ index de5bc05..e8faac7 100644
  
  
 diff --git a/app/views/admin/broadcast_messages/_form.html.haml b/app/views/admin/broadcast_messages/_form.html.haml
-index 6b157ab..30801c2 100644
+index 6b157ab..be495b4 100644
 --- a/app/views/admin/broadcast_messages/_form.html.haml
 +++ b/app/views/admin/broadcast_messages/_form.html.haml
-@@ -1,13 +1,13 @@
+@@ -1,38 +1,38 @@
  .broadcast-message-preview{ style: broadcast_message_style(@broadcast_message) }
    = icon('bullhorn')
    .js-broadcast-message-preview
@@ -1798,7 +1804,19 @@ index 6b157ab..30801c2 100644
      .col-sm-10
        = f.text_area :message, class: "form-control js-autosize",
          required: true,
-@@ -24,15 +24,15 @@
+         data: { preview_path: preview_admin_broadcast_messages_path }
+   .form-group.js-toggle-colors-container
+     .col-sm-10.col-sm-offset-2
+-      = link_to 'Customize colors', '#', class: 'js-toggle-colors-link'
++      = link_to '色をカスタマイズ', '#', class: 'js-toggle-colors-link'
+   .form-group.js-toggle-colors-container.hide
+-    = f.label :color, "Background Color", class: 'control-label'
++    = f.label :color, "背景色", class: 'control-label'
+     .col-sm-10
+       = f.color_field :color, class: "form-control"
+   .form-group.js-toggle-colors-container.hide
+-    = f.label :font, "Font Color", class: 'control-label'
++    = f.label :font, "文字色", class: 'control-label'
      .col-sm-10
        = f.color_field :font, class: "form-control"
    .form-group
@@ -1922,10 +1940,10 @@ index ed24757..e63db32 100644
              %th Finished at
              %th
 diff --git a/app/views/admin/dashboard/index.html.haml b/app/views/admin/dashboard/index.html.haml
-index 6dd2fef..dfc7859 100644
+index 6dd2fef..5b34fcc 100644
 --- a/app/views/admin/dashboard/index.html.haml
 +++ b/app/views/admin/dashboard/index.html.haml
-@@ -1,38 +1,38 @@
+@@ -1,46 +1,46 @@
  .admin-dashboard.prepend-top-default
    .row
      .col-md-4
@@ -1973,8 +1991,9 @@ index 6dd2fef..dfc7859 100644
          %span.light.pull-right
            = number_with_delimiter(User.active.count)
      .col-md-4
-@@ -40,7 +40,7 @@
-         Features
+       %h4
+-        Features
++        機能
        %hr
        %p
 -        Sign up

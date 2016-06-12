@@ -1391,7 +1391,7 @@ index 40a5fe4..964f44d 100644
            %th
        = render @abuse_reports
 diff --git a/app/views/admin/application_settings/_form.html.haml b/app/views/admin/application_settings/_form.html.haml
-index 6c35536..d6f0b1e 100644
+index 6c35536..59c69c7 100644
 --- a/app/views/admin/application_settings/_form.html.haml
 +++ b/app/views/admin/application_settings/_form.html.haml
 @@ -6,29 +6,29 @@
@@ -1508,7 +1508,8 @@ index 6c35536..d6f0b1e 100644
 -            Sign-in enabled
 +            Sign-in を利用
      .form-group
-       = f.label :restricted_signup_domains, 'Restricted domains for sign-ups', class: 'control-label col-sm-2'
+-      = f.label :restricted_signup_domains, 'Restricted domains for sign-ups', class: 'control-label col-sm-2'
++      = f.label :restricted_signup_domains, 'サインアップ可能なドメイン', class: 'control-label col-sm-2'
        .col-sm-10
          = f.text_area :restricted_signup_domains_raw, placeholder: 'domain.com', class: 'form-control'
          .help-block Only users with e-mail addresses that match these domain(s) will be able to sign-up. Wildcards allowed. Use separate lines for multiple entries. Ex: domain.com, *.domain.com
@@ -1728,7 +1729,7 @@ index de5bc05..e8faac7 100644
  
  
 diff --git a/app/views/admin/broadcast_messages/index.html.haml b/app/views/admin/broadcast_messages/index.html.haml
-index 17dffeb..7fb2db1 100644
+index 17dffeb..5893a3e 100644
 --- a/app/views/admin/broadcast_messages/index.html.haml
 +++ b/app/views/admin/broadcast_messages/index.html.haml
 @@ -1,11 +1,11 @@
@@ -1746,7 +1747,7 @@ index 17dffeb..7fb2db1 100644
  
  = form_for [:admin, @broadcast_message], html: { class: 'broadcast-message-form form-horizontal'} do |f|
    -if @broadcast_message.errors.any?
-@@ -13,7 +13,7 @@
+@@ -13,30 +13,30 @@
        - @broadcast_message.errors.full_messages.each do |msg|
          %p= msg
    .form-group
@@ -1755,7 +1756,17 @@ index 17dffeb..7fb2db1 100644
      .col-sm-10
        = f.text_area :message, class: "form-control", rows: 2, required: true
        %div
-@@ -28,15 +28,15 @@
+         = link_to '#', class: 'js-toggle-colors-link' do
+-          Customize colors
++          色をカスタマイズ
+   .form-group.js-toggle-colors-container.hide
+-    = f.label :color, "Background Color", class: 'control-label'
++    = f.label :color, "背景色", class: 'control-label'
+     .col-sm-10
+       = f.color_field :color, value: "#eb9532", class: "form-control"
+   .form-group.js-toggle-colors-container.hide
+-    = f.label :font, "Font Color", class: 'control-label'
++    = f.label :font, "文字色", class: 'control-label'
      .col-sm-10
        = f.color_field :font, value: "#FFFFFF", class: "form-control"
    .form-group
@@ -1833,10 +1844,10 @@ index 55da06a..c156b79 100644
              %th Finished at
              %th
 diff --git a/app/views/admin/dashboard/index.html.haml b/app/views/admin/dashboard/index.html.haml
-index 8657d2c..ee5ad43 100644
+index 8657d2c..fb8519f 100644
 --- a/app/views/admin/dashboard/index.html.haml
 +++ b/app/views/admin/dashboard/index.html.haml
-@@ -1,38 +1,38 @@
+@@ -1,46 +1,46 @@
  .admin-dashboard
    .row
      .col-md-4
@@ -1884,8 +1895,9 @@ index 8657d2c..ee5ad43 100644
          %span.light.pull-right
            = User.active.count
      .col-md-4
-@@ -40,7 +40,7 @@
-         Features
+       %h4
+-        Features
++        機能
        %hr
        %p
 -        Sign up

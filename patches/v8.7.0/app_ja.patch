@@ -1093,7 +1093,7 @@ index dbecc48..32ad421 100644
    end
  
 diff --git a/app/models/project.rb b/app/models/project.rb
-index 8f0272d..cf06a79 100644
+index 8f0272d..801d431 100644
 --- a/app/models/project.rb
 +++ b/app/models/project.rb
 @@ -1,3 +1,4 @@
@@ -1101,8 +1101,12 @@ index 8f0272d..cf06a79 100644
  # == Schema Information
  #
  # Table name: projects
-@@ -479,7 +480,7 @@ class Project < ActiveRecord::Base
-       self.errors.add(:limit_reached, "Your project limit is #{creator.projects_limit} projects! Please contact your administrator to increase it")
+@@ -476,10 +477,10 @@ class Project < ActiveRecord::Base
+ 
+   def check_limit
+     unless creator.can_create_project? or namespace.kind == 'group'
+-      self.errors.add(:limit_reached, "Your project limit is #{creator.projects_limit} projects! Please contact your administrator to increase it")
++      self.errors.add(:limit_reached, "あなたが作成できるプロジェクトの上限は #{creator.projects_limit} 個です！管理者に上限を増やすように連絡してください")
      end
    rescue
 -    self.errors.add(:base, "Can't check your ability to create project")

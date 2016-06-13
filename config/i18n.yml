@@ -351,6 +351,12 @@ translations:
     - '$3'
     - '$4'
     - '$5'
+  - pattern: 'should be a valid url'
+    replace: '${shouldBeAValidUrl}'
+  - pattern: !!js/regexp /Your project limit is ([^\s]+) projects! Please contact your administrator to increase it/
+    replace: '${yourProjectLimitIsProjectsPleaseContactYourAdministratorToIncreaseIt}'
+    args:
+    - '$1'
 
   # Named patterns
   - name: sthWasSuccessfullyDone

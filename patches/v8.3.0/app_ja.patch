@@ -2414,7 +2414,7 @@ index 0135ad0..0b9cf92 100644
  %hr
  = render 'form'
 diff --git a/app/views/admin/projects/index.html.haml b/app/views/admin/projects/index.html.haml
-index d9b4814..8f3c54f 100644
+index d9b4814..2b73e23 100644
 --- a/app/views/admin/projects/index.html.haml
 +++ b/app/views/admin/projects/index.html.haml
 @@ -1,4 +1,4 @@
@@ -2423,7 +2423,7 @@ index d9b4814..8f3c54f 100644
  = render 'shared/show_aside'
  
  .row
-@@ -10,11 +10,11 @@
+@@ -10,26 +10,26 @@
            = text_field_tag :name, params[:name], class: "form-control"
  
          .form-group
@@ -2437,12 +2437,18 @@ index d9b4814..8f3c54f 100644
            .checkbox
              = label_tag :with_push do
                = check_box_tag :with_push, 1, params[:with_push]
-@@ -26,10 +26,10 @@
+-              %span Projects with push events
++              %span プッシュイベントがある
+           .checkbox
+             = label_tag :abandoned do
+               = check_box_tag :abandoned, 1, params[:abandoned]
+-              %span No activity over 6 month
++              %span 6ヶ月以上アクティビティがない
            .checkbox
              = label_tag :with_archived do
                = check_box_tag :with_archived, 1, params[:with_archived]
 -              %span Show archived projects
-+              %span Show archived プロジェクト
++              %span アーカイブされたプロジェクトを表示
  
          %fieldset
 -          %strong Visibility level:
@@ -2489,7 +2495,7 @@ index d9b4814..8f3c54f 100644
            .nothing-here-block 0 projects matches
      = paginate @projects, theme: "gitlab"
 diff --git a/app/views/admin/projects/show.html.haml b/app/views/admin/projects/show.html.haml
-index 5260ead..0968724 100644
+index 5260ead..b214ed2 100644
 --- a/app/views/admin/projects/show.html.haml
 +++ b/app/views/admin/projects/show.html.haml
 @@ -1,22 +1,22 @@
@@ -2535,6 +2541,30 @@ index 5260ead..0968724 100644
            %strong
              = @project.created_at.stamp("March 1, 1999")
  
+@@ -55,19 +55,19 @@
+               = @repository.path_to_repo
+ 
+           %li
+-            %span.light Size
++            %span.light サイズ
+             %strong
+               = repository_size(@project)
+ 
+           %li
+-            %span.light last commit:
++            %span.light 最終コミット:
+             %strong
+               = last_commit(@project)
+         - else
+           %li
+-            %span.light repository:
++            %span.light リポジトリ:
+             %strong.cred
+-              does not exist
++              存在しません
+ 
+         - if @project.archived?
+           %li
 @@ -83,11 +83,11 @@
  
      .panel.panel-default
@@ -8714,7 +8744,7 @@ index ea2a3e0..e6a58d7 100644
      %strong.cgreen #{diff_files.sum(&:added_lines)} additions
      and
 diff --git a/app/views/projects/edit.html.haml b/app/views/projects/edit.html.haml
-index 650629e..8fb3da2 100644
+index 650629e..200e8f1 100644
 --- a/app/views/projects/edit.html.haml
 +++ b/app/views/projects/edit.html.haml
 @@ -5,68 +5,68 @@
@@ -8800,7 +8830,7 @@ index 650629e..8fb3da2 100644
  
              .form-group
                .col-sm-offset-2.col-sm-10
-@@ -75,20 +75,20 @@
+@@ -75,42 +75,42 @@
                      = f.check_box :wiki_enabled
                      %strong Wiki
                      %br
@@ -8825,8 +8855,11 @@ index 650629e..8fb3da2 100644
              .form-group
                .col-sm-offset-2.col-sm-10
                  - if @project.avatar?
-@@ -98,19 +98,19 @@
-                     Project avatar in repository: #{ @project.avatar_in_git }
+                   = project_icon("#{@project.namespace.to_param}/#{@project.to_param}", alt: '', class: 'avatar project-avatar s160')
+                 %p.light
+                   - if @project.avatar_in_git
+-                    Project avatar in repository: #{ @project.avatar_in_git }
++                    Project avatar in リポジトリ: #{ @project.avatar_in_git }
                  %p.light
                    - if @project.avatar?
 -                    You can change your project avatar here
@@ -9808,7 +9841,7 @@ index 086298e..c18ade7 100644
  .merge-requests-holder
    = render 'merge_requests'
 diff --git a/app/views/projects/merge_requests/invalid.html.haml b/app/views/projects/merge_requests/invalid.html.haml
-index fc03ee7..653ff6a 100644
+index fc03ee7..1766879 100644
 --- a/app/views/projects/merge_requests/invalid.html.haml
 +++ b/app/views/projects/merge_requests/invalid.html.haml
 @@ -1,4 +1,4 @@
@@ -9817,6 +9850,20 @@ index fc03ee7..653ff6a 100644
  = render "header_title"
  
  .merge-request
+@@ -12,11 +12,11 @@
+         fork project was removed
+       - elsif !@merge_request.source_branch_exists?
+         %span.label.label-inverse= @merge_request.source_branch
+-        does not exist in
++        存在しません in
+         %span.label.label-info= @merge_request.source_project_path
+       - elsif !@merge_request.target_branch_exists?
+         %span.label.label-inverse= @merge_request.target_branch
+-        does not exist in
++        存在しません in
+         %span.label.label-info= @merge_request.target_project_path
+       - else
+         of internal error
 diff --git a/app/views/projects/merge_requests/new.html.haml b/app/views/projects/merge_requests/new.html.haml
 index d259968..490ac02 100644
 --- a/app/views/projects/merge_requests/new.html.haml
@@ -9958,27 +10005,30 @@ index 2168294..c1eed1f 100644
 -          Cancel Automatic Merge
 +          Cancel Automatic マージ済み
 diff --git a/app/views/projects/merge_requests/widget/open/_missing_branch.html.haml b/app/views/projects/merge_requests/widget/open/_missing_branch.html.haml
-index c9f0762..5155bb5 100644
+index c9f0762..398d5b3 100644
 --- a/app/views/projects/merge_requests/widget/open/_missing_branch.html.haml
 +++ b/app/views/projects/merge_requests/widget/open/_missing_branch.html.haml
-@@ -1,7 +1,7 @@
+@@ -1,16 +1,16 @@
  - unless @merge_request.source_branch_exists?
    %h4
      = icon("exclamation-triangle")
 -    Source branch
 +    マージ元ブランチ
      %span.label-branch= source_branch_with_namespace(@merge_request)
-     does not exist
+-    does not exist
++    存在しません
    %p
-@@ -9,7 +9,7 @@
+     Please restore the source branch or close this merge request and open a new merge request with a different source branch.
  - else
    %h4
      = icon("exclamation-triangle")
 -    Target branch
 +    Target ブランチ
      %span.label-branch= @merge_request.target_branch
-     does not exist
+-    does not exist
++    存在しません
    %p
+     Please restore the target branch or use a different target branch.
 diff --git a/app/views/projects/milestones/_form.html.haml b/app/views/projects/milestones/_form.html.haml
 index 39aa243..d5c4c36 100644
 --- a/app/views/projects/milestones/_form.html.haml
@@ -10343,18 +10393,21 @@ index 2523311..e8a11c7 100644
  .save-project-loader.hide
    .center
 diff --git a/app/views/projects/no_repo.html.haml b/app/views/projects/no_repo.html.haml
-index 720957e..a14fd34 100644
+index 720957e..5100c6e 100644
 --- a/app/views/projects/no_repo.html.haml
 +++ b/app/views/projects/no_repo.html.haml
-@@ -1,6 +1,6 @@
+@@ -1,22 +1,22 @@
  %h2
    %i.fa.fa-warning
 -  No repository
 +  No リポジトリ
  
  %p.slead
-   The repository for this project does not exist.
-@@ -10,13 +10,13 @@
+-  The repository for this project does not exist.
++  The repository for this project 存在しません.
+   %br
+   This means you can not push code until you create an empty repository or import existing one.
+ %hr
  
  .no-repo-actions
    = link_to namespace_project_repository_path(@project.namespace, @project), method: :post, class: 'btn btn-primary' do
@@ -11202,7 +11255,7 @@ index b594d4f..6ea823f 100644
  
  .append-bottom-default.prepend-top-default
 diff --git a/app/views/projects/tree/_tree_content.html.haml b/app/views/projects/tree/_tree_content.html.haml
-index 1bc90ed..0654220 100644
+index 1bc90ed..b546bb4 100644
 --- a/app/views/projects/tree/_tree_content.html.haml
 +++ b/app/views/projects/tree/_tree_content.html.haml
 @@ -3,10 +3,10 @@
@@ -11227,7 +11280,7 @@ index 1bc90ed..0654220 100644
  
        - if @path.present?
          %tr.tree-item
-@@ -30,7 +30,7 @@
+@@ -30,11 +30,11 @@
      = render "projects/tree/readme", readme: tree.readme
  
  - if allowed_tree_edit?
@@ -11236,6 +11289,11 @@ index 1bc90ed..0654220 100644
    = render 'projects/blob/new_dir'
  
  :javascript
+-  // Load last commit log for each file in tree
++  // Load 最終コミット log for each file in tree
+   $('#tree-slider').waitForImages(function() {
+     ajaxGet("#{escape_javascript(@logs_path)}");
+   });
 diff --git a/app/views/projects/tree/_tree_header.html.haml b/app/views/projects/tree/_tree_header.html.haml
 index 89b072c..d0b0472 100644
 --- a/app/views/projects/tree/_tree_header.html.haml

@@ -2548,3 +2548,9 @@ customizeColors: 色をカスタマイズ
 fontColor: 文字色
 shouldBeAValidUrl: は有効なURLでなければなりません
 yourProjectLimitIsProjectsPleaseContactYourAdministratorToIncreaseIt: 'あなたが作成できるプロジェクトの上限は {0} 個です！管理者に上限を増やすように連絡してください'
+projectsWithPushEvents: プッシュイベントがある
+noActivityOver6Month: 6ヶ月以上アクティビティがない
+showArchivedProjects: アーカイブされたプロジェクトを表示
+size: サイズ
+lastCommit: 最終コミット
+doesNotExist: 存在しません

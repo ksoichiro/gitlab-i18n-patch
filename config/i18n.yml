@@ -1162,6 +1162,18 @@ translations:
     replace: '${backgroundColor}'
   - pattern: 'Font Color'
     replace: '${fontColor}'
+  - pattern: 'Projects with push events'
+    replace: '${projectsWithPushEvents}'
+  - pattern: 'No activity over 6 month'
+    replace: '${noActivityOver6Month}'
+  - pattern: 'Show archived projects'
+    replace: '${showArchivedProjects}'
+  - pattern: 'last commit'
+    replace: '${lastCommit}'
+  - pattern: 'repository:'
+    replace: '${repository}:'
+  - pattern: 'does not exist'
+    replace: '${doesNotExist}'
   - name: formLabel
     params:
     - {symbol: admin, key: admin}
@@ -1361,6 +1373,7 @@ translations:
     - {word: 'Forks?', key: fork}
     - {word: 'Notes?', key: note}
     - {word: 'Features', key: features}
+    - {word: 'Size', key: size}
   - name: wordInSentence
     params:
     - {word: 'broadcast message', key: broadcastMessage}

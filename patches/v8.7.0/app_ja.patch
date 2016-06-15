@@ -1177,7 +1177,7 @@ index 42ec1ac..c974f05 100644
      return true if note.is_award
  
 diff --git a/app/services/system_note_service.rb b/app/services/system_note_service.rb
-index 82a0e2f..a121a5b 100644
+index 82a0e2f..b9d9407 100644
 --- a/app/services/system_note_service.rb
 +++ b/app/services/system_note_service.rb
 @@ -1,3 +1,4 @@
@@ -1185,6 +1185,34 @@ index 82a0e2f..a121a5b 100644
  # SystemNoteService
  #
  # Used for creating system notes (e.g., when a user references a merge request
+@@ -17,9 +18,9 @@ class SystemNoteService
+   # Returns the created Note object
+   def self.add_commits(noteable, project, author, new_commits, existing_commits = [], oldrev = nil)
+     total_count  = new_commits.length + existing_commits.length
+-    commits_text = "#{total_count} commit".pluralize(total_count)
++    commits_text = "#{total_count} コミット"
+ 
+-    body = "Added #{commits_text}:\n\n"
++    body = "#{commits_text}を追加しました:\n\n"
+     body << existing_commit_summary(noteable, existing_commits, oldrev)
+     body << new_commit_summary(new_commits).join("\n")
+ 
+@@ -35,13 +36,13 @@ class SystemNoteService
+   #
+   # Example Note text:
+   #
+-  #   "Assignee removed"
++  #   "担当者が削除されました"
+   #
+   #   "Reassigned to @rspeicher"
+   #
+   # Returns the created Note object
+   def self.change_assignee(noteable, project, author, assignee)
+-    body = assignee.nil? ? 'Assignee removed' : "Reassigned to #{assignee.to_reference}"
++    body = assignee.nil? ? '担当者が削除されました' : "Reassigned to #{assignee.to_reference}"
+ 
+     create_note(noteable: noteable, project: project, author: author, note: body)
+   end
 @@ -120,7 +121,7 @@ class SystemNoteService
    #
    #   "Status changed to merged"

@@ -2554,3 +2554,6 @@ showArchivedProjects: アーカイブされたプロジェクトを表示
 size: サイズ
 lastCommit: 最終コミット
 doesNotExist: 存在しません
+addedSth: '{0}を追加しました'
+reassignedTo: '担当者が {0} になりました'
+assigneeRemoved: 担当者が削除されました

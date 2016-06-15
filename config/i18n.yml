@@ -357,6 +357,18 @@ translations:
     replace: '${yourProjectLimitIsProjectsPleaseContactYourAdministratorToIncreaseIt}'
     args:
     - '$1'
+  - pattern: 'commits_text = "#{total_count} commit".pluralize(total_count)'
+    replace: 'commits_text = "#{total_count} ${commit}"'
+  - pattern: !!js/regexp /body = "Added (#{commits_text}):\\n\\n"/
+    replace: 'body = "${addedSth}:\n\n"'
+    args:
+    - '$1'
+  - pattern: 'Assignee removed'
+    replace: '${assigneeRemoved}'
+  - pattern: !!js/regexp /Reassigned to (@#{assignee.username})/
+    replace: '${reassignedTo}'
+    args:
+    - '$1'
 
   # Named patterns
   - name: sthWasSuccessfullyDone

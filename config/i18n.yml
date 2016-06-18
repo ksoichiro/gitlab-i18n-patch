@@ -1186,6 +1186,17 @@ translations:
     replace: '${repository}:'
   - pattern: 'does not exist'
     replace: '${doesNotExist}'
+  - pattern: !!js/regexp /(\s+)Your\n\s+%b Public Email\n\s+will be displayed on your public profile./
+    replace: '${yourPublicEmailWillBeDisplayedOnYourPublicProfile}'
+    args:
+    - '$1'
+  - pattern: 'All email addresses will be used to identify your commits.'
+    replace: '${allEmailAddressesWillBeUsedToIdentifyYourCommits}'
+  - pattern: 'Primary Email'
+    replace: '${primaryEmail}'
+  - pattern: 'Notification Email'
+    replace: '${notificationEmail}'
+
   - name: formLabel
     params:
     - {symbol: admin, key: admin}

@@ -7259,7 +7259,7 @@ index 9c404b6..689fb12 100644
  .row.prepend-top-default
    .col-lg-3.profile-settings-sidebar
 diff --git a/app/views/profiles/emails/index.html.haml b/app/views/profiles/emails/index.html.haml
-index 6f7fefd..95b5555 100644
+index 6f7fefd..494abcb 100644
 --- a/app/views/profiles/emails/index.html.haml
 +++ b/app/views/profiles/emails/index.html.haml
 @@ -1,48 +1,48 @@
@@ -7292,27 +7292,28 @@ index 6f7fefd..95b5555 100644
        %ul
          %li
 -          Your Primary Email will be used for avatar detection and web based operations, such as edits and merges.
-+          あなたのPrimary Email will be used for avatar detection and web based operations, such as edits and merges.
++          あなたのプライマリメールアドレス will be used for avatar detection and web based operations, such as edits and merges.
          %li
 -          Your Notification Email will be used for account notifications.
-+          あなたのNotification Email will be used for account notifications.
++          あなたの通知メールアドレス will be used for account notifications.
          %li
 -          Your Public Email will be displayed on your public profile.
 +          あなたのPublic Email will be displayed on your public profile.
          %li
-           All email addresses will be used to identify your commits.
+-          All email addresses will be used to identify your commits.
++          すべてのメールアドレスはあなたのコミットの識別に使用されます。
      %ul.well-list
        %li
          = @primary
          %span.pull-right
 -          %span.label.label-success Primary Email
-+          %span.label.label-success Primary メールアドレス
++          %span.label.label-success プライマリメールアドレス
            - if @primary === current_user.public_email
 -            %span.label.label-info Public Email
 +            %span.label.label-info 公開メールアドレス
            - if @primary === current_user.notification_email
 -            %span.label.label-info Notification Email
-+            %span.label.label-info Notification メールアドレス
++            %span.label.label-info 通知メールアドレス
        - @emails.each do |email|
          %li
            = email.email
@@ -7323,7 +7324,7 @@ index 6f7fefd..95b5555 100644
              - if email.email === current_user.notification_email
 -              %span.label.label-info Notification Email
 -            = link_to 'Remove', profile_email_path(email), data: { confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-sm btn-warning prepend-left-10'
-+              %span.label.label-info Notification メールアドレス
++              %span.label.label-info 通知メールアドレス
 +            = link_to '削除', profile_email_path(email), data: { confirm: '本当によろしいですか？'}, method: :delete, class: 'btn btn-sm btn-warning prepend-left-10'
 diff --git a/app/views/profiles/keys/_form.html.haml b/app/views/profiles/keys/_form.html.haml
 index b3ed59a..e696e66 100644

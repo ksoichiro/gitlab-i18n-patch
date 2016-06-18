@@ -2284,6 +2284,7 @@ discoverProjectsGroupsAndSnippetsShareYourProjectsWithOthers: プロジェクト
 signOut: サインアウト
 todos: ToDo
 youreAllDone: すべて完了しました！
+primaryEmail: プライマリメールアドレス
 publicEmail: 公開メールアドレス
 notificationEmail: 通知メールアドレス
 notificationLevel: 通知レベル
@@ -2557,3 +2558,5 @@ doesNotExist: 存在しません
 addedSth: '{0}を追加しました'
 reassignedTo: '担当者が {0} になりました'
 assigneeRemoved: 担当者が削除されました
+yourPublicEmailWillBeDisplayedOnYourPublicProfile: "{0}%b 公開メールアドレス\n{0}はあなたの公開プロフィールに表示されます。"
+allEmailAddressesWillBeUsedToIdentifyYourCommits: すべてのメールアドレスはあなたのコミットの識別に使用されます。

@@ -7442,10 +7442,10 @@ index 8f45f41..e2c395c 100644
  .prepend-top-default
  = render 'event_table', events: @events
 diff --git a/app/views/profiles/emails/index.html.haml b/app/views/profiles/emails/index.html.haml
-index 705e180..331e000 100644
+index 705e180..fc1d436 100644
 --- a/app/views/profiles/emails/index.html.haml
 +++ b/app/views/profiles/emails/index.html.haml
-@@ -1,50 +1,48 @@
+@@ -1,50 +1,47 @@
 -- page_title "Emails"
 +- page_title "メールアドレス"
  - header_title page_title, profile_emails_path
@@ -7465,12 +7465,14 @@ index 705e180..331e000 100644
 +      %b 通知メールアドレス
 +      はアカウントの通知に使用されます。
      %li
-       Your
+-      Your
 -      %b Public Email
+-      will be displayed on your public profile.
 +      %b 公開メールアドレス
-       will be displayed on your public profile.
++      はあなたの公開プロフィールに表示されます。
      %li
-       All email addresses will be used to identify your commits.
+-      All email addresses will be used to identify your commits.
++      すべてのメールアドレスはあなたのコミットの識別に使用されます。
  
  .panel.panel-default
    .panel-heading
@@ -7480,13 +7482,13 @@ index 705e180..331e000 100644
      %li
        %strong= @primary
 -      %span.label.label-success Primary Email
-+      %span.label.label-success Primary メールアドレス
++      %span.label.label-success プライマリメールアドレス
        - if @primary === current_user.public_email
 -        %span.label.label-info Public Email
 +        %span.label.label-info 公開メールアドレス
        - if @primary === current_user.notification_email
 -        %span.label.label-info Notification Email
-+        %span.label.label-info Notification メールアドレス
++        %span.label.label-info 通知メールアドレス
      - @emails.each do |email|
        %li
          %strong= email.email
@@ -7495,7 +7497,7 @@ index 705e180..331e000 100644
 +          %span.label.label-info 公開メールアドレス
          - if email.email === current_user.notification_email
 -          %span.label.label-info Notification Email
-+          %span.label.label-info Notification メールアドレス
++          %span.label.label-info 通知メールアドレス
          %span.cgray
            added #{time_ago_with_tooltip(email.created_at)}
 -        = link_to 'Remove', profile_email_path(email), data: { confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-sm btn-remove pull-right'

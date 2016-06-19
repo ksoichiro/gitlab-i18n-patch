@@ -13433,18 +13433,78 @@ index 0000000..cee0bea
 +            redirect_uri:
 +              blank: リダイレクトURIは必須です
 diff --git a/doc/README.md b/doc/README.md
-index 5089e1e..287011d 100644
+index 5089e1e..63ddaa5 100644
 --- a/doc/README.md
 +++ b/doc/README.md
-@@ -1,6 +1,6 @@
+@@ -1,33 +1,33 @@
 -# Documentation
 +# ドキュメント
  
 -## User documentation
 +## ユーザ向けドキュメント
  
- - [API](api/README.md) Automate GitLab via a simple and powerful API.
- - [GitLab as OAuth2 authentication service provider](integration/oauth_provider.md). It allows you to login to other applications from GitLab.
+-- [API](api/README.md) Automate GitLab via a simple and powerful API.
+-- [GitLab as OAuth2 authentication service provider](integration/oauth_provider.md). It allows you to login to other applications from GitLab.
+-- [GitLab Basics](gitlab-basics/README.md) Find step by step how to start working on your commandline and on GitLab.
+-- [Importing to GitLab](workflow/importing/README.md).
+-- [Markdown](markdown/markdown.md) GitLab's advanced formatting system.
++- [API](api/README.md) シンプルで強力なAPIでGitLabを自動化します。
++- [OAuth2認証サービスプロバイダとしてのGitLab](integration/oauth_provider.md). GitLabから他のアプリケーションにログインできるようにします。
++- [GitLabの基本](gitlab-basics/README.md) コマンドラインとGitLabでの作業の始め方をステップバイステップで説明します。
++- [GitLabへのインポート](workflow/importing/README.md).
++- [Markdown](markdown/markdown.md) GitLabの高度なフォーマットシステムです。
+ - [Migrating from SVN](workflow/importing/migrating_from_svn.md) Convert a SVN repository to Git and GitLab
+-- [Permissions](permissions/permissions.md) Learn what each role in a project (guest/reporter/developer/master/owner) can do.
+-- [Profile Settings](profile/README.md)
+-- [Project Services](project_services/project_services.md) Integrate a project with external services, such as CI and chat.
+-- [Public access](public_access/public_access.md) Learn how you can allow public and internal access to projects.
+-- [SSH](ssh/README.md) Setup your ssh keys and deploy keys for secure access to your projects.
+-- [Web hooks](web_hooks/web_hooks.md) Let GitLab notify you when new code has been pushed to your project.
+-- [Workflow](workflow/README.md) Using GitLab functionality and importing projects from GitHub and SVN.
++- [アクセス権](permissions/permissions.md) プロジェクトの各ロール (guest/reporter/developer/master/owner) が何をできるのか学びます。
++- [プロフィール設定](profile/README.md)
++- [プロジェクトサービス](project_services/project_services.md) CIやチャットなどの外部サービスと、プロジェクトを統合します。
++- [公開アクセス](public_access/public_access.md) プロジェクトのアクセス範囲を公開・内部にする方法を学びます。
++- [SSH](ssh/README.md) セキュアなアクセスのためにSSHキーやデプロイキーをプロジェクトに設定します。
++- [Webフック](web_hooks/web_hooks.md) プロジェクトに新しいコードがプッシュされたときにGitLabがあなたに通知するようにします。
++- [ワークフロー](workflow/README.md) GitLabの機能を使いGitHubやSVNからプロジェクトをインポートします。
+ 
+-## CI Documentation
++## CIドキュメント
+ 
+-- [Quick Start](ci/quick_start/README.md)
++- [クイックスタート](ci/quick_start/README.md)
+ - [Enable or disable GitLab CI](ci/enable_or_disable_ci.md)
+-- [Configuring project (.gitlab-ci.yml)](ci/yaml/README.md)
+-- [Configuring runner](ci/runners/README.md)
+-- [Configuring deployment](ci/deployment/README.md)
+-- [Using Docker Images](ci/docker/using_docker_images.md)
+-- [Using Docker Build](ci/docker/using_docker_build.md)
+-- [Using Variables](ci/variables/README.md)
++- [プロジェクトの設定 (.gitlab-ci.yml)](ci/yaml/README.md)
++- [ランナーの設定](ci/runners/README.md)
++- [デプロイの設定](ci/deployment/README.md)
++- [Dockerイメージの利用](ci/docker/using_docker_images.md)
++- [Docker Buildの利用](ci/docker/using_docker_build.md)
++- [変数の利用](ci/variables/README.md)
+ - [Using SSH keys](ci/ssh_keys/README.md)
+-- [User permissions](ci/permissions/README.md)
++- [ユーザ権限](ci/permissions/README.md)
+ - [API](ci/api/README.md)
+ - [Triggering builds through the API](ci/triggers/README.md)
+ - [Build artifacts](ci/build_artifacts/README.md)
+diff --git a/doc/api/README.md b/doc/api/README.md
+index 7629ef2..a78ae26 100644
+--- a/doc/api/README.md
++++ b/doc/api/README.md
+@@ -1,6 +1,6 @@
+ # GitLab API
+ 
+-Automate GitLab via a simple and powerful API. All definitions can be found
++シンプルで強力なAPIでGitLabを自動化します。 All definitions can be found
+ under [`/lib/api`](https://gitlab.com/gitlab-org/gitlab-ce/tree/master/lib/api).
+ 
+ ## Resources
 diff --git a/doc/api/deploy_keys.md b/doc/api/deploy_keys.md
 index 9da1fe2..3ba8033 100644
 --- a/doc/api/deploy_keys.md
@@ -13469,17 +13529,272 @@ index 009532b..071f16a 100644
  Merge changes submitted with MR using this API.
  
 diff --git a/doc/ci/README.md b/doc/ci/README.md
-index 5886829..2a4f2ce 100644
+index 5886829..3458c9e 100644
 --- a/doc/ci/README.md
 +++ b/doc/ci/README.md
-@@ -1,6 +1,6 @@
+@@ -1,15 +1,15 @@
  ## GitLab CI Documentation
  
 -### User documentation
 +### ユーザ向けドキュメント
  
- * [Quick Start](quick_start/README.md)
+-* [Quick Start](quick_start/README.md)
++* [クイックスタート](quick_start/README.md)
  * [Enable or disable GitLab CI](enable_or_disable_ci.md)
+-* [Configuring project (.gitlab-ci.yml)](yaml/README.md)
+-* [Configuring runner](runners/README.md)
+-* [Configuring deployment](deployment/README.md)
+-* [Using Docker Images](docker/using_docker_images.md)
+-* [Using Docker Build](docker/using_docker_build.md)
+-* [Using Variables](variables/README.md)
++* [プロジェクトの設定 (.gitlab-ci.yml)](yaml/README.md)
++* [ランナーの設定](runners/README.md)
++* [デプロイの設定](deployment/README.md)
++* [Dockerイメージの利用](docker/using_docker_images.md)
++* [Docker Buildの利用](docker/using_docker_build.md)
++* [変数の利用](variables/README.md)
+ * [Using SSH keys](ssh_keys/README.md)
+ * [Triggering builds through the API](triggers/README.md)
+ * [Build artifacts](build_artifacts/README.md)
+@@ -35,5 +35,5 @@
+ 
+ ### Administrator documentation
+ 
+-* [User permissions](permissions/README.md)
++* [ユーザ権限](permissions/README.md)
+ * [API](api/README.md)
+diff --git a/doc/ci/docker/README.md b/doc/ci/docker/README.md
+index 84eaf29..e6991eb 100644
+--- a/doc/ci/docker/README.md
++++ b/doc/ci/docker/README.md
+@@ -1,4 +1,4 @@
+ # Docker integration
+ 
+-+ [Using Docker Images](using_docker_images.md)
+-+ [Using Docker Build](using_docker_build.md)
+\ No newline at end of file
+++ [Dockerイメージの利用](using_docker_images.md)
+++ [Docker Buildの利用](using_docker_build.md)
+diff --git a/doc/ci/docker/using_docker_build.md b/doc/ci/docker/using_docker_build.md
+index 4b1788a..0e241a5 100644
+--- a/doc/ci/docker/using_docker_build.md
++++ b/doc/ci/docker/using_docker_build.md
+@@ -1,4 +1,4 @@
+-# Using Docker Build
++# Docker Buildの利用
+ 
+ GitLab CI allows you to use Docker Engine to build and test docker-based projects.
+ 
+@@ -108,4 +108,4 @@ In order to do that follow the steps:
+     ```
+ 
+ 1. However, by enabling `--docker-privileged` you are effectively disables all security mechanisms of containers and exposing your host to privilege escalation which can lead to container breakout.
+-For more information, check out [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration).
+\ No newline at end of file
++For more information, check out [Runtime privilege](https://docs.docker.com/reference/run/#runtime-privilege-linux-capabilities-and-lxc-configuration).
+diff --git a/doc/ci/docker/using_docker_images.md b/doc/ci/docker/using_docker_images.md
+index bd748f1..35876c6 100644
+--- a/doc/ci/docker/using_docker_images.md
++++ b/doc/ci/docker/using_docker_images.md
+@@ -1,4 +1,4 @@
+-# Using Docker Images
++# Dockerイメージの利用
+ 
+ GitLab CI in conjunction with [GitLab Runner](../runners/README.md) can use
+ [Docker Engine](https://www.docker.com/) to test and build any application.
+diff --git a/doc/ci/permissions/README.md b/doc/ci/permissions/README.md
+index d77061c..f065237 100644
+--- a/doc/ci/permissions/README.md
++++ b/doc/ci/permissions/README.md
+@@ -1,4 +1,4 @@
+-# Users Permissions
++# Users アクセス権
+ 
+ GitLab CI relies on user's role on the GitLab. There are three permissions levels on GitLab CI: admin, master, developer, other.
+ 
+diff --git a/doc/ci/quick_start/README.md b/doc/ci/quick_start/README.md
+index 07e566e..5015327 100644
+--- a/doc/ci/quick_start/README.md
++++ b/doc/ci/quick_start/README.md
+@@ -1,4 +1,4 @@
+-# Quick Start
++# クイックスタート
+ 
+ Starting from version 8.0, GitLab Continuous Integration (CI) is fully
+ integrated into GitLab itself and is enabled by default on all projects.
+diff --git a/doc/ci/variables/README.md b/doc/ci/variables/README.md
+index 9e89e6e..d156261 100644
+--- a/doc/ci/variables/README.md
++++ b/doc/ci/variables/README.md
+@@ -70,7 +70,7 @@ These variables can be later used in all executed commands and scripts.
+ 
+ The YAML-defined variables are also set to all created service containers, thus allowing to fine tune them.
+ 
+-More information about Docker integration can be found in [Using Docker Images](../docker/using_docker_images.md).
++More information about Docker integration can be found in [Dockerイメージの利用](../docker/using_docker_images.md).
+ 
+ ### User-defined variables (Secure Variables)
+ **This feature requires GitLab Runner 0.4.0 or higher**
+diff --git a/doc/integration/README.md b/doc/integration/README.md
+index 281eea8..a3c9cd4 100644
+--- a/doc/integration/README.md
++++ b/doc/integration/README.md
+@@ -25,7 +25,7 @@ Integration with services such as Campfire, Flowdock, Gemnasium, HipChat,
+ Pivotal Tracker, and Slack are available in the form of a [Project Service][].
+ You can find these within GitLab in the Services page under Project Settings if
+ you are at least a master on the project.
+-Project Services are a bit like plugins in that they allow a lot of freedom in
++プロジェクトサービス are a bit like plugins in that they allow a lot of freedom in
+ adding functionality to GitLab. For example there is also a service that can
+ send an email every time someone pushes new commits.
+ 
+diff --git a/doc/integration/facebook.md b/doc/integration/facebook.md
+index 77bb75c..79b3f6e 100644
+--- a/doc/integration/facebook.md
++++ b/doc/integration/facebook.md
+@@ -23,7 +23,7 @@ something else descriptive.
+ 
+ 1. Choose "Next"
+ 
+-1. Choose "Skip Quick Start" in the upper right corner
++1. Choose "Skip クイックスタート" in the upper right corner
+ 
+ 1. Choose "Settings" in the menu on the left
+ 
+diff --git a/doc/integration/oauth_provider.md b/doc/integration/oauth_provider.md
+index 5f8bb57..5a4efe6 100644
+--- a/doc/integration/oauth_provider.md
++++ b/doc/integration/oauth_provider.md
+@@ -1,4 +1,4 @@
+-# GitLab as OAuth2 authentication service provider
++# OAuth2認証サービスプロバイダとしてのGitLab
+ 
+ This document is about using GitLab as an OAuth authentication service provider
+ to sign in to other services.
+@@ -33,7 +33,7 @@ permission levels they are set (user/admin).
+ ## Adding an application through the profile
+ 
+ In order to add a new application via your profile, navigate to
+-**Profile Settings > Applications** and select **New Application**.
++**プロフィール設定 > Applications** and select **New Application**.
+ 
+ ![New OAuth application](img/oauth_provider_user_wide_applications.png)
+ 
+@@ -67,7 +67,7 @@ it from the admin area.
+ ## Authorized applications
+ 
+ Every application you authorized to use your GitLab credentials will be shown
+-in the **Authorized applications** section under **Profile Settings > Applications**.
++in the **Authorized applications** section under **プロフィール設定 > Applications**.
+ 
+ ![Authorized_applications](img/oauth_provider_authorized_application.png)
+ 
+diff --git a/doc/permissions/permissions.md b/doc/permissions/permissions.md
+index 168e7d1..9d55809 100644
+--- a/doc/permissions/permissions.md
++++ b/doc/permissions/permissions.md
+@@ -1,4 +1,4 @@
+-# Permissions
++# アクセス権
+ 
+ Users have different abilities depending on the access level they have in a particular group or project.
+ 
+diff --git a/doc/profile/README.md b/doc/profile/README.md
+index 6f8359d..a75abd2 100644
+--- a/doc/profile/README.md
++++ b/doc/profile/README.md
+@@ -1,4 +1,4 @@
+-# Profile Settings
++# プロフィール設定
+ 
+ - [Preferences](preferences.md)
+ - [Two-factor Authentication (2FA)](two_factor_authentication.md)
+diff --git a/doc/profile/two_factor_authentication.md b/doc/profile/two_factor_authentication.md
+index a0e23c1..6fa206b 100644
+--- a/doc/profile/two_factor_authentication.md
++++ b/doc/profile/two_factor_authentication.md
+@@ -17,7 +17,7 @@ lose your codes for GitLab.com, we can't disable or recover them.
+ **In GitLab:**
+ 
+ 1. Log in to your GitLab account.
+-1. Go to your **Profile Settings**.
++1. Go to your **プロフィール設定**.
+ 1. Go to **Account**.
+ 1. Click **Enable Two-factor Authentication**.
+ 
+@@ -49,7 +49,7 @@ storage in a safe place. **Each code can be used only once** to log in to your
+ account.
+ 
+ If you lose the recovery codes or just want to generate new ones, you can do so
+-from the **Profile Settings** > **Account** page where you first enabled 2FA.
++from the **プロフィール設定** > **Account** page where you first enabled 2FA.
+ 
+ ## Logging in with 2FA Enabled
+ 
+@@ -63,7 +63,7 @@ your phone's application or a recovery code to log in.
+ ## Disabling 2FA
+ 
+ 1. Log in to your GitLab account.
+-1. Go to your **Profile Settings**.
++1. Go to your **プロフィール設定**.
+ 1. Go to **Account**.
+ 1. Click **Disable Two-factor Authentication**.
+ 
+diff --git a/doc/project_services/jira.md b/doc/project_services/jira.md
+index 7c12557..6575670 100644
+--- a/doc/project_services/jira.md
++++ b/doc/project_services/jira.md
+@@ -113,7 +113,7 @@ Fill in the required details on the page, as described in the table below.
+ | `Api url`     | The base URL of the JIRA API. It may be omitted, in which case GitLab will automatically use API version `2` based on the `project url`. It is of the form: `https://<jira_host_url>/rest/api/2`. |
+ | `Username` | The username of the user created in [configuring JIRA step](#configuring-jira). |
+ | `Password` |The password of the user created in [configuring JIRA step](#configuring-jira). |
+-| `JIRA issue transition` | This setting is very important to set up correctly. It is the ID of a transition that moves issues to a closed state. You can find this number under the JIRA workflow administration (**Administration > Issues > Workflows**) by selecting **View** under **Operations** of the desired workflow of your project. The ID of each state can be found inside the parenthesis of each transition name under the **Transitions (id)** column ([see screenshot](img/jira_issues_workflow.png)). By default, this ID is set to `2` |
++| `JIRA issue transition` | This setting is very important to set up correctly. It is the ID of a transition that moves issues to a closed state. You can find this number under the JIRA workflow administration (**Administration > Issues > ワークフローs**) by selecting **View** under **Operations** of the desired workflow of your project. The ID of each state can be found inside the parenthesis of each transition name under the **Transitions (id)** column ([see screenshot](img/jira_issues_workflow.png)). By default, this ID is set to `2` |
+ 
+ After saving the configuration, your GitLab project will be able to interact
+ with the linked JIRA project.
+diff --git a/doc/project_services/project_services.md b/doc/project_services/project_services.md
+index 3fea2cf..be2c750 100644
+--- a/doc/project_services/project_services.md
++++ b/doc/project_services/project_services.md
+@@ -1,4 +1,4 @@
+-# Project Services
++# プロジェクトサービス
+ 
+ Project services allow you to integrate GitLab with other applications. Below
+ is list of the currently supported ones. Click on the service links to see
+diff --git a/doc/public_access/public_access.md b/doc/public_access/public_access.md
+index 6e22ea7..49a49d2 100644
+--- a/doc/public_access/public_access.md
++++ b/doc/public_access/public_access.md
+@@ -1,4 +1,4 @@
+-# Public access
++# 公開アクセス
+ 
+ GitLab allows you to change your projects' visibility in order be accessed
+ **publicly** or **internally**.
+diff --git a/doc/raketasks/README.md b/doc/raketasks/README.md
+index cc8a22c..1fe6f2f 100644
+--- a/doc/raketasks/README.md
++++ b/doc/raketasks/README.md
+@@ -6,6 +6,6 @@
+ - [Features](features.md)
+ - [Maintenance](maintenance.md) and self-checks
+ - [User management](user_management.md)
+-- [Web hooks](web_hooks.md)
++- [Webフック](web_hooks.md)
+ - [Import](import.md) of git repositories in bulk
+ - [Rebuild authorized_keys file](http://doc.gitlab.com/ce/raketasks/maintenance.html#rebuild-authorized_keys-file) task for administrators
+diff --git a/doc/raketasks/web_hooks.md b/doc/raketasks/web_hooks.md
+index 5a8b94a..94051da 100644
+--- a/doc/raketasks/web_hooks.md
++++ b/doc/raketasks/web_hooks.md
+@@ -1,4 +1,4 @@
+-# Web hooks
++# Webフック
+ 
+ ## Add a web hook for **ALL** projects:
+ 
 diff --git a/doc/ssh/README.md b/doc/ssh/README.md
 index a1198e5..c8bae01 100644
 --- a/doc/ssh/README.md
@@ -13948,6 +14263,54 @@ index 408a17a..77c333c 100644
  
  ### 1. Stop server
  
+diff --git a/doc/web_hooks/web_hooks.md b/doc/web_hooks/web_hooks.md
+index b82306b..d078fe5 100644
+--- a/doc/web_hooks/web_hooks.md
++++ b/doc/web_hooks/web_hooks.md
+@@ -1,4 +1,4 @@
+-# Web hooks
++# Webフック
+ 
+ _**Note:**
+ Starting from GitLab 8.5:_
+@@ -11,7 +11,7 @@ Project web hooks allow you to trigger an URL if new code is pushed or a new iss
+ 
+ You can configure web hooks to listen for specific events like pushes, issues or merge requests. GitLab will send a POST request with data to the web hook URL.
+ 
+-Web hooks can be used to update an external issue tracker, trigger CI builds, update a backup mirror, or even deploy to your production server.
++Webフック can be used to update an external issue tracker, trigger CI builds, update a backup mirror, or even deploy to your production server.
+ 
+ ## SSL Verification
+ 
+diff --git a/doc/workflow/README.md b/doc/workflow/README.md
+index 2ac3237..deb70de 100644
+--- a/doc/workflow/README.md
++++ b/doc/workflow/README.md
+@@ -1,4 +1,4 @@
+-# Workflow
++# ワークフロー
+ 
+ - [Authorization for merge requests](authorization_for_merge_requests.md)
+ - [Change your time zone](timezone.md)
+diff --git a/doc/workflow/protected_branches.md b/doc/workflow/protected_branches.md
+index fdf9a8d..96dd85a 100644
+--- a/doc/workflow/protected_branches.md
++++ b/doc/workflow/protected_branches.md
+@@ -1,6 +1,6 @@
+ # Protected branches
+ 
+-Permissions in GitLab are fundamentally defined around the idea of having read or write permission to the repository and branches.
++アクセス権 in GitLab are fundamentally defined around the idea of having read or write permission to the repository and branches.
+ 
+ To prevent people from messing with history or pushing code without review, we've created protected branches.
+ 
+@@ -28,4 +28,4 @@ For those workflows, you can allow everyone with write access to push to a prote
+ 
+ On already protected branches you can also allow developers to push to the repository by selecting the `Developers can push` check box.
+ 
+-![Developers can push](protected_branches/protected_branches2.png)
+\ No newline at end of file
++![Developers can push](protected_branches/protected_branches2.png)
 diff --git a/doc/workflow/workflow.md b/doc/workflow/workflow.md
 index f70e41d..84ec9ef 100644
 --- a/doc/workflow/workflow.md

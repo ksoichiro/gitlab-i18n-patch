@@ -13433,7 +13433,7 @@ index 0000000..cee0bea
 +            redirect_uri:
 +              blank: リダイレクトURIは必須です
 diff --git a/doc/README.md b/doc/README.md
-index 5089e1e..63ddaa5 100644
+index 5089e1e..02a74b7 100644
 --- a/doc/README.md
 +++ b/doc/README.md
 @@ -1,33 +1,33 @@
@@ -13448,12 +13448,7 @@ index 5089e1e..63ddaa5 100644
 -- [GitLab Basics](gitlab-basics/README.md) Find step by step how to start working on your commandline and on GitLab.
 -- [Importing to GitLab](workflow/importing/README.md).
 -- [Markdown](markdown/markdown.md) GitLab's advanced formatting system.
-+- [API](api/README.md) シンプルで強力なAPIでGitLabを自動化します。
-+- [OAuth2認証サービスプロバイダとしてのGitLab](integration/oauth_provider.md). GitLabから他のアプリケーションにログインできるようにします。
-+- [GitLabの基本](gitlab-basics/README.md) コマンドラインとGitLabでの作業の始め方をステップバイステップで説明します。
-+- [GitLabへのインポート](workflow/importing/README.md).
-+- [Markdown](markdown/markdown.md) GitLabの高度なフォーマットシステムです。
- - [Migrating from SVN](workflow/importing/migrating_from_svn.md) Convert a SVN repository to Git and GitLab
+-- [Migrating from SVN](workflow/importing/migrating_from_svn.md) Convert a SVN repository to Git and GitLab
 -- [Permissions](permissions/permissions.md) Learn what each role in a project (guest/reporter/developer/master/owner) can do.
 -- [Profile Settings](profile/README.md)
 -- [Project Services](project_services/project_services.md) Integrate a project with external services, such as CI and chat.
@@ -13461,6 +13456,12 @@ index 5089e1e..63ddaa5 100644
 -- [SSH](ssh/README.md) Setup your ssh keys and deploy keys for secure access to your projects.
 -- [Web hooks](web_hooks/web_hooks.md) Let GitLab notify you when new code has been pushed to your project.
 -- [Workflow](workflow/README.md) Using GitLab functionality and importing projects from GitHub and SVN.
++- [API](api/README.md) シンプルで強力なAPIでGitLabを自動化します。
++- [OAuth2認証サービスプロバイダとしてのGitLab](integration/oauth_provider.md). GitLabから他のアプリケーションにログインできるようにします。
++- [GitLabの基本](gitlab-basics/README.md) コマンドラインとGitLabでの作業の始め方をステップバイステップで説明します。
++- [GitLabへのインポート](workflow/importing/README.md).
++- [Markdown](markdown/markdown.md) GitLabの高度なフォーマットシステムです。
++- [SVNからの移行](workflow/importing/migrating_from_svn.md) GitとGitLabへのSVNリポジトリの変換
 +- [アクセス権](permissions/permissions.md) プロジェクトの各ロール (guest/reporter/developer/master/owner) が何をできるのか学びます。
 +- [プロフィール設定](profile/README.md)
 +- [プロジェクトサービス](project_services/project_services.md) CIやチャットなどの外部サービスと、プロジェクトを統合します。
@@ -14292,6 +14293,16 @@ index 2ac3237..deb70de 100644
  
  - [Authorization for merge requests](authorization_for_merge_requests.md)
  - [Change your time zone](timezone.md)
+diff --git a/doc/workflow/importing/migrating_from_svn.md b/doc/workflow/importing/migrating_from_svn.md
+index b355a91..a407a5e 100644
+--- a/doc/workflow/importing/migrating_from_svn.md
++++ b/doc/workflow/importing/migrating_from_svn.md
+@@ -1,4 +1,4 @@
+-# Migrating from SVN to GitLab
++# SVNからの移行 to GitLab
+ 
+ Subversion (SVN) is a central version control system (VCS) while
+ Git is a distributed version control system. There are some major differences
 diff --git a/doc/workflow/protected_branches.md b/doc/workflow/protected_branches.md
 index fdf9a8d..96dd85a 100644
 --- a/doc/workflow/protected_branches.md

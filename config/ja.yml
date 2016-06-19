@@ -2586,3 +2586,5 @@ usingDockerBuild: 'Docker Buildの利用'
 usingVariables: '変数の利用'
 userPermissions: 'ユーザ権限'
 mdTitleCIDocumentation: CIドキュメント
+migratingFromSVN: SVNからの移行
+convertASVNRepositoryToGitAndGitLab: GitとGitLabへのSVNリポジトリの変換

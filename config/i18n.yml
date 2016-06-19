@@ -1535,6 +1535,10 @@ translations:
     replace: '${importingToGitLab}'
   - pattern: "GitLab's advanced formatting system."
     replace: '${gitLabsAdvancedFormattingSystem}'
+  - pattern: 'Migrating from SVN'
+    replace: '${migratingFromSVN}'
+  - pattern: 'Convert a SVN repository to Git and GitLab'
+    replace: '${convertASVNRepositoryToGitAndGitLab}'
   - pattern: 'Permissions'
     replace: '${permissions}'
   - pattern: 'Learn what each role in a project (guest/reporter/developer/master/owner) can do.'

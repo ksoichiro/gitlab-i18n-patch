@@ -1579,6 +1579,34 @@ translations:
     replace: '${usingVariables}'
   - pattern: 'User permissions'
     replace: '${userPermissions}'
+  - pattern: 'Using SSH keys'
+    replace: '${usingSshKeys}'
+  - pattern: "When in a Project -> Settings, you will find Features on the bottom of the page that you can toggle."
+    replace: '${whenInAProjectSettingsYouWillFindFeaturesOnTheBottomOfThePageThatYouCanToggle}'
+  - pattern: 'Below you will find a more elaborate explanation of each of these.'
+    replace: '${belowYouWillFindAMoreElaborateExplanationOfEachOfThese}'
+  - pattern: 'Issues is a really powerful, but lightweight issue tracking system.'
+    replace: '${issuesIsAreallyPowerfulButLightweightIssueTrackingSystem}'
+  - pattern: 'You can make tickets, assign them to people, file them under milestones, order them with labels and have discussion in them.'
+    replace: '${youCanMakeTicketsAssignThemToPeopleFileThemUnderMilestonesOrderThemWithLabelsAndHaveDiscussionInThem}'
+  - pattern: 'They integrate deeply into GitLab and are easily referenced from anywhere by using `#` and the issue number.'
+    replace: '${theyIntegrateDeeplyIntoGitLabAndAreEasilyReferencedFromAnywhereByUsingAndTheIssueNumber}'
+  - pattern: 'Using a merge request, you can review and discuss code before it is merged in the branch of your code.'
+    replace: '${usingAMergeRequestYouCanReviewAndDiscussCodeBeforeItIsMergedInTheBranchOfYourCode}'
+  - pattern: 'As with issues, it can be assigned; people, issues, etc. can be referenced; milestones attached.'
+    replace: '${asWithIssuesItCanBeAssignedPeopleIssuesEtcCanBeReferencedMilestonesAttached}'
+  - pattern: "We see it as an integral part of working together on code and couldn't work without it."
+    replace: '${weSeeItAsAnIntegralPartOfWorkingTogetherOnCodeAndCouldntWorkWithoutIt}'
+  - pattern: 'This is a separate system for documentation, built right into GitLab.'
+    replace: '${thisIsASeparateSystemForDocumentationBuildRightIntoGitLab}'
+  - pattern: "It is source controlled and is very convenient if you don't want to keep you documentation in your source code, but you do want to keep it in your GitLab project."
+    replace: '${itIsSourceControlledAndIsVeryConvenientIfYouDontWantToKeepYouDocumentationInYourSourceCodeButYouDoWantToKeepItInYourGitLabProject}'
+  - pattern: 'Snippets are little bits of code or text.'
+    replace: '${snippetsAreLittleBitsOfCodeOrText}'
+  - pattern: 'This is a nice place to put code or text that is used semi-regularly within the project, but does not belong in source control.'
+    replace: '${thisIsANicePlaceToPutCodeOrTextThatIsUsedSemiRegularlyWithinTheProjectButDoesNotBelongInSourceControl}'
+  - pattern: 'For example, a specific config file that is used by > the team that is only valid for the people that work on the code.'
+    replace: '${forExampleASpecificConfigFileThatIsUsedByTheTeamThatIsOnlyValidForThePeopleThatWorkOnTheCode}'
 
   - name: headerOrComment
     params:
@@ -3348,8 +3376,8 @@ translations:
     #  key: mdTitleIssueTrackerGuidelines
     #- title: 'Issue weight'
     #  key: mdTitleIssueWeight
-    #- title: 'Issues'
-    #  key: mdTitleIssues
+    - title: 'Issues'
+      key: mdTitleIssues
     #- title: 'Issues events'
     #  key: mdTitleIssuesEvents
     #- title: 'Issues pagination'
@@ -3528,8 +3556,8 @@ translations:
     #  key: mdTitleMemory
     #- title: 'Mentioning people'
     #  key: mdTitleMentioningPeople
-    #- title: 'Merge Requests'
-    #  key: mdTitleMergeRequests
+    - title: 'Merge Requests'
+      key: mdTitleMergeRequests
     #- title: 'Merge When Build Succeeds'
     #  key: mdTitleMergeWhenBuildSucceeds
     #- title: 'Merge created branch with master branch'
@@ -3836,8 +3864,8 @@ translations:
     #  key: mdTitleProjectServices
     #- title: 'Project Settings'
     #  key: mdTitleProjectSettings
-    #- title: 'Project features'
-    #  key: mdTitleProjectFeatures
+    - title: 'Project features'
+      key: mdTitleProjectFeatures
     #- title: 'Project forking workflow'
     #  key: mdTitleProjectForkingWorkflow
     #- title: 'Project importing from GitLab.com to your private GitLab instance'
@@ -4182,8 +4210,8 @@ translations:
     #  key: mdTitleSnippetContent
     #- title: 'Snippet visibility level'
     #  key: mdTitleSnippetVisibilityLevel
-    #- title: 'Snippets'
-    #  key: mdTitleSnippets
+    - title: 'Snippets'
+      key: mdTitleSnippets
     #- title: 'Software delivery'
     #  key: mdTitleSoftwareDelivery
     #- title: 'Software stack'

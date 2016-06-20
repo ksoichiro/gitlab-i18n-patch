@@ -1559,7 +1559,7 @@ mdTitleFeatureBranchWorkflow: フィーチャーブランチワークフロー
 #mdTitleIssueTracker: 
 #mdTitleIssueTrackerGuidelines: 
 #mdTitleIssueWeight: 
-#mdTitleIssues: 
+mdTitleIssues: 課題
 #mdTitleIssuesEvents: 
 #mdTitleIssuesPagination: 
 #mdTitleIssuesWithGitLabFlow: 
@@ -1649,7 +1649,7 @@ mdTitleFeatureBranchWorkflow: フィーチャーブランチワークフロー
 #mdTitleMaximumAccessLevel: 
 #mdTitleMemory: 
 #mdTitleMentioningPeople: 
-#mdTitleMergeRequests: 
+mdTitleMergeRequests: マージリクエスト
 #mdTitleMergeWhenBuildSucceeds: 
 #mdTitleMergeCreatedBranchWithMasterBranch: 
 #mdTitleMergeMarshall&MergeRequestCoach: 
@@ -1803,7 +1803,7 @@ mdTitleFeatureBranchWorkflow: フィーチャーブランチワークフロー
 #mdTitleProjectService: 
 #mdTitleProjectServices: 
 #mdTitleProjectSettings: 
-#mdTitleProjectFeatures: 
+mdTitleProjectFeatures: プロジェクトの機能
 #mdTitleProjectForkingWorkflow: 
 #mdTitleProjectImportingFromGitLabcomToYourPrivateGitLabInstance: 
 #mdTitleProjectServices: 
@@ -1976,7 +1976,7 @@ mdTitleFeatureBranchWorkflow: フィーチャーブランチワークフロー
 #mdTitleSlackIntegration: 
 #mdTitleSnippetContent: 
 #mdTitleSnippetVisibilityLevel: 
-#mdTitleSnippets: 
+mdTitleSnippets: スニペット
 #mdTitleSoftwareDelivery: 
 #mdTitleSoftwareStack: 
 #mdTitleSolution: 
@@ -2588,3 +2588,17 @@ userPermissions: 'ユーザ権限'
 mdTitleCIDocumentation: CIドキュメント
 migratingFromSVN: SVNからの移行
 convertASVNRepositoryToGitAndGitLab: GitとGitLabへのSVNリポジトリの変換
+usingSshKeys: SSHキーの利用
+whenInAProjectSettingsYouWillFindFeaturesOnTheBottomOfThePageThatYouCanToggle: プロジェクトの設定画面には、ページ下部に、ON/OFFを切り替えられる機能があります。
+belowYouWillFindAMoreElaborateExplanationOfEachOfThese: 以下では、各機能をより詳しく説明します。
+issuesIsAreallyPowerfulButLightweightIssueTrackingSystem: '"課題"は本当に強力ですが軽量な課題トラッキングシステムです。'
+youCanMakeTicketsAssignThemToPeopleFileThemUnderMilestonesOrderThemWithLabelsAndHaveDiscussionInThem: チケットを作成し、メンバーにアサインし、マイルストーンを設定し、ラベルをつけてディスカッションすることができます。
+theyIntegrateDeeplyIntoGitLabAndAreEasilyReferencedFromAnywhereByUsingAndTheIssueNumber: 課題はGitLabに深く統合されており、`#`と課題番号を使うことで、どこからでも簡単に参照することができます。
+usingAMergeRequestYouCanReviewAndDiscussCodeBeforeItIsMergedInTheBranchOfYourCode: マージリクエストを使うと、ブランチ上のソースコードをマージする前にレビューし、ディスカッションすることができます。
+asWithIssuesItCanBeAssignedPeopleIssuesEtcCanBeReferencedMilestonesAttached: 課題と同じように、メンバーや課題などをアサインすることができ、マイルストーンとともに参照できます。
+weSeeItAsAnIntegralPartOfWorkingTogetherOnCodeAndCouldntWorkWithoutIt: 私たちは、これをソースコード上での共同作業に欠かすことのできない重要な部分だと考えています。
+thisIsASeparateSystemForDocumentationBuildRightIntoGitLab: これはドキュメンテーションのための別のシステムですが、GitLabの一部として組み込まれています。
+itIsSourceControlledAndIsVeryConvenientIfYouDontWantToKeepYouDocumentationInYourSourceCodeButYouDoWantToKeepItInYourGitLabProject: Wikiはソースコードとして管理され、ドキュメントをソースコードの一部には入れたくないけれどもGitLabのプロジェクトの一部としておきたい場合に便利です。
+snippetsAreLittleBitsOfCodeOrText: スニペットはソースコードやテキストの断片です。
+thisIsANicePlaceToPutCodeOrTextThatIsUsedSemiRegularlyWithinTheProjectButDoesNotBelongInSourceControl: スニペットは、プロジェクトで半定期的に参照するけれどもソースコード管理はしないようなソースコードやテキストを置いておくのに良い場所です。
+forExampleASpecificConfigFileThatIsUsedByTheTeamThatIsOnlyValidForThePeopleThatWorkOnTheCode: 例えば、あるコードを扱うメンバーにのみ有効な特定の設定ファイルなどです。

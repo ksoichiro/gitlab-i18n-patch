@@ -13109,7 +13109,7 @@ index 0000000..cee0bea
 +            redirect_uri:
 +              blank: リダイレクトURIは必須です
 diff --git a/doc/README.md b/doc/README.md
-index 8bac00f..707ff8e 100644
+index 8bac00f..20ad141 100644
 --- a/doc/README.md
 +++ b/doc/README.md
 @@ -1,32 +1,32 @@
@@ -13156,6 +13156,8 @@ index 8bac00f..707ff8e 100644
 -- [Using Docker Images](ci/docker/using_docker_images.md)
 -- [Using Docker Build](ci/docker/using_docker_build.md)
 -- [Using Variables](ci/variables/README.md)
+-- [Using SSH keys](ci/ssh_keys/README.md)
+-- [User permissions](ci/permissions/README.md)
 +- [クイックスタート](ci/quick_start/README.md)
 +- [プロジェクトの設定 (.gitlab-ci.yml)](ci/yaml/README.md)
 +- [ランナーの設定](ci/runners/README.md)
@@ -13163,8 +13165,7 @@ index 8bac00f..707ff8e 100644
 +- [Dockerイメージの利用](ci/docker/using_docker_images.md)
 +- [Docker Buildの利用](ci/docker/using_docker_build.md)
 +- [変数の利用](ci/variables/README.md)
- - [Using SSH keys](ci/ssh_keys/README.md)
--- [User permissions](ci/permissions/README.md)
++- [SSHキーの利用](ci/ssh_keys/README.md)
 +- [ユーザ権限](ci/permissions/README.md)
  - [API](ci/api/README.md)
  
@@ -13179,6 +13180,16 @@ index e4492fc..fdd1726 100644
  
  ## List deploy keys
  
+diff --git a/doc/api/issues.md b/doc/api/issues.md
+index d407bc3..af9cfcd 100644
+--- a/doc/api/issues.md
++++ b/doc/api/issues.md
+@@ -1,4 +1,4 @@
+-# Issues
++# 課題
+ 
+ ## List issues
+ 
 diff --git a/doc/api/merge_requests.md b/doc/api/merge_requests.md
 index 366a1f8..ee6666e 100644
 --- a/doc/api/merge_requests.md
@@ -13192,15 +13203,47 @@ index 366a1f8..ee6666e 100644
  
  Merge changes submitted with MR using this API. With GitLab 8.2 the return
  fields `upvotes` and `downvotes` are deprecated and always return `0`.
+diff --git a/doc/api/notes.md b/doc/api/notes.md
+index 4d7ef28..fc73977 100644
+--- a/doc/api/notes.md
++++ b/doc/api/notes.md
+@@ -2,7 +2,7 @@
+ 
+ Notes are comments on snippets, issues or merge requests.
+ 
+-## Issues
++## 課題
+ 
+ ### List project issue notes
+ 
+@@ -104,7 +104,7 @@ Parameters:
+ - `note_id` (required) - The ID of a note
+ - `body` (required) - The content of a note
+ 
+-## Snippets
++## スニペット
+ 
+ ### List all snippet notes
+ 
+@@ -181,7 +181,7 @@ Parameters:
+ - `note_id` (required) - The ID of a note
+ - `body` (required) - The content of a note
+ 
+-## Merge Requests
++## マージリクエスト
+ 
+ ### List all merge request notes
+ 
 diff --git a/doc/ci/README.md b/doc/ci/README.md
-index 5d9d7a8..bf85e79 100644
+index 5d9d7a8..5d57acc 100644
 --- a/doc/ci/README.md
 +++ b/doc/ci/README.md
-@@ -1,14 +1,14 @@
+@@ -1,15 +1,15 @@
  ## GitLab CI Documentation
  
 -### User documentation
--
++### ユーザ向けドキュメント
+ 
 -+ [Quick Start](quick_start/README.md)
 -+ [Configuring project (.gitlab-ci.yml)](yaml/README.md)
 -+ [Configuring runner](runners/README.md)
@@ -13208,8 +13251,7 @@ index 5d9d7a8..bf85e79 100644
 -+ [Using Docker Images](docker/using_docker_images.md)
 -+ [Using Docker Build](docker/using_docker_build.md)
 -+ [Using Variables](variables/README.md)
-+### ユーザ向けドキュメント
-+
+-+ [Using SSH keys](ssh_keys/README.md)
 ++ [クイックスタート](quick_start/README.md)
 ++ [プロジェクトの設定 (.gitlab-ci.yml)](yaml/README.md)
 ++ [ランナーの設定](runners/README.md)
@@ -13217,9 +13259,10 @@ index 5d9d7a8..bf85e79 100644
 ++ [Dockerイメージの利用](docker/using_docker_images.md)
 ++ [Docker Buildの利用](docker/using_docker_build.md)
 ++ [変数の利用](variables/README.md)
- + [Using SSH keys](ssh_keys/README.md)
+++ [SSHキーの利用](ssh_keys/README.md)
  
  ### Languages
+ 
 @@ -31,5 +31,5 @@
  
  ### Administrator documentation
@@ -13286,6 +13329,16 @@ index a9b3613..199686e 100644
  
  Starting from version 8.0, GitLab Continuous Integration (CI) is fully
  integrated into GitLab itself and is enabled by default on all projects.
+diff --git a/doc/ci/ssh_keys/README.md b/doc/ci/ssh_keys/README.md
+index 210f9c3..1073e1a 100644
+--- a/doc/ci/ssh_keys/README.md
++++ b/doc/ci/ssh_keys/README.md
+@@ -1,4 +1,4 @@
+-# Using SSH keys
++# SSHキーの利用
+ 
+ GitLab currently doesn't have built-in support for managing SSH keys in a build
+ environment.
 diff --git a/doc/ci/variables/README.md b/doc/ci/variables/README.md
 index b99ea25..ce314b2 100644
 --- a/doc/ci/variables/README.md
@@ -13920,6 +13973,73 @@ index b355a91..a407a5e 100644
  
  Subversion (SVN) is a central version control system (VCS) while
  Git is a distributed version control system. There are some major differences
+diff --git a/doc/workflow/merge_requests.md b/doc/workflow/merge_requests.md
+index 6d57b5d..6c8514f 100644
+--- a/doc/workflow/merge_requests.md
++++ b/doc/workflow/merge_requests.md
+@@ -1,4 +1,4 @@
+-# Merge Requests
++# マージリクエスト
+ 
+ Merge requests allow you to exchange changes you made to source code
+ 
+diff --git a/doc/workflow/project_features.md b/doc/workflow/project_features.md
+index a523b3f..d9aabd6 100644
+--- a/doc/workflow/project_features.md
++++ b/doc/workflow/project_features.md
+@@ -1,35 +1,35 @@
+-# Project features
++# プロジェクトの機能
+ 
+-When in a Project -> Settings, you will find Features on the bottom of the page that you can toggle.
++プロジェクトの設定画面には、ページ下部に、ON/OFFを切り替えられる機能があります。
+ 
+-Below you will find a more elaborate explanation of each of these.
++以下では、各機能をより詳しく説明します。
+ 
+-## Issues
++## 課題
+ 
+-Issues is a really powerful, but lightweight issue tracking system.
++"課題"は本当に強力ですが軽量な課題トラッキングシステムです。
+ 
+-You can make tickets, assign them to people, file them under milestones, order them with labels and have discussion in them.
++チケットを作成し、メンバーにアサインし、マイルストーンを設定し、ラベルをつけてディスカッションすることができます。
+ 
+-They integrate deeply into GitLab and are easily referenced from anywhere by using `#` and the issue number.
++課題はGitLabに深く統合されており、`#`と課題番号を使うことで、どこからでも簡単に参照することができます。
+ 
+-## Merge Requests
++## マージリクエスト
+ 
+-Using a merge request, you can review and discuss code before it is merged in the branch of your code.
++マージリクエストを使うと、ブランチ上のソースコードをマージする前にレビューし、ディスカッションすることができます。
+ 
+-As with issues, it can be assigned; people, issues, etc. can be referenced; milestones attached.
++課題と同じように、メンバーや課題などをアサインすることができ、マイルストーンとともに参照できます。
+ 
+-We see it as an integral part of working together on code and couldn't work without it.
++私たちは、これをソースコード上での共同作業に欠かすことのできない重要な部分だと考えています。
+ 
+ ## Wiki
+ 
+-This is a separate system for documentation, built right into GitLab.
++これはドキュメンテーションのための別のシステムですが、GitLabの一部として組み込まれています。
+ 
+-It is source controlled and is very convenient if you don't want to keep you documentation in your source code, but you do want to keep it in your GitLab project.
++Wikiはソースコードとして管理され、ドキュメントをソースコードの一部には入れたくないけれどもGitLabのプロジェクトの一部としておきたい場合に便利です。
+ 
+-## Snippets
++## スニペット
+ 
+-Snippets are little bits of code or text.
++スニペットはソースコードやテキストの断片です。
+ 
+-This is a nice place to put code or text that is used semi-regularly within the project, but does not belong in source control.
++スニペットは、プロジェクトで半定期的に参照するけれどもソースコード管理はしないようなソースコードやテキストを置いておくのに良い場所です。
+ 
+-For example, a specific config file that is used by > the team that is only valid for the people that work on the code.
++例えば、あるコードを扱うメンバーにのみ有効な特定の設定ファイルなどです。
 diff --git a/doc/workflow/workflow.md b/doc/workflow/workflow.md
 index f70e41d..84ec9ef 100644
 --- a/doc/workflow/workflow.md

@@ -1607,6 +1607,40 @@ translations:
     replace: '${thisIsANicePlaceToPutCodeOrTextThatIsUsedSemiRegularlyWithinTheProjectButDoesNotBelongInSourceControl}'
   - pattern: 'For example, a specific config file that is used by > the team that is only valid for the people that work on the code.'
     replace: '${forExampleASpecificConfigFileThatIsUsedByTheTeamThatIsOnlyValidForThePeopleThatWorkOnTheCode}'
+  - pattern: "If you'd like to migrate from a self-hosted GitLab instance to GitLab.com, you can copy your repos by changing the remote and pushing to the new server; but issues and merge requests can't be imported."
+    replace: '${ifYoudLikeToMigrateFromASelfHostedGitlabInstanceToGitlabComYouCanCopyYourReposByChangingTheRemoteAndPushingToTheNewServerButIssuesAndMergeRequestsCantBeImported}'
+  - pattern: 'Authorization for merge requests'
+    replace: '${authorizationForMergeRequests}'
+  - pattern: 'Change your time zone'
+    replace: '${changeYourTimeZone}'
+  - pattern: 'Feature branch workflow'
+    replace: '${mdTitleFeatureBranchWorkflow}'
+  - pattern: 'Groups'
+    replace: '${group}'
+  - pattern: 'Keyboard shortcuts'
+    replace: '${keyboardShortcuts}'
+  - pattern: 'Labels'
+    replace: '${label}'
+  - pattern: 'Notification emails'
+    replace: '${notificationEmail}'
+  - pattern: 'Project Features'
+    replace: '${projectFeatures}'
+  - pattern: 'Project forking workflow'
+    replace: '${projectForkingWorkflow}'
+  - pattern: 'Project users'
+    replace: '${projectUsers}'
+  - pattern: 'Protected branches'
+    replace: '${protectedBranch}'
+  - pattern: 'Web Editor'
+    replace: '${webEditor}'
+  - pattern: 'Releases'
+    replace: '${release}'
+  - pattern: 'Milestones'
+    replace: '${milestone}'
+  - pattern: 'Merge Requests'
+    replace: '${mergeRequest}'
+  - pattern: '"Work In Progress" Merge Requests'
+    replace: '${workInProgressMergeRequest}'
 
   - name: headerOrComment
     params:
@@ -3594,8 +3628,8 @@ translations:
     #  key: mdTitleMigratingFromSVNToGitLab
     #- title: 'Migrating from self-hosted GitLab to GitLab.com'
     #  key: mdTitleMigratingFromSelfHostedGitLabToGitLabcom
-    #- title: 'Migrating projects to a GitLab instance'
-    #  key: mdTitleMigratingProjectsToAGitLabInstance
+    - title: 'Migrating projects to a GitLab instance'
+      key: mdTitleMigratingProjectsToAGitLabInstance
     #- title: 'Migration Style Guide'
     #  key: mdTitleMigrationStyleGuide
     #- title: 'Milestones'
@@ -3664,10 +3698,8 @@ translations:
     #  key: mdTitleNginxConfiguration
     #- title: 'Non-Unix operating systems such as Windows'
     #  key: mdTitleNonUnixOperatingSystemsSuchAsWindows
-    #- title: 'Note'
-    #  key: mdTitleNote
-    #- title: 'Note'
-    #  key: mdTitleNote
+    - title: 'Note'
+      key: mdTitleNote
     #- title: 'Note on Irker recipients'
     #  key: mdTitleNoteOnIrkerRecipients
     #- title: 'Note the filename of the backup that was created. We will call it'
@@ -4726,8 +4758,8 @@ translations:
     #  key: mdTitleWhyWasThisMRNeeded
     #- title: 'Work on a branch that has already been created'
     #  key: mdTitleWorkOnABranchThatHasAlreadyBeenCreated
-    #- title: 'Workflow'
-    #  key: mdTitleWorkflow
+    - title: 'Workflow'
+      key: mdTitleWorkflow
     #- title: 'Workflow labels'
     #  key: mdTitleWorkflowLabels
     #- title: 'Wrong'

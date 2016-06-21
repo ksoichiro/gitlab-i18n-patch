@@ -1668,7 +1668,7 @@ mdTitleMergeRequests: マージリクエスト
 #mdTitleMigratingGitLabFromMySQLToPostgres: 
 #mdTitleMigratingFromSVNToGitLab: 
 #mdTitleMigratingFromSelfHostedGitLabToGitLabcom: 
-#mdTitleMigratingProjectsToAGitLabInstance: 
+mdTitleMigratingProjectsToAGitLabInstance: プロジェクトをGitLabインスタンスに移行する
 #mdTitleMigrationStyleGuide: 
 #mdTitleMilestones: 
 #mdTitleMiscellaneous: 
@@ -1703,12 +1703,10 @@ mdTitleMergeRequests: マージリクエスト
 #mdTitleNginx: 
 #mdTitleNginxConfiguration: 
 #mdTitleNonUnixOperatingSystemsSuchAsWindows: 
-#mdTitleNote: 
-#mdTitleNote: 
+mdTitleNote: 注意
 #mdTitleNoteOnIrkerRecipients: 
 #mdTitleNoteTheFilenameOfTheBackupThatWasCreatedWeWillCallIt: 
 #mdTitleNoteToGitLabAdministrators: 
-#mdTitleNote: 
 #mdTitleNotes: 
 #mdTitleNotificationEvents: 
 #mdTitleNotificationSettings: 
@@ -2233,7 +2231,7 @@ mdTitleUserDocumentation: ユーザ向けドキュメント
 #mdTitleWhatYouShouldKnowAboutOmnibusPackages: 
 #mdTitleWhyWasThisMRNeeded: 
 #mdTitleWorkOnABranchThatHasAlreadyBeenCreated: 
-#mdTitleWorkflow: 
+mdTitleWorkflow: ワークフロー
 #mdTitleWorkflowLabels: 
 #mdTitleWrong: 
 #mdTitleYAMLDefinedVariables: 
@@ -2602,3 +2600,12 @@ itIsSourceControlledAndIsVeryConvenientIfYouDontWantToKeepYouDocumentationInYour
 snippetsAreLittleBitsOfCodeOrText: スニペットはソースコードやテキストの断片です。
 thisIsANicePlaceToPutCodeOrTextThatIsUsedSemiRegularlyWithinTheProjectButDoesNotBelongInSourceControl: スニペットは、プロジェクトで半定期的に参照するけれどもソースコード管理はしないようなソースコードやテキストを置いておくのに良い場所です。
 forExampleASpecificConfigFileThatIsUsedByTheTeamThatIsOnlyValidForThePeopleThatWorkOnTheCode: 例えば、あるコードを扱うメンバーにのみ有効な特定の設定ファイルなどです。
+ifYoudLikeToMigrateFromASelfHostedGitlabInstanceToGitlabComYouCanCopyYourReposByChangingTheRemoteAndPushingToTheNewServerButIssuesAndMergeRequestsCantBeImported: "セルフホストのGitLabインスタンスからGitLab.comに移行する場合、リモートを変更して新しいサーバにプッシュすることでリポジトリをコピーすることができますが、課題やマージリクエストはインポートされません。"
+authorizationForMergeRequests: マージリクエストの承認
+changeYourTimeZone: タイムゾーンの変更
+projectFeatures: プロジェクトの機能
+projectForkingWorkflow: プロジェクトフォークワークフロー
+projectUsers: プロジェクトユーザ
+webEditor: Webエディタ
+release: リリース
+workInProgressMergeRequest: '"Work In Progress" マージリクエスト'

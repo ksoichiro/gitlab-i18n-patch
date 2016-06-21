@@ -13518,7 +13518,7 @@ index 08d0a6a..8582e7f 100644
  ## Administrator documentation
  
 diff --git a/doc/api/README.md b/doc/api/README.md
-index 7629ef2..a78ae26 100644
+index 7629ef2..4c5385e 100644
 --- a/doc/api/README.md
 +++ b/doc/api/README.md
 @@ -1,6 +1,6 @@
@@ -13529,6 +13529,25 @@ index 7629ef2..a78ae26 100644
  under [`/lib/api`](https://gitlab.com/gitlab-org/gitlab-ce/tree/master/lib/api).
  
  ## Resources
+@@ -18,14 +18,14 @@ following locations:
+ - [Commits](commits.md)
+ - [Tags](tags.md)
+ - [Branches](branches.md)
+-- [Merge Requests](merge_requests.md)
++- [マージリクエスト](merge_requests.md)
+ - [Issues](issues.md)
+-- [Labels](labels.md)
+-- [Milestones](milestones.md)
++- [ラベル](labels.md)
++- [マイルストーン](milestones.md)
+ - [Notes](notes.md) (comments)
+ - [Deploy Keys](deploy_keys.md)
+ - [System Hooks](system_hooks.md)
+-- [Groups](groups.md)
++- [グループ](groups.md)
+ - [Namespaces](namespaces.md)
+ - [Settings](settings.md)
+ - [Keys](keys.md)
 diff --git a/doc/api/deploy_keys.md b/doc/api/deploy_keys.md
 index 9da1fe2..3ba8033 100644
 --- a/doc/api/deploy_keys.md
@@ -13538,6 +13557,16 @@ index 9da1fe2..3ba8033 100644
 +# デプロイキー
  
  ## List deploy keys
+ 
+diff --git a/doc/api/groups.md b/doc/api/groups.md
+index d1b5c9f..e868493 100644
+--- a/doc/api/groups.md
++++ b/doc/api/groups.md
+@@ -1,4 +1,4 @@
+-# Groups
++# グループ
+ 
+ ## List groups
  
 diff --git a/doc/api/issues.md b/doc/api/issues.md
 index 18d64c4..299503c 100644
@@ -13549,10 +13578,38 @@ index 18d64c4..299503c 100644
  
  Every API call to issues must be authenticated.
  
+diff --git a/doc/api/labels.md b/doc/api/labels.md
+index 6496ffe..d25a179 100644
+--- a/doc/api/labels.md
++++ b/doc/api/labels.md
+@@ -1,4 +1,4 @@
+-# Labels
++# ラベル
+ 
+ ## List labels
+ 
 diff --git a/doc/api/merge_requests.md b/doc/api/merge_requests.md
-index b20a630..0261787 100644
+index b20a630..84831e3 100644
 --- a/doc/api/merge_requests.md
 +++ b/doc/api/merge_requests.md
+@@ -258,7 +258,7 @@ Parameters:
+ - `title` (required)             - Title of MR
+ - `description` (optional)       - Description of MR
+ - `target_project_id` (optional) - The target project (numeric id)
+-- `labels` (optional)            - Labels for MR as a comma-separated list
++- `labels` (optional)            - ラベル for MR as a comma-separated list
+ - `milestone_id` (optional)      - Milestone ID
+ 
+ ```json
+@@ -328,7 +328,7 @@ Parameters:
+ - `title`                       - Title of MR
+ - `description`                 - Description of MR
+ - `state_event`                 - New state (close|reopen|merge)
+-- `labels` (optional)           - Labels for MR as a comma-separated list
++- `labels` (optional)           - ラベル for MR as a comma-separated list
+ - `milestone_id` (optional)     - Milestone ID
+ 
+ ```json
 @@ -399,7 +399,7 @@ DELETE /projects/:id/merge_requests/:merge_request_id
  curl -X DELETE -H "PRIVATE-TOKEN: 9koXpg98eAheJpvBs5tK" https://gitlab.example.com/api/v3/projects/4/merge_request/85
  ```
@@ -13561,6 +13618,16 @@ index b20a630..0261787 100644
 +## マージリクエストの承認
  
  Merge changes submitted with MR using this API.
+ 
+diff --git a/doc/api/milestones.md b/doc/api/milestones.md
+index a682872..7b45b64 100644
+--- a/doc/api/milestones.md
++++ b/doc/api/milestones.md
+@@ -1,4 +1,4 @@
+-# Milestones
++# マイルストーン
+ 
+ ## List project milestones
  
 diff --git a/doc/api/notes.md b/doc/api/notes.md
 index d4d63e8..cd33915 100644
@@ -13644,6 +13711,19 @@ index bd748f1..35876c6 100644
  
  GitLab CI in conjunction with [GitLab Runner](../runners/README.md) can use
  [Docker Engine](https://www.docker.com/) to test and build any application.
+diff --git a/doc/ci/enable_or_disable_ci.md b/doc/ci/enable_or_disable_ci.md
+index c10f820..6c80057 100644
+--- a/doc/ci/enable_or_disable_ci.md
++++ b/doc/ci/enable_or_disable_ci.md
+@@ -25,7 +25,7 @@ respectively.
+ 
+ The setting to enable or disable GitLab CI can be found with the name **Builds**
+ under the **Features** area of a project's settings along with **Issues**,
+-**Merge Requests**, **Wiki** and **Snippets**. Select or deselect the checkbox
++**マージリクエスト**, **Wiki** and **Snippets**. Select or deselect the checkbox
+ and hit **Save** for the settings to take effect.
+ 
+ ![Features settings](img/features_settings.png)
 diff --git a/doc/ci/permissions/README.md b/doc/ci/permissions/README.md
 index d77061c..f065237 100644
 --- a/doc/ci/permissions/README.md
@@ -13655,7 +13735,7 @@ index d77061c..f065237 100644
  GitLab CI relies on user's role on the GitLab. There are three permissions levels on GitLab CI: admin, master, developer, other.
  
 diff --git a/doc/ci/quick_start/README.md b/doc/ci/quick_start/README.md
-index 9aba432..d4782bf 100644
+index 9aba432..f872376 100644
 --- a/doc/ci/quick_start/README.md
 +++ b/doc/ci/quick_start/README.md
 @@ -1,4 +1,4 @@
@@ -13664,6 +13744,15 @@ index 9aba432..d4782bf 100644
  
  >**Note:** Starting from version 8.0, GitLab [Continuous Integration][ci] (CI)
  is fully integrated into GitLab itself and is [enabled] by default on all
+@@ -204,7 +204,7 @@ you expected.
+ ![Build log](img/build_log.png)
+ 
+ You are also able to view the status of any commit in the various pages in
+-GitLab, such as **Commits** and **Merge Requests**.
++GitLab, such as **Commits** and **マージリクエスト**.
+ 
+ ## Enabling build emails
+ 
 diff --git a/doc/ci/ssh_keys/README.md b/doc/ci/ssh_keys/README.md
 index 210f9c3..1073e1a 100644
 --- a/doc/ci/ssh_keys/README.md
@@ -13702,6 +13791,83 @@ index 4316f3c..4432720 100644
  | stage         | no | Defines a build stage (default: `test`) |
  | type          | no | Alias for `stage` |
  | only          | no | Defines a list of git refs for which build is created |
+diff --git a/doc/gitlab-basics/add-file.md b/doc/gitlab-basics/add-file.md
+index 57136ac..4ea6e17 100644
+--- a/doc/gitlab-basics/add-file.md
++++ b/doc/gitlab-basics/add-file.md
+@@ -26,6 +26,6 @@ Add a commit message based on what you just added and then click on "commit chan
+ 
+ ![Commit changes](basicsimages/commit_changes.png)
+ 
+-### Note
++### 注意
+ Besides its regular files, every directory needs a README.md or README.html file which works like an index, telling
+ what the directory is about. It's the first document you'll find when you open a directory.
+diff --git a/doc/gitlab-basics/add-merge-request.md b/doc/gitlab-basics/add-merge-request.md
+index 236b424..57567cf 100644
+--- a/doc/gitlab-basics/add-merge-request.md
++++ b/doc/gitlab-basics/add-merge-request.md
+@@ -1,6 +1,6 @@
+ # How to create a merge request
+ 
+-Merge Requests are useful to integrate separate changes that you've made to a project, on different branches.
++マージリクエスト are useful to integrate separate changes that you've made to a project, on different branches.
+ 
+ To create a new Merge Request, sign in to GitLab.
+ 
+@@ -8,7 +8,7 @@ Go to the project where you'd like to merge your changes:
+ 
+ ![Select a project](basicsimages/select_project.png)
+ 
+-Click on "Merge Requests" on the left side of your screen:
++Click on "マージリクエスト" on the left side of your screen:
+ 
+ ![Merge requests](basicsimages/merge_requests.png)
+ 
+@@ -34,7 +34,7 @@ Select a user to review your Merge Request and to accept or close it. You may al
+ 
+ Your Merge Request will be ready to be approved and published.
+ 
+-### Note
++### 注意
+ 
+ After you created a new branch, you'll immediately find a "create a Merge Request" button at the top of your screen.
+ You may automatically create a Merge Request from your recently created branch when clicking on this button:
+diff --git a/doc/gitlab-basics/create-group.md b/doc/gitlab-basics/create-group.md
+index f80ae62..f0cebec 100644
+--- a/doc/gitlab-basics/create-group.md
++++ b/doc/gitlab-basics/create-group.md
+@@ -10,7 +10,7 @@ To create a group, follow the instructions below:
+ 
+ Sign in to [GitLab.com](https://gitlab.com).
+ 
+-When you are on your Dashboard, click on "Groups" on the left menu of your screen:
++When you are on your Dashboard, click on "グループ" on the left menu of your screen:
+ 
+ ![Go to groups](basicsimages/select-group2.png)
+ 
+diff --git a/doc/gitlab-basics/create-issue.md b/doc/gitlab-basics/create-issue.md
+index 87f078d..555dfbe 100644
+--- a/doc/gitlab-basics/create-issue.md
++++ b/doc/gitlab-basics/create-issue.md
+@@ -24,4 +24,4 @@ You may assign the Issue to a user, add a milestone and add labels (they are all
+ 
+ ![Submit new issue](basicsimages/submit_new_issue.png)
+ 
+-Your Issue will now be added to the Issue Tracker and will be ready to be reviewed. You can comment on it and mention the people involved. You can also link Issues to the Merge Requests where the Issues are solved. To do this, you can use an [Issue closing pattern](http://doc.gitlab.com/ce/customization/issue_closing.html).
++Your Issue will now be added to the Issue Tracker and will be ready to be reviewed. You can comment on it and mention the people involved. You can also link Issues to the マージリクエスト where the Issues are solved. To do this, you can use an [Issue closing pattern](http://doc.gitlab.com/ce/customization/issue_closing.html).
+diff --git a/doc/install/database_mysql.md b/doc/install/database_mysql.md
+index e51ff5a..5313e88 100644
+--- a/doc/install/database_mysql.md
++++ b/doc/install/database_mysql.md
+@@ -1,6 +1,6 @@
+ # Database MySQL
+ 
+-## Note
++## 注意
+ 
+ We do not recommend using MySQL due to various issues. For example, case [(in)sensitivity](https://dev.mysql.com/doc/refman/5.0/en/case-sensitivity.html) and [problems](https://bugs.mysql.com/bug.php?id=65830) that [suggested](https://bugs.mysql.com/bug.php?id=50909) [fixes](https://bugs.mysql.com/bug.php?id=65830) [have](https://bugs.mysql.com/bug.php?id=63164).
+ 
 diff --git a/doc/integration/README.md b/doc/integration/README.md
 index 7c8f785..3ce7244 100644
 --- a/doc/integration/README.md
@@ -13792,9 +13958,18 @@ index 6f8359d..a75abd2 100644
  - [Preferences](preferences.md)
  - [Two-factor Authentication (2FA)](two_factor_authentication.md)
 diff --git a/doc/profile/two_factor_authentication.md b/doc/profile/two_factor_authentication.md
-index a0e23c1..6fa206b 100644
+index a0e23c1..aa48ef0 100644
 --- a/doc/profile/two_factor_authentication.md
 +++ b/doc/profile/two_factor_authentication.md
+@@ -8,7 +8,7 @@ your phone.
+ By enabling 2FA, the only way someone other than you can log into your account
+ is to know your username and password *and* have access to your phone.
+ 
+-#### Note
++#### 注意
+ When you enable 2FA, don't forget to back up your recovery codes. For your safety, if you
+ lose your codes for GitLab.com, we can't disable or recover them.  
+ 
 @@ -17,7 +17,7 @@ lose your codes for GitLab.com, we can't disable or recover them.
  **In GitLab:**
  
@@ -13822,10 +13997,32 @@ index a0e23c1..6fa206b 100644
  1. Go to **Account**.
  1. Click **Disable Two-factor Authentication**.
  
+diff --git a/doc/project_services/bamboo.md b/doc/project_services/bamboo.md
+index 5166812..da5add0 100644
+--- a/doc/project_services/bamboo.md
++++ b/doc/project_services/bamboo.md
+@@ -28,7 +28,7 @@ whitelist of IP addresses that are allowed to trigger Bamboo builds.
+ you want to select the last stage that contains the git checkout task.
+ 1. Select the 'Miscellaneous' tab.
+ 1. Under 'Pattern Match Labelling' put '${bamboo.repository.revision.number}' 
+-in the 'Labels' box.
++in the 'ラベル' box.
+ 1. Save
+ 
+ Bamboo is now ready to accept triggers from GitLab. Next, set up the Bamboo
 diff --git a/doc/project_services/jira.md b/doc/project_services/jira.md
-index 27170c1..818e866 100644
+index 27170c1..52e9fbd 100644
 --- a/doc/project_services/jira.md
 +++ b/doc/project_services/jira.md
+@@ -54,7 +54,7 @@ We have split this stage in steps so it is easier to follow.
+      ---
+ 
+ 1. Now, let's create a `gitlab-developers` group which will have write access
+-   to projects in JIRA. Go to the **Groups** tab and select **Create group**.
++   to projects in JIRA. Go to the **グループ** tab and select **Create group**.
+ 
+      ![JIRA create new user](img/jira_create_new_group.png)
+ 
 @@ -113,7 +113,7 @@ Fill in the required details on the page, as described in the table below.
  | `Api url`     | The base URL of the JIRA API. It may be omitted, in which case GitLab will automatically use API version `2` based on the `project url`. It is of the form: `https://<jira_host_url>/rest/api/2`. |
  | `Username` | The username of the user created in [configuring JIRA step](#configuring-jira). |
@@ -13855,6 +14052,19 @@ index 20aa90f..df28562 100644
  
  GitLab allows you to change your projects' visibility in order be accessed
  **publicly** or **internally**.
+diff --git a/doc/raketasks/backup_restore.md b/doc/raketasks/backup_restore.md
+index f6d1234..da7a67f 100644
+--- a/doc/raketasks/backup_restore.md
++++ b/doc/raketasks/backup_restore.md
+@@ -410,7 +410,7 @@ Those objects have no influence on the database backup/restore but they give thi
+ 
+ For more information see similar questions on postgresql issue tracker[here](http://www.postgresql.org/message-id/201110220712.30886.adrian.klaver@gmail.com) and [here](http://www.postgresql.org/message-id/2039.1177339749@sss.pgh.pa.us) as well as [stack overflow](http://stackoverflow.com/questions/4368789/error-must-be-owner-of-language-plpgsql).
+ 
+-## Note
++## 注意
+ This documentation is for GitLab CE.
+ We backup GitLab.com and make sure your data is secure, but you can't use these methods to export / backup your data yourself from GitLab.com.
+ 
 diff --git a/doc/ssh/README.md b/doc/ssh/README.md
 index a1198e5..c8bae01 100644
 --- a/doc/ssh/README.md
@@ -14334,15 +14544,118 @@ index 712e9fd..c5ff80e 100644
  Make sure you view this update guide from the tag (version) of GitLab you would
  like to install. In most cases this should be the highest numbered production
 diff --git a/doc/workflow/README.md b/doc/workflow/README.md
-index 25893f9..596b9aa 100644
+index 25893f9..94ab245 100644
 --- a/doc/workflow/README.md
 +++ b/doc/workflow/README.md
-@@ -1,4 +1,4 @@
+@@ -1,26 +1,26 @@
 -# Workflow
 +# ワークフロー
  
- - [Authorization for merge requests](authorization_for_merge_requests.md)
- - [Change your time zone](timezone.md)
+-- [Authorization for merge requests](authorization_for_merge_requests.md)
+-- [Change your time zone](timezone.md)
+-- [Feature branch workflow](workflow.md)
++- [マージリクエストの承認](authorization_for_merge_requests.md)
++- [タイムゾーンの変更](timezone.md)
++- [フィーチャーブランチワークフロー](workflow.md)
+ - [GitLab Flow](gitlab_flow.md)
+-- [Groups](groups.md)
+-- [Keyboard shortcuts](shortcuts.md)
++- [グループ](groups.md)
++- [キーボードショートカット](shortcuts.md)
+ - [File finder](file_finder.md)
+-- [Labels](labels.md)
+-- [Notification emails](notifications.md)
+-- [Project Features](project_features.md)
+-- [Project forking workflow](forking_workflow.md)
+-- [Project users](add-user/add-user.md)
+-- [Protected branches](protected_branches.md)
++- [ラベル](labels.md)
++- [通知メールアドレス](notifications.md)
++- [プロジェクトの機能](project_features.md)
++- [プロジェクトフォークワークフロー](forking_workflow.md)
++- [プロジェクトユーザ](add-user/add-user.md)
++- [保護ブランチ](protected_branches.md)
+ - [Sharing a project with a group](share_with_group.md)
+ - [Share projects with other groups](share_projects_with_other_groups.md)
+-- [Web Editor](web_editor.md)
+-- [Releases](releases.md)
+-- [Milestones](milestones.md)
+-- [Merge Requests](merge_requests.md)
++- [Webエディタ](web_editor.md)
++- [リリース](releases.md)
++- [マイルストーン](milestones.md)
++- [マージリクエスト](merge_requests.md)
+ - [Revert changes](revert_changes.md)
+-- ["Work In Progress" Merge Requests](wip_merge_requests.md)
++- ["Work In Progress" マージリクエスト](wip_merge_requests.md)
+ - [Merge When Build Succeeds](merge_when_build_succeeds.md)
+ - [Manage large binaries with Git LFS](lfs/manage_large_binaries_with_git_lfs.md)
+ - [Importing from SVN, GitHub, BitBucket, etc](importing/README.md)
+diff --git a/doc/workflow/add-user/add-user.md b/doc/workflow/add-user/add-user.md
+index fffa0ab..9009fca 100644
+--- a/doc/workflow/add-user/add-user.md
++++ b/doc/workflow/add-user/add-user.md
+@@ -1,4 +1,4 @@
+-# Project users
++# プロジェクトユーザ
+ 
+ You can manage the groups and users and their access levels in all of your
+ projects. You can also personalize the access level you give each user,
+diff --git a/doc/workflow/file_finder.md b/doc/workflow/file_finder.md
+index b69ae66..eb17062 100644
+--- a/doc/workflow/file_finder.md
++++ b/doc/workflow/file_finder.md
+@@ -19,7 +19,7 @@ For those who prefer to keep their fingers on the keyboard, there is a
+ in a project.
+ 
+ Press `t` to launch the File search function when in **Issues**,
+-**Merge requests**, **Milestones**, even the project's settings.
++**Merge requests**, **マイルストーン**, even the project's settings.
+ 
+ Start typing what you are searching for and watch the magic happen. With the
+ up/down arrows, you go up and down the results, with `Esc` you close the search
+diff --git a/doc/workflow/forking_workflow.md b/doc/workflow/forking_workflow.md
+index 217a4a4..b96c82c 100644
+--- a/doc/workflow/forking_workflow.md
++++ b/doc/workflow/forking_workflow.md
+@@ -1,4 +1,4 @@
+-# Project forking workflow
++# プロジェクトフォークワークフロー
+ 
+ Forking a project to your own namespace is useful if you have no write
+ access to the project you want to contribute to. If you do have write
+diff --git a/doc/workflow/groups.md b/doc/workflow/groups.md
+index 52bf611..d4ef492 100644
+--- a/doc/workflow/groups.md
++++ b/doc/workflow/groups.md
+@@ -1,4 +1,4 @@
+-# GitLab Groups
++# GitLab グループ
+ 
+ GitLab groups allow you to group projects into directories and give users to several projects at once.
+ 
+@@ -7,9 +7,9 @@ In this document we will see how to create groups, put projects in groups and ma
+ 
+ ## Creating groups
+ 
+-You can create a group by going to the 'Groups' tab of the GitLab dashboard and clicking the 'New group' button.
++You can create a group by going to the 'グループ' tab of the GitLab dashboard and clicking the 'New group' button.
+ 
+-![Click the 'New group' button in the 'Groups' tab](groups/new_group_button.png)
++![Click the 'New group' button in the 'グループ' tab](groups/new_group_button.png)
+ 
+ Next, enter the name (required) and the optional description and group avatar.
+ 
+diff --git a/doc/workflow/importing/import_projects_from_bitbucket.md b/doc/workflow/importing/import_projects_from_bitbucket.md
+index 520c421..605c8da 100644
+--- a/doc/workflow/importing/import_projects_from_bitbucket.md
++++ b/doc/workflow/importing/import_projects_from_bitbucket.md
+@@ -23,4 +23,4 @@ It takes just a few steps to import your existing Bitbucket projects to GitLab.
+ A new GitLab project will be created with your imported data.
+ 
+ ### Note
+-Milestones and wiki pages are not imported from Bitbucket.
++マイルストーン and wiki pages are not imported from Bitbucket.
 diff --git a/doc/workflow/importing/migrating_from_svn.md b/doc/workflow/importing/migrating_from_svn.md
 index 4828bb5..32112d2 100644
 --- a/doc/workflow/importing/migrating_from_svn.md
@@ -14353,6 +14666,25 @@ index 4828bb5..32112d2 100644
  
  Subversion (SVN) is a central version control system (VCS) while
  Git is a distributed version control system. There are some major differences
+diff --git a/doc/workflow/labels.md b/doc/workflow/labels.md
+index 6e4840c..6a44da5 100644
+--- a/doc/workflow/labels.md
++++ b/doc/workflow/labels.md
+@@ -1,6 +1,6 @@
+-# Labels
++# ラベル
+ 
+-In GitLab, you can easily tag issues and Merge Requests. If you have permission level `Developer` or higher, you can manage labels. To create, edit or delete a label, go to a project and then to `Issues` and then `Labels`.
++In GitLab, you can easily tag issues and マージリクエスト. If you have permission level `Developer` or higher, you can manage labels. To create, edit or delete a label, go to a project and then to `Issues` and then `ラベル`.
+ 
+ Here you can create a new label.
+ 
+@@ -15,4 +15,4 @@ You will be presented with the same form as when creating a new label.
+ 
+ ![edit label](labels/label3.png)
+ 
+-You can add labels to Merge Requests when you create or edit them.
++You can add labels to マージリクエスト when you create or edit them.
 diff --git a/doc/workflow/merge_requests.md b/doc/workflow/merge_requests.md
 index 6d57b5d..6c8514f 100644
 --- a/doc/workflow/merge_requests.md
@@ -14363,6 +14695,39 @@ index 6d57b5d..6c8514f 100644
  
  Merge requests allow you to exchange changes you made to source code
  
+diff --git a/doc/workflow/milestones.md b/doc/workflow/milestones.md
+index dff3689..e6365d8 100644
+--- a/doc/workflow/milestones.md
++++ b/doc/workflow/milestones.md
+@@ -1,11 +1,11 @@
+-# Milestones
++# マイルストーン
+ 
+-Milestones allow you to organize issues and merge requests into a cohesive group, optionally setting a due date. 
+-A common use is keeping track of an upcoming software version. Milestones are created per-project.
++マイルストーン allow you to organize issues and merge requests into a cohesive group, optionally setting a due date. 
++A common use is keeping track of an upcoming software version. マイルストーン are created per-project.
+ 
+ ![milestone form](milestones/form.png)
+ 
+-## Groups and milestones
++## グループ and milestones
+ 
+ You can create a milestone for several projects in the same group simultaneously. 
+ On the group's milestones page, you will be able to see the status of that milestone across all of the selected projects.
+diff --git a/doc/workflow/notifications.md b/doc/workflow/notifications.md
+index 80817c9..8f375b6 100644
+--- a/doc/workflow/notifications.md
++++ b/doc/workflow/notifications.md
+@@ -85,7 +85,7 @@ In all of the below cases, the notification will be sent to:
+ | Merge merge request    | |
+ | New comment            | The above, plus anyone mentioned by `@username` in the comment, with notification level "Mention" or higher |
+ 
+-You won't receive notifications for Issues, Merge Requests or Milestones
++You won't receive notifications for Issues, マージリクエスト or マイルストーン
+ created by yourself. You will only receive automatic notifications when
+ somebody else comments or adds changes to the ones that you've created or
+ mentions you.
 diff --git a/doc/workflow/project_features.md b/doc/workflow/project_features.md
 index a523b3f..d9aabd6 100644
 --- a/doc/workflow/project_features.md
@@ -14421,11 +14786,12 @@ index a523b3f..d9aabd6 100644
 -For example, a specific config file that is used by > the team that is only valid for the people that work on the code.
 +例えば、あるコードを扱うメンバーにのみ有効な特定の設定ファイルなどです。
 diff --git a/doc/workflow/protected_branches.md b/doc/workflow/protected_branches.md
-index d854ec1..60d12cf 100644
+index d854ec1..c1db5d2 100644
 --- a/doc/workflow/protected_branches.md
 +++ b/doc/workflow/protected_branches.md
 @@ -1,6 +1,6 @@
- # Protected branches
+-# Protected branches
++# 保護ブランチ
  
 -Permissions in GitLab are fundamentally defined around the idea of having read or write permission to the repository and branches.
 +アクセス権 in GitLab are fundamentally defined around the idea of having read or write permission to the repository and branches.
@@ -14439,6 +14805,82 @@ index d854ec1..60d12cf 100644
 -![Developers can push](protected_branches/protected_branches2.png)
 \ No newline at end of file
 +![Developers can push](protected_branches/protected_branches2.png)
+diff --git a/doc/workflow/releases.md b/doc/workflow/releases.md
+index 6176784..c2ba6d3 100644
+--- a/doc/workflow/releases.md
++++ b/doc/workflow/releases.md
+@@ -1,4 +1,4 @@
+-# Releases
++# リリース
+ 
+ You can turn any git tag into a release, by adding a note to it.
+ Release notes behave like any other markdown form in GitLab so you can write text and drag-n-drop files to it.
+diff --git a/doc/workflow/revert_changes.md b/doc/workflow/revert_changes.md
+index 399366b..2dc7857 100644
+--- a/doc/workflow/revert_changes.md
++++ b/doc/workflow/revert_changes.md
+@@ -5,11 +5,11 @@ _**Note:** This feature was [introduced][ce-1990] in GitLab 8.5._
+ ---
+ 
+ GitLab implements Git's powerful feature to [revert any commit][git-revert]
+-with introducing a **Revert** button in Merge Requests and commit details.
++with introducing a **Revert** button in マージリクエスト and commit details.
+ 
+ ## Reverting a Merge Request
+ 
+-_**Note:** The **Revert** button will only be available for Merge Requests
++_**Note:** The **Revert** button will only be available for マージリクエスト
+ created since GitLab 8.5. However, you can still revert a Merge Request
+ by reverting the merge commit from the list of Commits page._
+ 
+diff --git a/doc/workflow/share_projects_with_other_groups.md b/doc/workflow/share_projects_with_other_groups.md
+index 4c59f59..1b61ae3 100644
+--- a/doc/workflow/share_projects_with_other_groups.md
++++ b/doc/workflow/share_projects_with_other_groups.md
+@@ -1,9 +1,9 @@
+-# Share Projects with other Groups
++# Share Projects with other グループ
+ 
+ In GitLab Enterprise Edition you can share projects with other groups.
+ This makes it possible to add a group of users to a project with a single action.
+ 
+-## Groups as collections of users
++## グループ as collections of users
+ 
+ In GitLab Community Edition groups are used primarily to [create collections of projects](groups.md).
+ In GitLab Enterprise Edition you can also take advantage of the fact that groups define collections of _users_, namely the group members.
+@@ -14,9 +14,9 @@ The primary mechanism to give a group of users, say 'Engineering', access to a p
+ But what if 'Project Acme' already belongs to another group, say 'Open Source'?
+ This is where the (Enterprise Edition only) group sharing feature can be of use.
+ 
+-To share 'Project Acme' with the 'Engineering' group, go to the project settings page for 'Project Acme' and use the left navigation menu to go to the 'Groups' section.
++To share 'Project Acme' with the 'Engineering' group, go to the project settings page for 'Project Acme' and use the left navigation menu to go to the 'グループ' section.
+ 
+-![The 'Groups' section in the project settings screen (Enterprise Edition only)](groups/share_project_with_groups.png)
++![The 'グループ' section in the project settings screen (Enterprise Edition only)](groups/share_project_with_groups.png)
+ 
+ Now you can add the 'Engineering' group with the maximum access level of your choice.
+ After sharing 'Project Acme' with 'Engineering', the project is listed on the group dashboard.
+diff --git a/doc/workflow/web_editor.md b/doc/workflow/web_editor.md
+index 4a451d9..4d6a474 100644
+--- a/doc/workflow/web_editor.md
++++ b/doc/workflow/web_editor.md
+@@ -1,4 +1,4 @@
+-# GitLab Web Editor
++# GitLab Webエディタ
+ 
+ Sometimes it's easier to make quick changes directly from the GitLab interface
+ than to clone the project and use the Git command line tool. In this feature
+diff --git a/doc/workflow/wip_merge_requests.md b/doc/workflow/wip_merge_requests.md
+index 46035a5..4718c59 100644
+--- a/doc/workflow/wip_merge_requests.md
++++ b/doc/workflow/wip_merge_requests.md
+@@ -1,4 +1,4 @@
+-# "Work In Progress" Merge Requests
++# "Work In Progress" マージリクエスト
+ 
+ To prevent merge requests from accidentally being accepted before they're completely ready, GitLab blocks the "Accept" button for merge requests that have been marked a **Work In Progress**.
+ 
 diff --git a/doc/workflow/workflow.md b/doc/workflow/workflow.md
 index f70e41d..84ec9ef 100644
 --- a/doc/workflow/workflow.md

@@ -14521,6 +14521,70 @@ index a1198e5..c8bae01 100644
 -have when pushing code via SSH. That's why it needs to uniquely map to a single user.
 \ No newline at end of file
 +have when pushing code via SSH. That's why it needs to uniquely map to a single user.
+diff --git a/doc/system_hooks/system_hooks.md b/doc/system_hooks/system_hooks.md
+index c44930a..7f1532e 100644
+--- a/doc/system_hooks/system_hooks.md
++++ b/doc/system_hooks/system_hooks.md
+@@ -6,13 +6,13 @@ System hooks can be used, e.g. for logging or changing information in a LDAP ser
+ 
+ > **Note:**
+ >
+-> We follow the same structure from Webhooks for Push and Tag events, but we never display commits.
++> We follow the same structure from Webhooks for Push and タグイベント, but we never display commits.
+ >
+ > Same deprecations from Webhooks are valid here.
+ 
+ ## Hooks request example
+ 
+-**Request header**:
++**リクエストヘッダ**:
+ 
+ ```
+ X-Gitlab-Event: System Hook
+@@ -247,17 +247,17 @@ X-Gitlab-Event: System Hook
+ }
+ ```
+ 
+-## Push events
++## プッシュイベント
+ 
+-Triggered when you push to the repository except when pushing tags.
++リポジトリへのタグ以外のプッシュで実行されます。
+ 
+-**Request header**:
++**リクエストヘッダ**:
+ 
+ ```
+ X-Gitlab-Event: System Hook
+ ```
+ 
+-**Request body:**
++**リクエストボディ:**
+ 
+ ```json
+ {
+@@ -301,17 +301,17 @@ X-Gitlab-Event: System Hook
+ }
+ ```
+ 
+-## Tag events
++## タグイベント
+ 
+-Triggered when you create (or delete) tags to the repository.
++リポジトリにタグを作成または削除したときに実行されます。
+ 
+-**Request header**:
++**リクエストヘッダ**:
+ 
+ ```
+ X-Gitlab-Event: System Hook
+ ```
+ 
+-**Request body:**
++**リクエストボディ:**
+ 
+ ```json
+ {
 diff --git a/doc/update/2.6-to-3.0.md b/doc/update/2.6-to-3.0.md
 index 4827ef9..e375f71 100644
 --- a/doc/update/2.6-to-3.0.md
@@ -14991,6 +15055,174 @@ index b4d9212..136351d 100644
  
  Make sure you view this update guide from the tag (version) of GitLab you would
  like to install. In most cases this should be the highest numbered production
+diff --git a/doc/web_hooks/web_hooks.md b/doc/web_hooks/web_hooks.md
+index 45506ac..2c424c9 100644
+--- a/doc/web_hooks/web_hooks.md
++++ b/doc/web_hooks/web_hooks.md
+@@ -26,7 +26,7 @@ GitLab webhooks keep in mind the following things:
+     you are writing a low-level hook this is important to remember.
+ -   GitLab ignores the HTTP status code returned by your endpoint.
+ 
+-## SSL Verification
++## SSL検証
+ 
+ By default, the SSL certificate of the webhook endpoint is verified based on
+ an internal list of Certificate Authorities,
+@@ -34,19 +34,19 @@ which means the certificate cannot be self-signed.
+ 
+ You can turn this off in the webhook settings in your GitLab projects.
+ 
+-![SSL Verification](ssl.png)
++![SSL検証](ssl.png)
+ 
+-## Push events
++## プッシュイベント
+ 
+-Triggered when you push to the repository except when pushing tags.
++リポジトリへのタグ以外のプッシュで実行されます。
+ 
+-**Request header**:
++**リクエストヘッダ**:
+ 
+ ```
+ X-Gitlab-Event: Push Hook
+ ```
+ 
+-**Request body:**
++**リクエストボディ:**
+ 
+ ```json
+ {
+@@ -117,17 +117,17 @@ X-Gitlab-Event: Push Hook
+ }
+ ```
+ 
+-## Tag events
++## タグイベント
+ 
+-Triggered when you create (or delete) tags to the repository.
++リポジトリにタグを作成または削除したときに実行されます。
+ 
+-**Request header**:
++**リクエストヘッダ**:
+ 
+ ```
+ X-Gitlab-Event: Tag Push Hook
+ ```
+ 
+-**Request body:**
++**リクエストボディ:**
+ 
+ ```json
+ {
+@@ -170,17 +170,17 @@ X-Gitlab-Event: Tag Push Hook
+ }
+ ```
+ 
+-## Issues events
++## 課題イベント
+ 
+-Triggered when a new issue is created or an existing issue was updated/closed/reopened.
++課題の作成/更新/クローズ/再オープンで実行されます。
+ 
+-**Request header**:
++**リクエストヘッダ**:
+ 
+ ```
+ X-Gitlab-Event: Issue Hook
+ ```
+ 
+-**Request body:**
++**リクエストボディ:**
+ 
+ ```json
+ {
+@@ -251,13 +251,13 @@ Valid target types:
+ 
+ ### Comment on commit
+ 
+-**Request header**:
++**リクエストヘッダ**:
+ 
+ ```
+ X-Gitlab-Event: Note Hook
+ ```
+ 
+-**Request body:**
++**リクエストボディ:**
+ 
+ ```json
+ {
+@@ -330,13 +330,13 @@ X-Gitlab-Event: Note Hook
+ 
+ ### Comment on merge request
+ 
+-**Request header**:
++**リクエストヘッダ**:
+ 
+ ```
+ X-Gitlab-Event: Note Hook
+ ```
+ 
+-**Request body:**
++**リクエストボディ:**
+ 
+ ```json
+ {
+@@ -457,13 +457,13 @@ X-Gitlab-Event: Note Hook
+ 
+ ### Comment on issue
+ 
+-**Request header**:
++**リクエストヘッダ**:
+ 
+ ```
+ X-Gitlab-Event: Note Hook
+ ```
+ 
+-**Request body:**
++**リクエストボディ:**
+ 
+ ```json
+ {
+@@ -532,13 +532,13 @@ X-Gitlab-Event: Note Hook
+ 
+ ### Comment on code snippet
+ 
+-**Request header**:
++**リクエストヘッダ**:
+ 
+ ```
+ X-Gitlab-Event: Note Hook
+ ```
+ 
+-**Request body:**
++**リクエストボディ:**
+ 
+ ```json
+ {
+@@ -603,17 +603,17 @@ X-Gitlab-Event: Note Hook
+ }
+ ```
+ 
+-## Merge request events
++## マージリクエストイベント
+ 
+-Triggered when a new merge request is created, an existing merge request was updated/merged/closed or a commit is added in the source branch.
++マージリクエストの新規作成、既存のマージリクエストの更新/マージ/クローズ、ソースブランチへのコミットの追加で実行されます。
+ 
+-**Request header**:
++**リクエストヘッダ**:
+ 
+ ```
+ X-Gitlab-Event: Merge Request Hook
+ ```
+ 
+-**Request body:**
++**リクエストボディ:**
+ 
+ ```json
+ {
 diff --git a/doc/workflow/README.md b/doc/workflow/README.md
 index 9efe413..3e2cead 100644
 --- a/doc/workflow/README.md

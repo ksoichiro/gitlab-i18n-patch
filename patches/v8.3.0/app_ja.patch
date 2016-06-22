@@ -13681,6 +13681,19 @@ index fe5b45d..9bf32f5 100644
 -have when pushing code via SSH. That's why it needs to uniquely map to a single user.
 \ No newline at end of file
 +have when pushing code via SSH. That's why it needs to uniquely map to a single user.
+diff --git a/doc/system_hooks/system_hooks.md b/doc/system_hooks/system_hooks.md
+index 5cb05b1..dad9278 100644
+--- a/doc/system_hooks/system_hooks.md
++++ b/doc/system_hooks/system_hooks.md
+@@ -6,7 +6,7 @@ System hooks can be used, e.g. for logging or changing information in a LDAP ser
+ 
+ ## Hooks request example
+ 
+-**Request header**:
++**リクエストヘッダ**:
+ 
+ ```
+ X-Gitlab-Event: System Hook
 diff --git a/doc/update/2.6-to-3.0.md b/doc/update/2.6-to-3.0.md
 index 4827ef9..e375f71 100644
 --- a/doc/update/2.6-to-3.0.md
@@ -14102,22 +14115,185 @@ index c4661dc..eed2698 100644
  **NOTE:** GitLab 8.0 introduced several significant changes related to
  installation and configuration which *are not duplicated here*. Be sure you're
 diff --git a/doc/web_hooks/web_hooks.md b/doc/web_hooks/web_hooks.md
-index 6420d65..d06e4b6 100644
+index 6420d65..b9623ed 100644
 --- a/doc/web_hooks/web_hooks.md
 +++ b/doc/web_hooks/web_hooks.md
-@@ -1,10 +1,10 @@
+@@ -1,32 +1,30 @@
 -# Web hooks
 +# Webフック
  
- Project web hooks allow you to trigger an URL if new code is pushed or a new issue is created.
+-Project web hooks allow you to trigger an URL if new code is pushed or a new issue is created.
++プロジェクトWebフックを使うと、新しいコードのプッシュや課題の作成をトリガーとして指定のURLへリクエストすることができます。
  
- You can configure web hooks to listen for specific events like pushes, issues or merge requests. GitLab will send a POST request with data to the web hook URL.
+-You can configure web hooks to listen for specific events like pushes, issues or merge requests. GitLab will send a POST request with data to the web hook URL.
++プッシュ、課題、マージリクエストといったイベントから特定のものに対してWebフックを設定することができます。GitLab はWebフックのURLに対して POST リクエストでデータを送信します。
  
 -Web hooks can be used to update an external issue tracker, trigger CI builds, update a backup mirror, or even deploy to your production server.
 +Webフック can be used to update an external issue tracker, trigger CI builds, update a backup mirror, or even deploy to your production server.
  
- ## SSL Verification
+-## SSL Verification
++## SSL検証
  
+-By default, the SSL certificate of the webhook endpoint is verified based on 
+-an internal list of Certificate Authorities, 
+-which means the certificate cannot be self-signed.
++デフォルトでは、WebフックのエンドポイントのSSL証明書は内部の認証局のリストで検証されます。つまり、自己署名の証明書は使用できません。
+ 
+-You can turn this off in the web hook settings in your GitLab projects.
++これはGitLabプロジェクトのWebフックの設定から無効化することができます。
+ 
+-![SSL Verification](ssl.png)
++![SSL検証](ssl.png)
+ 
+-## Push events
++## プッシュイベント
+ 
+-Triggered when you push to the repository except when pushing tags.
++リポジトリへのタグ以外のプッシュで実行されます。
+ 
+-**Request header**:
++**リクエストヘッダ**:
+ 
+ ```
+ X-Gitlab-Event: Push Hook
+ ```
+ 
+-**Request body:**
++**リクエストボディ:**
+ 
+ ```json
+ {
+@@ -80,18 +78,18 @@ X-Gitlab-Event: Push Hook
+ }
+ ```
+ 
+-## Tag events
++## タグイベント
+ 
+-Triggered when you create (or delete) tags to the repository.
++リポジトリにタグを作成または削除したときに実行されます。
+ 
+-**Request header**:
++**リクエストヘッダ**:
+ 
+ ```
+ X-Gitlab-Event: Tag Push Hook
+ ```
+ 
+ 
+-**Request body:**
++**リクエストボディ:**
+ 
+ ```json
+ {
+@@ -116,17 +114,17 @@ X-Gitlab-Event: Tag Push Hook
+ }
+ ```
+ 
+-## Issues events
++## 課題イベント
+ 
+-Triggered when a new issue is created or an existing issue was updated/closed/reopened.
++課題の作成/更新/クローズ/再オープンで実行されます。
+ 
+-**Request header**:
++**リクエストヘッダ**:
+ 
+ ```
+ X-Gitlab-Event: Issue Hook
+ ```
+ 
+-**Request body:**
++**リクエストボディ:**
+ 
+ ```json
+ {
+@@ -176,13 +174,13 @@ Valid target types:
+ 
+ ### Comment on commit
+ 
+-**Request header**:
++**リクエストヘッダ**:
+ 
+ ```
+ X-Gitlab-Event: Note Hook
+ ```
+ 
+-**Request body:**
++**リクエストボディ:**
+ 
+ ```json
+ {
+@@ -239,13 +237,13 @@ X-Gitlab-Event: Note Hook
+ 
+ ### Comment on merge request
+ 
+-**Request header**:
++**リクエストヘッダ**:
+ 
+ ```
+ X-Gitlab-Event: Note Hook
+ ```
+ 
+-**Request body:**
++**リクエストボディ:**
+ 
+ ```json
+ {
+@@ -329,13 +327,13 @@ X-Gitlab-Event: Note Hook
+ 
+ ### Comment on issue
+ 
+-**Request header**:
++**リクエストヘッダ**:
+ 
+ ```
+ X-Gitlab-Event: Note Hook
+ ```
+ 
+-**Request body:**
++**リクエストボディ:**
+ 
+ ```json
+ {
+@@ -389,13 +387,13 @@ X-Gitlab-Event: Note Hook
+ ### Comment on code snippet
+ 
+ 
+-**Request header**:
++**リクエストヘッダ**:
+ 
+ ```
+ X-Gitlab-Event: Note Hook
+ ```
+ 
+-**Request body:**
++**リクエストボディ:**
+ 
+ ```
+ {
+@@ -444,17 +442,17 @@ X-Gitlab-Event: Note Hook
+ }
+ ```
+ 
+-## Merge request events
++## マージリクエストイベント
+ 
+-Triggered when a new merge request is created, an existing merge request was updated/merged/closed or a commit is added in the source branch.
++マージリクエストの新規作成、既存のマージリクエストの更新/マージ/クローズ、ソースブランチへのコミットの追加で実行されます。
+ 
+-**Request header**:
++**リクエストヘッダ**:
+ 
+ ```
+ X-Gitlab-Event: Merge Request Hook
+ ```
+ 
+-**Request body:**
++**リクエストボディ:**
+ 
+ ```json
+ {
 diff --git a/doc/workflow/README.md b/doc/workflow/README.md
 index 3651b55..9e7263c 100644
 --- a/doc/workflow/README.md

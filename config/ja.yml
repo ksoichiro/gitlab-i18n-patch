@@ -2624,3 +2624,12 @@ mdTitleIssuesEvents: 課題イベント
 triggeredWhenANewIssueIsCreatedOrAnExistingIssueWasUpdatedClosedReopened: 課題の作成/更新/クローズ/再オープンで実行されます。
 mdTitleMergeRequestEvents: マージリクエストイベント
 triggeredWhenANewMergeRequestIsCreatedAnExistingMergeRequestWasUpdatedMergedClosedOrACommitIsAddedInTheSourceBranch: マージリクエストの新規作成、既存のマージリクエストの更新/マージ/クローズ、ソースブランチへのコミットの追加で実行されます。
+yourGitlabInstanceCanPerformHttpPOSTRequestsOnTheFollowingEventsProjectCreateProjectDestroyUserAddToTeamUserRemoveFromTeamUserCreateUserDestroyKeyCreateKeyDestroyGroupCreateGroupDestroyUserAddToGroupAndUserRemoveFromGroup: 'GitLabインスタンスは、`project_create`, `project_destroy`, `user_add_to_team`, `user_remove_from_team`, `user_create`, `user_destroy`, `key_create`, `key_destroy`, `group_create`, `group_destroy`, `user_add_to_group`, `user_remove_from_group` のイベントが発生したときにHTTP POSTリクエストを実行できます。'
+systemHooksCanBeUsedEGForLoggingOrChangingInformationInALDAPServer: システムフックは、例えばログインやLDAPサーバ情報変更に利用することができます。
+hooksRequestExample: フックリクエストの例
+projectCreated: プロジェクトの作成
+projectDestroyed: プロジェクトの削除
+newTeamMember: 新しいメンバーの追加
+teamMemberRemoved: メンバーの削除
+userCreated: ユーザの作成
+userRemoved: ユーザの削除

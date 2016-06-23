@@ -13852,7 +13852,7 @@ index 0000000..cee0bea
 +            redirect_uri:
 +              blank: リダイレクトURIは必須です
 diff --git a/doc/README.md b/doc/README.md
-index e358da1..aff8d9d 100644
+index e358da1..30ac9c1 100644
 --- a/doc/README.md
 +++ b/doc/README.md
 @@ -1,21 +1,21 @@
@@ -13892,6 +13892,15 @@ index e358da1..aff8d9d 100644
  
  ## Administrator documentation
  
+@@ -33,7 +33,7 @@
+ - [Raketasks](raketasks/README.md) Backups, maintenance, automatic webhook setup and the importing of projects.
+ - [Repository checks](administration/repository_checks.md) Periodic Git repository checks
+ - [Security](security/README.md) Learn what you can do to further secure your GitLab instance.
+-- [System hooks](system_hooks/system_hooks.md) Notifications when users, projects and keys are changed.
++- [システムフック](system_hooks/system_hooks.md) Notifications when users, projects and keys are changed.
+ - [Update](update/README.md) Update guides to upgrade your installation.
+ - [Welcome message](customization/welcome_message.md) Add a custom welcome message to the sign-in page.
+ - [Reply by email](incoming_email/README.md) Allow users to comment on issues and merge requests by replying to notification emails.
 diff --git a/doc/api/README.md b/doc/api/README.md
 index 27c5962..4b5c7d3 100644
 --- a/doc/api/README.md
@@ -14034,6 +14043,16 @@ index 7aa1c21..93ef237 100644
 +## マージリクエスト
  
  ### List all merge request notes
+ 
+diff --git a/doc/api/system_hooks.md b/doc/api/system_hooks.md
+index dc036d7..87b1720 100644
+--- a/doc/api/system_hooks.md
++++ b/doc/api/system_hooks.md
+@@ -1,4 +1,4 @@
+-# System hooks
++# システムフック
+ 
+ All methods require administrator authorization.
  
 diff --git a/doc/ci/README.md b/doc/ci/README.md
 index 4abc45b..0d43d90 100644
@@ -14508,10 +14527,17 @@ index a1198e5..c8bae01 100644
 \ No newline at end of file
 +have when pushing code via SSH. That's why it needs to uniquely map to a single user.
 diff --git a/doc/system_hooks/system_hooks.md b/doc/system_hooks/system_hooks.md
-index c44930a..7f1532e 100644
+index c44930a..d7bcd00 100644
 --- a/doc/system_hooks/system_hooks.md
 +++ b/doc/system_hooks/system_hooks.md
-@@ -6,13 +6,13 @@ System hooks can be used, e.g. for logging or changing information in a LDAP ser
+@@ -1,24 +1,24 @@
+-# System hooks
++# システムフック
+ 
+ Your GitLab instance can perform HTTP POST requests on the following events: `project_create`, `project_destroy`, `project_rename`, `project_transfer`, `user_add_to_team`, `user_remove_from_team`, `user_create`, `user_destroy`, `key_create`, `key_destroy`, `group_create`, `group_destroy`, `user_add_to_group` and `user_remove_from_group`.
+ 
+-System hooks can be used, e.g. for logging or changing information in a LDAP server.
++システムフック can be used, e.g. for logging or changing information in a LDAP server.
  
  > **Note:**
  >
@@ -14520,13 +14546,66 @@ index c44930a..7f1532e 100644
  >
  > Same deprecations from Webhooks are valid here.
  
- ## Hooks request example
+-## Hooks request example
++## フックリクエストの例
  
 -**Request header**:
 +**リクエストヘッダ**:
  
  ```
  X-Gitlab-Event: System Hook
+ ```
+ 
+-**Project created:**
++**プロジェクトの作成:**
+ 
+ ```json
+ {
+@@ -35,7 +35,7 @@ X-Gitlab-Event: System Hook
+ }
+ ```
+ 
+-**Project destroyed:**
++**プロジェクトの削除:**
+ 
+ ```json
+ {
+@@ -88,7 +88,7 @@ X-Gitlab-Event: System Hook
+ }
+ ```
+ 
+-**New Team Member:**
++**新しいメンバーの追加:**
+ 
+ ```json
+ {
+@@ -108,7 +108,7 @@ X-Gitlab-Event: System Hook
+ }
+ ```
+ 
+-**Team Member Removed:**
++**メンバーの削除:**
+ 
+ ```json
+ {
+@@ -128,7 +128,7 @@ X-Gitlab-Event: System Hook
+ }
+ ```
+ 
+-**User created:**
++**ユーザの作成:**
+ 
+ ```json
+ {
+@@ -142,7 +142,7 @@ X-Gitlab-Event: System Hook
+ }
+ ```
+ 
+-**User removed:**
++**ユーザの削除:**
+ 
+ ```json
+ {
 @@ -247,17 +247,17 @@ X-Gitlab-Event: System Hook
  }
  ```

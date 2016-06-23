@@ -13273,7 +13273,7 @@ index 0000000..cee0bea
 +            redirect_uri:
 +              blank: リダイレクトURIは必須です
 diff --git a/doc/README.md b/doc/README.md
-index 5089e1e..4ce9aed 100644
+index 5089e1e..cdef9f7 100644
 --- a/doc/README.md
 +++ b/doc/README.md
 @@ -1,33 +1,33 @@
@@ -13335,6 +13335,15 @@ index 5089e1e..4ce9aed 100644
  - [API](ci/api/README.md)
  - [Triggering builds through the API](ci/triggers/README.md)
  - [Build artifacts](ci/build_artifacts/README.md)
+@@ -63,7 +63,7 @@
+ - [Operations](operations/README.md) Keeping GitLab up and running
+ - [Raketasks](raketasks/README.md) Backups, maintenance, automatic web hook setup and the importing of projects.
+ - [Security](security/README.md) Learn what you can do to further secure your GitLab instance.
+-- [System hooks](system_hooks/system_hooks.md) Notifications when users, projects and keys are changed.
++- [システムフック](system_hooks/system_hooks.md) Notifications when users, projects and keys are changed.
+ - [Update](update/README.md) Update guides to upgrade your installation.
+ - [Welcome message](customization/welcome_message.md) Add a custom welcome message to the sign-in page.
+ - [Reply by email](incoming_email/README.md) Allow users to comment on issues and merge requests by replying to notification emails.
 diff --git a/doc/api/README.md b/doc/api/README.md
 index 2fa177f..454d1be 100644
 --- a/doc/api/README.md
@@ -13469,6 +13478,16 @@ index d4d63e8..cd33915 100644
 +## マージリクエスト
  
  ### List all merge request notes
+ 
+diff --git a/doc/api/system_hooks.md b/doc/api/system_hooks.md
+index f9637d8..fa39c32 100644
+--- a/doc/api/system_hooks.md
++++ b/doc/api/system_hooks.md
+@@ -1,4 +1,4 @@
+-# System hooks
++# システムフック
+ 
+ All methods require admin authorization.
  
 diff --git a/doc/ci/README.md b/doc/ci/README.md
 index 5886829..443ed3d 100644
@@ -13888,18 +13907,78 @@ index 77eb534..7dd87a1 100644
 \ No newline at end of file
 +have when pushing code via SSH. That's why it needs to uniquely map to a single user.
 diff --git a/doc/system_hooks/system_hooks.md b/doc/system_hooks/system_hooks.md
-index 612376e..0c21de3 100644
+index 612376e..bd94954 100644
 --- a/doc/system_hooks/system_hooks.md
 +++ b/doc/system_hooks/system_hooks.md
-@@ -6,7 +6,7 @@ System hooks can be used, e.g. for logging or changing information in a LDAP ser
+@@ -1,18 +1,18 @@
+-# System hooks
++# システムフック
  
- ## Hooks request example
+ Your GitLab instance can perform HTTP POST requests on the following events: `project_create`, `project_destroy`, `project_rename`, `project_transfer`, `user_add_to_team`, `user_remove_from_team`, `user_create`, `user_destroy`, `key_create`, `key_destroy`, `group_create`, `group_destroy`, `user_add_to_group` and `user_remove_from_group`.
+ 
+-System hooks can be used, e.g. for logging or changing information in a LDAP server.
++システムフック can be used, e.g. for logging or changing information in a LDAP server.
+ 
+-## Hooks request example
++## フックリクエストの例
  
 -**Request header**:
 +**リクエストヘッダ**:
  
  ```
  X-Gitlab-Event: System Hook
+ ```
+ 
+-**Project created:**
++**プロジェクトの作成:**
+ 
+ ```json
+ {
+@@ -29,7 +29,7 @@ X-Gitlab-Event: System Hook
+ }
+ ```
+ 
+-**Project destroyed:**
++**プロジェクトの削除:**
+ 
+ ```json
+ {
+@@ -82,7 +82,7 @@ X-Gitlab-Event: System Hook
+ }
+ ```
+ 
+-**New Team Member:**
++**新しいメンバーの追加:**
+ 
+ ```json
+ {
+@@ -102,7 +102,7 @@ X-Gitlab-Event: System Hook
+ }
+ ```
+ 
+-**Team Member Removed:**
++**メンバーの削除:**
+ 
+ ```json
+ {
+@@ -122,7 +122,7 @@ X-Gitlab-Event: System Hook
+ }
+ ```
+ 
+-**User created:**
++**ユーザの作成:**
+ 
+ ```json
+ {
+@@ -136,7 +136,7 @@ X-Gitlab-Event: System Hook
+ }
+ ```
+ 
+-**User removed:**
++**ユーザの削除:**
+ 
+ ```json
+ {
 diff --git a/doc/update/2.6-to-3.0.md b/doc/update/2.6-to-3.0.md
 index 4827ef9..e375f71 100644
 --- a/doc/update/2.6-to-3.0.md

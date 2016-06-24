@@ -1693,6 +1693,12 @@ translations:
     replace: '${userCreated}'
   - pattern: 'User removed'
     replace: '${userRemoved}'
+  - pattern: 'To prevent abusive clients doing damage GitLab uses rack-attack gem.'
+    replace: '${toPreventAbusiveClientsDoingDamageGitlabUsesRackAttackGem}'
+  - pattern: 'If you installed or upgraded GitLab by following the official guides this should be enabled by default.'
+    replace: '${ifYouInstalledOrUpgradedGitlabByFollowingTheOfficialGuidesThisShouldBeEnabledByDefault}'
+  - pattern: 'If you are missing `config/initializers/rack_attack.rb` the following steps need to be taken in order to enable protection for your GitLab instance:'
+    replace: '${ifYouAreMissingConfigInitializersRackAttackRbTheFollowingStepsNeedToBeTakenInOrderToEnableProtectionForYourGitlabInstance}'
 
   - name: headerOrComment
     params:

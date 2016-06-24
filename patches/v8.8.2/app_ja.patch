@@ -14526,6 +14526,24 @@ index fa97613..153421a 100644
  This documentation is for GitLab CE.
  We backup GitLab.com and make sure your data is secure, but you can't use these methods to export / backup your data yourself from GitLab.com.
  
+diff --git a/doc/security/rack_attack.md b/doc/security/rack_attack.md
+index 9206699..4d4730c 100644
+--- a/doc/security/rack_attack.md
++++ b/doc/security/rack_attack.md
+@@ -1,10 +1,10 @@
+ # Rack attack
+ 
+-To prevent abusive clients doing damage GitLab uses rack-attack gem.
++クライアントからの大量アクセスによる被害を防ぐため、GitLabは rack-attack の gem を使っています。
+ 
+-If you installed or upgraded GitLab by following the official guides this should be enabled by default.
++公式ガイドに沿ってGitLabをインストールまたはアップデートしている場合は、デフォルトで有効になっています。
+ 
+-If you are missing `config/initializers/rack_attack.rb` the following steps need to be taken in order to enable protection for your GitLab instance:
++もし `config/initializers/rack_attack.rb` が存在しない場合は、GitLabインスタンスの保護を有効にするために次のステップを実行する必要があります。
+ 
+ 1.  In config/application.rb find and uncomment the following line:
+ 
 diff --git a/doc/ssh/README.md b/doc/ssh/README.md
 index a1198e5..c8bae01 100644
 --- a/doc/ssh/README.md

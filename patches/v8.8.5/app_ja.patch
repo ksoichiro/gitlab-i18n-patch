@@ -14513,10 +14513,10 @@ index fa97613..153421a 100644
  We backup GitLab.com and make sure your data is secure, but you can't use these methods to export / backup your data yourself from GitLab.com.
  
 diff --git a/doc/security/rack_attack.md b/doc/security/rack_attack.md
-index 9206699..4d4730c 100644
+index 9206699..afc896a 100644
 --- a/doc/security/rack_attack.md
 +++ b/doc/security/rack_attack.md
-@@ -1,10 +1,10 @@
+@@ -1,20 +1,20 @@
  # Rack attack
  
 -To prevent abusive clients doing damage GitLab uses rack-attack gem.
@@ -14528,7 +14528,21 @@ index 9206699..4d4730c 100644
 -If you are missing `config/initializers/rack_attack.rb` the following steps need to be taken in order to enable protection for your GitLab instance:
 +もし `config/initializers/rack_attack.rb` が存在しない場合は、GitLabインスタンスの保護を有効にするために次のステップを実行する必要があります。
  
- 1.  In config/application.rb find and uncomment the following line:
+-1.  In config/application.rb find and uncomment the following line:
++1.  config/application.rb の中で次の行を探してコメントを外します：
+ 
+         config.middleware.use Rack::Attack
+ 
+-1.  Rename `config/initializers/rack_attack.rb.example` to `config/initializers/rack_attack.rb`.
++1.  `config/initializers/rack_attack.rb.example` を `config/initializers/rack_attack.rb` にリネームします。
+ 
+-1.  Review the `paths_to_be_protected` and add any other path you need protecting.
++1.  `paths_to_be_protected` を確認し、他に保護すべきパスがあれば追加します。
+ 
+-1.  Restart GitLab instance.
++1.  GitLabインスタンスを再起動します。
+ 
+ By default, user sign-in, user sign-up(if enabled) and user password reset is limited to 6 requests per minute. After trying for 6 times, client will have to wait for the next minute to be able to try again. These settings can be found in `config/initializers/rack_attack.rb`
  
 diff --git a/doc/ssh/README.md b/doc/ssh/README.md
 index a1198e5..c8bae01 100644

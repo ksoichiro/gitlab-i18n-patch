@@ -1699,6 +1699,14 @@ translations:
     replace: '${ifYouInstalledOrUpgradedGitlabByFollowingTheOfficialGuidesThisShouldBeEnabledByDefault}'
   - pattern: 'If you are missing `config/initializers/rack_attack.rb` the following steps need to be taken in order to enable protection for your GitLab instance:'
     replace: '${ifYouAreMissingConfigInitializersRackAttackRbTheFollowingStepsNeedToBeTakenInOrderToEnableProtectionForYourGitlabInstance}'
+  - pattern: 'In config/application.rb find and uncomment the following line:'
+    replace: '${inConfigApplicationRbFindAndUncommentTheFollowingLine}'
+  - pattern: 'Rename `config/initializers/rack_attack.rb.example` to `config/initializers/rack_attack.rb`.'
+    replace: '${renameConfigInitializersRackAttackRbExampleToConfigInitializersRackAttackRb}'
+  - pattern: 'Review the `paths_to_be_protected` and add any other path you need protecting.'
+    replace: '${reviewThePathsToBeProtectedAndAddAnyOtherPathYouNeedProtecting}'
+  - pattern: 'Restart GitLab instance.'
+    replace: '${restartGitLabInstance}'
 
   - name: headerOrComment
     params:

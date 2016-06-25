@@ -2636,3 +2636,7 @@ userRemoved: ユーザの削除
 toPreventAbusiveClientsDoingDamageGitlabUsesRackAttackGem: 'クライアントからの大量アクセスによる被害を防ぐため、GitLabは rack-attack の gem を使っています。'
 ifYouInstalledOrUpgradedGitlabByFollowingTheOfficialGuidesThisShouldBeEnabledByDefault: '公式ガイドに沿ってGitLabをインストールまたはアップデートしている場合は、デフォルトで有効になっています。'
 ifYouAreMissingConfigInitializersRackAttackRbTheFollowingStepsNeedToBeTakenInOrderToEnableProtectionForYourGitlabInstance: 'もし `config/initializers/rack_attack.rb` が存在しない場合は、GitLabインスタンスの保護を有効にするために次のステップを実行する必要があります。'
+inConfigApplicationRbFindAndUncommentTheFollowingLine: 'config/application.rb の中で次の行を探してコメントを外します：'
+renameConfigInitializersRackAttackRbExampleToConfigInitializersRackAttackRb: '`config/initializers/rack_attack.rb.example` を `config/initializers/rack_attack.rb` にリネームします。'
+reviewThePathsToBeProtectedAndAddAnyOtherPathYouNeedProtecting: '`paths_to_be_protected` を確認し、他に保護すべきパスがあれば追加します。'
+restartGitLabInstance: GitLabインスタンスを再起動します。

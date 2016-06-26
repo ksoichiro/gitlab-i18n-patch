@@ -13879,10 +13879,10 @@ index 5a8b94a..94051da 100644
  ## Add a web hook for **ALL** projects:
  
 diff --git a/doc/security/rack_attack.md b/doc/security/rack_attack.md
-index 9206699..afc896a 100644
+index 9206699..539ca31 100644
 --- a/doc/security/rack_attack.md
 +++ b/doc/security/rack_attack.md
-@@ -1,20 +1,20 @@
+@@ -1,25 +1,25 @@
  # Rack attack
  
 -To prevent abusive clients doing damage GitLab uses rack-attack gem.
@@ -13908,8 +13908,17 @@ index 9206699..afc896a 100644
 -1.  Restart GitLab instance.
 +1.  GitLabインスタンスを再起動します。
  
- By default, user sign-in, user sign-up(if enabled) and user password reset is limited to 6 requests per minute. After trying for 6 times, client will have to wait for the next minute to be able to try again. These settings can be found in `config/initializers/rack_attack.rb`
+-By default, user sign-in, user sign-up(if enabled) and user password reset is limited to 6 requests per minute. After trying for 6 times, client will have to wait for the next minute to be able to try again. These settings can be found in `config/initializers/rack_attack.rb`
++デフォルトでは、ユーザのサインイン、サインアップ(有効な場合)、ユーザのパスワードリセットは 6 リクエスト/ 分 に制限されています。6 回試行すると、クライアントは次の1分間はアクセスできなくなります。この設定は `config/initializers/rack_attack.rb` にあります。
  
+-If you want more restrictive/relaxed throttle rule change the `limit` or `period` values. For example, more relaxed throttle rule will be if you set limit: 3 and period: 1.second(this will allow 3 requests per second). You can also add other paths to the protected list by adding to `paths_to_be_protected` variable. If you change any of these settings do not forget to restart your GitLab instance.
++さらに制限を厳しい、または緩いスロットル・ルールを設定したい場合は、 `limit` または `period` の値を変更します。例えば、 limit: 3 、 period: 1.second と設定するとより緩やかなスロットル・ルールになります(これは秒間 3 リクエストの制限になります)。 さらに他のパスを保護の対象としたい場合は `paths_to_be_protected` 変数にパスを追加します。これらの設定を変更した後は、GitLabインスタンスを再起動する必要があります。
+ 
+-In case you find throttling is not enough to protect you against abusive clients, rack-attack gem offers IP whitelisting, blacklisting, Fail2ban style filter and tracking.
++大量アクセスするクライアントから保護するのにスロットルでは不十分な場合のために、 rack-attack gem はIPホワイトリスト、ブラックリスト、Fail2ban 形式のフィルターと追跡の機能も備えています。
+ 
+-For more information on how to use these options check out [rack-attack README](https://github.com/kickstarter/rack-attack/blob/master/README.md).
++これらのオプションに関するさらに詳細な情報については [rack-attack README](https://github.com/kickstarter/rack-attack/blob/master/README.md) を参照してください。
 diff --git a/doc/ssh/README.md b/doc/ssh/README.md
 index 77eb534..7dd87a1 100644
 --- a/doc/ssh/README.md

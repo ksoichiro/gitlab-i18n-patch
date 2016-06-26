@@ -1707,6 +1707,14 @@ translations:
     replace: '${reviewThePathsToBeProtectedAndAddAnyOtherPathYouNeedProtecting}'
   - pattern: 'Restart GitLab instance.'
     replace: '${restartGitLabInstance}'
+  - pattern: 'By default, user sign-in, user sign-up(if enabled) and user password reset is limited to 6 requests per minute. After trying for 6 times, client will have to wait for the next minute to be able to try again. These settings can be found in `config/initializers/rack_attack.rb`'
+    replace: '${byDefaultUserSignIn,UserSIgnUpIfEnabledAndUserPasswordResetIsLimitedTo6RequestsPerMinuteAfterTryingFor6TimesClientWillHaveToWaitForTheNextMinuteToBeAbleToTryAgainTheseSettingsCanBeFoundInConfigInitializersRackAttackRb}'
+  - pattern: 'If you want more restrictive/relaxed throttle rule change the `limit` or `period` values. For example, more relaxed throttle rule will be if you set limit: 3 and period: 1.second(this will allow 3 requests per second). You can also add other paths to the protected list by adding to `paths_to_be_protected` variable. If you change any of these settings do not forget to restart your GitLab instance.'
+    replace: '${ifYouWantMoreRestrictiveRelaxedThrottleRuleChangeTheLimitOrPeriodValuesForExampleMoreRelaxedThrottleRuleWillBeIfYouSetLimit3AndPeriod1secondThisWillAllow3RequestsPerSecondYouCanAlsoAddOtherPathsToTheProtectedListByAddingToPathsToBeProtectedVariableIfYouChangeAnyOfTheseSettingsDoNotForgetToRestartYourGitlabInstance}'
+  - pattern: 'In case you find throttling is not enough to protect you against abusive clients, rack-attack gem offers IP whitelisting, blacklisting, Fail2ban style filter and tracking.'
+    replace: '${inCaseYouFindThrottlingIsNotEnoughToProtectYouAgainstAbusiveClientsRack-AttackGemOffersIPWhitelistingBlacklistingFail2banStyleFilterAndTracking}'
+  - pattern: 'For more information on how to use these options check out [rack-attack README](https://github.com/kickstarter/rack-attack/blob/master/README.md).'
+    replace: '${forMoreInformationOnHowToUseTheseOptionsCheckOutRackAttackReadme}'
 
   - name: headerOrComment
     params:

@@ -14495,6 +14495,19 @@ index 17bb75e..965b378 100644
  
  GitLab allows you to change your projects' visibility in order be accessed
  **publicly** or **internally**.
+diff --git a/doc/raketasks/README.md b/doc/raketasks/README.md
+index a49c43b..202fb23 100644
+--- a/doc/raketasks/README.md
++++ b/doc/raketasks/README.md
+@@ -5,7 +5,7 @@
+ - [Cleanup](cleanup.md)
+ - [Features](features.md)
+ - [Maintenance](maintenance.md) and self-checks
+-- [User management](user_management.md)
++- [ユーザ管理](user_management.md)
+ - [Webhooks](web_hooks.md)
+ - [Import](import.md) of git repositories in bulk
+ - [Rebuild authorized_keys file](http://docs.gitlab.com/ce/raketasks/maintenance.html#rebuild-authorized_keys-file) task for administrators
 diff --git a/doc/raketasks/backup_restore.md b/doc/raketasks/backup_restore.md
 index fa97613..153421a 100644
 --- a/doc/raketasks/backup_restore.md
@@ -14508,6 +14521,58 @@ index fa97613..153421a 100644
  This documentation is for GitLab CE.
  We backup GitLab.com and make sure your data is secure, but you can't use these methods to export / backup your data yourself from GitLab.com.
  
+diff --git a/doc/raketasks/user_management.md b/doc/raketasks/user_management.md
+index 629d38e..1b376e0 100644
+--- a/doc/raketasks/user_management.md
++++ b/doc/raketasks/user_management.md
+@@ -1,6 +1,6 @@
+-# User management
++# ユーザ管理
+ 
+-## Add user as a developer to all projects
++## ユーザを開発者としてすべてのプロジェクトに追加
+ 
+ ```bash
+ # omnibus-gitlab
+@@ -10,11 +10,11 @@ sudo gitlab-rake gitlab:import:user_to_projects[username@domain.tld]
+ bundle exec rake gitlab:import:user_to_projects[username@domain.tld] RAILS_ENV=production
+ ```
+ 
+-## Add all users to all projects
++## すべてのユーザをすべてのプロジェクトへ追加
+ 
+-Notes:
++注意:
+ 
+-- admin users are added as masters
++- 管理者ユーザは Master として追加されます
+ 
+ ```bash
+ # omnibus-gitlab
+@@ -24,7 +24,7 @@ sudo gitlab-rake gitlab:import:all_users_to_all_projects
+ bundle exec rake gitlab:import:all_users_to_all_projects RAILS_ENV=production
+ ```
+ 
+-## Add user as a developer to all groups
++## ユーザを開発者としてすべてのグループに追加
+ 
+ ```bash
+ # omnibus-gitlab
+@@ -34,11 +34,11 @@ sudo gitlab-rake gitlab:import:user_to_groups[username@domain.tld]
+ bundle exec rake gitlab:import:user_to_groups[username@domain.tld] RAILS_ENV=production
+ ```
+ 
+-## Add all users to all groups
++## すべてのユーザをすべてのグループに追加
+ 
+-Notes:
++注意:
+ 
+-- admin users are added as owners so they can add additional users to the group
++- 管理者ユーザは、グループにユーザを追加できるように所有者として追加されます
+ 
+ ```bash
+ # omnibus-gitlab
 diff --git a/doc/security/rack_attack.md b/doc/security/rack_attack.md
 index 9206699..539ca31 100644
 --- a/doc/security/rack_attack.md

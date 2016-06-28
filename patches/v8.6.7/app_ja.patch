@@ -14084,9 +14084,27 @@ index 6be954a..ed86387 100644
  - [Import](import.md) of git repositories in bulk
  - [Rebuild authorized_keys file](http://doc.gitlab.com/ce/raketasks/maintenance.html#rebuild-authorized_keys-file) task for administrators
 diff --git a/doc/raketasks/backup_restore.md b/doc/raketasks/backup_restore.md
-index 4329ac3..709b595 100644
+index 4329ac3..640fe8b 100644
 --- a/doc/raketasks/backup_restore.md
 +++ b/doc/raketasks/backup_restore.md
+@@ -34,7 +34,7 @@ Use a comma to specify several options at the same time.
+ sudo gitlab-rake gitlab:backup:create SKIP=db,uploads
+ ```
+ 
+-Example output:
++出力例:
+ 
+ ```
+ Dumping database tables:
+@@ -262,7 +262,7 @@ BACKUP=timestamp_of_backup (required if more than one backup exists)
+ force=yes (do not ask if the authorized_keys file should get regenerated)
+ ```
+ 
+-Example output:
++出力例:
+ 
+ ```
+ Unpacking backup... [DONE]
 @@ -413,7 +413,7 @@ Those objects have no influence on the database backup/restore but they give thi
  
  For more information see similar questions on postgresql issue tracker[here](http://www.postgresql.org/message-id/201110220712.30886.adrian.klaver@gmail.com) and [here](http://www.postgresql.org/message-id/2039.1177339749@sss.pgh.pa.us) as well as [stack overflow](http://stackoverflow.com/questions/4368789/error-must-be-owner-of-language-plpgsql).
@@ -14096,6 +14114,77 @@ index 4329ac3..709b595 100644
  This documentation is for GitLab CE.
  We backup GitLab.com and make sure your data is secure, but you can't use these methods to export / backup your data yourself from GitLab.com.
  
+diff --git a/doc/raketasks/check.md b/doc/raketasks/check.md
+index 3ff3fee..f777cfc 100644
+--- a/doc/raketasks/check.md
++++ b/doc/raketasks/check.md
+@@ -58,6 +58,6 @@ bundle exec rake gitlab:user:check_repos RAILS_ENV=production
+ bundle exec rake gitlab:user:check_repos[<username>] RAILS_ENV=production
+ ```
+ 
+-Example output:
++出力例:
+ 
+ ![gitlab:user:check_repos output](check_repos_output.png)
+diff --git a/doc/raketasks/maintenance.md b/doc/raketasks/maintenance.md
+index d9dce2a..2173e7b 100644
+--- a/doc/raketasks/maintenance.md
++++ b/doc/raketasks/maintenance.md
+@@ -1,8 +1,8 @@
+-# Maintenance
++# メンテナンス
+ 
+-## Gather information about GitLab and the system it runs on
++## GitLabやシステムに関する情報の収集
+ 
+-This command gathers information about your GitLab installation and the System it runs on. These may be useful when asking for help or reporting issues.
++このコマンドは、GitLabと、GitLabを実行するシステムの情報を収集します。これらはヘルプを求めたり問題をレポートするのに便利です。
+ 
+ ```
+ # omnibus-gitlab
+@@ -12,7 +12,7 @@ sudo gitlab-rake gitlab:env:info
+ bundle exec rake gitlab:env:info RAILS_ENV=production
+ ```
+ 
+-Example output:
++出力例:
+ 
+ ```
+ System information
+@@ -43,17 +43,17 @@ Hooks:            /home/git/gitlab-shell/hooks/
+ Git:              /usr/bin/git
+ ```
+ 
+-## Check GitLab configuration
++## GitLab設定の確認
+ 
+-Runs the following rake tasks:
++以下の rake タスクを実行します。:
+ 
+ - `gitlab:gitlab_shell:check`
+ - `gitlab:sidekiq:check`
+ - `gitlab:app:check`
+ 
+-It will check that each component was setup according to the installation guide and suggest fixes for issues found.
++各コンポーネントがインストールガイドの通りにインストールされたかどうかチェックし、問題があれば修正方法を提示します。
+ 
+-You may also have a look at our [Trouble Shooting Guide](https://github.com/gitlabhq/gitlab-public-wiki/wiki/Trouble-Shooting-Guide).
++[Trouble Shooting Guide](https://github.com/gitlabhq/gitlab-public-wiki/wiki/Trouble-Shooting-Guide) も確認しておいた方が良いでしょう。
+ 
+ ```
+ # omnibus-gitlab
+@@ -63,9 +63,9 @@ sudo gitlab-rake gitlab:check
+ bundle exec rake gitlab:check RAILS_ENV=production
+ ```
+ 
+-NOTE: Use SANITIZE=true for gitlab:check if you want to omit project names from the output.
++注意: プロジェクト名を出力しない場合は、 gitlab:check に対して SANITIZE=true を使用してください。
+ 
+-Example output:
++出力例:
+ 
+ ```
+ Checking Environment ...
 diff --git a/doc/raketasks/user_management.md b/doc/raketasks/user_management.md
 index 629d38e..1b376e0 100644
 --- a/doc/raketasks/user_management.md

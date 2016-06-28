@@ -945,7 +945,7 @@ mdTitleAcceptMR: マージリクエストの承認
 #mdTitleCheckApplicationStatus: 
 #mdTitleCheckGitLab: 
 #mdTitleCheckGitLabAPIAccessOK: 
-#mdTitleCheckGitLabConfiguration: 
+mdTitleCheckGitLabConfiguration: GitLab設定の確認
 #mdTitleCheckRakeTasks: 
 #mdTitleCheckAllGitLabRepositories: 
 #mdTitleCheckAppStatus: 
@@ -1295,7 +1295,7 @@ mdTitleFeatureBranchWorkflow: フィーチャーブランチワークフロー
 #mdTitleFurtherConfiguration: 
 #mdTitleFurtherReading: 
 #mdTitleGITLABCI: 
-#mdTitleGatherInformationAboutGitLabAndTheSystemItRunsOn: 
+mdTitleGatherInformationAboutGitLabAndTheSystemItRunsOn: GitLabやシステムに関する情報の収集
 #mdTitleGemnasium: 
 #mdTitleGeneralGuidelines: 
 #mdTitleGenerateAPIDocumentationForProjectServicesEgSlack: 
@@ -1638,7 +1638,7 @@ mdTitleIssues: 課題
 #mdTitleLoginToMySQL: 
 #mdTitleMainGitlabcomServer: 
 #mdTitleMaintainTightControlOverTheNumberOfActiveUsersOnYourGitLabInstallation: 
-#mdTitleMaintenance: 
+mdTitleMaintenance: メンテナンス
 #mdTitleMaintenanceTasks: 
 #mdTitleMakeSomeChangesToGitoliteConfig: 
 #mdTitleMakeSomeChangesToGitoliteV3Config: 
@@ -2651,3 +2651,9 @@ adminUsersAreAddedAsMasters: 管理者ユーザは Master として追加され�
 mdTitleAddUserAsADeveloperToAllGroups: ユーザを開発者としてすべてのグループに追加
 mdTitleAddAllUsersToAllGroups: すべてのユーザをすべてのグループに追加
 adminUsersAreAddedAsOwnersSoTheyCanAddAdditionalUsersToTheGroup: 管理者ユーザは、グループにユーザを追加できるように所有者として追加されます
+thisCommandGathersInformationAboutYourGitlabInstallationAndTheSystemItRunsOnTheseMayBeUsefulWhenAskingForHelpOrReportingIssues: このコマンドは、GitLabと、GitLabを実行するシステムの情報を収集します。これらはヘルプを求めたり問題をレポートするのに便利です。
+exampleOutput: 出力例
+runsTheFollowingRakeTasks: '以下の rake タスクを実行します。'
+itWillCheckThatEachComponentWasSetupAccordingToTheInstallationGuideAndSuggestFixesForIssuesFound: 各コンポーネントがインストールガイドの通りにインストールされたかどうかチェックし、問題があれば修正方法を提示します。
+youMayAlsoHaveALookAtOurTroubleShootingGuide: '[Trouble Shooting Guide](https://github.com/gitlabhq/gitlab-public-wiki/wiki/Trouble-Shooting-Guide) も確認しておいた方が良いでしょう。'
+noteUseSanitizeTrueForGitlabCheckIfYouWantToOmitProjectNamesFromTheOutput: '注意: プロジェクト名を出力しない場合は、 gitlab:check に対して SANITIZE=true を使用してください。'

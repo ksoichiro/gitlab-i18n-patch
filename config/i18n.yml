@@ -1731,6 +1731,18 @@ translations:
     replace: '${mdTitleNote}:'
   - pattern: 'admin users are added as owners so they can add additional users to the group'
     replace: '${adminUsersAreAddedAsOwnersSoTheyCanAddAdditionalUsersToTheGroup}'
+  - pattern: 'This command gathers information about your GitLab installation and the System it runs on. These may be useful when asking for help or reporting issues.'
+    replace: '${thisCommandGathersInformationAboutYourGitlabInstallationAndTheSystemItRunsOnTheseMayBeUsefulWhenAskingForHelpOrReportingIssues}'
+  - pattern: 'Example output:'
+    replace: '${exampleOutput}:'
+  - pattern: 'Runs the following rake tasks:'
+    replace: '${runsTheFollowingRakeTasks}:'
+  - pattern: 'It will check that each component was setup according to the installation guide and suggest fixes for issues found.'
+    replace: '${itWillCheckThatEachComponentWasSetupAccordingToTheInstallationGuideAndSuggestFixesForIssuesFound}'
+  - pattern: 'You may also have a look at our [Trouble Shooting Guide](https://github.com/gitlabhq/gitlab-public-wiki/wiki/Trouble-Shooting-Guide).'
+    replace: '${youMayAlsoHaveALookAtOurTroubleShootingGuide}'
+  - pattern: 'NOTE: Use SANITIZE=true for gitlab:check if you want to omit project names from the output.'
+    replace: '${noteUseSanitizeTrueForGitlabCheckIfYouWantToOmitProjectNamesFromTheOutput}'
 
   - name: headerOrComment
     params:
@@ -2270,8 +2282,8 @@ translations:
     #  key: mdTitleCheckGitLab
     #- title: 'Check GitLab API access: OK'
     #  key: mdTitleCheckGitLabAPIAccessOK
-    #- title: 'Check GitLab configuration'
-    #  key: mdTitleCheckGitLabConfiguration
+    - title: 'Check GitLab configuration'
+      key: mdTitleCheckGitLabConfiguration
     #- title: 'Check Rake Tasks'
     #  key: mdTitleCheckRakeTasks
     #- title: 'Check all GitLab repositories'
@@ -2972,8 +2984,8 @@ translations:
     #  key: mdTitleFurtherReading
     #- title: 'GITLAB CI'
     #  key: mdTitleGITLABCI
-    #- title: 'Gather information about GitLab and the system it runs on'
-    #  key: mdTitleGatherInformationAboutGitLabAndTheSystemItRunsOn
+    - title: 'Gather information about GitLab and the system it runs on'
+      key: mdTitleGatherInformationAboutGitLabAndTheSystemItRunsOn
     #- title: 'Gemnasium'
     #  key: mdTitleGemnasium
     #- title: 'General Guidelines'
@@ -3658,8 +3670,8 @@ translations:
     #  key: mdTitleMainGitlabcomServer
     #- title: 'Maintain tight control over the number of active users on your GitLab installation'
     #  key: mdTitleMaintainTightControlOverTheNumberOfActiveUsersOnYourGitLabInstallation
-    #- title: 'Maintenance'
-    #  key: mdTitleMaintenance
+    - title: 'Maintenance'
+      key: mdTitleMaintenance
     #- title: 'Maintenance Tasks'
     #  key: mdTitleMaintenanceTasks
     #- title: 'Make some changes to Gitolite config'

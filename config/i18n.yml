@@ -1743,6 +1743,20 @@ translations:
     replace: '${youMayAlsoHaveALookAtOurTroubleShootingGuide}'
   - pattern: 'NOTE: Use SANITIZE=true for gitlab:check if you want to omit project names from the output.'
     replace: '${noteUseSanitizeTrueForGitlabCheckIfYouWantToOmitProjectNamesFromTheOutput}'
+  - pattern: 'Enable usernames and namespaces for user projects'
+    replace: '${enableUsernamesAndNamespacesForUserProjects}'
+  - pattern: 'This command will enable the namespaces feature introduced in v4.0. It will move every project in its namespace folder.'
+    replace: '${thisCommandWillEnableTheNamepsacesFeaturesIntroducedInV40ItWillMoveEveryProjectInItsNamespaceFolder}'
+  - pattern: 'Because the **repository location will change**, you will need to **update all your git URLs** to point to the new location.'
+    replace: '${becauseTheRepositoryLocationWillChangeYouWillNeedToUpdateAllYourGitURLsToPointToTheNewLocation}'
+  - pattern: 'Username can be changed at [Profile / Account](/profile/account)'
+    replace: '${usernameCanBeChangedAtProfileAccount}'
+  - pattern: '**Example:**'
+    replace: '**${example}:**'
+  - pattern: 'Old path:'
+    replace: '${oldPath}:'
+  - pattern: 'New path:'
+    replace: '${newPath}:'
 
   - name: headerOrComment
     params:
@@ -2900,8 +2914,8 @@ translations:
       key: mdTitleFeatureBranchWorkflow
     #- title: 'Feature proposals'
     #  key: mdTitleFeatureProposals
-    #- title: 'Features'
-    #  key: mdTitleFeatures
+    - title: 'Features'
+      key: mdTitleFeatures
     #- title: 'Features / Integration'
     #  key: mdTitleFeaturesIntegration
     #- title: 'File finder'

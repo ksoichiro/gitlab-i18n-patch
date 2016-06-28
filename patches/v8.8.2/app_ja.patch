@@ -14569,6 +14569,38 @@ index 3ff3fee..f777cfc 100644
 +出力例:
  
  ![gitlab:user:check_repos output](check_repos_output.png)
+diff --git a/doc/raketasks/features.md b/doc/raketasks/features.md
+index f9a4619..3f89f56 100644
+--- a/doc/raketasks/features.md
++++ b/doc/raketasks/features.md
+@@ -1,19 +1,19 @@
+-# Features
++# フィーチャー
+ 
+-## Enable usernames and namespaces for user projects
++## ユーザのプロジェクトでのユーザ名とネームスペースを有効化
+ 
+-This command will enable the namespaces feature introduced in v4.0. It will move every project in its namespace folder.
++このコマンドは、v4.0 で導入されたネームスペースの機能を有効にします。すべてのプロジェクトをネームスペースフォルダに移動します。
+ 
+ Note:
+ 
+-- Because the **repository location will change**, you will need to **update all your git URLs** to point to the new location.
+-- Username can be changed at [Profile / Account](/profile/account)
++- **リポジトリの場所が変更されるため** 、新しい場所を指すように **すべてのGitのURLを更新** する必要があります。
++- ユーザ名は [プロフィール / アカウント設定](/profile/account) から変更することができます。
+ 
+-**Example:**
++**例:**
+ 
+-Old path: `git@example.org:myrepo.git`
++古いパス: `git@example.org:myrepo.git`
+ 
+-New path: `git@example.org:username/myrepo.git` or `git@example.org:groupname/myrepo.git`
++新しいパス: `git@example.org:username/myrepo.git` or `git@example.org:groupname/myrepo.git`
+ 
+ ```
+ bundle exec rake gitlab:enable_namespaces RAILS_ENV=production
 diff --git a/doc/raketasks/maintenance.md b/doc/raketasks/maintenance.md
 index d9dce2a..2173e7b 100644
 --- a/doc/raketasks/maintenance.md

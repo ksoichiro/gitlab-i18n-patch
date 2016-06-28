@@ -1253,7 +1253,7 @@ mdTitleDocumentation: ドキュメント
 #mdTitleFactories: 
 mdTitleFeatureBranchWorkflow: フィーチャーブランチワークフロー
 #mdTitleFeatureProposals: 
-#mdTitleFeatures: 
+mdTitleFeatures: フィーチャー
 #mdTitleFeaturesIntegration: 
 #mdTitleFileFinder: 
 #mdTitleFilesAreOwnedByRootByDefault: 
@@ -2657,3 +2657,10 @@ runsTheFollowingRakeTasks: '以下の rake タスクを実行します。'
 itWillCheckThatEachComponentWasSetupAccordingToTheInstallationGuideAndSuggestFixesForIssuesFound: 各コンポーネントがインストールガイドの通りにインストールされたかどうかチェックし、問題があれば修正方法を提示します。
 youMayAlsoHaveALookAtOurTroubleShootingGuide: '[Trouble Shooting Guide](https://github.com/gitlabhq/gitlab-public-wiki/wiki/Trouble-Shooting-Guide) も確認しておいた方が良いでしょう。'
 noteUseSanitizeTrueForGitlabCheckIfYouWantToOmitProjectNamesFromTheOutput: '注意: プロジェクト名を出力しない場合は、 gitlab:check に対して SANITIZE=true を使用してください。'
+enableUsernamesAndNamespacesForUserProjects: ユーザのプロジェクトでのユーザ名とネームスペースを有効化
+thisCommandWillEnableTheNamepsacesFeaturesIntroducedInV40ItWillMoveEveryProjectInItsNamespaceFolder: 'このコマンドは、v4.0 で導入されたネームスペースの機能を有効にします。すべてのプロジェクトをネームスペースフォルダに移動します。'
+becauseTheRepositoryLocationWillChangeYouWillNeedToUpdateAllYourGitURLsToPointToTheNewLocation: '**リポジトリの場所が変更されるため** 、新しい場所を指すように **すべてのGitのURLを更新** する必要があります。'
+usernameCanBeChangedAtProfileAccount: 'ユーザ名は [プロフィール / アカウント設定](/profile/account) から変更することができます。'
+example: 例
+oldPath: 古いパス
+newPath: 新しいパス

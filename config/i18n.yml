@@ -1757,6 +1757,14 @@ translations:
     replace: '${oldPath}:'
   - pattern: 'New path:'
     replace: '${newPath}:'
+  - pattern: 'Remove garbage from filesystem. Important! Data loss!'
+    replace: '${removeGarbageFromFilesystemImportantDatLoss}'
+  - pattern: "Remove namespaces(dirs) from `/home/git/repositories` if they don't exist in GitLab database."
+    replace: '${removeNamespacesDirsFromHomeGitRepositoriesIfTheyDontExistInGitLabDatabase}'
+  - pattern: "Rename repositories from `/home/git/repositories` if they don't exist in GitLab database."
+    replace: '${renameRepositoriesFromHomeGitRepositoriesIfTheyDontExistInGitLabDatabase}'
+  - pattern: 'The repositories get a `+orphaned+TIMESTAMP` suffix so that they cannot block new repositories from being created.'
+    replace: '${theRepositoriesGetAOrphanedTimestampSuffixSoThatTheyCannotBlockNewRepositoriesFromBeingCreated}'
 
   - name: headerOrComment
     params:
@@ -2332,8 +2340,8 @@ translations:
     #  key: mdTitleCleanUpAssetsAndCache
     #- title: 'Cleaning up stale Redis sessions'
     #  key: mdTitleCleaningUpStaleRedisSessions
-    #- title: 'Cleanup'
-    #  key: mdTitleCleanup
+    - title: 'Cleanup'
+      key: mdTitleCleanup
     #- title: 'Clear and precompile assets'
     #  key: mdTitleClearAndPrecompileAssets
     #- title: 'Clear redis cache'

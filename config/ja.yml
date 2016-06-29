@@ -963,7 +963,7 @@ mdTitleCheckGitLabConfiguration: GitLab設定の確認
 #mdTitleChooseAnIDMadeOfAZAnd09ThisIDWillBeStoredInTheDatabase: 
 #mdTitleCleanUpAssetsAndCache: 
 #mdTitleCleaningUpStaleRedisSessions: 
-#mdTitleCleanup: 
+mdTitleCleanup: クリーンアップ
 #mdTitleClearAndPrecompileAssets: 
 #mdTitleClearRedisCache: 
 #mdTitleClients: 
@@ -2664,3 +2664,7 @@ usernameCanBeChangedAtProfileAccount: 'ユーザ名は [プロフィール / ア
 example: 例
 oldPath: 古いパス
 newPath: 新しいパス
+removeGarbageFromFilesystemImportantDatLoss: ファイルシステム上のゴミを削除。重要：データを損失します！
+removeNamespacesDirsFromHomeGitRepositoriesIfTheyDontExistInGitLabDatabase: "`/home/git/repositories` から、GitLabのデータベースに存在しないネームスペース(ディレクトリ)を削除します。"
+renameRepositoriesFromHomeGitRepositoriesIfTheyDontExistInGitLabDatabase: "`/home/git/repositories` のリポジトリのうちGitLabのデータベースに存在しないリポジトリをリネームします。"
+theRepositoriesGetAOrphanedTimestampSuffixSoThatTheyCannotBlockNewRepositoriesFromBeingCreated: '新しいリポジトリが作成できるように、リポジトリには `+orphaned+TIMESTAMP` の接尾辞がつけられます。'

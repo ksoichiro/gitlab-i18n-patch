@@ -14333,6 +14333,33 @@ index 3ff3fee..f777cfc 100644
 +出力例:
  
  ![gitlab:user:check_repos output](check_repos_output.png)
+diff --git a/doc/raketasks/cleanup.md b/doc/raketasks/cleanup.md
+index 8fbcbb9..9cbfe7e 100644
+--- a/doc/raketasks/cleanup.md
++++ b/doc/raketasks/cleanup.md
+@@ -1,8 +1,8 @@
+-# Cleanup
++# クリーンアップ
+ 
+-## Remove garbage from filesystem. Important! Data loss!
++## ファイルシステム上のゴミを削除。重要：データを損失します！
+ 
+-Remove namespaces(dirs) from `/home/git/repositories` if they don't exist in GitLab database.
++`/home/git/repositories` から、GitLabのデータベースに存在しないネームスペース(ディレクトリ)を削除します。
+ 
+ ```
+ # omnibus-gitlab
+@@ -12,8 +12,8 @@ sudo gitlab-rake gitlab:cleanup:dirs
+ bundle exec rake gitlab:cleanup:dirs RAILS_ENV=production
+ ```
+ 
+-Rename repositories from `/home/git/repositories` if they don't exist in GitLab database.
+-The repositories get a `+orphaned+TIMESTAMP` suffix so that they cannot block new repositories from being created.
++`/home/git/repositories` のリポジトリのうちGitLabのデータベースに存在しないリポジトリをリネームします。
++新しいリポジトリが作成できるように、リポジトリには `+orphaned+TIMESTAMP` の接尾辞がつけられます。
+ 
+ ```
+ # omnibus-gitlab
 diff --git a/doc/raketasks/features.md b/doc/raketasks/features.md
 index f9a4619..3f89f56 100644
 --- a/doc/raketasks/features.md

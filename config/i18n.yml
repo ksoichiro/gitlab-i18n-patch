@@ -2204,8 +2204,8 @@ translations:
     #  key: mdTitleAwardEmojisOnIssuesAndMergeRequests
     #- title: 'Backup archive permissions'
     #  key: mdTitleBackupArchivePermissions
-    #- title: 'Backup restore'
-    #  key: mdTitleBackupRestore
+    - title: 'Backup restore'
+      key: mdTitleBackupRestore
     #- title: 'Basic Git commands'
     #  key: mdTitleBasicGitCommands
     #- title: 'Basic usage'
@@ -2438,8 +2438,8 @@ translations:
     #  key: mdTitleConfigurePostfixToReceiveEmailFromTheInternet
     #- title: 'Configure Postfix to use Maildir-style mailboxes'
     #  key: mdTitleConfigurePostfixToUseMaildirStyleMailboxes
-    #- title: 'Configure cron to make daily backups'
-    #  key: mdTitleConfigureCronToMakeDailyBackups
+    - title: 'Configure cron to make daily backups'
+      key: mdTitleConfigureCronToMakeDailyBackups
     #- title: 'Configure project'
     #  key: mdTitleConfigureProject
     #- title: 'Configure redis to use sockets'
@@ -2496,8 +2496,8 @@ translations:
     #  key: mdTitleCreateMR
     #- title: 'Create a README.md or file in directory'
     #  key: mdTitleCreateAREADMEmdOrFileInDirectory
-    #- title: 'Create a backup of the GitLab system'
-    #  key: mdTitleCreateABackupOfTheGitLabSystem
+    - title: 'Create a backup of the GitLab system'
+      key: mdTitleCreateABackupOfTheGitLabSystem
     #- title: 'Create a branch'
     #  key: mdTitleCreateABranch
     #- title: 'Create a directory'
@@ -2960,8 +2960,8 @@ translations:
     #  key: mdTitleForHTTPS
     #- title: 'For HTTPS configurations'
     #  key: mdTitleForHTTPSConfigurations
-    #- title: 'For Omnibus installations'
-    #  key: mdTitleForOmnibusInstallations
+    - title: 'For Omnibus installations'
+      key: mdTitleForOmnibusInstallations
     #- title: 'For admin'
     #  key: mdTitleForAdmin
     #- title: 'For admins'
@@ -2982,8 +2982,6 @@ translations:
     #  key: mdTitleForMoreInformationVisitHttps//Githubcom/Gitlabhq/Gitlabhq/Pull/1719
     #- title: 'For normal users'
     #  key: mdTitleForNormalUsers
-    #- title: 'For omnibus installations'
-    #  key: mdTitleForOmnibusInstallations
     #- title: 'For omnibus-gitlab, put the following in /etc/gitlab/gitlab.rb'
     #  key: mdTitleForOmnibusGitlabPutTheFollowingIn/Etc/Gitlab/Gitlabrb
     #- title: 'For reStructuredText markup language support install required package:'
@@ -4432,8 +4430,8 @@ translations:
     #  key: mdTitleStoringAPIKeys
     #- title: 'Storing build artifacts'
     #  key: mdTitleStoringBuildArtifacts
-    #- title: 'Storing configuration files'
-    #  key: mdTitleStoringConfigurationFiles
+    - title: 'Storing configuration files'
+      key: mdTitleStoringConfigurationFiles
     #- title: 'Style guides'
     #  key: mdTitleStyleGuides
     #- title: 'Subscribe to a merge request'

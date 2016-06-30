@@ -895,7 +895,7 @@ mdTitleAcceptMR: マージリクエストの承認
 #mdTitleAwardEmojis: 
 #mdTitleAwardEmojisOnIssuesAndMergeRequests: 
 #mdTitleBackupArchivePermissions: 
-#mdTitleBackupRestore: 
+mdTitleBackupRestore: バックアップ・リストア
 #mdTitleBasicGitCommands: 
 #mdTitleBasicUsage: 
 #mdTitleBeCarefulWithSensitiveInformation: 
@@ -1012,7 +1012,7 @@ mdTitleCleanup: クリーンアップ
 #mdTitleConfigureOmniAuthProvidersAsExternal: 
 #mdTitleConfigurePostfixToReceiveEmailFromTheInternet: 
 #mdTitleConfigurePostfixToUseMaildirStyleMailboxes: 
-#mdTitleConfigureCronToMakeDailyBackups: 
+mdTitleConfigureCronToMakeDailyBackups: 日次バックアップを行うためのcronの設定
 #mdTitleConfigureProject: 
 #mdTitleConfigureRedisToUseSockets: 
 #mdTitleConfigureYourServerFirewall: 
@@ -1041,7 +1041,7 @@ mdTitleCleanup: クリーンアップ
 #mdTitleCreateHerokuApplication: 
 #mdTitleCreateMR: 
 #mdTitleCreateAREADMEmdOrFileInDirectory: 
-#mdTitleCreateABackupOfTheGitLabSystem: 
+mdTitleCreateABackupOfTheGitLabSystem: GitLabシステムのバックアップの作成
 #mdTitleCreateABranch: 
 #mdTitleCreateADirectory: 
 #mdTitleCreateAFile: 
@@ -1272,7 +1272,7 @@ mdTitleFeatures: フィーチャー
 #mdTitleForHTTPConfigurations: 
 #mdTitleForHTTPS: 
 #mdTitleForHTTPSConfigurations: 
-#mdTitleForOmnibusInstallations: 
+mdTitleForOmnibusInstallations: オムニバスインストール
 #mdTitleForAdmin: 
 #mdTitleForAdmins: 
 #mdTitleForGroup1234: 
@@ -1283,7 +1283,6 @@ mdTitleFeatures: フィーチャー
 #mdTitleForInstallationsFromSourceUncommentTheDefaultCanCreateGroup: 
 #mdTitleForMoreInformationVisitHttps//Githubcom/Gitlabhq/Gitlabhq/Pull/1719: 
 #mdTitleForNormalUsers: 
-#mdTitleForOmnibusInstallations: 
 #mdTitleForOmnibusGitlabPutTheFollowingIn/Etc/Gitlab/Gitlabrb: 
 #mdTitleForReStructuredTextMarkupLanguageSupportInstallRequiredPackage: 
 #mdTitleForUser: 
@@ -2007,7 +2006,7 @@ mdTitleSnippets: スニペット
 #mdTitleStoreAPIKeys: 
 #mdTitleStoringAPIKeys: 
 #mdTitleStoringBuildArtifacts: 
-#mdTitleStoringConfigurationFiles: 
+mdTitleStoringConfigurationFiles: 設定ファイルの保存
 #mdTitleStyleGuides: 
 #mdTitleSubscribeToAMergeRequest: 
 #mdTitleSubscribeToAnIssue: 

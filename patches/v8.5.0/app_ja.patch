@@ -13862,6 +13862,19 @@ index 5f8bb57..5a4efe6 100644
  
  ![Authorized_applications](img/oauth_provider_authorized_application.png)
  
+diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
+index b856e79..91a3683 100644
+--- a/doc/monitoring/performance/gitlab_configuration.md
++++ b/doc/monitoring/performance/gitlab_configuration.md
+@@ -18,7 +18,7 @@ Finally, a restart of all GitLab processes is required for the changes to take
+ effect:
+ 
+ ```bash
+-# For Omnibus installations
++# オムニバスインストール
+ sudo gitlab-ctl restart
+ 
+ # For installations from source
 diff --git a/doc/permissions/permissions.md b/doc/permissions/permissions.md
 index 168e7d1..9d55809 100644
 --- a/doc/permissions/permissions.md
@@ -13992,9 +14005,20 @@ index cc8a22c..334efc8 100644
  - [Import](import.md) of git repositories in bulk
  - [Rebuild authorized_keys file](http://doc.gitlab.com/ce/raketasks/maintenance.html#rebuild-authorized_keys-file) task for administrators
 diff --git a/doc/raketasks/backup_restore.md b/doc/raketasks/backup_restore.md
-index f6d1234..582232b 100644
+index f6d1234..1b788af 100644
 --- a/doc/raketasks/backup_restore.md
 +++ b/doc/raketasks/backup_restore.md
+@@ -1,8 +1,8 @@
+-# Backup restore
++# バックアップ・リストア
+ 
+ ![backup banner](backup_hrz.png)
+ 
+-## Create a backup of the GitLab system
++## GitLabシステムのバックアップの作成
+ 
+ A backup creates an archive file that contains the database, all repositories and all attachments.
+ This archive will be saved in backup_path (see `config/gitlab.yml`).
 @@ -34,7 +34,7 @@ Use a comma to specify several options at the same time.
  sudo gitlab-rake gitlab:backup:create SKIP=db,uploads
  ```
@@ -14004,6 +14028,15 @@ index f6d1234..582232b 100644
  
  ```
  Dumping database tables:
+@@ -211,7 +211,7 @@ gitlab_rails['backup_archive_permissions'] = 0644 # Makes the backup archives wo
+     archive_permissions: 0644 # Makes the backup archives world-readable
+ ```
+ 
+-## Storing configuration files
++## 設定ファイルの保存
+ 
+ Please be informed that a backup does not store your configuration
+ files.  One reason for this is that your database contains encrypted
 @@ -259,7 +259,7 @@ BACKUP=timestamp_of_backup (required if more than one backup exists)
  force=yes (do not ask if the authorized_keys file should get regenerated)
  ```
@@ -14013,6 +14046,15 @@ index f6d1234..582232b 100644
  
  ```
  Unpacking backup... [DONE]
+@@ -323,7 +323,7 @@ If there is a GitLab version mismatch between your backup tar file and the insta
+ version of GitLab, the restore command will abort with an error. Install a package for
+ the [required version](https://www.gitlab.com/downloads/archives/) and try again.
+ 
+-## Configure cron to make daily backups
++## 日次バックアップを行うためのcronの設定
+ 
+ ### For installation from source:
+ ```
 @@ -410,7 +410,7 @@ Those objects have no influence on the database backup/restore but they give thi
  
  For more information see similar questions on postgresql issue tracker[here](http://www.postgresql.org/message-id/201110220712.30886.adrian.klaver@gmail.com) and [here](http://www.postgresql.org/message-id/2039.1177339749@sss.pgh.pa.us) as well as [stack overflow](http://stackoverflow.com/questions/4368789/error-must-be-owner-of-language-plpgsql).

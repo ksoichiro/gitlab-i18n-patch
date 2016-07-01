@@ -14005,10 +14005,10 @@ index cc8a22c..334efc8 100644
  - [Import](import.md) of git repositories in bulk
  - [Rebuild authorized_keys file](http://doc.gitlab.com/ce/raketasks/maintenance.html#rebuild-authorized_keys-file) task for administrators
 diff --git a/doc/raketasks/backup_restore.md b/doc/raketasks/backup_restore.md
-index f6d1234..1b788af 100644
+index f6d1234..f9e8511 100644
 --- a/doc/raketasks/backup_restore.md
 +++ b/doc/raketasks/backup_restore.md
-@@ -1,8 +1,8 @@
+@@ -1,15 +1,13 @@
 -# Backup restore
 +# バックアップ・リストア
  
@@ -14017,9 +14017,20 @@ index f6d1234..1b788af 100644
 -## Create a backup of the GitLab system
 +## GitLabシステムのバックアップの作成
  
- A backup creates an archive file that contains the database, all repositories and all attachments.
- This archive will be saved in backup_path (see `config/gitlab.yml`).
-@@ -34,7 +34,7 @@ Use a comma to specify several options at the same time.
+-A backup creates an archive file that contains the database, all repositories and all attachments.
+-This archive will be saved in backup_path (see `config/gitlab.yml`).
+-The filename will be `[TIMESTAMP]_gitlab_backup.tar`. This timestamp can be used to restore an specific backup.
+-You can only restore a backup to exactly the same version of GitLab that you created it
+-on, for example 7.2.1. The best way to migrate your repositories from one server to
+-another is through backup restore.
++データベース、すべてのリポジトリ、すべての添付ファイルのバックアップアーカイブを作成します。
++このアーカイブは backup_path ( `config/gitlab.yml` を参照)に保存されます。
++ファイル名は `[TIMESTAMP]_gitlab_backup.tar` の形式です。このタイムスタンプはバックアップをリストアするときに使用されます。
++バックアップは、それを取得したGitLabと同じバージョンにのみリストアできます。(例えば、7.2.1) あなたのリポジトリをあるサーバから別のサーバへ移行する最適な方法は、バックアップをリストアすることです。
+ 
+ You need to keep a separate copy of `/etc/gitlab/gitlab-secrets.json`
+ (for omnibus packages) or `/home/git/gitlab/.secret` (for installations
+@@ -34,7 +32,7 @@ Use a comma to specify several options at the same time.
  sudo gitlab-rake gitlab:backup:create SKIP=db,uploads
  ```
  
@@ -14028,7 +14039,7 @@ index f6d1234..1b788af 100644
  
  ```
  Dumping database tables:
-@@ -211,7 +211,7 @@ gitlab_rails['backup_archive_permissions'] = 0644 # Makes the backup archives wo
+@@ -211,7 +209,7 @@ gitlab_rails['backup_archive_permissions'] = 0644 # Makes the backup archives wo
      archive_permissions: 0644 # Makes the backup archives world-readable
  ```
  
@@ -14037,7 +14048,7 @@ index f6d1234..1b788af 100644
  
  Please be informed that a backup does not store your configuration
  files.  One reason for this is that your database contains encrypted
-@@ -259,7 +259,7 @@ BACKUP=timestamp_of_backup (required if more than one backup exists)
+@@ -259,7 +257,7 @@ BACKUP=timestamp_of_backup (required if more than one backup exists)
  force=yes (do not ask if the authorized_keys file should get regenerated)
  ```
  
@@ -14046,7 +14057,7 @@ index f6d1234..1b788af 100644
  
  ```
  Unpacking backup... [DONE]
-@@ -323,7 +323,7 @@ If there is a GitLab version mismatch between your backup tar file and the insta
+@@ -323,7 +321,7 @@ If there is a GitLab version mismatch between your backup tar file and the insta
  version of GitLab, the restore command will abort with an error. Install a package for
  the [required version](https://www.gitlab.com/downloads/archives/) and try again.
  
@@ -14055,7 +14066,7 @@ index f6d1234..1b788af 100644
  
  ### For installation from source:
  ```
-@@ -410,7 +410,7 @@ Those objects have no influence on the database backup/restore but they give thi
+@@ -410,7 +408,7 @@ Those objects have no influence on the database backup/restore but they give thi
  
  For more information see similar questions on postgresql issue tracker[here](http://www.postgresql.org/message-id/201110220712.30886.adrian.klaver@gmail.com) and [here](http://www.postgresql.org/message-id/2039.1177339749@sss.pgh.pa.us) as well as [stack overflow](http://stackoverflow.com/questions/4368789/error-must-be-owner-of-language-plpgsql).
  

@@ -14111,7 +14111,7 @@ index 6be954a..ed86387 100644
  - [Import](import.md) of git repositories in bulk
  - [Rebuild authorized_keys file](http://doc.gitlab.com/ce/raketasks/maintenance.html#rebuild-authorized_keys-file) task for administrators
 diff --git a/doc/raketasks/backup_restore.md b/doc/raketasks/backup_restore.md
-index f6d1234..f9e8511 100644
+index f6d1234..4716e78 100644
 --- a/doc/raketasks/backup_restore.md
 +++ b/doc/raketasks/backup_restore.md
 @@ -1,15 +1,13 @@
@@ -14145,16 +14145,25 @@ index f6d1234..f9e8511 100644
  
  ```
  Dumping database tables:
-@@ -211,7 +209,7 @@ gitlab_rails['backup_archive_permissions'] = 0644 # Makes the backup archives wo
+@@ -211,13 +209,11 @@ gitlab_rails['backup_archive_permissions'] = 0644 # Makes the backup archives wo
      archive_permissions: 0644 # Makes the backup archives world-readable
  ```
  
 -## Storing configuration files
 +## 設定ファイルの保存
  
- Please be informed that a backup does not store your configuration
- files.  One reason for this is that your database contains encrypted
-@@ -259,7 +257,7 @@ BACKUP=timestamp_of_backup (required if more than one backup exists)
+-Please be informed that a backup does not store your configuration
+-files.  One reason for this is that your database contains encrypted
+-information for two-factor authentication.  Storing encrypted
+-information along with its key in the same place defeats the purpose
+-of using encryption in the first place!
++バックアップでは設定ファイルは保存されないことに注意してください。
++理由の一つは、データベースは二段階認証のために暗号化された情報を含んでいることです。
++暗号化の目的からすると、暗号化された情報とそのキーを同じ場所に保存すべきではありません。
+ 
+ If you use an Omnibus package please see the [instructions in the readme to backup your configuration](https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/README.md#backup-and-restore-omnibus-gitlab-configuration).
+ If you have a cookbook installation there should be a copy of your configuration in Chef.
+@@ -259,7 +255,7 @@ BACKUP=timestamp_of_backup (required if more than one backup exists)
  force=yes (do not ask if the authorized_keys file should get regenerated)
  ```
  
@@ -14163,7 +14172,7 @@ index f6d1234..f9e8511 100644
  
  ```
  Unpacking backup... [DONE]
-@@ -323,7 +321,7 @@ If there is a GitLab version mismatch between your backup tar file and the insta
+@@ -323,7 +319,7 @@ If there is a GitLab version mismatch between your backup tar file and the insta
  version of GitLab, the restore command will abort with an error. Install a package for
  the [required version](https://www.gitlab.com/downloads/archives/) and try again.
  
@@ -14172,7 +14181,7 @@ index f6d1234..f9e8511 100644
  
  ### For installation from source:
  ```
-@@ -410,7 +408,7 @@ Those objects have no influence on the database backup/restore but they give thi
+@@ -410,7 +406,7 @@ Those objects have no influence on the database backup/restore but they give thi
  
  For more information see similar questions on postgresql issue tracker[here](http://www.postgresql.org/message-id/201110220712.30886.adrian.klaver@gmail.com) and [here](http://www.postgresql.org/message-id/2039.1177339749@sss.pgh.pa.us) as well as [stack overflow](http://stackoverflow.com/questions/4368789/error-must-be-owner-of-language-plpgsql).
  

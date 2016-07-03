@@ -1767,6 +1767,8 @@ translations:
     replace: '${theRepositoriesGetAOrphanedTimestampSuffixSoThatTheyCannotBlockNewRepositoriesFromBeingCreated}'
   - pattern: !!js/regexp /A backup creates an archive file that contains the database, all repositories and all attachments.\nThis archive will be saved in backup_path \(see `config\/gitlab.yml`\).\nThe filename will be `\[TIMESTAMP\]_gitlab_backup.tar`. This timestamp can be used to restore an specific backup.\nYou can only restore a backup to exactly the same version of GitLab that you created it\non, for example 7.2.1. The best way to migrate your repositories from one server to\nanother is through backup restore./
     replace: '${aBackupCreatesAnArchiveFileThatContainsTheDatabaseAllRepositoriesAndAllAttachmentsThisArchiveWillBeSavedInBackupPathTheFilenameWillBeTimestampGitlabBackupTarThisTimestampCanBeUsedToRestoreOnSpecificBackupYouCanOnlyRestoreABackupToExactlyTheSameVersionOfGitLabThatYouCreatedItOnForExample721TheBestwayToMigreateYourRepositoriesFromOneServerToAnotherIsThroughBackupRestore}'
+  - pattern: !!js/regexp /Please be informed that a backup does not store your configuration\nfiles.  One reason for this is that your database contains encrypted\ninformation for two-factor authentication.  Storing encrypted\ninformation along with its key in the same place defeats the purpose\nof using encryption in the first place!/
+    replace: '${pleaseBeInformedThatABackupDoesNotStoreYourConfigurationFilesOneReasonForThisIsThatYourDatabaseContainsEncryptedInformationForTwoFactorAuthenticationStoringEncryptedInformationAlongWithItsKeyInTheSamePlaceDefeatsThePurposeOfUsingEncryptionInTheFirstPlace}'
 
   - name: headerOrComment
     params:

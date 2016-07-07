@@ -3538,7 +3538,7 @@ index 09e7e65..5627aa4 100644
      %li
        Return to this page and refresh it, it should show a new build.
 diff --git a/app/views/dashboard/_activity_head.html.haml b/app/views/dashboard/_activity_head.html.haml
-index b78e70e..b1f72d3 100644
+index b78e70ebc..b1f72d3 100644
 --- a/app/views/dashboard/_activity_head.html.haml
 +++ b/app/views/dashboard/_activity_head.html.haml
 @@ -1,7 +1,7 @@

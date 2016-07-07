@@ -78,6 +78,7 @@ translations:
     replace: '${theProjectCanBeClonedWithoutAnyAuthentication}'
   - pattern: !!js/regexp /  def visibility_level_label\(level\)\n    Project.visibility_levels.key\(level\)\n  end/m
     replace: "  def visibility_level_label(level)\n    case level\n    when Gitlab::VisibilityLevel::PRIVATE\n      \"${private}\"\n    when Gitlab::VisibilityLevel::INTERNAL\n      \"${internal}\"\n    when Gitlab::VisibilityLevel::PUBLIC\n      \"${public}\"\n    end\n  end"
+    match-once: true
   - pattern: !!js/regexp /You are going to remove ([^\s]+) from ([^\s]+) project team. Are you sure\?/
     replace: '${youAreGoingToRemoveFromProjectTeamAreYouSure}'
     args:
@@ -257,6 +258,7 @@ translations:
     replace: "notice: '${passwordSuccessfullyChanged}'"
   - pattern: "Password was successfully updated. Please login with it"
     replace: "${passwordWasSuccessfullyUpdatedPleaseLoginWithIt}"
+    match-once: true
   - pattern: "notice: 'We sent you an email with reset password instructions'"
     replace: "notice: '${weSentYouAnEmailWithResetPasswordInstructions}'"
   - pattern: "Failed to update profile. #{messages}"
@@ -265,6 +267,7 @@ translations:
     replace: "${yourChangesHaveBeenSuccessfullyCommitted}"
   - pattern: "Could not create Wiki Repository at this time. Please try again later."
     replace: "${couldNotCreateWikiRepositoryAtThisTimePleaseTryAgainLater}"
+    match-once: true
   - pattern: "Page not found"
     replace: "${pageNotFound}"
   - pattern: "Account successfully removed."
@@ -301,6 +304,7 @@ translations:
     replace: '${theSnippetIsVisibleForAnyLoggedInUser}'
   - pattern: !!js/regexp /^(\s+haml_concat ")The snippet can be accessed"\n\s+haml_concat "without any"\n\s+haml_concat "authentication."$/m
     replace: '$1${theSnippetCanBeAccessedWithoutAnyAuthentication}"'
+    match-once: true
   - pattern: "The snippet can be accessed without any authentication."
     replace: '${theSnippetCanBeAccessedWithoutAnyAuthentication}'
   - pattern: 'Add an SSH key to your profile<br>to pull or push via SSH.'
@@ -325,6 +329,7 @@ translations:
     args:
     - '$1'
     - '$2'
+    match-once: true
   - pattern: 'Status changed to closed'
     replace: '${statusChangedToClosed}'
   - pattern: 'Access to group was granted'
@@ -357,6 +362,7 @@ translations:
     replace: '${yourProjectLimitIsProjectsPleaseContactYourAdministratorToIncreaseIt}'
     args:
     - '$1'
+    match-once: true
   - pattern: 'commits_text = "#{total_count} commit".pluralize(total_count)'
     replace: 'commits_text = "#{total_count} ${commit}"'
   - pattern: !!js/regexp /body = "Added (#{commits_text}):\\n\\n"/
@@ -485,8 +491,10 @@ translations:
   patterns:
   - pattern: "Edit in fullscreen"
     replace: "${editInFullscreen}"
+    match-once: true
   - pattern: 'New comment on diff for'
     replace: '${newCommentOnDiffFor}'
+    match-once: true
   - pattern: 'Edit file'
     replace: '${editFile}'
   - pattern: !!js/regexp /(')Edit'|(")Edit"/
@@ -510,6 +518,7 @@ translations:
     - '$1'
   - pattern: 'This is an old version of this page.'
     replace: '${thisIsAnOldVersionOfThisPage}'
+    match-once: true
   - pattern: !!js/regexp /You can view the (#{link_to ")most recent version(", [^}]*}) or browse the (#{link_to ")history(", [^}]*})./
     replace: '${youCanViewTheMostRecentVersionOrBrowseTheHistory}'
     args:
@@ -575,6 +584,7 @@ translations:
     replace: '${clickTheLinkBelowToUnlockYourAccount}'
   - pattern: 'Your account has been locked due to an excessive amount of unsuccessful sign in attempts.'
     replace: '${yourAccountHasBeenLockedDueToAnExcessiveAmountOfUnsuccessfulSignInAttempts}'
+    match-once: true
   - pattern: "See most discussed projects for last month"
     replace: '${seeMostDiscussedProjectsForLastMonth}'
   - pattern: 'Remember me'
@@ -587,6 +597,7 @@ translations:
     replace: '${useOneLinePerURI}'
   - pattern: 'Congratulations! Why not share your accomplishment with the world?'
     replace: '${congratulationsWhyNotShareYourAccomplishmentWithTheWorld}'
+    match-once: true
   - pattern: 'Filter by name'
     replace: '${filterByName}'
   - pattern: ' sort:'
@@ -601,6 +612,7 @@ translations:
     replace: '${youCanUploadAGroupAvatarHere}'
   - pattern: 'Removing group will cause all child projects and resources to be removed.'
     replace: '${removingGroupWillCauseAllChildProjectsAndResourcesToBeRemoved}'
+    match-once: true
   - pattern: 'Removed group can not be restored!'
     replace: '${removedGroupCanNotBeRestored}'
   - pattern: 'Transfer project'
@@ -633,12 +645,16 @@ translations:
     replace: '${quickHelp}'
   - pattern: 'Manage git repositories with fine-grained access controls that keep your code secure.'
     replace: '${manageGitRepositoriesWithFineGrainedAccessControlsThatKeepYourCodeSecure}'
+    match-once: true
   - pattern: 'Perform code reviews and enhance collaboration with merge requests.'
     replace: '${performCodeReviewsAndEnhanceCollaborationWithMergeRequests}'
+    match-once: true
   - pattern: 'Each project can also have an issue tracker and a wiki.'
     replace: '${eachProjectCanAlsoHaveAnIssueTrackerAndAWiki}'
+    match-once: true
   - pattern: 'Used by more than 100,000 organizations, GitLab is the most popular solution to manage git repositories on-premises.'
     replace: '${usedByMoreThan100000OrganizationsGitlabIsTheMostPopularSolutionToManageGitRepositoriesOnPremises}'
+    match-once: true
   - pattern: !!js/regexp /Read more about GitLab at (.*)\.$/
     replace: '${readMoreAboutGitlabAt}'
     args:
@@ -659,6 +675,7 @@ translations:
     - '$1'
   - pattern: 'Tags give the ability to mark specific points in history as being important'
     replace: '${tagsGiveTheAbilityToMarkSpecificPointsInHistoryAsBeingImportant}'
+    match-once: true
   - pattern: 'Select assignee'
     replace: '${selectSth}'
     args:
@@ -687,8 +704,10 @@ translations:
     replace: '${removeTheWIPPrefixFromTheTitleToAllowThis}'
   - pattern: !!js/regexp /^( +)Remove the <code>WIP<\/code> prefix from the title to allow this\n( +)<strong>Work In Progress<\/strong> merge request to be merged when it's ready\.$/m
     replace: '${removeTheWIPPrefix}'
+    match-once: true
   - pattern: !!js/regexp /^( +)Start the title with <code>\[WIP\]</code> or <code>WIP:</code> to prevent a\n( +)<strong>Work In Progress</strong> merge request from being merged before it's ready\.$/m
     replace: '${startTheTitleWithWIP}'
+    match-once: true
   - pattern: 'Share code pastes with others out of git repository'
     replace: '${shareCodekuninPastesWithOthersOutOfGitRepository}'
   - pattern: "\"Don't show again\""
@@ -733,7 +752,6 @@ translations:
     replace: '${removeUser}'
   - pattern: 'Deleting a user has the following effects:'
     replace: '${deletingAUserHasTheFollowingEffects}'
-
   - pattern: 'All user content like authored issues, snippets, comments will be removed'
     replace: '${allUserContentLikeAuthoredIssues,Snippets,CommentsWillBeRemoved}'
   - pattern: !!js/regexp /#{pluralize rp, '(personal project)'} will be removed and cannot be restored/
@@ -744,6 +762,7 @@ translations:
     replace: '${thisUserIsCurrentlyAnOwnerInTheseGroups}'
   - pattern: 'You must transfer ownership or delete these groups before you can delete this user.'
     replace: '${youMustTransferOwnershipOrDeleteTheseGroupsBeforeYouCanDeleteThisUser}'
+    match-once: true
   - pattern: 'Starred Projects'
     replace: '${starredProjects}'
   - pattern: 'List all merge requests from all projects you have access to.'
@@ -811,6 +830,7 @@ translations:
     replace: '${someOptionsAreUnavailableForLDAPAccounts}'
   - pattern: "Your private token is used to access application resources without authentication."
     replace: '${yourPrivateTokenIsUsedToAccessApplicationResourcesWithoutAuthentication}'
+    match-once: true
   - pattern: "It can be used for atom feeds or the API."
     replace: '${itCanBeUsedForAtomFeedsOrTheAPI}'
   - pattern: "Keep it secret!"
@@ -834,6 +854,7 @@ translations:
     args:
     - '$2'
     - '$3'
+    match-once: true
   - pattern: "Add email address"
     replace: '${addEmailAddress}'
   - pattern: !!js/regexp /^( *)Emails /
@@ -879,12 +900,14 @@ translations:
     args:
     - '$1'
     - '$2'
+    match-once: true
   - pattern: "The repository for this project is empty"
     replace: '${theRepositoryForThisProjectIsEmpty}'
   - pattern: "If you already have files you can push them using command line instructions below."
     replace: '${ifYouAlreadyHaveFilesYouCanPushThemUsingCommandLineInstructionsBelow}'
   - pattern: !!js/regexp /^(\s+)Otherwise you can start with\n(\s+[^"]+")adding README([^\n]*)\n(\s+)file to this project./m
     replace: '${otherwiseYouCanStartWithAddingReadmeFileToThisProject}'
+    match-once: true
   - pattern: "Command line instructions"
     replace: '${commandLineInstructions}'
   - pattern: "Git global setup"
@@ -904,6 +927,7 @@ translations:
     args:
     - '$1'
     - '$2'
+    match-once: true
   - pattern: "This url will be triggered by a push to the repository"
     replace: '${thisUrlWillBeTriggeredByAPushToTheRepository}'
   - pattern: "This url will be triggered when a new tag is pushed to the repository"
@@ -943,10 +967,12 @@ translations:
     replace: '${youMustProvideCurrentPasswordInOrderToChangeIt}'
   - pattern: "After a successful password update, you will be redirected to the login page where you can log in with your new password."
     replace: '${afterASuccessfulPasswordUpdateYouWillBeRedirectedToTheLoginPageWhereYouCanLogInWithYourNewPassword}'
+    match-once: true
   - pattern: "These are your global notification settings."
     replace: '${theseAreYourGlobalNotificationSettings}'
   - pattern: !!js/regexp /(\s+)Manage applications that can use GitLab as an OAuth provider,\n(\s+)and applications that you've authorized to use your account./m
     replace: '$1${manageApplicationsThatCanUseGitLabAsAnOAuthProviderAndApplicationsThatYouveAuthorizedToUseYourAccount}'
+    match-once: true
   - pattern: "Manage applications that you've authorized to use your account."
     replace: '${manageApplicationsThatYouveAuthorizedToUseYourAccount}'
   - pattern: 'Delete this label?'
@@ -1063,6 +1089,7 @@ translations:
     replace: '${archivedProjectsCannotBeCommittedTo}'
   - pattern: 'Are you sure that you want to archive this project?\nAn archived project cannot be committed to.'
     replace: '${areYouSureThatYouWantToArchiveThisProjectAnArchivedProjectCannotBeCommittedTo}'
+    match-once: true
   - pattern: 'Only the project owner can archive a project'
     replace: '${onlyTheProjectOwnerCanArchiveAProject}'
   - pattern: 'Confirmation required'
@@ -1071,6 +1098,7 @@ translations:
     replace: '${thisActionCanLeadToDataLoss}'
   - pattern: 'To prevent accidental actions we ask you to confirm your intention.'
     replace: '${toPreventAccidentalActionsWeAskYouToConfirmYourIntention}'
+    match-once: true
   - pattern: !!js/regexp /(\s+)Please type\n([^\n]+)\n(\s+)to proceed or close this modal to cancel/m
     replace: '${pleaseTypeToProceedOrCloseThisModalToCancel}'
     args:
@@ -1079,6 +1107,7 @@ translations:
     - '$3'
   - pattern: 'Removing the project will delete its repository and all related resources including issues, merge requests etc.'
     replace: '${removeingTheProjectWillDeleteItsRepositoryAndAllRelatedResourcesIncludingIssuesMergeRequestsEtc}'
+    match-once: true
   - pattern: 'Removed projects cannot be restored!'
     replace: '${removedProjectsCannotBeRestored}'
   - pattern: "Be careful. Renaming a project's repository can have unintended side effects."
@@ -1112,6 +1141,7 @@ translations:
     args:
     - '$1'
     - '$2'
+    match-once: true
   - pattern: 'Toggle comments for this file'
     replace: '${toggleCommentsForThisFile}'
   - pattern: 'Deploy keys allow read-only access to the repository'
@@ -1130,12 +1160,14 @@ translations:
     - '$1'
     - '$2'
     - '$3'
+    match-once: true
   - pattern: !!js/regexp /(\s+)Your\n(\s+[^\s]+\s)Notification Email\n(\s+)will be used for account notifications\./m
     replace: '${yourNotificationEmailWillBeUsedForAccountNotification}'
     args:
     - '$1'
     - '$2'
     - '$3'
+    match-once: true
   - pattern: 'No open milestones available.'
     replace: '${noOpenMilestonesAvailable}'
   - pattern: !!js/regexp /(\s+)Please review the\n(\s+[^']+')guidelines for contribution([^\n]+)\n(\s+)to this repository\./
@@ -1147,6 +1179,7 @@ translations:
     - '$4'
   - pattern: "System OAuth applications don't belong to any user and can only be managed by admins"
     replace: '${systemOAuthApplicationsDontBelongToAnyUserAndCanOnlyBeManagedByAdmins}'
+    match-once: true
   - pattern: 'System OAuth applications'
     replace: '${systemOAuthApplications}'
   - pattern: 'Are you sure?'
@@ -1160,8 +1193,10 @@ translations:
     replace: '${thereAreNoRunningSidekiqProcessesPleaseRestartGitLab}'
   - pattern: "If '[25 of 25 busy]' is shown, restart GitLab with 'sudo service gitlab reload'."
     replace: '${if25of25busyIsShownRestartGitLabWithSudoServiceGitlabReload}'
+    match-once: true
   - pattern: "If more than one sidekiq process is listed, stop GitLab, kill the remaining sidekiq processes (sudo pkill -u #{gitlab_config.user} -f sidekiq) and restart GitLab."
     replace: '${ifMoreThanOneSidekiqProcessIsListedStopGitLabKillTheRemainingSidekiqProcessesSudoPkillAndRestartGitLab}'
+    match-once: true
   - pattern: 'Broadcast Messages'
     replace: '${broadcastMessage}'
   - pattern: 'Project info'
@@ -1500,6 +1535,7 @@ translations:
     pattern: "^(#+ ){title}$"
     replace: '$1${{key}}'
     params: ['title', 'key']
+    match-once: true
   patterns:
   - pattern: !!js/regexp /From ([^\s]*) to ([^\s]*)/
     replace: '${fromXToY}'
@@ -1509,18 +1545,25 @@ translations:
   # workflow.md
   - pattern: '1.  Clone project:'
     replace: '1.  ${cloneProject}:'
+    match-once: true
   - pattern: '1.  Create branch with your feature:'
     replace: '1.  ${createBranchWithYourFeature}:'
+    match-once: true
   - pattern: '1.  Write code. Commit changes:'
     replace: '1.  ${writeCodeCommitChanges}:'
+    match-once: true
   - pattern: '1.  Push your branch to GitLab:'
     replace: '1.  ${pushYourBranchToGitLab}:'
+    match-once: true
   - pattern: '1.  Review your code on commits page.'
     replace: '1.  ${reviewYourCodeOnCommitsPage}'
+    match-once: true
   - pattern: '1.  Create a merge request.'
     replace: '1.  ${createAMergeRequest}'
+    match-once: true
   - pattern: '1.  Your team lead will review the code &amp; merge it to the main branch.'
     replace: '1.  ${yourTeamLeadWillReviewTheCodeAndMergeItToTheMainBranch}'
+    match-once: true
   - pattern: 'Automate GitLab via a simple and powerful API.'
     replace: '${automateGitlabViaASimpleAndPowerfulApi}'
   - pattern: 'GitLab as OAuth2 authentication service provider'
@@ -1531,6 +1574,7 @@ translations:
     replace: '${gitLabBasics}'
   - pattern: 'Find step by step how to start working on your commandline and on GitLab.'
     replace: '${findStepByStepHowToStartWorkingOnYourCommandlineAndOnGitLab}'
+    match-once: true
   - pattern: 'Importing to GitLab'
     replace: '${importingToGitLab}'
   - pattern: "GitLab's advanced formatting system."
@@ -1543,26 +1587,32 @@ translations:
     replace: '${permissions}'
   - pattern: 'Learn what each role in a project (guest/reporter/developer/master/owner) can do.'
     replace: '${learnWhatEachRoleInAProjectCanDo}'
+    match-once: true
   - pattern: 'Profile Settings'
     replace: '${profileSettings}'
   - pattern: 'Project Services'
     replace: '${projectServices}'
   - pattern: 'Integrate a project with external services, such as CI and chat.'
     replace: '${integrateAProjectWithExternalServicesSuchAsCIAndChat}'
+    match-once: true
   - pattern: 'Public access'
     replace: '${publicAccess}'
   - pattern: 'Learn how you can allow public and internal access to projects.'
     replace: '${learnHowYouCanAllowPublicAndInternalAccessToProjects}'
+    match-once: true
   - pattern: 'Setup your ssh keys and deploy keys for secure access to your projects.'
     replace: '${setupYourSshKeysAndDeployKeysForSecureAccessToYourProjects}'
+    match-once: true
   - pattern: 'Web hooks'
     replace: '${webHook}'
   - pattern: 'Let GitLab notify you when new code has been pushed to your project.'
     replace: '${letGitLabNotifyYouWhenNewCodeHasBeenPushedToYourProject}'
+    match-once: true
   - pattern: 'Workflow'
     replace: '${workflow}'
   - pattern: 'Using GitLab functionality and importing projects from GitHub and SVN.'
     replace: '${usingGitLabFunctionalityAndImportingProjectsFromGitHubAndSVN}'
+    match-once: true
   - pattern: 'Quick Start'
     replace: '${quickStart}'
   - pattern: 'Configuring project'
@@ -1583,32 +1633,46 @@ translations:
     replace: '${usingSshKeys}'
   - pattern: "When in a Project -> Settings, you will find Features on the bottom of the page that you can toggle."
     replace: '${whenInAProjectSettingsYouWillFindFeaturesOnTheBottomOfThePageThatYouCanToggle}'
+    match-once: true
   - pattern: 'Below you will find a more elaborate explanation of each of these.'
     replace: '${belowYouWillFindAMoreElaborateExplanationOfEachOfThese}'
+    match-once: true
   - pattern: 'Issues is a really powerful, but lightweight issue tracking system.'
     replace: '${issuesIsAreallyPowerfulButLightweightIssueTrackingSystem}'
+    match-once: true
   - pattern: 'You can make tickets, assign them to people, file them under milestones, order them with labels and have discussion in them.'
     replace: '${youCanMakeTicketsAssignThemToPeopleFileThemUnderMilestonesOrderThemWithLabelsAndHaveDiscussionInThem}'
+    match-once: true
   - pattern: 'They integrate deeply into GitLab and are easily referenced from anywhere by using `#` and the issue number.'
     replace: '${theyIntegrateDeeplyIntoGitLabAndAreEasilyReferencedFromAnywhereByUsingAndTheIssueNumber}'
+    match-once: true
   - pattern: 'Using a merge request, you can review and discuss code before it is merged in the branch of your code.'
     replace: '${usingAMergeRequestYouCanReviewAndDiscussCodeBeforeItIsMergedInTheBranchOfYourCode}'
+    match-once: true
   - pattern: 'As with issues, it can be assigned; people, issues, etc. can be referenced; milestones attached.'
     replace: '${asWithIssuesItCanBeAssignedPeopleIssuesEtcCanBeReferencedMilestonesAttached}'
+    match-once: true
   - pattern: "We see it as an integral part of working together on code and couldn't work without it."
     replace: '${weSeeItAsAnIntegralPartOfWorkingTogetherOnCodeAndCouldntWorkWithoutIt}'
+    match-once: true
   - pattern: 'This is a separate system for documentation, built right into GitLab.'
     replace: '${thisIsASeparateSystemForDocumentationBuildRightIntoGitLab}'
+    match-once: true
   - pattern: "It is source controlled and is very convenient if you don't want to keep you documentation in your source code, but you do want to keep it in your GitLab project."
     replace: '${itIsSourceControlledAndIsVeryConvenientIfYouDontWantToKeepYouDocumentationInYourSourceCodeButYouDoWantToKeepItInYourGitLabProject}'
+    match-once: true
   - pattern: 'Snippets are little bits of code or text.'
     replace: '${snippetsAreLittleBitsOfCodeOrText}'
+    match-once: true
   - pattern: 'This is a nice place to put code or text that is used semi-regularly within the project, but does not belong in source control.'
     replace: '${thisIsANicePlaceToPutCodeOrTextThatIsUsedSemiRegularlyWithinTheProjectButDoesNotBelongInSourceControl}'
+    match-once: true
   - pattern: 'For example, a specific config file that is used by > the team that is only valid for the people that work on the code.'
     replace: '${forExampleASpecificConfigFileThatIsUsedByTheTeamThatIsOnlyValidForThePeopleThatWorkOnTheCode}'
+    match-once: true
   - pattern: "If you'd like to migrate from a self-hosted GitLab instance to GitLab.com, you can copy your repos by changing the remote and pushing to the new server; but issues and merge requests can't be imported."
     replace: '${ifYoudLikeToMigrateFromASelfHostedGitlabInstanceToGitlabComYouCanCopyYourReposByChangingTheRemoteAndPushingToTheNewServerButIssuesAndMergeRequestsCantBeImported}'
+    match-once: true
   - pattern: 'Authorization for merge requests'
     replace: '${authorizationForMergeRequests}'
   - pattern: 'Change your time zone'
@@ -1643,16 +1707,21 @@ translations:
     replace: '${workInProgressMergeRequest}'
   - pattern: 'Project web hooks allow you to trigger an URL if new code is pushed or a new issue is created.'
     replace: '${projectWebHooksAllowYouToTriggerAnURLIfNewCodeIsPushedOrANewIssueIsCreated}'
+    match-once: true
   - pattern: 'You can configure web hooks to listen for specific events like pushes, issues or merge requests. GitLab will send a POST request with data to the web hook URL.'
     replace: '${youCanConfigureWebHooksToListenForSpecificEventsLikePushesIssuesOrMergeRequestsGitlabWIllSendAPostRequestWithDataToTheWebHookUrl}'
+    match-once: true
   - pattern: 'Web hooks can be used to update an external issue tracker, trigger CI builds, update a backup mirror, or even deploy to your production server.'
     replace: '${webHooksCanBeUsedToUpdateAnExternalIssueTrackerTriggerCIBuildsUpdateABackupMirrorOrEVenDeployToYourProductionServer}'
+    match-once: true
   - pattern: 'SSL Verification'
     replace: '${sslVerification}'
   - pattern: !!js/regexp /By default, the SSL certificate of the webhook endpoint is verified based on \nan internal list of Certificate Authorities, \nwhich means the certificate cannot be self-signed./
     replace: '${byDefaultTheSslCertificateOfTheWebhookEndpointIsVerifiedBasedOnAnInternalListOfCertificateAuthoritiesWhichMeansTheCertificateCannotBeSelfSigned}'
+    match-once: true
   - pattern: 'You can turn this off in the web hook settings in your GitLab projects.'
     replace: '${youCanTurnThisOffInTheWebHookSettingsInYourGitlabProjects}'
+    match-once: true
   - pattern: 'Push events'
     replace: '${mdTitlePushEvents}'
   - pattern: 'Triggered when you push to the repository except when pushing tags.'
@@ -1669,18 +1738,23 @@ translations:
     replace: '${mdTitleIssuesEvents}'
   - pattern: 'Triggered when a new issue is created or an existing issue was updated/closed/reopened.'
     replace: '${triggeredWhenANewIssueIsCreatedOrAnExistingIssueWasUpdatedClosedReopened}'
+    match-once: true
   - pattern: 'Merge request events'
     replace: '${mdTitleMergeRequestEvents}'
   - pattern: 'Triggered when a new merge request is created, an existing merge request was updated/merged/closed or a commit is added in the source branch.'
     replace: '${triggeredWhenANewMergeRequestIsCreatedAnExistingMergeRequestWasUpdatedMergedClosedOrACommitIsAddedInTheSourceBranch}'
+    match-once: true
   - pattern: 'System hooks'
     replace: '${systemHook}'
   - pattern: 'Your GitLab instance can perform HTTP POST requests on the following events: `project_create`, `project_destroy`, `user_add_to_team`, `user_remove_from_team`, `user_create`, `user_destroy`, `key_create`, `key_destroy`, `group_create`, `group_destroy`, `user_add_to_group` and `user_remove_from_group`.'
     replace: '${yourGitlabInstanceCanPerformHttpPOSTRequestsOnTheFollowingEventsProjectCreateProjectDestroyUserAddToTeamUserRemoveFromTeamUserCreateUserDestroyKeyCreateKeyDestroyGroupCreateGroupDestroyUserAddToGroupAndUserRemoveFromGroup}'
+    match-once: true
   - pattern: 'System hooks can be used, e.g. for logging or changing information in a LDAP server.'
     replace: '${systemHooksCanBeUsedEGForLoggingOrChangingInformationInALDAPServer}'
+    match-once: true
   - pattern: 'Hooks request example'
     replace: '${hooksRequestExample}'
+    match-once: true
   - pattern: 'Project created'
     replace: '${projectCreated}'
   - pattern: 'Project destroyed'
@@ -1695,26 +1769,37 @@ translations:
     replace: '${userRemoved}'
   - pattern: 'To prevent abusive clients doing damage GitLab uses rack-attack gem.'
     replace: '${toPreventAbusiveClientsDoingDamageGitlabUsesRackAttackGem}'
+    match-once: true
   - pattern: 'If you installed or upgraded GitLab by following the official guides this should be enabled by default.'
     replace: '${ifYouInstalledOrUpgradedGitlabByFollowingTheOfficialGuidesThisShouldBeEnabledByDefault}'
+    match-once: true
   - pattern: 'If you are missing `config/initializers/rack_attack.rb` the following steps need to be taken in order to enable protection for your GitLab instance:'
     replace: '${ifYouAreMissingConfigInitializersRackAttackRbTheFollowingStepsNeedToBeTakenInOrderToEnableProtectionForYourGitlabInstance}'
+    match-once: true
   - pattern: 'In config/application.rb find and uncomment the following line:'
     replace: '${inConfigApplicationRbFindAndUncommentTheFollowingLine}'
+    match-once: true
   - pattern: 'Rename `config/initializers/rack_attack.rb.example` to `config/initializers/rack_attack.rb`.'
     replace: '${renameConfigInitializersRackAttackRbExampleToConfigInitializersRackAttackRb}'
+    match-once: true
   - pattern: 'Review the `paths_to_be_protected` and add any other path you need protecting.'
     replace: '${reviewThePathsToBeProtectedAndAddAnyOtherPathYouNeedProtecting}'
+    match-once: true
   - pattern: 'Restart GitLab instance.'
     replace: '${restartGitLabInstance}'
+    match-once: true
   - pattern: 'By default, user sign-in, user sign-up(if enabled) and user password reset is limited to 6 requests per minute. After trying for 6 times, client will have to wait for the next minute to be able to try again. These settings can be found in `config/initializers/rack_attack.rb`'
     replace: '${byDefaultUserSignIn,UserSIgnUpIfEnabledAndUserPasswordResetIsLimitedTo6RequestsPerMinuteAfterTryingFor6TimesClientWillHaveToWaitForTheNextMinuteToBeAbleToTryAgainTheseSettingsCanBeFoundInConfigInitializersRackAttackRb}'
+    match-once: true
   - pattern: 'If you want more restrictive/relaxed throttle rule change the `limit` or `period` values. For example, more relaxed throttle rule will be if you set limit: 3 and period: 1.second(this will allow 3 requests per second). You can also add other paths to the protected list by adding to `paths_to_be_protected` variable. If you change any of these settings do not forget to restart your GitLab instance.'
     replace: '${ifYouWantMoreRestrictiveRelaxedThrottleRuleChangeTheLimitOrPeriodValuesForExampleMoreRelaxedThrottleRuleWillBeIfYouSetLimit3AndPeriod1secondThisWillAllow3RequestsPerSecondYouCanAlsoAddOtherPathsToTheProtectedListByAddingToPathsToBeProtectedVariableIfYouChangeAnyOfTheseSettingsDoNotForgetToRestartYourGitlabInstance}'
+    match-once: true
   - pattern: 'In case you find throttling is not enough to protect you against abusive clients, rack-attack gem offers IP whitelisting, blacklisting, Fail2ban style filter and tracking.'
     replace: '${inCaseYouFindThrottlingIsNotEnoughToProtectYouAgainstAbusiveClientsRack-AttackGemOffersIPWhitelistingBlacklistingFail2banStyleFilterAndTracking}'
+    match-once: true
   - pattern: 'For more information on how to use these options check out [rack-attack README](https://github.com/kickstarter/rack-attack/blob/master/README.md).'
     replace: '${forMoreInformationOnHowToUseTheseOptionsCheckOutRackAttackReadme}'
+    match-once: true
   - pattern: 'User management'
     replace: '${mdTitleUserManagement}'
   - pattern: 'Add user as a developer to all projects'
@@ -1731,24 +1816,30 @@ translations:
     replace: '${mdTitleNote}:'
   - pattern: 'admin users are added as owners so they can add additional users to the group'
     replace: '${adminUsersAreAddedAsOwnersSoTheyCanAddAdditionalUsersToTheGroup}'
+    match-once: true
   - pattern: 'This command gathers information about your GitLab installation and the System it runs on. These may be useful when asking for help or reporting issues.'
     replace: '${thisCommandGathersInformationAboutYourGitlabInstallationAndTheSystemItRunsOnTheseMayBeUsefulWhenAskingForHelpOrReportingIssues}'
+    match-once: true
   - pattern: 'Example output:'
     replace: '${exampleOutput}:'
   - pattern: 'Runs the following rake tasks:'
     replace: '${runsTheFollowingRakeTasks}:'
   - pattern: 'It will check that each component was setup according to the installation guide and suggest fixes for issues found.'
     replace: '${itWillCheckThatEachComponentWasSetupAccordingToTheInstallationGuideAndSuggestFixesForIssuesFound}'
+    match-once: true
   - pattern: 'You may also have a look at our [Trouble Shooting Guide](https://github.com/gitlabhq/gitlab-public-wiki/wiki/Trouble-Shooting-Guide).'
     replace: '${youMayAlsoHaveALookAtOurTroubleShootingGuide}'
+    match-once: true
   - pattern: 'NOTE: Use SANITIZE=true for gitlab:check if you want to omit project names from the output.'
     replace: '${noteUseSanitizeTrueForGitlabCheckIfYouWantToOmitProjectNamesFromTheOutput}'
   - pattern: 'Enable usernames and namespaces for user projects'
     replace: '${enableUsernamesAndNamespacesForUserProjects}'
   - pattern: 'This command will enable the namespaces feature introduced in v4.0. It will move every project in its namespace folder.'
     replace: '${thisCommandWillEnableTheNamepsacesFeaturesIntroducedInV40ItWillMoveEveryProjectInItsNamespaceFolder}'
+    match-once: true
   - pattern: 'Because the **repository location will change**, you will need to **update all your git URLs** to point to the new location.'
     replace: '${becauseTheRepositoryLocationWillChangeYouWillNeedToUpdateAllYourGitURLsToPointToTheNewLocation}'
+    match-once: true
   - pattern: 'Username can be changed at [Profile / Account](/profile/account)'
     replace: '${usernameCanBeChangedAtProfileAccount}'
   - pattern: '**Example:**'
@@ -1765,10 +1856,13 @@ translations:
     replace: '${renameRepositoriesFromHomeGitRepositoriesIfTheyDontExistInGitLabDatabase}'
   - pattern: 'The repositories get a `+orphaned+TIMESTAMP` suffix so that they cannot block new repositories from being created.'
     replace: '${theRepositoriesGetAOrphanedTimestampSuffixSoThatTheyCannotBlockNewRepositoriesFromBeingCreated}'
+    match-once: true
   - pattern: !!js/regexp /A backup creates an archive file that contains the database, all repositories and all attachments.\nThis archive will be saved in backup_path \(see `config\/gitlab.yml`\).\nThe filename will be `\[TIMESTAMP\]_gitlab_backup.tar`. This timestamp can be used to restore an specific backup.\nYou can only restore a backup to exactly the same version of GitLab that you created it\non, for example 7.2.1. The best way to migrate your repositories from one server to\nanother is through backup restore./
     replace: '${aBackupCreatesAnArchiveFileThatContainsTheDatabaseAllRepositoriesAndAllAttachmentsThisArchiveWillBeSavedInBackupPathTheFilenameWillBeTimestampGitlabBackupTarThisTimestampCanBeUsedToRestoreOnSpecificBackupYouCanOnlyRestoreABackupToExactlyTheSameVersionOfGitLabThatYouCreatedItOnForExample721TheBestwayToMigreateYourRepositoriesFromOneServerToAnotherIsThroughBackupRestore}'
+    match-once: true
   - pattern: !!js/regexp /Please be informed that a backup does not store your configuration\nfiles.  One reason for this is that your database contains encrypted\ninformation for two-factor authentication.  Storing encrypted\ninformation along with its key in the same place defeats the purpose\nof using encryption in the first place!/
     replace: '${pleaseBeInformedThatABackupDoesNotStoreYourConfigurationFilesOneReasonForThisIsThatYourDatabaseContainsEncryptedInformationForTwoFactorAuthenticationStoringEncryptedInformationAlongWithItsKeyInTheSamePlaceDefeatsThePurposeOfUsingEncryptionInTheFirstPlace}'
+    match-once: true
 
   - name: headerOrComment
     params:

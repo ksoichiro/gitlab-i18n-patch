@@ -1863,6 +1863,9 @@ translations:
   - pattern: !!js/regexp /Please be informed that a backup does not store your configuration\nfiles.  One reason for this is that your database contains encrypted\ninformation for two-factor authentication.  Storing encrypted\ninformation along with its key in the same place defeats the purpose\nof using encryption in the first place!/
     replace: '${pleaseBeInformedThatABackupDoesNotStoreYourConfigurationFilesOneReasonForThisIsThatYourDatabaseContainsEncryptedInformationForTwoFactorAuthenticationStoringEncryptedInformationAlongWithItsKeyInTheSamePlaceDefeatsThePurposeOfUsingEncryptionInTheFirstPlace}'
     match-once: true
+  - pattern: !!js/regexp /If you use an Omnibus package please see the \[instructions in the readme to backup your configuration\]\(https:\/\/gitlab.com\/gitlab-org\/omnibus-gitlab\/blob\/master\/README.md#backup-and-restore-omnibus-gitlab-configuration\).\nIf you have a cookbook installation there should be a copy of your configuration in Chef.\nIf you have an installation from source, please consider backing up your `.secret` file, `gitlab.yml` file, any SSL keys and certificates, and your \[SSH host keys\]\(https:\/\/superuser.com\/questions\/532040\/copy-ssh-keys-from-one-server-to-another-server\/532079#532079\)./
+    replace: '${ifYouUseAnOmnibusPackagePleaseSeeTheInstructionsInTheReadmeToBackupYourConfigurationIfYouHaveACookbookInstallationThereShouldBeACopyOfYourConfigurationInChefIfYouHaveAnInstallationFromSourcePleaseConsiderBackingUpYourSecretFileGitlabYmlFileAnySslKeysAndCertificatesAndYourSshHostKeys}'
+    match-once: true
 
   - name: headerOrComment
     params:
@@ -1874,8 +1877,8 @@ translations:
     #  key: mdTitleRegisteringASpecificRunnerWithAProjectRegistrationToken
     #- title: ' Use the access token to access the API'
     #  key: mdTitleUseTheAccessTokenToAccessTheApi
-    #- title: '"Work In Progress" Merge Requests'
-    #  key: mdTitleWorkInProgressMergeRequests
+    - title: '"Work In Progress" Merge Requests'
+      key: mdTitleWorkInProgressMergeRequests
     #- title: '0. Backup'
     #  key: mdTitle0Backup
     #- title: '0. Backup & prepare for update'

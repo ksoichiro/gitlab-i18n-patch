@@ -4255,8 +4255,8 @@ translations:
     #  key: mdTitleReplacePathFrom/Home/Gitlab/To/Home/Git/
     #- title: 'Replace the MySQL dump in TIMESTAMP_gitlab_backup.tar.'
     #  key: mdTitleReplaceTheMySQLDumpInTIMESTAMPGitlabBackuptar
-    #- title: 'Reply by email'
-    #  key: mdTitleReplyByEmail
+    - title: 'Reply by email'
+      key: mdTitleReplyByEmail
     #- title: 'Repositories'
     #  key: mdTitleRepositories
     #- title: 'Repository Integrity'
@@ -4361,8 +4361,8 @@ translations:
     #  key: mdTitleSecureSecretsyml
     #- title: 'Secure your MySQL installation \(added in GitLab 6.2\)'
     #  key: mdTitleSecureYourMySQLInstallationAddedInGitLab62
-    #- title: 'Security'
-    #  key: mdTitleSecurity
+    - title: 'Security'
+      key: mdTitleSecurity
     #- title: 'Security vulnerability disclosure'
     #  key: mdTitleSecurityVulnerabilityDisclosure
     #- title: 'See config/database.yml.mysql for latest recommended configuration details'

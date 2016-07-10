@@ -13898,6 +13898,19 @@ index d1345ab..cccbc0a 100644
  - [Update](update/README.md) Update guides to upgrade your installation.
  - [Welcome message](customization/welcome_message.md) Add a custom welcome message to the sign-in page.
  - [Reply by email](incoming_email/README.md) Allow users to comment on issues and merge requests by replying to notification emails.
+diff --git a/doc/administration/auth/ldap.md b/doc/administration/auth/ldap.md
+index 1009677..8bd1b3f 100644
+--- a/doc/administration/auth/ldap.md
++++ b/doc/administration/auth/ldap.md
+@@ -6,7 +6,7 @@ servers, including Microsoft Active Directory, Apple Open Directory, Open LDAP,
+ and 389 Server. GitLab EE includes enhanced integration, including group
+ membership syncing.
+ 
+-## Security
++## セキュリティ
+ 
+ GitLab assumes that LDAP users are not able to change their LDAP 'mail', 'email'
+ or 'userPrincipalName' attribute. An LDAP user who is allowed to change their
 diff --git a/doc/api/README.md b/doc/api/README.md
 index 27c5962..4b5c7d3 100644
 --- a/doc/api/README.md
@@ -14266,6 +14279,16 @@ index 5221d85..eb7ad92 100644
  
 -Your Issue will now be added to the Issue Tracker and will be ready to be reviewed. You can comment on it and mention the people involved. You can also link Issues to the Merge Requests where the Issues are solved. To do this, you can use an [Issue closing pattern](http://docs.gitlab.com/ce/customization/issue_closing.html).
 +Your Issue will now be added to the Issue Tracker and will be ready to be reviewed. You can comment on it and mention the people involved. You can also link Issues to the マージリクエスト where the Issues are solved. To do this, you can use an [Issue closing pattern](http://docs.gitlab.com/ce/customization/issue_closing.html).
+diff --git a/doc/incoming_email/README.md b/doc/incoming_email/README.md
+index 5a9a158..af8c4ec 100644
+--- a/doc/incoming_email/README.md
++++ b/doc/incoming_email/README.md
+@@ -1,4 +1,4 @@
+-# Reply by email
++# メールで返信
+ 
+ GitLab can be set up to allow users to comment on issues and merge requests by
+ replying to notification emails.
 diff --git a/doc/install/database_mysql.md b/doc/install/database_mysql.md
 index e51ff5a..5313e88 100644
 --- a/doc/install/database_mysql.md
@@ -14790,6 +14813,16 @@ index 629d38e..1b376e0 100644
  
  ```bash
  # omnibus-gitlab
+diff --git a/doc/security/README.md b/doc/security/README.md
+index 38706e4..50712b3 100644
+--- a/doc/security/README.md
++++ b/doc/security/README.md
+@@ -1,4 +1,4 @@
+-# Security
++# セキュリティ
+ 
+ - [Password length limits](password_length_limits.md)
+ - [Rack attack](rack_attack.md)
 diff --git a/doc/security/rack_attack.md b/doc/security/rack_attack.md
 index 9206699..539ca31 100644
 --- a/doc/security/rack_attack.md

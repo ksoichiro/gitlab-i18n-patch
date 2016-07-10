@@ -1868,7 +1868,7 @@ mdTitleProjectFeatures: プロジェクトの機能
 #mdTitleRemovingIndices: 
 #mdTitleReplacePathFrom/Home/Gitlab/To/Home/Git/: 
 #mdTitleReplaceTheMySQLDumpInTIMESTAMPGitlabBackuptar: 
-#mdTitleReplyByEmail: 
+mdTitleReplyByEmail: メールで返信
 #mdTitleRepositories: 
 #mdTitleRepositoryIntegrity: 
 #mdTitleRepositoryAccess: 
@@ -1921,7 +1921,7 @@ mdTitleProjectFeatures: プロジェクトの機能
 #mdTitleSearchForProjectsByName: 
 #mdTitleSecureSecretsyml: 
 #mdTitleSecureYourMySQLInstallationAddedInGitLab62: 
-#mdTitleSecurity: 
+mdTitleSecurity: セキュリティ
 #mdTitleSecurityVulnerabilityDisclosure: 
 #mdTitleSeeConfigDatabaseymlmysqlForLatestRecommendedConfigurationDetails: 
 #mdTitleSeeGitlabcomBackupRestoremdForMoreInformationAboutBackups: 

@@ -13516,6 +13516,16 @@ index 87f078d..555dfbe 100644
  
 -Your Issue will now be added to the Issue Tracker and will be ready to be reviewed. You can comment on it and mention the people involved. You can also link Issues to the Merge Requests where the Issues are solved. To do this, you can use an [Issue closing pattern](http://doc.gitlab.com/ce/customization/issue_closing.html).
 +Your Issue will now be added to the Issue Tracker and will be ready to be reviewed. You can comment on it and mention the people involved. You can also link Issues to the マージリクエスト where the Issues are solved. To do this, you can use an [Issue closing pattern](http://doc.gitlab.com/ce/customization/issue_closing.html).
+diff --git a/doc/incoming_email/README.md b/doc/incoming_email/README.md
+index 86d205b..a961724 100644
+--- a/doc/incoming_email/README.md
++++ b/doc/incoming_email/README.md
+@@ -1,4 +1,4 @@
+-# Reply by email
++# メールで返信
+ 
+ GitLab can be set up to allow users to comment on issues and merge requests by replying to notification emails.
+ 
 diff --git a/doc/install/database_mysql.md b/doc/install/database_mysql.md
 index 513ad69..3833838 100644
 --- a/doc/install/database_mysql.md
@@ -13554,6 +13564,19 @@ index bc1f167..3b99bc5 100644
  
  1. Choose "Settings" in the menu on the left
  
+diff --git a/doc/integration/ldap.md b/doc/integration/ldap.md
+index f256477..3afaf97 100644
+--- a/doc/integration/ldap.md
++++ b/doc/integration/ldap.md
+@@ -6,7 +6,7 @@ The first time a user signs in with LDAP credentials, GitLab will create a new G
+ 
+ GitLab user attributes such as nickname and email will be copied from the LDAP user entry.
+ 
+-## Security
++## セキュリティ
+ 
+ GitLab assumes that LDAP users are not able to change their LDAP 'mail', 'email' or 'userPrincipalName' attribute.
+ An LDAP user who is allowed to change their email on the LDAP server can [take over any account](#enabling-ldap-sign-in-for-existing-gitlab-users) on your GitLab server.
 diff --git a/doc/integration/oauth_provider.md b/doc/integration/oauth_provider.md
 index 192c321..2d25661 100644
 --- a/doc/integration/oauth_provider.md
@@ -13957,6 +13980,16 @@ index 5a8b94a..94051da 100644
  
  ## Add a web hook for **ALL** projects:
  
+diff --git a/doc/security/README.md b/doc/security/README.md
+index fba6013..5110fc1 100644
+--- a/doc/security/README.md
++++ b/doc/security/README.md
+@@ -1,4 +1,4 @@
+-# Security
++# セキュリティ
+ 
+ - [Password length limits](password_length_limits.md)
+ - [Rack attack](rack_attack.md)
 diff --git a/doc/security/rack_attack.md b/doc/security/rack_attack.md
 index 9206699..539ca31 100644
 --- a/doc/security/rack_attack.md

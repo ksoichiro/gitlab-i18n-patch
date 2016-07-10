@@ -2,8 +2,9 @@
 
 VAGRANT_SYNC_DIR=/vagrant
 GITLAB_INSTALLER_DIR=packages
+# e.g. v8.3.0
 GITLAB_VERSION=$1
-GITLAB_VERSION_INT=`echo -n "${GITLAB_VERSION}" | sed -e "s/\.//g"`
+GITLAB_VERSION_INT=`echo -n "${GITLAB_VERSION}" | sed -e 's/v//' | sed -e 's/\.//g'`
 GITLAB_WEB_PORT=$2
 GITLAB_INSTALLER_URL=$3
 GITLAB_INSTALLER=${GITLAB_INSTALLER_DIR}/${GITLAB_INSTALLER_URL##*/}
@@ -14,7 +15,7 @@ if [ ${GITLAB_VERSION_INT} -gt 794 ]; then
   GITLAB_INSTALLER=${GITLAB_INSTALLER_DIR}/${GITLAB_INSTALLER_FILE}
 fi
 
-echo "Provisioning GitLab v${GITLAB_VERSION}..."
+echo "Provisioning GitLab ${GITLAB_VERSION}..."
 
 if [ ! -d /opt/gitlab ]; then
   pushd /vagrant > /dev/null 2>&1
@@ -67,7 +68,7 @@ if [ ! -d ./gitlab-rails.bk ]; then
   cp -pR gitlab-rails gitlab-rails.bk
   cd gitlab-rails
   echo "Applying patch..."
-  patch -p1 < /vagrant/patches/v${GITLAB_VERSION}/app_ja.patch > /dev/null 2>&1
+  patch -p1 < /vagrant/patches/${GITLAB_VERSION}/app_ja.patch > /dev/null 2>&1
   echo "Refreshing assets (this may take minutes)..."
   if [ -d /var/opt/gitlab/gitlab-rails/tmp/cache ]; then
     # Since v6.8.1, permission error occurs in this directory
@@ -86,5 +87,5 @@ fi
 popd > /dev/null 2>&1
 
 echo "[33;1mDone![m"
-echo "[33;1mGitLab v${GITLAB_VERSION} has been installed: http://localhost:${GITLAB_WEB_PORT}/[m"
+echo "[33;1mGitLab ${GITLAB_VERSION} has been installed: http://localhost:${GITLAB_WEB_PORT}/[m"
 

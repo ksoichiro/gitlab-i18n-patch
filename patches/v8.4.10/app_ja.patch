@@ -13898,7 +13898,7 @@ index cc8a22c..334efc8 100644
  - [Import](import.md) of git repositories in bulk
  - [Rebuild authorized_keys file](http://doc.gitlab.com/ce/raketasks/maintenance.html#rebuild-authorized_keys-file) task for administrators
 diff --git a/doc/raketasks/backup_restore.md b/doc/raketasks/backup_restore.md
-index cdd6652..344b017 100644
+index cdd6652..b48fb25 100644
 --- a/doc/raketasks/backup_restore.md
 +++ b/doc/raketasks/backup_restore.md
 @@ -1,15 +1,13 @@
@@ -13932,7 +13932,7 @@ index cdd6652..344b017 100644
  
  ```
  Dumping database tables:
-@@ -213,17 +211,15 @@ gitlab_rails['backup_archive_permissions'] = 0644 # Makes the backup archives wo
+@@ -213,21 +211,17 @@ gitlab_rails['backup_archive_permissions'] = 0644 # Makes the backup archives wo
      archive_permissions: 0644 # Makes the backup archives world-readable
  ```
  
@@ -13955,9 +13955,14 @@ index cdd6652..344b017 100644
 +Cookbookでインストールしている場合は、Chefに設定のコピーがあるはずです。
 +ソースコードからインストールした場合は、 `.secret` ファイル、 `gitlab.yml` ファイル、SSLキー、証明書、[SSHホストキー](https://superuser.com/questions/532040/copy-ssh-keys-from-one-server-to-another-server/532079#532079)のバックアップを検討してください。
  
- At the very **minimum** you should backup `/etc/gitlab/gitlab-secrets.json`
- (Omnibus) or `/home/git/gitlab/.secret` (source) to preserve your
-@@ -261,7 +257,7 @@ BACKUP=timestamp_of_backup (required if more than one backup exists)
+-At the very **minimum** you should backup `/etc/gitlab/gitlab-secrets.json`
+-(Omnibus) or `/home/git/gitlab/.secret` (source) to preserve your
+-database encryption key.
++データベースの暗号化キーを維持するためにバックアップしなければならない **最小の** ファイルは `/etc/gitlab/gitlab-secrets.json` (Omnibus)、`/home/git/gitlab/.secret` (ソース) のファイルです。
+ 
+ ## Restore a previously created backup
+ 
+@@ -261,7 +255,7 @@ BACKUP=timestamp_of_backup (required if more than one backup exists)
  force=yes (do not ask if the authorized_keys file should get regenerated)
  ```
  
@@ -13966,7 +13971,7 @@ index cdd6652..344b017 100644
  
  ```
  Unpacking backup... [DONE]
-@@ -325,7 +321,7 @@ If there is a GitLab version mismatch between your backup tar file and the insta
+@@ -325,7 +319,7 @@ If there is a GitLab version mismatch between your backup tar file and the insta
  version of GitLab, the restore command will abort with an error. Install a package for
  the [required version](https://www.gitlab.com/downloads/archives/) and try again.
  
@@ -13975,7 +13980,7 @@ index cdd6652..344b017 100644
  
  ### For installation from source:
  ```
-@@ -412,7 +408,7 @@ Those objects have no influence on the database backup/restore but they give thi
+@@ -412,7 +406,7 @@ Those objects have no influence on the database backup/restore but they give thi
  
  For more information see similar questions on postgresql issue tracker[here](http://www.postgresql.org/message-id/201110220712.30886.adrian.klaver@gmail.com) and [here](http://www.postgresql.org/message-id/2039.1177339749@sss.pgh.pa.us) as well as [stack overflow](http://stackoverflow.com/questions/4368789/error-must-be-owner-of-language-plpgsql).
  

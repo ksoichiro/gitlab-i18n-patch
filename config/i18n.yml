@@ -1866,6 +1866,8 @@ translations:
   - pattern: !!js/regexp /If you use an Omnibus package please see the \[instructions in the readme to backup your configuration\]\(https:\/\/gitlab.com\/gitlab-org\/omnibus-gitlab\/blob\/master\/README.md#backup-and-restore-omnibus-gitlab-configuration\).\nIf you have a cookbook installation there should be a copy of your configuration in Chef.\nIf you have an installation from source, please consider backing up your `.secret` file, `gitlab.yml` file, any SSL keys and certificates, and your \[SSH host keys\]\(https:\/\/superuser.com\/questions\/532040\/copy-ssh-keys-from-one-server-to-another-server\/532079#532079\)./
     replace: '${ifYouUseAnOmnibusPackagePleaseSeeTheInstructionsInTheReadmeToBackupYourConfigurationIfYouHaveACookbookInstallationThereShouldBeACopyOfYourConfigurationInChefIfYouHaveAnInstallationFromSourcePleaseConsiderBackingUpYourSecretFileGitlabYmlFileAnySslKeysAndCertificatesAndYourSshHostKeys}'
     match-once: true
+  - pattern: !!js/regexp /At the very \*\*minimum\*\* you should backup `\/etc\/gitlab\/gitlab-secrets.json`\n\(Omnibus\) or `\/home\/git\/gitlab\/.secret` \(source\) to preserve your\ndatabase encryption key./
+    replace: '${atTheVeryMinimumYouShouldBackupEtcGitlabGitlabSecretsJsonOrHomeGitGitlabSecretToPreserveYourDatabaseEncryptionKey}'
 
   - name: headerOrComment
     params:
@@ -2167,8 +2169,8 @@ translations:
     #  key: mdTitle9UpdateOmniAuthConfiguration
     #- title: 'ADD YOUR INFORMATION'
     #  key: mdTitleADDYOURINFORMATION
-    #- title: 'Accepting merge requests'
-    #  key: mdTitleAcceptingMergeRequests
+    - title: 'Accepting merge requests'
+      key: mdTitleAcceptingMergeRequests
     #- title: 'Access private packages / dependencies'
     #  key: mdTitleAccessPrivatePackagesDependencies
     #- title: 'Accessing the services'
@@ -2295,8 +2297,8 @@ translations:
     #  key: mdTitleAuthenticationWithOAuth2Token
     #- title: 'Authorization for Merge requests'
     #  key: mdTitleAuthorizationForMergeRequests
-    #- title: 'Authorized applications'
-    #  key: mdTitleAuthorizedApplications
+    - title: 'Authorized applications'
+      key: mdTitleAuthorizedApplications
     #- title: 'Avoid user input at the start of path strings'
     #  key: mdTitleAvoidUserInputAtTheStartOfPathStrings
     #- title: 'Award emojis'

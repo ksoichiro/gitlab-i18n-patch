@@ -14330,7 +14330,7 @@ index 77bb75c..79b3f6e 100644
  1. Choose "Settings" in the menu on the left
  
 diff --git a/doc/integration/oauth_provider.md b/doc/integration/oauth_provider.md
-index 5f8bb57..5a4efe6 100644
+index 5f8bb57..9558cca 100644
 --- a/doc/integration/oauth_provider.md
 +++ b/doc/integration/oauth_provider.md
 @@ -1,4 +1,4 @@
@@ -14348,8 +14348,12 @@ index 5f8bb57..5a4efe6 100644
  
  ![New OAuth application](img/oauth_provider_user_wide_applications.png)
  
-@@ -67,7 +67,7 @@ it from the admin area.
- ## Authorized applications
+@@ -64,10 +64,10 @@ it from the admin area.
+ 
+ ---
+ 
+-## Authorized applications
++## 認可済みアプリケーション
  
  Every application you authorized to use your GitLab credentials will be shown
 -in the **Authorized applications** section under **Profile Settings > Applications**.
@@ -14545,7 +14549,7 @@ index a49c43b..202fb23 100644
  - [Import](import.md) of git repositories in bulk
  - [Rebuild authorized_keys file](http://docs.gitlab.com/ce/raketasks/maintenance.html#rebuild-authorized_keys-file) task for administrators
 diff --git a/doc/raketasks/backup_restore.md b/doc/raketasks/backup_restore.md
-index fa97613..ae6ac59 100644
+index fa97613..d9cb5b8 100644
 --- a/doc/raketasks/backup_restore.md
 +++ b/doc/raketasks/backup_restore.md
 @@ -1,15 +1,13 @@
@@ -14579,7 +14583,7 @@ index fa97613..ae6ac59 100644
  
  ```
  Dumping database tables:
-@@ -211,17 +209,15 @@ gitlab_rails['backup_archive_permissions'] = 0644 # Makes the backup archives wo
+@@ -211,21 +209,17 @@ gitlab_rails['backup_archive_permissions'] = 0644 # Makes the backup archives wo
      archive_permissions: 0644 # Makes the backup archives world-readable
  ```
  
@@ -14602,9 +14606,14 @@ index fa97613..ae6ac59 100644
 +Cookbookでインストールしている場合は、Chefに設定のコピーがあるはずです。
 +ソースコードからインストールした場合は、 `.secret` ファイル、 `gitlab.yml` ファイル、SSLキー、証明書、[SSHホストキー](https://superuser.com/questions/532040/copy-ssh-keys-from-one-server-to-another-server/532079#532079)のバックアップを検討してください。
  
- At the very **minimum** you should backup `/etc/gitlab/gitlab-secrets.json`
- (Omnibus) or `/home/git/gitlab/.secret` (source) to preserve your
-@@ -262,7 +258,7 @@ BACKUP=timestamp_of_backup (required if more than one backup exists)
+-At the very **minimum** you should backup `/etc/gitlab/gitlab-secrets.json`
+-(Omnibus) or `/home/git/gitlab/.secret` (source) to preserve your
+-database encryption key.
++データベースの暗号化キーを維持するためにバックアップしなければならない **最小の** ファイルは `/etc/gitlab/gitlab-secrets.json` (Omnibus)、`/home/git/gitlab/.secret` (ソース) のファイルです。
+ 
+ ## Restore a previously created backup
+ 
+@@ -262,7 +256,7 @@ BACKUP=timestamp_of_backup (required if more than one backup exists)
  force=yes (do not ask if the authorized_keys file should get regenerated)
  ```
  
@@ -14613,7 +14622,7 @@ index fa97613..ae6ac59 100644
  
  ```
  Unpacking backup... [DONE]
-@@ -339,7 +335,7 @@ If there is a GitLab version mismatch between your backup tar file and the insta
+@@ -339,7 +333,7 @@ If there is a GitLab version mismatch between your backup tar file and the insta
  version of GitLab, the restore command will abort with an error. Install the
  [correct GitLab version](https://www.gitlab.com/downloads/archives/) and try again.
  
@@ -14622,7 +14631,7 @@ index fa97613..ae6ac59 100644
  
  ### For installation from source:
  ```
-@@ -426,7 +422,7 @@ Those objects have no influence on the database backup/restore but they give thi
+@@ -426,7 +420,7 @@ Those objects have no influence on the database backup/restore but they give thi
  
  For more information see similar questions on postgresql issue tracker[here](http://www.postgresql.org/message-id/201110220712.30886.adrian.klaver@gmail.com) and [here](http://www.postgresql.org/message-id/2039.1177339749@sss.pgh.pa.us) as well as [stack overflow](http://stackoverflow.com/questions/4368789/error-must-be-owner-of-language-plpgsql).
  

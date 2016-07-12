@@ -1721,7 +1721,7 @@ mdTitleNote: 注意
 #mdTitleOmnibusPackages: 
 #mdTitleOmnibusConfiguration: 
 #mdTitleOmnibusInstall: 
-#mdTitleOmnibusInstallations: 
+mdTitleOmnibusInstallations: オムニバスインストール
 #mdTitleOmnibusPackageInstallations: 
 #mdTitleOmnibusPackages: 
 #mdTitleOmnibusGitlabExample: 
@@ -2671,3 +2671,5 @@ aBackupCreatesAnArchiveFileThatContainsTheDatabaseAllRepositoriesAndAllAttachmen
 pleaseBeInformedThatABackupDoesNotStoreYourConfigurationFilesOneReasonForThisIsThatYourDatabaseContainsEncryptedInformationForTwoFactorAuthenticationStoringEncryptedInformationAlongWithItsKeyInTheSamePlaceDefeatsThePurposeOfUsingEncryptionInTheFirstPlace: "バックアップでは設定ファイルは保存されないことに注意してください。\n理由の一つは、データベースは二段階認証のために暗号化された情報を含んでいることです。\n暗号化の目的からすると、暗号化された情報とそのキーを同じ場所に保存すべきではありません。"
 ifYouUseAnOmnibusPackagePleaseSeeTheInstructionsInTheReadmeToBackupYourConfigurationIfYouHaveACookbookInstallationThereShouldBeACopyOfYourConfigurationInChefIfYouHaveAnInstallationFromSourcePleaseConsiderBackingUpYourSecretFileGitlabYmlFileAnySslKeysAndCertificatesAndYourSshHostKeys: "パッケージを使用している場合は、 [READMEの設定のバックアップ方法](https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/README.md#backup-and-restore-omnibus-gitlab-configuration) を参照してください。\nCookbookでインストールしている場合は、Chefに設定のコピーがあるはずです。\nソースコードからインストールした場合は、 `.secret` ファイル、 `gitlab.yml` ファイル、SSLキー、証明書、[SSHホストキー](https://superuser.com/questions/532040/copy-ssh-keys-from-one-server-to-another-server/532079#532079)のバックアップを検討してください。"
 atTheVeryMinimumYouShouldBackupEtcGitlabGitlabSecretsJsonOrHomeGitGitlabSecretToPreserveYourDatabaseEncryptionKey: "データベースの暗号化キーを維持するためにバックアップしなければならない **最小の** ファイルは `/etc/gitlab/gitlab-secrets.json` (Omnibus)、`/home/git/gitlab/.secret` (ソース) のファイルです。"
+addTheFollowingLinesAtTheBottom: 以下の行を末尾に追加します。
+gitLabAllowsYouToOpenSelectedProjectsToBeAccessedPubliclyOrInternally: 'GitLabは選択されたプロジェクトを **公開** または **内部のみ** のアクセス権で開けるようにすることができます。'

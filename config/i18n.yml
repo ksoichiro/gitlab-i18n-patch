@@ -1868,6 +1868,10 @@ translations:
     match-once: true
   - pattern: !!js/regexp /At the very \*\*minimum\*\* you should backup `\/etc\/gitlab\/gitlab-secrets.json`\n\(Omnibus\) or `\/home\/git\/gitlab\/.secret` \(source\) to preserve your\ndatabase encryption key./
     replace: '${atTheVeryMinimumYouShouldBackupEtcGitlabGitlabSecretsJsonOrHomeGitGitlabSecretToPreserveYourDatabaseEncryptionKey}'
+  - pattern: 'Add the following lines at the bottom'
+    replace: '${addTheFollowingLinesAtTheBottom}'
+  - pattern: 'GitLab allows you to open selected projects to be accessed **publicly** or **internally**.'
+    replace: '${gitLabAllowsYouToOpenSelectedProjectsToBeAccessedPubliclyOrInternally}'
 
   - name: headerOrComment
     params:
@@ -3963,8 +3967,8 @@ translations:
     #  key: mdTitleOmnibusConfiguration
     #- title: 'Omnibus install'
     #  key: mdTitleOmnibusInstall
-    #- title: 'Omnibus installations'
-    #  key: mdTitleOmnibusInstallations
+    - title: 'Omnibus installations'
+      key: mdTitleOmnibusInstallations
     #- title: 'Omnibus package installations'
     #  key: mdTitleOmnibusPackageInstallations
     #- title: 'Omnibus packages'

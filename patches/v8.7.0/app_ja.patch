@@ -13704,6 +13704,19 @@ index 1009677..8bd1b3f 100644
  
  GitLab assumes that LDAP users are not able to change their LDAP 'mail', 'email'
  or 'userPrincipalName' attribute. An LDAP user who is allowed to change their
+diff --git a/doc/administration/restart_gitlab.md b/doc/administration/restart_gitlab.md
+index 4830603..d697d44 100644
+--- a/doc/administration/restart_gitlab.md
++++ b/doc/administration/restart_gitlab.md
+@@ -9,7 +9,7 @@ If you want the TL;DR versions, jump to:
+ - [Omnibus GitLab reconfigure](#omnibus-gitlab-reconfigure)
+ - [Source installation restart](#installations-from-source)
+ 
+-## Omnibus installations
++## オムニバスインストール
+ 
+ If you have used the [Omnibus packages][omnibus-dl] to install GitLab, then
+ you should already have `gitlab-ctl` in your `PATH`.
 diff --git a/doc/api/README.md b/doc/api/README.md
 index ff039f1..02b198f 100644
 --- a/doc/api/README.md
@@ -14323,7 +14336,7 @@ index 6be954a..ed86387 100644
  - [Import](import.md) of git repositories in bulk
  - [Rebuild authorized_keys file](http://doc.gitlab.com/ce/raketasks/maintenance.html#rebuild-authorized_keys-file) task for administrators
 diff --git a/doc/raketasks/backup_restore.md b/doc/raketasks/backup_restore.md
-index 4329ac3..d6cc0ca 100644
+index 4329ac3..d922011 100644
 --- a/doc/raketasks/backup_restore.md
 +++ b/doc/raketasks/backup_restore.md
 @@ -1,15 +1,13 @@
@@ -14396,6 +14409,15 @@ index 4329ac3..d6cc0ca 100644
  
  ```
  Unpacking backup... [DONE]
+@@ -293,7 +287,7 @@ Restoring repositories:
+ Deleting tmp directories...[DONE]
+ ```
+ 
+-### Omnibus installations
++### オムニバスインストール
+ 
+ We will assume that you have installed GitLab from an omnibus package and run
+ `sudo gitlab-ctl reconfigure` at least once.
 @@ -326,7 +320,7 @@ If there is a GitLab version mismatch between your backup tar file and the insta
  version of GitLab, the restore command will abort with an error. Install a package for
  the [required version](https://www.gitlab.com/downloads/archives/) and try again.
@@ -14405,6 +14427,15 @@ index 4329ac3..d6cc0ca 100644
  
  ### For installation from source:
  ```
+@@ -335,7 +329,7 @@ sudo -u git -H editor config/gitlab.yml # Enable keep_time in the backup section
+ sudo -u git crontab -e # Edit the crontab for the git user
+ ```
+ 
+-Add the following lines at the bottom:
++以下の行を末尾に追加します。:
+ 
+ ```
+ # Create a full backup of the GitLab repositories and SQL database every day at 4am
 @@ -413,7 +407,7 @@ Those objects have no influence on the database backup/restore but they give thi
  
  For more information see similar questions on postgresql issue tracker[here](http://www.postgresql.org/message-id/201110220712.30886.adrian.klaver@gmail.com) and [here](http://www.postgresql.org/message-id/2039.1177339749@sss.pgh.pa.us) as well as [stack overflow](http://stackoverflow.com/questions/4368789/error-must-be-owner-of-language-plpgsql).
@@ -14647,6 +14678,19 @@ index 9206699..539ca31 100644
  
 -For more information on how to use these options check out [rack-attack README](https://github.com/kickstarter/rack-attack/blob/master/README.md).
 +これらのオプションに関するさらに詳細な情報については [rack-attack README](https://github.com/kickstarter/rack-attack/blob/master/README.md) を参照してください。
+diff --git a/doc/security/two_factor_authentication.md b/doc/security/two_factor_authentication.md
+index c849938..8bbd997 100644
+--- a/doc/security/two_factor_authentication.md
++++ b/doc/security/two_factor_authentication.md
+@@ -34,7 +34,7 @@ There may be some special situations where you want to disable 2FA for everyone
+ even when forced 2FA is disabled. There is a rake task for that:
+ 
+ ```
+-# Omnibus installations
++# オムニバスインストール
+ sudo gitlab-rake gitlab:two_factor:disable_for_all_users
+ 
+ # Installations from source
 diff --git a/doc/ssh/README.md b/doc/ssh/README.md
 index a1198e5..c8bae01 100644
 --- a/doc/ssh/README.md

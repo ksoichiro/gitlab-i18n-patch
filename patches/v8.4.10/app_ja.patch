@@ -13348,6 +13348,19 @@ index 5089e1e..cdef9f7 100644
  - [Update](update/README.md) Update guides to upgrade your installation.
  - [Welcome message](customization/welcome_message.md) Add a custom welcome message to the sign-in page.
  - [Reply by email](incoming_email/README.md) Allow users to comment on issues and merge requests by replying to notification emails.
+diff --git a/doc/administration/restart_gitlab.md b/doc/administration/restart_gitlab.md
+index 4830603..d697d44 100644
+--- a/doc/administration/restart_gitlab.md
++++ b/doc/administration/restart_gitlab.md
+@@ -9,7 +9,7 @@ If you want the TL;DR versions, jump to:
+ - [Omnibus GitLab reconfigure](#omnibus-gitlab-reconfigure)
+ - [Source installation restart](#installations-from-source)
+ 
+-## Omnibus installations
++## オムニバスインストール
+ 
+ If you have used the [Omnibus packages][omnibus-dl] to install GitLab, then
+ you should already have `gitlab-ctl` in your `PATH`.
 diff --git a/doc/api/README.md b/doc/api/README.md
 index 2fa177f..454d1be 100644
 --- a/doc/api/README.md
@@ -13898,7 +13911,7 @@ index cc8a22c..334efc8 100644
  - [Import](import.md) of git repositories in bulk
  - [Rebuild authorized_keys file](http://doc.gitlab.com/ce/raketasks/maintenance.html#rebuild-authorized_keys-file) task for administrators
 diff --git a/doc/raketasks/backup_restore.md b/doc/raketasks/backup_restore.md
-index cdd6652..b48fb25 100644
+index cdd6652..4c1b646 100644
 --- a/doc/raketasks/backup_restore.md
 +++ b/doc/raketasks/backup_restore.md
 @@ -1,15 +1,13 @@
@@ -13971,6 +13984,15 @@ index cdd6652..b48fb25 100644
  
  ```
  Unpacking backup... [DONE]
+@@ -292,7 +286,7 @@ Restoring repositories:
+ Deleting tmp directories...[DONE]
+ ```
+ 
+-### Omnibus installations
++### オムニバスインストール
+ 
+ We will assume that you have installed GitLab from an omnibus package and run
+ `sudo gitlab-ctl reconfigure` at least once.
 @@ -325,7 +319,7 @@ If there is a GitLab version mismatch between your backup tar file and the insta
  version of GitLab, the restore command will abort with an error. Install a package for
  the [required version](https://www.gitlab.com/downloads/archives/) and try again.
@@ -13980,6 +14002,15 @@ index cdd6652..b48fb25 100644
  
  ### For installation from source:
  ```
+@@ -334,7 +328,7 @@ sudo -u git -H editor config/gitlab.yml # Enable keep_time in the backup section
+ sudo -u git crontab -e # Edit the crontab for the git user
+ ```
+ 
+-Add the following lines at the bottom:
++以下の行を末尾に追加します。:
+ 
+ ```
+ # Create a full backup of the GitLab repositories and SQL database every day at 4am
 @@ -412,7 +406,7 @@ Those objects have no influence on the database backup/restore but they give thi
  
  For more information see similar questions on postgresql issue tracker[here](http://www.postgresql.org/message-id/201110220712.30886.adrian.klaver@gmail.com) and [here](http://www.postgresql.org/message-id/2039.1177339749@sss.pgh.pa.us) as well as [stack overflow](http://stackoverflow.com/questions/4368789/error-must-be-owner-of-language-plpgsql).

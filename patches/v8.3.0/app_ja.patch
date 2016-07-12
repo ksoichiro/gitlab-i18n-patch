@@ -13675,7 +13675,7 @@ index cc8a22c..334efc8 100644
  - [Import](import.md) of git repositories in bulk
  - [Rebuild authorized_keys file](http://doc.gitlab.com/ce/raketasks/maintenance.html#rebuild-authorized_keys-file) task for administrators
 diff --git a/doc/raketasks/backup_restore.md b/doc/raketasks/backup_restore.md
-index 093450a..1369430 100644
+index 093450a..78ff629 100644
 --- a/doc/raketasks/backup_restore.md
 +++ b/doc/raketasks/backup_restore.md
 @@ -1,15 +1,13 @@
@@ -13748,6 +13748,15 @@ index 093450a..1369430 100644
  
  ```
  Unpacking backup... [DONE]
+@@ -249,7 +243,7 @@ Restoring repositories:
+ Deleting tmp directories...[DONE]
+ ```
+ 
+-### Omnibus installations
++### オムニバスインストール
+ 
+ We will assume that you have installed GitLab from an omnibus package and run
+ `sudo gitlab-ctl reconfigure` at least once.
 @@ -282,7 +276,7 @@ If there is a GitLab version mismatch between your backup tar file and the insta
  version of GitLab, the restore command will abort with an error. Install a package for
  the [required version](https://www.gitlab.com/downloads/archives/) and try again.
@@ -13757,6 +13766,15 @@ index 093450a..1369430 100644
  
  ### For installation from source:
  ```
+@@ -291,7 +285,7 @@ sudo -u git -H editor config/gitlab.yml # Enable keep_time in the backup section
+ sudo -u git crontab -e # Edit the crontab for the git user
+ ```
+ 
+-Add the following lines at the bottom:
++以下の行を末尾に追加します。:
+ 
+ ```
+ # Create a full backup of the GitLab repositories and SQL database every day at 4am
 @@ -369,7 +363,7 @@ Those objects have no influence on the database backup/restore but they give thi
  
  For more information see similar questions on postgresql issue tracker[here](http://www.postgresql.org/message-id/201110220712.30886.adrian.klaver@gmail.com) and [here](http://www.postgresql.org/message-id/2039.1177339749@sss.pgh.pa.us) as well as [stack overflow](http://stackoverflow.com/questions/4368789/error-must-be-owner-of-language-plpgsql).

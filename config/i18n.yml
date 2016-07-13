@@ -1872,6 +1872,12 @@ translations:
     replace: '${addTheFollowingLinesAtTheBottom}'
   - pattern: 'GitLab allows you to open selected projects to be accessed **publicly** or **internally**.'
     replace: '${gitLabAllowsYouToOpenSelectedProjectsToBeAccessedPubliclyOrInternally}'
+  - pattern: !!js/regexp /GitLab allows you to change your projects' visibility in order be accessed\n\*\*publicly\*\* or \*\*internally\*\*\./
+    replace: '${gitLabAllowsYouToChangeYourProjectsVisibilityInOrderBeAccessedPubliclyOrInternally}'
+  - pattern: 'Projects with either of these visibility levels will be listed in the [public access directory](/public).'
+    replace: '${projectsWithEitherOfTheseVisibilityLevelsWillBeListedInThePublicAccessDirectory}'
+  - pattern: !!js/regexp /Projects with either of these visibility levels will be listed in the\npublic access directory \(`\/public` under your GitLab instance\)\./
+    replace: '${projectsWithEitherOfTheseVisibilityLevelsWillBeListedInThePublicAccessDirectoryPublicUnderYourGitLabInstance}'
 
   - name: headerOrComment
     params:

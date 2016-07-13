@@ -2673,3 +2673,6 @@ ifYouUseAnOmnibusPackagePleaseSeeTheInstructionsInTheReadmeToBackupYourConfigura
 atTheVeryMinimumYouShouldBackupEtcGitlabGitlabSecretsJsonOrHomeGitGitlabSecretToPreserveYourDatabaseEncryptionKey: "データベースの暗号化キーを維持するためにバックアップしなければならない **最小の** ファイルは `/etc/gitlab/gitlab-secrets.json` (Omnibus)、`/home/git/gitlab/.secret` (ソース) のファイルです。"
 addTheFollowingLinesAtTheBottom: 以下の行を末尾に追加します。
 gitLabAllowsYouToOpenSelectedProjectsToBeAccessedPubliclyOrInternally: 'GitLabは選択されたプロジェクトを **公開** または **内部のみ** のアクセス権で開けるようにすることができます。'
+gitLabAllowsYouToChangeYourProjectsVisibilityInOrderBeAccessedPubliclyOrInternally: 'GitLabはあなたのプロジェクトを **公開** または **内部のみ** のアクセス権で開けるようにすることができます。'
+projectsWithEitherOfTheseVisibilityLevelsWillBeListedInThePublicAccessDirectory: "どちらかの可視性が設定されているプロジェクトは [公開プロジェクト一覧](/public) に一覧表示されています。"
+projectsWithEitherOfTheseVisibilityLevelsWillBeListedInThePublicAccessDirectoryPublicUnderYourGitLabInstance: "どちらかの可視性が設定されているプロジェクトは公開アクセスディレクトリ (GitLabインスタンスの`/public`) に一覧表示されています。"

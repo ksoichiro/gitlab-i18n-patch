@@ -14123,15 +14123,23 @@ index 3fea2cf..be2c750 100644
  Project services allow you to integrate GitLab with other applications. Below
  is list of the currently supported ones. Click on the service links to see
 diff --git a/doc/public_access/public_access.md b/doc/public_access/public_access.md
-index 20aa90f..df28562 100644
+index 20aa90f..d7db5ad 100644
 --- a/doc/public_access/public_access.md
 +++ b/doc/public_access/public_access.md
-@@ -1,4 +1,4 @@
+@@ -1,10 +1,8 @@
 -# Public access
 +# 公開アクセス
  
- GitLab allows you to change your projects' visibility in order be accessed
- **publicly** or **internally**.
+-GitLab allows you to change your projects' visibility in order be accessed
+-**publicly** or **internally**.
++GitLabはあなたのプロジェクトを **公開** または **内部のみ** のアクセス権で開けるようにすることができます。
+ 
+-Projects with either of these visibility levels will be listed in the
+-public access directory (`/public` under your GitLab instance).
++どちらかの可視性が設定されているプロジェクトは公開アクセスディレクトリ (GitLabインスタンスの`/public`) に一覧表示されています。
+ Here is the [GitLab.com example](https://gitlab.com/public).
+ 
+ Internal projects will only be available to authenticated users.
 diff --git a/doc/raketasks/README.md b/doc/raketasks/README.md
 index 6be954a..ed86387 100644
 --- a/doc/raketasks/README.md

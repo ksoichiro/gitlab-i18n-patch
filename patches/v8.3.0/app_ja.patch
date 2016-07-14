@@ -13651,10 +13651,10 @@ index 03937d2..5e72750 100644
  __Project integrations with external services for continuous integration and more.__
  
 diff --git a/doc/public_access/public_access.md b/doc/public_access/public_access.md
-index 6e22ea7..5220699 100644
+index 6e22ea7..dd54c59 100644
 --- a/doc/public_access/public_access.md
 +++ b/doc/public_access/public_access.md
-@@ -1,10 +1,8 @@
+@@ -1,13 +1,11 @@
 -# Public access
 +# 公開アクセス
  
@@ -13667,7 +13667,11 @@ index 6e22ea7..5220699 100644
 +どちらかの可視性が設定されているプロジェクトは公開アクセスディレクトリ (GitLabインスタンスの`/public`) に一覧表示されています。
  Here is the [GitLab.com example](https://gitlab.com/public).
  
- Internal projects will only be available to authenticated users.
+-Internal projects will only be available to authenticated users.
++内部のみのプロジェクトは、ログインしたユーザだけが利用することができます。
+ 
+ ## Visibility of projects
+ 
 diff --git a/doc/raketasks/README.md b/doc/raketasks/README.md
 index cc8a22c..334efc8 100644
 --- a/doc/raketasks/README.md

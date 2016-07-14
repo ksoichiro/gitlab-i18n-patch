@@ -1878,6 +1878,8 @@ translations:
     replace: '${projectsWithEitherOfTheseVisibilityLevelsWillBeListedInThePublicAccessDirectory}'
   - pattern: !!js/regexp /Projects with either of these visibility levels will be listed in the\npublic access directory \(`\/public` under your GitLab instance\)\./
     replace: '${projectsWithEitherOfTheseVisibilityLevelsWillBeListedInThePublicAccessDirectoryPublicUnderYourGitLabInstance}'
+  - pattern: 'Internal projects will only be available to authenticated users.'
+    replace: '${internalProjectsWillOnlyBeAvailableToAuthenticatedUsers}'
 
   - name: headerOrComment
     params:

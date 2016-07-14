@@ -14529,10 +14529,10 @@ index a5af620..c2719af 100644
  send an email every time someone pushes new commits.
  
 diff --git a/doc/public_access/public_access.md b/doc/public_access/public_access.md
-index 17bb75e..663f39b 100644
+index 17bb75e..106ac4a 100644
 --- a/doc/public_access/public_access.md
 +++ b/doc/public_access/public_access.md
-@@ -1,10 +1,8 @@
+@@ -1,13 +1,11 @@
 -# Public access
 +# 公開アクセス
  
@@ -14545,7 +14545,11 @@ index 17bb75e..663f39b 100644
 +どちらかの可視性が設定されているプロジェクトは公開アクセスディレクトリ (GitLabインスタンスの`/public`) に一覧表示されています。
  Here is the [GitLab.com example](https://gitlab.com/public).
  
- Internal projects will only be available to authenticated users.
+-Internal projects will only be available to authenticated users.
++内部のみのプロジェクトは、ログインしたユーザだけが利用することができます。
+ 
+ ## Visibility of projects
+ 
 diff --git a/doc/raketasks/README.md b/doc/raketasks/README.md
 index a49c43b..202fb23 100644
 --- a/doc/raketasks/README.md

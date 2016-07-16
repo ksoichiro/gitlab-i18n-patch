@@ -2677,3 +2677,7 @@ gitLabAllowsYouToChangeYourProjectsVisibilityInOrderBeAccessedPubliclyOrInternal
 projectsWithEitherOfTheseVisibilityLevelsWillBeListedInThePublicAccessDirectory: "どちらかの可視性が設定されているプロジェクトは [公開プロジェクト一覧](/public) に一覧表示されています。"
 projectsWithEitherOfTheseVisibilityLevelsWillBeListedInThePublicAccessDirectoryPublicUnderYourGitLabInstance: "どちらかの可視性が設定されているプロジェクトは公開アクセスディレクトリ (GitLabインスタンスの`/public`) に一覧表示されています。"
 internalProjectsWillOnlyBeAvailableToAuthenticatedUsers: 内部のみのプロジェクトは、ログインしたユーザだけが利用することができます。
+publicProjectsCanBeClonedWithoutAnyAuthentication: '公開プロジェクトは **一切の認証なしで** クローンすることができます。'
+itWillAlsoBeListedOnThePublicAccessDirectory: '公開プロジェクトは [公開プロジェクト一覧](/public) にも一覧表示されます。'
+theyWillAlsoBeListedOnThePublicAccessDirectory: '公開プロジェクトは公開アクセスディレクトリ (`/public`) にも一覧表示されます。'
+anyLoggedInUserWillHaveGuestPermissionsOnTheRepository: '**ログインしたユーザは誰でも** リポジトリに対して [Guest](../permissions/permissions) のアクセス権を持ちます。'

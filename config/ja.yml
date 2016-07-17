@@ -1537,7 +1537,7 @@ mdTitleGatherInformationAboutGitLabAndTheSystemItRunsOn: GitLabやシステム�
 #mdTitleIntegrateYourServerWithBitbucket: 
 #mdTitleIntegrateYourServerWithGitHub: 
 #mdTitleIntegrateYourServerWithGitLabcom: 
-#mdTitleInternalProjects: 
+mdTitleInternalProjects: 内部プロジェクト
 #mdTitleIntroduction: 
 #mdTitleIntroductionToGitLabPerformanceMonitoring: 
 #mdTitleIntroductionToOAuth: 
@@ -2681,3 +2681,7 @@ publicProjectsCanBeClonedWithoutAnyAuthentication: '公開プロジェクトは 
 itWillAlsoBeListedOnThePublicAccessDirectory: '公開プロジェクトは [公開プロジェクト一覧](/public) にも一覧表示されます。'
 theyWillAlsoBeListedOnThePublicAccessDirectory: '公開プロジェクトは公開アクセスディレクトリ (`/public`) にも一覧表示されます。'
 anyLoggedInUserWillHaveGuestPermissionsOnTheRepository: '**ログインしたユーザは誰でも** リポジトリに対して [Guest](../permissions/permissions) のアクセス権を持ちます。'
+internalProjectsCanBeClonedByAnyLoggedInUser: 内部プロジェクトはログインしたユーザであれば誰でもクローンすることができます。
+itWillAlsoBeListedOnThePublicAccessDirectoryForLoggedInUsers: "内部プロジェクトは、ログインしたユーザの場合 [公開プロジェクト一覧](/public) にも表示されます。"
+theyWillAlsoBeListedOnThePublicAccessDirectoryForLoggedInUsers: "内部プロジェクトは、ログインしたユーザの場合 公開アクセスディレクトリ(`/public`) にも表示されます。"
+anyLoggedInUserWillHaveGuestPermissionOnTheRepository: "ログインしたユーザは誰でもリポジトリに対して [Guest](../permissions/permissions) のアクセス権を持ちます。"

@@ -1890,6 +1890,16 @@ translations:
     replace: '${anyLoggedInUserWillHaveGuestPermissionsOnTheRepository}'
   - pattern: '**Any logged in user** will have [Guest](../permissions/permissions) permissions on the repository.'
     replace: '${anyLoggedInUserWillHaveGuestPermissionsOnTheRepository}'
+  - pattern: 'Internal projects can be cloned by any logged in user.'
+    replace: '${internalProjectsCanBeClonedByAnyLoggedInUser}'
+  - pattern: "It will also be listed on the [public access directory](/public) for logged in users."
+    replace: '${itWillAlsoBeListedOnThePublicAccessDirectoryForLoggedInUsers}'
+  - pattern: !!js/regexp /They will also be listed on the public access directory \(`/public`\) for logged\nin users./
+    replace: '${theyWillAlsoBeListedOnThePublicAccessDirectoryForLoggedInUsers}'
+  - pattern: "Any logged in user will have [Guest](../permissions/permissions) permissions on the repository."
+    replace: '${anyLoggedInUserWillHaveGuestPermissionOnTheRepository}'
+  - pattern: !!js/regexp /Any logged in user will have \[Guest\]\(\.\.\/permissions\/permissions\) permissions on\nthe repository./
+    replace: '${anyLoggedInUserWillHaveGuestPermissionOnTheRepository}'
 
   - name: headerOrComment
     params:
@@ -3615,8 +3625,8 @@ translations:
     #  key: mdTitleIntegrateYourServerWithGitHub
     #- title: 'Integrate your server with GitLab.com'
     #  key: mdTitleIntegrateYourServerWithGitLabcom
-    #- title: 'Internal projects'
-    #  key: mdTitleInternalProjects
+    - title: 'Internal projects'
+      key: mdTitleInternalProjects
     #- title: 'Introduction'
     #  key: mdTitleIntroduction
     #- title: 'Introduction to GitLab Performance Monitoring'

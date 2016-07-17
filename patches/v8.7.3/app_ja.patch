@@ -14321,10 +14321,10 @@ index a5af620..c2719af 100644
  send an email every time someone pushes new commits.
  
 diff --git a/doc/public_access/public_access.md b/doc/public_access/public_access.md
-index 17bb75e..0cc3395 100644
+index 17bb75e..31c014c 100644
 --- a/doc/public_access/public_access.md
 +++ b/doc/public_access/public_access.md
-@@ -1,24 +1,21 @@
+@@ -1,34 +1,29 @@
 -# Public access
 +# 公開アクセス
  
@@ -14354,7 +14354,21 @@ index 17bb75e..0cc3395 100644
 -permissions on the repository.
 +**ログインしたユーザは誰でも** リポジトリに対して [Guest](../permissions/permissions) のアクセス権を持ちます。
  
- ### Internal projects
+-### Internal projects
++### 内部プロジェクト
+ 
+-Internal projects can be cloned by any logged in user.
++内部プロジェクトはログインしたユーザであれば誰でもクローンすることができます。
+ 
+-They will also be listed on the public access directory (`/public`) for logged
+-in users.
++内部プロジェクトは、ログインしたユーザの場合 公開アクセスディレクトリ(`/public`) にも表示されます。
+ 
+-Any logged in user will have [Guest](../permissions/permissions) permissions on
+-the repository.
++ログインしたユーザは誰でもリポジトリに対して [Guest](../permissions/permissions) のアクセス権を持ちます。
+ 
+ ### How to change project visibility
  
 diff --git a/doc/raketasks/README.md b/doc/raketasks/README.md
 index 6be954a..ed86387 100644

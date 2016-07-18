@@ -14529,10 +14529,10 @@ index a5af620..c2719af 100644
  send an email every time someone pushes new commits.
  
 diff --git a/doc/public_access/public_access.md b/doc/public_access/public_access.md
-index 17bb75e..31c014c 100644
+index 17bb75e..601dde0 100644
 --- a/doc/public_access/public_access.md
 +++ b/doc/public_access/public_access.md
-@@ -1,34 +1,29 @@
+@@ -1,39 +1,34 @@
 -# Public access
 +# 公開アクセス
  
@@ -14576,7 +14576,15 @@ index 17bb75e..31c014c 100644
 -the repository.
 +ログインしたユーザは誰でもリポジトリに対して [Guest](../permissions/permissions) のアクセス権を持ちます。
  
- ### How to change project visibility
+-### How to change project visibility
++### プロジェクトの可視性レベルの変更方法
+ 
+-1. Go to your project's **Settings**
+-1. Change "Visibility Level" to either Public, Internal or Private
++1. プロジェクトの**設定**に移動します
++1. "可視性レベル"を変更します to either Public, Internal or Private
+ 
+ ## Visibility of groups
  
 diff --git a/doc/raketasks/README.md b/doc/raketasks/README.md
 index a49c43b..202fb23 100644

@@ -1439,7 +1439,7 @@ mdTitleGatherInformationAboutGitLabAndTheSystemItRunsOn: GitLabやシステム�
 #mdTitleHowItWorks: 
 #mdTitleHowToAddAFile: 
 #mdTitleHowToAddAnImage: 
-#mdTitleHowToChangeProjectVisibility: 
+mdTitleHowToChangeProjectVisibility: プロジェクトの可視性レベルの変更方法
 #mdTitleHowToCreateABranch: 
 #mdTitleHowToCreateAGroupInGitLab: 
 #mdTitleHowToCreateAMergeRequest: 
@@ -2685,3 +2685,8 @@ internalProjectsCanBeClonedByAnyLoggedInUser: 内部プロジェクトはログ�
 itWillAlsoBeListedOnThePublicAccessDirectoryForLoggedInUsers: "内部プロジェクトは、ログインしたユーザの場合 [公開プロジェクト一覧](/public) にも表示されます。"
 theyWillAlsoBeListedOnThePublicAccessDirectoryForLoggedInUsers: "内部プロジェクトは、ログインしたユーザの場合 公開アクセスディレクトリ(`/public`) にも表示されます。"
 anyLoggedInUserWillHaveGuestPermissionOnTheRepository: "ログインしたユーザは誰でもリポジトリに対して [Guest](../permissions/permissions) のアクセス権を持ちます。"
+goToYourProjectDashboard: プロジェクトのダッシュボードに移動します
+clickOnTheEditTab: '"編集"をクリックします'
+changeVisibilityLevel: '"可視性レベル"を変更します'
+goToYourProjectsSettings: 'プロジェクトの**設定**に移動します'
+changeVisibilityLevelToEitherPublicInternalOrPrivate: '"可視性レベル"を公開、内部、プライベートのいずれかに変更します'

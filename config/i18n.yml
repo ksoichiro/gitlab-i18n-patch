@@ -1900,6 +1900,16 @@ translations:
     replace: '${anyLoggedInUserWillHaveGuestPermissionOnTheRepository}'
   - pattern: !!js/regexp /Any logged in user will have \[Guest\]\(\.\.\/permissions\/permissions\) permissions on\nthe repository./
     replace: '${anyLoggedInUserWillHaveGuestPermissionOnTheRepository}'
+  - pattern: 'Go to your project dashboard'
+    replace: '${goToYourProjectDashboard}'
+  - pattern: 'Click on the "Edit" tab'
+    replace: '${clickOnTheEditTab}'
+  - pattern: 'Change "Visibility Level"'
+    replace: '${changeVisibilityLevel}'
+  - pattern: "Go to your project's **Settings**"
+    replace: '${goToYourProjectsSettings}'
+  - pattern: 'Change "Visibility Level" to either Public, Internal or Private'
+    replace: '${changeVisibilityLevelToEitherPublicInternalOrPrivate}'
 
   - name: headerOrComment
     params:
@@ -3429,8 +3439,8 @@ translations:
     #  key: mdTitleHowToAddAFile
     #- title: 'How to add an image'
     #  key: mdTitleHowToAddAnImage
-    #- title: 'How to change project visibility'
-    #  key: mdTitleHowToChangeProjectVisibility
+    - title: 'How to change project visibility'
+      key: mdTitleHowToChangeProjectVisibility
     #- title: 'How to create a branch'
     #  key: mdTitleHowToCreateABranch
     #- title: 'How to create a group in GitLab'

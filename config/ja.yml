@@ -2205,9 +2205,9 @@ mdTitleUserDocumentation: ユーザ向けドキュメント
 #mdTitleViewHistoryInTheCommandLine: 
 #mdTitleViewTheChangesYouveMade: 
 #mdTitleViewWhat’SInTheDirectoryThatYouAreIn: 
-#mdTitleVisibilityOfGroups: 
+mdTitleVisibilityOfGroups: グループの可視性
 #mdTitleVisibilityOfProjects: 
-#mdTitleVisibilityOfUsers: 
+mdTitleVisibilityOfUsers: ユーザの可視性
 #mdTitleWarning: 
 #mdTitleWarningIfYouHaveGitlab7120OrOlderSkipThisStepAndImportTheDatabasesqlDirectlyIntoTheBackupWith: 
 #mdTitleWarningIfYouForgetToReplaceTIMESTAMPBelowTarWillCreateANewFile: 
@@ -2690,3 +2690,12 @@ clickOnTheEditTab: '"編集"をクリックします'
 changeVisibilityLevel: '"可視性レベル"を変更します'
 goToYourProjectsSettings: 'プロジェクトの**設定**に移動します'
 changeVisibilityLevelToEitherPublicInternalOrPrivate: '"可視性レベル"を公開、内部、プライベートのいずれかに変更します'
+thePublicPageOfUsersLocatedAtUUsernameIsVisibleIfEither: 'ユーザの公開ページは `/u/username` にあり、以下の場合に閲覧することができます。'
+thePublicPageOfAUserLocatedUUsernameIsAlwaysVisibleWhetherYouAreLoggedInOrNot: 'ユーザの公開ページは `/u/username` にあり、ログインしているかどうかによらず閲覧することができます。'
+youAreLoggedIn: ログインしている場合。
+youAreLoggedOutAndTheTargetUserIsAuthorizedToIsGuestReporterEtcAtLeastOnePublicProject: 'ログアウトしており、対象のユーザが1つ以上の公開プロジェクトで認可されている(Guest, Reporter など)場合。'
+otherwiseYouWillBeRedirectedToTheSignInPage: その他の場合はサインインのページにリダイレクトされます。
+whenVisitingThePublicPageOfAnUserYouWillOnlySeeListedProjectsWhichYouCanViewYourself: ユーザの公開ページを表示したとき、あなたが見ることのできるプロジェクトだけが一覧表示されます。
+whenVisitingThePublicPageOfAUserYouCanOnlySeeTheProjectsWhichYouArePrivilegedTo: ユーザの公開ページを表示したとき、あなたが権限のあるプロジェクトだけが一覧表示されます。
+thePublicPageOfAGroupLocatedAtGroupsGroupnameIsAlwaysVisibleToEveryone: 'グループの公開ページは `/groups/groupname` にあり、常に全員が閲覧できます。'
+loggedOutUsersWillBeAbleToSeeTheDescriptionAndTheAvatarOfTheGroupAsWellAsAllPublicProjectsBelongingToThatGroup: ログアウトしたユーザはそのグループに属する公開プロジェクトに加えてグループの説明とアバターを閲覧できます。

@@ -13678,10 +13678,10 @@ index 03937d2..5e72750 100644
  __Project integrations with external services for continuous integration and more.__
  
 diff --git a/doc/public_access/public_access.md b/doc/public_access/public_access.md
-index 6e22ea7..ef02bc8 100644
+index 6e22ea7..10d2097 100644
 --- a/doc/public_access/public_access.md
 +++ b/doc/public_access/public_access.md
-@@ -1,39 +1,34 @@
+@@ -1,55 +1,46 @@
 -# Public access
 +# 公開アクセス
  
@@ -13733,7 +13733,29 @@ index 6e22ea7..ef02bc8 100644
 +1. プロジェクトの**設定**に移動します
 +1. "可視性レベル"を変更します to either Public, Internal or Private
  
- ## Visibility of users
+-## Visibility of users
++## ユーザの可視性
+ 
+-The public page of a user, located at `/u/username`, is always visible whether
+-you are logged in or not.
++ユーザの公開ページは `/u/username` にあり、ログインしているかどうかによらず閲覧することができます。
+ 
+-When visiting the public page of a user, you can only see the projects which
+-you are privileged to.
++ユーザの公開ページを表示したとき、あなたが権限のあるプロジェクトだけが一覧表示されます。
+ 
+-## Visibility of groups
++## グループの可視性
+ 
+-The public page of a group, located at `/groups/groupname`, is always visible
+-to everyone.
++グループの公開ページは `/groups/groupname` にあり、常に全員が閲覧できます。
+ 
+-Logged out users will be able to see the description and the avatar of the
+-group as well as all public projects belonging to that group.
++ログアウトしたユーザはそのグループに属する公開プロジェクトに加えてグループの説明とアバターを閲覧できます。
+ 
+ ## Restricting the use of public or internal projects
  
 diff --git a/doc/raketasks/README.md b/doc/raketasks/README.md
 index cc8a22c..334efc8 100644

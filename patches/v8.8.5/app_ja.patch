@@ -14543,10 +14543,10 @@ index a5af620..c2719af 100644
  send an email every time someone pushes new commits.
  
 diff --git a/doc/public_access/public_access.md b/doc/public_access/public_access.md
-index 17bb75e..601dde0 100644
+index 17bb75e..38b95cd 100644
 --- a/doc/public_access/public_access.md
 +++ b/doc/public_access/public_access.md
-@@ -1,39 +1,34 @@
+@@ -1,41 +1,36 @@
 -# Public access
 +# 公開アクセス
  
@@ -14598,7 +14598,27 @@ index 17bb75e..601dde0 100644
 +1. プロジェクトの**設定**に移動します
 +1. "可視性レベル"を変更します to either Public, Internal or Private
  
- ## Visibility of groups
+-## Visibility of groups
++## グループの可視性
+ 
+ >**Note:**
+ [Starting with][3323] GitLab 8.6, the group visibility has changed and can be
+@@ -50,13 +45,11 @@ for anonymous users. The group page now has a visibility level icon.
+ 
+ [3323]: https://gitlab.com/gitlab-org/gitlab-ce/merge_requests/3323
+ 
+-## Visibility of users
++## ユーザの可視性
+ 
+-The public page of a user, located at `/u/username`, is always visible whether
+-you are logged in or not.
++ユーザの公開ページは `/u/username` にあり、ログインしているかどうかによらず閲覧することができます。
+ 
+-When visiting the public page of a user, you can only see the projects which
+-you are privileged to.
++ユーザの公開ページを表示したとき、あなたが権限のあるプロジェクトだけが一覧表示されます。
+ 
+ If the public level is restricted, user profiles are only visible to logged in users.
  
 diff --git a/doc/raketasks/README.md b/doc/raketasks/README.md
 index a49c43b..202fb23 100644

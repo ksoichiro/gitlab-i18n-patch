@@ -14123,10 +14123,10 @@ index 3fea2cf..be2c750 100644
  Project services allow you to integrate GitLab with other applications. Below
  is list of the currently supported ones. Click on the service links to see
 diff --git a/doc/public_access/public_access.md b/doc/public_access/public_access.md
-index 20aa90f..26b6108 100644
+index 20aa90f..a19f46d 100644
 --- a/doc/public_access/public_access.md
 +++ b/doc/public_access/public_access.md
-@@ -1,39 +1,34 @@
+@@ -1,41 +1,36 @@
 -# Public access
 +# 公開アクセス
  
@@ -14178,7 +14178,27 @@ index 20aa90f..26b6108 100644
 +1. プロジェクトの**設定**に移動します
 +1. "可視性レベル"を変更します to either Public, Internal or Private
  
- ## Visibility of groups
+-## Visibility of groups
++## グループの可視性
+ 
+ >**Note:**
+ [Starting with][3323] GitLab 8.6, the group visibility has changed and can be
+@@ -50,13 +45,11 @@ for anonymous users. The group page now has a visibility level icon.
+ 
+ [3323]: https://gitlab.com/gitlab-org/gitlab-ce/merge_requests/3323
+ 
+-## Visibility of users
++## ユーザの可視性
+ 
+-The public page of a user, located at `/u/username`, is always visible whether
+-you are logged in or not.
++ユーザの公開ページは `/u/username` にあり、ログインしているかどうかによらず閲覧することができます。
+ 
+-When visiting the public page of a user, you can only see the projects which
+-you are privileged to.
++ユーザの公開ページを表示したとき、あなたが権限のあるプロジェクトだけが一覧表示されます。
+ 
+ ## Restricting the use of public or internal projects
  
 diff --git a/doc/raketasks/README.md b/doc/raketasks/README.md
 index 6be954a..ed86387 100644

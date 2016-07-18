@@ -1910,6 +1910,24 @@ translations:
     replace: '${goToYourProjectsSettings}'
   - pattern: 'Change "Visibility Level" to either Public, Internal or Private'
     replace: '${changeVisibilityLevelToEitherPublicInternalOrPrivate}'
+  - pattern: 'The public page of users, located at `/u/username` is visible if either:'
+    replace: '${thePublicPageOfUsersLocatedAtUUsernameIsVisibleIfEither}'
+  - pattern: 'You are logged in.'
+    replace: '${youAreLoggedIn}'
+  - pattern: 'You are logged out, and the target user is authorized to (is Guest, Reporter, etc.) at least one public project.'
+    replace: '${youAreLoggedOutAndTheTargetUserIsAuthorizedToIsGuestReporterEtcAtLeastOnePublicProject}'
+  - pattern: 'Otherwise, you will be redirected to the sign in page.'
+    replace: '${otherwiseYouWillBeRedirectedToTheSignInPage}'
+  - pattern: 'When visiting the public page of an user, you will only see listed projects which you can view yourself.'
+    replace: '${whenVisitingThePublicPageOfAnUserYouWillOnlySeeListedProjectsWhichYouCanViewYourself}'
+  - pattern: !!js/regexp /The public page of a user, located at `\/u\/username`, is always visible whether\nyou are logged in or not./
+    replace: '${thePublicPageOfAUserLocatedUUsernameIsAlwaysVisibleWhetherYouAreLoggedInOrNot}'
+  - pattern: !!js/regexp /When visiting the public page of a user, you can only see the projects which\nyou are privileged to./
+    replace: '${whenVisitingThePublicPageOfAUserYouCanOnlySeeTheProjectsWhichYouArePrivilegedTo}'
+  - pattern: !!js/regexp /The public page of a group, located at `/groups/groupname`, is always visible\nto everyone./
+    replace: '${thePublicPageOfAGroupLocatedAtGroupsGroupnameIsAlwaysVisibleToEveryone}'
+  - pattern: !!js/regexp /Logged out users will be able to see the description and the avatar of the\ngroup as well as all public projects belonging to that group./
+    replace: '${loggedOutUsersWillBeAbleToSeeTheDescriptionAndTheAvatarOfTheGroupAsWellAsAllPublicProjectsBelongingToThatGroup}'
 
   - name: headerOrComment
     params:
@@ -4975,12 +4993,12 @@ translations:
     #  key: mdTitleViewTheChangesYouveMade
     #- title: 'View what’s in the directory that you are in'
     #  key: mdTitleViewWhat’SInTheDirectoryThatYouAreIn
-    #- title: 'Visibility of groups'
-    #  key: mdTitleVisibilityOfGroups
+    - title: 'Visibility of groups'
+      key: mdTitleVisibilityOfGroups
     #- title: 'Visibility of projects'
     #  key: mdTitleVisibilityOfProjects
-    #- title: 'Visibility of users'
-    #  key: mdTitleVisibilityOfUsers
+    - title: 'Visibility of users'
+      key: mdTitleVisibilityOfUsers
     #- title: 'Warning'
     #  key: mdTitleWarning
     #- title: 'Warning: If you have Gitlab 7.12.0 or older skip this step and import the database.sql directly into the backup with:'

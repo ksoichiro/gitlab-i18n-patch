@@ -14543,7 +14543,7 @@ index a5af620..c2719af 100644
  send an email every time someone pushes new commits.
  
 diff --git a/doc/public_access/public_access.md b/doc/public_access/public_access.md
-index 17bb75e..38b95cd 100644
+index 17bb75e..a7a508a 100644
 --- a/doc/public_access/public_access.md
 +++ b/doc/public_access/public_access.md
 @@ -1,41 +1,36 @@
@@ -14603,7 +14603,7 @@ index 17bb75e..38b95cd 100644
  
  >**Note:**
  [Starting with][3323] GitLab 8.6, the group visibility has changed and can be
-@@ -50,13 +45,11 @@ for anonymous users. The group page now has a visibility level icon.
+@@ -50,20 +45,15 @@ for anonymous users. The group page now has a visibility level icon.
  
  [3323]: https://gitlab.com/gitlab-org/gitlab-ce/merge_requests/3323
  
@@ -14620,6 +14620,15 @@ index 17bb75e..38b95cd 100644
  
  If the public level is restricted, user profiles are only visible to logged in users.
  
+ 
+-## Restricting the use of public or internal projects
++## 公開または内部プロジェクトの利用を制限する
+ 
+-In the Admin area under **Settings** (`/admin/application_settings`), you can
+-restrict the use of visibility levels for users when they create a project or a
+-snippet. This is useful to prevent people exposing their repositories to public
+-by accident. The restricted visibility settings do not apply to admin users.
++**設定** (`/admin/application_settings`) の管理エリアでは、プロジェクトやスニペット作成時の可視性の利用を制限することができます。これはメンバーが誤ってリポジトリを公開してしまうのを防ぐのに有効です。制限された可視性設定は管理者ユーザには適用されません。
 diff --git a/doc/raketasks/README.md b/doc/raketasks/README.md
 index a49c43b..202fb23 100644
 --- a/doc/raketasks/README.md

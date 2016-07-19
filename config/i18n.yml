@@ -1929,6 +1929,11 @@ translations:
   - pattern: !!js/regexp /Logged out users will be able to see the description and the avatar of the\ngroup as well as all public projects belonging to that group./
     replace: '${loggedOutUsersWillBeAbleToSeeTheDescriptionAndTheAvatarOfTheGroupAsWellAsAllPublicProjectsBelongingToThatGroup}'
 
+  - pattern: 'In the Admin area under Settings you can disable public projects or public and internal projects for the entire GitLab installation to prevent people making code public by accident. The restricted visibility settings do not apply to admin users.'
+    replace: '${inTheAdminAreaUnderSettingsYouCanDisablePublicProjectsOrPublicAndInternalProjectsForTheEntireGitlabInstallationToPreventPeopleMakingCodePublicByAccidentTheREstrictedVisibilitySettingsDoNotApplyToAdminUsers}'
+  - pattern: !!js/regexp /In the Admin area under \*\*Settings\*\* \(`\/admin\/application_settings`\), you can\nrestrict the use of visibility levels for users when they create a project or a\nsnippet. This is useful to prevent people exposing their repositories to public\nby accident. The restricted visibility settings do not apply to admin users./
+    replace: '${inTheAdminAreaUnderSettingsAdminApplicationSettingsYouCanRestrictTheUseOfVisibilityLevelsForUsersWhenTheyCreateAProjectOrASnippetThisIsUsefulToPreventPeopleExposingTheirRepositoriesToPublicByAccidentTheRestrictedVisibilitySettingsDoNotApplyToAdminUsers}'
+
   - name: headerOrComment
     params:
     - title: 'Accept MR'
@@ -4347,8 +4352,8 @@ translations:
     #  key: mdTitleRestoringDatabaseBackupUsingOmnibusPackagesOutputsWarnings
     #- title: 'Restoring from backup after a failed upgrade'
     #  key: mdTitleRestoringFromBackupAfterAFailedUpgrade
-    #- title: 'Restricting the use of public or internal projects'
-    #  key: mdTitleRestrictingTheUseOfPublicOrInternalProjects
+    - title: 'Restricting the use of public or internal projects'
+      key: mdTitleRestrictingTheUseOfPublicOrInternalProjects
     #- title: 'Results of GitLab Application Check'
     #  key: mdTitleResultsOfGitLabApplicationCheck
     #- title: 'Results of GitLab Environment Info'

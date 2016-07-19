@@ -13896,10 +13896,10 @@ index e340312..8d555f6 100644
  Project services allow you to integrate GitLab with other applications. Below
  is list of the currently supported ones. Click on the service links to see
 diff --git a/doc/public_access/public_access.md b/doc/public_access/public_access.md
-index 6e22ea7..10d2097 100644
+index 6e22ea7..bb3534e 100644
 --- a/doc/public_access/public_access.md
 +++ b/doc/public_access/public_access.md
-@@ -1,55 +1,46 @@
+@@ -1,59 +1,47 @@
 -# Public access
 +# 公開アクセス
  
@@ -13973,8 +13973,14 @@ index 6e22ea7..10d2097 100644
 -group as well as all public projects belonging to that group.
 +ログアウトしたユーザはそのグループに属する公開プロジェクトに加えてグループの説明とアバターを閲覧できます。
  
- ## Restricting the use of public or internal projects
+-## Restricting the use of public or internal projects
++## 公開または内部プロジェクトの利用を制限する
  
+-In the Admin area under **Settings** (`/admin/application_settings`), you can
+-restrict the use of visibility levels for users when they create a project or a
+-snippet. This is useful to prevent people exposing their repositories to public
+-by accident. The restricted visibility settings do not apply to admin users.
++**設定** (`/admin/application_settings`) の管理エリアでは、プロジェクトやスニペット作成時の可視性の利用を制限することができます。これはメンバーが誤ってリポジトリを公開してしまうのを防ぐのに有効です。制限された可視性設定は管理者ユーザには適用されません。
 diff --git a/doc/raketasks/README.md b/doc/raketasks/README.md
 index cc8a22c..334efc8 100644
 --- a/doc/raketasks/README.md

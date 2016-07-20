@@ -13492,6 +13492,16 @@ index d4d63e8..cd33915 100644
  
  ### List all merge request notes
  
+diff --git a/doc/api/services.md b/doc/api/services.md
+index 7d45b2c..9bd7300 100644
+--- a/doc/api/services.md
++++ b/doc/api/services.md
+@@ -1,4 +1,4 @@
+-# Services
++# サービス
+ 
+ ## Asana
+ 
 diff --git a/doc/api/system_hooks.md b/doc/api/system_hooks.md
 index f9637d8..fa39c32 100644
 --- a/doc/api/system_hooks.md
@@ -13503,7 +13513,7 @@ index f9637d8..fa39c32 100644
  All methods require admin authorization.
  
 diff --git a/doc/ci/README.md b/doc/ci/README.md
-index 5886829..443ed3d 100644
+index 5886829..99731f5 100644
 --- a/doc/ci/README.md
 +++ b/doc/ci/README.md
 @@ -1,16 +1,16 @@
@@ -13532,6 +13542,15 @@ index 5886829..443ed3d 100644
  * [Triggering builds through the API](triggers/README.md)
  * [Build artifacts](build_artifacts/README.md)
  
+@@ -18,7 +18,7 @@
+ 
+ * [Testing PHP](languages/php.md)
+ 
+-### Services
++### サービス
+ 
+ * [Using MySQL](services/mysql.md)
+ * [Using PostgreSQL](services/postgres.md)
 @@ -35,5 +35,5 @@
  
  ### Administrator documentation
@@ -13886,15 +13905,22 @@ index 5166812..da5add0 100644
  
  Bamboo is now ready to accept triggers from GitLab. Next, set up the Bamboo
 diff --git a/doc/project_services/project_services.md b/doc/project_services/project_services.md
-index e340312..8d555f6 100644
+index e340312..e48c914 100644
 --- a/doc/project_services/project_services.md
 +++ b/doc/project_services/project_services.md
-@@ -1,4 +1,4 @@
+@@ -1,10 +1,10 @@
 -# Project Services
 +# プロジェクトサービス
  
  Project services allow you to integrate GitLab with other applications. Below
  is list of the currently supported ones. Click on the service links to see
+ further configuration instructions and details. Contributions are welcome.
+ 
+-## Services
++## サービス
+ 
+ | Service |	Description |
+ | ------- | ----------- |
 diff --git a/doc/public_access/public_access.md b/doc/public_access/public_access.md
 index 6e22ea7..bb3534e 100644
 --- a/doc/public_access/public_access.md

@@ -13681,6 +13681,16 @@ index d4d63e8..cd33915 100644
  
  ### List all merge request notes
  
+diff --git a/doc/api/services.md b/doc/api/services.md
+index 7d45b2c..9bd7300 100644
+--- a/doc/api/services.md
++++ b/doc/api/services.md
+@@ -1,4 +1,4 @@
+-# Services
++# サービス
+ 
+ ## Asana
+ 
 diff --git a/doc/api/system_hooks.md b/doc/api/system_hooks.md
 index dc036d7..87b1720 100644
 --- a/doc/api/system_hooks.md
@@ -14113,15 +14123,22 @@ index 27170c1..52e9fbd 100644
  After saving the configuration, your GitLab project will be able to interact
  with the linked JIRA project.
 diff --git a/doc/project_services/project_services.md b/doc/project_services/project_services.md
-index 3fea2cf..be2c750 100644
+index 3fea2cf..d3b00ae 100644
 --- a/doc/project_services/project_services.md
 +++ b/doc/project_services/project_services.md
-@@ -1,4 +1,4 @@
+@@ -1,10 +1,10 @@
 -# Project Services
 +# プロジェクトサービス
  
  Project services allow you to integrate GitLab with other applications. Below
  is list of the currently supported ones. Click on the service links to see
+ further configuration instructions and details. Contributions are welcome.
+ 
+-## Services
++## サービス
+ 
+ | Service |	Description |
+ | ------- | ----------- |
 diff --git a/doc/public_access/public_access.md b/doc/public_access/public_access.md
 index 20aa90f..e505c5a 100644
 --- a/doc/public_access/public_access.md

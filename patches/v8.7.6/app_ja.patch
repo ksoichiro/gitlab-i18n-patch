@@ -13875,6 +13875,16 @@ index 7aa1c21..93ef237 100644
  
  ### List all merge request notes
  
+diff --git a/doc/api/services.md b/doc/api/services.md
+index 7d45b2c..9bd7300 100644
+--- a/doc/api/services.md
++++ b/doc/api/services.md
+@@ -1,4 +1,4 @@
+-# Services
++# サービス
+ 
+ ## Asana
+ 
 diff --git a/doc/api/system_hooks.md b/doc/api/system_hooks.md
 index dc036d7..87b1720 100644
 --- a/doc/api/system_hooks.md
@@ -14310,7 +14320,7 @@ index b626c74..8bed0e3 100644
  After saving the configuration, your GitLab project will be able to interact
  with the linked JIRA project.
 diff --git a/doc/project_services/project_services.md b/doc/project_services/project_services.md
-index a5af620..c2719af 100644
+index a5af620..cb22c6f 100644
 --- a/doc/project_services/project_services.md
 +++ b/doc/project_services/project_services.md
 @@ -1,11 +1,11 @@
@@ -14327,6 +14337,15 @@ index a5af620..c2719af 100644
  adding functionality to GitLab. For example there is also a service that can
  send an email every time someone pushes new commits.
  
+@@ -21,7 +21,7 @@ please see the [project_services directory][projects-code].
+ Click on the service links to see
+ further configuration instructions and details. Contributions are welcome.
+ 
+-## Services
++## サービス
+ 
+ | Service |	Description |
+ | ------- | ----------- |
 diff --git a/doc/public_access/public_access.md b/doc/public_access/public_access.md
 index 17bb75e..a7a508a 100644
 --- a/doc/public_access/public_access.md

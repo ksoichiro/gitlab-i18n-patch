@@ -1934,6 +1934,10 @@ translations:
     replace: '${inTheAdminAreaUnderSettingsAdminApplicationSettingsYouCanRestrictTheUseOfVisibilityLevelsForUsersWhenTheyCreateAProjectOrASnippetThisIsUsefulToPreventPeopleExposingTheirRepositoriesToPublicByAccidentTheRestrictedVisibilitySettingsDoNotApplyToAdminUsers}'
   - pattern: 'Project integrations with external services for continuous integration and more.'
     replace: '${projectIntegrationsWithExternalServicesForContinuousIntegrationAndMore}'
+  - pattern: 'Preferences'
+    replace: '${preference}'
+  - pattern: 'Two-factor Authentication'
+    replace: '${twoFactorAuthentication}'
 
   - name: headerOrComment
     params:
@@ -4175,8 +4179,8 @@ translations:
     #  key: mdTitleProductionBranchWithGitLabFlow
     #- title: 'Profile Preferences'
     #  key: mdTitleProfilePreferences
-    #- title: 'Profile Settings'
-    #  key: mdTitleProfileSettings
+    - title: 'Profile Settings'
+      key: mdTitleProfileSettings
     #- title: 'Profiling'
     #  key: mdTitleProfiling
     #- title: 'Project'

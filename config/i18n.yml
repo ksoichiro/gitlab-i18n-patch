@@ -1948,6 +1948,66 @@ translations:
     replace: '${onPublicProjectTheGuestRoleIsNotEnforcedAllUsersWillBeAbleToCreateIssuesLeaveCommentsAndPullOrDownloadTheProjectCode}'
   - pattern: !!js/regexp /To add or import a user, you can follow the \[project users and members\ndocumentation\]\(doc\/workflow\/add-user\/add-user\.md\)\./
     replace: '${toAddOrImportAUserYouCanFollowTheProjectUsersAndMembersDocumentation}'
+  - pattern: '| Action'
+    replace: '| ${action}'
+  - pattern: '| Create new issue'
+    replace: '| ${createNewIssue}'
+  - pattern: '| Leave comments'
+    replace: '| ${leaveComments}'
+  - pattern: '| Pull project code'
+    replace: '| ${pullProjectCode}'
+  - pattern: '| Download project'
+    replace: '| ${downlaodProject}'
+  - pattern: '| Create code snippets'
+    replace: '| ${createCodeSnippets}'
+  - pattern: '| Manage issue tracker'
+    replace: '| ${manageIssueTracker}'
+  - pattern: '| Manage labels'
+    replace: '| ${manageLabels}'
+  - pattern: '| Manage merge requests'
+    replace: '| ${manageMergeRequests}'
+  - pattern: '| Create new merge request'
+    replace: '| ${createNewMergeRequests}'
+  - pattern: '| Create new branches'
+    replace: '| ${createNewBranches}'
+  - pattern: '| Push to non-protected branches'
+    replace: '| ${pushToNonProtectedBranches}'
+  - pattern: '| Force push to non-protected branches'
+    replace: '| ${forcePushToNonProtectedBranches}'
+  - pattern: '| Remove non-protected branches'
+    replace: '| ${removeNonProtectedBranches}'
+  - pattern: '| Add tags'
+    replace: '| ${addTags}'
+  - pattern: '| Write a wiki'
+    replace: '| ${writeAWiki}'
+  - pattern: '| Create new milestones'
+    replace: '| ${createNewMilestones}'
+  - pattern: '| Add new team members'
+    replace: '| ${addNewTeamMembers}'
+  - pattern: '| Push to protected branches'
+    replace: '| ${pushToProtectedBranches}'
+  - pattern: '| Enable/disable branch protection'
+    replace: '| ${enableDisableBranchProtection}'
+  - pattern: '| Turn on/off prot. branch push for devs'
+    replace: '| ${turnOnOffProtBranchPushForDevs}'
+  - pattern: '| Rewrite/remove git tags'
+    replace: '| ${rewriteRemoveGitTags}'
+  - pattern: '| Edit project'
+    replace: '| ${editProject}'
+  - pattern: '| Add deploy keys to project'
+    replace: '| ${addDeployKeysToProject}'
+  - pattern: '| Configure project hooks'
+    replace: '| ${configureProjectHooks}'
+  - pattern: '| Switch visibility level'
+    replace: '| ${switchVisibilityLevel}'
+  - pattern: '| Transfer project to another namespace'
+    replace: '| ${transferProjectToAnotherNamespace}'
+  - pattern: '| Remove project'
+    replace: '| ${removeProject}'
+  - pattern: '| Force push to protected branches'
+    replace: '| ${forcePushToProtectedBranches}'
+  - pattern: '| Remove protected branches'
+    replace: '| ${removeProtectedBranches}'
 
   - name: headerOrComment
     params:
@@ -2715,10 +2775,10 @@ translations:
     #  key: mdTitleCreateASeparateDatabaseDumpWithPostgreSQLCompatibility
     #- title: 'Create new file in repository'
     #  key: mdTitleCreateNewFileInRepository
-    #- title: 'Create new issue note'
-    #  key: mdTitleCreateNewIssueNote
-    #- title: 'Create new merge request note'
-    #  key: mdTitleCreateNewMergeRequestNote
+    - title: 'Create new issue note'
+      key: mdTitleCreateNewIssueNote
+    - title: 'Create new merge request note'
+      key: mdTitleCreateNewMergeRequestNote
     #- title: 'Create new milestone'
     #  key: mdTitleCreateNewMilestone
     #- title: 'Create new snippet'
@@ -3011,10 +3071,10 @@ translations:
     #  key: mdTitleEditMilestone
     #- title: 'Edit project'
     #  key: mdTitleEditProject
-    #- title: 'Edit project hook'
-    #  key: mdTitleEditProjectHook
-    #- title: 'Edit project team member'
-    #  key: mdTitleEditProjectTeamMember
+    - title: 'Edit project hook'
+      key: mdTitleEditProjectHook
+    - title: 'Edit project team member'
+      key: mdTitleEditProjectTeamMember
     #- title: 'Editable labels'
     #  key: mdTitleEditableLabels
     #- title: 'Editions'
@@ -4323,8 +4383,8 @@ translations:
     #  key: mdTitleRemoveGroup
     #- title: 'Remove project'
     #  key: mdTitleRemoveProject
-    #- title: 'Remove project team member'
-    #  key: mdTitleRemoveProjectTeamMember
+    - title: 'Remove project team member'
+      key: mdTitleRemoveProjectTeamMember
     #- title: 'Remove the artifacts file from build'
     #  key: mdTitleRemoveTheArtifactsFileFromBuild
     #- title: 'Remove user team member'

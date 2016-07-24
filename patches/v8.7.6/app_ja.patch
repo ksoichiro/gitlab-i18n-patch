@@ -13845,7 +13845,7 @@ index e420202..3317c74 100644
  ## List project milestones
  
 diff --git a/doc/api/notes.md b/doc/api/notes.md
-index 7aa1c21..93ef237 100644
+index 7aa1c21..c0bd9d7 100644
 --- a/doc/api/notes.md
 +++ b/doc/api/notes.md
 @@ -2,7 +2,7 @@
@@ -13856,6 +13856,15 @@ index 7aa1c21..93ef237 100644
 +## 課題
  
  ### List project issue notes
+ 
+@@ -76,7 +76,7 @@ Parameters:
+ - `issue_id` (required) - The ID of a project issue
+ - `note_id` (required) - The ID of an issue note
+ 
+-### Create new issue note
++### 課題に新しいコメントを作成する
+ 
+ Creates a new note to a single project issue.
  
 @@ -153,7 +153,7 @@ Example Response:
  }
@@ -13874,6 +13883,46 @@ index 7aa1c21..93ef237 100644
 +## マージリクエスト
  
  ### List all merge request notes
+ 
+@@ -329,7 +329,7 @@ Parameters:
+ }
+ ```
+ 
+-### Create new merge request note
++### マージリクエストコメントに新しいコメントを作成する
+ 
+ Creates a new note for a single merge request.
+ 
+diff --git a/doc/api/projects.md b/doc/api/projects.md
+index de1faad..2de801c 100644
+--- a/doc/api/projects.md
++++ b/doc/api/projects.md
+@@ -879,7 +879,7 @@ Parameters:
+ - `user_id` (required) - The ID of a user to add
+ - `access_level` (required) - Project access level
+ 
+-### Edit project team member
++### プロジェクトのメンバーを編集する
+ 
+ Updates a project team member to a specified access level.
+ 
+@@ -893,7 +893,7 @@ Parameters:
+ - `user_id` (required) - The ID of a team member
+ - `access_level` (required) - Project access level
+ 
+-### Remove project team member
++### プロジェクトのメンバーを削除する
+ 
+ Removes a user from a project team.
+ 
+@@ -990,7 +990,7 @@ Parameters:
+ - `note_events` - Trigger hook on note events
+ - `enable_ssl_verification` - Do SSL verification when triggering the hook
+ 
+-### Edit project hook
++### プロジェクトフックを編集する
+ 
+ Edits a hook for a specified project.
  
 diff --git a/doc/api/services.md b/doc/api/services.md
 index 7d45b2c..9bd7300 100644
@@ -13960,7 +14009,7 @@ index c10f820..6c80057 100644
  
  ![Features settings](img/features_settings.png)
 diff --git a/doc/ci/permissions/README.md b/doc/ci/permissions/README.md
-index d77061c..f065237 100644
+index d77061c..fbe70d1 100644
 --- a/doc/ci/permissions/README.md
 +++ b/doc/ci/permissions/README.md
 @@ -1,4 +1,4 @@
@@ -13969,6 +14018,20 @@ index d77061c..f065237 100644
  
  GitLab CI relies on user's role on the GitLab. There are three permissions levels on GitLab CI: admin, master, developer, other.
  
+@@ -7,11 +7,11 @@ Admin user can perform any actions on GitLab CI in scope of instance and project
+ 
+ 
+ 
+-| Action                                | Guest, Reporter | Developer   | Master   | Admin  |
++| アクション                                | Guest, Reporter | Developer   | Master   | Admin  |
+ |---------------------------------------|-----------------|-------------|----------|--------|
+ | See commits and builds                | ✓               | ✓           | ✓        | ✓      |
+ | Retry or cancel build                 |                 | ✓           | ✓        | ✓      |
+-| Remove project                        |                 |             | ✓        | ✓      |
++| プロジェクトを削除する                        |                 |             | ✓        | ✓      |
+ | Create project                        |                 |             | ✓        | ✓      |
+ | Change project configuration          |                 |             | ✓        | ✓      |
+ | Add specific runners                  |                 |             | ✓        | ✓      |
 diff --git a/doc/ci/quick_start/README.md b/doc/ci/quick_start/README.md
 index 6a42a93..d07420a 100644
 --- a/doc/ci/quick_start/README.md
@@ -14225,7 +14288,7 @@ index 90e9930..3377848 100644
  
  # For installations from source
 diff --git a/doc/permissions/permissions.md b/doc/permissions/permissions.md
-index 6219693..930c23e 100644
+index 6219693..521b9a7 100644
 --- a/doc/permissions/permissions.md
 +++ b/doc/permissions/permissions.md
 @@ -1,10 +1,10 @@
@@ -14243,6 +14306,92 @@ index 6219693..930c23e 100644
  
  On public and internal projects the Guest role is not enforced.
  All users will be able to create issues, leave comments, and pull or download the project code.
+@@ -14,46 +14,46 @@ documentation](../workflow/add-user/add-user.md).
+ 
+ ## Project
+ 
+-| Action                                | Guest   | Reporter   | Developer   | Master   | Owner  |
++| アクション                                | Guest   | Reporter   | Developer   | Master   | Owner  |
+ |---------------------------------------|---------|------------|-------------|----------|--------|
+-| Create new issue                      | ✓       | ✓          | ✓           | ✓        | ✓      |
+-| Leave comments                        | ✓       | ✓          | ✓           | ✓        | ✓      |
++| 新しい課題を作成する                      | ✓       | ✓          | ✓           | ✓        | ✓      |
++| コメントを作成する                        | ✓       | ✓          | ✓           | ✓        | ✓      |
+ | See a list of builds                  | ✓ [^1]  | ✓          | ✓           | ✓        | ✓      |
+ | See a build log                       | ✓ [^1]  | ✓          | ✓           | ✓        | ✓      |
+ | Download and browse build artifacts   | ✓ [^1]  | ✓          | ✓           | ✓        | ✓      |
+-| Pull project code                     |         | ✓          | ✓           | ✓        | ✓      |
+-| Download project                      |         | ✓          | ✓           | ✓        | ✓      |
+-| Create code snippets                  |         | ✓          | ✓           | ✓        | ✓      |
+-| Manage issue tracker                  |         | ✓          | ✓           | ✓        | ✓      |
+-| Manage labels                         |         | ✓          | ✓           | ✓        | ✓      |
++| プロジェクトのコードをプルする                     |         | ✓          | ✓           | ✓        | ✓      |
++| プロジェクトをダウンロードする                      |         | ✓          | ✓           | ✓        | ✓      |
++| コードスニペットを作成する                  |         | ✓          | ✓           | ✓        | ✓      |
++| 課題トラッカーを管理する                  |         | ✓          | ✓           | ✓        | ✓      |
++| ラベルを管理する                         |         | ✓          | ✓           | ✓        | ✓      |
+ | See a commit status                   |         | ✓          | ✓           | ✓        | ✓      |
+-| Manage merge requests                 |         |            | ✓           | ✓        | ✓      |
+-| Create new merge request              |         |            | ✓           | ✓        | ✓      |
+-| Create new branches                   |         |            | ✓           | ✓        | ✓      |
+-| Push to non-protected branches        |         |            | ✓           | ✓        | ✓      |
+-| Force push to non-protected branches  |         |            | ✓           | ✓        | ✓      |
+-| Remove non-protected branches         |         |            | ✓           | ✓        | ✓      |
+-| Add tags                              |         |            | ✓           | ✓        | ✓      |
+-| Write a wiki                          |         |            | ✓           | ✓        | ✓      |
++| マージリクエストを管理する                 |         |            | ✓           | ✓        | ✓      |
++| マージリクエストを作成する              |         |            | ✓           | ✓        | ✓      |
++| ブランチを作成する                   |         |            | ✓           | ✓        | ✓      |
++| 保護されていないブランチにプッシュする        |         |            | ✓           | ✓        | ✓      |
++| 保護されていないブランチに強制プッシュする  |         |            | ✓           | ✓        | ✓      |
++| 保護されていないブランチを削除する         |         |            | ✓           | ✓        | ✓      |
++| タグを追加する                              |         |            | ✓           | ✓        | ✓      |
++| Wikiを書く                          |         |            | ✓           | ✓        | ✓      |
+ | Cancel and retry builds               |         |            | ✓           | ✓        | ✓      |
+ | Create or update commit status        |         |            | ✓           | ✓        | ✓      |
+-| Create new milestones                 |         |            |             | ✓        | ✓      |
+-| Add new team members                  |         |            |             | ✓        | ✓      |
+-| Push to protected branches            |         |            |             | ✓        | ✓      |
+-| Enable/disable branch protection      |         |            |             | ✓        | ✓      |
+-| Turn on/off prot. branch push for devs|         |            |             | ✓        | ✓      |
+-| Rewrite/remove git tags               |         |            |             | ✓        | ✓      |
+-| Edit project                          |         |            |             | ✓        | ✓      |
+-| Add deploy keys to project            |         |            |             | ✓        | ✓      |
+-| Configure project hooks               |         |            |             | ✓        | ✓      |
++| マイルストーンを作成する                 |         |            |             | ✓        | ✓      |
++| メンバーを追加する                  |         |            |             | ✓        | ✓      |
++| 保護されたブランチにプッシュする            |         |            |             | ✓        | ✓      |
++| 保護ブランチへのプッシュを有効/無効にする      |         |            |             | ✓        | ✓      |
++| 保護ブランチへの開発者によるプッシュを有効/無効にする|         |            |             | ✓        | ✓      |
++| Gitタグを更新/削除する               |         |            |             | ✓        | ✓      |
++| プロジェクトを編集する                          |         |            |             | ✓        | ✓      |
++| デプロイキーをプロジェクトに追加する            |         |            |             | ✓        | ✓      |
++| プロジェクトフックを設定する               |         |            |             | ✓        | ✓      |
+ | Manage runners                        |         |            |             | ✓        | ✓      |
+ | Manage build triggers                 |         |            |             | ✓        | ✓      |
+ | Manage variables                      |         |            |             | ✓        | ✓      |
+-| Switch visibility level               |         |            |             |          | ✓      |
+-| Transfer project to another namespace |         |            |             |          | ✓      |
+-| Remove project                        |         |            |             |          | ✓      |
+-| Force push to protected branches [^2] |         |            |             |          |        |
+-| Remove protected branches [^2]        |         |            |             |          |        |
++| 可視性レベルを変更する               |         |            |             |          | ✓      |
++| プロジェクトを移譲する |         |            |             |          | ✓      |
++| プロジェクトを削除する                        |         |            |             |          | ✓      |
++| 保護されているブランチに強制プッシュする [^2] |         |            |             |          |        |
++| 保護されているブランチを削除する [^2]        |         |            |             |          |        |
+ 
+ [^1]: If **Allow guest to access builds** is enabled in CI settings
+ [^2]: Not allowed for Guest, Reporter, Developer, Master, or Owner
+@@ -65,7 +65,7 @@ least one public project.
+ 
+ Any user can remove themselves from a group, unless they are the last Owner of the group.
+ 
+-| Action                  | Guest | Reporter | Developer | Master | Owner |
++| アクション                  | Guest | Reporter | Developer | Master | Owner |
+ |-------------------------|-------|----------|-----------|--------|-------|
+ | Browse group            | ✓     | ✓        | ✓         | ✓      | ✓     |
+ | Edit group              |       |          |           |        | ✓     |
 diff --git a/doc/profile/README.md b/doc/profile/README.md
 index 6f8359d..725c384 100644
 --- a/doc/profile/README.md
@@ -15987,6 +16136,19 @@ index 4c59f59..1b61ae3 100644
  
  Now you can add the 'Engineering' group with the maximum access level of your choice.
  After sharing 'Project Acme' with 'Engineering', the project is listed on the group dashboard.
+diff --git a/doc/workflow/todos.md b/doc/workflow/todos.md
+index 5f440fd..97a0399 100644
+--- a/doc/workflow/todos.md
++++ b/doc/workflow/todos.md
+@@ -66,7 +66,7 @@ dashboard:
+ | Project | Filter by project |
+ | Author  | Filter by the author that triggered the Todo |
+ | Type    | Filter by issue or merge request |
+-| Action  | Filter by the action that triggered the Todo (Assigned or Mentioned)|
++| アクション  | Filter by the action that triggered the Todo (Assigned or Mentioned)|
+ 
+ You can choose more than one filters at the same time.
+ 
 diff --git a/doc/workflow/web_editor.md b/doc/workflow/web_editor.md
 index 1832567..e47a9e0 100644
 --- a/doc/workflow/web_editor.md

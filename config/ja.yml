@@ -1059,8 +1059,8 @@ mdTitleCreateABackupOfTheGitLabSystem: GitLabシステムのバックアップ�
 #mdTitleCreateAProjectTrigger: 
 #mdTitleCreateASeparateDatabaseDumpWithPostgreSQLCompatibility: 
 #mdTitleCreateNewFileInRepository: 
-#mdTitleCreateNewIssueNote: 
-#mdTitleCreateNewMergeRequestNote: 
+mdTitleCreateNewIssueNote: 課題に新しいコメントを作成する
+mdTitleCreateNewMergeRequestNote: マージリクエストコメントに新しいコメントを作成する
 #mdTitleCreateNewMilestone: 
 #mdTitleCreateNewSnippet: 
 #mdTitleCreateNewSnippetNote: 
@@ -1206,8 +1206,8 @@ mdTitleDocumentation: ドキュメント
 #mdTitleEditIssue: 
 #mdTitleEditMilestone: 
 #mdTitleEditProject: 
-#mdTitleEditProjectHook: 
-#mdTitleEditProjectTeamMember: 
+mdTitleEditProjectHook: プロジェクトフックを編集する
+mdTitleEditProjectTeamMember: プロジェクトのメンバーを編集する
 #mdTitleEditableLabels: 
 #mdTitleEditions: 
 #mdTitleEmailSubAddressing: 
@@ -1860,7 +1860,7 @@ mdTitleProjectFeatures: プロジェクトの機能
 #mdTitleRemoveGarbageFromFilesystemImportantDataLoss: 
 #mdTitleRemoveGroup: 
 #mdTitleRemoveProject: 
-#mdTitleRemoveProjectTeamMember: 
+mdTitleRemoveProjectTeamMember: プロジェクトのメンバーを削除する
 #mdTitleRemoveTheArtifactsFileFromBuild: 
 #mdTitleRemoveUserTeamMember: 
 #mdTitleRemoveVariable: 
@@ -2706,3 +2706,33 @@ ifAUserIsBothInAProjectGroupAndInTheProjectItselfTheHighestPermissionLevelIsUsed
 ifAUserIsAGitLabAdministratorTheyReceiveAllPermissions: ユーザがGitLabの管理者である場合は、すべてのアクセス権が与えられます。
 onPublicProjectTheGuestRoleIsNotEnforcedAllUsersWillBeAbleToCreateIssuesLeaveCommentsAndPullOrDownloadTheProjectCode: 公開プロジェクトではゲストロールは利用されません。すべてのユーザは課題を作成し、コメントを残し、プロジェクトコードをプルまたはダウンロードすることができます。
 toAddOrImportAUserYouCanFollowTheProjectUsersAndMembersDocumentation: "ユーザを追加またはインポートする場合は、[プロジェクトユーザとメンバーの追加のドキュメント](doc/workflow/add-user/add-user.md)を参照してください。"
+action: アクション
+createNewIssue: 新しい課題を作成する
+leaveComments: コメントを作成する
+pullProjectCode: プロジェクトのコードをプルする
+downlaodProject: プロジェクトをダウンロードする
+createCodeSnippets: コードスニペットを作成する
+manageIssueTracker: 課題トラッカーを管理する
+manageLabels: ラベルを管理する
+manageMergeRequests: マージリクエストを管理する
+createNewMergeRequests: マージリクエストを作成する
+createNewBranches: ブランチを作成する
+pushToNonProtectedBranches: 保護されていないブランチにプッシュする
+forcePushToNonProtectedBranches: 保護されていないブランチに強制プッシュする
+removeNonProtectedBranches: 保護されていないブランチを削除する
+addTags: タグを追加する
+writeAWiki: Wikiを書く
+createNewMilestones: マイルストーンを作成する
+addNewTeamMembers: メンバーを追加する
+pushToProtectedBranches: 保護されたブランチにプッシュする
+enableDisableBranchProtection: 保護ブランチへのプッシュを有効/無効にする
+turnOnOffProtBranchPushForDevs: 保護ブランチへの開発者によるプッシュを有効/無効にする
+rewriteRemoveGitTags: Gitタグを更新/削除する
+editProject: プロジェクトを編集する
+addDeployKeysToProject: デプロイキーをプロジェクトに追加する
+configureProjectHooks: プロジェクトフックを設定する
+switchVisibilityLevel: 可視性レベルを変更する
+transferProjectToAnotherNamespace: プロジェクトを移譲する
+removeProject: プロジェクトを削除する
+forcePushToProtectedBranches: 保護されているブランチに強制プッシュする
+removeProtectedBranches: 保護されているブランチを削除する

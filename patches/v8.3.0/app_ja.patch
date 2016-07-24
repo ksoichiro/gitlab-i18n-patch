@@ -13585,14 +13585,31 @@ index 192c321..2d25661 100644
 \ No newline at end of file
 +![admin_application](oauth_provider/admin_application.png)
 diff --git a/doc/permissions/permissions.md b/doc/permissions/permissions.md
-index bcd00cf..b7670f9 100644
+index bcd00cf..1fe1ab0 100644
 --- a/doc/permissions/permissions.md
 +++ b/doc/permissions/permissions.md
-@@ -1,4 +1,4 @@
+@@ -1,16 +1,14 @@
 -# Permissions
 +# アクセス権
  
- Users have different abilities depending on the access level they have in a particular group or project.
+-Users have different abilities depending on the access level they have in a particular group or project.
++それぞれのグループやプロジェクトでユーザが与えられているアクセス権レベルによって、できることは異なります。
+ 
+-If a user is both in a project group and in the project itself, the highest permission level is used.
++ユーザがグループとプロジェクトの両方に属する場合はもっとも強力なアクセス権レベルが適用されます。
+ 
+-If a user is a GitLab administrator they receive all permissions.
++ユーザがGitLabの管理者である場合は、すべてのアクセス権が与えられます。
+ 
+-On public projects the Guest role is not enforced.  
+-All users will be able to create issues, leave comments, and pull or download the project code.  
++公開プロジェクトではゲストロールは利用されません。すべてのユーザは課題を作成し、コメントを残し、プロジェクトコードをプルまたはダウンロードすることができます。  
+ 
+-To add or import a user, you can follow the [project users and members
+-documentation](doc/workflow/add-user/add-user.md).
++ユーザを追加またはインポートする場合は、[プロジェクトユーザとメンバーの追加のドキュメント](doc/workflow/add-user/add-user.md)を参照してください。
+ 
+ ## Project
  
 diff --git a/doc/profile/README.md b/doc/profile/README.md
 index 6f8359d..725c384 100644

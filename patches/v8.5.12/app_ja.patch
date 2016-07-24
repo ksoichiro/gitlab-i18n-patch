@@ -14002,15 +14002,24 @@ index b856e79..91a3683 100644
  
  # For installations from source
 diff --git a/doc/permissions/permissions.md b/doc/permissions/permissions.md
-index 168e7d1..9d55809 100644
+index 168e7d1..f0f214c 100644
 --- a/doc/permissions/permissions.md
 +++ b/doc/permissions/permissions.md
-@@ -1,4 +1,4 @@
+@@ -1,10 +1,10 @@
 -# Permissions
 +# アクセス権
  
- Users have different abilities depending on the access level they have in a particular group or project.
+-Users have different abilities depending on the access level they have in a particular group or project.
++それぞれのグループやプロジェクトでユーザが与えられているアクセス権レベルによって、できることは異なります。
  
+-If a user is both in a project group and in the project itself, the highest permission level is used.
++ユーザがグループとプロジェクトの両方に属する場合はもっとも強力なアクセス権レベルが適用されます。
+ 
+-If a user is a GitLab administrator they receive all permissions.
++ユーザがGitLabの管理者である場合は、すべてのアクセス権が与えられます。
+ 
+ On public projects the Guest role is not enforced.
+ All users will be able to create issues, leave comments, and pull or download the project code.
 diff --git a/doc/profile/README.md b/doc/profile/README.md
 index 6f8359d..725c384 100644
 --- a/doc/profile/README.md

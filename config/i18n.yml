@@ -1938,6 +1938,16 @@ translations:
     replace: '${preference}'
   - pattern: 'Two-factor Authentication'
     replace: '${twoFactorAuthentication}'
+  - pattern: 'Users have different abilities depending on the access level they have in a particular group or project.'
+    replace: '${usersHaveDifferentAbilitiesDependingOnTheAccessLevelTheyHaveInAParticularGroupOrProject}'
+  - pattern: 'If a user is both in a project group and in the project itself, the highest permission level is used.'
+    replace: '${ifAUserIsBothInAProjectGroupAndInTheProjectItselfTheHighestPermissionLevelIsUsed}'
+  - pattern: 'If a user is a GitLab administrator they receive all permissions.'
+    replace: '${ifAUserIsAGitLabAdministratorTheyReceiveAllPermissions}'
+  - pattern: !!js/regexp /On public projects the Guest role is not enforced.  \nAll users will be able to create issues, leave comments, and pull or download the project code./
+    replace: '${onPublicProjectTheGuestRoleIsNotEnforcedAllUsersWillBeAbleToCreateIssuesLeaveCommentsAndPullOrDownloadTheProjectCode}'
+  - pattern: !!js/regexp /To add or import a user, you can follow the \[project users and members\ndocumentation\]\(doc\/workflow\/add-user\/add-user\.md\)\./
+    replace: '${toAddOrImportAUserYouCanFollowTheProjectUsersAndMembersDocumentation}'
 
   - name: headerOrComment
     params:
@@ -4123,8 +4133,8 @@ translations:
     #  key: mdTitlePeriodicChecks
     #- title: 'Permission denied when accessing /var/opt/gitlab/gitlab-ci/builds'
     #  key: mdTitlePermissionDeniedWhenAccessing/Var/Opt/Gitlab/GitlabCi/Builds
-    #- title: 'Permissions'
-    #  key: mdTitlePermissions
+    - title: 'Permissions'
+      key: mdTitlePermissions
     #- title: 'Persist the directory which contains the socket, if applicable'
     #  key: mdTitlePersistTheDirectoryWhichContainsTheSocketIfApplicable
     #- title: 'Physical office analogy'

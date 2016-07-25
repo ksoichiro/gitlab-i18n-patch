@@ -13648,10 +13648,10 @@ index 192c321..2d25661 100644
 \ No newline at end of file
 +![admin_application](oauth_provider/admin_application.png)
 diff --git a/doc/permissions/permissions.md b/doc/permissions/permissions.md
-index bcd00cf..68d268b 100644
+index bcd00cf..2b2e43f 100644
 --- a/doc/permissions/permissions.md
 +++ b/doc/permissions/permissions.md
-@@ -1,50 +1,48 @@
+@@ -1,62 +1,59 @@
 -# Permissions
 +# アクセス権
  
@@ -13706,6 +13706,15 @@ index bcd00cf..68d268b 100644
 -| Remove project                        |         |            |             |          | ✓      |
 -| Force push to protected branches      |         |            |             |          |        |
 -| Remove protected branches             |         |            |             |          |        |
+-
+-## Group
+-
+-In order for a group to appear as public and be browsable, it must contain at
+-least one public project.
+-
+-Any user can remove themselves from a group, unless they are the last Owner of the group.
+-
+-| Action                  | Guest | Reporter | Developer | Master | Owner |
 +| 新しい課題を作成する                      | ✓       | ✓          | ✓           | ✓        | ✓      |
 +| コメントを作成する                        | ✓       | ✓          | ✓           | ✓        | ✓      |
 +| プロジェクトのコードをプルする                     |         | ✓          | ✓           | ✓        | ✓      |
@@ -13735,18 +13744,25 @@ index bcd00cf..68d268b 100644
 +| プロジェクトを削除する                        |         |            |             |          | ✓      |
 +| 保護されているブランチに強制プッシュする      |         |            |             |          |        |
 +| 保護されているブランチを削除する             |         |            |             |          |        |
- 
- ## Group
- 
-@@ -53,7 +51,7 @@ least one public project.
- 
- Any user can remove themselves from a group, unless they are the last Owner of the group.
- 
--| Action                  | Guest | Reporter | Developer | Master | Owner |
++
++## グループ
++
++グループを公開して閲覧できるようにするには、グループは少なくとも一つの公開プロジェクトを含んでいなければなりません。
++
++ユーザが唯一のグループのOwnerでない限り、すべてのユーザは自分自身をグループから削除することができます。
++
 +| アクション                  | Guest | Reporter | Developer | Master | Owner |
  |-------------------------|-------|----------|-----------|--------|-------|
- | Browse group            | ✓     | ✓        | ✓         | ✓      | ✓     |
- | Edit group              |       |          |           |        | ✓     |
+-| Browse group            | ✓     | ✓        | ✓         | ✓      | ✓     |
+-| Edit group              |       |          |           |        | ✓     |
+-| Create project in group |       |          |           | ✓      | ✓     |
+-| Manage group members    |       |          |           |        | ✓     |
+-| Remove group            |       |          |           |        | ✓     |
++| グループを閲覧する            | ✓     | ✓        | ✓         | ✓      | ✓     |
++| グループを編集する              |       |          |           |        | ✓     |
++| グループ内にプロジェクトを作成する |       |          |           | ✓      | ✓     |
++| メンバーを管理する    |       |          |           |        | ✓     |
++| グループを削除する            |       |          |           |        | ✓     |
 diff --git a/doc/profile/README.md b/doc/profile/README.md
 index 6f8359d..725c384 100644
 --- a/doc/profile/README.md

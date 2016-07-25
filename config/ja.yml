@@ -1410,7 +1410,7 @@ mdTitleGatherInformationAboutGitLabAndTheSystemItRunsOn: GitLabやシステム�
 #mdTitleGrafanaConfiguration: 
 #mdTitleGrantPermissionToTheSocketToAllMembersOfTheRedisGroup: 
 #mdTitleGrantTheGitUserNecessaryPermissionsOnTheDatabase: 
-#mdTitleGroup: 
+mdTitleGroup: グループ
 #mdTitleGroupSettings: 
 #mdTitleGroupMembers: 
 #mdTitleGroups: 
@@ -2736,3 +2736,10 @@ transferProjectToAnotherNamespace: プロジェクトを移譲する
 removeProject: プロジェクトを削除する
 forcePushToProtectedBranches: 保護されているブランチに強制プッシュする
 removeProtectedBranches: 保護されているブランチを削除する
+inOrderForAGroupToAppearAsPublicAndBeBrowsableItMustContainAtLeastOnePublicProject: グループを公開して閲覧できるようにするには、グループは少なくとも一つの公開プロジェクトを含んでいなければなりません。
+anyUserCanRemoveThemselvesFromAGroupUnlessTheyAreTheLastOwnerOfTheGroup: ユーザが唯一のグループのOwnerでない限り、すべてのユーザは自分自身をグループから削除することができます。
+browseGroup: グループを閲覧する
+editGroup: グループを編集する
+createProjectInGroup: グループ内にプロジェクトを作成する
+manageGroupMembers: メンバーを管理する
+removeGroup: グループを削除する

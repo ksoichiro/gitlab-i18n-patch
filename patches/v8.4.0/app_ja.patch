@@ -13895,7 +13895,7 @@ index b856e79..91a3683 100644
  
  # For installations from source
 diff --git a/doc/permissions/permissions.md b/doc/permissions/permissions.md
-index 1be78ac..f0070b0 100644
+index 1be78ac..fa38ade 100644
 --- a/doc/permissions/permissions.md
 +++ b/doc/permissions/permissions.md
 @@ -1,10 +1,10 @@
@@ -13913,7 +13913,7 @@ index 1be78ac..f0070b0 100644
  
  On public projects the Guest role is not enforced.
  All users will be able to create issues, leave comments, and pull or download the project code.
-@@ -14,37 +14,37 @@ documentation](../workflow/add-user/add-user.md).
+@@ -14,49 +14,48 @@ documentation](../workflow/add-user/add-user.md).
  
  ## Project
  
@@ -13949,6 +13949,15 @@ index 1be78ac..f0070b0 100644
 -| Remove project                        |         |            |             |          | ✓      |
 -| Force push to protected branches      |         |            |             |          |        |
 -| Remove protected branches             |         |            |             |          |        |
+-
+-## Group
+-
+-In order for a group to appear as public and be browsable, it must contain at
+-least one public project.
+-
+-Any user can remove themselves from a group, unless they are the last Owner of the group.
+-
+-| Action                  | Guest | Reporter | Developer | Master | Owner |
 +| 新しい課題を作成する                      | ✓       | ✓          | ✓           | ✓        | ✓      |
 +| コメントを作成する                        | ✓       | ✓          | ✓           | ✓        | ✓      |
 +| プロジェクトのコードをプルする                     |         | ✓          | ✓           | ✓        | ✓      |
@@ -13978,18 +13987,25 @@ index 1be78ac..f0070b0 100644
 +| プロジェクトを削除する                        |         |            |             |          | ✓      |
 +| 保護されているブランチに強制プッシュする      |         |            |             |          |        |
 +| 保護されているブランチを削除する             |         |            |             |          |        |
- 
- ## Group
- 
-@@ -53,7 +53,7 @@ least one public project.
- 
- Any user can remove themselves from a group, unless they are the last Owner of the group.
- 
--| Action                  | Guest | Reporter | Developer | Master | Owner |
++
++## グループ
++
++グループを公開して閲覧できるようにするには、グループは少なくとも一つの公開プロジェクトを含んでいなければなりません。
++
++ユーザが唯一のグループのOwnerでない限り、すべてのユーザは自分自身をグループから削除することができます。
++
 +| アクション                  | Guest | Reporter | Developer | Master | Owner |
  |-------------------------|-------|----------|-----------|--------|-------|
- | Browse group            | ✓     | ✓        | ✓         | ✓      | ✓     |
- | Edit group              |       |          |           |        | ✓     |
+-| Browse group            | ✓     | ✓        | ✓         | ✓      | ✓     |
+-| Edit group              |       |          |           |        | ✓     |
+-| Create project in group |       |          |           | ✓      | ✓     |
+-| Manage group members    |       |          |           |        | ✓     |
+-| Remove group            |       |          |           |        | ✓     |
++| グループを閲覧する            | ✓     | ✓        | ✓         | ✓      | ✓     |
++| グループを編集する              |       |          |           |        | ✓     |
++| グループ内にプロジェクトを作成する |       |          |           | ✓      | ✓     |
++| メンバーを管理する    |       |          |           |        | ✓     |
++| グループを削除する            |       |          |           |        | ✓     |
 diff --git a/doc/profile/README.md b/doc/profile/README.md
 index 6f8359d..725c384 100644
 --- a/doc/profile/README.md

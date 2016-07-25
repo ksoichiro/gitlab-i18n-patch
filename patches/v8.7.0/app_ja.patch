@@ -14273,7 +14273,7 @@ index 90e9930..3377848 100644
  
  # For installations from source
 diff --git a/doc/permissions/permissions.md b/doc/permissions/permissions.md
-index 6219693..521b9a7 100644
+index 6219693..ba73f56 100644
 --- a/doc/permissions/permissions.md
 +++ b/doc/permissions/permissions.md
 @@ -1,10 +1,10 @@
@@ -14291,7 +14291,7 @@ index 6219693..521b9a7 100644
  
  On public and internal projects the Guest role is not enforced.
  All users will be able to create issues, leave comments, and pull or download the project code.
-@@ -14,46 +14,46 @@ documentation](../workflow/add-user/add-user.md).
+@@ -14,64 +14,63 @@ documentation](../workflow/add-user/add-user.md).
  
  ## Project
  
@@ -14368,15 +14368,33 @@ index 6219693..521b9a7 100644
  
  [^1]: If **Allow guest to access builds** is enabled in CI settings
  [^2]: Not allowed for Guest, Reporter, Developer, Master, or Owner
-@@ -65,7 +65,7 @@ least one public project.
  
- Any user can remove themselves from a group, unless they are the last Owner of the group.
+-## Group
++## グループ
+ 
+-In order for a group to appear as public and be browsable, it must contain at
+-least one public project.
++グループを公開して閲覧できるようにするには、グループは少なくとも一つの公開プロジェクトを含んでいなければなりません。
+ 
+-Any user can remove themselves from a group, unless they are the last Owner of the group.
++ユーザが唯一のグループのOwnerでない限り、すべてのユーザは自分自身をグループから削除することができます。
  
 -| Action                  | Guest | Reporter | Developer | Master | Owner |
 +| アクション                  | Guest | Reporter | Developer | Master | Owner |
  |-------------------------|-------|----------|-----------|--------|-------|
- | Browse group            | ✓     | ✓        | ✓         | ✓      | ✓     |
- | Edit group              |       |          |           |        | ✓     |
+-| Browse group            | ✓     | ✓        | ✓         | ✓      | ✓     |
+-| Edit group              |       |          |           |        | ✓     |
+-| Create project in group |       |          |           | ✓      | ✓     |
+-| Manage group members    |       |          |           |        | ✓     |
+-| Remove group            |       |          |           |        | ✓     |
++| グループを閲覧する            | ✓     | ✓        | ✓         | ✓      | ✓     |
++| グループを編集する              |       |          |           |        | ✓     |
++| グループ内にプロジェクトを作成する |       |          |           | ✓      | ✓     |
++| メンバーを管理する    |       |          |           |        | ✓     |
++| グループを削除する            |       |          |           |        | ✓     |
+ 
+ ## External Users
+ 
 diff --git a/doc/profile/README.md b/doc/profile/README.md
 index 6f8359d..725c384 100644
 --- a/doc/profile/README.md

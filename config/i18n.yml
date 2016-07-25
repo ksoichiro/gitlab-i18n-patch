@@ -2008,6 +2008,20 @@ translations:
     replace: '| ${forcePushToProtectedBranches}'
   - pattern: '| Remove protected branches'
     replace: '| ${removeProtectedBranches}'
+  - pattern: !!js/regexp /In order for a group to appear as public and be browsable, it must contain at\nleast one public project\./
+    replace: '${inOrderForAGroupToAppearAsPublicAndBeBrowsableItMustContainAtLeastOnePublicProject}'
+  - pattern: 'Any user can remove themselves from a group, unless they are the last Owner of the group.'
+    replace: '${anyUserCanRemoveThemselvesFromAGroupUnlessTheyAreTheLastOwnerOfTheGroup}'
+  - pattern: '| Browse group'
+    replace: '| ${browseGroup}'
+  - pattern: '| Edit group'
+    replace: '| ${editGroup}'
+  - pattern: '| Create project in group'
+    replace: '| ${createProjectInGroup}'
+  - pattern: '| Manage group members'
+    replace: '| ${manageGroupMembers}'
+  - pattern: '| Remove group'
+    replace: '| ${removeGroup}'
 
   - name: headerOrComment
     params:
@@ -3479,8 +3493,8 @@ translations:
     #  key: mdTitleGrantPermissionToTheSocketToAllMembersOfTheRedisGroup
     #- title: 'Grant the git user necessary permissions on the database'
     #  key: mdTitleGrantTheGitUserNecessaryPermissionsOnTheDatabase
-    #- title: 'Group'
-    #  key: mdTitleGroup
+    - title: 'Group'
+      key: mdTitleGroup
     #- title: 'Group Settings'
     #  key: mdTitleGroupSettings
     #- title: 'Group members'

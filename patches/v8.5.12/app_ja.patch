@@ -14051,6 +14051,18 @@ index 5f8bb57..9558cca 100644
  
  ![Authorized_applications](img/oauth_provider_authorized_application.png)
  
+diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
+index c400cda..a5aec7b 100644
+--- a/doc/markdown/markdown.md
++++ b/doc/markdown/markdown.md
+@@ -1,6 +1,6 @@
+ # Markdown
+ 
+-## Table of Contents
++## 目次
+ 
+ **[GitLab Flavored Markdown](#gitlab-flavored-markdown-gfm)**
+ 
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index b856e79..91a3683 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

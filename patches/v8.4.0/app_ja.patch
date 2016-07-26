@@ -13839,9 +13839,18 @@ index bc1f167..3b99bc5 100644
  1. Choose "Settings" in the menu on the left
  
 diff --git a/doc/integration/jira.md b/doc/integration/jira.md
-index de574d5..4f2a953 100644
+index de574d5..aa3cbdf 100644
 --- a/doc/integration/jira.md
 +++ b/doc/integration/jira.md
+@@ -11,7 +11,7 @@ see the [Services Templates][services-templates] document.
+ Once the project is connected to Jira, you can reference and close the issues
+ in Jira directly from GitLab.
+ 
+-## Table of Contents
++## 目次
+ 
+ * [Referencing Jira Issues from GitLab](#referencing-jira-issues)
+ * [Closing Jira Issues from GitLab](#closing-jira-issues)
 @@ -122,7 +122,7 @@ issues within GitLab are pointing to the JIRA issue tracker.
  After you set this, you will be able to close issues in JIRA by a commit in
  GitLab.
@@ -13881,6 +13890,18 @@ index 192c321..2d25661 100644
 -![admin_application](oauth_provider/admin_application.png)
 \ No newline at end of file
 +![admin_application](oauth_provider/admin_application.png)
+diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
+index bc8e7d1..d987a8e 100644
+--- a/doc/markdown/markdown.md
++++ b/doc/markdown/markdown.md
+@@ -1,6 +1,6 @@
+ # Markdown
+ 
+-## Table of Contents
++## 目次
+ 
+ **[GitLab Flavored Markdown](#gitlab-flavored-markdown-gfm)**
+ 
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index b856e79..91a3683 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

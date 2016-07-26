@@ -4723,8 +4723,8 @@ translations:
     #  key: mdTitleTLSClientAuthentication
     #- title: 'TLS Server Authentication'
     #  key: mdTitleTLSServerAuthentication
-    #- title: 'Table of Contents'
-    #  key: mdTitleTableOfContents
+    - title: 'Table of Contents'
+      key: mdTitleTableOfContents
     #- title: 'Tables'
     #  key: mdTitleTables
     #- title: 'Tag events'

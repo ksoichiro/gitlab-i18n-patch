@@ -14267,6 +14267,18 @@ index 8a7205c..29c0422 100644
 -fail with one of the mentioned errors.
 \ No newline at end of file
 +fail with one of the mentioned errors.
+diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
+index 4f199b6..1a1f30d 100644
+--- a/doc/markdown/markdown.md
++++ b/doc/markdown/markdown.md
+@@ -1,6 +1,6 @@
+ # Markdown
+ 
+-## Table of Contents
++## 目次
+ 
+ **[GitLab Flavored Markdown](#gitlab-flavored-markdown-gfm)**
+ 
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index 90e9930..3377848 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

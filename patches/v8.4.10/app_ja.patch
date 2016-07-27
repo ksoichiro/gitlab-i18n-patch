@@ -13895,16 +13895,63 @@ index 192c321..2d25661 100644
 \ No newline at end of file
 +![admin_application](oauth_provider/admin_application.png)
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index bc8e7d1..d987a8e 100644
+index bc8e7d1..f8c9fac 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
-@@ -1,6 +1,6 @@
+@@ -1,31 +1,31 @@
  # Markdown
  
 -## Table of Contents
 +## 目次
  
  **[GitLab Flavored Markdown](#gitlab-flavored-markdown-gfm)**
+ 
+-* [Newlines](#newlines)
+-* [Multiple underscores in words](#multiple-underscores-in-words)
+-* [URL auto-linking](#url-auto-linking)
+-* [Code and Syntax Highlighting](#code-and-syntax-highlighting)
+-* [Emoji](#emoji)
+-* [Special GitLab references](#special-gitlab-references)
+-* [Task lists](#task-lists)
+-
+-**[Standard Markdown](#standard-markdown)**
+-
+-* [Headers](#headers)
+-* [Emphasis](#emphasis)
+-* [Lists](#lists)
+-* [Links](#links)
+-* [Images](#images)
+-* [Blockquotes](#blockquotes)
+-* [Inline HTML](#inline-html)
+-* [Horizontal Rule](#horizontal-rule)
+-* [Line Breaks](#line-breaks)
+-* [Tables](#tables)
+-
+-**[References](#references)**
++* [改行](#newlines)
++* [単語内の複数のアンダースコア](#multiple-underscores-in-words)
++* [URLの自動リンク](#url-auto-linking)
++* [コードとシンタックスハイライト](#code-and-syntax-highlighting)
++* [絵文字](#emoji)
++* [GitLabでの参照](#special-gitlab-references)
++* [タスクリスト](#task-lists)
++
++**[標準のMarkdown](#standard-markdown)**
++
++* [ヘッダ](#headers)
++* [強調](#emphasis)
++* リスト(#lists)
++* [リンク](#links)
++* [画像](#images)
++* [引用](#blockquotes)
++* [インライン HTML](#inline-html)
++* [水平線](#horizontal-rule)
++* [改行](#line-breaks)
++* [表](#tables)
++
++**[リファレンス](#references)**
+ 
+ ## GitLab Flavored Markdown (GFM)
  
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index b856e79..91a3683 100644

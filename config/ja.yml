@@ -2743,3 +2743,22 @@ editGroup: グループを編集する
 createProjectInGroup: グループ内にプロジェクトを作成する
 manageGroupMembers: メンバーを管理する
 removeGroup: グループを削除する
+newlines: 改行
+multipleUnderscoresInWords: 単語内の複数のアンダースコア
+urlAutoLinking: URLの自動リンク
+codeAndSyntaxHighlighting: コードとシンタックスハイライト
+emoji: 絵文字
+specialGitLabReferences: GitLabでの参照
+taskLists: タスクリスト
+standardMarkdown: 標準のMarkdown
+headers: ヘッダ
+emphasis: 強調
+lists: リスト
+links: リンク
+images: 画像
+blockquotes: 引用
+inlineHTML: インライン HTML
+horizontalRule: 水平線
+lineBreaks: 改行
+tables: 表
+references: リファレンス

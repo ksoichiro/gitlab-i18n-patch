@@ -14486,7 +14486,7 @@ index 8a7205c..29c0422 100644
 \ No newline at end of file
 +fail with one of the mentioned errors.
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index 236eb7b..cff2ae1 100644
+index 236eb7b..417aeee 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,32 +1,32 @@
@@ -14509,9 +14509,13 @@ index 236eb7b..cff2ae1 100644
 -* [Emoji](#emoji)
 -* [Special GitLab references](#special-gitlab-references)
 -* [Task lists](#task-lists)
--
++* [絵文字](#emoji)
++* [GitLabでの参照](#special-gitlab-references)
++* [タスクリスト](#task-lists)
+ 
 -**[Standard Markdown](#standard-markdown)**
--
++**[標準のMarkdown](#standard-markdown)**
+ 
 -* [Headers](#headers)
 -* [Emphasis](#emphasis)
 -* [Lists](#lists)
@@ -14522,14 +14526,6 @@ index 236eb7b..cff2ae1 100644
 -* [Horizontal Rule](#horizontal-rule)
 -* [Line Breaks](#line-breaks)
 -* [Tables](#tables)
--
--**[References](#references)**
-+* [絵文字](#emoji)
-+* [GitLabでの参照](#special-gitlab-references)
-+* [タスクリスト](#task-lists)
-+
-+**[標準のMarkdown](#standard-markdown)**
-+
 +* [ヘッダ](#headers)
 +* [強調](#emphasis)
 +* リスト(#lists)
@@ -14540,11 +14536,21 @@ index 236eb7b..cff2ae1 100644
 +* [水平線](#horizontal-rule)
 +* [改行](#line-breaks)
 +* [表](#tables)
-+
+ 
+-**[References](#references)**
 +**[リファレンス](#references)**
  
  ## GitLab Flavored Markdown (GFM)
  
+@@ -34,7 +34,7 @@ _GitLab uses the [Redcarpet Ruby library][redcarpet] for Markdown processing._
+ 
+ GitLab uses "GitLab Flavored Markdown" (GFM). It extends the standard Markdown in a few significant ways to add some useful functionality. It was inspired by [GitHub Flavored Markdown](https://help.github.com/articles/basic-writing-and-formatting-syntax/).
+ 
+-You can use GFM in
++GFM は以下の場所で使うことができます。
+ 
+ - comments
+ - issues
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index 7715842..3642faa 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

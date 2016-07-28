@@ -13985,10 +13985,10 @@ index 5f8bb57..9558cca 100644
  ![Authorized_applications](img/oauth_provider_authorized_application.png)
  
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index c400cda..3052306 100644
+index c400cda..dbfd1ac 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
-@@ -1,31 +1,31 @@
+@@ -1,37 +1,37 @@
  # Markdown
  
 -## Table of Contents
@@ -14043,6 +14043,14 @@ index c400cda..3052306 100644
  
  ## GitLab Flavored Markdown (GFM)
  
+-For GitLab we developed something we call "GitLab Flavored Markdown" (GFM). It extends the standard Markdown in a few significant ways to add some useful functionality.
++GitLabでは、"GitLab Flavored Markdown" (GFM)と呼ばれるものを開発しました。これは、いくつかの重要な点で便利な機能を追加するために標準の Markdown を拡張するものです。
+ 
+-You can use GFM in
++GFM は以下の場所で使うことができます。
+ 
+ - comments
+ - issues
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index b856e79..91a3683 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

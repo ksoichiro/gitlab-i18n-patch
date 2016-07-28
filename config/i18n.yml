@@ -2060,6 +2060,10 @@ translations:
     replace: '[${tables}]'
   - pattern: '[References]'
     replace: '[${references}]'
+  - pattern: 'For GitLab we developed something we call "GitLab Flavored Markdown" (GFM). It extends the standard Markdown in a few significant ways to add some useful functionality.'
+    replace: '${forGitLabWeDevelopedSomethingWeCallGitLabFlavoredMarkdownItExtendsTheStandardMarkdownInAFewSignificantWaysToAddSomeUsefulFunctionality}'
+  - pattern: 'You can use GFM in'
+    replace: '${youCanUseGFMIn}'
 
   - name: headerOrComment
     params:

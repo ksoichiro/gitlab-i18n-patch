@@ -14275,7 +14275,7 @@ index 8a7205c..29c0422 100644
 \ No newline at end of file
 +fail with one of the mentioned errors.
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index 4f199b6..c096b8c 100644
+index 4f199b6..e6a0e3f 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,31 +1,31 @@
@@ -14333,6 +14333,15 @@ index 4f199b6..c096b8c 100644
  
  ## GitLab Flavored Markdown (GFM)
  
+@@ -33,7 +33,7 @@ _GitLab uses the [Redcarpet Ruby library][redcarpet] for Markdown processing._
+ 
+ GitLab uses "GitLab Flavored Markdown" (GFM). It extends the standard Markdown in a few significant ways to add some useful functionality. It was inspired by [GitHub Flavored Markdown](https://help.github.com/articles/basic-writing-and-formatting-syntax/).
+ 
+-You can use GFM in
++GFM は以下の場所で使うことができます。
+ 
+ - comments
+ - issues
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index 90e9930..3377848 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

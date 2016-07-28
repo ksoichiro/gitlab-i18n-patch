@@ -2762,3 +2762,5 @@ horizontalRule: 水平線
 lineBreaks: 改行
 tables: 表
 references: リファレンス
+forGitLabWeDevelopedSomethingWeCallGitLabFlavoredMarkdownItExtendsTheStandardMarkdownInAFewSignificantWaysToAddSomeUsefulFunctionality: 'GitLabでは、"GitLab Flavored Markdown" (GFM)と呼ばれるものを開発しました。これは、いくつかの重要な点で便利な機能を追加するために標準の Markdown を拡張するものです。'
+youCanUseGFMIn: 'GFM は以下の場所で使うことができます。'

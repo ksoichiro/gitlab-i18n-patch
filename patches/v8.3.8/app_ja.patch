@@ -13688,10 +13688,10 @@ index 192c321..2d25661 100644
 \ No newline at end of file
 +![admin_application](oauth_provider/admin_application.png)
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index bc8e7d1..831b3d0 100644
+index bc8e7d1..891382e 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
-@@ -1,37 +1,37 @@
+@@ -1,45 +1,45 @@
  # Markdown
  
 -## Table of Contents
@@ -13752,8 +13752,22 @@ index bc8e7d1..831b3d0 100644
 -You can use GFM in
 +GFM は以下の場所で使うことができます。
  
- - comments
- - issues
+-- comments
+-- issues
+-- merge requests
+-- milestones
+-- wiki pages
++- コメント
++- 課題
++- マージリクエスト
++- マイルストーン
++- Wikiページ
+ 
+-You can also use other rich text files in GitLab. You might have to install a dependency to do so. Please see the [github-markup gem readme](https://github.com/gitlabhq/markup#markups) for more information.
++依存するソフトウェアをインストールして、GitLab上の他のリッチテキストファイルでも使うことができます。その場合、依存関係をインストールする必要があるかもしれません。詳しい情報は、 [github-markup gem readme](https://github.com/gitlabhq/markup#markups) を参照してください。
+ 
+ ## Newlines
+ 
 diff --git a/doc/permissions/permissions.md b/doc/permissions/permissions.md
 index bcd00cf..2b2e43f 100644
 --- a/doc/permissions/permissions.md

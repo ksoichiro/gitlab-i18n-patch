@@ -2064,6 +2064,18 @@ translations:
     replace: '${forGitLabWeDevelopedSomethingWeCallGitLabFlavoredMarkdownItExtendsTheStandardMarkdownInAFewSignificantWaysToAddSomeUsefulFunctionality}'
   - pattern: 'You can use GFM in'
     replace: '${youCanUseGFMIn}'
+  - pattern: '- comments'
+    replace: '- ${comment}'
+  - pattern: '- issues'
+    replace: '- ${issue}'
+  - pattern: '- merge requests'
+    replace: '- ${mergeRequest}'
+  - pattern: '- milestones'
+    replace: '- ${milestone}'
+  - pattern: '- wiki pages'
+    replace: '- ${wikiPage}'
+  - pattern: 'You can also use other rich text files in GitLab. You might have to install a dependency to do so. Please see the [github-markup gem readme](https://github.com/gitlabhq/markup#markups) for more information.'
+    replace: '${youCanAlsoUseOtherRichTextFilesInGitLabYouMightHaveToInstallADependencyToDoSoPleaseSeeTheGithubMarkupGemReadmeForMoreInformation}'
 
   - name: headerOrComment
     params:

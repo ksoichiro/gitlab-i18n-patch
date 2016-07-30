@@ -14052,10 +14052,10 @@ index 5f8bb57..9558cca 100644
  ![Authorized_applications](img/oauth_provider_authorized_application.png)
  
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index c400cda..dbfd1ac 100644
+index c400cda..2fb06b4 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
-@@ -1,37 +1,37 @@
+@@ -1,45 +1,45 @@
  # Markdown
  
 -## Table of Contents
@@ -14116,8 +14116,22 @@ index c400cda..dbfd1ac 100644
 -You can use GFM in
 +GFM は以下の場所で使うことができます。
  
- - comments
- - issues
+-- comments
+-- issues
+-- merge requests
+-- milestones
+-- wiki pages
++- コメント
++- 課題
++- マージリクエスト
++- マイルストーン
++- Wikiページ
+ 
+-You can also use other rich text files in GitLab. You might have to install a dependency to do so. Please see the [github-markup gem readme](https://github.com/gitlabhq/markup#markups) for more information.
++依存するソフトウェアをインストールして、GitLab上の他のリッチテキストファイルでも使うことができます。その場合、依存関係をインストールする必要があるかもしれません。詳しい情報は、 [github-markup gem readme](https://github.com/gitlabhq/markup#markups) を参照してください。
+ 
+ ## Newlines
+ 
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index b856e79..91a3683 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

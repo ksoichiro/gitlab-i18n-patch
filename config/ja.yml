@@ -2767,3 +2767,5 @@ youCanUseGFMIn: 'GFM は以下の場所で使うことができます。'
 wikiPage: Wikiページ
 youCanAlsoUseOtherRichTextFilesInGitLabYouMightHaveToInstallADependencyToDoSoPleaseSeeTheGithubMarkupGemReadmeForMoreInformation: "依存するソフトウェアをインストールして、GitLab上の他のリッチテキストファイルでも使うことができます。その場合、依存関係をインストールする必要があるかもしれません。詳しい情報は、 [github-markup gem readme](https://github.com/gitlabhq/markup#markups) を参照してください。"
 gfmHonorsTheMarkdownSpecificationInHowParagraphsAndLineBreaksAreHandled: "GFMは [段落と改行の取り扱い](https://daringfireball.net/projects/markdown/syntax#p) での Markdown 仕様にならっています。"
+aParagraphIsSimplyOneOrMoreConsecutiveLinesOfTextSeparatedByOneOrMoreBlankLines: 段落は単純に1行以上の空行で分けられた、1行以上のテキストです。
+lineBreaksOrSoftreturnsAreRenderedIfYouEndALineWithTwoOrMoreSpaces: ラインブレーク、ソフトリターンを使うには行末に2つ以上のスペースを入れます。

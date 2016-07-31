@@ -14078,10 +14078,10 @@ index 5f8bb57..9558cca 100644
  ![Authorized_applications](img/oauth_provider_authorized_application.png)
  
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index e6eb1cf..40e865b 100644
+index e6eb1cf..6ac77d3 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
-@@ -1,51 +1,51 @@
+@@ -1,54 +1,54 @@
  # Markdown
  
 -## Table of Contents
@@ -14164,8 +14164,13 @@ index e6eb1cf..40e865b 100644
 -GFM honors the markdown specification in how [paragraphs and line breaks are handled](https://daringfireball.net/projects/markdown/syntax#p).
 +GFMは [段落と改行の取り扱い](https://daringfireball.net/projects/markdown/syntax#p) での Markdown 仕様にならっています。
  
- A paragraph is simply one or more consecutive lines of text, separated by one or more blank lines.  
- Line-breaks, or softreturns, are rendered if you end a line with two or more spaces
+-A paragraph is simply one or more consecutive lines of text, separated by one or more blank lines.  
+-Line-breaks, or softreturns, are rendered if you end a line with two or more spaces
++段落は単純に1行以上の空行で分けられた、1行以上のテキストです。  
++ラインブレーク、ソフトリターンを使うには行末に2つ以上のスペースを入れます。
+ 
+     Roses are red [followed by two or more spaces]  
+     Violets are blue
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index b856e79..91a3683 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

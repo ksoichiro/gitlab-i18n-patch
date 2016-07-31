@@ -14490,7 +14490,7 @@ index 8a7205c..29c0422 100644
 \ No newline at end of file
 +fail with one of the mentioned errors.
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index 236eb7b..f423df4 100644
+index 236eb7b..fb8283a 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,32 +1,32 @@
@@ -14546,7 +14546,7 @@ index 236eb7b..f423df4 100644
  
  ## GitLab Flavored Markdown (GFM)
  
-@@ -34,19 +34,19 @@ _GitLab uses the [Redcarpet Ruby library][redcarpet] for Markdown processing._
+@@ -34,22 +34,22 @@ _GitLab uses the [Redcarpet Ruby library][redcarpet] for Markdown processing._
  
  GitLab uses "GitLab Flavored Markdown" (GFM). It extends the standard Markdown in a few significant ways to add some useful functionality. It was inspired by [GitHub Flavored Markdown](https://help.github.com/articles/basic-writing-and-formatting-syntax/).
  
@@ -14573,8 +14573,13 @@ index 236eb7b..f423df4 100644
 -GFM honors the markdown specification in how [paragraphs and line breaks are handled](https://daringfireball.net/projects/markdown/syntax#p).
 +GFMは [段落と改行の取り扱い](https://daringfireball.net/projects/markdown/syntax#p) での Markdown 仕様にならっています。
  
- A paragraph is simply one or more consecutive lines of text, separated by one or more blank lines.
- Line-breaks, or softreturns, are rendered if you end a line with two or more spaces
+-A paragraph is simply one or more consecutive lines of text, separated by one or more blank lines.
+-Line-breaks, or softreturns, are rendered if you end a line with two or more spaces
++段落は単純に1行以上の空行で分けられた、1行以上のテキストです。
++ラインブレーク、ソフトリターンを使うには行末に2つ以上のスペースを入れます。
+ 
+     Roses are red [followed by two or more spaces]
+     Violets are blue
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index 7715842..3642faa 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

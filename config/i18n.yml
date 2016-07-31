@@ -2078,6 +2078,10 @@ translations:
     replace: '${youCanAlsoUseOtherRichTextFilesInGitLabYouMightHaveToInstallADependencyToDoSoPleaseSeeTheGithubMarkupGemReadmeForMoreInformation}'
   - pattern: "GFM honors the markdown specification in how [paragraphs and line breaks are handled](https://daringfireball.net/projects/markdown/syntax#p)."
     replace: '${gfmHonorsTheMarkdownSpecificationInHowParagraphsAndLineBreaksAreHandled}'
+  - pattern: 'A paragraph is simply one or more consecutive lines of text, separated by one or more blank lines.'
+    replace: '${aParagraphIsSimplyOneOrMoreConsecutiveLinesOfTextSeparatedByOneOrMoreBlankLines}'
+  - pattern: 'Line-breaks, or softreturns, are rendered if you end a line with two or more spaces'
+    replace: '${lineBreaksOrSoftreturnsAreRenderedIfYouEndALineWithTwoOrMoreSpaces}'
 
   - name: headerOrComment
     params:

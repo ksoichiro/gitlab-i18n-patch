@@ -14504,7 +14504,7 @@ index 8a7205c..29c0422 100644
 \ No newline at end of file
 +fail with one of the mentioned errors.
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index 236eb7b..2b9e743 100644
+index 236eb7b..f423df4 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,32 +1,32 @@
@@ -14560,7 +14560,7 @@ index 236eb7b..2b9e743 100644
  
  ## GitLab Flavored Markdown (GFM)
  
-@@ -34,15 +34,15 @@ _GitLab uses the [Redcarpet Ruby library][redcarpet] for Markdown processing._
+@@ -34,19 +34,19 @@ _GitLab uses the [Redcarpet Ruby library][redcarpet] for Markdown processing._
  
  GitLab uses "GitLab Flavored Markdown" (GFM). It extends the standard Markdown in a few significant ways to add some useful functionality. It was inspired by [GitHub Flavored Markdown](https://help.github.com/articles/basic-writing-and-formatting-syntax/).
  
@@ -14581,8 +14581,14 @@ index 236eb7b..2b9e743 100644
 -You can also use other rich text files in GitLab. You might have to install a dependency to do so. Please see the [github-markup gem readme](https://github.com/gitlabhq/markup#markups) for more information.
 +依存するソフトウェアをインストールして、GitLab上の他のリッチテキストファイルでも使うことができます。その場合、依存関係をインストールする必要があるかもしれません。詳しい情報は、 [github-markup gem readme](https://github.com/gitlabhq/markup#markups) を参照してください。
  
- ## Newlines
+-## Newlines
++## 改行
  
+-GFM honors the markdown specification in how [paragraphs and line breaks are handled](https://daringfireball.net/projects/markdown/syntax#p).
++GFMは [段落と改行の取り扱い](https://daringfireball.net/projects/markdown/syntax#p) での Markdown 仕様にならっています。
+ 
+ A paragraph is simply one or more consecutive lines of text, separated by one or more blank lines.
+ Line-breaks, or softreturns, are rendered if you end a line with two or more spaces
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index 7715842..3642faa 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

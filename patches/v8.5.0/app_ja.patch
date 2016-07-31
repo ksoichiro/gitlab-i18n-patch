@@ -13985,10 +13985,10 @@ index 5f8bb57..9558cca 100644
  ![Authorized_applications](img/oauth_provider_authorized_application.png)
  
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index c400cda..2fb06b4 100644
+index c400cda..9b6106f 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
-@@ -1,45 +1,45 @@
+@@ -1,49 +1,49 @@
  # Markdown
  
 -## Table of Contents
@@ -14063,8 +14063,14 @@ index c400cda..2fb06b4 100644
 -You can also use other rich text files in GitLab. You might have to install a dependency to do so. Please see the [github-markup gem readme](https://github.com/gitlabhq/markup#markups) for more information.
 +依存するソフトウェアをインストールして、GitLab上の他のリッチテキストファイルでも使うことができます。その場合、依存関係をインストールする必要があるかもしれません。詳しい情報は、 [github-markup gem readme](https://github.com/gitlabhq/markup#markups) を参照してください。
  
- ## Newlines
+-## Newlines
++## 改行
  
+-GFM honors the markdown specification in how [paragraphs and line breaks are handled](https://daringfireball.net/projects/markdown/syntax#p).
++GFMは [段落と改行の取り扱い](https://daringfireball.net/projects/markdown/syntax#p) での Markdown 仕様にならっています。
+ 
+ A paragraph is simply one or more consecutive lines of text, separated by one or more blank lines.  
+ Line-breaks, or softreturns, are rendered if you end a line with two or more spaces
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index b856e79..91a3683 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

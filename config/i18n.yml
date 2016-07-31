@@ -2076,6 +2076,8 @@ translations:
     replace: '- ${wikiPage}'
   - pattern: 'You can also use other rich text files in GitLab. You might have to install a dependency to do so. Please see the [github-markup gem readme](https://github.com/gitlabhq/markup#markups) for more information.'
     replace: '${youCanAlsoUseOtherRichTextFilesInGitLabYouMightHaveToInstallADependencyToDoSoPleaseSeeTheGithubMarkupGemReadmeForMoreInformation}'
+  - pattern: "GFM honors the markdown specification in how [paragraphs and line breaks are handled](https://daringfireball.net/projects/markdown/syntax#p)."
+    replace: '${gfmHonorsTheMarkdownSpecificationInHowParagraphsAndLineBreaksAreHandled}'
 
   - name: headerOrComment
     params:
@@ -4123,8 +4125,8 @@ translations:
     #  key: mdTitleNewIssue
     #- title: 'New tag page with release notes text area'
     #  key: mdTitleNewTagPageWithReleaseNotesTextArea
-    #- title: 'Newlines'
-    #  key: mdTitleNewlines
+    - title: 'Newlines'
+      key: mdTitleNewlines
     #- title: 'Nginx'
     #  key: mdTitleNginx
     #- title: 'Nginx configuration'

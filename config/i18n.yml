@@ -2082,6 +2082,8 @@ translations:
     replace: '${aParagraphIsSimplyOneOrMoreConsecutiveLinesOfTextSeparatedByOneOrMoreBlankLines}'
   - pattern: 'Line-breaks, or softreturns, are rendered if you end a line with two or more spaces'
     replace: '${lineBreaksOrSoftreturnsAreRenderedIfYouEndALineWithTwoOrMoreSpaces}'
+  - pattern: "It is not reasonable to italicize just _part_ of a word, especially when you're dealing with code and names that often appear with multiple underscores. Therefore, GFM ignores multiple underscores in words."
+    replace: '${itIsNotReasonableToItalicizeJustPartOfAWordEspeciallyWhenYoureDealingWithCodeAndNamesThatOftenAppearWithMultipleUnderscoresThereforeGFMIgnoresMultipleUnderscoresInWOrds}'
 
   - name: headerOrComment
     params:
@@ -4089,8 +4091,8 @@ translations:
     #  key: mdTitleMoveTheBackupFileWeWillConvertToItsOwnDirectory
     #- title: 'Moving repositories managed by GitLab'
     #  key: mdTitleMovingRepositoriesManagedByGitLab
-    #- title: 'Multiple underscores in words'
-    #  key: mdTitleMultipleUnderscoresInWords
+    - title: 'Multiple underscores in words'
+      key: mdTitleMultipleUnderscoresInWords
     #- title: 'MySQL'
     #  key: mdTitleMySQL
     #- title: 'MySQL Databases: Update database.yml config file'

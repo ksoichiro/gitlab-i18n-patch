@@ -14476,7 +14476,7 @@ index 8a7205c..29c0422 100644
 \ No newline at end of file
 +fail with one of the mentioned errors.
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index 236eb7b..fb8283a 100644
+index 236eb7b..1c45ab8 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,32 +1,32 @@
@@ -14566,6 +14566,18 @@ index 236eb7b..fb8283a 100644
  
      Roses are red [followed by two or more spaces]
      Violets are blue
+@@ -61,9 +61,9 @@ Violets are blue
+ 
+ Sugar is sweet
+ 
+-## Multiple underscores in words
++## 単語内の複数のアンダースコア
+ 
+-It is not reasonable to italicize just _part_ of a word, especially when you're dealing with code and names that often appear with multiple underscores. Therefore, GFM ignores multiple underscores in words.
++単語の _一部_ だけをイタリック体にしてしまうのは便利とは言えません。複数のアンダースコアを含むコードと名前を扱う場合には特にそうです。このため、GFMは単語内の複数のアンダースコアを無視します。
+ 
+     perform_complicated_task
+     do_this_and_do_that_and_another_thing
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index 7715842..3642faa 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

@@ -14275,7 +14275,7 @@ index 8a7205c..29c0422 100644
 \ No newline at end of file
 +fail with one of the mentioned errors.
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index 4f199b6..94f40c5 100644
+index 4f199b6..2b60b43 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,31 +1,31 @@
@@ -14379,6 +14379,18 @@ index 4f199b6..94f40c5 100644
  
      perform_complicated_task
      do_this_and_do_that_and_another_thing
+@@ -70,9 +70,9 @@ It is not reasonable to italicize just _part_ of a word, especially when you're
+ perform_complicated_task
+ do_this_and_do_that_and_another_thing
+ 
+-## URL auto-linking
++## URLの自動リンク
+ 
+-GFM will autolink almost any URL you copy and paste into your text.
++GFM は、URLをコピー＆ペーストするとほとんどの場合、自動的にリンクします。
+ 
+     * https://www.google.com
+     * https://google.com/
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index 90e9930..3377848 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

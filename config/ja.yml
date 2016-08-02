@@ -2124,7 +2124,7 @@ mdTitleTableOfContents: 目次
 #mdTitleUDP: 
 #mdTitleUIGuideForBuildingGitLab: 
 #mdTitleUIDevelopmentKit: 
-#mdTitleURLAutoLinking: 
+mdTitleURLAutoLinking: URLの自動リンク
 #mdTitleUnarchiveAProject: 
 #mdTitleUnblockUser: 
 #mdTitleUnderstandingUnicornAndUnicornWorkerKiller: 
@@ -2770,3 +2770,4 @@ gfmHonorsTheMarkdownSpecificationInHowParagraphsAndLineBreaksAreHandled: "GFMは
 aParagraphIsSimplyOneOrMoreConsecutiveLinesOfTextSeparatedByOneOrMoreBlankLines: 段落は単純に1行以上の空行で分けられた、1行以上のテキストです。
 lineBreaksOrSoftreturnsAreRenderedIfYouEndALineWithTwoOrMoreSpaces: ラインブレーク、ソフトリターンを使うには行末に2つ以上のスペースを入れます。
 itIsNotReasonableToItalicizeJustPartOfAWordEspeciallyWhenYoureDealingWithCodeAndNamesThatOftenAppearWithMultipleUnderscoresThereforeGFMIgnoresMultipleUnderscoresInWOrds: "単語の _一部_ だけをイタリック体にしてしまうのは便利とは言えません。複数のアンダースコアを含むコードと名前を扱う場合には特にそうです。このため、GFMは単語内の複数のアンダースコアを無視します。"
+gfmWillAutolinkAlmostAnyURLYouCopyAndPasteIntoYourText: GFM は、URLをコピー＆ペーストするとほとんどの場合、自動的にリンクします。

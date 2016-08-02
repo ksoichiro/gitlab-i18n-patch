@@ -14052,7 +14052,7 @@ index 5f8bb57..9558cca 100644
  ![Authorized_applications](img/oauth_provider_authorized_application.png)
  
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index c400cda..39031aa 100644
+index c400cda..4ea5f19 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,52 +1,52 @@
@@ -14155,6 +14155,18 @@ index c400cda..39031aa 100644
  
      perform_complicated_task
      do_this_and_do_that_and_another_thing
+@@ -68,9 +68,9 @@ It is not reasonable to italicize just _part_ of a word, especially when you're
+ perform_complicated_task  
+ do_this_and_do_that_and_another_thing
+ 
+-## URL auto-linking
++## URLの自動リンク
+ 
+-GFM will autolink almost any URL you copy and paste into your text.
++GFM は、URLをコピー＆ペーストするとほとんどの場合、自動的にリンクします。
+ 
+     * https://www.google.com
+     * https://google.com/
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index b856e79..91a3683 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

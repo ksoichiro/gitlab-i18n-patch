@@ -2084,6 +2084,8 @@ translations:
     replace: '${lineBreaksOrSoftreturnsAreRenderedIfYouEndALineWithTwoOrMoreSpaces}'
   - pattern: "It is not reasonable to italicize just _part_ of a word, especially when you're dealing with code and names that often appear with multiple underscores. Therefore, GFM ignores multiple underscores in words."
     replace: '${itIsNotReasonableToItalicizeJustPartOfAWordEspeciallyWhenYoureDealingWithCodeAndNamesThatOftenAppearWithMultipleUnderscoresThereforeGFMIgnoresMultipleUnderscoresInWOrds}'
+  - pattern: 'GFM will autolink almost any URL you copy and paste into your text.'
+    replace: '${gfmWillAutolinkAlmostAnyURLYouCopyAndPasteIntoYourText}'
 
   - name: headerOrComment
     params:
@@ -4987,8 +4989,8 @@ translations:
     #  key: mdTitleUIGuideForBuildingGitLab
     #- title: 'UI development kit'
     #  key: mdTitleUIDevelopmentKit
-    #- title: 'URL auto-linking'
-    #  key: mdTitleURLAutoLinking
+    - title: 'URL auto-linking'
+      key: mdTitleURLAutoLinking
     #- title: 'Unarchive a project'
     #  key: mdTitleUnarchiveAProject
     #- title: 'Unblock user'

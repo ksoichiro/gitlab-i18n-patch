@@ -14476,7 +14476,7 @@ index 8a7205c..29c0422 100644
 \ No newline at end of file
 +fail with one of the mentioned errors.
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index 236eb7b..46d8e42 100644
+index 236eb7b..81f677b 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,32 +1,32 @@
@@ -14590,6 +14590,21 @@ index 236eb7b..46d8e42 100644
  
      * https://www.google.com
      * https://google.com/
+@@ -89,12 +89,12 @@ GFM will autolink almost any URL you copy and paste into your text.
+ * irc://irc.freenode.net/gitlab
+ * http://localhost:3000
+ 
+-## Code and Syntax Highlighting
++## コードとシンタックスハイライト
+ 
+ _GitLab uses the [Rouge Ruby library][rouge] for syntax highlighting. For a
+ list of supported languages visit the Rouge website._
+ 
+-Blocks of code are either fenced by lines with three back-ticks <code>```</code>, or are indented with four spaces. Only the fenced code blocks support syntax highlighting.
++コードのブロックは3つのバッククオート<code>```</code>からなる行で仕切りを入れるか、4つのスペースでインデントすることで表現できます。行で仕切る方法でのみ、シンタックスハイライトがサポートされます。
+ 
+ ```no-highlight
+ Inline `code` has `back-ticks around` it.
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index 7715842..3642faa 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

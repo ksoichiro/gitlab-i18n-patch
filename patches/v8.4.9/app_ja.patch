@@ -13902,7 +13902,7 @@ index 192c321..2d25661 100644
 \ No newline at end of file
 +![admin_application](oauth_provider/admin_application.png)
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index bc8e7d1..15f38c1 100644
+index bc8e7d1..2c75d66 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,52 +1,52 @@
@@ -14017,6 +14017,18 @@ index bc8e7d1..15f38c1 100644
  
      * https://www.google.com
      * https://google.com/
+@@ -86,9 +86,9 @@ GFM will autolink almost any URL you copy and paste into your text.
+ * irc://irc.freenode.net/gitlab
+ * http://localhost:3000
+ 
+-## Code and Syntax Highlighting
++## コードとシンタックスハイライト
+ 
+-Blocks of code are either fenced by lines with three back-ticks <code>```</code>, or are indented with four spaces. Only the fenced code blocks support syntax highlighting.
++コードのブロックは3つのバッククオート<code>```</code>からなる行で仕切りを入れるか、4つのスペースでインデントすることで表現できます。行で仕切る方法でのみ、シンタックスハイライトがサポートされます。
+ 
+ ```no-highlight
+ Inline `code` has `back-ticks around` it.
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index b856e79..91a3683 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

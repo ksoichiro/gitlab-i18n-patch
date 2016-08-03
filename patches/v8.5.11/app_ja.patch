@@ -14052,7 +14052,7 @@ index 5f8bb57..9558cca 100644
  ![Authorized_applications](img/oauth_provider_authorized_application.png)
  
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index c400cda..4ea5f19 100644
+index c400cda..37f621f 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,52 +1,52 @@
@@ -14167,6 +14167,21 @@ index c400cda..4ea5f19 100644
  
      * https://www.google.com
      * https://google.com/
+@@ -86,12 +86,12 @@ GFM will autolink almost any URL you copy and paste into your text.
+ * irc://irc.freenode.net/gitlab
+ * http://localhost:3000
+ 
+-## Code and Syntax Highlighting
++## コードとシンタックスハイライト
+ 
+ _GitLab uses the [rouge ruby library][rouge] for syntax highlighting. For a
+ list of supported languages visit the rouge website._
+ 
+-Blocks of code are either fenced by lines with three back-ticks <code>```</code>, or are indented with four spaces. Only the fenced code blocks support syntax highlighting.
++コードのブロックは3つのバッククオート<code>```</code>からなる行で仕切りを入れるか、4つのスペースでインデントすることで表現できます。行で仕切る方法でのみ、シンタックスハイライトがサポートされます。
+ 
+ ```no-highlight
+ Inline `code` has `back-ticks around` it.
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index b856e79..91a3683 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

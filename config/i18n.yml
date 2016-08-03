@@ -2086,6 +2086,8 @@ translations:
     replace: '${itIsNotReasonableToItalicizeJustPartOfAWordEspeciallyWhenYoureDealingWithCodeAndNamesThatOftenAppearWithMultipleUnderscoresThereforeGFMIgnoresMultipleUnderscoresInWOrds}'
   - pattern: 'GFM will autolink almost any URL you copy and paste into your text.'
     replace: '${gfmWillAutolinkAlmostAnyURLYouCopyAndPasteIntoYourText}'
+  - pattern: 'Blocks of code are either fenced by lines with three back-ticks <code>```</code>, or are indented with four spaces. Only the fenced code blocks support syntax highlighting.'
+    replace: '${blocksOfCodeAreEitherFencedByLinesWithThreeBackTicksOrAreIndentedWithFourSpacesOnlyTheFencedCodeBlocksSupportSyntaxHighlighting}'
 
   - name: headerOrComment
     params:
@@ -2685,8 +2687,8 @@ translations:
     #  key: mdTitleClosingPolicyForIssuesAndMergeRequests
     #- title: 'Code Review Guidelines'
     #  key: mdTitleCodeReviewGuidelines
-    #- title: 'Code and Syntax Highlighting'
-    #  key: mdTitleCodeAndSyntaxHighlighting
+    - title: 'Code and Syntax Highlighting'
+      key: mdTitleCodeAndSyntaxHighlighting
     #- title: 'Code format'
     #  key: mdTitleCodeFormat
     #- title: 'Code of conduct'

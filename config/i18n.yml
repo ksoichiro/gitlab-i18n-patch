@@ -2088,6 +2088,8 @@ translations:
     replace: '${gfmWillAutolinkAlmostAnyURLYouCopyAndPasteIntoYourText}'
   - pattern: 'Blocks of code are either fenced by lines with three back-ticks <code>```</code>, or are indented with four spaces. Only the fenced code blocks support syntax highlighting.'
     replace: '${blocksOfCodeAreEitherFencedByLinesWithThreeBackTicksOrAreIndentedWithFourSpacesOnlyTheFencedCodeBlocksSupportSyntaxHighlighting}'
+  - pattern: "Inline `code` has `back-ticks around` it."
+    replace: '${inlineCodeHasBackTicksAroundIt}'
 
   - name: headerOrComment
     params:

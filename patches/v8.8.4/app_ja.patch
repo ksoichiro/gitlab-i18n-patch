@@ -14486,7 +14486,7 @@ index 8a7205c..29c0422 100644
 \ No newline at end of file
 +fail with one of the mentioned errors.
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index 236eb7b..81f677b 100644
+index 236eb7b..65e9a79 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,32 +1,32 @@
@@ -14600,7 +14600,7 @@ index 236eb7b..81f677b 100644
  
      * https://www.google.com
      * https://google.com/
-@@ -89,12 +89,12 @@ GFM will autolink almost any URL you copy and paste into your text.
+@@ -89,18 +89,18 @@ GFM will autolink almost any URL you copy and paste into your text.
  * irc://irc.freenode.net/gitlab
  * http://localhost:3000
  
@@ -14614,7 +14614,15 @@ index 236eb7b..81f677b 100644
 +コードのブロックは3つのバッククオート<code>```</code>からなる行で仕切りを入れるか、4つのスペースでインデントすることで表現できます。行で仕切る方法でのみ、シンタックスハイライトがサポートされます。
  
  ```no-highlight
- Inline `code` has `back-ticks around` it.
+-Inline `code` has `back-ticks around` it.
++インラインの`コード`は`バッククオート`で括られています。
+ ```
+ 
+-Inline `code` has `back-ticks around` it.
++インラインの`コード`は`バッククオート`で括られています。
+ 
+ Example:
+ 
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index 7715842..3642faa 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

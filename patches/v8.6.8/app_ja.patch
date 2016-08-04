@@ -14078,7 +14078,7 @@ index 5f8bb57..9558cca 100644
  ![Authorized_applications](img/oauth_provider_authorized_application.png)
  
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index e6eb1cf..b914338 100644
+index e6eb1cf..136a97a 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,54 +1,54 @@
@@ -14195,7 +14195,7 @@ index e6eb1cf..b914338 100644
  
      * https://www.google.com
      * https://google.com/
-@@ -88,12 +88,12 @@ GFM will autolink almost any URL you copy and paste into your text.
+@@ -88,18 +88,18 @@ GFM will autolink almost any URL you copy and paste into your text.
  * irc://irc.freenode.net/gitlab
  * http://localhost:3000
  
@@ -14209,7 +14209,15 @@ index e6eb1cf..b914338 100644
 +コードのブロックは3つのバッククオート<code>```</code>からなる行で仕切りを入れるか、4つのスペースでインデントすることで表現できます。行で仕切る方法でのみ、シンタックスハイライトがサポートされます。
  
  ```no-highlight
- Inline `code` has `back-ticks around` it.
+-Inline `code` has `back-ticks around` it.
++インラインの`コード`は`バッククオート`で括られています。
+ ```
+ 
+-Inline `code` has `back-ticks around` it.
++インラインの`コード`は`バッククオート`で括られています。
+ 
+ Example:
+ 
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index b856e79..91a3683 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

@@ -2090,6 +2090,12 @@ translations:
     replace: '${blocksOfCodeAreEitherFencedByLinesWithThreeBackTicksOrAreIndentedWithFourSpacesOnlyTheFencedCodeBlocksSupportSyntaxHighlighting}'
   - pattern: "Inline `code` has `back-ticks around` it."
     replace: '${inlineCodeHasBackTicksAroundIt}'
+  - pattern: 'indenting works just fine in the fenced code block'
+    replace: '${indentingWorksJustFineInTheFencedCodeBlock}'
+  - pattern: 'No language indicated, so no syntax highlighting.'
+    replace: '${noLanguageIndicatedSoNoSyntaxHighlighting}'
+  - pattern: 'becomes:'
+    replace: '${becomes}'
 
   - name: headerOrComment
     params:

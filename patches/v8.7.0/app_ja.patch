@@ -14260,7 +14260,7 @@ index 8a7205c..29c0422 100644
 \ No newline at end of file
 +fail with one of the mentioned errors.
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index 4f199b6..5a81fea 100644
+index 4f199b6..50bf11e 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,31 +1,31 @@
@@ -14399,6 +14399,48 @@ index 4f199b6..5a81fea 100644
  
  Example:
  
+@@ -110,7 +110,7 @@ Example:
+ 
+     ```python
+     def function():
+-        #indenting works just fine in the fenced code block
++        #仕切られたコードブロックではインデントが有効です
+         s = "Python syntax highlighting"
+         print s
+     ```
+@@ -122,12 +122,12 @@ Example:
+     ```
+ 
+     ```
+-    No language indicated, so no syntax highlighting.
++    言語が示されていない場合は、シンタックスハイライトされません。
+     s = "There is no highlighting for this."
+     But let's throw in a <b>tag</b>.
+     ```
+ 
+-becomes:
++これは次のように表示されます。
+ 
+ ```javascript
+ var s = "JavaScript syntax highlighting";
+@@ -136,7 +136,7 @@ alert(s);
+ 
+ ```python
+ def function():
+-    #indenting works just fine in the fenced code block
++    #仕切られたコードブロックではインデントが有効です
+     s = "Python syntax highlighting"
+     print s
+ ```
+@@ -148,7 +148,7 @@ puts markdown.to_html
+ ```
+ 
+ ```
+-No language indicated, so no syntax highlighting.
++言語が示されていない場合は、シンタックスハイライトされません。
+ s = "There is no highlighting for this."
+ But let's throw in a <b>tag</b>.
+ ```
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index 90e9930..3377848 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

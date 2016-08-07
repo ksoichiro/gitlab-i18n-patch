@@ -2098,6 +2098,8 @@ translations:
     replace: '${becomes}'
   - pattern: 'Sometimes you want to :monkey: around a bit and add some :star2: to your :speech_balloon:. Well we have a gift for you:'
     replace: '${sometimesYouWantToMonkeyAroundABitAndAddSomeStar2ToYourSpeechBalloonWellWEHaveAGiftForYou}'
+  - pattern: ":zap: You can use emoji anywhere GFM is supported. :v:"
+    replace: '${zapYouCanUseEmojiAnywhereGFMIsSupported}'
 
   - name: headerOrComment
     params:

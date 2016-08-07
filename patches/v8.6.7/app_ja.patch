@@ -14078,7 +14078,7 @@ index 5f8bb57..9558cca 100644
  ![Authorized_applications](img/oauth_provider_authorized_application.png)
  
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index e6eb1cf..c832445 100644
+index e6eb1cf..eb447e4 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,54 +1,54 @@
@@ -14251,7 +14251,7 @@ index e6eb1cf..c832445 100644
      s = "Python syntax highlighting"
      print s
  ```
-@@ -148,14 +148,14 @@ puts markdown.to_html
+@@ -148,16 +148,16 @@ puts markdown.to_html
  ```
  
  ```
@@ -14266,16 +14266,22 @@ index e6eb1cf..c832445 100644
 -	Sometimes you want to :monkey: around a bit and add some :star2: to your :speech_balloon:. Well we have a gift for you:
 +	時には、 :monkey: になり :speech_balloon: に :star2: を追加したいこともあるでしょう。そんなあなたにプレゼントがあります。
  
- 	:zap: You can use emoji anywhere GFM is supported. :v:
+-	:zap: You can use emoji anywhere GFM is supported. :v:
++	:zap: あなたはGFMがサポートされた場所ならどこでも、絵文字を使うことができます :v:
  
-@@ -165,7 +165,7 @@ But let's throw in a <b>tag</b>.
+ 	You can use it to point out a :bug: or warn about :speak_no_evil: patches. And if someone improves your really :snail: code, send them some :birthday:. People will :heart: you for that.
+ 
+@@ -165,9 +165,9 @@ But let's throw in a <b>tag</b>.
  
  	Consult the [Emoji Cheat Sheet](http://emoji.codes) for a list of all supported emoji codes. :thumbsup:
  
 -Sometimes you want to :monkey: around a bit and add some :star2: to your :speech_balloon:. Well we have a gift for you:
 +時には、 :monkey: になり :speech_balloon: に :star2: を追加したいこともあるでしょう。そんなあなたにプレゼントがあります。
  
- :zap: You can use emoji anywhere GFM is supported. :v:
+-:zap: You can use emoji anywhere GFM is supported. :v:
++:zap: あなたはGFMがサポートされた場所ならどこでも、絵文字を使うことができます :v:
+ 
+ You can use it to point out a :bug: or warn about :speak_no_evil: patches. And if someone improves your really :snail: code, send them some :birthday:. People will :heart: you for that.
  
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index b856e79..91a3683 100644

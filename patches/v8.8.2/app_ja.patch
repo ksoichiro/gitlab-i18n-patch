@@ -14504,7 +14504,7 @@ index 8a7205c..29c0422 100644
 \ No newline at end of file
 +fail with one of the mentioned errors.
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index 236eb7b..c2f8bc9 100644
+index 236eb7b..c86082c 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,32 +1,32 @@
@@ -14683,23 +14683,29 @@ index 236eb7b..c2f8bc9 100644
  s = "There is no highlighting for this."
  But let's throw in a <b>tag</b>.
  ```
-@@ -169,7 +169,7 @@ However the wrapping tags cannot be mixed as such:
+@@ -169,9 +169,9 @@ However the wrapping tags cannot be mixed as such:
  
  ## Emoji
  
 -	Sometimes you want to :monkey: around a bit and add some :star2: to your :speech_balloon:. Well we have a gift for you:
 +	時には、 :monkey: になり :speech_balloon: に :star2: を追加したいこともあるでしょう。そんなあなたにプレゼントがあります。
  
- 	:zap: You can use emoji anywhere GFM is supported. :v:
+-	:zap: You can use emoji anywhere GFM is supported. :v:
++	:zap: あなたはGFMがサポートされた場所ならどこでも、絵文字を使うことができます :v:
  
-@@ -179,7 +179,7 @@ However the wrapping tags cannot be mixed as such:
+ 	You can use it to point out a :bug: or warn about :speak_no_evil: patches. And if someone improves your really :snail: code, send them some :birthday:. People will :heart: you for that.
+ 
+@@ -179,9 +179,9 @@ However the wrapping tags cannot be mixed as such:
  
  	Consult the [Emoji Cheat Sheet](http://emoji.codes) for a list of all supported emoji codes. :thumbsup:
  
 -Sometimes you want to :monkey: around a bit and add some :star2: to your :speech_balloon:. Well we have a gift for you:
 +時には、 :monkey: になり :speech_balloon: に :star2: を追加したいこともあるでしょう。そんなあなたにプレゼントがあります。
  
- :zap: You can use emoji anywhere GFM is supported. :v:
+-:zap: You can use emoji anywhere GFM is supported. :v:
++:zap: あなたはGFMがサポートされた場所ならどこでも、絵文字を使うことができます :v:
+ 
+ You can use it to point out a :bug: or warn about :speak_no_evil: patches. And if someone improves your really :snail: code, send them some :birthday:. People will :heart: you for that.
  
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index 7715842..3642faa 100644

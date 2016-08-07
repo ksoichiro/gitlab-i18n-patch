@@ -14275,7 +14275,7 @@ index 8a7205c..29c0422 100644
 \ No newline at end of file
 +fail with one of the mentioned errors.
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index 4f199b6..50bf11e 100644
+index 4f199b6..006c870 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,31 +1,31 @@
@@ -14447,7 +14447,7 @@ index 4f199b6..50bf11e 100644
      s = "Python syntax highlighting"
      print s
  ```
-@@ -148,7 +148,7 @@ puts markdown.to_html
+@@ -148,14 +148,14 @@ puts markdown.to_html
  ```
  
  ```
@@ -14456,6 +14456,23 @@ index 4f199b6..50bf11e 100644
  s = "There is no highlighting for this."
  But let's throw in a <b>tag</b>.
  ```
+ 
+ ## Emoji
+ 
+-	Sometimes you want to :monkey: around a bit and add some :star2: to your :speech_balloon:. Well we have a gift for you:
++	時には、 :monkey: になり :speech_balloon: に :star2: を追加したいこともあるでしょう。そんなあなたにプレゼントがあります。
+ 
+ 	:zap: You can use emoji anywhere GFM is supported. :v:
+ 
+@@ -165,7 +165,7 @@ But let's throw in a <b>tag</b>.
+ 
+ 	Consult the [Emoji Cheat Sheet](http://emoji.codes) for a list of all supported emoji codes. :thumbsup:
+ 
+-Sometimes you want to :monkey: around a bit and add some :star2: to your :speech_balloon:. Well we have a gift for you:
++時には、 :monkey: になり :speech_balloon: に :star2: を追加したいこともあるでしょう。そんなあなたにプレゼントがあります。
+ 
+ :zap: You can use emoji anywhere GFM is supported. :v:
+ 
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index 90e9930..3377848 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

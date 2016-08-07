@@ -2096,6 +2096,8 @@ translations:
     replace: '${noLanguageIndicatedSoNoSyntaxHighlighting}'
   - pattern: 'becomes:'
     replace: '${becomes}'
+  - pattern: 'Sometimes you want to :monkey: around a bit and add some :star2: to your :speech_balloon:. Well we have a gift for you:'
+    replace: '${sometimesYouWantToMonkeyAroundABitAndAddSomeStar2ToYourSpeechBalloonWellWEHaveAGiftForYou}'
 
   - name: headerOrComment
     params:

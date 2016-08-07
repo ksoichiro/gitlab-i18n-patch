@@ -2776,3 +2776,4 @@ inlineCodeHasBackTicksAroundIt: "インラインの`コード`は`バックク�
 indentingWorksJustFineInTheFencedCodeBlock: 仕切られたコードブロックではインデントが有効です
 noLanguageIndicatedSoNoSyntaxHighlighting: 言語が示されていない場合は、シンタックスハイライトされません。
 becomes: これは次のように表示されます。
+sometimesYouWantToMonkeyAroundABitAndAddSomeStar2ToYourSpeechBalloonWellWEHaveAGiftForYou: "時には、 :monkey: になり :speech_balloon: に :star2: を追加したいこともあるでしょう。そんなあなたにプレゼントがあります。"

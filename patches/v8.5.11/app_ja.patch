@@ -14052,7 +14052,7 @@ index 5f8bb57..9558cca 100644
  ![Authorized_applications](img/oauth_provider_authorized_application.png)
  
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index c400cda..f3016e4 100644
+index c400cda..eb309bf 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,52 +1,52 @@
@@ -14223,7 +14223,7 @@ index c400cda..f3016e4 100644
      s = "Python syntax highlighting"
      print s
  ```
-@@ -146,7 +146,7 @@ puts markdown.to_html
+@@ -146,14 +146,14 @@ puts markdown.to_html
  ```
  
  ```
@@ -14232,6 +14232,23 @@ index c400cda..f3016e4 100644
  s = "There is no highlighting for this."
  But let's throw in a <b>tag</b>.
  ```
+ 
+ ## Emoji
+ 
+-	Sometimes you want to :monkey: around a bit and add some :star2: to your :speech_balloon:. Well we have a gift for you:
++	時には、 :monkey: になり :speech_balloon: に :star2: を追加したいこともあるでしょう。そんなあなたにプレゼントがあります。
+ 
+ 	:zap: You can use emoji anywhere GFM is supported. :v:
+ 
+@@ -163,7 +163,7 @@ But let's throw in a <b>tag</b>.
+ 
+ 	Consult the [Emoji Cheat Sheet](http://emoji.codes) for a list of all supported emoji codes. :thumbsup:
+ 
+-Sometimes you want to :monkey: around a bit and add some :star2: to your :speech_balloon:. Well we have a gift for you:
++時には、 :monkey: になり :speech_balloon: に :star2: を追加したいこともあるでしょう。そんなあなたにプレゼントがあります。
+ 
+ :zap: You can use emoji anywhere GFM is supported. :v:
+ 
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index b856e79..91a3683 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

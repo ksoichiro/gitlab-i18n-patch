@@ -14260,7 +14260,7 @@ index 8a7205c..29c0422 100644
 \ No newline at end of file
 +fail with one of the mentioned errors.
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index 4f199b6..9330518 100644
+index 4f199b6..3efe957 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,31 +1,31 @@
@@ -14432,7 +14432,7 @@ index 4f199b6..9330518 100644
      s = "Python syntax highlighting"
      print s
  ```
-@@ -148,16 +148,16 @@ puts markdown.to_html
+@@ -148,28 +148,28 @@ puts markdown.to_html
  ```
  
  ```
@@ -14450,9 +14450,10 @@ index 4f199b6..9330518 100644
 -	:zap: You can use emoji anywhere GFM is supported. :v:
 +	:zap: あなたはGFMがサポートされた場所ならどこでも、絵文字を使うことができます :v:
  
- 	You can use it to point out a :bug: or warn about :speak_no_evil: patches. And if someone improves your really :snail: code, send them some :birthday:. People will :heart: you for that.
+-	You can use it to point out a :bug: or warn about :speak_no_evil: patches. And if someone improves your really :snail: code, send them some :birthday:. People will :heart: you for that.
++	:bug: の指摘や :speak_no_evil: パッチの警告に使うこともできます。そして、もし誰かが本当に :snail: なコードを改善したら、彼らに :birthday: を送りましょう。皆あなたを :heart: になるでしょう。
  
-@@ -165,9 +165,9 @@ But let's throw in a <b>tag</b>.
+ 	If you are new to this, don't be :fearful:. You can easily join the emoji :family:. All you need to do is to look up on the supported codes.
  
  	Consult the [Emoji Cheat Sheet](http://emoji.codes) for a list of all supported emoji codes. :thumbsup:
  
@@ -14462,7 +14463,10 @@ index 4f199b6..9330518 100644
 -:zap: You can use emoji anywhere GFM is supported. :v:
 +:zap: あなたはGFMがサポートされた場所ならどこでも、絵文字を使うことができます :v:
  
- You can use it to point out a :bug: or warn about :speak_no_evil: patches. And if someone improves your really :snail: code, send them some :birthday:. People will :heart: you for that.
+-You can use it to point out a :bug: or warn about :speak_no_evil: patches. And if someone improves your really :snail: code, send them some :birthday:. People will :heart: you for that.
++:bug: の指摘や :speak_no_evil: パッチの警告に使うこともできます。そして、もし誰かが本当に :snail: なコードを改善したら、彼らに :birthday: を送りましょう。皆あなたを :heart: になるでしょう。
+ 
+ If you are new to this, don't be :fearful:. You can easily join the emoji :family:. All you need to do is to look up on the supported codes.
  
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index 90e9930..3377848 100644

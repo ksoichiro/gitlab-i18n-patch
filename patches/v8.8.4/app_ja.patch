@@ -14486,7 +14486,7 @@ index 8a7205c..29c0422 100644
 \ No newline at end of file
 +fail with one of the mentioned errors.
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index 236eb7b..a2ec43e 100644
+index 236eb7b..10c5c69 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,32 +1,32 @@
@@ -14665,7 +14665,7 @@ index 236eb7b..a2ec43e 100644
  s = "There is no highlighting for this."
  But let's throw in a <b>tag</b>.
  ```
-@@ -169,21 +169,21 @@ However the wrapping tags cannot be mixed as such:
+@@ -169,23 +169,23 @@ However the wrapping tags cannot be mixed as such:
  
  ## Emoji
  
@@ -14678,7 +14678,8 @@ index 236eb7b..a2ec43e 100644
 -	You can use it to point out a :bug: or warn about :speak_no_evil: patches. And if someone improves your really :snail: code, send them some :birthday:. People will :heart: you for that.
 +	:bug: の指摘や :speak_no_evil: パッチの警告に使うこともできます。そして、もし誰かが本当に :snail: なコードを改善したら、彼らに :birthday: を送りましょう。皆あなたを :heart: になるでしょう。
  
- 	If you are new to this, don't be :fearful:. You can easily join the emoji :family:. All you need to do is to look up on the supported codes.
+-	If you are new to this, don't be :fearful:. You can easily join the emoji :family:. All you need to do is to look up on the supported codes.
++	あなたが絵文字の初心者だとしても、 :fearful: にならないでください。あなたも簡単に絵文字の :family: に入ることができます。サポートされたコードを使うだけです。
  
  	Consult the [Emoji Cheat Sheet](http://emoji.codes) for a list of all supported emoji codes. :thumbsup:
  
@@ -14691,7 +14692,10 @@ index 236eb7b..a2ec43e 100644
 -You can use it to point out a :bug: or warn about :speak_no_evil: patches. And if someone improves your really :snail: code, send them some :birthday:. People will :heart: you for that.
 +:bug: の指摘や :speak_no_evil: パッチの警告に使うこともできます。そして、もし誰かが本当に :snail: なコードを改善したら、彼らに :birthday: を送りましょう。皆あなたを :heart: になるでしょう。
  
- If you are new to this, don't be :fearful:. You can easily join the emoji :family:. All you need to do is to look up on the supported codes.
+-If you are new to this, don't be :fearful:. You can easily join the emoji :family:. All you need to do is to look up on the supported codes.
++あなたが絵文字の初心者だとしても、 :fearful: にならないでください。あなたも簡単に絵文字の :family: に入ることができます。サポートされたコードを使うだけです。
+ 
+ Consult the [Emoji Cheat Sheet](http://emoji.codes) for a list of all supported emoji codes. :thumbsup:
  
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index 7715842..3642faa 100644

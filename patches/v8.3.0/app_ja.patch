@@ -13661,7 +13661,7 @@ index 192c321..2d25661 100644
 \ No newline at end of file
 +![admin_application](oauth_provider/admin_application.png)
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index bc8e7d1..3927a2a 100644
+index bc8e7d1..d56fa3e 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,52 +1,52 @@
@@ -13829,7 +13829,7 @@ index bc8e7d1..3927a2a 100644
      s = "Python syntax highlighting"
      print s
  ```
-@@ -143,30 +143,30 @@ puts markdown.to_html
+@@ -143,32 +143,32 @@ puts markdown.to_html
  ```
  
  ```
@@ -13853,7 +13853,8 @@ index bc8e7d1..3927a2a 100644
 -	If you are new to this, don't be :fearful:. You can easily join the emoji :family:. All you need to do is to look up on the supported codes.
 +	あなたが絵文字の初心者だとしても、 :fearful: にならないでください。あなたも簡単に絵文字の :family: に入ることができます。サポートされたコードを使うだけです。
  
- 	Consult the [Emoji Cheat Sheet](http://emoji.codes) for a list of all supported emoji codes. :thumbsup:
+-	Consult the [Emoji Cheat Sheet](http://emoji.codes) for a list of all supported emoji codes. :thumbsup:
++	サポートされている絵文字コードの一覧は、 [Emoji Cheat Sheet](http://emoji.codes) を確認してください。 :thumbsup:
  
 -Sometimes you want to :monkey: around a bit and add some :star2: to your :speech_balloon:. Well we have a gift for you:
 +時には、 :monkey: になり :speech_balloon: に :star2: を追加したいこともあるでしょう。そんなあなたにプレゼントがあります。
@@ -13867,7 +13868,10 @@ index bc8e7d1..3927a2a 100644
 -If you are new to this, don't be :fearful:. You can easily join the emoji :family:. All you need to do is to look up on the supported codes.
 +あなたが絵文字の初心者だとしても、 :fearful: にならないでください。あなたも簡単に絵文字の :family: に入ることができます。サポートされたコードを使うだけです。
  
- Consult the [Emoji Cheat Sheet](http://emoji.codes) for a list of all supported emoji codes. :thumbsup:
+-Consult the [Emoji Cheat Sheet](http://emoji.codes) for a list of all supported emoji codes. :thumbsup:
++サポートされている絵文字コードの一覧は、 [Emoji Cheat Sheet](http://emoji.codes) を確認してください。 :thumbsup:
+ 
+ ## Special GitLab References
  
 diff --git a/doc/permissions/permissions.md b/doc/permissions/permissions.md
 index bcd00cf..2b2e43f 100644

@@ -14476,7 +14476,7 @@ index 8a7205c..29c0422 100644
 \ No newline at end of file
 +fail with one of the mentioned errors.
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index 236eb7b..10c5c69 100644
+index 236eb7b..b73befc 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,32 +1,32 @@
@@ -14655,7 +14655,7 @@ index 236eb7b..10c5c69 100644
  s = "There is no highlighting for this."
  But let's throw in a <b>tag</b>.
  ```
-@@ -169,23 +169,23 @@ However the wrapping tags cannot be mixed as such:
+@@ -169,25 +169,25 @@ However the wrapping tags cannot be mixed as such:
  
  ## Emoji
  
@@ -14671,7 +14671,8 @@ index 236eb7b..10c5c69 100644
 -	If you are new to this, don't be :fearful:. You can easily join the emoji :family:. All you need to do is to look up on the supported codes.
 +	あなたが絵文字の初心者だとしても、 :fearful: にならないでください。あなたも簡単に絵文字の :family: に入ることができます。サポートされたコードを使うだけです。
  
- 	Consult the [Emoji Cheat Sheet](http://emoji.codes) for a list of all supported emoji codes. :thumbsup:
+-	Consult the [Emoji Cheat Sheet](http://emoji.codes) for a list of all supported emoji codes. :thumbsup:
++	サポートされている絵文字コードの一覧は、 [Emoji Cheat Sheet](http://emoji.codes) を確認してください。 :thumbsup:
  
 -Sometimes you want to :monkey: around a bit and add some :star2: to your :speech_balloon:. Well we have a gift for you:
 +時には、 :monkey: になり :speech_balloon: に :star2: を追加したいこともあるでしょう。そんなあなたにプレゼントがあります。
@@ -14685,7 +14686,10 @@ index 236eb7b..10c5c69 100644
 -If you are new to this, don't be :fearful:. You can easily join the emoji :family:. All you need to do is to look up on the supported codes.
 +あなたが絵文字の初心者だとしても、 :fearful: にならないでください。あなたも簡単に絵文字の :family: に入ることができます。サポートされたコードを使うだけです。
  
- Consult the [Emoji Cheat Sheet](http://emoji.codes) for a list of all supported emoji codes. :thumbsup:
+-Consult the [Emoji Cheat Sheet](http://emoji.codes) for a list of all supported emoji codes. :thumbsup:
++サポートされている絵文字コードの一覧は、 [Emoji Cheat Sheet](http://emoji.codes) を確認してください。 :thumbsup:
+ 
+ ## Special GitLab References
  
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index 7715842..3642faa 100644

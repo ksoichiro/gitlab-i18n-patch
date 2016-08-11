@@ -2104,6 +2104,8 @@ translations:
     replace: '${youCanUseItToPointOutABugOrWarnAboutSpeakNoEvilPatchesAndIfSomeoneImprovesYourReallySnailCodeSendTHemSomeBirthdayPeopleWIllHeartYouForThat}'
   - pattern: "If you are new to this, don't be :fearful:. You can easily join the emoji :family:. All you need to do is to look up on the supported codes."
     replace: '${ifYouAreNewToThisDontBeFearfulYouCanEasilyJoinTheEmojiFamilyAllYouNeedToDoIsToLookUpOnTheSupportedCodes}'
+  - pattern: "Consult the [Emoji Cheat Sheet](http://emoji.codes) for a list of all supported emoji codes. :thumbsup:"
+    replace: '${consultTheEmojiCheatSheetForAListOfAllSupportedEmojiCodesThumbsup}'
 
   - name: headerOrComment
     params:

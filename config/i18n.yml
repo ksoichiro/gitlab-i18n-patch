@@ -2106,6 +2106,8 @@ translations:
     replace: '${ifYouAreNewToThisDontBeFearfulYouCanEasilyJoinTheEmojiFamilyAllYouNeedToDoIsToLookUpOnTheSupportedCodes}'
   - pattern: "Consult the [Emoji Cheat Sheet](http://emoji.codes) for a list of all supported emoji codes. :thumbsup:"
     replace: '${consultTheEmojiCheatSheetForAListOfAllSupportedEmojiCodesThumbsup}'
+  - pattern: 'GFM recognizes special references.'
+    replace: '${gfmRecognizesSpecialReferences}'
 
   - name: headerOrComment
     params:
@@ -4721,8 +4723,8 @@ translations:
     #  key: mdTitleSource
     #- title: 'Source install'
     #  key: mdTitleSourceInstall
-    #- title: 'Special GitLab References'
-    #  key: mdTitleSpecialGitLabReferences
+    - title: 'Special GitLab References'
+      key: mdTitleSpecialGitLabReferences
     #- title: 'Special YAML features'
     #  key: mdTitleSpecialYAMLFeatures
     #- title: 'Spinach \(feature\) tests'

@@ -13902,7 +13902,7 @@ index 192c321..2d25661 100644
 \ No newline at end of file
 +![admin_application](oauth_provider/admin_application.png)
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index bc8e7d1..d56fa3e 100644
+index bc8e7d1..da4ed70 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,52 +1,52 @@
@@ -14070,7 +14070,7 @@ index bc8e7d1..d56fa3e 100644
      s = "Python syntax highlighting"
      print s
  ```
-@@ -143,32 +143,32 @@ puts markdown.to_html
+@@ -143,36 +143,36 @@ puts markdown.to_html
  ```
  
  ```
@@ -14112,7 +14112,13 @@ index bc8e7d1..d56fa3e 100644
 -Consult the [Emoji Cheat Sheet](http://emoji.codes) for a list of all supported emoji codes. :thumbsup:
 +サポートされている絵文字コードの一覧は、 [Emoji Cheat Sheet](http://emoji.codes) を確認してください。 :thumbsup:
  
- ## Special GitLab References
+-## Special GitLab References
++## GitLabでの特別な参照
+ 
+-GFM recognizes special references.
++GFM は特別な参照を認識します。
+ 
+ You can easily reference e.g. an issue, a commit, a team member or even the whole team within a project.
  
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index b856e79..91a3683 100644

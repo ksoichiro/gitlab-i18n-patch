@@ -2782,3 +2782,4 @@ youCanUseItToPointOutABugOrWarnAboutSpeakNoEvilPatchesAndIfSomeoneImprovesYourRe
 ifYouAreNewToThisDontBeFearfulYouCanEasilyJoinTheEmojiFamilyAllYouNeedToDoIsToLookUpOnTheSupportedCodes: "あなたが絵文字の初心者だとしても、 :fearful: にならないでください。あなたも簡単に絵文字の :family: に入ることができます。サポートされたコードを使うだけです。"
 consultTheEmojiCheatSheetForAListOfAllSupportedEmojiCodesThumbsup: "サポートされている絵文字コードの一覧は、 [Emoji Cheat Sheet](http://emoji.codes) を確認してください。 :thumbsup:"
 gfmRecognizesSpecialReferences: GFM は特別な参照を認識します。
+youCanEasilyReferenceEGAnIssueACommitATeamMemberOrEvenTheWholeTeamWithinAProject: 例えばプロジェクト内のチームメンバー、課題、コミットメッセージを簡単に参照することができます。

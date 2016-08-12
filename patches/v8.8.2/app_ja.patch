@@ -14504,7 +14504,7 @@ index 8a7205c..29c0422 100644
 \ No newline at end of file
 +fail with one of the mentioned errors.
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index 236eb7b..113596e 100644
+index 236eb7b..803cf3c 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,32 +1,32 @@
@@ -14683,7 +14683,7 @@ index 236eb7b..113596e 100644
  s = "There is no highlighting for this."
  But let's throw in a <b>tag</b>.
  ```
-@@ -169,29 +169,29 @@ However the wrapping tags cannot be mixed as such:
+@@ -169,31 +169,31 @@ However the wrapping tags cannot be mixed as such:
  
  ## Emoji
  
@@ -14723,7 +14723,10 @@ index 236eb7b..113596e 100644
 -GFM recognizes special references.
 +GFM は特別な参照を認識します。
  
- You can easily reference e.g. an issue, a commit, a team member or even the whole team within a project.
+-You can easily reference e.g. an issue, a commit, a team member or even the whole team within a project.
++例えばプロジェクト内のチームメンバー、課題、コミットメッセージを簡単に参照することができます。
+ 
+ GFM will turn that reference into a link so you can navigate between them easily.
  
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index 7715842..3642faa 100644

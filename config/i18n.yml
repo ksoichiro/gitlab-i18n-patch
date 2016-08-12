@@ -2108,6 +2108,8 @@ translations:
     replace: '${consultTheEmojiCheatSheetForAListOfAllSupportedEmojiCodesThumbsup}'
   - pattern: 'GFM recognizes special references.'
     replace: '${gfmRecognizesSpecialReferences}'
+  - pattern: 'You can easily reference e.g. an issue, a commit, a team member or even the whole team within a project.'
+    replace: '${youCanEasilyReferenceEGAnIssueACommitATeamMemberOrEvenTheWholeTeamWithinAProject}'
 
   - name: headerOrComment
     params:

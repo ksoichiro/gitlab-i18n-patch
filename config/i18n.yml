@@ -2,6 +2,7 @@ translations:
 
 # CoffeeScript
 - name: 'coffee'
+  parallel-group: 'group1'
   src: '**/*.coffee'
   named-patterns:
   - name: singleQuoted
@@ -40,6 +41,7 @@ translations:
 
 # JavaScript
 - name: 'js:jquery.timeago'
+  parallel-group: 'group1'
   src: 'app/assets/javascripts/lib/jquery.timeago.js'
   patterns:
   - insert:
@@ -48,6 +50,7 @@ translations:
 
 # Ruby
 - name: 'rb:helpers'
+  parallel-group: 'group1'
   src: 'app/helpers/**.rb'
   patterns:
   - pattern: "'Oldest updated'"
@@ -186,6 +189,7 @@ translations:
     replace: '$1"${theProjectCanBeClonedWithoutAnyAuthentication}"'
 
 - name: 'rb'
+  parallel-group: 'group1'
   src: 'app/**/*.rb'
   skip-patterns:
   - !!js/regexp /^\s*(?:(?:require|include|class|render|before_action) .*|private|end)?$/
@@ -429,6 +433,7 @@ translations:
     - {word: 'Inline', key: inline}
 
 - name: 'haml:shortcuts'
+  parallel-group: 'group1'
   src: 'app/views/**/_shortcuts.html.haml'
   patterns:
   - pattern: "Go to projects"
@@ -455,6 +460,7 @@ translations:
     replace: '${shortcutsGoToSnippets}'
 
 - name: 'haml'
+  parallel-group: 'group1'
   src: 'app/views/**/*.haml'
   skip-patterns:
   # Empty
@@ -1508,6 +1514,7 @@ translations:
     - {obj: issues, objKey: issue, done: updated, doneKey: update}
 
 - name: 'rb:application'
+  parallel-group: 'group1'
   src: 'config/application.rb'
   patterns:
   - pattern: !!js/regexp /^    config.i18n.enforce_available_locales = false/
@@ -1515,6 +1522,7 @@ translations:
     exclude: '# done'
 
 - name: 'devise-ja'
+  parallel-group: 'group1'
   locale:
     include: [ja]
   add:
@@ -1522,6 +1530,7 @@ translations:
     value: devise
 
 - name: 'locale-ja'
+  parallel-group: 'group1'
   locale:
     include: [ja]
   add:
@@ -1529,6 +1538,7 @@ translations:
     value: configLocalesJa
 
 - name: 'md'
+  parallel-group: 'group1'
   src: 'doc/**/*.md'
   skip-patterns:
   - !!js/regexp /(^[^a-zA-Z]+$|^```)/

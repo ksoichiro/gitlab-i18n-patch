@@ -2783,3 +2783,7 @@ ifYouAreNewToThisDontBeFearfulYouCanEasilyJoinTheEmojiFamilyAllYouNeedToDoIsToLo
 consultTheEmojiCheatSheetForAListOfAllSupportedEmojiCodesThumbsup: "サポートされている絵文字コードの一覧は、 [Emoji Cheat Sheet](http://emoji.codes) を確認してください。 :thumbsup:"
 gfmRecognizesSpecialReferences: GFM は特別な参照を認識します。
 youCanEasilyReferenceEGAnIssueACommitATeamMemberOrEvenTheWholeTeamWithinAProject: 例えばプロジェクト内のチームメンバー、課題、コミットメッセージを簡単に参照することができます。
+gfmWillTurnThatReferenceIntoALinkSoYouCanNavigateBetweenThemEasily: GFM は参照をリンクに変換するため、それらの参照に対して簡単にナビゲーションすることができます。
+gfmWillRecognizeTheFollowing: GFM は以下を認識します。
+thInput: 入力
+thReferences: 参照

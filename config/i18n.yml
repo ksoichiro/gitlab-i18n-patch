@@ -2110,6 +2110,14 @@ translations:
     replace: '${gfmRecognizesSpecialReferences}'
   - pattern: 'You can easily reference e.g. an issue, a commit, a team member or even the whole team within a project.'
     replace: '${youCanEasilyReferenceEGAnIssueACommitATeamMemberOrEvenTheWholeTeamWithinAProject}'
+  - pattern: 'GFM will turn that reference into a link so you can navigate between them easily.'
+    replace: '${gfmWillTurnThatReferenceIntoALinkSoYouCanNavigateBetweenThemEasily}'
+  - pattern: 'GFM will recognize the following:'
+    replace: '${gfmWillRecognizeTheFollowing}'
+  - pattern: !!js/regexp /\| input /
+    replace: '| ${thInput} '
+  - pattern: !!js/regexp /\| references /
+    replace: '| ${thReferences} '
 
   - name: headerOrComment
     params:

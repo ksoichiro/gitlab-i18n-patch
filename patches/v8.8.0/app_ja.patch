@@ -14476,7 +14476,7 @@ index 8a7205c..29c0422 100644
 \ No newline at end of file
 +fail with one of the mentioned errors.
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index 236eb7b..803cf3c 100644
+index 236eb7b..2a1e054 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,32 +1,32 @@
@@ -14655,7 +14655,7 @@ index 236eb7b..803cf3c 100644
  s = "There is no highlighting for this."
  But let's throw in a <b>tag</b>.
  ```
-@@ -169,31 +169,31 @@ However the wrapping tags cannot be mixed as such:
+@@ -169,37 +169,37 @@ However the wrapping tags cannot be mixed as such:
  
  ## Emoji
  
@@ -14698,8 +14698,26 @@ index 236eb7b..803cf3c 100644
 -You can easily reference e.g. an issue, a commit, a team member or even the whole team within a project.
 +例えばプロジェクト内のチームメンバー、課題、コミットメッセージを簡単に参照することができます。
  
- GFM will turn that reference into a link so you can navigate between them easily.
+-GFM will turn that reference into a link so you can navigate between them easily.
++GFM は参照をリンクに変換するため、それらの参照に対して簡単にナビゲーションすることができます。
  
+-GFM will recognize the following:
++GFM は以下を認識します。
+ 
+-| input                  | references                   |
++| 入力                  | 参照                   |
+ |:-----------------------|:---------------------------  |
+ | `@user_name`           | specific user                |
+ | `@group_name`          | specific group               |
+@@ -219,7 +219,7 @@ GFM will recognize the following:
+ 
+ GFM also recognizes certain cross-project references:
+ 
+-| input                                   | references              |
++| 入力                                   | 参照              |
+ |:----------------------------------------|:------------------------|
+ | `namespace/project#123`                 | issue                   |
+ | `namespace/project!123`                 | merge request           |
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index 7715842..3642faa 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

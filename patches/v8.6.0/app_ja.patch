@@ -14079,7 +14079,7 @@ index 5f8bb57..9558cca 100644
  ![Authorized_applications](img/oauth_provider_authorized_application.png)
  
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index e6eb1cf..ce9d568 100644
+index e6eb1cf..8e8be22 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,54 +1,54 @@
@@ -14252,7 +14252,7 @@ index e6eb1cf..ce9d568 100644
      s = "Python syntax highlighting"
      print s
  ```
-@@ -148,38 +148,38 @@ puts markdown.to_html
+@@ -148,44 +148,44 @@ puts markdown.to_html
  ```
  
  ```
@@ -14303,8 +14303,26 @@ index e6eb1cf..ce9d568 100644
 -You can easily reference e.g. an issue, a commit, a team member or even the whole team within a project.
 +例えばプロジェクト内のチームメンバー、課題、コミットメッセージを簡単に参照することができます。
  
- GFM will turn that reference into a link so you can navigate between them easily.
+-GFM will turn that reference into a link so you can navigate between them easily.
++GFM は参照をリンクに変換するため、それらの参照に対して簡単にナビゲーションすることができます。
  
+-GFM will recognize the following:
++GFM は以下を認識します。
+ 
+-| input                  | references                 |
++| 入力                  | 参照                 |
+ |:-----------------------|:---------------------------|
+ | `@user_name`           | specific user              |
+ | `@group_name`          | specific group             |
+@@ -202,7 +202,7 @@ GFM will recognize the following:
+ 
+ GFM also recognizes certain cross-project references:
+ 
+-| input                                   | references              |
++| 入力                                   | 参照              |
+ |:----------------------------------------|:------------------------|
+ | `namespace/project#123`                 | issue                   |
+ | `namespace/project!123`                 | merge request           |
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index b856e79..91a3683 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

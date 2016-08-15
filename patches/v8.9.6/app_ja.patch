@@ -6018,10 +6018,10 @@ index 2fd4859..ef409f5 100644
 +    = link_to "招待を承認", accept_invite_url(@token), method: :post, class: "btn btn-success"
      = link_to "Decline", decline_invite_url(@token), method: :post, class: "btn btn-danger prepend-left-10"
 diff --git a/app/views/layouts/_search.html.haml b/app/views/layouts/_search.html.haml
-index 245b9c3..7869131 100644
+index 245b9c3..b03a8ec 100644
 --- a/app/views/layouts/_search.html.haml
 +++ b/app/views/layouts/_search.html.haml
-@@ -1,16 +1,16 @@
+@@ -1,7 +1,7 @@
  - if controller.controller_path =~ /^groups/ && @group.persisted?
 -  - label = 'This group'
 +  - label = 'This グループ'
@@ -6031,10 +6031,8 @@ index 245b9c3..7869131 100644
  
  .search.search-form{class: "#{'has-location-badge' if label.present?}"}
    = form_tag search_path, method: :get, class: 'navbar-form' do |f|
-     .search-input-container
-       - if label.present?
--        .location-badge= label
-+        .location-badge= ラベル
+@@ -10,7 +10,7 @@
+         .location-badge= label
        .search-input-wrap
          .dropdown{ data: {url: search_autocomplete_path } }
 -          = search_field_tag "search", nil, placeholder: 'Search', class: "search-input dropdown-menu-toggle", spellcheck: false, tabindex: "1", autocomplete: 'off',  data: { toggle: 'dropdown' }

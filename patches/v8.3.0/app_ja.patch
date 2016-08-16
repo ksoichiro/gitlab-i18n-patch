@@ -13661,7 +13661,7 @@ index 192c321..2d25661 100644
 \ No newline at end of file
 +![admin_application](oauth_provider/admin_application.png)
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index bc8e7d1..a69ed4a 100644
+index bc8e7d1..8e7bb75 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,52 +1,52 @@
@@ -13829,7 +13829,7 @@ index bc8e7d1..a69ed4a 100644
      s = "Python syntax highlighting"
      print s
  ```
-@@ -143,44 +143,44 @@ puts markdown.to_html
+@@ -143,67 +143,67 @@ puts markdown.to_html
  ```
  
  ```
@@ -13889,17 +13889,52 @@ index bc8e7d1..a69ed4a 100644
 -| input                  | references                 |
 +| 入力                  | 参照                 |
  |:-----------------------|:---------------------------|
- | `@user_name`           | specific user              |
- | `@group_name`          | specific group             |
-@@ -197,7 +197,7 @@ GFM will recognize the following:
- 
- GFM also recognizes certain cross-project references:
- 
+-| `@user_name`           | specific user              |
+-| `@group_name`          | specific group             |
+-| `@all`                 | entire team                |
+-| `#123`                 | issue                      |
+-| `!123`                 | merge request              |
+-| `$123`                 | snippet                    |
+-| `~123`                 | label by ID                |
+-| `~bug`                 | one-word label by name     |
+-| `~"feature request"`   | multi-word label by name   |
+-| `9ba12248`             | specific commit            |
+-| `9ba12248...b19a04f5`  | commit range comparison    |
+-| `[README](doc/README)` | repository file references |
+-
+-GFM also recognizes certain cross-project references:
+-
 -| input                                   | references              |
++| `@user_name`           | 特定のユーザ              |
++| `@group_name`          | 特定のグループ             |
++| `@all`                 | チーム全体                |
++| `#123`                 | 課題                      |
++| `!123`                 | マージリクエスト              |
++| `$123`                 | スニペット                    |
++| `~123`                 | ラベル by ID                |
++| `~bug`                 | 1単語ラベル by 名前     |
++| `~"feature request"`   | 複数単語ラベル by 名前   |
++| `9ba12248`             | 特定のコミット            |
++| `9ba12248...b19a04f5`  | コミット範囲比較    |
++| `[README](doc/README)` | リポジトリ内のファイル |
++
++GFM はクロスプロジェクトも認識します。
++
 +| 入力                                   | 参照              |
  |:----------------------------------------|:------------------------|
- | `namespace/project#123`                 | issue                   |
- | `namespace/project!123`                 | merge request           |
+-| `namespace/project#123`                 | issue                   |
+-| `namespace/project!123`                 | merge request           |
+-| `namespace/project$123`                 | snippet                 |
+-| `namespace/project@9ba12248`            | specific commit         |
+-| `namespace/project@9ba12248...b19a04f5` | commit range comparison |
++| `namespace/project#123`                 | 課題                   |
++| `namespace/project!123`                 | マージリクエスト           |
++| `namespace/project$123`                 | スニペット                 |
++| `namespace/project@9ba12248`            | 特定のコミット         |
++| `namespace/project@9ba12248...b19a04f5` | コミット範囲比較 |
+ 
+ ## Task Lists
+ 
 diff --git a/doc/permissions/permissions.md b/doc/permissions/permissions.md
 index bcd00cf..2b2e43f 100644
 --- a/doc/permissions/permissions.md

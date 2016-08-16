@@ -2787,3 +2787,16 @@ gfmWillTurnThatReferenceIntoALinkSoYouCanNavigateBetweenThemEasily: GFM は参�
 gfmWillRecognizeTheFollowing: GFM は以下を認識します。
 thInput: 入力
 thReferences: 参照
+thSpecificUser: 特定のユーザ
+thSpecificGroup: 特定のグループ
+thEntireTeam: チーム全体
+thIssue: 課題
+thMergeRequest: マージリクエスト
+thSnippet: スニペット
+thLabelByID: ラベル by ID
+thOneWordLabelByName: 1単語ラベル by 名前
+thMultiWordLabelByName: 複数単語ラベル by 名前
+thSpecificCommit: 特定のコミット
+thCommitRangeComparison: コミット範囲比較
+thRepositoryFileReferences: リポジトリ内のファイル
+gfmAlsoRecognizesCertainCrossProjectReferences: GFM はクロスプロジェクトも認識します。

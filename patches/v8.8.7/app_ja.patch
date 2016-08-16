@@ -14490,7 +14490,7 @@ index 8a7205c..29c0422 100644
 \ No newline at end of file
 +fail with one of the mentioned errors.
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index 236eb7b..2a1e054 100644
+index 236eb7b..1dd87b4 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,32 +1,32 @@
@@ -14669,7 +14669,7 @@ index 236eb7b..2a1e054 100644
  s = "There is no highlighting for this."
  But let's throw in a <b>tag</b>.
  ```
-@@ -169,37 +169,37 @@ However the wrapping tags cannot be mixed as such:
+@@ -169,64 +169,64 @@ However the wrapping tags cannot be mixed as such:
  
  ## Emoji
  
@@ -14721,17 +14721,54 @@ index 236eb7b..2a1e054 100644
 -| input                  | references                   |
 +| 入力                  | 参照                   |
  |:-----------------------|:---------------------------  |
- | `@user_name`           | specific user                |
- | `@group_name`          | specific group               |
-@@ -219,7 +219,7 @@ GFM will recognize the following:
+-| `@user_name`           | specific user                |
+-| `@group_name`          | specific group               |
+-| `@all`                 | entire team                  |
+-| `#123`                 | issue                        |
+-| `!123`                 | merge request                |
+-| `$123`                 | snippet                      |
+-| `~123`                 | label by ID                  |
+-| `~bug`                 | one-word label by name       |
+-| `~"feature request"`   | multi-word label by name     |
++| `@user_name`           | 特定のユーザ                |
++| `@group_name`          | 特定のグループ               |
++| `@all`                 | チーム全体                  |
++| `#123`                 | 課題                        |
++| `!123`                 | マージリクエスト                |
++| `$123`                 | スニペット                      |
++| `~123`                 | ラベル by ID                  |
++| `~bug`                 | 1単語ラベル by 名前       |
++| `~"feature request"`   | 複数単語ラベル by 名前     |
+ | `%123`                 | milestone by ID              |
+ | `%v1.23`               | one-word milestone by name   |
+ | `%"release candidate"` | multi-word milestone by name |
+-| `9ba12248`             | specific commit              |
+-| `9ba12248...b19a04f5`  | commit range comparison      |
+-| `[README](doc/README)` | repository file references   |
++| `9ba12248`             | 特定のコミット              |
++| `9ba12248...b19a04f5`  | コミット範囲比較      |
++| `[README](doc/README)` | リポジトリ内のファイル   |
  
- GFM also recognizes certain cross-project references:
+-GFM also recognizes certain cross-project references:
++GFM はクロスプロジェクトも認識します。
  
 -| input                                   | references              |
 +| 入力                                   | 参照              |
  |:----------------------------------------|:------------------------|
- | `namespace/project#123`                 | issue                   |
- | `namespace/project!123`                 | merge request           |
+-| `namespace/project#123`                 | issue                   |
+-| `namespace/project!123`                 | merge request           |
++| `namespace/project#123`                 | 課題                   |
++| `namespace/project!123`                 | マージリクエスト           |
+ | `namespace/project%123`                 | milestone               |
+-| `namespace/project$123`                 | snippet                 |
+-| `namespace/project@9ba12248`            | specific commit         |
+-| `namespace/project@9ba12248...b19a04f5` | commit range comparison |
++| `namespace/project$123`                 | スニペット                 |
++| `namespace/project@9ba12248`            | 特定のコミット         |
++| `namespace/project@9ba12248...b19a04f5` | コミット範囲比較 |
+ | `namespace/project~"Some label"`        | issues with given label |
+ 
+ ## Task Lists
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index 7715842..3642faa 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

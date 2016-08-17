@@ -13661,7 +13661,7 @@ index 192c321..2d25661 100644
 \ No newline at end of file
 +![admin_application](oauth_provider/admin_application.png)
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index bc8e7d1..8e7bb75 100644
+index bc8e7d1..7774cc2 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,52 +1,52 @@
@@ -13934,6 +13934,15 @@ index bc8e7d1..8e7bb75 100644
 +| `namespace/project@9ba12248...b19a04f5` | コミット範囲比較 |
  
  ## Task Lists
+ 
+@@ -225,7 +225,7 @@ You can add task lists to issues, merge requests and comments. To create a task
+ 
+ Task lists can only be created in descriptions, not in titles. Task item state can be managed by editing the description's Markdown or by toggling the rendered check boxes.
+ 
+-# Standard Markdown
++# 標準のMarkdown
+ 
+ ## Headers
  
 diff --git a/doc/permissions/permissions.md b/doc/permissions/permissions.md
 index bcd00cf..2b2e43f 100644

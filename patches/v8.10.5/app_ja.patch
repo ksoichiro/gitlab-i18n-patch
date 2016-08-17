@@ -14632,7 +14632,7 @@ index f3b2a28..3c21d05 100644
    args: {
            assertion_consumer_service_url: 'https://gitlab.example.com/users/auth/saml/callback',
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index c6c7ac8..bd25d56 100644
+index c6c7ac8..6c3b32c 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,34 +1,34 @@
@@ -14910,6 +14910,15 @@ index c6c7ac8..bd25d56 100644
  | `namespace/project~"Some label"`        | issues with given label |
  
  ## Task Lists
+@@ -337,7 +337,7 @@ Here's a sample video:
+ 
+ ![Sample Video](img/video.mp4)
+ 
+-# Standard Markdown
++# 標準のMarkdown
+ 
+ ## Headers
+ 
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index 7715842..3642faa 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

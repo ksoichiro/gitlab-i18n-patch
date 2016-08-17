@@ -4899,8 +4899,8 @@ translations:
     #  key: mdTitleSpinachFeatureTests
     #- title: 'Squashing commits with rebase'
     #  key: mdTitleSquashingCommitsWithRebase
-    #- title: 'Standard Markdown'
-    #  key: mdTitleStandardMarkdown
+    - title: 'Standard Markdown'
+      key: mdTitleStandardMarkdown
     #- title: 'Star a project'
     #  key: mdTitleStarAProject
     #- title: 'Start GitLab'

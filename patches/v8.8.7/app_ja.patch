@@ -14490,7 +14490,7 @@ index 8a7205c..29c0422 100644
 \ No newline at end of file
 +fail with one of the mentioned errors.
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index 236eb7b..1dd87b4 100644
+index 236eb7b..51d543c 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,32 +1,32 @@
@@ -14769,6 +14769,15 @@ index 236eb7b..1dd87b4 100644
  | `namespace/project~"Some label"`        | issues with given label |
  
  ## Task Lists
+@@ -249,7 +249,7 @@ You can add task lists to issues, merge requests and comments. To create a task
+ 
+ Task lists can only be created in descriptions, not in titles. Task item state can be managed by editing the description's Markdown or by toggling the rendered check boxes.
+ 
+-# Standard Markdown
++# 標準のMarkdown
+ 
+ ## Headers
+ 
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index 7715842..3642faa 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

@@ -3771,8 +3771,8 @@ translations:
     #  key: mdTitleHavingYourCodeReviewed
     #- title: 'Header IDs and links'
     #  key: mdTitleHeaderIDsAndLinks
-    #- title: 'Headers'
-    #  key: mdTitleHeaders
+    - title: 'Headers'
+      key: mdTitleHeaders
     #- title: 'Headings'
     #  key: mdTitleHeadings
     #- title: 'Helping others'

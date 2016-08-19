@@ -14079,7 +14079,7 @@ index 5f8bb57..9558cca 100644
  ![Authorized_applications](img/oauth_provider_authorized_application.png)
  
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index e6eb1cf..da4e403 100644
+index e6eb1cf..7537065 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,54 +1,54 @@
@@ -14358,15 +14358,18 @@ index e6eb1cf..da4e403 100644
  | `namespace/project~"Some label"`        | issues with given label |
  
  ## Task Lists
-@@ -231,7 +231,7 @@ You can add task lists to issues, merge requests and comments. To create a task
+@@ -231,9 +231,9 @@ You can add task lists to issues, merge requests and comments. To create a task
  
  Task lists can only be created in descriptions, not in titles. Task item state can be managed by editing the description's Markdown or by toggling the rendered check boxes.
  
 -# Standard Markdown
 +# 標準のMarkdown
  
- ## Headers
+-## Headers
++## ヘッダ
  
+ ```no-highlight
+ # H1
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index b856e79..91a3683 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

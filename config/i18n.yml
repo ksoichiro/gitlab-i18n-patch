@@ -2248,6 +2248,8 @@ translations:
     replace: '| ${thRepositoryFileReferences} '
   - pattern: 'GFM also recognizes certain cross-project references:'
     replace: '${gfmAlsoRecognizesCertainCrossProjectReferences}'
+  - pattern: 'Alternatively, for H1 and H2, an underline-ish style:'
+    replace: '${alternativelyForH1AndH2AnUnderlineishStyle}'
   - pattern: '1.  Clone project:'
     replace: '1.  ${cloneProject}:'
     match-once: true

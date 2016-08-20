@@ -13985,7 +13985,7 @@ index 5f8bb57..9558cca 100644
  ![Authorized_applications](img/oauth_provider_authorized_application.png)
  
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index c400cda..922dc79 100644
+index c400cda..a6d6adf 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,52 +1,52 @@
@@ -14274,6 +14274,24 @@ index c400cda..922dc79 100644
  
  ```no-highlight
  # H1
+@@ -240,7 +240,7 @@ Task lists can only be created in descriptions, not in titles. Task item state c
+ ##### H5
+ ###### H6
+ 
+-Alternatively, for H1 and H2, an underline-ish style:
++H1とH2では下線を使ったスタイルも使うことができます。
+ 
+ Alt-H1
+ ======
+@@ -256,7 +256,7 @@ Alt-H2
+ ##### H5
+ ###### H6
+ 
+-Alternatively, for H1 and H2, an underline-ish style:
++H1とH2では下線を使ったスタイルも使うことができます。
+ 
+ Alt-H1
+ ======
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index b856e79..91a3683 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

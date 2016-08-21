@@ -14632,7 +14632,7 @@ index f3b2a28..3c21d05 100644
    args: {
            assertion_consumer_service_url: 'https://gitlab.example.com/users/auth/saml/callback',
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index c6c7ac8..f97858d 100644
+index c6c7ac8..0402d7c 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,34 +1,34 @@
@@ -14938,7 +14938,7 @@ index c6c7ac8..f97858d 100644
  ------
  ```
  
-@@ -365,12 +365,12 @@ Alt-H2
+@@ -365,15 +365,15 @@ Alt-H2
  ##### H5
  ###### H6
  
@@ -14953,7 +14953,11 @@ index c6c7ac8..f97858d 100644
 +H2の別表現
  ------
  
- ### Header IDs and links
+-### Header IDs and links
++### ヘッダのIDとリンク
+ 
+ All Markdown-rendered headers automatically get IDs, except in comments.
+ 
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index 7715842..3642faa 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

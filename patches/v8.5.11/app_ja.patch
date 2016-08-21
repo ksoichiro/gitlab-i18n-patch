@@ -14052,7 +14052,7 @@ index 5f8bb57..9558cca 100644
  ![Authorized_applications](img/oauth_provider_authorized_application.png)
  
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index c400cda..02606ff 100644
+index c400cda..842a78b 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,52 +1,52 @@
@@ -14357,7 +14357,7 @@ index c400cda..02606ff 100644
  ------
  ```
  
-@@ -256,12 +256,12 @@ Alt-H2
+@@ -256,15 +256,15 @@ Alt-H2
  ##### H5
  ###### H6
  
@@ -14372,7 +14372,11 @@ index c400cda..02606ff 100644
 +H2の別表現
  ------
  
- ### Header IDs and links
+-### Header IDs and links
++### ヘッダのIDとリンク
+ 
+ All Markdown-rendered headers automatically get IDs, except in comments.
+ 
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index b856e79..91a3683 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

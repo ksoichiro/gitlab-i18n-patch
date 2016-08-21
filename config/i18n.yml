@@ -3775,8 +3775,8 @@ translations:
     #  key: mdTitleHardwareRequirements
     #- title: 'Having your code reviewed'
     #  key: mdTitleHavingYourCodeReviewed
-    #- title: 'Header IDs and links'
-    #  key: mdTitleHeaderIDsAndLinks
+    - title: 'Header IDs and links'
+      key: mdTitleHeaderIDsAndLinks
     - title: 'Headers'
       key: mdTitleHeaders
     #- title: 'Headings'

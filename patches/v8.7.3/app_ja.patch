@@ -14268,7 +14268,7 @@ index 8a7205c..29c0422 100644
 \ No newline at end of file
 +fail with one of the mentioned errors.
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index 4f199b6..8a0e21b 100644
+index 4f199b6..a17664f 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,31 +1,31 @@
@@ -14574,7 +14574,7 @@ index 4f199b6..8a0e21b 100644
  ------
  ```
  
-@@ -259,12 +259,12 @@ Alt-H2
+@@ -259,15 +259,15 @@ Alt-H2
  ##### H5
  ###### H6
  
@@ -14589,7 +14589,11 @@ index 4f199b6..8a0e21b 100644
 +H2の別表現
  ------
  
- ### Header IDs and links
+-### Header IDs and links
++### ヘッダのIDとリンク
+ 
+ All Markdown-rendered headers automatically get IDs, except in comments.
+ 
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index 90e9930..3377848 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

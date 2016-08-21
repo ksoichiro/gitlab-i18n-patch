@@ -14632,7 +14632,7 @@ index f3b2a28..3c21d05 100644
    args: {
            assertion_consumer_service_url: 'https://gitlab.example.com/users/auth/saml/callback',
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index c6c7ac8..a8f9873 100644
+index c6c7ac8..f97858d 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,34 +1,34 @@
@@ -14922,24 +14922,38 @@ index c6c7ac8..a8f9873 100644
  
  ```no-highlight
  # H1
-@@ -349,7 +349,7 @@ Here's a sample video:
+@@ -349,12 +349,12 @@ Here's a sample video:
  ##### H5
  ###### H6
  
 -Alternatively, for H1 and H2, an underline-ish style:
 +H1とH2では下線を使ったスタイルも使うことができます。
  
- Alt-H1
+-Alt-H1
++H1の別表現
  ======
-@@ -365,7 +365,7 @@ Alt-H2
+ 
+-Alt-H2
++H2の別表現
+ ------
+ ```
+ 
+@@ -365,12 +365,12 @@ Alt-H2
  ##### H5
  ###### H6
  
 -Alternatively, for H1 and H2, an underline-ish style:
 +H1とH2では下線を使ったスタイルも使うことができます。
  
- Alt-H1
+-Alt-H1
++H1の別表現
  ======
+ 
+-Alt-H2
++H2の別表現
+ ------
+ 
+ ### Header IDs and links
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index 7715842..3642faa 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

@@ -14476,7 +14476,7 @@ index 8a7205c..29c0422 100644
 \ No newline at end of file
 +fail with one of the mentioned errors.
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index 236eb7b..4be99a7 100644
+index 236eb7b..ec83ea3 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,32 +1,32 @@
@@ -14767,24 +14767,38 @@ index 236eb7b..4be99a7 100644
  
  ```no-highlight
  # H1
-@@ -261,7 +261,7 @@ Task lists can only be created in descriptions, not in titles. Task item state c
+@@ -261,12 +261,12 @@ Task lists can only be created in descriptions, not in titles. Task item state c
  ##### H5
  ###### H6
  
 -Alternatively, for H1 and H2, an underline-ish style:
 +H1とH2では下線を使ったスタイルも使うことができます。
  
- Alt-H1
+-Alt-H1
++H1の別表現
  ======
-@@ -277,7 +277,7 @@ Alt-H2
+ 
+-Alt-H2
++H2の別表現
+ ------
+ ```
+ 
+@@ -277,12 +277,12 @@ Alt-H2
  ##### H5
  ###### H6
  
 -Alternatively, for H1 and H2, an underline-ish style:
 +H1とH2では下線を使ったスタイルも使うことができます。
  
- Alt-H1
+-Alt-H1
++H1の別表現
  ======
+ 
+-Alt-H2
++H2の別表現
+ ------
+ 
+ ### Header IDs and links
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index 7715842..3642faa 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

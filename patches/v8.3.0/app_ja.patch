@@ -13661,7 +13661,7 @@ index 192c321..2d25661 100644
 \ No newline at end of file
 +![admin_application](oauth_provider/admin_application.png)
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index bc8e7d1..45a17a2 100644
+index bc8e7d1..7cee9de 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,52 +1,52 @@
@@ -13947,24 +13947,38 @@ index bc8e7d1..45a17a2 100644
  
  ```no-highlight
  # H1
-@@ -237,7 +237,7 @@ Task lists can only be created in descriptions, not in titles. Task item state c
+@@ -237,12 +237,12 @@ Task lists can only be created in descriptions, not in titles. Task item state c
  ##### H5
  ###### H6
  
 -Alternatively, for H1 and H2, an underline-ish style:
 +H1とH2では下線を使ったスタイルも使うことができます。
  
- Alt-H1
+-Alt-H1
++H1の別表現
  ======
-@@ -253,7 +253,7 @@ Alt-H2
+ 
+-Alt-H2
++H2の別表現
+ ------
+ ```
+ 
+@@ -253,12 +253,12 @@ Alt-H2
  ##### H5
  ###### H6
  
 -Alternatively, for H1 and H2, an underline-ish style:
 +H1とH2では下線を使ったスタイルも使うことができます。
  
- Alt-H1
+-Alt-H1
++H1の別表現
  ======
+ 
+-Alt-H2
++H2の別表現
+ ------
+ 
+ ### Header IDs and links
 diff --git a/doc/permissions/permissions.md b/doc/permissions/permissions.md
 index bcd00cf..2b2e43f 100644
 --- a/doc/permissions/permissions.md

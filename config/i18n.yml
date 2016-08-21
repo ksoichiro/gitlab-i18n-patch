@@ -2250,6 +2250,10 @@ translations:
     replace: '${gfmAlsoRecognizesCertainCrossProjectReferences}'
   - pattern: 'Alternatively, for H1 and H2, an underline-ish style:'
     replace: '${alternativelyForH1AndH2AnUnderlineishStyle}'
+  - pattern: 'Alt-H1'
+    replace: '${altH1}'
+  - pattern: 'Alt-H2'
+    replace: '${altH2}'
   - pattern: '1.  Clone project:'
     replace: '1.  ${cloneProject}:'
     match-once: true

@@ -2801,3 +2801,5 @@ thCommitRangeComparison: コミット範囲比較
 thRepositoryFileReferences: リポジトリ内のファイル
 gfmAlsoRecognizesCertainCrossProjectReferences: GFM はクロスプロジェクトも認識します。
 alternativelyForH1AndH2AnUnderlineishStyle: H1とH2では下線を使ったスタイルも使うことができます。
+altH1: H1の別表現
+altH2: H2の別表現

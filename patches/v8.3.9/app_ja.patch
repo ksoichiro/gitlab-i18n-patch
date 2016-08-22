@@ -13688,7 +13688,7 @@ index 192c321..2d25661 100644
 \ No newline at end of file
 +![admin_application](oauth_provider/admin_application.png)
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index bc8e7d1..54a418a 100644
+index bc8e7d1..af83143 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,52 +1,52 @@
@@ -13990,7 +13990,7 @@ index bc8e7d1..54a418a 100644
  ------
  ```
  
-@@ -253,15 +253,15 @@ Alt-H2
+@@ -253,28 +253,27 @@ Alt-H2
  ##### H5
  ###### H6
  
@@ -14008,7 +14008,28 @@ index bc8e7d1..54a418a 100644
 -### Header IDs and links
 +### ヘッダのIDとリンク
  
- All Markdown-rendered headers automatically get IDs, except in comments.
+-All Markdown-rendered headers automatically get IDs, except in comments.
++すべての Markdown からレンダリングされたヘッダは、コメントを除いて自動的にIDを取得します。
+ 
+-On hover a link to those IDs becomes visible to make it easier to copy the link to the header to give it to someone else.
++ヘッダへのリンクを誰かに知らせやすくするために、リンク上にカーソルをあてるとIDが表示されます。
+ 
+-The IDs are generated from the content of the header according to the following rules:
++コンテンツのヘッダから生成されたIDは以下のルールになっています。
+ 
+-1. All text is converted to lowercase
+-1. All non-word text (e.g., punctuation, HTML) is removed
+-1. All spaces are converted to hyphens
+-1. Two or more hyphens in a row are converted to one
+-1. If a header with the same ID has already been generated, a unique
+-   incrementing number is appended, starting at 1.
++1. すべての文字が小文字に変換されます
++1. 単語構成文字以外のすべての文字(句読点、HTMLなど)は削除されます
++1. すべての空白はハイフンに変換されます
++1. 連続する2個以上のハイフンは1つのハイフンに変換されます
++1. 同じIDを持つヘッダがすでに生成されていた場合、1から開始する一意となる連番が付加されます
+ 
+ For example:
  
 diff --git a/doc/permissions/permissions.md b/doc/permissions/permissions.md
 index bcd00cf..2b2e43f 100644

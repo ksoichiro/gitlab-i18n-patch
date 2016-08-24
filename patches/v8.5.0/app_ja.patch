@@ -13662,6 +13662,19 @@ index dc036d7..87b1720 100644
  
  All methods require administrator authorization.
  
+diff --git a/doc/api/users.md b/doc/api/users.md
+index b7fc903..6f1d7f7 100644
+--- a/doc/api/users.md
++++ b/doc/api/users.md
+@@ -96,7 +96,7 @@ In addition, you can lookup users by username:
+ GET /users?username=:username
+ ```
+ 
+-For example:
++例:
+ 
+ ```
+ GET /users?username=jack_smith
 diff --git a/doc/ci/README.md b/doc/ci/README.md
 index 5886829..99731f5 100644
 --- a/doc/ci/README.md
@@ -13826,6 +13839,76 @@ index 9e89e6e..d156261 100644
  
  ### User-defined variables (Secure Variables)
  **This feature requires GitLab Runner 0.4.0 or higher**
+diff --git a/doc/ci/yaml/README.md b/doc/ci/yaml/README.md
+index 0edb56d..5e648f8 100644
+--- a/doc/ci/yaml/README.md
++++ b/doc/ci/yaml/README.md
+@@ -246,7 +246,7 @@ job_name:
+ 
+ ### script
+ 
+-`script` is a shell script which is executed by the runner. For example:
++`script` is a shell script which is executed by the runner. 例:
+ 
+ ```yaml
+ job:
+@@ -348,7 +348,7 @@ failure.
+     failed.
+ 1. `always` - execute build despite the status of builds from prior stages.
+ 
+-For example:
++例:
+ 
+ ```yaml
+ stages:
+diff --git a/doc/customization/issue_closing.md b/doc/customization/issue_closing.md
+index 194b8e0..c1cf70d 100644
+--- a/doc/customization/issue_closing.md
++++ b/doc/customization/issue_closing.md
+@@ -13,7 +13,7 @@ When not specified, the default `issue_closing_pattern` as shown below will be u
+ 
+ Here, `%{issue_ref}` is a complex regular expression defined inside GitLab, that matches a reference to a local issue (`#123`), cross-project issue (`group/project#123`) or a link to an issue (`https://gitlab.example.com/group/project/issues/123`).
+ 
+-For example:
++例:
+ 
+ ```
+ git commit -m "Awesome commit message (Fix #20, Fixes #21 and Closes group/otherproject#22). This commit is also related to #17 and fixes #18, #19 and https://gitlab.example.com/group/otherproject/issues/23."
+diff --git a/doc/development/doc_styleguide.md b/doc/development/doc_styleguide.md
+index 96d1dff..7e78d85 100644
+--- a/doc/development/doc_styleguide.md
++++ b/doc/development/doc_styleguide.md
+@@ -136,7 +136,7 @@ Inside the document:
+ Here is a list of must-have items. Use them in the exact order that appears
+ on this document. Further explanation is given below.
+ 
+-- Every method must have the REST API request. For example:
++- Every method must have the REST API request. 例:
+ 
+     ```
+     GET /projects/:id/repository/branches
+diff --git a/doc/development/profiling.md b/doc/development/profiling.md
+index e244ad4..ce3c28c 100644
+--- a/doc/development/profiling.md
++++ b/doc/development/profiling.md
+@@ -8,7 +8,7 @@ explicitly enabled.
+ 
+ Sherlock is a custom profiling tool built into GitLab. Sherlock is _only_
+ available when running GitLab in development mode _and_ when setting the
+-environment variable `ENABLE_SHERLOCK` to a non empty value. For example:
++environment variable `ENABLE_SHERLOCK` to a non empty value. 例:
+ 
+     ENABLE_SHERLOCK=1 bundle exec rails s
+ 
+@@ -19,7 +19,7 @@ Recorded transactions can be found by navigating to `/sherlock/transactions`.
+ Bullet is a Gem that can be used to track down N+1 query problems. Because
+ Bullet adds quite a bit of logging noise it's disabled by default. To enable
+ Bullet, set the environment variable `ENABLE_BULLET` to a non-empty value before
+-starting GitLab. For example:
++starting GitLab. 例:
+ 
+     ENABLE_BULLET=true bundle exec rails s
+ 
 diff --git a/doc/gitlab-basics/add-file.md b/doc/gitlab-basics/add-file.md
 index 57136ac..4ea6e17 100644
 --- a/doc/gitlab-basics/add-file.md
@@ -13985,7 +14068,7 @@ index 5f8bb57..9558cca 100644
  ![Authorized_applications](img/oauth_provider_authorized_application.png)
  
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index c400cda..9d3a02e 100644
+index c400cda..78a03da 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,52 +1,52 @@
@@ -14290,7 +14373,7 @@ index c400cda..9d3a02e 100644
  ------
  ```
  
-@@ -256,28 +256,27 @@ Alt-H2
+@@ -256,30 +256,29 @@ Alt-H2
  ##### H5
  ###### H6
  
@@ -14329,7 +14412,37 @@ index c400cda..9d3a02e 100644
 +1. 連続する2個以上のハイフンは1つのハイフンに変換されます
 +1. 同じIDを持つヘッダがすでに生成されていた場合、1から開始する一意となる連番が付加されます
  
- For example:
+-For example:
++例:
+ 
+ ```
+ # This header has spaces in it
+@@ -289,7 +288,7 @@ For example:
+ ### This header has spaces in it
+ ```
+ 
+-Would generate the following link IDs:
++これらは以下のようなIDのリンクに変換されます:
+ 
+ 1. `this-header-has-spaces-in-it`
+ 1. `this-header-has-a-in-it`
+@@ -297,7 +296,7 @@ Would generate the following link IDs:
+ 1. `this-header-has-spaces-in-it`
+ 1. `this-header-has-spaces-in-it-1`
+ 
+-Note that the Emoji processing happens before the header IDs are generated, so the Emoji is converted to an image which then gets removed from the ID.
++絵文字はヘッダのIDが生成される前に処理されるため、絵文字は画像に変換され、IDからは削除されます。
+ 
+ ## Emphasis
+ 
+@@ -413,7 +412,7 @@ Some text to show that the reference links can follow later.
+ 
+ **Note**
+ 
+-Relative links do not allow referencing project files in a wiki page or wiki page in a project file. The reason for this is that, in GitLab, wiki is always a separate git repository. For example:
++Relative links do not allow referencing project files in a wiki page or wiki page in a project file. The reason for this is that, in GitLab, wiki is always a separate git repository. 例:
+ 
+ `[I'm a reference-style link](style)`
  
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index b856e79..91a3683 100644

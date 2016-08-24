@@ -13937,6 +13937,19 @@ index dc036d7..87b1720 100644
  
  All methods require administrator authorization.
  
+diff --git a/doc/api/users.md b/doc/api/users.md
+index 7d2b489..1970853 100644
+--- a/doc/api/users.md
++++ b/doc/api/users.md
+@@ -97,7 +97,7 @@ In addition, you can lookup users by username:
+ GET /users?username=:username
+ ```
+ 
+-For example:
++例:
+ 
+ ```
+ GET /users?username=jack_smith
 diff --git a/doc/ci/README.md b/doc/ci/README.md
 index 4abc45b..0d43d90 100644
 --- a/doc/ci/README.md
@@ -14068,7 +14081,7 @@ index 70fb814..8027981 100644
  ### User-defined variables (Secure Variables)
  **This feature requires GitLab Runner 0.4.0 or higher**
 diff --git a/doc/ci/yaml/README.md b/doc/ci/yaml/README.md
-index 7e9bced..e82048e 100644
+index 7e9bced..43ed5f5 100644
 --- a/doc/ci/yaml/README.md
 +++ b/doc/ci/yaml/README.md
 @@ -337,8 +337,8 @@ job_name:
@@ -14082,6 +14095,85 @@ index 7e9bced..e82048e 100644
  | stage         | no | Defines a build stage (default: `test`) |
  | type          | no | Alias for `stage` |
  | variables     | no | Define build variables on a job level |
+@@ -355,7 +355,7 @@ job_name:
+ 
+ ### script
+ 
+-`script` is a shell script which is executed by the Runner. For example:
++`script` is a shell script which is executed by the Runner. 例:
+ 
+ ```yaml
+ job:
+@@ -480,7 +480,7 @@ failure.
+     failed.
+ 1. `always` - execute build despite the status of builds from prior stages.
+ 
+-For example:
++例:
+ 
+ ```yaml
+ stages:
+diff --git a/doc/customization/issue_closing.md b/doc/customization/issue_closing.md
+index 194b8e0..c1cf70d 100644
+--- a/doc/customization/issue_closing.md
++++ b/doc/customization/issue_closing.md
+@@ -13,7 +13,7 @@ When not specified, the default `issue_closing_pattern` as shown below will be u
+ 
+ Here, `%{issue_ref}` is a complex regular expression defined inside GitLab, that matches a reference to a local issue (`#123`), cross-project issue (`group/project#123`) or a link to an issue (`https://gitlab.example.com/group/project/issues/123`).
+ 
+-For example:
++例:
+ 
+ ```
+ git commit -m "Awesome commit message (Fix #20, Fixes #21 and Closes group/otherproject#22). This commit is also related to #17 and fixes #18, #19 and https://gitlab.example.com/group/otherproject/issues/23."
+diff --git a/doc/development/doc_styleguide.md b/doc/development/doc_styleguide.md
+index 187ec9e..603ca0c 100644
+--- a/doc/development/doc_styleguide.md
++++ b/doc/development/doc_styleguide.md
+@@ -146,7 +146,7 @@ Inside the document:
+ Here is a list of must-have items. Use them in the exact order that appears
+ on this document. Further explanation is given below.
+ 
+-- Every method must have the REST API request. For example:
++- Every method must have the REST API request. 例:
+ 
+     ```
+     GET /projects/:id/repository/branches
+diff --git a/doc/development/profiling.md b/doc/development/profiling.md
+index e244ad4..ce3c28c 100644
+--- a/doc/development/profiling.md
++++ b/doc/development/profiling.md
+@@ -8,7 +8,7 @@ explicitly enabled.
+ 
+ Sherlock is a custom profiling tool built into GitLab. Sherlock is _only_
+ available when running GitLab in development mode _and_ when setting the
+-environment variable `ENABLE_SHERLOCK` to a non empty value. For example:
++environment variable `ENABLE_SHERLOCK` to a non empty value. 例:
+ 
+     ENABLE_SHERLOCK=1 bundle exec rails s
+ 
+@@ -19,7 +19,7 @@ Recorded transactions can be found by navigating to `/sherlock/transactions`.
+ Bullet is a Gem that can be used to track down N+1 query problems. Because
+ Bullet adds quite a bit of logging noise it's disabled by default. To enable
+ Bullet, set the environment variable `ENABLE_BULLET` to a non-empty value before
+-starting GitLab. For example:
++starting GitLab. 例:
+ 
+     ENABLE_BULLET=true bundle exec rails s
+ 
+diff --git a/doc/development/sql.md b/doc/development/sql.md
+index 23fd760..2a90c21 100644
+--- a/doc/development/sql.md
++++ b/doc/development/sql.md
+@@ -111,7 +111,7 @@ class MigrationName < ActiveRecord::Migration
+ end
+ ```
+ 
+-For example:
++例:
+ 
+ ```ruby
+ class AddUsersLowerUsernameEmailIndexes < ActiveRecord::Migration
 diff --git a/doc/gitlab-basics/add-file.md b/doc/gitlab-basics/add-file.md
 index 57136ac..4ea6e17 100644
 --- a/doc/gitlab-basics/add-file.md
@@ -14170,10 +14262,10 @@ index e51ff5a..5313e88 100644
  We do not recommend using MySQL due to various issues. For example, case [(in)sensitivity](https://dev.mysql.com/doc/refman/5.0/en/case-sensitivity.html) and [problems](https://bugs.mysql.com/bug.php?id=65830) that [suggested](https://bugs.mysql.com/bug.php?id=50909) [fixes](https://bugs.mysql.com/bug.php?id=65830) [have](https://bugs.mysql.com/bug.php?id=63164).
  
 diff --git a/doc/integration/auth0.md b/doc/integration/auth0.md
-index e524708..6033b26 100644
+index e524708..c0189eb 100644
 --- a/doc/integration/auth0.md
 +++ b/doc/integration/auth0.md
-@@ -10,8 +10,8 @@ create an account, you can do so at the same link.
+@@ -10,12 +10,12 @@ create an account, you can do so at the same link.
  
  1. Provide the Application Name ('GitLab' works fine).
  
@@ -14184,6 +14276,11 @@ index e524708..6033b26 100644
  
  1. At the top of the Settings screen, you should see your Domain, Client ID and
  Client Secret. Take note of these as you'll need to put them in the
+-configuration file. For example:
++configuration file. 例:
+     - Domain: `test1234.auth0.com`
+     - Client ID: `t6X8L2465bNePWLOvt9yi41i`
+     - Client Secret: `KbveM3nqfjwCbrhaUy_gDu2dss8TIlHIdzlyf33pB7dEK5u_NyQdp65O_o02hXs2`
 diff --git a/doc/integration/facebook.md b/doc/integration/facebook.md
 index 77bb75c..79b3f6e 100644
 --- a/doc/integration/facebook.md
@@ -14268,7 +14365,7 @@ index 8a7205c..29c0422 100644
 \ No newline at end of file
 +fail with one of the mentioned errors.
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index 4f199b6..8a3ef0d 100644
+index 4f199b6..15ff240 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,31 +1,31 @@
@@ -14574,7 +14671,7 @@ index 4f199b6..8a3ef0d 100644
  ------
  ```
  
-@@ -259,28 +259,27 @@ Alt-H2
+@@ -259,30 +259,29 @@ Alt-H2
  ##### H5
  ###### H6
  
@@ -14613,7 +14710,37 @@ index 4f199b6..8a3ef0d 100644
 +1. 連続する2個以上のハイフンは1つのハイフンに変換されます
 +1. 同じIDを持つヘッダがすでに生成されていた場合、1から開始する一意となる連番が付加されます
  
- For example:
+-For example:
++例:
+ 
+ ```
+ # This header has spaces in it
+@@ -292,7 +291,7 @@ For example:
+ ### This header has spaces in it
+ ```
+ 
+-Would generate the following link IDs:
++これらは以下のようなIDのリンクに変換されます:
+ 
+ 1. `this-header-has-spaces-in-it`
+ 1. `this-header-has-a-in-it`
+@@ -300,7 +299,7 @@ Would generate the following link IDs:
+ 1. `this-header-has-spaces-in-it`
+ 1. `this-header-has-spaces-in-it-1`
+ 
+-Note that the Emoji processing happens before the header IDs are generated, so the Emoji is converted to an image which then gets removed from the ID.
++絵文字はヘッダのIDが生成される前に処理されるため、絵文字は画像に変換され、IDからは削除されます。
+ 
+ ## Emphasis
+ 
+@@ -416,7 +415,7 @@ Some text to show that the reference links can follow later.
+ 
+ **Note**
+ 
+-Relative links do not allow referencing project files in a wiki page or wiki page in a project file. The reason for this is that, in GitLab, wiki is always a separate git repository. For example:
++Relative links do not allow referencing project files in a wiki page or wiki page in a project file. The reason for this is that, in GitLab, wiki is always a separate git repository. 例:
+ 
+ `[I'm a reference-style link](style)`
  
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index 90e9930..3377848 100644

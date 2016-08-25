@@ -4102,12 +4102,14 @@ index 0d58439..72f6a48 100644
          .prepend-top-20
            = f.submit "Verify code", class: "btn btn-save"
 diff --git a/app/views/devise/shared/_sign_in_link.html.haml b/app/views/devise/shared/_sign_in_link.html.haml
-index fafc4b8..0f2e814 100644
+index fafc4b8..8c8f9cd 100644
 --- a/app/views/devise/shared/_sign_in_link.html.haml
 +++ b/app/views/devise/shared/_sign_in_link.html.haml
-@@ -2,4 +2,4 @@
+@@ -1,5 +1,5 @@
+ %p
    %span.light
-     Already have login and password?
+-    Already have login and password?
++    ログインアカウントとパスワードをお持ちですか？
    %strong
 -    = link_to "Sign in", new_session_path(resource_name)
 +    = link_to "サインイン", new_session_path(resource_name)

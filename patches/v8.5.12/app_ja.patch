@@ -4242,12 +4242,14 @@ index 22b2c1a..5a734c6 100644
        = form_for(resource, as: resource_name, url: session_path(resource_name), method: :post) do |f|
          = f.text_field :otp_attempt, class: 'form-control', placeholder: 'Two-factor authentication code', required: true, autofocus: true
 diff --git a/app/views/devise/shared/_sign_in_link.html.haml b/app/views/devise/shared/_sign_in_link.html.haml
-index fafc4b8..0f2e814 100644
+index fafc4b8..8c8f9cd 100644
 --- a/app/views/devise/shared/_sign_in_link.html.haml
 +++ b/app/views/devise/shared/_sign_in_link.html.haml
-@@ -2,4 +2,4 @@
+@@ -1,5 +1,5 @@
+ %p
    %span.light
-     Already have login and password?
+-    Already have login and password?
++    ログインアカウントとパスワードをお持ちですか？
    %strong
 -    = link_to "Sign in", new_session_path(resource_name)
 +    = link_to "サインイン", new_session_path(resource_name)

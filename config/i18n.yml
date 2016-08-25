@@ -1237,6 +1237,8 @@ translations:
     replace: '${primaryEmail}'
   - pattern: 'Notification Email'
     replace: '${notificationEmail}'
+  - pattern: 'Already have login and password?'
+    replace: '${alreadyHaveLoginAndPassword}'
 
   - name: formLabel
     params:

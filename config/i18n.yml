@@ -2278,6 +2278,14 @@ translations:
     replace: '${wouldGenerateTheFollowingLinkIds}:'
   - pattern: 'Note that the Emoji processing happens before the header IDs are generated, so the Emoji is converted to an image which then gets removed from the ID.'
     replace: '${noteThatTheEmojiProcessingHappensBeforeTheHeaderIdsAreGeneratedSoTheEmojiIsConvertedToAnImageWhichThenGetsRemovedFromTheID}'
+  - pattern: 'Emphasis, aka italics, with *asterisks* or _underscores_.'
+    replace: '${emphasisAkaItalicsWithAsterisksOrUnderscores}'
+  - pattern: 'Strong emphasis, aka bold, with **asterisks** or __underscores__.'
+    replace: '${strongEmphasisAkaBoldWithAsterisksOrUnderscores}'
+  - pattern: 'Combined emphasis with **asterisks and _underscores_**.'
+    replace: '${combinedEmphasisWithAsterisksAndUnderscores}'
+  - pattern: 'Strikethrough uses two tildes. ~~Scratch this.~~'
+    replace: '${strikethroughUsesTwoTildesScratchThis}'
   - pattern: '1.  Clone project:'
     replace: '1.  ${cloneProject}:'
     match-once: true
@@ -3383,8 +3391,8 @@ translations:
     #  key: mdTitleEmailsOnPush
     #- title: 'Emoji'
     #  key: mdTitleEmoji
-    #- title: 'Emphasis'
-    #  key: mdTitleEmphasis
+    - title: 'Emphasis'
+      key: mdTitleEmphasis
     #- title: 'Enable OmniAuth for an Existing User'
     #  key: mdTitleEnableOmniAuthForAnExistingUser
     #- title: 'Enable Redis socket for default Debian / Ubuntu path'

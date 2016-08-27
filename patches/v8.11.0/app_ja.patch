@@ -16260,7 +16260,7 @@ index 9e2a89e..f8bcbde 100644
  
  ![Default label set](img/admin_labels.png)
 diff --git a/doc/user/markdown.md b/doc/user/markdown.md
-index 7fe96e6..c047414 100644
+index 7fe96e6..c5516d7 100644
 --- a/doc/user/markdown.md
 +++ b/doc/user/markdown.md
 @@ -1,32 +1,32 @@
@@ -16625,14 +16625,43 @@ index 7fe96e6..c047414 100644
  
  1. `this-header-has-spaces-in-it`
  1. `this-header-has-a-in-it`
-@@ -413,7 +412,7 @@ Would generate the following link IDs:
+@@ -413,27 +412,27 @@ Would generate the following link IDs:
  1. `this-header-has-spaces-in-it`
  1. `this-header-has-spaces-in-it-1`
  
 -Note that the Emoji processing happens before the header IDs are generated, so the Emoji is converted to an image which then gets removed from the ID.
 +絵文字はヘッダのIDが生成される前に処理されるため、絵文字は画像に変換され、IDからは削除されます。
  
- ## Emphasis
+-## Emphasis
++## 強調
+ 
+ ```no-highlight
+-Emphasis, aka italics, with *asterisks* or _underscores_.
++強調(イタリック体)は *アスタリスク* や _アンダースコア_ で表現します。
+ 
+-Strong emphasis, aka bold, with **asterisks** or __underscores__.
++さらに強い強調(太字)は **アスタリスク** or __アンダースコア__ で表現します。
+ 
+-Combined emphasis with **asterisks and _underscores_**.
++組み合わせた強調は **アスタリスクと _アンダースコア_** のように表現します。
+ 
+-Strikethrough uses two tildes. ~~Scratch this.~~
++取消線には二つのチルダを使います。 ~~ここを削除~~
+ ```
+ 
+-Emphasis, aka italics, with *asterisks* or _underscores_.
++強調(イタリック体)は *アスタリスク* や _アンダースコア_ で表現します。
+ 
+-Strong emphasis, aka bold, with **asterisks** or __underscores__.
++さらに強い強調(太字)は **アスタリスク** or __アンダースコア__ で表現します。
+ 
+-Combined emphasis with **asterisks and _underscores_**.
++組み合わせた強調は **アスタリスクと _アンダースコア_** のように表現します。
+ 
+-Strikethrough uses two tildes. ~~Scratch this.~~
++取消線には二つのチルダを使います。 ~~ここを削除~~
+ 
+ ## Lists
  
 @@ -529,7 +528,7 @@ Some text to show that the reference links can follow later.
  

@@ -1213,7 +1213,7 @@ mdTitleEditProjectTeamMember: プロジェクトのメンバーを編集する
 #mdTitleEmailSubAddressing: 
 #mdTitleEmailsOnPush: 
 #mdTitleEmoji: 
-#mdTitleEmphasis: 
+mdTitleEmphasis: 強調
 #mdTitleEnableOmniAuthForAnExistingUser: 
 #mdTitleEnableRedisSocketForDefaultDebianUbuntuPath: 
 #mdTitleEnableReplyByEmail: 
@@ -2815,3 +2815,7 @@ forExample: 例
 wouldGenerateTheFollowingLinkIds: これらは以下のようなIDのリンクに変換されます
 noteThatTheEmojiProcessingHappensBeforeTheHeaderIdsAreGeneratedSoTheEmojiIsConvertedToAnImageWhichThenGetsRemovedFromTheID: 絵文字はヘッダのIDが生成される前に処理されるため、絵文字は画像に変換され、IDからは削除されます。
 alreadyHaveLoginAndPassword: ログインアカウントとパスワードをお持ちですか？
+emphasisAkaItalicsWithAsterisksOrUnderscores: '強調(イタリック体)は *アスタリスク* や _アンダースコア_ で表現します。'
+strongEmphasisAkaBoldWithAsterisksOrUnderscores: さらに強い強調(太字)は **アスタリスク** or __アンダースコア__ で表現します。
+combinedEmphasisWithAsterisksAndUnderscores: '組み合わせた強調は **アスタリスクと _アンダースコア_** のように表現します。'
+strikethroughUsesTwoTildesScratchThis: '取消線には二つのチルダを使います。 ~~ここを削除~~'

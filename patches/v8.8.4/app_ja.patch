@@ -7718,7 +7718,7 @@ index bfe53be..18a6942 100644
 -      = f.submit 'Save changes', class: 'btn btn-save'
 +      = f.submit '変更を保存', class: 'btn btn-save'
 diff --git a/app/views/profiles/show.html.haml b/app/views/profiles/show.html.haml
-index eef50d8..403a511 100644
+index eef50d8..a32ca40 100644
 --- a/app/views/profiles/show.html.haml
 +++ b/app/views/profiles/show.html.haml
 @@ -4,10 +4,10 @@
@@ -7734,13 +7734,18 @@ index eef50d8..403a511 100644
            - if gravatar_enabled?
              or remove the current avatar to revert to #{link_to Gitlab.config.gravatar.host, "http://" + Gitlab.config.gravatar.host}
          - else
-@@ -21,35 +21,35 @@
-         Upload new avatar
+@@ -18,38 +18,38 @@
+       .clearfix.avatar-image.append-bottom-default
+         = image_tag avatar_icon(@user, 160), alt: '', class: 'avatar s160'
+       %h5.prepend-top-0
+-        Upload new avatar
++        新しいアバターをアップロード
        .prepend-top-5.append-bottom-10
          %a.btn.js-choose-user-avatar-button
 -          Browse file...
+-        %span.avatar-file-name.prepend-left-default.js-avatar-filename No file chosen
 +          file...を表示
-         %span.avatar-file-name.prepend-left-default.js-avatar-filename No file chosen
++        %span.avatar-file-name.prepend-left-default.js-avatar-filename ファイルが選択されていません
          = f.file_field :avatar, class: "js-user-avatar-input hidden", accept: "image/*"
        .help-block
 -        The maximum file size allowed is 200KB.
@@ -12806,6 +12811,16 @@ index 40c6eb9..ec9b6dc 100644
          = icon('sign-out')
  
    .stats
+diff --git a/app/views/shared/groups/_list.html.haml b/app/views/shared/groups/_list.html.haml
+index 1aa7ed1..2ea101d 100644
+--- a/app/views/shared/groups/_list.html.haml
++++ b/app/views/shared/groups/_list.html.haml
+@@ -3,4 +3,4 @@
+     - groups.each_with_index do |group, i|
+       = render "shared/groups/group", group: group
+ - else
+-  %h3 No groups found
++  %h3 グループがありません
 diff --git a/app/views/shared/issuable/_filter.html.haml b/app/views/shared/issuable/_filter.html.haml
 index 9474462..53bb20c 100644
 --- a/app/views/shared/issuable/_filter.html.haml
@@ -13490,6 +13505,19 @@ index 1169bed..d9b2849 100644
      - if current_user
        %li.divider
        %li
+diff --git a/app/views/shared/projects/_list.html.haml b/app/views/shared/projects/_list.html.haml
+index 2e08bb2..fa8a034 100644
+--- a/app/views/shared/projects/_list.html.haml
++++ b/app/views/shared/projects/_list.html.haml
+@@ -18,7 +18,7 @@
+           forks: forks, show_last_commit_as_description: show_last_commit_as_description
+     = paginate(projects, remote: remote, theme: "gitlab") if projects.respond_to? :total_pages
+   - else
+-    .nothing-here-block No projects found
++    .nothing-here-block プロジェクトがありません
+ 
+ :javascript
+   ProjectsList.init();
 diff --git a/app/views/shared/snippets/_blob.html.haml b/app/views/shared/snippets/_blob.html.haml
 index 773ce8a..0c10ac4 100644
 --- a/app/views/shared/snippets/_blob.html.haml

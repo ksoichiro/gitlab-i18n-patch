@@ -12961,10 +12961,10 @@ index 36f0637..e7da977 100644
            %button.btn.btn-block.btn-gray.subscribe-button.hide-collapsed{:type => 'button'}
              %span= subscribed ? 'Unsubscribe' : 'Subscribe'
 diff --git a/app/views/shared/projects/_list.html.haml b/app/views/shared/projects/_list.html.haml
-index 1d88bdd..0d3a37e 100644
+index 1d88bdd..4de2f65 100644
 --- a/app/views/shared/projects/_list.html.haml
 +++ b/app/views/shared/projects/_list.html.haml
-@@ -20,7 +20,7 @@
+@@ -20,10 +20,10 @@
          .light
            #{projects_limit} of #{pluralize(projects.count, 'project')} displayed.
            = link_to '#', class: 'js-expand' do
@@ -12972,7 +12972,11 @@ index 1d88bdd..0d3a37e 100644
 +            すべて表示
      = paginate projects, theme: "gitlab" if projects.respond_to? :total_pages
    - else
-     .nothing-here-block No projects found
+-    .nothing-here-block No projects found
++    .nothing-here-block プロジェクトがありません
+ 
+ :javascript
+   new ProjectsList();
 diff --git a/app/views/shared/snippets/_blob.html.haml b/app/views/shared/snippets/_blob.html.haml
 index e0e41fc..01cd3fe 100644
 --- a/app/views/shared/snippets/_blob.html.haml

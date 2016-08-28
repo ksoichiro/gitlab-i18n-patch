@@ -2622,7 +2622,7 @@ index 0135ad0..0b9cf92 100644
  %hr
  = render 'form'
 diff --git a/app/views/admin/projects/index.html.haml b/app/views/admin/projects/index.html.haml
-index 1e75578..40c049e 100644
+index 1e75578..a31eea8 100644
 --- a/app/views/admin/projects/index.html.haml
 +++ b/app/views/admin/projects/index.html.haml
 @@ -1,5 +1,5 @@
@@ -2683,6 +2683,12 @@ index 1e75578..40c049e 100644
              .title
                = link_to [:admin, project.namespace.becomes(Namespace), project] do
                  .dash-project-avatar
+@@ -91,4 +91,4 @@
+ 
+       = paginate @projects, theme: 'gitlab'
+     - else
+-      .nothing-here-block No projects found
++      .nothing-here-block プロジェクトがありません
 diff --git a/app/views/admin/projects/show.html.haml b/app/views/admin/projects/show.html.haml
 index b2c6073..016d0b8 100644
 --- a/app/views/admin/projects/show.html.haml
@@ -7590,7 +7596,7 @@ index 2afa026..25fe351 100644
 -      = f.submit 'Save changes', class: 'btn btn-save'
 +      = f.submit '変更を保存', class: 'btn btn-save'
 diff --git a/app/views/profiles/show.html.haml b/app/views/profiles/show.html.haml
-index d9fa74f..29c94b4 100644
+index d9fa74f..1c8b0aa 100644
 --- a/app/views/profiles/show.html.haml
 +++ b/app/views/profiles/show.html.haml
 @@ -6,10 +6,10 @@
@@ -7606,13 +7612,18 @@ index d9fa74f..29c94b4 100644
            - if gravatar_enabled?
              or remove the current avatar to revert to #{link_to Gitlab.config.gravatar.host, "http://" + Gitlab.config.gravatar.host}
          - else
-@@ -23,35 +23,35 @@
-         Upload new avatar
+@@ -20,38 +20,38 @@
+       .clearfix.avatar-image.append-bottom-default
+         = image_tag avatar_icon(@user, 160), alt: '', class: 'avatar s160'
+       %h5.prepend-top-0
+-        Upload new avatar
++        新しいアバターをアップロード
        .prepend-top-5.append-bottom-10
          %a.btn.js-choose-user-avatar-button
 -          Browse file...
+-        %span.avatar-file-name.prepend-left-default.js-avatar-filename No file chosen
 +          file...を表示
-         %span.avatar-file-name.prepend-left-default.js-avatar-filename No file chosen
++        %span.avatar-file-name.prepend-left-default.js-avatar-filename ファイルが選択されていません
          = f.file_field :avatar, class: "js-user-avatar-input hidden", accept: "image/*"
        .help-block
 -        The maximum file size allowed is 200KB.
@@ -8937,7 +8948,7 @@ index e751dab..d2a7067 100644
      %strong.cgreen #{diff_files.sum(&:added_lines)} additions
      and
 diff --git a/app/views/projects/edit.html.haml b/app/views/projects/edit.html.haml
-index b282aa5..dd82d92 100644
+index b282aa5..35add7a 100644
 --- a/app/views/projects/edit.html.haml
 +++ b/app/views/projects/edit.html.haml
 @@ -2,28 +2,28 @@
@@ -9058,8 +9069,9 @@ index b282aa5..dd82d92 100644
 +                Project avatar in リポジトリ: #{ @project.avatar_in_git }
              %a.choose-btn.btn.js-choose-project-avatar-button
 -              Browse file...
+-            %span.file_name.prepend-left-default.js-avatar-filename No file chosen
 +              file...を表示
-             %span.file_name.prepend-left-default.js-avatar-filename No file chosen
++            %span.file_name.prepend-left-default.js-avatar-filename ファイルが選択されていません
              = f.file_field :avatar, class: "js-project-avatar-input hidden"
 -            .help-block The maximum file size allowed is 200KB.
 +            .help-block ファイルの最大サイズは200KBです
@@ -13054,6 +13066,16 @@ index 1ad9535..9be2dda 100644
          = icon('sign-out')
  
    .stats
+diff --git a/app/views/shared/groups/_list.html.haml b/app/views/shared/groups/_list.html.haml
+index 427595c..4f1c24b 100644
+--- a/app/views/shared/groups/_list.html.haml
++++ b/app/views/shared/groups/_list.html.haml
+@@ -3,4 +3,4 @@
+     - groups.each_with_index do |group, i|
+       = render "shared/groups/group", group: group
+ - else
+-  .nothing-here-block No groups found
++  .nothing-here-block グループがありません
 diff --git a/app/views/shared/issuable/_filter.html.haml b/app/views/shared/issuable/_filter.html.haml
 index 4f8ea7e..b44b46d 100644
 --- a/app/views/shared/issuable/_filter.html.haml
@@ -13839,6 +13861,19 @@ index b7f8551..58ea5d9 100644
 -        = link_to filter_projects_path(namespace_id: namespace_id, sort: @sort, personal: true), class: ("is-active" if personal.present?) do
 +        = link_to filter_projects_path(namespace_id: namespace_id, 並び替え: @sort, personal: true), class: ("is-active" if personal.present?) do
            Owned by me
+diff --git a/app/views/shared/projects/_list.html.haml b/app/views/shared/projects/_list.html.haml
+index 3a9dd37..28d4d99 100644
+--- a/app/views/shared/projects/_list.html.haml
++++ b/app/views/shared/projects/_list.html.haml
+@@ -24,7 +24,7 @@
+           %span you have no access to.
+     = paginate(projects, remote: remote, theme: "gitlab") if projects.respond_to? :total_pages
+   - else
+-    .nothing-here-block No projects found
++    .nothing-here-block プロジェクトがありません
+ 
+ :javascript
+   ProjectsList.init();
 diff --git a/app/views/shared/snippets/_blob.html.haml b/app/views/shared/snippets/_blob.html.haml
 index 773ce8a..0c10ac4 100644
 --- a/app/views/shared/snippets/_blob.html.haml

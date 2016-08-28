@@ -2297,6 +2297,9 @@ usernameOrEmail: ユーザ名またはメールアドレス
 noSuchProjects: プロジェクトがありません
 noPipelinesToShow: パイプラインがありません
 noBuildsToShow: ビルドがありません
+noGroupsFound: グループがありません
+noProjectsFound: プロジェクトがありません
+noFileChosen: ファイルが選択されていません
 tagPushEvents: タグプッシュ
 pushEvents: プッシュ
 mergeEvents: マージ
@@ -2853,3 +2856,4 @@ noContributions: コントリビューションなし
 noAssignee: 担当なし
 environment: 環境
 createALabelOrGenerateADefaultSetOfLabels: 'ラベルを生成または$1デフォルトのラベルセットを生成$2'
+uploadNewAvatar: 新しいアバターをアップロード

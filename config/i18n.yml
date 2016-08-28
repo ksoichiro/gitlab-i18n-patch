@@ -117,6 +117,12 @@ translations:
     replace: '${denoteBlockquotesUsingAtTheBeginningOfALine}'
   - pattern: "Make a horizontal line using three or more hyphens ---, asterisks ***, or underscores ___"
     replace: '${makeAHorizontalLineUsingThreeOrMoreHyphensAsterisksOrUnderscores}'
+  - pattern: 'The group and its projects can only be viewed by members.'
+    replace: '${theGroupAndItsProjectsCanOnlyBeViewedByMembers}'
+  - pattern: 'The group and any internal projects can be viewed by any logged in user.'
+    replace: '${theGroupAndAnyInternalProjectsCanBeViewedByAnyLoggedInUser}'
+  - pattern: 'The group and any public projects can be viewed without any authentication.'
+    replace: '${theGroupAndAnyPublicProjectsCanBeViewedWithoutAnyAuthentication}'
   - pattern: 'Add a reply'
     replace: '${addAReply}'
   - pattern: ' Reply'

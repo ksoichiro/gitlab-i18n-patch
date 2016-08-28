@@ -2819,3 +2819,6 @@ emphasisAkaItalicsWithAsterisksOrUnderscores: '強調(イタリック体)は *�
 strongEmphasisAkaBoldWithAsterisksOrUnderscores: さらに強い強調(太字)は **アスタリスク** or __アンダースコア__ で表現します。
 combinedEmphasisWithAsterisksAndUnderscores: '組み合わせた強調は **アスタリスクと _アンダースコア_** のように表現します。'
 strikethroughUsesTwoTildesScratchThis: '取消線には二つのチルダを使います。 ~~ここを削除~~'
+theGroupAndItsProjectsCanOnlyBeViewedByMembers: グループとそのプロジェクトはメンバーのみ閲覧できます。
+theGroupAndAnyInternalProjectsCanBeViewedByAnyLoggedInUser: グループとすべての内部プロジェクトはすべてのログイン済みのユーザから閲覧できます。
+theGroupAndAnyPublicProjectsCanBeViewedWithoutAnyAuthentication: グループとすべての公開プロジェクトは認証なしで閲覧できます。

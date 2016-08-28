@@ -13,31 +13,7 @@ GitLabはi18nに対応しないとのことですが、
 
 :mega: v8.3.0以降のパッチは [i18n-patch](https://github.com/ksoichiro/i18n-patch) で生成しています。
 
-1. [GitLab CE v8.11.2](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.11.2 "GitLab CE v8.11.2") → [patches/v8.11.2ディレクトリ](patches/v8.11.2)
-1. [GitLab CE v8.11.0](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.11.0 "GitLab CE v8.11.0") → [patches/v8.11.0ディレクトリ](patches/v8.11.0)
-1. [GitLab CE v8.10.5](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.10.5 "GitLab CE v8.10.5") → [patches/v8.10.5ディレクトリ](patches/v8.10.5)
-1. [GitLab CE v8.9.6](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.9.6 "GitLab CE v8.9.6") → [patches/v8.9.6ディレクトリ](patches/v8.9.6)
-1. [GitLab CE v8.8.7](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.8.7 "GitLab CE v8.8.7") → [patches/v8.8.7ディレクトリ](patches/v8.8.7)
-1. [GitLab CE v8.8.5](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.8.5 "GitLab CE v8.8.5") → [patches/v8.8.5ディレクトリ](patches/v8.8.5)
-1. [GitLab CE v8.8.4](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.8.4 "GitLab CE v8.8.4") → [patches/v8.8.4ディレクトリ](patches/v8.8.4)
-1. [GitLab CE v8.8.2](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.8.2 "GitLab CE v8.8.2") → [patches/v8.8.2ディレクトリ](patches/v8.8.2)
-1. [GitLab CE v8.8.0](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.8.0 "GitLab CE v8.8.0") → [patches/v8.8.0ディレクトリ](patches/v8.8.0)
-1. [GitLab CE v8.7.6](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.7.6 "GitLab CE v8.7.6") → [patches/v8.7.6ディレクトリ](patches/v8.7.6)
-1. [GitLab CE v8.7.3](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.7.3 "GitLab CE v8.7.3") → [patches/v8.7.3ディレクトリ](patches/v8.7.3)
-1. [GitLab CE v8.7.0](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.7.0 "GitLab CE v8.7.0") → [patches/v8.7.0ディレクトリ](patches/v8.7.0)
-1. [GitLab CE v8.6.8](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.6.8 "GitLab CE v8.6.8") → [patches/v8.6.8ディレクトリ](patches/v8.6.8)
-1. [GitLab CE v8.6.7](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.6.7 "GitLab CE v8.6.7") → [patches/v8.6.7ディレクトリ](patches/v8.6.7)
-1. [GitLab CE v8.6.0](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.6.0 "GitLab CE v8.6.0") → [patches/v8.6.0ディレクトリ](patches/v8.6.0)
-1. [GitLab CE v8.5.12](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.5.12 "GitLab CE v8.5.12") → [patches/v8.5.12ディレクトリ](patches/v8.5.12)
-1. [GitLab CE v8.5.11](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.5.11 "GitLab CE v8.5.11") → [patches/v8.5.11ディレクトリ](patches/v8.5.11)
-1. [GitLab CE v8.5.0](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.5.0 "GitLab CE v8.5.0") → [patches/v8.5.0ディレクトリ](patches/v8.5.0)
-1. [GitLab CE v8.4.10](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.4.10 "GitLab CE v8.4.10") → [patches/v8.4.10ディレクトリ](patches/v8.4.10)
-1. [GitLab CE v8.4.9](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.4.9 "GitLab CE v8.4.9") → [patches/v8.4.9ディレクトリ](patches/v8.4.9)
-1. [GitLab CE v8.4.0](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.4.0 "GitLab CE v8.4.0") → [patches/v8.4.0ディレクトリ](patches/v8.4.0)
-1. [GitLab CE v8.3.9](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.3.9 "GitLab CE v8.3.9") → [patches/v8.3.9ディレクトリ](patches/v8.3.9)
-1. [GitLab CE v8.3.8](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.3.8 "GitLab CE v8.3.8") → [patches/v8.3.8ディレクトリ](patches/v8.3.8)
-1. [GitLab CE v8.3.0](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.3.0 "GitLab CE v8.3.0") → [patches/v8.3.0ディレクトリ](patches/v8.3.0)
-
+@VERSIONS@
 
 以下は旧来の方式(手作業)で作成したパッチです。
 

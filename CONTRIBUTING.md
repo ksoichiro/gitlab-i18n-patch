@@ -21,10 +21,18 @@ GitLab v8.3.0 以降については、基本的に i18n-patch を使ったパッ
 1. `npm install`
     * 過去に実行済みで i18n-patch がアップデートされているときは `npm update`
 1. `config/i18n.yml`, `config/ja.yml` を更新
-1. 対象バージョンを増やすときは `config/gitlab.yml` を更新
+1. 対象バージョンを増やすときは `config/gitlab.yml` を更新して `npm run readme`
 1. `npm run translate` で対象全バージョンのパッチを更新
 1. 対象となるVagrantのVMを起動 (必須ではない)
     * 英語と日本語の長さの差でデザインが崩れたり、翻訳の不備によりシンタックスエラーなどが発生したりする恐れがある場合は動作確認します。
     * 例) `vagrant up v830`
 1. 起動したVMを使って動作確認
 1. コミットしてプルリクエスト送信
+
+### README.md の更新
+
+テンプレートファイルを元に更新しています。  
+以下の手順で更新してください。
+
+1. `README.template.md` を更新
+1. `npm run readme` で更新された `README.md` を一緒にコミット

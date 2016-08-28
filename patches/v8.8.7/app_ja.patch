@@ -816,6 +816,42 @@ index b1f0a76..9dd8eb7 100644
    end
  
    def should_user_see_group_roles?(user, group)
+diff --git a/app/helpers/issuables_helper.rb b/app/helpers/issuables_helper.rb
+index 3947421..29ba9a2 100644
+--- a/app/helpers/issuables_helper.rb
++++ b/app/helpers/issuables_helper.rb
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ module IssuablesHelper
+ 
+   def sidebar_gutter_toggle_icon
+@@ -50,7 +51,7 @@ module IssuablesHelper
+   end
+ 
+   def user_dropdown_label(user_id, default_label)
+-    return "Unassigned" if user_id == "0"
++    return "担当なし" if user_id == "0"
+ 
+     if @project
+       member = @project.team.find_member(user_id)
+diff --git a/app/helpers/issues_helper.rb b/app/helpers/issues_helper.rb
+index 198d394..e7631dd 100644
+--- a/app/helpers/issues_helper.rb
++++ b/app/helpers/issues_helper.rb
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ module IssuesHelper
+   def issue_css_classes(issue)
+     classes = "issue"
+@@ -10,7 +11,7 @@ module IssuesHelper
+   # to allow filtering issues by an unassigned User or Milestone
+   def unassigned_filter
+     # Milestone uses :title, Issue uses :name
+-    OpenStruct.new(id: 0, title: 'None (backlog)', name: 'Unassigned')
++    OpenStruct.new(id: 0, title: 'None (backlog)', name: '担当なし')
+   end
+ 
+   def url_for_project_issues(project = @project, options = {})
 diff --git a/app/helpers/namespaces_helper.rb b/app/helpers/namespaces_helper.rb
 index 94c6b54..3dd78e8 100644
 --- a/app/helpers/namespaces_helper.rb
@@ -1940,10 +1976,10 @@ index 967151b..68afacb 100644
          - elsif defined?(allow_retry) && allow_retry && build.retryable?
            = link_to retry_namespace_project_build_path(build.project.namespace, build.project, build, return_to: request.original_url), method: :post, title: 'Retry', class: 'btn btn-build' do
 diff --git a/app/views/admin/builds/index.html.haml b/app/views/admin/builds/index.html.haml
-index d74cf85..7b85012 100644
+index d74cf85..c02ec74 100644
 --- a/app/views/admin/builds/index.html.haml
 +++ b/app/views/admin/builds/index.html.haml
-@@ -2,7 +2,7 @@
+@@ -2,12 +2,12 @@
    %ul.nav-links
      %li{class: ('active' if @scope.nil?)}
        = link_to admin_builds_path do
@@ -1952,7 +1988,13 @@ index d74cf85..7b85012 100644
          %span.badge.js-totalbuilds-count= @all_builds.count(:id)
  
      %li{class: ('active' if @scope == 'running')}
-@@ -17,10 +17,10 @@
+       = link_to admin_builds_path(scope: :running) do
+-        Running
++        実行中
+         %span.badge.js-running-count= number_with_delimiter(@all_builds.running_or_pending.count(:id))
+ 
+     %li{class: ('active' if @scope == 'finished')}
+@@ -17,28 +17,28 @@
  
    .nav-controls
      - if @all_builds.running_or_pending.any?
@@ -1965,7 +2007,11 @@ index d74cf85..7b85012 100644
  
  %ul.content-list
    - if @builds.blank?
-@@ -31,14 +31,14 @@
+     %li
+-      .nothing-here-block No builds to show
++      .nothing-here-block ビルドがありません
+   - else
+     .table-holder
        %table.table.builds
          %thead
            %tr
@@ -3529,6 +3575,19 @@ index f7875e6..17963d8 100644
      syntax is incorrect
      %i.fa.fa-remove.incorrect-syntax
    %b Error:
+diff --git a/app/views/ci/lints/show.html.haml b/app/views/ci/lints/show.html.haml
+index 0044d77..b173c2a 100644
+--- a/app/views/ci/lints/show.html.haml
++++ b/app/views/ci/lints/show.html.haml
+@@ -9,7 +9,7 @@
+         = text_area_tag(:content, @content, class: 'form-control span1', rows: 7, require: true)
+     .col-sm-12
+       .pull-left.prepend-top-10
+-        = submit_tag('Validate', class: 'btn btn-success submit-yml')
++        = submit_tag('検証', class: 'btn btn-success submit-yml')
+ 
+ .row.prepend-top-20
+   .col-sm-12
 diff --git a/app/views/ci/shared/_guide.html.haml b/app/views/ci/shared/_guide.html.haml
 index 09e7e65..5627aa4 100644
 --- a/app/views/ci/shared/_guide.html.haml
@@ -3891,8 +3950,21 @@ index d4e7862..819935c 100644
          %span.badge
            = current_user.snippets.are_public.count
  
+diff --git a/app/views/dashboard/todos/_todo.html.haml b/app/views/dashboard/todos/_todo.html.haml
+index 539f1dc..2abc6d6 100644
+--- a/app/views/dashboard/todos/_todo.html.haml
++++ b/app/views/dashboard/todos/_todo.html.haml
+@@ -20,7 +20,7 @@
+     - if todo.pending?
+       .todo-actions.pull-right
+         = link_to [:dashboard, todo], method: :delete, class: 'btn btn-loading done-todo' do
+-          Done
++          完了
+           = icon('spinner spin')
+ 
+     .todo-body
 diff --git a/app/views/dashboard/todos/index.html.haml b/app/views/dashboard/todos/index.html.haml
-index fc42e5d..92262fa 100644
+index fc42e5d..132835b 100644
 --- a/app/views/dashboard/todos/index.html.haml
 +++ b/app/views/dashboard/todos/index.html.haml
 @@ -1,5 +1,5 @@
@@ -3903,6 +3975,15 @@ index fc42e5d..92262fa 100644
  
  .top-area
    %ul.nav-links
+@@ -14,7 +14,7 @@
+     %li{class: "todos-done #{todo_done_active}"}
+       = link_to todos_filter_path(state: 'done') do
+         %span
+-          Done
++          完了
+         %span.badge
+           = todos_done_count
+ 
 @@ -30,10 +30,10 @@
        .filter-item.inline
          = select_tag('project_id', todo_projects_options,
@@ -6591,7 +6672,7 @@ index d730840..243c061 100644
 -        Audit Log
 +        監査ログ
 diff --git a/app/views/layouts/nav/_project.html.haml b/app/views/layouts/nav/_project.html.haml
-index 6dff488..a9f26ee 100644
+index 6dff488..ae35f7e 100644
 --- a/app/views/layouts/nav/_project.html.haml
 +++ b/app/views/layouts/nav/_project.html.haml
 @@ -1,35 +1,35 @@
@@ -6640,6 +6721,19 @@ index 6dff488..a9f26ee 100644
  
    - if project_nav_tab? :commits
      = nav_link(controller: %w(commit commits compare repositories tags branches releases network)) do
+@@ -40,10 +40,10 @@
+ 
+   - if project_nav_tab? :pipelines
+     = nav_link(controller: :pipelines) do
+-      = link_to project_pipelines_path(@project), title: 'Pipelines', class: 'shortcuts-pipelines' do
++      = link_to project_pipelines_path(@project), title: 'パイプライン', class: 'shortcuts-pipelines' do
+         = icon('ship fw')
+         %span
+-          Pipelines
++          パイプライン
+           %span.count.ci_counter= number_with_delimiter(@project.ci_commits.running_or_pending.count)
+ 
+   - if project_nav_tab? :builds
 @@ -51,7 +51,7 @@
        = link_to project_builds_path(@project), title: 'Builds', class: 'shortcuts-builds' do
          = icon('cubes fw')
@@ -7574,15 +7668,21 @@ index 2eb9fac..37a9261 100644
 -    = f.submit 'Set new password', class: "btn btn-create"
 +    = f.submit '新しいパスワードを設定', class: "btn btn-create"
 diff --git a/app/views/profiles/preferences/show.html.haml b/app/views/profiles/preferences/show.html.haml
-index bfe53be..3956d2f 100644
+index bfe53be..18a6942 100644
 --- a/app/views/profiles/preferences/show.html.haml
 +++ b/app/views/profiles/preferences/show.html.haml
-@@ -1,4 +1,4 @@
+@@ -1,9 +1,9 @@
 -- page_title 'Preferences'
 +- page_title '設定'
  
  = form_for @user, url: profile_preferences_path, remote: true, method: :put, html: {class: 'row prepend-top-default js-preferences-form'} do |f|
    .col-lg-3.profile-settings-sidebar
+     %h4.prepend-top-0
+-      Application theme
++      アプリケーションテーマ
+     %p
+       This setting allows you to customize the appearance of the site, ex. sidebar.
+   .col-lg-9.application-theme
 @@ -16,7 +16,7 @@
      %hr
    .col-lg-3.profile-settings-sidebar
@@ -7622,11 +7722,15 @@ index bfe53be..3956d2f 100644
 -      = f.submit 'Save changes', class: 'btn btn-save'
 +      = f.submit '変更を保存', class: 'btn btn-save'
 diff --git a/app/views/profiles/show.html.haml b/app/views/profiles/show.html.haml
-index eef50d8..b8875cb 100644
+index eef50d8..403a511 100644
 --- a/app/views/profiles/show.html.haml
 +++ b/app/views/profiles/show.html.haml
-@@ -7,7 +7,7 @@
-         Public Avatar
+@@ -4,10 +4,10 @@
+   .row
+     .col-lg-3.profile-settings-sidebar
+       %h4.prepend-top-0
+-        Public Avatar
++        公開アバター
        %p
          - if @user.avatar?
 -          You can change your avatar here
@@ -8264,10 +8368,10 @@ index c659af6..ac8701d 100644
  :javascript
    var availableRefs = #{@project.repository.ref_names.to_json};
 diff --git a/app/views/projects/builds/index.html.haml b/app/views/projects/builds/index.html.haml
-index 7c0bec2..c438c60 100644
+index 7c0bec2..6314a0b 100644
 --- a/app/views/projects/builds/index.html.haml
 +++ b/app/views/projects/builds/index.html.haml
-@@ -5,7 +5,7 @@
+@@ -5,14 +5,14 @@
    %ul.nav-links
      %li{class: ('active' if @scope.nil?)}
        = link_to project_builds_path(@project) do
@@ -8275,6 +8379,14 @@ index 7c0bec2..c438c60 100644
 +        すべて
          %span.badge.js-totalbuilds-count
            = number_with_delimiter(@all_builds.count(:id))
+ 
+ 
+     %li{class: ('active' if @scope == 'running')}
+       = link_to project_builds_path(@project, scope: :running) do
+-        Running
++        実行中
+         %span.badge.js-running-count
+           = number_with_delimiter(@all_builds.running_or_pending.count(:id))
  
 @@ -26,10 +26,10 @@
      - if can?(current_user, :update_build, @project)
@@ -8289,7 +8401,14 @@ index 7c0bec2..c438c60 100644
  
        = link_to ci_lint_path, class: 'btn btn-default' do
          = icon('wrench')
-@@ -44,13 +44,13 @@
+@@ -38,19 +38,19 @@
+ %ul.content-list
+   - if @builds.blank?
+     %li
+-      .nothing-here-block No builds to show
++      .nothing-here-block ビルドがありません
+   - else
+     .table-holder
        %table.table.builds
          %thead
            %tr
@@ -8567,7 +8686,7 @@ index 44ef1fd..ca06d50 100644
              - unless can?(current_user, :push_code, @project)
                .inline.prepend-left-10
 diff --git a/app/views/projects/commit/_ci_commit.html.haml b/app/views/projects/commit/_ci_commit.html.haml
-index 32ff4d3..af0aaa0 100644
+index 32ff4d3..eae1916 100644
 --- a/app/views/projects/commit/_ci_commit.html.haml
 +++ b/app/views/projects/commit/_ci_commit.html.haml
 @@ -5,14 +5,14 @@
@@ -8579,7 +8698,8 @@ index 32ff4d3..af0aaa0 100644
  
    .oneline.clearfix
      - if defined?(pipeline_details) && pipeline_details
-       Pipeline
+-      Pipeline
++      パイプライン
        = link_to "##{ci_commit.id}", namespace_project_pipeline_path(ci_commit.project.namespace, ci_commit.project, ci_commit.id), class: "monospace"
        with
 -      = pluralize ci_commit.statuses.count(:id), "build"
@@ -8618,7 +8738,7 @@ index ea33aa4..8200b36 100644
 +      ビルド
        %span.badge= @statuses.count
 diff --git a/app/views/projects/commit/_commit_box.html.haml b/app/views/projects/commit/_commit_box.html.haml
-index 028564c..26a41d7 100644
+index 028564c..6b8fe94 100644
 --- a/app/views/projects/commit/_commit_box.html.haml
 +++ b/app/views/projects/commit/_commit_box.html.haml
 @@ -11,11 +11,11 @@
@@ -8650,7 +8770,7 @@ index 028564c..26a41d7 100644
    .commit-info-row
      Builds for
 -    = pluralize(@commit.ci_commits.count, 'pipeline')
-+    #{@commit.ci_commits.count} pipeline
++    #{@commit.ci_commits.count} パイプライン
      = link_to builds_namespace_project_commit_path(@project.namespace, @project, @commit.id), class: "ci-status-link ci-status-icon-#{@commit.status}" do
        = ci_icon_for_status(@commit.status)
        = ci_label_for_status(@commit.status)
@@ -10703,12 +10823,22 @@ index 1c39ce8..764d070 100644
  
  :javascript
    var notes = new Notes("#{namespace_project_notes_path(namespace_id: @project.namespace, target_id: @noteable.id, target_type: @noteable.class.name.underscore)}", #{@notes.map(&:id).to_json}, #{Time.now.to_i}, "#{diff_view}")
+diff --git a/app/views/projects/pipelines/_header_title.html.haml b/app/views/projects/pipelines/_header_title.html.haml
+index faf63d6..9851b87 100644
+--- a/app/views/projects/pipelines/_header_title.html.haml
++++ b/app/views/projects/pipelines/_header_title.html.haml
+@@ -1 +1 @@
+-- header_title project_title(@project, "Pipelines", project_pipelines_path(@project))
++- header_title project_title(@project, "パイプライン", project_pipelines_path(@project))
 diff --git a/app/views/projects/pipelines/_info.html.haml b/app/views/projects/pipelines/_info.html.haml
-index 8289aef..c217ab2 100644
+index 8289aef..c39bb04 100644
 --- a/app/views/projects/pipelines/_info.html.haml
 +++ b/app/views/projects/pipelines/_info.html.haml
-@@ -3,7 +3,7 @@
-   Pipeline
+@@ -1,9 +1,9 @@
+ %p
+ .commit-info-row
+-  Pipeline
++  パイプライン
    = link_to "##{@pipeline.id}", namespace_project_pipeline_path(@project.namespace, @project, @pipeline.id), class: "monospace"
    with
 -  = pluralize @pipeline.statuses.count(:id), "build"
@@ -10726,10 +10856,15 @@ index 8289aef..c217ab2 100644
    = clipboard_button(clipboard_text: @pipeline.sha)
  
 diff --git a/app/views/projects/pipelines/index.html.haml b/app/views/projects/pipelines/index.html.haml
-index a6c1281..2e19174 100644
+index a6c1281..678ff1a 100644
 --- a/app/views/projects/pipelines/index.html.haml
 +++ b/app/views/projects/pipelines/index.html.haml
-@@ -5,7 +5,7 @@
+@@ -1,36 +1,36 @@
+-- page_title "Pipelines"
++- page_title "パイプライン"
+ = render "header_title"
+ 
+ .top-area
    %ul.nav-links
      %li{class: ('active' if @scope.nil?)}
        = link_to project_pipelines_path(@project) do
@@ -10738,7 +10873,12 @@ index a6c1281..2e19174 100644
          %span.badge.js-totalbuilds-count
            = number_with_delimiter(@pipelines_count)
  
-@@ -17,17 +17,17 @@
+     %li{class: ('active' if @scope == 'running')}
+       = link_to project_pipelines_path(@project, scope: :running) do
+-        Running
++        実行中
+         %span.badge.js-running-count
+           = number_with_delimiter(@running_or_pending_count)
  
      %li{class: ('active' if @scope == 'branches')}
        = link_to project_pipelines_path(@project, scope: :branches) do
@@ -10755,11 +10895,22 @@ index a6c1281..2e19174 100644
        = link_to new_namespace_project_pipeline_path(@project.namespace, @project), class: 'btn btn-create' do
          = icon('plus')
 -        New pipeline
-+        新しいpipeline
++        新しいパイプライン
  
        - unless @repository.gitlab_ci_yml
-         = link_to 'Get started with Pipelines', help_page_path('ci/quick_start', 'README'), class: 'btn btn-info'
-@@ -46,7 +46,7 @@
+-        = link_to 'Get started with Pipelines', help_page_path('ci/quick_start', 'README'), class: 'btn btn-info'
++        = link_to 'Get started with パイプライン', help_page_path('ci/quick_start', 'README'), class: 'btn btn-info'
+ 
+       = link_to ci_lint_path, class: 'btn btn-default' do
+         = icon('wrench')
+@@ -40,13 +40,13 @@
+   - stages = @pipelines.stages
+   - if @pipelines.blank?
+     %li
+-      .nothing-here-block No pipelines to show
++      .nothing-here-block パイプラインがありません
+   - else
+     .table-holder
        %table.table.builds
          %tbody
            %th ID
@@ -10769,17 +10920,17 @@ index a6c1281..2e19174 100644
              %th.stage
                %span.has-tooltip{ title: "#{stage.titleize}" }
 diff --git a/app/views/projects/pipelines/new.html.haml b/app/views/projects/pipelines/new.html.haml
-index b97c9f5..f7565aa 100644
+index b97c9f5..bd94da8 100644
 --- a/app/views/projects/pipelines/new.html.haml
 +++ b/app/views/projects/pipelines/new.html.haml
 @@ -1,20 +1,20 @@
 -- page_title "New Pipeline"
-+- page_title "新しいPipeline"
++- page_title "新しいパイプライン"
  = render "header_title"
  
  %h3.page-title
 -  New Pipeline
-+  新しいPipeline
++  新しいパイプライン
  %hr
  
  = form_for @pipeline, as: :pipeline, url: namespace_project_pipelines_path(@project.namespace, @project), html: { id: "new-pipeline-form", class: "form-horizontal js-new-pipeline-form js-requires-input" } do |f|
@@ -10794,11 +10945,21 @@ index b97c9f5..f7565aa 100644
    .form-actions
 -    = f.submit 'Create pipeline', class: 'btn btn-create', tabindex: 3
 -    = link_to 'Cancel', namespace_project_pipelines_path(@project.namespace, @project), class: 'btn btn-cancel'
-+    = f.submit 'pipelineを作成', class: 'btn btn-create', tabindex: 3
++    = f.submit 'パイプラインを作成', class: 'btn btn-create', tabindex: 3
 +    = link_to 'キャンセル', namespace_project_pipelines_path(@project.namespace, @project), class: 'btn btn-cancel'
  
  :javascript
    var availableRefs = #{@project.repository.ref_names.to_json};
+diff --git a/app/views/projects/pipelines/show.html.haml b/app/views/projects/pipelines/show.html.haml
+index b082d4d..37d7066 100644
+--- a/app/views/projects/pipelines/show.html.haml
++++ b/app/views/projects/pipelines/show.html.haml
+@@ -1,4 +1,4 @@
+-- page_title "Pipeline"
++- page_title "パイプライン"
+ 
+ = render "header_title"
+ .prepend-top-default
 diff --git a/app/views/projects/project_members/_group_members.html.haml b/app/views/projects/project_members/_group_members.html.haml
 index c53033e..f579c19 100644
 --- a/app/views/projects/project_members/_group_members.html.haml
@@ -11103,7 +11264,7 @@ index 2465831..c602d11 100644
        %li
          = link_to archive_namespace_project_repository_path(@project.namespace, @project, ref: ref, format: 'zip'), rel: 'nofollow' do
 diff --git a/app/views/projects/runners/_form.html.haml b/app/views/projects/runners/_form.html.haml
-index d62f5c8..399afb9 100644
+index d62f5c8..6d98957 100644
 --- a/app/views/projects/runners/_form.html.haml
 +++ b/app/views/projects/runners/_form.html.haml
 @@ -5,13 +5,13 @@
@@ -11113,7 +11274,8 @@ index d62f5c8..399afb9 100644
 -        %span.light Paused runners don't accept new builds
 +        %span.light Paused runners don't accept new ビルド
    .form-group
-     = label :run_untagged, 'Run untagged jobs', class: 'control-label'
+-    = label :run_untagged, 'Run untagged jobs', class: 'control-label'
++    = label :run_untagged, 'untagged jobsを実行', class: 'control-label'
      .col-sm-10
        .checkbox
          = f.check_box :run_untagged

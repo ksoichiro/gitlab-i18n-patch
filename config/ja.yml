@@ -618,7 +618,9 @@ visitProjectPageAndPressOnStarIconAndItWillAppearOnThisPage: プロジェクト�
 welcomeToGitLab: GitLabへようこそ！
 selfHostedGitManagementApplication: GitLabはSelf HostedなGit管理アプリケーションです。
 youDontHaveAccessToAnyProjectsRightNow: アクセス権のあるプロジェクトはまだありません。
+youDontHaveAccessToAnyProjectsRightNow2: アクセス権のあるプロジェクトはまだありません
 youCanCreateUpToProject: "$1あなたは\n$2#{$3}件\n$1までプロジェクトを作ることができます。"
+youCanCreateUpToProject2: "$1あなたは\n$2\n$3。$4\n$5件までプロジェクトを作ることができます"
 profilePage: '$1のプロフィールページ'
 yourChangesHaveBeenSuccessfullyCommitted: 変更は正常にコミットされました
 wiki: Wiki
@@ -2293,6 +2295,8 @@ sthIsEnabled: '{0}は有効です'
 congratulationsYouHaveEnabledTwoFactorAuthentication: おめでとうございます！二段階認証が有効になりました。
 usernameOrEmail: ユーザ名またはメールアドレス
 noSuchProjects: プロジェクトがありません
+noPipelinesToShow: パイプラインがありません
+noBuildsToShow: ビルドがありません
 tagPushEvents: タグプッシュ
 pushEvents: プッシュ
 mergeEvents: マージ
@@ -2401,6 +2405,7 @@ userWillBeForcedToSetThePasswordOnFirstSignIn: ユーザは初回のサインイ
 usersWithAccessToThisProjectAreListedBelow: このプロジェクトにアクセスできるユーザは以下の通りです。
 readMoreAboutProjectPermissionsHere: "アクセス権についての詳細は、\n{0}{1}こちら{2}\n{0}から確認できます。"
 readMoreAboutRolePermissionsHere: "アクセス権についての詳細は、\n{0}{1}こちら{2}\n{0}から確認できます。"
+readMoreAboutEnvironments: 環境についての詳細
 addNewUserToProject: プロジェクトにユーザを追加
 addNewUserToGroup: グループにユーザを追加
 importMembersFromAnotherProject: 別のプロジェクトからメンバーをインポート
@@ -2519,6 +2524,7 @@ network: ネットワーク
 graph: グラフ
 noOpenMilestonesAvailable: オープン中のマイルストーンがありません。
 updateSth: '{0}を更新'
+runSth: '{0}を実行'
 pleaseReviewTheGuidelinesForContributionToThisRepository: "{0}このリポジトリの\n{1}コントリビューション・ガイドライン{2}\n{3}を確認してください"
 statusChangedToClosed: ステータスをクローズに変更しました
 systemOAuthApplications: システムOAuthアプリケーション
@@ -2822,3 +2828,28 @@ strikethroughUsesTwoTildesScratchThis: '取消線には二つのチルダを使�
 theGroupAndItsProjectsCanOnlyBeViewedByMembers: グループとそのプロジェクトはメンバーのみ閲覧できます。
 theGroupAndAnyInternalProjectsCanBeViewedByAnyLoggedInUser: グループとすべての内部プロジェクトはすべてのログイン済みのユーザから閲覧できます。
 theGroupAndAnyPublicProjectsCanBeViewedWithoutAnyAuthentication: グループとすべての公開プロジェクトは認証なしで閲覧できます。
+personalAccessToken: パーソナルアクセストークン
+accessToken: アクセストークン
+publicAvatar: 公開アバター
+applicationTheme: アプリケーションテーマ
+pipeline: パイプライン
+validate: 検証
+running: 実行中
+youDontHaveAnyIssuesRightNow: 課題は何もありません
+issuesAreTheBestWayToTrackYourProjectProgress: 課題はプロジェクトの進捗を追跡するのに最適な方法です
+youDontHaveAnyEnvironmentsRightNow: 環境がありません
+environmentsArePlacesWhereCodeGetsDeployedSuchAsStagingOrProduction: 環境は、ステージングや本番などコードがデプロイされる場所です。
+board: ボード
+backlog: バックログ
+done: 完了
+anyLabel: すべてのラベル
+anyMilestone: すべてのマイルストーン
+anyNamepsace: すべてのネームスペース
+anyUser: すべてのユーザ
+noDueDate: 期限なし
+noLabel: ラベルなし
+noMilestone: マイルストーンなし
+noContributions: コントリビューションなし
+noAssignee: 担当なし
+environment: 環境
+createALabelOrGenerateADefaultSetOfLabels: 'ラベルを生成または$1デフォルトのラベルセットを生成$2'

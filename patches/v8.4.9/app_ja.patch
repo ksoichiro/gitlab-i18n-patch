@@ -877,6 +877,24 @@ index 1d36969..537d5b6 100644
    end
  
    def should_user_see_group_roles?(user, group)
+diff --git a/app/helpers/issues_helper.rb b/app/helpers/issues_helper.rb
+index 43262d5..1817118 100644
+--- a/app/helpers/issues_helper.rb
++++ b/app/helpers/issues_helper.rb
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ module IssuesHelper
+   def issue_css_classes(issue)
+     classes = "issue"
+@@ -10,7 +11,7 @@ module IssuesHelper
+   # to allow filtering issues by an unassigned User or Milestone
+   def unassigned_filter
+     # Milestone uses :title, Issue uses :name
+-    OpenStruct.new(id: 0, title: 'None (backlog)', name: 'Unassigned')
++    OpenStruct.new(id: 0, title: 'None (backlog)', name: '担当なし')
+   end
+ 
+   def url_for_project_issues(project = @project, options = {})
 diff --git a/app/helpers/namespaces_helper.rb b/app/helpers/namespaces_helper.rb
 index faba418..681d4a1 100644
 --- a/app/helpers/namespaces_helper.rb
@@ -1922,10 +1940,10 @@ index 34d9555..eee9f3d 100644
          - elsif defined?(allow_retry) && allow_retry && build.retry_url
            = link_to build.retry_url, method: :post, title: 'Retry' do
 diff --git a/app/views/admin/builds/index.html.haml b/app/views/admin/builds/index.html.haml
-index ebf2b7b..dbe5bdf 100644
+index ebf2b7b..696acb5 100644
 --- a/app/views/admin/builds/index.html.haml
 +++ b/app/views/admin/builds/index.html.haml
-@@ -2,12 +2,12 @@
+@@ -2,17 +2,17 @@
    .controls
      .pull-left.hidden-xs
        - if @all_builds.running_or_pending.any?
@@ -1940,7 +1958,13 @@ index ebf2b7b..dbe5bdf 100644
          %span.badge.js-totalbuilds-count= @all_builds.count(:id)
  
      %li{class: ('active' if @scope == 'running')}
-@@ -21,7 +21,7 @@
+       = link_to admin_builds_path(scope: :running) do
+-        Running
++        実行中
+         %span.badge.js-running-count= number_with_delimiter(@all_builds.running_or_pending.count(:id))
+ 
+     %li{class: ('active' if @scope == 'finished')}
+@@ -21,24 +21,24 @@
          %span.badge.js-running-count= number_with_delimiter(@all_builds.finished.count(:id))
  
  .gray-content-block
@@ -1949,7 +1973,11 @@ index ebf2b7b..dbe5bdf 100644
  
  %ul.content-list
    - if @builds.blank?
-@@ -32,13 +32,13 @@
+     %li
+-      .nothing-here-block No builds to show
++      .nothing-here-block ビルドがありません
+   - else
+     .table-holder
        %table.table.builds
          %thead
            %tr
@@ -3434,6 +3462,19 @@ index f7875e6..17963d8 100644
      syntax is incorrect
      %i.fa.fa-remove.incorrect-syntax
    %b Error:
+diff --git a/app/views/ci/lints/show.html.haml b/app/views/ci/lints/show.html.haml
+index 0044d77..b173c2a 100644
+--- a/app/views/ci/lints/show.html.haml
++++ b/app/views/ci/lints/show.html.haml
+@@ -9,7 +9,7 @@
+         = text_area_tag(:content, @content, class: 'form-control span1', rows: 7, require: true)
+     .col-sm-12
+       .pull-left.prepend-top-10
+-        = submit_tag('Validate', class: 'btn btn-success submit-yml')
++        = submit_tag('検証', class: 'btn btn-success submit-yml')
+ 
+ .row.prepend-top-20
+   .col-sm-12
 diff --git a/app/views/ci/projects/index.html.haml b/app/views/ci/projects/index.html.haml
 index 9c2290b..47ccf65 100644
 --- a/app/views/ci/projects/index.html.haml
@@ -7707,7 +7748,7 @@ index d165f75..cedeff3 100644
 -    = f.submit 'Set new password', class: "btn btn-create"
 +    = f.submit '新しいパスワードを設定', class: "btn btn-create"
 diff --git a/app/views/profiles/preferences/show.html.haml b/app/views/profiles/preferences/show.html.haml
-index 877589d..49582a3 100644
+index 877589d..b94c35c 100644
 --- a/app/views/profiles/preferences/show.html.haml
 +++ b/app/views/profiles/preferences/show.html.haml
 @@ -1,4 +1,4 @@
@@ -7716,6 +7757,15 @@ index 877589d..49582a3 100644
  - header_title page_title, profile_preferences_path
  - @blank_container = true
  
+@@ -10,7 +10,7 @@
+ = form_for @user, url: profile_preferences_path, remote: true, method: :put, html: {class: 'js-preferences-form form-horizontal'} do |f|
+   .panel.panel-default.application-theme
+     .panel-heading
+-      Application theme
++      アプリケーションテーマ
+     .panel-body
+       - Gitlab::Themes.each do |theme|
+         = label_tag do
 @@ -20,7 +20,7 @@
  
    .panel.panel-default.syntax-theme
@@ -8361,10 +8411,10 @@ index c659af6..ac8701d 100644
  :javascript
    var availableRefs = #{@project.repository.ref_names.to_json};
 diff --git a/app/views/projects/builds/index.html.haml b/app/views/projects/builds/index.html.haml
-index 62b4a71..ea7c48c 100644
+index 62b4a71..7e78f77 100644
 --- a/app/views/projects/builds/index.html.haml
 +++ b/app/views/projects/builds/index.html.haml
-@@ -6,12 +6,12 @@
+@@ -6,18 +6,18 @@
      - if can?(current_user, :update_build, @project)
        .pull-left.hidden-xs
          - if @all_builds.running_or_pending.any?
@@ -8379,7 +8429,14 @@ index 62b4a71..ea7c48c 100644
          %span.badge.js-totalbuilds-count
            = number_with_delimiter(@all_builds.count(:id))
  
-@@ -28,7 +28,7 @@
+     %li{class: ('active' if @scope == 'running')}
+       = link_to project_builds_path(@project, scope: :running) do
+-        Running
++        実行中
+         %span.badge.js-running-count
+           = number_with_delimiter(@all_builds.running_or_pending.count(:id))
+ 
+@@ -28,23 +28,23 @@
            = number_with_delimiter(@all_builds.finished.count(:id))
  
  .gray-content-block
@@ -8388,7 +8445,11 @@ index 62b4a71..ea7c48c 100644
  
  %ul.content-list
    - if @builds.blank?
-@@ -39,12 +39,12 @@
+     %li
+-      .nothing-here-block No builds to show
++      .nothing-here-block ビルドがありません
+   - else
+     .table-holder
        %table.table.builds
          %thead
            %tr

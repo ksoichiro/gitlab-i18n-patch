@@ -48,6 +48,31 @@ translations:
       at: end
       value: jQueryTimeago
 
+- name: 'js'
+  parallel-group: 'group2'
+  src: 'app/assets/javascripts/**.js'
+  patterns:
+  - pattern: 'Any Label'
+    replace: '${anyLabel}'
+  - pattern: 'Any Milestone'
+    replace: '${anyMilestone}'
+  - pattern: 'Any namepspace'
+    replace: '${anyNamespace}'
+  - pattern: 'Any User'
+    replace: '${anyUser}'
+  - pattern: "'Unassigned'"
+    replace: "'${unassigned}'"
+  - pattern: 'No due date'
+    replace: '${noDueDate}'
+  - pattern: 'No Label'
+    replace: '${noLabel}'
+  - pattern: 'No Milestone'
+    replace: '${noMilestone}'
+  - pattern: 'No contributions'
+    replace: '${noContributions}'
+  - pattern: 'No assignee'
+    replace: '${noAssignee}'
+
 # Ruby
 - name: 'rb:helpers'
   parallel-group: 'group1'
@@ -437,6 +462,7 @@ translations:
     - {word: 'Groups', key: group}
     - {word: 'Users', key: user}
     - {word: 'Inline', key: inline}
+    - {word: 'Unassigned', key: unassigned}
 
 - name: 'haml:shortcuts'
   parallel-group: 'group1'
@@ -570,6 +596,10 @@ translations:
     replace: '${noPublicGroups}'
   - pattern: 'No such projects'
     replace: '${noSuchProjects}'
+  - pattern: 'No pipelines to show'
+    replace: '${noPipelinesToShow}'
+  - pattern: 'No builds to show'
+    replace: '${noBuildsToShow}'
   - pattern: 'Your message here'
     replace: '${yourMessagehere}'
   - pattern: "Didn't receive confirmation instructions?"
@@ -804,8 +834,12 @@ translations:
     - '$2'
   - pattern: "You don't have access to any projects right now."
     replace: '${youDontHaveAccessToAnyProjectsRightNow}'
+  - pattern: "You don't have access to any projects right now"
+    replace: '${youDontHaveAccessToAnyProjectsRightNow2}'
   - pattern: !!js/regexp /( +)You can create up to\n( +[^ ]+ )pluralize\(([^,]+), "project"\)[^\n]+$/m
     replace: '${youCanCreateUpToProject}'
+  - pattern: !!js/regexp /( +)You can create up to\n(.*projects_limit.*)\n( += succeed ").(" do)\n( +)= "project".pluralize\(current_user.projects_limit\)/m
+    replace: '${youCanCreateUpToProject2}'
   - pattern: !!js/regexp /(#[^ ]+) profile page/
     replace: '${profilePage}'
   - pattern: "Browse Code »"
@@ -1245,6 +1279,18 @@ translations:
     replace: '${notificationEmail}'
   - pattern: 'Already have login and password?'
     replace: '${alreadyHaveLoginAndPassword}'
+  - pattern: "You don't have any issues right now."
+    replace: '${youDontHaveAnyIssuesRightNow}'
+  - pattern: 'Issues are the best way to track your project progress'
+    replace: '${issuesAreTheBestWayToTrackYourProjectProgress}'
+  - pattern: "You don't have any environments right now."
+    replace: '${youDontHaveAnyEnvironmentsRightNow}'
+  - pattern: 'Environments are places where code gets deployed, such as staging or production.'
+    replace: '${environmentsArePlacesWhereCodeGetsDeployedSuchAsStagingOrProduction}'
+  - pattern: 'Read more about environments'
+    replace: '${readMoreAboutEnvironments}'
+  - pattern: !!js/regexp /Create a label or ([^']+')generate a default set of labels('.*)$/
+    replace: '${createALabelOrGenerateADefaultSetOfLabels}'
 
   - name: formLabel
     params:
@@ -1354,6 +1400,9 @@ translations:
     - {word: 'Tag push events', key: tagPushEvents}
     - {word: 'Merge Request events', key: mergeRequestEvents}
     - {word: 'Issues', key: issue}
+    - {word: 'Board', key: board}
+    - {word: 'Backlog', key: backlog}
+    - {word: 'Done', key: done}
     - {word: 'Milestones', key: milestone}
     - {word: 'Applications', key: application}
     - {word: 'Labels', key: label}
@@ -1406,6 +1455,9 @@ translations:
     - {word: 'Changelog', key: changelog}
     - {word: 'Help', key: help}
     - {word: 'Activity', key: activity}
+    - {word: 'Pipeline[s]', key: pipeline}
+    - {word: 'Validate', key: validate}
+    - {word: 'Running', key: running}
     - {word: 'Explore', key: explore}
     - {word: 'Notifications', key: notification}
     - {word: 'Preferences', key: preference}
@@ -1446,6 +1498,12 @@ translations:
     - {word: 'Notes?', key: note}
     - {word: 'Features', key: features}
     - {word: 'Size', key: size}
+    - {word: 'Personal Access Tokens', key: personalAccessToken}
+    - {word: 'Access Tokens?', key: accessToken}
+    - {word: 'Public Avatar', key: publicAvatar}
+    - {word: 'Two-Factor Authentication', key: twoFactorAuthentication}
+    - {word: 'Application theme', key: applicationTheme}
+    - {word: 'Environments?', key: environment}
   - name: wordInSentence
     params:
     - {word: 'broadcast message', key: broadcastMessage}
@@ -1482,6 +1540,7 @@ translations:
     - {word: 'participant', key: participant}
     - {word: '[cC]omment', key: comment}
     - {word: '[cC]hanges?', key: change}
+    - {word: 'pipelines?', key: pipeline}
   - pattern: !!js/regexp /Add ([^\s]+) to ([^\s'":]+)/
     replace: '${addAToB}'
     args:
@@ -1517,6 +1576,7 @@ translations:
     - {verb: Submit, key: submitSth}
     - {verb: Commit, key: commitSth}
     - {verb: Update, key: updateSth}
+    - {verb: Run, key: runSth}
   - name: sthCountsDone
     params:
     - {obj: issues, objKey: issue, done: updated, doneKey: update}

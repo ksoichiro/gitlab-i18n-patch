@@ -1630,7 +1630,7 @@ mdTitleIssues: 課題
 #mdTitleListTheWebhooksFromProjectsInAGivenNAMESPACE: 
 #mdTitleListUsers: 
 #mdTitleListingRepositoryDirectories: 
-#mdTitleLists: 
+mdTitleLists: リスト
 #mdTitleLogArgumentsToSidekiqJobs: 
 #mdTitleLogLocationsOfTheServices: 
 #mdTitleLogSystem: 
@@ -2857,3 +2857,12 @@ noAssignee: 担当なし
 environment: 環境
 createALabelOrGenerateADefaultSetOfLabels: 'ラベルを生成または$1デフォルトのラベルセットを生成$2'
 uploadNewAvatar: 新しいアバターをアップロード
+firstOrderedListItem: 先頭のリスト項目
+anotherItem: 別の項目
+unorderedSubList: 番号のないサブリスト
+actualNumbersDontMatterJustThatItsANumber: 実際の番号は問題ではなく、数字であることが必要です
+orderedSubList: 番号付きのサブリスト
+andAnotherItem: さらに別の項目
+unorderedListCanUseAsterisks: 番号のないリストはアスタリスクを使います
+orMinuses: またはマイナス
+orPluses: またはプラス

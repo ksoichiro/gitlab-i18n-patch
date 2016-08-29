@@ -2360,6 +2360,24 @@ translations:
     replace: '${combinedEmphasisWithAsterisksAndUnderscores}'
   - pattern: 'Strikethrough uses two tildes. ~~Scratch this.~~'
     replace: '${strikethroughUsesTwoTildesScratchThis}'
+  - pattern: '1. First ordered list item'
+    replace: '1. ${firstOrderedListItem}'
+  - pattern: '2. Another item'
+    replace: '2. ${anotherItem}'
+  - pattern: '* Unordered sub-list.'
+    replace: '* ${unorderedSubList}'
+  - pattern: "1. Actual numbers don't matter, just that it's a number"
+    replace: '1. ${actualNumbersDontMatterJustThatItsANumber}'
+  - pattern: '1. Ordered sub-list'
+    replace: '1. ${orderedSubList}'
+  - pattern: '4. And another item.'
+    replace: '4. ${andAnotherItem}'
+  - pattern: '* Unordered list can use asterisks'
+    replace: '* ${unorderedListCanUseAsterisks}'
+  - pattern: '- Or minuses'
+    replace: '- ${orMinuses}'
+  - pattern: '+ Or pluses'
+    replace: '+ ${orPluses}'
   - pattern: '1.  Clone project:'
     replace: '1.  ${cloneProject}:'
     match-once: true
@@ -4295,8 +4313,8 @@ translations:
     #  key: mdTitleListUsers
     #- title: 'Listing repository directories'
     #  key: mdTitleListingRepositoryDirectories
-    #- title: 'Lists'
-    #  key: mdTitleLists
+    - title: 'Lists'
+      key: mdTitleLists
     #- title: 'Log arguments to Sidekiq jobs'
     #  key: mdTitleLogArgumentsToSidekiqJobs
     #- title: 'Log locations of the services'

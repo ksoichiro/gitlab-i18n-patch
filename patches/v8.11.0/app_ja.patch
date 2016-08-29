@@ -16759,7 +16759,7 @@ index 9e2a89e..f8bcbde 100644
  
  ![Default label set](img/admin_labels.png)
 diff --git a/doc/user/markdown.md b/doc/user/markdown.md
-index 7fe96e6..c5516d7 100644
+index 7fe96e6..5fc60b8 100644
 --- a/doc/user/markdown.md
 +++ b/doc/user/markdown.md
 @@ -1,32 +1,32 @@
@@ -17124,7 +17124,7 @@ index 7fe96e6..c5516d7 100644
  
  1. `this-header-has-spaces-in-it`
  1. `this-header-has-a-in-it`
-@@ -413,27 +412,27 @@ Would generate the following link IDs:
+@@ -413,53 +412,53 @@ Would generate the following link IDs:
  1. `this-header-has-spaces-in-it`
  1. `this-header-has-spaces-in-it-1`
  
@@ -17160,7 +17160,74 @@ index 7fe96e6..c5516d7 100644
 -Strikethrough uses two tildes. ~~Scratch this.~~
 +取消線には二つのチルダを使います。 ~~ここを削除~~
  
- ## Lists
+-## Lists
++## リスト
+ 
+ ```no-highlight
+-1. First ordered list item
+-2. Another item
+-  * Unordered sub-list.
+-1. Actual numbers don't matter, just that it's a number
+-  1. Ordered sub-list
+-4. And another item.
+-
+-* Unordered list can use asterisks
+-- Or minuses
+-+ Or pluses
++1. 先頭のリスト項目
++2. 別の項目
++  * 番号のないサブリスト
++1. 実際の番号は問題ではなく、数字であることが必要です
++  1. 番号付きのサブリスト
++4. さらに別の項目
++
++* 番号のないリストはアスタリスクを使います
++- またはマイナス
+++ またはプラス
+ ```
+ 
+-1. First ordered list item
+-2. Another item
+-  * Unordered sub-list.
+-1. Actual numbers don't matter, just that it's a number
+-  1. Ordered sub-list
+-4. And another item.
++1. 先頭のリスト項目
++2. 別の項目
++  * 番号のないサブリスト
++1. 実際の番号は問題ではなく、数字であることが必要です
++  1. 番号付きのサブリスト
++4. さらに別の項目
+ 
+-* Unordered list can use asterisks
+-- Or minuses
+-+ Or pluses
++* 番号のないリストはアスタリスクを使います
++- またはマイナス
+++ またはプラス
+ 
+ If a list item contains multiple paragraphs,
+ each subsequent paragraph should be indented with four spaces.
+@@ -480,16 +479,16 @@ If the second paragraph isn't indented with four spaces,
+ the second list item will be incorrectly labeled as `1`.
+ 
+ ```no-highlight
+-1. First ordered list item
++1. 先頭のリスト項目
+ 
+    Second paragraph of first item.
+-2. Another item
++2. 別の項目
+ ```
+ 
+-1. First ordered list item
++1. 先頭のリスト項目
+ 
+    Second paragraph of first item.
+-2. Another item
++2. 別の項目
+ 
+ ## Links
  
 @@ -529,7 +528,7 @@ Some text to show that the reference links can follow later.
  

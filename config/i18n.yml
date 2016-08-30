@@ -2378,6 +2378,8 @@ translations:
     replace: '- ${orMinuses}'
   - pattern: '+ Or pluses'
     replace: '+ ${orPluses}'
+  - pattern: 'There are two ways to create links, inline-style and reference-style.'
+    replace: '${thereAreTwoWaysToCreateLinksInlineStyleAndReferenceStyle}'
   - pattern: '1.  Clone project:'
     replace: '1.  ${cloneProject}:'
     match-once: true
@@ -4221,8 +4223,8 @@ translations:
     #  key: mdTitleLineBreaks
     #- title: 'Linking and closing issues from merge requests'
     #  key: mdTitleLinkingAndClosingIssuesFromMergeRequests
-    #- title: 'Links'
-    #  key: mdTitleLinks
+    - title: 'Links'
+      key: mdTitleLinks
     #- title: 'Linting'
     #  key: mdTitleLinting
     #- title: 'List \*\*ALL\*\* webhooks:'

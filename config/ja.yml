@@ -1584,7 +1584,7 @@ mdTitleIssues: 課題
 #mdTitleLimitations: 
 #mdTitleLineBreaks: 
 #mdTitleLinkingAndClosingIssuesFromMergeRequests: 
-#mdTitleLinks: 
+mdTitleLinks: リンク
 #mdTitleLinting: 
 #mdTitleListALLWebhooks: 
 #mdTitleListALLProjects: 
@@ -2866,3 +2866,4 @@ andAnotherItem: さらに別の項目
 unorderedListCanUseAsterisks: 番号のないリストはアスタリスクを使います
 orMinuses: またはマイナス
 orPluses: またはプラス
+thereAreTwoWaysToCreateLinksInlineStyleAndReferenceStyle: リンクを作るには、インラインスタイルとリファレンススタイルの二つの方法があります。

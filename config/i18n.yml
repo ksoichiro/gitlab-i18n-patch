@@ -2380,6 +2380,18 @@ translations:
     replace: '+ ${orPluses}'
   - pattern: 'There are two ways to create links, inline-style and reference-style.'
     replace: '${thereAreTwoWaysToCreateLinksInlineStyleAndReferenceStyle}'
+  - pattern: "I'm an inline-style link"
+    replace: '${imAnInlineStyleLink}'
+  - pattern: "I'm a reference-style link"
+    replace: '${imAReferenceStyleLink}'
+  - pattern: "I'm a relative reference to a repository file"
+    replace: '${imARelativeReferenceToARepositoryFile}'
+  - pattern: 'You can use numbers for reference-style link definitions'
+    replace: '${youCanUseNumbersForReferenceStyleLinkDefinitions}'
+  - pattern: 'Or leave it empty and use the [link text itself][]'
+    replace: '${orLeaveItEmptyAndUseTheLinkTextItself}'
+  - pattern: 'Some text to show that the reference links can follow later.'
+    replace: '${someTextToShowThatTheReferenceLinksCanFollowLater}'
   - pattern: '1.  Clone project:'
     replace: '1.  ${cloneProject}:'
     match-once: true

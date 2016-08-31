@@ -2867,3 +2867,9 @@ unorderedListCanUseAsterisks: 番号のないリストはアスタリスクを�
 orMinuses: またはマイナス
 orPluses: またはプラス
 thereAreTwoWaysToCreateLinksInlineStyleAndReferenceStyle: リンクを作るには、インラインスタイルとリファレンススタイルの二つの方法があります。
+imAnInlineStyleLink: インラインスタイルのリンクです
+imAReferenceStyleLink: リファレンススタイルのリンクです
+imARelativeReferenceToARepositoryFile: リポジトリのファイルへの相対パスでの参照です
+youCanUseNumbersForReferenceStyleLinkDefinitions: リファレンススタイルのリンク定義に番号を使うこともできます
+orLeaveItEmptyAndUseTheLinkTextItself: "あるいは中身を空にして[リンクテキストをそのまま使う][]こともできます"
+someTextToShowThatTheReferenceLinksCanFollowLater: リファレンスのリンク先は後に続けて書きます。

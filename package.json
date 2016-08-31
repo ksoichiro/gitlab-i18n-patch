@@ -9,6 +9,6 @@
   "scripts": {
     "build": "i18n-patch --statistics -- ja gitlabhq",
     "translate": "node lib/translate.js",
-    "readme": "node lib/readme.js"
+    "readme": "node lib/update_readme.js"
   }
 }

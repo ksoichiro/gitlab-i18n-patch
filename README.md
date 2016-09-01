@@ -13,6 +13,7 @@ GitLabはi18nに対応しないとのことですが、
 
 :mega: v8.3.0以降のパッチは [i18n-patch](https://github.com/ksoichiro/i18n-patch) で生成しています。
 
+1. [GitLab CE v8.11.3](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.11.3 "GitLab CE v8.11.3") → [patches/v8.11.3ディレクトリ](patches/v8.11.3)
 1. [GitLab CE v8.11.2](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.11.2 "GitLab CE v8.11.2") → [patches/v8.11.2ディレクトリ](patches/v8.11.2)
 1. [GitLab CE v8.11.0](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.11.0 "GitLab CE v8.11.0") → [patches/v8.11.0ディレクトリ](patches/v8.11.0)
 1. [GitLab CE v8.10.5](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.10.5 "GitLab CE v8.10.5") → [patches/v8.10.5ディレクトリ](patches/v8.10.5)

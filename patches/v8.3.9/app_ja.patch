@@ -13807,7 +13807,7 @@ index 192c321..2d25661 100644
 \ No newline at end of file
 +![admin_application](oauth_provider/admin_application.png)
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index bc8e7d1..84b7898 100644
+index bc8e7d1..624b3d7 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,52 +1,52 @@
@@ -14246,7 +14246,7 @@ index bc8e7d1..84b7898 100644
  
  If a list item contains multiple paragraphs,
  each subsequent paragraph should be indented with four spaces.
-@@ -361,48 +360,48 @@ If the second paragraph isn't indented with four spaces,
+@@ -361,80 +360,80 @@ If the second paragraph isn't indented with four spaces,
  the second list item will be incorrectly labeled as `1`.
  
  ```no-highlight
@@ -14313,17 +14313,57 @@ index bc8e7d1..84b7898 100644
  
  [arbitrary case-insensitive reference text]: https://www.mozilla.org
  [1]: http://slashdot.org
-@@ -410,9 +409,9 @@ Some text to show that the reference links can follow later.
+ [link text itself]: https://www.reddit.com
  
- **Note**
+-**Note**
++**注意**
  
 -Relative links do not allow referencing project files in a wiki page or wiki page in a project file. The reason for this is that, in GitLab, wiki is always a separate git repository. For example:
-+Relative links do not allow referencing project files in a wiki page or wiki page in a project file. The reason for this is that, in GitLab, wiki is always a separate git repository. 例:
++相対パスのリンクでは、Wikiページ内のプロジェクトファイルやプロジェクトファイル内のWikiページを参照することはできません。理由は、GitLabではWikiが常に別のGitリポジトリに分けられているためです。例えば
  
 -`[I'm a reference-style link](style)`
 +`[リファレンススタイルのリンクです](style)`
  
- will point the link to `wikis/style` when the link is inside of a wiki markdown file.
+-will point the link to `wikis/style` when the link is inside of a wiki markdown file.
++は Wiki の Markdown ファイル内でのリンクならば `wikis/style` へリンクします。
+ 
+-## Images
++## 画像
+ 
+-    Here's our logo (hover to see the title text):
++    私たちのロゴです(マウスオーバーでタイトル文字列を表示します)。
+ 
+-    Inline-style:
++    インラインスタイル:
+     ![alt text](assets/logo-white.png)
+ 
+-    Reference-style:
++    リファレンススタイル:
+     ![alt text1][logo]
+ 
+     [logo]: assets/logo-white.png
+ 
+-Here's our logo:
++私たちのロゴです。
+ 
+-Inline-style:
++インラインスタイル:
+ 
+ ![alt text](/assets/logo-white.png)
+ 
+-Reference-style:
++リファレンススタイル:
+ 
+ ![alt text][logo]
+ 
+@@ -562,7 +561,7 @@ Code above produces next output:
+ | cell 1   | cell 2   |
+ | cell 3   | cell 4   |
+ 
+-**Note**
++**注意**
+ 
+ The row of dashes between the table header and body must have at least three dashes in each column.
  
 diff --git a/doc/permissions/permissions.md b/doc/permissions/permissions.md
 index bcd00cf..2b2e43f 100644

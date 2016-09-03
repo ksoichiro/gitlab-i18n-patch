@@ -13839,7 +13839,7 @@ index e6ac479..4d18d72 100644
  - [Welcome message](customization/welcome_message.md) Add a custom welcome message to the sign-in page.
  - [Reply by email](incoming_email/README.md) Allow users to comment on issues and merge requests by replying to notification emails.
 diff --git a/doc/administration/auth/ldap.md b/doc/administration/auth/ldap.md
-index 1009677..8bd1b3f 100644
+index 1009677..b3b4ad3 100644
 --- a/doc/administration/auth/ldap.md
 +++ b/doc/administration/auth/ldap.md
 @@ -6,7 +6,7 @@ servers, including Microsoft Active Directory, Apple Open Directory, Open LDAP,
@@ -13851,6 +13851,24 @@ index 1009677..8bd1b3f 100644
  
  GitLab assumes that LDAP users are not able to change their LDAP 'mail', 'email'
  or 'userPrincipalName' attribute. An LDAP user who is allowed to change their
+@@ -27,7 +27,7 @@ are already logged in or are using Git over SSH will still be able to access
+ GitLab for up to one hour. Manually block the user in the GitLab Admin area to
+ immediately block all access.
+ 
+->**Note**: GitLab EE supports a configurable sync time, with a default
++>**注意**: GitLab EE supports a configurable sync time, with a default
+ of one hour.
+ 
+ ## Configuration
+@@ -35,7 +35,7 @@ of one hour.
+ To enable LDAP integration you need to add your LDAP server settings in
+ `/etc/gitlab/gitlab.rb` or `/home/git/gitlab/config/gitlab.yml`.
+ 
+->**Note**: In GitLab EE, you can configure multiple LDAP servers to connect to
++>**注意**: In GitLab EE, you can configure multiple LDAP servers to connect to
+ one GitLab server.
+ 
+ Prior to version 7.4, GitLab used a different syntax for configuring
 diff --git a/doc/administration/restart_gitlab.md b/doc/administration/restart_gitlab.md
 index 4830603..d697d44 100644
 --- a/doc/administration/restart_gitlab.md
@@ -14026,9 +14044,18 @@ index 7aa1c21..c0bd9d7 100644
  Creates a new note for a single merge request.
  
 diff --git a/doc/api/projects.md b/doc/api/projects.md
-index de1faad..2de801c 100644
+index de1faad..eeb0d51 100644
 --- a/doc/api/projects.md
 +++ b/doc/api/projects.md
+@@ -819,7 +819,7 @@ Parameters:
+ }
+ ```
+ 
+-**Note**: The returned `url` is relative to the project path.
++**注意**: The returned `url` is relative to the project path.
+ In Markdown contexts, the link is automatically expanded when the format in `markdown` is used.
+ 
+ 
 @@ -879,7 +879,7 @@ Parameters:
  - `user_id` (required) - The ID of a user to add
  - `access_level` (required) - Project access level
@@ -14266,7 +14293,7 @@ index 194b8e0..c1cf70d 100644
  ```
  git commit -m "Awesome commit message (Fix #20, Fixes #21 and Closes group/otherproject#22). This commit is also related to #17 and fixes #18, #19 and https://gitlab.example.com/group/otherproject/issues/23."
 diff --git a/doc/development/doc_styleguide.md b/doc/development/doc_styleguide.md
-index 187ec9e..df6a337 100644
+index 187ec9e..4428c00 100644
 --- a/doc/development/doc_styleguide.md
 +++ b/doc/development/doc_styleguide.md
 @@ -49,7 +49,7 @@ it organized and easy to find.
@@ -14278,6 +14305,15 @@ index 187ec9e..df6a337 100644
  
  - If a link makes the paragraph to span across multiple lines, do not use
    the regular Markdown approach: `[Text](https://example.com)`. Instead use
+@@ -59,7 +59,7 @@ it organized and easy to find.
+   add an alternative text: `[identifier]: https://example.com "Alternative text"`
+   that appears when hovering your mouse on a link
+ 
+-## Images
++## 画像
+ 
+ - Place images in a separate directory named `img/` in the same directory where
+   the `.md` document that you're working on is located. Always prepend their
 @@ -146,7 +146,7 @@ Inside the document:
  Here is a list of must-have items. Use them in the exact order that appears
  on this document. Further explanation is given below.
@@ -14513,7 +14549,7 @@ index 8a7205c..29c0422 100644
 \ No newline at end of file
 +fail with one of the mentioned errors.
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index 4f199b6..587aed9 100644
+index 4f199b6..50f9558 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,31 +1,31 @@
@@ -14956,7 +14992,7 @@ index 4f199b6..587aed9 100644
  
  If a list item contains multiple paragraphs,
  each subsequent paragraph should be indented with four spaces.
-@@ -367,48 +366,48 @@ If the second paragraph isn't indented with four spaces,
+@@ -367,80 +366,80 @@ If the second paragraph isn't indented with four spaces,
  the second list item will be incorrectly labeled as `1`.
  
  ```no-highlight
@@ -15023,17 +15059,57 @@ index 4f199b6..587aed9 100644
  
  [arbitrary case-insensitive reference text]: https://www.mozilla.org
  [1]: http://slashdot.org
-@@ -416,9 +415,9 @@ Some text to show that the reference links can follow later.
+ [link text itself]: https://www.reddit.com
  
- **Note**
+-**Note**
++**注意**
  
 -Relative links do not allow referencing project files in a wiki page or wiki page in a project file. The reason for this is that, in GitLab, wiki is always a separate git repository. For example:
-+Relative links do not allow referencing project files in a wiki page or wiki page in a project file. The reason for this is that, in GitLab, wiki is always a separate git repository. 例:
++相対パスのリンクでは、Wikiページ内のプロジェクトファイルやプロジェクトファイル内のWikiページを参照することはできません。理由は、GitLabではWikiが常に別のGitリポジトリに分けられているためです。例えば
  
 -`[I'm a reference-style link](style)`
 +`[リファレンススタイルのリンクです](style)`
  
- will point the link to `wikis/style` when the link is inside of a wiki markdown file.
+-will point the link to `wikis/style` when the link is inside of a wiki markdown file.
++は Wiki の Markdown ファイル内でのリンクならば `wikis/style` へリンクします。
+ 
+-## Images
++## 画像
+ 
+-    Here's our logo (hover to see the title text):
++    私たちのロゴです(マウスオーバーでタイトル文字列を表示します)。
+ 
+-    Inline-style:
++    インラインスタイル:
+     ![alt text](img/logo.png)
+ 
+-    Reference-style:
++    リファレンススタイル:
+     ![alt text1][logo]
+ 
+     [logo]: img/logo.png
+ 
+-Here's our logo:
++私たちのロゴです。
+ 
+-Inline-style:
++インラインスタイル:
+ 
+ ![alt text](img/logo.png)
+ 
+-Reference-style:
++リファレンススタイル:
+ 
+ ![alt text][logo]
+ 
+@@ -568,7 +567,7 @@ Code above produces next output:
+ | cell 1   | cell 2   |
+ | cell 3   | cell 4   |
+ 
+-**Note**
++**注意**
+ 
+ The row of dashes between the table header and body must have at least three dashes in each column.
  
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index 90e9930..3377848 100644
@@ -15048,6 +15124,19 @@ index 90e9930..3377848 100644
  sudo gitlab-ctl restart
  
  # For installations from source
+diff --git a/doc/monitoring/performance/grafana_configuration.md b/doc/monitoring/performance/grafana_configuration.md
+index a79c8d4..43e6ac4 100644
+--- a/doc/monitoring/performance/grafana_configuration.md
++++ b/doc/monitoring/performance/grafana_configuration.md
+@@ -15,7 +15,7 @@ Grafana supplies package repositories (Yum/Apt) for easy installation.
+ See [Grafana installation documentation](http://docs.grafana.org/installation/)
+ for detailed steps.
+ 
+-> **Note**: Before starting Grafana for the first time, set the admin user
++> **注意**: Before starting Grafana for the first time, set the admin user
+ and password in `/etc/grafana/grafana.ini`. Otherwise, the default password
+ will be `admin`.
+ 
 diff --git a/doc/permissions/permissions.md b/doc/permissions/permissions.md
 index 6219693..ba73f56 100644
 --- a/doc/permissions/permissions.md

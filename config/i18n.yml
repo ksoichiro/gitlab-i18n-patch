@@ -2346,8 +2346,6 @@ translations:
     replace: '1. ${twoOrMoreHyphensInARowAreConvertedToOne}'
   - pattern: !!js/regexp /1. If a header with the same ID has already been generated, a unique\n   incrementing number is appended, starting at 1./
     replace: '1. ${ifAHeaderWithTheSameIDHasAlreadyBeenGeneratedAUniqueIncrementingNumberIsAppendedStartingAt1}'
-  - pattern: 'For example:'
-    replace: '${forExample}:'
   - pattern: 'Would generate the following link IDs:'
     replace: '${wouldGenerateTheFollowingLinkIds}:'
   - pattern: 'Note that the Emoji processing happens before the header IDs are generated, so the Emoji is converted to an image which then gets removed from the ID.'
@@ -2392,6 +2390,22 @@ translations:
     replace: '${orLeaveItEmptyAndUseTheLinkTextItself}'
   - pattern: 'Some text to show that the reference links can follow later.'
     replace: '${someTextToShowThatTheReferenceLinksCanFollowLater}'
+  - pattern: '**Note**'
+    replace: '**${mdNote}**'
+  - pattern: !!js/regexp /Relative links do not allow referencing project files in a wiki page or wiki page in a project file\. The reason for this is that, in GitLab, wiki is always a separate git repository\. For example:\n\n`\[I'm a reference-style link\]\(style\)`\n\nwill point the link to `wikis\/style` when the link is inside of a wiki markdown file./m
+    replace: '${relativeLinksDoNotAllowReferencingProjectFilesInAWikiPageOrWikiPageInAProjectFileTheReasonForThisIsThatInGitlabWikiIsAlwaysASeparateGitRepositoryForExampleImAReferenceStyleLinkWillPointTheLinkToWikisStyleWhenTheLinkIsInsideOfAWikiMarkdownFile}'
+  - pattern: "will point the link to `wikis/style` when the link is inside of a wiki markdown file."
+    replace: '${willPointTheLinkToWikisStyleWhenTheLinkIsInsideOfAWikiMarkdownFile}'
+  - pattern: "Here's our logo (hover to see the title text):"
+    replace: '${heresOurLogoHoverToSeeTheTitleText}'
+  - pattern: "Inline-style"
+    replace: '${inlineStyle}'
+  - pattern: "Reference-style"
+    replace: '${referenceStyle}'
+  - pattern: "Here's our logo:"
+    replace: '${heresOurLogo}'
+  - pattern: 'For example:'
+    replace: '${forExample}:'
   - pattern: '1.  Clone project:'
     replace: '1.  ${cloneProject}:'
     match-once: true
@@ -4009,8 +4023,8 @@ translations:
     #  key: mdTitleIgnoreWhitespaceChangesInMergeRequestDiffView
     #- title: 'Ignoring issues'
     #  key: mdTitleIgnoringIssues
-    #- title: 'Images'
-    #  key: mdTitleImages
+    - title: 'Images'
+      key: mdTitleImages
     #- title: 'Implement design & UI elements'
     #  key: mdTitleImplementDesign&UIElements
     #- title: 'Import Dashboards'

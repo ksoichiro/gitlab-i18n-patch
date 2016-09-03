@@ -14373,7 +14373,7 @@ index b5b3778..58a1acf 100644
  - [Welcome message](customization/welcome_message.md) Add a custom welcome message to the sign-in page.
  - [Reply by email](incoming_email/README.md) Allow users to comment on issues and merge requests by replying to notification emails.
 diff --git a/doc/administration/auth/ldap.md b/doc/administration/auth/ldap.md
-index 7186f70..1e2137c 100644
+index 7186f70..eda9d31 100644
 --- a/doc/administration/auth/ldap.md
 +++ b/doc/administration/auth/ldap.md
 @@ -6,7 +6,7 @@ servers, including Microsoft Active Directory, Apple Open Directory, Open LDAP,
@@ -14385,6 +14385,50 @@ index 7186f70..1e2137c 100644
  
  GitLab assumes that LDAP users are not able to change their LDAP 'mail', 'email'
  or 'userPrincipalName' attribute. An LDAP user who is allowed to change their
+@@ -27,7 +27,7 @@ are already logged in or are using Git over SSH will still be able to access
+ GitLab for up to one hour. Manually block the user in the GitLab Admin area to
+ immediately block all access.
+ 
+->**Note**: GitLab EE supports a configurable sync time, with a default
++>**注意**: GitLab EE supports a configurable sync time, with a default
+ of one hour.
+ 
+ ## Configuration
+@@ -35,7 +35,7 @@ of one hour.
+ To enable LDAP integration you need to add your LDAP server settings in
+ `/etc/gitlab/gitlab.rb` or `/home/git/gitlab/config/gitlab.yml`.
+ 
+->**Note**: In GitLab EE, you can configure multiple LDAP servers to connect to
++>**注意**: In GitLab EE, you can configure multiple LDAP servers to connect to
+ one GitLab server.
+ 
+ Prior to version 7.4, GitLab used a different syntax for configuring
+diff --git a/doc/administration/high_availability/database.md b/doc/administration/high_availability/database.md
+index 538dada..0901349 100644
+--- a/doc/administration/high_availability/database.md
++++ b/doc/administration/high_availability/database.md
+@@ -48,7 +48,7 @@ If you use a cloud-managed service, or provide your own PostgreSQL:
+ 
+ 1. Run `sudo gitlab-ctl reconfigure` to install and configure PostgreSQL.
+ 
+-    > **Note**: This `reconfigure` step will result in some errors.
++    > **注意**: This `reconfigure` step will result in some errors.
+       That's OK - don't be alarmed.
+ 
+ 1. Open a database prompt:
+diff --git a/doc/administration/high_availability/redis.md b/doc/administration/high_availability/redis.md
+index f615321..12ec419 100644
+--- a/doc/administration/high_availability/redis.md
++++ b/doc/administration/high_availability/redis.md
+@@ -46,7 +46,7 @@ that runs Redis.
+ 
+ 1. Run `sudo gitlab-ctl reconfigure` to install and configure PostgreSQL.
+ 
+-    > **Note**: This `reconfigure` step will result in some errors.
++    > **注意**: This `reconfigure` step will result in some errors.
+       That's OK - don't be alarmed.
+ 1. Run `touch /etc/gitlab/skip-auto-migrations` to prevent database migrations
+    from running on upgrade. Only the primary GitLab application server should
 diff --git a/doc/administration/logs.md b/doc/administration/logs.md
 index 737b39d..efd6a97 100644
 --- a/doc/administration/logs.md
@@ -14664,9 +14708,18 @@ index 7aa1c21..c0bd9d7 100644
  Creates a new note for a single merge request.
  
 diff --git a/doc/api/projects.md b/doc/api/projects.md
-index 0ba0bff..1412038 100644
+index 0ba0bff..297c9ab 100644
 --- a/doc/api/projects.md
 +++ b/doc/api/projects.md
+@@ -854,7 +854,7 @@ Parameters:
+ }
+ ```
+ 
+-**Note**: The returned `url` is relative to the project path.
++**注意**: The returned `url` is relative to the project path.
+ In Markdown contexts, the link is automatically expanded when the format in `markdown` is used.
+ 
+ 
 @@ -914,7 +914,7 @@ Parameters:
  - `user_id` (required) - The ID of a user to add
  - `access_level` (required) - Project access level
@@ -14895,7 +14948,7 @@ index 4620bb2..445f3d8 100644
  ```
  git commit -m "Awesome commit message (Fix #20, Fixes #21 and Closes group/otherproject#22). This commit is also related to #17 and fixes #18, #19 and https://gitlab.example.com/group/otherproject/issues/23."
 diff --git a/doc/development/doc_styleguide.md b/doc/development/doc_styleguide.md
-index 6ee7b3c..de7c707 100644
+index 6ee7b3c..b268aa7 100644
 --- a/doc/development/doc_styleguide.md
 +++ b/doc/development/doc_styleguide.md
 @@ -49,7 +49,7 @@ it organized and easy to find.
@@ -14907,6 +14960,15 @@ index 6ee7b3c..de7c707 100644
  
  - If a link makes the paragraph to span across multiple lines, do not use
    the regular Markdown approach: `[Text](https://example.com)`. Instead use
+@@ -59,7 +59,7 @@ it organized and easy to find.
+   add an alternative text: `[identifier]: https://example.com "Alternative text"`
+   that appears when hovering your mouse on a link
+ 
+-## Images
++## 画像
+ 
+ - Place images in a separate directory named `img/` in the same directory where
+   the `.md` document that you're working on is located. Always prepend their
 @@ -244,7 +244,7 @@ In this case:
  Here is a list of must-have items. Use them in the exact order that appears
  on this document. Further explanation is given below.
@@ -15086,6 +15148,19 @@ index e8093f0..3e1de8a 100644
  
  We do not recommend using MySQL due to various issues. For example, case [(in)sensitivity](https://dev.mysql.com/doc/refman/5.0/en/case-sensitivity.html) and [problems](https://bugs.mysql.com/bug.php?id=65830) that [suggested](https://bugs.mysql.com/bug.php?id=50909) [fixes](https://bugs.mysql.com/bug.php?id=65830) [have](https://bugs.mysql.com/bug.php?id=63164).
  
+diff --git a/doc/install/installation.md b/doc/install/installation.md
+index 9bc0dbb..e7470ef 100644
+--- a/doc/install/installation.md
++++ b/doc/install/installation.md
+@@ -160,7 +160,7 @@ Create a `git` user for GitLab:
+ We recommend using a PostgreSQL database. For MySQL check the
+ [MySQL setup guide](database_mysql.md).
+ 
+-> **Note**: because we need to make use of extensions you need at least pgsql 9.1.
++> **注意**: because we need to make use of extensions you need at least pgsql 9.1.
+ 
+ 1. Install the database packages:
+ 
 diff --git a/doc/integration/auth0.md b/doc/integration/auth0.md
 index e524708..c0189eb 100644
 --- a/doc/integration/auth0.md
@@ -15183,7 +15258,7 @@ index f3b2a28..3c21d05 100644
    args: {
            assertion_consumer_service_url: 'https://gitlab.example.com/users/auth/saml/callback',
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index c6c7ac8..51c74e6 100644
+index c6c7ac8..799da4f 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,34 +1,34 @@
@@ -15626,7 +15701,7 @@ index c6c7ac8..51c74e6 100644
  
  If a list item contains multiple paragraphs,
  each subsequent paragraph should be indented with four spaces.
-@@ -473,48 +472,48 @@ If the second paragraph isn't indented with four spaces,
+@@ -473,80 +472,80 @@ If the second paragraph isn't indented with four spaces,
  the second list item will be incorrectly labeled as `1`.
  
  ```no-highlight
@@ -15693,17 +15768,57 @@ index c6c7ac8..51c74e6 100644
  
  [arbitrary case-insensitive reference text]: https://www.mozilla.org
  [1]: http://slashdot.org
-@@ -522,9 +521,9 @@ Some text to show that the reference links can follow later.
+ [link text itself]: https://www.reddit.com
  
- **Note**
+-**Note**
++**注意**
  
 -Relative links do not allow referencing project files in a wiki page or wiki page in a project file. The reason for this is that, in GitLab, wiki is always a separate git repository. For example:
-+Relative links do not allow referencing project files in a wiki page or wiki page in a project file. The reason for this is that, in GitLab, wiki is always a separate git repository. 例:
++相対パスのリンクでは、Wikiページ内のプロジェクトファイルやプロジェクトファイル内のWikiページを参照することはできません。理由は、GitLabではWikiが常に別のGitリポジトリに分けられているためです。例えば
  
 -`[I'm a reference-style link](style)`
 +`[リファレンススタイルのリンクです](style)`
  
- will point the link to `wikis/style` when the link is inside of a wiki markdown file.
+-will point the link to `wikis/style` when the link is inside of a wiki markdown file.
++は Wiki の Markdown ファイル内でのリンクならば `wikis/style` へリンクします。
+ 
+-## Images
++## 画像
+ 
+-    Here's our logo (hover to see the title text):
++    私たちのロゴです(マウスオーバーでタイトル文字列を表示します)。
+ 
+-    Inline-style:
++    インラインスタイル:
+     ![alt text](img/logo.png)
+ 
+-    Reference-style:
++    リファレンススタイル:
+     ![alt text1][logo]
+ 
+     [logo]: img/logo.png
+ 
+-Here's our logo:
++私たちのロゴです。
+ 
+-Inline-style:
++インラインスタイル:
+ 
+ ![alt text](img/logo.png)
+ 
+-Reference-style:
++リファレンススタイル:
+ 
+ ![alt text][logo]
+ 
+@@ -674,7 +673,7 @@ Code above produces next output:
+ | cell 1   | cell 2   |
+ | cell 3   | cell 4   |
+ 
+-**Note**
++**注意**
+ 
+ The row of dashes between the table header and body must have at least three dashes in each column.
  
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index 7715842..3642faa 100644
@@ -15718,6 +15833,19 @@ index 7715842..3642faa 100644
  sudo gitlab-ctl restart
  
  # For installations from source
+diff --git a/doc/monitoring/performance/grafana_configuration.md b/doc/monitoring/performance/grafana_configuration.md
+index 7947b0f..6663965 100644
+--- a/doc/monitoring/performance/grafana_configuration.md
++++ b/doc/monitoring/performance/grafana_configuration.md
+@@ -15,7 +15,7 @@ Grafana supplies package repositories (Yum/Apt) for easy installation.
+ See [Grafana installation documentation](http://docs.grafana.org/installation/)
+ for detailed steps.
+ 
+-> **Note**: Before starting Grafana for the first time, set the admin user
++> **注意**: Before starting Grafana for the first time, set the admin user
+ and password in `/etc/grafana/grafana.ini`. Otherwise, the default password
+ will be `admin`.
+ 
 diff --git a/doc/permissions/permissions.md b/doc/permissions/permissions.md
 index 78d67ae..deadfea 100644
 --- a/doc/permissions/permissions.md

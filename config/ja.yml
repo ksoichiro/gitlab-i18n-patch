@@ -1471,7 +1471,7 @@ mdTitleHowToChangeProjectVisibility: プロジェクトの可視性レベルの�
 #mdTitleIfYouWantToUseKerberosWithGitLabEEForUserAuthenticationInstallKerberosHeaderFiles: 
 #mdTitleIgnoreWhitespaceChangesInMergeRequestDiffView: 
 #mdTitleIgnoringIssues: 
-#mdTitleImages: 
+mdTitleImages: 画像
 #mdTitleImplementDesign&UIElements: 
 #mdTitleImportDashboards: 
 #mdTitleImportBareRepositoriesIntoYourGitLabInstance: 
@@ -2873,3 +2873,9 @@ imARelativeReferenceToARepositoryFile: リポジトリのファイルへの相�
 youCanUseNumbersForReferenceStyleLinkDefinitions: リファレンススタイルのリンク定義に番号を使うこともできます
 orLeaveItEmptyAndUseTheLinkTextItself: "あるいは中身を空にして[リンクテキストをそのまま使う][]こともできます"
 someTextToShowThatTheReferenceLinksCanFollowLater: リファレンスのリンク先は後に続けて書きます。
+mdNote: 注意
+relativeLinksDoNotAllowReferencingProjectFilesInAWikiPageOrWikiPageInAProjectFileTheReasonForThisIsThatInGitlabWikiIsAlwaysASeparateGitRepositoryForExampleImAReferenceStyleLinkWillPointTheLinkToWikisStyleWhenTheLinkIsInsideOfAWikiMarkdownFile: "相対パスのリンクでは、Wikiページ内のプロジェクトファイルやプロジェクトファイル内のWikiページを参照することはできません。理由は、GitLabではWikiが常に別のGitリポジトリに分けられているためです。例えば\n\n`[リファレンススタイルのリンクです](style)`\n\nは Wiki の Markdown ファイル内でのリンクならば `wikis/style` へリンクします。"
+heresOurLogoHoverToSeeTheTitleText: "私たちのロゴです(マウスオーバーでタイトル文字列を表示します)。"
+inlineStyle: インラインスタイル
+referenceStyle: リファレンススタイル
+heresOurLogo: 私たちのロゴです。

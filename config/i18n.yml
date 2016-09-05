@@ -2404,6 +2404,10 @@ translations:
     replace: '${referenceStyle}'
   - pattern: "Here's our logo:"
     replace: '${heresOurLogo}'
+  - pattern: 'Blockquotes are very handy in email to emulate reply text.'
+    replace: '${blockquotesAreVeryHandyInEmailToEmulateReplyText}'
+  - pattern: 'This line is part of the same quote.'
+    replace: '${thisLineIsPartOfTheSameQuote}'
   - pattern: 'For example:'
     replace: '${forExample}:'
   - pattern: '1.  Clone project:'
@@ -2899,8 +2903,8 @@ translations:
     #  key: mdTitleBitbucketProjectImport
     #- title: 'Block user'
     #  key: mdTitleBlockUser
-    #- title: 'Blockquotes'
-    #  key: mdTitleBlockquotes
+    - title: 'Blockquotes'
+      key: mdTitleBlockquotes
     #- title: 'Branches'
     #  key: mdTitleBranches
     #- title: 'Browsing build artifacts'

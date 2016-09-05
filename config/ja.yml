@@ -910,7 +910,7 @@ mdTitleBackupRestore: バックアップ・リストア
 #mdTitleBetterSeparateTokens: 
 #mdTitleBitbucketProjectImport: 
 #mdTitleBlockUser: 
-#mdTitleBlockquotes: 
+mdTitleBlockquotes: 引用
 #mdTitleBranches: 
 #mdTitleBrowsingBuildArtifacts: 
 #mdTitleBuildVariables: 
@@ -2879,3 +2879,5 @@ heresOurLogoHoverToSeeTheTitleText: "私たちのロゴです(マウスオーバ
 inlineStyle: インラインスタイル
 referenceStyle: リファレンススタイル
 heresOurLogo: 私たちのロゴです。
+blockquotesAreVeryHandyInEmailToEmulateReplyText: 引用はメールの返信をエミュレートするのに非常に便利です。
+thisLineIsPartOfTheSameQuote: この行は引用の一部です。

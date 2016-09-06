@@ -14895,7 +14895,7 @@ index 8a7205c..29c0422 100644
 \ No newline at end of file
 +fail with one of the mentioned errors.
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index 236eb7b..b973517 100644
+index 236eb7b..6a2c304 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,32 +1,32 @@
@@ -15339,7 +15339,7 @@ index 236eb7b..b973517 100644
  
  If a list item contains multiple paragraphs,
  each subsequent paragraph should be indented with four spaces.
-@@ -385,98 +384,98 @@ If the second paragraph isn't indented with four spaces,
+@@ -385,100 +384,100 @@ If the second paragraph isn't indented with four spaces,
  the second list item will be incorrectly labeled as `1`.
  
  ```no-highlight
@@ -15460,7 +15460,8 @@ index 236eb7b..b973517 100644
 +> 引用はメールの返信をエミュレートするのに非常に便利です。
 +> この行は引用の一部です。
  
- Quote break.
+-Quote break.
++引用は終わります。
  
  > This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote.
  ```
@@ -15470,7 +15471,10 @@ index 236eb7b..b973517 100644
 +> 引用はメールの返信をエミュレートするのに非常に便利です。
 +> この行は引用の一部です。
  
- Quote break.
+-Quote break.
++引用は終わります。
+ 
+ > This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote.
  
 @@ -586,7 +585,7 @@ Code above produces next output:
  | cell 1   | cell 2   |

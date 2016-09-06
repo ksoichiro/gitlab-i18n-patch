@@ -2408,6 +2408,8 @@ translations:
     replace: '${blockquotesAreVeryHandyInEmailToEmulateReplyText}'
   - pattern: 'This line is part of the same quote.'
     replace: '${thisLineIsPartOfTheSameQuote}'
+  - pattern: 'Quote break.'
+    replace: '${quoteBreak}'
   - pattern: 'For example:'
     replace: '${forExample}:'
   - pattern: '1.  Clone project:'

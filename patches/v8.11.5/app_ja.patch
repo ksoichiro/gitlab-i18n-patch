@@ -8127,17 +8127,6 @@ index 287ba33..159f544 100644
 +              Showing {{ list.issues.length }} of {{ list.issuesSize }} 課題
        - if can?(current_user, :admin_list, @project)
          = render "projects/boards/components/blank_state"
-diff --git a/app/views/projects/boards/components/_card.html.haml b/app/views/projects/boards/components/_card.html.haml
-index e8b60b5..04907b3 100644
---- a/app/views/projects/boards/components/_card.html.haml
-+++ b/app/views/projects/boards/components/_card.html.haml
-@@ -1,5 +1,5 @@
- %board-card{ "inline-template" => true,
--  "v-for" => "issue in issues | orderBy 'priority'",
-+  "v-for" => "issue in 課題 | orderBy 'priority'",
-   "v-ref:issue" => true,
-   ":index" => "$index",
-   ":list" => "list",
 diff --git a/app/views/projects/branches/_branch.html.haml b/app/views/projects/branches/_branch.html.haml
 index 4bd8506..466fb5d 100644
 --- a/app/views/projects/branches/_branch.html.haml

@@ -8160,17 +8160,6 @@ index de53a29..1a766e0 100644
          = icon("search", class: "board-search-icon", "v-show" => "!query")
          %button.board-search-clear-btn{ type: "button", role: "button", "aria-label" => "Clear search", "@click" => "query = ''", "v-show" => "query" }
            = icon("times", class: "board-search-clear")
-diff --git a/app/views/projects/boards/components/_card.html.haml b/app/views/projects/boards/components/_card.html.haml
-index e8b60b5..04907b3 100644
---- a/app/views/projects/boards/components/_card.html.haml
-+++ b/app/views/projects/boards/components/_card.html.haml
-@@ -1,5 +1,5 @@
- %board-card{ "inline-template" => true,
--  "v-for" => "issue in issues | orderBy 'priority'",
-+  "v-for" => "issue in 課題 | orderBy 'priority'",
-   "v-ref:issue" => true,
-   ":index" => "$index",
-   ":list" => "list",
 diff --git a/app/views/projects/branches/_branch.html.haml b/app/views/projects/branches/_branch.html.haml
 index 4bd8506..466fb5d 100644
 --- a/app/views/projects/branches/_branch.html.haml

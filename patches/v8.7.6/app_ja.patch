@@ -12949,7 +12949,7 @@ index afad484..3afa8f2 100644
    = hidden_field_tag :scope, params['scope']
    = hidden_field_tag :assignee_id, params['assignee_id']
 diff --git a/app/views/shared/issuable/_sidebar.html.haml b/app/views/shared/issuable/_sidebar.html.haml
-index 04b834b..4b7f0fd 100644
+index 04b834b..933d80e 100644
 --- a/app/views/shared/issuable/_sidebar.html.haml
 +++ b/app/views/shared/issuable/_sidebar.html.haml
 @@ -28,10 +28,10 @@
@@ -12973,7 +12973,8 @@ index 04b834b..4b7f0fd 100644
 +              No 担当者
                - if can_edit_issuable
                  %a.js-assign-yourself{ href: '#' }
-                   \- assign yourself
+-                  \- assign yourself
++                  \- 自分に割り当てる
  
          .selectbox.hide-collapsed
            = f.hidden_field 'assignee_id', value: issuable.assignee_id, id: 'issue_assignee_id'

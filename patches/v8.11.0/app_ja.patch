@@ -53,8 +53,38 @@ index e897ebd..1b0f710 100644
                  });
                }
                if (showUpcoming) {
+diff --git a/app/assets/javascripts/preview_markdown.js b/app/assets/javascripts/preview_markdown.js
+index 5fd7579..9aa2106 100644
+--- a/app/assets/javascripts/preview_markdown.js
++++ b/app/assets/javascripts/preview_markdown.js
+@@ -13,10 +13,10 @@
+       preview = form.find('.js-md-preview');
+       mdText = form.find('textarea.markdown-area').val();
+       if (mdText.trim().length === 0) {
+-        preview.text('Nothing to preview.');
++        preview.text('プレビューする内容がありません');
+         return this.hideReferencedUsers(form);
+       } else {
+-        preview.text('Loading...');
++        preview.text('読み込み中...');
+         return this.renderMarkdown(mdText, (function(_this) {
+           return function(response) {
+             preview.html(response.body);
+diff --git a/app/assets/javascripts/search_autocomplete.js b/app/assets/javascripts/search_autocomplete.js
+index 227e8c6..5ebe6e0 100644
+--- a/app/assets/javascripts/search_autocomplete.js
++++ b/app/assets/javascripts/search_autocomplete.js
+@@ -336,7 +336,7 @@
+ 
+     SearchAutocomplete.prototype.restoreMenu = function() {
+       var html;
+-      html = "<ul> <li><a class='dropdown-menu-empty-link is-focused'>Loading...</a></li> </ul>";
++      html = "<ul> <li><a class='dropdown-menu-empty-link is-focused'>読み込み中...</a></li> </ul>";
+       return this.dropdownContent.html(html);
+     };
+ 
 diff --git a/app/assets/javascripts/users_select.js b/app/assets/javascripts/users_select.js
-index bad8286..ff603d0 100644
+index bad8286..8b5c0be 100644
 --- a/app/assets/javascripts/users_select.js
 +++ b/app/assets/javascripts/users_select.js
 @@ -60,7 +60,7 @@
@@ -71,7 +101,7 @@ index bad8286..ff603d0 100644
            };
            collapsedAssigneeTemplate = _.template('<% if( avatar ) { %> <a class="author_link" href="/u/<%- username %>"> <img width="24" class="avatar avatar-inline s24" alt="" src="<%- avatar %>"> </a> <% } else { %> <i class="fa fa-user"></i> <% } %>');
 -          assigneeTemplate = _.template('<% if (username) { %> <a class="author_link bold" href="/u/<%- username %>"> <% if( avatar ) { %> <img width="32" class="avatar avatar-inline s32" alt="" src="<%- avatar %>"> <% } %> <span class="author"><%- name %></span> <span class="username"> @<%- username %> </span> </a> <% } else { %> <span class="no-value assign-yourself"> No assignee - <a href="#" class="js-assign-yourself"> assign yourself </a> </span> <% } %>');
-+          assigneeTemplate = _.template('<% if (username) { %> <a class="author_link bold" href="/u/<%- username %>"> <% if( avatar ) { %> <img width="32" class="avatar avatar-inline s32" alt="" src="<%- avatar %>"> <% } %> <span class="author"><%- name %></span> <span class="username"> @<%- username %> </span> </a> <% } else { %> <span class="no-value assign-yourself"> 担当なし - <a href="#" class="js-assign-yourself"> assign yourself </a> </span> <% } %>');
++          assigneeTemplate = _.template('<% if (username) { %> <a class="author_link bold" href="/u/<%- username %>"> <% if( avatar ) { %> <img width="32" class="avatar avatar-inline s32" alt="" src="<%- avatar %>"> <% } %> <span class="author"><%- name %></span> <span class="username"> @<%- username %> </span> </a> <% } else { %> <span class="no-value assign-yourself"> 担当なし - <a href="#" class="js-assign-yourself"> 自分に割り当てる </a> </span> <% } %>');
            return $dropdown.glDropdown({
              data: function(term, callback) {
                var isAuthorFilter;
@@ -93,6 +123,15 @@ index bad8286..ff603d0 100644
                      }
                      anyUser = {
                        beforeDivider: true,
+@@ -204,7 +204,7 @@
+           showEmailUser = $(select).data('email-user');
+           firstUser = $(select).data('first-user');
+           return $(select).select2({
+-            placeholder: "Search for a user",
++            placeholder: "ユーザを検索",
+             multiple: $(select).hasClass('multiselect'),
+             minimumInputLength: 0,
+             query: function(query) {
 @@ -227,7 +227,7 @@
                    }
                    if (showNullUser) {
@@ -13498,7 +13537,7 @@ index 186963b..d25a264 100644
 -  = search_field_tag :issue_search, params[:issue_search], { placeholder: 'Filter by name ...', class: 'form-control issue_search search-text-input input-short', spellcheck: false }
 +  = search_field_tag :issue_search, params[:issue_search], { placeholder: '名前で絞り込み ...', class: 'form-control issue_search search-text-input input-short', spellcheck: false }
 diff --git a/app/views/shared/issuable/_sidebar.html.haml b/app/views/shared/issuable/_sidebar.html.haml
-index c1b50e6..10c0827 100644
+index c1b50e6..bd6e7bc 100644
 --- a/app/views/shared/issuable/_sidebar.html.haml
 +++ b/app/views/shared/issuable/_sidebar.html.haml
 @@ -5,16 +5,16 @@
@@ -13535,7 +13574,7 @@ index c1b50e6..10c0827 100644
          .value.hide-collapsed
            - if issuable.assignee
              = link_to_member(@project, issuable.assignee, size: 32, extra_class: 'bold') do
-@@ -39,7 +39,7 @@
+@@ -39,15 +39,15 @@
                  = issuable.assignee.to_reference
            - else
              %span.assign-yourself.no-value
@@ -13544,7 +13583,8 @@ index c1b50e6..10c0827 100644
                - if can_edit_issuable
                  \-
                  %a.js-assign-yourself{ href: '#' }
-@@ -47,7 +47,7 @@
+-                  assign yourself
++                  自分に割り当てる
  
          .selectbox.hide-collapsed
            = f.hidden_field 'assignee_id', value: issuable.assignee_id, id: 'issue_assignee_id'

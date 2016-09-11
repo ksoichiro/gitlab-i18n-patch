@@ -2887,3 +2887,4 @@ writeACommentOrDragYourFilesHere: コメントを書くかここにファイル�
 thisIssueIsConfidentialAndShouldOnlyBeVisibleToTeamMembersWithAtLeastReporterAccess: この課題はコンフィデンシャルで、Reporter以上のアクセス権を持つチームメンバーにのみ表示する
 selectDueDate: 期限を選択
 stylingWithMarkdownAndSlashCommandsAreSupported: "$2Markdown$3\n$4\n$1  と\n$5スラッシュコマンド$6\n$1でのスタイリングがサポートされています"
+assignYourself: 自分に割り当てる

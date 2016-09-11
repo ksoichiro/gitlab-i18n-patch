@@ -51,7 +51,16 @@ translations:
 - name: 'js'
   parallel-group: 'group2'
   src: 'app/assets/javascripts/**.js'
+  named-patterns:
+  - name: doubleQuoted
+    pattern: "\"{word}\""
+    replace: "\"${{key}}\""
+    params: ['word', 'key']
   patterns:
+  - pattern: "Nothing to preview."
+    replace: "${nothingToPreview}"
+  - pattern: "Loading..."
+    replace: "${loading}"
   - pattern: 'Any Label'
     replace: '${anyLabel}'
   - pattern: 'Any Milestone'
@@ -72,6 +81,11 @@ translations:
     replace: '${noContributions}'
   - pattern: 'No assignee'
     replace: '${noAssignee}'
+  - pattern: 'assign yourself'
+    replace: '${assignYourself}'
+  - name: doubleQuoted
+    params:
+    - {word: 'Search for a user', key: searchForAUser}
 
 # Ruby
 - name: 'rb:helpers'
@@ -1309,6 +1323,8 @@ translations:
     replace: '${selectDueDate}'
   - pattern: !!js/regexp /(\s+)Styling with\n(\s+= link_to .)Markdown([^\n]+)\n([^\n]+)\n\s+and\n(\s+= link_to .)slash commands([^\n]+)\n\s+are\n([^\n]+)\n\s+is\n\s+supported/m
     replace: '${stylingWithMarkdownAndSlashCommandsAreSupported}'
+  - pattern: 'assign yourself'
+    replace: '${assignYourself}'
 
   - name: formLabel
     params:

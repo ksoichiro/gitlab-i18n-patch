@@ -1242,6 +1242,28 @@ index ac25d38..7fea2c5 100644
      end
    end
  
+diff --git a/app/models/milestone.rb b/app/models/milestone.rb
+index d8c7536..7a841c4 100644
+--- a/app/models/milestone.rb
++++ b/app/models/milestone.rb
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ # == Schema Information
+ #
+ # Table name: milestones
+@@ -14,10 +15,10 @@
+ #
+ 
+ class Milestone < ActiveRecord::Base
+-  # Represents a "No Milestone" state used for filtering Issues and Merge
++  # Represents a "マイルストーンなし" state used for filtering Issues and Merge
+   # Requests that have no milestone assigned.
+   MilestoneStruct = Struct.new(:title, :name, :id)
+-  None = MilestoneStruct.new('No Milestone', 'No Milestone', 0)
++  None = MilestoneStruct.new('マイルストーンなし', 'No Milestone', 0)
+   Any = MilestoneStruct.new('Any Milestone', '', -1)
+ 
+   include InternalId
 diff --git a/app/models/project.rb b/app/models/project.rb
 index b28a7ca..54ff4e4 100644
 --- a/app/models/project.rb

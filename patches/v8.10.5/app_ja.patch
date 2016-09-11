@@ -1069,6 +1069,22 @@ index f1b9c1d..af8cc2b 100644
      end
    end
  
+diff --git a/app/models/milestone.rb b/app/models/milestone.rb
+index 2bd7f19..28b6302 100644
+--- a/app/models/milestone.rb
++++ b/app/models/milestone.rb
+@@ -1,8 +1,9 @@
++# encoding: utf-8
+ class Milestone < ActiveRecord::Base
+-  # Represents a "No Milestone" state used for filtering Issues and Merge
++  # Represents a "マイルストーンなし" state used for filtering Issues and Merge
+   # Requests that have no milestone assigned.
+   MilestoneStruct = Struct.new(:title, :name, :id)
+-  None = MilestoneStruct.new('No Milestone', 'No Milestone', 0)
++  None = MilestoneStruct.new('マイルストーンなし', 'No Milestone', 0)
+   Any = MilestoneStruct.new('Any Milestone', '', -1)
+   Upcoming = MilestoneStruct.new('Upcoming', '#upcoming', -2)
+ 
 diff --git a/app/models/project.rb b/app/models/project.rb
 index c5ca58b..7709253 100644
 --- a/app/models/project.rb
@@ -4939,7 +4955,7 @@ index a8fdbd8..c1af6a0 100644
        - @milestones.each do |milestone|
          = render 'milestone', milestone: milestone
 diff --git a/app/views/groups/milestones/new.html.haml b/app/views/groups/milestones/new.html.haml
-index ca6c432..3b557fc 100644
+index ca6c432..582d656 100644
 --- a/app/views/groups/milestones/new.html.haml
 +++ b/app/views/groups/milestones/new.html.haml
 @@ -1,11 +1,11 @@
@@ -4988,7 +5004,7 @@ index ca6c432..3b557fc 100644
 +        = f.label :due_date, "期限", class: "control-label"
          .col-sm-10
 -          = f.text_field :due_date, class: "datepicker form-control", placeholder: "Select due date"
-+          = f.text_field :due_date, class: "datepicker form-control", placeholder: "due dateを選択"
++          = f.text_field :due_date, class: "datepicker form-control", placeholder: "期限を選択"
  
    .form-actions
 -    = f.submit 'Create Milestone', class: "btn-create btn"
@@ -10344,7 +10360,7 @@ index c9f0762..398d5b3 100644
    %p
      Please restore the target branch or use a different target branch.
 diff --git a/app/views/projects/milestones/_form.html.haml b/app/views/projects/milestones/_form.html.haml
-index cbf1ba0..fc6bfcf 100644
+index cbf1ba0..6337988 100644
 --- a/app/views/projects/milestones/_form.html.haml
 +++ b/app/views/projects/milestones/_form.html.haml
 @@ -3,28 +3,28 @@
@@ -10371,7 +10387,7 @@ index cbf1ba0..fc6bfcf 100644
 +        = f.label :due_date, "期限", class: "control-label"
          .col-sm-10
 -          = f.text_field :due_date, class: "datepicker form-control", placeholder: "Select due date"
-+          = f.text_field :due_date, class: "datepicker form-control", placeholder: "due dateを選択"
++          = f.text_field :due_date, class: "datepicker form-control", placeholder: "期限を選択"
            %a.inline.prepend-top-5.js-clear-due-date{ href: "#" } Clear due date
  
    .form-actions
@@ -10624,7 +10640,7 @@ index 720957e..5100c6e 100644
 -    = link_to 'Remove project', project_path(@project), data: { confirm: remove_project_message(@project)}, method: :delete, class: "btn btn-remove pull-right"
 +    = link_to 'プロジェクトを削除', project_path(@project), data: { confirm: remove_project_message(@project)}, method: :delete, class: "btn btn-remove pull-right"
 diff --git a/app/views/projects/notes/_edit_form.html.haml b/app/views/projects/notes/_edit_form.html.haml
-index 8620f49..1b088bd 100644
+index 8620f49..fd0bf5b 100644
 --- a/app/views/projects/notes/_edit_form.html.haml
 +++ b/app/views/projects/notes/_edit_form.html.haml
 @@ -2,10 +2,10 @@
@@ -10632,7 +10648,7 @@ index 8620f49..1b088bd 100644
      = note_target_fields(note)
      = render layout: 'projects/md_preview', locals: { preview_class: 'md-preview' } do
 -      = render 'projects/zen', f: f, attr: :note, classes: 'note-textarea js-note-text js-task-list-field', placeholder: "Write a comment or drag your files here..."
-+      = render 'projects/zen', f: f, attr: :note, classes: 'note-textarea js-note-text js-task-list-field', placeholder: "Write a コメント or drag your ファイル here..."
++      = render 'projects/zen', f: f, attr: :note, classes: 'note-textarea js-note-text js-task-list-field', placeholder: "コメントを書くかここにファイルをドラッグ..."
        = render 'projects/notes/hints'
  
      .note-form-actions.clearfix
@@ -10642,7 +10658,7 @@ index 8620f49..1b088bd 100644
 -        Cancel
 +        キャンセル
 diff --git a/app/views/projects/notes/_form.html.haml b/app/views/projects/notes/_form.html.haml
-index 7c61ba7..0a69030 100644
+index 7c61ba7..d5b3855 100644
 --- a/app/views/projects/notes/_form.html.haml
 +++ b/app/views/projects/notes/_form.html.haml
 @@ -10,12 +10,12 @@
@@ -10650,7 +10666,7 @@ index 7c61ba7..0a69030 100644
  
    = render layout: 'projects/md_preview', locals: { preview_class: "md-preview", referenced_users: true } do
 -    = render 'projects/zen', f: f, attr: :note, classes: 'note-textarea js-note-text', placeholder: "Write a comment or drag your files here..."
-+    = render 'projects/zen', f: f, attr: :note, classes: 'note-textarea js-note-text', placeholder: "Write a コメント or drag your ファイル here..."
++    = render 'projects/zen', f: f, attr: :note, classes: 'note-textarea js-note-text', placeholder: "コメントを書くかここにファイルをドラッグ..."
      = render 'projects/notes/hints'
      .error-alert
  
@@ -12917,7 +12933,7 @@ index 0b7fa8c..a6122d1 100644
    - if !@labels.nil?
      .row-content-block.second-block.filtered-labels{ class: ("hidden" if !@labels.any?) }
 diff --git a/app/views/shared/issuable/_form.html.haml b/app/views/shared/issuable/_form.html.haml
-index c30bdb0..55a2095 100644
+index c30bdb0..db88fe1 100644
 --- a/app/views/shared/issuable/_form.html.haml
 +++ b/app/views/shared/issuable/_form.html.haml
 @@ -1,7 +1,7 @@
@@ -12950,10 +12966,19 @@ index c30bdb0..55a2095 100644
        = render 'projects/zen', f: f, attr: :description,
                                 classes: 'note-textarea',
 -                               placeholder: "Write a comment or drag your files here..."
-+                               placeholder: "Write a コメント or drag your ファイル here..."
++                               placeholder: "コメントを書くかここにファイルをドラッグ..."
        = render 'projects/notes/hints'
        .clearfix
        .error-alert
+@@ -41,7 +41,7 @@
+       .checkbox
+         = f.label :confidential do
+           = f.check_box :confidential
+-          This issue is confidential and should only be visible to team members with at least Reporter access.
++          この課題はコンフィデンシャルで、Reporter以上のアクセス権を持つチームメンバーにのみ表示する
+ 
+ - if can?(current_user, :"admin_#{issuable.to_ability_name}", issuable.project)
+   - has_due_date = issuable.has_attribute?(:due_date)
 @@ -49,48 +49,48 @@
    .row
      %div{ class: (has_due_date ? "col-lg-6" : "col-sm-12") }
@@ -13012,7 +13037,7 @@ index c30bdb0..55a2095 100644
            .col-sm-10
              .issuable-form-select-holder
 -              = f.text_field :due_date, id: "issuable-due-date", class: "datepicker form-control", placeholder: "Select due date"
-+              = f.text_field :due_date, id: "issuable-due-date", class: "datepicker form-control", placeholder: "due dateを選択"
++              = f.text_field :due_date, id: "issuable-due-date", class: "datepicker form-control", placeholder: "期限を選択"
  
  - if issuable.can_move?(current_user)
    %hr

@@ -1142,6 +1142,28 @@ index dbecc48..32ad421 100644
      end
    end
  
+diff --git a/app/models/milestone.rb b/app/models/milestone.rb
+index 986184d..0621e87 100644
+--- a/app/models/milestone.rb
++++ b/app/models/milestone.rb
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ # == Schema Information
+ #
+ # Table name: milestones
+@@ -14,10 +15,10 @@
+ #
+ 
+ class Milestone < ActiveRecord::Base
+-  # Represents a "No Milestone" state used for filtering Issues and Merge
++  # Represents a "マイルストーンなし" state used for filtering Issues and Merge
+   # Requests that have no milestone assigned.
+   MilestoneStruct = Struct.new(:title, :name, :id)
+-  None = MilestoneStruct.new('No Milestone', 'No Milestone', 0)
++  None = MilestoneStruct.new('マイルストーンなし', 'No Milestone', 0)
+   Any = MilestoneStruct.new('Any Milestone', '', -1)
+   Upcoming = MilestoneStruct.new('Upcoming', '#upcoming', -2)
+ 
 diff --git a/app/models/project.rb b/app/models/project.rb
 index 4ad0c1f..1243403 100644
 --- a/app/models/project.rb
@@ -10676,7 +10698,7 @@ index 720957e..5100c6e 100644
 -    = link_to 'Remove project', project_path(@project), data: { confirm: remove_project_message(@project)}, method: :delete, class: "btn btn-remove pull-right"
 +    = link_to 'プロジェクトを削除', project_path(@project), data: { confirm: remove_project_message(@project)}, method: :delete, class: "btn btn-remove pull-right"
 diff --git a/app/views/projects/notes/_edit_form.html.haml b/app/views/projects/notes/_edit_form.html.haml
-index c87a3fa..a44dd8a 100644
+index c87a3fa..aaf69b1 100644
 --- a/app/views/projects/notes/_edit_form.html.haml
 +++ b/app/views/projects/notes/_edit_form.html.haml
 @@ -2,10 +2,10 @@
@@ -10684,7 +10706,7 @@ index c87a3fa..a44dd8a 100644
      = note_target_fields(note)
      = render layout: 'projects/md_preview', locals: { preview_class: 'md-preview' } do
 -      = render 'projects/zen', f: f, attr: :note, classes: 'note-textarea js-note-text js-task-list-field', placeholder: "Write a comment or drag your files here..."
-+      = render 'projects/zen', f: f, attr: :note, classes: 'note-textarea js-note-text js-task-list-field', placeholder: "Write a コメント or drag your ファイル here..."
++      = render 'projects/zen', f: f, attr: :note, classes: 'note-textarea js-note-text js-task-list-field', placeholder: "コメントを書くかここにファイルをドラッグ..."
        = render 'projects/notes/hints'
  
      .note-form-actions.clearfix
@@ -10694,7 +10716,7 @@ index c87a3fa..a44dd8a 100644
 -        Cancel
 +        キャンセル
 diff --git a/app/views/projects/notes/_form.html.haml b/app/views/projects/notes/_form.html.haml
-index d0ac380..9be7094 100644
+index d0ac380..774f540 100644
 --- a/app/views/projects/notes/_form.html.haml
 +++ b/app/views/projects/notes/_form.html.haml
 @@ -8,12 +8,12 @@
@@ -10702,7 +10724,7 @@ index d0ac380..9be7094 100644
  
    = render layout: 'projects/md_preview', locals: { preview_class: "md-preview", referenced_users: true } do
 -    = render 'projects/zen', f: f, attr: :note, classes: 'note-textarea js-note-text', placeholder: "Write a comment or drag your files here..."
-+    = render 'projects/zen', f: f, attr: :note, classes: 'note-textarea js-note-text', placeholder: "Write a コメント or drag your ファイル here..."
++    = render 'projects/zen', f: f, attr: :note, classes: 'note-textarea js-note-text', placeholder: "コメントを書くかここにファイルをドラッグ..."
      = render 'projects/notes/hints'
      .error-alert
  
@@ -12628,7 +12650,7 @@ index fc11016..85701c2 100644
    - if !@labels.nil?
      .gray-content-block.second-block.filtered-labels{ class: ("hidden" if !@labels.any?) }
 diff --git a/app/views/shared/issuable/_form.html.haml b/app/views/shared/issuable/_form.html.haml
-index 18b091d..27ca858 100644
+index 18b091d..828de3c 100644
 --- a/app/views/shared/issuable/_form.html.haml
 +++ b/app/views/shared/issuable/_form.html.haml
 @@ -1,7 +1,7 @@
@@ -12661,7 +12683,7 @@ index 18b091d..27ca858 100644
        = render 'projects/zen', f: f, attr: :description,
                                 classes: 'note-textarea',
 -                               placeholder: "Write a comment or drag your files here..."
-+                               placeholder: "Write a コメント or drag your ファイル here..."
++                               placeholder: "コメントを書くかここにファイルをドラッグ..."
        = render 'projects/notes/hints'
        .clearfix
        .error-alert

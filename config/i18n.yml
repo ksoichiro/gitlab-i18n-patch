@@ -410,6 +410,8 @@ translations:
     replace: '${reassignedTo}'
     args:
     - '$1'
+  - pattern: 'No Milestone'
+    replace: '${noMilestone}'
 
   # Named patterns
   - name: sthWasSuccessfullyDone
@@ -1299,6 +1301,14 @@ translations:
     replace: '${readMoreAboutEnvironments}'
   - pattern: !!js/regexp /Create a label or ([^']+')generate a default set of labels('.*)$/
     replace: '${createALabelOrGenerateADefaultSetOfLabels}'
+  - pattern: 'Write a comment or drag your files here...'
+    replace: '${writeACommentOrDragYourFilesHere}...'
+  - pattern: 'This issue is confidential and should only be visible to team members with at least Reporter access.'
+    replace: '${thisIssueIsConfidentialAndShouldOnlyBeVisibleToTeamMembersWithAtLeastReporterAccess}'
+  - pattern: 'Select due date'
+    replace: '${selectDueDate}'
+  - pattern: !!js/regexp /(\s+)Styling with\n(\s+= link_to .)Markdown([^\n]+)\n([^\n]+)\n\s+and\n(\s+= link_to .)slash commands([^\n]+)\n\s+are\n([^\n]+)\n\s+is\n\s+supported/m
+    replace: '${stylingWithMarkdownAndSlashCommandsAreSupported}'
 
   - name: formLabel
     params:

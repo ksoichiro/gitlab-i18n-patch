@@ -14372,7 +14372,7 @@ index 5f8bb57..9558cca 100644
  ![Authorized_applications](img/oauth_provider_authorized_application.png)
  
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index e6eb1cf..26fe2c2 100644
+index e6eb1cf..34e7d76 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,54 +1,54 @@
@@ -14816,7 +14816,7 @@ index e6eb1cf..26fe2c2 100644
  
  If a list item contains multiple paragraphs,
  each subsequent paragraph should be indented with four spaces.
-@@ -367,102 +366,102 @@ If the second paragraph isn't indented with four spaces,
+@@ -367,106 +366,106 @@ If the second paragraph isn't indented with four spaces,
  the second list item will be incorrectly labeled as `1`.
  
  ```no-highlight
@@ -14956,6 +14956,11 @@ index e6eb1cf..26fe2c2 100644
 +> これはとても長い行ですが正常にワードラップされて引用することができます。さあ、これが実際にワードラップしてくれることを皆が確かめられるように、十分に長く書き続けましょう。この引用にも **Markdown** を入れることができます。
  
  ## Inline HTML
+ 
+-You can also use raw HTML in your Markdown, and it'll mostly work pretty well.
++生のHTMLを Markdown で使うことができ、大半はうまく機能するでしょう。
+ 
+ See the documentation for HTML::Pipeline's [SanitizationFilter](http://www.rubydoc.info/gems/html-pipeline/HTML/Pipeline/SanitizationFilter#WHITELIST-constant) class for the list of allowed HTML tags and attributes.  In addition to the default `SanitizationFilter` whitelist, GitLab allows `span` elements.
  
 @@ -568,7 +567,7 @@ Code above produces next output:
  | cell 1   | cell 2   |

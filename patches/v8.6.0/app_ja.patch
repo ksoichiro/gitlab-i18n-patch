@@ -14372,7 +14372,7 @@ index 5f8bb57..9558cca 100644
  ![Authorized_applications](img/oauth_provider_authorized_application.png)
  
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index e6eb1cf..34e7d76 100644
+index e6eb1cf..a606974 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,54 +1,54 @@
@@ -14816,7 +14816,7 @@ index e6eb1cf..34e7d76 100644
  
  If a list item contains multiple paragraphs,
  each subsequent paragraph should be indented with four spaces.
-@@ -367,106 +366,106 @@ If the second paragraph isn't indented with four spaces,
+@@ -367,125 +366,125 @@ If the second paragraph isn't indented with four spaces,
  the second list item will be incorrectly labeled as `1`.
  
  ```no-highlight
@@ -14962,6 +14962,33 @@ index e6eb1cf..34e7d76 100644
  
  See the documentation for HTML::Pipeline's [SanitizationFilter](http://www.rubydoc.info/gems/html-pipeline/HTML/Pipeline/SanitizationFilter#WHITELIST-constant) class for the list of allowed HTML tags and attributes.  In addition to the default `SanitizationFilter` whitelist, GitLab allows `span` elements.
  
+ ```no-highlight
+ <dl>
+-  <dt>Definition list</dt>
+-  <dd>Is something people use sometimes.</dd>
++  <dt>定義リスト</dt>
++  <dd>は時々使われるものです。</dd>
+ 
+-  <dt>Markdown in HTML</dt>
+-  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
++  <dt>HTMLでのMarkdown</dt>
++  <dd>これは **うまく** 機能 *しません* 。HTML <em>タグ</em>を使ってください。</dd>
+ </dl>
+ ```
+ 
+ <dl>
+-  <dt>Definition list</dt>
+-  <dd>Is something people use sometimes.</dd>
++  <dt>定義リスト</dt>
++  <dd>は時々使われるものです。</dd>
+ 
+-  <dt>Markdown in HTML</dt>
+-  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
++  <dt>HTMLでのMarkdown</dt>
++  <dd>これは **うまく** 機能 *しません* 。HTML <em>タグ</em>を使ってください。</dd>
+ </dl>
+ 
+ ## Horizontal Rule
 @@ -568,7 +567,7 @@ Code above produces next output:
  | cell 1   | cell 2   |
  | cell 3   | cell 4   |

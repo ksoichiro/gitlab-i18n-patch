@@ -2442,6 +2442,9 @@ translations:
     replace: '${youCanAlsoUseRawHTMLInYourMarkdownAndItllmostlyWorkPrettyWell}'
   - pattern: !!js/regexp /  <dt>Definition list<\/dt>\n  <dd>Is something people use sometimes.<\/dd>/m
     replace: '${definitionListIsSomethingPeopleUseSometimes}'
+
+  - pattern: !!js/regexp /  <dt>Markdown in HTML<\/dt>\n  <dd>Does \*not\* work \*\*very\*\* well. Use HTML <em>tags<\/em>.<\/dd>/m
+    replace: '${markdownInHTMLDoesNotWorkVeryWellUseHTMLTags}'
   - pattern: 'For example:'
     replace: '${forExample}:'
   - pattern: '1.  Clone project:'

@@ -2889,3 +2889,4 @@ selectDueDate: 期限を選択
 stylingWithMarkdownAndSlashCommandsAreSupported: "$2Markdown$3\n$4\n$1  と\n$5スラッシュコマンド$6\n$1でのスタイリングがサポートされています"
 assignYourself: 自分に割り当てる
 youCanAlsoUseRawHTMLInYourMarkdownAndItllmostlyWorkPrettyWell: "生のHTMLを Markdown で使うことができ、大半はうまく機能するでしょう。"
+definitionListIsSomethingPeopleUseSometimes: "  <dt>定義リスト</dt>\n  <dd>は時々使われるものです。</dd>"

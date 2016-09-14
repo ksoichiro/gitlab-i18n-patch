@@ -2440,6 +2440,8 @@ translations:
     replace: '${thisIsAVeryLongLineThatWillStillBeQuotedProperlyWhenItWrapsOhBOyLetsKeepWritingToMakeSureThisIsLongEnoughToActuallyWrapForEveryoneOhYouCanPutMarkdownIntoABlockquote}'
   - pattern: "You can also use raw HTML in your Markdown, and it'll mostly work pretty well."
     replace: '${youCanAlsoUseRawHTMLInYourMarkdownAndItllmostlyWorkPrettyWell}'
+  - pattern: !!js/regexp /  <dt>Definition list<\/dt>\n  <dd>Is something people use sometimes.<\/dd>/m
+    replace: '${definitionListIsSomethingPeopleUseSometimes}'
   - pattern: 'For example:'
     replace: '${forExample}:'
   - pattern: '1.  Clone project:'

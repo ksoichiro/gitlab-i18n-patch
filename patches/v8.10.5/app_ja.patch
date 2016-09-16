@@ -15284,7 +15284,7 @@ index f3b2a28..3c21d05 100644
    args: {
            assertion_consumer_service_url: 'https://gitlab.example.com/users/auth/saml/callback',
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index c6c7ac8..869b994 100644
+index c6c7ac8..2cf4f6d 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,34 +1,34 @@
@@ -15727,7 +15727,7 @@ index c6c7ac8..869b994 100644
  
  If a list item contains multiple paragraphs,
  each subsequent paragraph should be indented with four spaces.
-@@ -473,125 +472,125 @@ If the second paragraph isn't indented with four spaces,
+@@ -473,128 +472,128 @@ If the second paragraph isn't indented with four spaces,
  the second list item will be incorrectly labeled as `1`.
  
  ```no-highlight
@@ -15899,7 +15899,11 @@ index c6c7ac8..869b994 100644
 +  <dd>これは **うまく** 機能 *しません* 。HTML <em>タグ</em>を使ってください。</dd>
  </dl>
  
- ## Horizontal Rule
+-## Horizontal Rule
++## 水平線
+ 
+ ```
+ Three or more...
 @@ -674,7 +673,7 @@ Code above produces next output:
  | cell 1   | cell 2   |
  | cell 3   | cell 4   |

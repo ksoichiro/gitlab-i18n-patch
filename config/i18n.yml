@@ -2442,7 +2442,6 @@ translations:
     replace: '${youCanAlsoUseRawHTMLInYourMarkdownAndItllmostlyWorkPrettyWell}'
   - pattern: !!js/regexp /  <dt>Definition list<\/dt>\n  <dd>Is something people use sometimes.<\/dd>/m
     replace: '${definitionListIsSomethingPeopleUseSometimes}'
-
   - pattern: !!js/regexp /  <dt>Markdown in HTML<\/dt>\n  <dd>Does \*not\* work \*\*very\*\* well. Use HTML <em>tags<\/em>.<\/dd>/m
     replace: '${markdownInHTMLDoesNotWorkVeryWellUseHTMLTags}'
   - pattern: 'For example:'
@@ -3986,8 +3985,8 @@ translations:
     #  key: mdTitleHooks
     #- title: 'Hooks request example'
     #  key: mdTitleHooksRequestExample
-    #- title: 'Horizontal Rule'
-    #  key: mdTitleHorizontalRule
+    - title: 'Horizontal Rule'
+      key: mdTitleHorizontalRule
     #- title: 'Housekeeping'
     #  key: mdTitleHousekeeping
     #- title: 'How Docker integration works'

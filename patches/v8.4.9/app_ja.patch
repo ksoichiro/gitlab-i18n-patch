@@ -14110,7 +14110,7 @@ index 192c321..2d25661 100644
 \ No newline at end of file
 +![admin_application](oauth_provider/admin_application.png)
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index bc8e7d1..a7f5fe3 100644
+index bc8e7d1..4665f98 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,52 +1,52 @@
@@ -14549,7 +14549,7 @@ index bc8e7d1..a7f5fe3 100644
  
  If a list item contains multiple paragraphs,
  each subsequent paragraph should be indented with four spaces.
-@@ -361,125 +360,125 @@ If the second paragraph isn't indented with four spaces,
+@@ -361,128 +360,128 @@ If the second paragraph isn't indented with four spaces,
  the second list item will be incorrectly labeled as `1`.
  
  ```no-highlight
@@ -14721,7 +14721,11 @@ index bc8e7d1..a7f5fe3 100644
 +  <dd>これは **うまく** 機能 *しません* 。HTML <em>タグ</em>を使ってください。</dd>
  </dl>
  
- ## Horizontal Rule
+-## Horizontal Rule
++## 水平線
+ 
+ ```
+ Three or more...
 @@ -562,7 +561,7 @@ Code above produces next output:
  | cell 1   | cell 2   |
  | cell 3   | cell 4   |

@@ -1432,7 +1432,7 @@ mdTitleHeaders: ヘッダ
 #mdTitleHipChat: 
 #mdTitleHooks: 
 #mdTitleHooksRequestExample: 
-#mdTitleHorizontalRule: 
+mdTitleHorizontalRule: 水平線
 #mdTitleHousekeeping: 
 #mdTitleHowDockerIntegrationWorks: 
 #mdTitleHowATodoIsMarkedAsDone: 

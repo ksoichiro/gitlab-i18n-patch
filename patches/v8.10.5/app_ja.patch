@@ -15284,7 +15284,7 @@ index f3b2a28..3c21d05 100644
    args: {
            assertion_consumer_service_url: 'https://gitlab.example.com/users/auth/saml/callback',
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index c6c7ac8..2cf4f6d 100644
+index c6c7ac8..d565df8 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,34 +1,34 @@
@@ -15727,7 +15727,7 @@ index c6c7ac8..2cf4f6d 100644
  
  If a list item contains multiple paragraphs,
  each subsequent paragraph should be indented with four spaces.
-@@ -473,128 +472,128 @@ If the second paragraph isn't indented with four spaces,
+@@ -473,160 +472,160 @@ If the second paragraph isn't indented with four spaces,
  the second list item will be incorrectly labeled as `1`.
  
  ```no-highlight
@@ -15903,7 +15903,48 @@ index c6c7ac8..2cf4f6d 100644
 +## 水平線
  
  ```
- Three or more...
+-Three or more...
++3つ以上...
+ 
+ ---
+ 
+-Hyphens
++ハイフン
+ 
+ ***
+ 
+-Asterisks
++アスタリスク
+ 
+ ___
+ 
+-Underscores
++アンダースコア
+ ```
+ 
+-Three or more...
++3つ以上...
+ 
+ ---
+ 
+-Hyphens
++ハイフン
+ 
+ ***
+ 
+-Asterisks
++アスタリスク
+ 
+ ___
+ 
+-Underscores
++アンダースコア
+ 
+-## Line Breaks
++## 改行
+ 
+ My basic recommendation for learning how line breaks work is to experiment and discover -- hit &lt;Enter&gt; once (i.e., insert one newline), then hit it twice (i.e., insert two newlines), see what happens. You'll soon learn to get what you want. "Markdown Toggle" is your friend.
+ 
 @@ -674,7 +673,7 @@ Code above produces next output:
  | cell 1   | cell 2   |
  | cell 3   | cell 4   |

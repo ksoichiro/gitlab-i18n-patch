@@ -2444,6 +2444,14 @@ translations:
     replace: '${definitionListIsSomethingPeopleUseSometimes}'
   - pattern: !!js/regexp /  <dt>Markdown in HTML<\/dt>\n  <dd>Does \*not\* work \*\*very\*\* well. Use HTML <em>tags<\/em>.<\/dd>/m
     replace: '${markdownInHTMLDoesNotWorkVeryWellUseHTMLTags}'
+  - pattern: 'Three or more...'
+    replace: '${threeOrMore}...'
+  - pattern: !!js/regexp /^Hyphens$/
+    replace: '${hyphens}'
+  - pattern: !!js/regexp /^Asterisks$/
+    replace: '${asterisks}'
+  - pattern: !!js/regexp /^Underscores$/
+    replace: '${underscores}'
   - pattern: 'For example:'
     replace: '${forExample}:'
   - pattern: '1.  Clone project:'
@@ -4285,8 +4293,8 @@ translations:
     #  key: mdTitleLicenses
     #- title: 'Limitations'
     #  key: mdTitleLimitations
-    #- title: 'Line Breaks'
-    #  key: mdTitleLineBreaks
+    - title: 'Line Breaks'
+      key: mdTitleLineBreaks
     #- title: 'Linking and closing issues from merge requests'
     #  key: mdTitleLinkingAndClosingIssuesFromMergeRequests
     - title: 'Links'

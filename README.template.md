@@ -1,6 +1,8 @@
 gitlab-i18n-patch
 =================
 
+[![Build Status](https://travis-ci.org/ksoichiro/gitlab-i18n-patch.svg?branch=master)](https://travis-ci.org/ksoichiro/gitlab-i18n-patch)
+
 [GitLab Community Edition](https://gitlab.com/gitlab-org/gitlab-ce)を勝手に日本語化していくプロジェクトです。
 
 GitLabはi18nに対応しないとのことですが、  

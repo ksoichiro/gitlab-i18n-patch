@@ -2,7 +2,7 @@
   "name": "gitlab-i18n-patch",
   "private": "true",
   "dependencies": {
-    "i18n-patch": "0.0.17",
+    "i18n-patch": "1.0.0",
     "js-yaml": "^3.6.1",
     "shelljs": "^0.7.0"
   },

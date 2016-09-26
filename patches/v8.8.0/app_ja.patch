@@ -9641,7 +9641,7 @@ index c0d1ce0..4ccf47d 100644
        %p.monospace git clone --bare #{@project.safe_import_url}
      %p Please wait while we import the repository for you. Refresh at will.
 diff --git a/app/views/projects/issues/_discussion.html.haml b/app/views/projects/issues/_discussion.html.haml
-index b151393..e18843b 100644
+index b151393..1f9c9f2 100644
 --- a/app/views/projects/issues/_discussion.html.haml
 +++ b/app/views/projects/issues/_discussion.html.haml
 @@ -1,7 +1,7 @@
@@ -9649,7 +9649,7 @@ index b151393..e18843b 100644
    - if can?(current_user, :update_issue, @issue)
 -    = link_to 'Reopen issue', issue_path(@issue, issue: {state_event: :reopen}, status_only: true, format: 'json'), data: {no_turbolink: true, original_text: "Reopen issue", alternative_text: "Comment & reopen issue"}, class: "btn btn-nr btn-grouped btn-reopen btn-comment js-note-target-reopen #{issue_button_visibility(@issue, false)}", title: 'Reopen issue'
 -    = link_to 'Close issue', issue_path(@issue, issue: {state_event: :close}, status_only: true, format: 'json'), data: {no_turbolink: true, original_text: "Close issue", alternative_text: "Comment & close issue"}, class: "btn btn-nr btn-grouped btn-close btn-comment js-note-target-close #{issue_button_visibility(@issue, true)}", title: 'Close issue'
-+    = link_to '課題を再オープン', issue_path(@issue, issue: {state_event: :reopen}, status_only: true, format: 'json'), data: {no_turbolink: true, original_text: "Reopen 課題", alternative_text: "Comment & reopen 課題"}, class: "btn btn-nr btn-grouped btn-reopen btn-comment js-note-target-reopen #{issue_button_visibility(@issue, false)}", title: 'Reopen 課題'
++    = link_to '課題を再オープン', issue_path(@issue, issue: {state_event: :reopen}, status_only: true, format: 'json'), data: {no_turbolink: true, original_text: "課題を再オープン", alternative_text: "Comment & reopen 課題"}, class: "btn btn-nr btn-grouped btn-reopen btn-comment js-note-target-reopen #{issue_button_visibility(@issue, false)}", title: 'Reopen 課題'
 +    = link_to '課題をクローズ', issue_path(@issue, issue: {state_event: :close}, status_only: true, format: 'json'), data: {no_turbolink: true, original_text: "Close 課題", alternative_text: "Comment & close 課題"}, class: "btn btn-nr btn-grouped btn-close btn-comment js-note-target-close #{issue_button_visibility(@issue, true)}", title: 'Close 課題'
  
  #notes
@@ -9982,7 +9982,7 @@ index e20fd7d..03dfaee 100644
  %hr
  = render 'form'
 diff --git a/app/views/projects/merge_requests/_discussion.html.haml b/app/views/projects/merge_requests/_discussion.html.haml
-index 393998f..0a55385 100644
+index 393998f..21d0c37 100644
 --- a/app/views/projects/merge_requests/_discussion.html.haml
 +++ b/app/views/projects/merge_requests/_discussion.html.haml
 @@ -1,8 +1,8 @@
@@ -9990,7 +9990,7 @@ index 393998f..0a55385 100644
    - if can?(current_user, :update_merge_request, @merge_request)
      - if @merge_request.open?
 -      = link_to 'Close merge request', merge_request_path(@merge_request, merge_request: {state_event: :close }), method: :put, class: "btn btn-nr btn-comment btn-grouped btn-close close-mr-link js-note-target-close", title: "Close merge request", data: {original_text: "Close merge request", alternative_text: "Comment & close merge request"}
-+      = link_to 'マージリクエストをクローズ', merge_request_path(@merge_request, merge_request: {state_event: :close }), method: :put, class: "btn btn-nr btn-comment btn-grouped btn-close close-mr-link js-note-target-close", title: "Close マージリクエスト", data: {original_text: "Close マージリクエスト", alternative_text: "Comment & close マージリクエスト"}
++      = link_to 'マージリクエストをクローズ', merge_request_path(@merge_request, merge_request: {state_event: :close }), method: :put, class: "btn btn-nr btn-comment btn-grouped btn-close close-mr-link js-note-target-close", title: "マージリクエストをクローズ", data: {original_text: "Close マージリクエスト", alternative_text: "Comment & close マージリクエスト"}
      - if @merge_request.closed?
 -      = link_to 'Reopen merge request', merge_request_path(@merge_request, merge_request: {state_event: :reopen }), method: :put, class: "btn btn-nr btn-comment btn-grouped btn-reopen reopen-mr-link js-note-target-reopen", title: "Reopen merge request", data: {original_text: "Reopen merge request", alternative_text: "Comment & reopen merge request"}
 +      = link_to 'マージリクエストを再オープン', merge_request_path(@merge_request, merge_request: {state_event: :reopen }), method: :put, class: "btn btn-nr btn-comment btn-grouped btn-reopen reopen-mr-link js-note-target-reopen", title: "Reopen マージリクエスト", data: {original_text: "Reopen マージリクエスト", alternative_text: "Comment & reopen マージリクエスト"}

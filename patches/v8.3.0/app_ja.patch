@@ -9452,7 +9452,7 @@ index c0d1ce0..4ccf47d 100644
        %p.monospace git clone --bare #{@project.safe_import_url}
      %p Please wait while we import the repository for you. Refresh at will.
 diff --git a/app/views/projects/issues/_discussion.html.haml b/app/views/projects/issues/_discussion.html.haml
-index 86d3dc5..ec5d4a7 100644
+index 86d3dc5..5a5c7fa 100644
 --- a/app/views/projects/issues/_discussion.html.haml
 +++ b/app/views/projects/issues/_discussion.html.haml
 @@ -1,9 +1,9 @@
@@ -9460,7 +9460,7 @@ index 86d3dc5..ec5d4a7 100644
    - if can?(current_user, :update_issue, @issue)
      - if @issue.closed?
 -      = link_to 'Reopen Issue', issue_path(@issue, issue: {state_event: :reopen}, status_only: true), method: :put, class: 'btn btn-grouped btn-reopen js-note-target-reopen', title: 'Reopen Issue'
-+      = link_to '課題を再オープン', issue_path(@issue, issue: {state_event: :reopen}, status_only: true), method: :put, class: 'btn btn-grouped btn-reopen js-note-target-reopen', title: 'Reopen 課題'
++      = link_to '課題を再オープン', issue_path(@issue, issue: {state_event: :reopen}, status_only: true), method: :put, class: 'btn btn-grouped btn-reopen js-note-target-reopen', title: '課題を再オープン'
      - else
 -      = link_to 'Close Issue', issue_path(@issue, issue: {state_event: :close}, status_only: true), method: :put, class: 'btn btn-grouped btn-close js-note-target-close', title: 'Close Issue'
 +      = link_to '課題をクローズ', issue_path(@issue, issue: {state_event: :close}, status_only: true), method: :put, class: 'btn btn-grouped btn-close js-note-target-close', title: 'Close 課題'

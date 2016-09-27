@@ -17,8 +17,9 @@ Vagrant.configure("2") do |config|
   gitlab_config = YAML.load_file('config/gitlab.yml')
   gitlab_config["versions"].each do |ver, url|
     config.vm.define ver.to_s.gsub(/\./, "") do |gl|
-      gl.vm.network "forwarded_port", guest: 80, host: web_port(ver)
-      gl.vm.provision :shell, path: 'lib/provision.sh', args: [ver, web_port(ver).to_s, url]
+      port = web_port(gitlab_config["base_port"], ver)
+      gl.vm.network "forwarded_port", guest: 80, host: port
+      gl.vm.provision :shell, path: 'lib/provision.sh', args: [ver, port.to_s, url]
     end
   end
 end

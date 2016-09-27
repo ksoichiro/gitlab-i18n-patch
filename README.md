@@ -148,9 +148,9 @@ Javascriptファイルを変更するため、パッチ適用後にプリコン�
 
 ### ポート番号
 
-Webのポート番号(80)は、 `config/config.rb` に定義する `$base_port` の番号を起点として  
+Webのポート番号(80)は、 `config/gitlab.yml` に定義する `base_port` の番号を起点として  
 バージョン番号(v6.6.4なら664)を加えた番号にポートフォワードします。  
-例えば、 `$base_port = 9000` の状態で `vagrant up v664` を実行した場合は  
+例えば、 `base_port: 9000` の状態で `vagrant up v664` を実行した場合は  
 `http://localhost:9664` でGitLabにアクセスできます。  
 v7.10.0の場合は(番号が飛びますが)7100 + 9000で16100です。
 

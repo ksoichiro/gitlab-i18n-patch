@@ -2895,3 +2895,4 @@ threeOrMore: 3つ以上
 hyphens: ハイフン
 asterisks: アスタリスク
 underscores: アンダースコア
+myBasicRecommendationForLearningHowLineBreaksWorkIsToExperimentAndDiscoverHitEnterOnceInsertOneNewlineThenHitItTwiceInsertTwoNewlinesSeeWhatHappensYoullSoonLearnToGetWhatYouWantMarkdownToggleIsYourFriend: "基本的に、改行がどのような挙動になるか学ぶには、実験して発見することをおすすめします。 &lt;Enter&gt; を1回押し(改行を挿入し)、2回押し(2つの改行を挿入し)、何が起きるを見てください。すぐに知りたいことを知ることができるでしょう。\"Markdownのトグル\"が役に立ちます。"

@@ -2896,3 +2896,6 @@ hyphens: ハイフン
 asterisks: アスタリスク
 underscores: アンダースコア
 myBasicRecommendationForLearningHowLineBreaksWorkIsToExperimentAndDiscoverHitEnterOnceInsertOneNewlineThenHitItTwiceInsertTwoNewlinesSeeWhatHappensYoullSoonLearnToGetWhatYouWantMarkdownToggleIsYourFriend: "基本的に、改行がどのような挙動になるか学ぶには、実験して発見することをおすすめします。 &lt;Enter&gt; を1回押し(改行を挿入し)、2回押し(2つの改行を挿入し)、何が起きるを見てください。すぐに知りたいことを知ることができるでしょう。\"Markdownのトグル\"が役に立ちます。"
+hereAreSomeThingsToTryOut: 以下を試してみてください。
+heresALineForUsToStartWith: ここが最初の行です。
+thisLineIsSeparatedFromTheOneAboveByTwoNewlinesSoItWillBeASeparateParagraph: "この行は2つの改行で上の行と分けられており *別の段落*になります。"

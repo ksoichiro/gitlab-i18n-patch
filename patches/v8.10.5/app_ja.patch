@@ -15284,7 +15284,7 @@ index f3b2a28..3c21d05 100644
    args: {
            assertion_consumer_service_url: 'https://gitlab.example.com/users/auth/saml/callback',
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index c6c7ac8..fabf7e0 100644
+index c6c7ac8..bd3d8e4 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,34 +1,34 @@
@@ -15727,7 +15727,7 @@ index c6c7ac8..fabf7e0 100644
  
  If a list item contains multiple paragraphs,
  each subsequent paragraph should be indented with four spaces.
-@@ -473,169 +472,169 @@ If the second paragraph isn't indented with four spaces,
+@@ -473,184 +472,184 @@ If the second paragraph isn't indented with four spaces,
  the second list item will be incorrectly labeled as `1`.
  
  ```no-highlight
@@ -15956,9 +15956,13 @@ index c6c7ac8..fabf7e0 100644
 -This line is separated from the one above by two newlines, so it will be a *separate paragraph*.
 +この行は2つの改行で上の行と分けられており *別の段落*になります。
  
- This line is also a separate paragraph, but...
- This line is only separated by a single newline, so it's a separate line in the *same paragraph*.
-@@ -645,9 +644,9 @@ This line is on its own line, because the previous line ends with two
+-This line is also a separate paragraph, but...
+-This line is only separated by a single newline, so it's a separate line in the *same paragraph*.
++この行も段落が分かれていますが...
++この行は1つの改行だけで分けられているため、 *同じ段落* の別の行になります。
+ 
+ This line is also a separate paragraph, and...
+ This line is on its own line, because the previous line ends with two
  spaces.
  ```
  
@@ -15969,7 +15973,11 @@ index c6c7ac8..fabf7e0 100644
 +この行は2つの改行で上の行と分けられており *別の段落*になります。
  
  This line is also begins a separate paragraph, but...
- This line is only separated by a single newline, so it's a separate line in the *same paragraph*.
+-This line is only separated by a single newline, so it's a separate line in the *same paragraph*.
++この行は1つの改行だけで分けられているため、 *同じ段落* の別の行になります。
+ 
+ This line is also a separate paragraph, and...
+ This line is on its own line, because the previous line ends with two
 @@ -674,7 +673,7 @@ Code above produces next output:
  | cell 1   | cell 2   |
  | cell 3   | cell 4   |

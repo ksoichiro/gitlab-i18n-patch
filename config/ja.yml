@@ -2899,3 +2899,5 @@ myBasicRecommendationForLearningHowLineBreaksWorkIsToExperimentAndDiscoverHitEnt
 hereAreSomeThingsToTryOut: 以下を試してみてください。
 heresALineForUsToStartWith: ここが最初の行です。
 thisLineIsSeparatedFromTheOneAboveByTwoNewlinesSoItWillBeASeparateParagraph: "この行は2つの改行で上の行と分けられており *別の段落*になります。"
+thisLineIsAlsoASeparateParagraphBut: この行も段落が分かれていますが...
+thisLineIsOnlySeparatedByASingleNewlineSoItsASeparateLineInTheSameParagraph: "この行は1つの改行だけで分けられているため、 *同じ段落* の別の行になります。"

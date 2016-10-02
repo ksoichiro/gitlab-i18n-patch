@@ -2464,6 +2464,8 @@ translations:
     replace: '${thisLineIsAlsoASeparateParagraphBut}'
   - pattern: "This line is only separated by a single newline, so it's a separate line in the *same paragraph*."
     replace: '${thisLineIsOnlySeparatedByASingleNewlineSoItsASeparateLineInTheSameParagraph}'
+  - pattern: !!js/regexp /This line is also a separate paragraph, and...(:?  )?\nThis line is on its own line, because the previous line ends with two\nspaces./m
+    replace: '${thisLineIsAlsoASeparateParagraphAndThisLineIsOnItsOwnLineBecauseThePreviousLineEndsWithTwoSpaces}'
   - pattern: 'For example:'
     replace: '${forExample}:'
   - pattern: '1.  Clone project:'

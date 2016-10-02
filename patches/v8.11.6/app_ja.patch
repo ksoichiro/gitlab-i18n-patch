@@ -9499,13 +9499,10 @@ index bacc570..6ce7d54 100644
  
  = render 'projects', projects: @forks
 diff --git a/app/views/projects/forks/new.html.haml b/app/views/projects/forks/new.html.haml
-index 5242bc7..7712973 100644
+index 5242bc7..9f6cf4d 100644
 --- a/app/views/projects/forks/new.html.haml
 +++ b/app/views/projects/forks/new.html.haml
-@@ -1,9 +1,9 @@
--- page_title "Fork project"
-+- page_title "Fork プロジェクト"
- 
+@@ -3,7 +3,7 @@
  .row.prepend-top-default
    .col-lg-3
      %h4.prepend-top-0
@@ -16892,7 +16889,7 @@ index 9e2a89e..f8bcbde 100644
  
  ![Default label set](img/admin_labels.png)
 diff --git a/doc/user/markdown.md b/doc/user/markdown.md
-index 7fe96e6..1d4c2ec 100644
+index 7fe96e6..334e614 100644
 --- a/doc/user/markdown.md
 +++ b/doc/user/markdown.md
 @@ -1,32 +1,32 @@
@@ -17341,7 +17338,7 @@ index 7fe96e6..1d4c2ec 100644
  
  If a list item contains multiple paragraphs,
  each subsequent paragraph should be indented with four spaces.
-@@ -480,184 +479,184 @@ If the second paragraph isn't indented with four spaces,
+@@ -480,188 +479,186 @@ If the second paragraph isn't indented with four spaces,
  the second list item will be incorrectly labeled as `1`.
  
  ```no-highlight
@@ -17575,9 +17572,11 @@ index 7fe96e6..1d4c2ec 100644
 +この行も段落が分かれていますが...
 +この行は1つの改行だけで分けられているため、 *同じ段落* の別の行になります。
  
- This line is also a separate paragraph, and...
- This line is on its own line, because the previous line ends with two
- spaces.
+-This line is also a separate paragraph, and...
+-This line is on its own line, because the previous line ends with two
+-spaces.
++この行も段落が分かれており...  
++前の行が2つのスペースで終わっているため、この行はこの行だけで表示されます。
  ```
  
 -Here's a line for us to start with.
@@ -17590,9 +17589,15 @@ index 7fe96e6..1d4c2ec 100644
 -This line is only separated by a single newline, so it's a separate line in the *same paragraph*.
 +この行は1つの改行だけで分けられているため、 *同じ段落* の別の行になります。
  
- This line is also a separate paragraph, and...
- This line is on its own line, because the previous line ends with two
-@@ -681,7 +680,7 @@ Code above produces next output:
+-This line is also a separate paragraph, and...
+-This line is on its own line, because the previous line ends with two
+-spaces.
++この行も段落が分かれており...  
++前の行が2つのスペースで終わっているため、この行はこの行だけで表示されます。
+ 
+ ## Tables
+ 
+@@ -681,7 +678,7 @@ Code above produces next output:
  | cell 1   | cell 2   |
  | cell 3   | cell 4   |
  

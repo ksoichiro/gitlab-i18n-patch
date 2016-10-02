@@ -14206,7 +14206,7 @@ index 5f8bb57..9558cca 100644
  ![Authorized_applications](img/oauth_provider_authorized_application.png)
  
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index c400cda..595330b 100644
+index c400cda..7257d3f 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,52 +1,52 @@
@@ -14648,7 +14648,7 @@ index c400cda..595330b 100644
  
  If a list item contains multiple paragraphs,
  each subsequent paragraph should be indented with four spaces.
-@@ -364,184 +363,184 @@ If the second paragraph isn't indented with four spaces,
+@@ -364,188 +363,186 @@ If the second paragraph isn't indented with four spaces,
  the second list item will be incorrectly labeled as `1`.
  
  ```no-highlight
@@ -14882,9 +14882,11 @@ index c400cda..595330b 100644
 +この行も段落が分かれていますが...
 +この行は1つの改行だけで分けられているため、 *同じ段落* の別の行になります。
  
- This line is also a separate paragraph, and...  
- This line is on its own line, because the previous line ends with two
- spaces.
+-This line is also a separate paragraph, and...  
+-This line is on its own line, because the previous line ends with two
+-spaces.
++この行も段落が分かれており...  
++前の行が2つのスペースで終わっているため、この行はこの行だけで表示されます。
  ```
  
 -Here's a line for us to start with.
@@ -14897,9 +14899,15 @@ index c400cda..595330b 100644
 -This line is only separated by a single newline, so it's a separate line in the *same paragraph*.
 +この行は1つの改行だけで分けられているため、 *同じ段落* の別の行になります。
  
- This line is also a separate paragraph, and...  
- This line is on its own line, because the previous line ends with two
-@@ -565,7 +564,7 @@ Code above produces next output:
+-This line is also a separate paragraph, and...  
+-This line is on its own line, because the previous line ends with two
+-spaces.
++この行も段落が分かれており...  
++前の行が2つのスペースで終わっているため、この行はこの行だけで表示されます。
+ 
+ ## Tables
+ 
+@@ -565,7 +562,7 @@ Code above produces next output:
  | cell 1   | cell 2   |
  | cell 3   | cell 4   |
  

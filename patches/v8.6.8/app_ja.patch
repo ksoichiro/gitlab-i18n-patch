@@ -14371,7 +14371,7 @@ index 5f8bb57..9558cca 100644
  ![Authorized_applications](img/oauth_provider_authorized_application.png)
  
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index e6eb1cf..f2798aa 100644
+index e6eb1cf..116998e 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,54 +1,54 @@
@@ -14815,7 +14815,7 @@ index e6eb1cf..f2798aa 100644
  
  If a list item contains multiple paragraphs,
  each subsequent paragraph should be indented with four spaces.
-@@ -367,188 +366,186 @@ If the second paragraph isn't indented with four spaces,
+@@ -367,192 +366,190 @@ If the second paragraph isn't indented with four spaces,
  the second list item will be incorrectly labeled as `1`.
  
  ```no-highlight
@@ -15072,8 +15072,14 @@ index e6eb1cf..f2798aa 100644
 +この行も段落が分かれており...  
 +前の行が2つのスペースで終わっているため、この行はこの行だけで表示されます。
  
- ## Tables
+-## Tables
++## 表
  
+-Tables aren't part of the core Markdown spec, but they are part of GFM and Markdown Here supports them.
++テーブルはコアの Markdown の使用には含まれていませんが、GFMやここでのMarkdownではサポートされています。
+ 
+ ```
+ | header 1 | header 2 |
 @@ -568,7 +565,7 @@ Code above produces next output:
  | cell 1   | cell 2   |
  | cell 3   | cell 4   |

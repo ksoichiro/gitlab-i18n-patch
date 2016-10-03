@@ -2466,6 +2466,8 @@ translations:
     replace: '${thisLineIsOnlySeparatedByASingleNewlineSoItsASeparateLineInTheSameParagraph}'
   - pattern: !!js/regexp /This line is also a separate paragraph, and...(:?  )?\nThis line is on its own line, because the previous line ends with two\nspaces./m
     replace: '${thisLineIsAlsoASeparateParagraphAndThisLineIsOnItsOwnLineBecauseThePreviousLineEndsWithTwoSpaces}'
+  - pattern: "Tables aren't part of the core Markdown spec, but they are part of GFM and Markdown Here supports them."
+    replace: '${tablesArentPartOfTheCoreMarkdownSpecButTheyArePartOfGFMAndMarkdownHereSupportsThem}'
   - pattern: 'For example:'
     replace: '${forExample}:'
   - pattern: '1.  Clone project:'
@@ -5199,8 +5201,8 @@ translations:
     #  key: mdTitleTLSServerAuthentication
     - title: 'Table of Contents'
       key: mdTitleTableOfContents
-    #- title: 'Tables'
-    #  key: mdTitleTables
+    - title: 'Tables'
+      key: mdTitleTables
     #- title: 'Tag events'
     #  key: mdTitleTagEvents
     #- title: 'Tags'

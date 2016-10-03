@@ -2026,7 +2026,7 @@ mdTitleStoringConfigurationFiles: 設定ファイルの保存
 #mdTitleTLSClientAuthentication: 
 #mdTitleTLSServerAuthentication: 
 mdTitleTableOfContents: 目次
-#mdTitleTables: 
+mdTitleTables: 表
 #mdTitleTagEvents: 
 #mdTitleTags: 
 #mdTitleTagsPageWithButtonToAddOrEditReleaseNotesForExistingGitTag: 
@@ -2902,3 +2902,4 @@ thisLineIsSeparatedFromTheOneAboveByTwoNewlinesSoItWillBeASeparateParagraph: "�
 thisLineIsAlsoASeparateParagraphBut: この行も段落が分かれていますが...
 thisLineIsOnlySeparatedByASingleNewlineSoItsASeparateLineInTheSameParagraph: "この行は1つの改行だけで分けられているため、 *同じ段落* の別の行になります。"
 thisLineIsAlsoASeparateParagraphAndThisLineIsOnItsOwnLineBecauseThePreviousLineEndsWithTwoSpaces: "この行も段落が分かれており...  \n前の行が2つのスペースで終わっているため、この行はこの行だけで表示されます。"
+tablesArentPartOfTheCoreMarkdownSpecButTheyArePartOfGFMAndMarkdownHereSupportsThem: テーブルはコアの Markdown の使用には含まれていませんが、GFMやここでのMarkdownではサポートされています。

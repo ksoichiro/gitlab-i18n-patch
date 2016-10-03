@@ -9483,15 +9483,9 @@ index 9322c82..5e946a6 100644
  .file-finder-holder.tree-holder.clearfix
    .nav-block
 diff --git a/app/views/projects/forks/error.html.haml b/app/views/projects/forks/error.html.haml
-index 3d0ab5b..0be076f 100644
+index 3d0ab5b..f6716fe 100644
 --- a/app/views/projects/forks/error.html.haml
 +++ b/app/views/projects/forks/error.html.haml
-@@ -1,4 +1,4 @@
--- page_title "Fork project"
-+- page_title "Fork プロジェクト"
- - if @forked_project && !@forked_project.saved?
-   .alert.alert-danger.alert-block
-     %h4
 @@ -16,6 +16,6 @@
          = @forked_project.errors.full_messages.first
  
@@ -16924,7 +16918,7 @@ index 9e2a89e..f8bcbde 100644
  
  ![Default label set](img/admin_labels.png)
 diff --git a/doc/user/markdown.md b/doc/user/markdown.md
-index 7fe96e6..334e614 100644
+index 7fe96e6..226b7f1 100644
 --- a/doc/user/markdown.md
 +++ b/doc/user/markdown.md
 @@ -1,32 +1,32 @@
@@ -17373,7 +17367,7 @@ index 7fe96e6..334e614 100644
  
  If a list item contains multiple paragraphs,
  each subsequent paragraph should be indented with four spaces.
-@@ -480,188 +479,186 @@ If the second paragraph isn't indented with four spaces,
+@@ -480,192 +479,190 @@ If the second paragraph isn't indented with four spaces,
  the second list item will be incorrectly labeled as `1`.
  
  ```no-highlight
@@ -17630,8 +17624,14 @@ index 7fe96e6..334e614 100644
 +この行も段落が分かれており...  
 +前の行が2つのスペースで終わっているため、この行はこの行だけで表示されます。
  
- ## Tables
+-## Tables
++## 表
  
+-Tables aren't part of the core Markdown spec, but they are part of GFM and Markdown Here supports them.
++テーブルはコアの Markdown の使用には含まれていませんが、GFMやここでのMarkdownではサポートされています。
+ 
+ ```
+ | header 1 | header 2 |
 @@ -681,7 +678,7 @@ Code above produces next output:
  | cell 1   | cell 2   |
  | cell 3   | cell 4   |

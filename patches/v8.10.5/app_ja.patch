@@ -15284,7 +15284,7 @@ index f3b2a28..3c21d05 100644
    args: {
            assertion_consumer_service_url: 'https://gitlab.example.com/users/auth/saml/callback',
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index c6c7ac8..da28a53 100644
+index c6c7ac8..1e51fbf 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,34 +1,34 @@
@@ -15727,7 +15727,7 @@ index c6c7ac8..da28a53 100644
  
  If a list item contains multiple paragraphs,
  each subsequent paragraph should be indented with four spaces.
-@@ -473,192 +472,190 @@ If the second paragraph isn't indented with four spaces,
+@@ -473,208 +472,206 @@ If the second paragraph isn't indented with four spaces,
  the second list item will be incorrectly labeled as `1`.
  
  ```no-highlight
@@ -15991,10 +15991,24 @@ index c6c7ac8..da28a53 100644
 +テーブルはコアの Markdown の使用には含まれていませんが、GFMやここでのMarkdownではサポートされています。
  
  ```
- | header 1 | header 2 |
-@@ -674,7 +671,7 @@ Code above produces next output:
- | cell 1   | cell 2   |
- | cell 3   | cell 4   |
+-| header 1 | header 2 |
++| ヘッダ 1 | header 2 |
+ | -------- | -------- |
+-| cell 1   | cell 2   |
+-| cell 3   | cell 4   |
++| セル 1   | cell 2   |
++| セル 3   | cell 4   |
+ ```
+ 
+ Code above produces next output:
+ 
+-| header 1 | header 2 |
++| ヘッダ 1 | header 2 |
+ | -------- | -------- |
+-| cell 1   | cell 2   |
+-| cell 3   | cell 4   |
++| セル 1   | cell 2   |
++| セル 3   | cell 4   |
  
 -**Note**
 +**注意**

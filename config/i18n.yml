@@ -2468,6 +2468,10 @@ translations:
     replace: '${thisLineIsAlsoASeparateParagraphAndThisLineIsOnItsOwnLineBecauseThePreviousLineEndsWithTwoSpaces}'
   - pattern: "Tables aren't part of the core Markdown spec, but they are part of GFM and Markdown Here supports them."
     replace: '${tablesArentPartOfTheCoreMarkdownSpecButTheyArePartOfGFMAndMarkdownHereSupportsThem}'
+  - pattern: '| header'
+    replace: '| ${header}'
+  - pattern: '| cell'
+    replace: '| ${cell}'
   - pattern: 'For example:'
     replace: '${forExample}:'
   - pattern: '1.  Clone project:'

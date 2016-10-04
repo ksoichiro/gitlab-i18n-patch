@@ -14580,7 +14580,7 @@ index 8a7205c..29c0422 100644
 \ No newline at end of file
 +fail with one of the mentioned errors.
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index 4f199b6..6dd3724 100644
+index 4f199b6..2c04902 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,31 +1,31 @@
@@ -15023,7 +15023,7 @@ index 4f199b6..6dd3724 100644
  
  If a list item contains multiple paragraphs,
  each subsequent paragraph should be indented with four spaces.
-@@ -367,192 +366,190 @@ If the second paragraph isn't indented with four spaces,
+@@ -367,208 +366,206 @@ If the second paragraph isn't indented with four spaces,
  the second list item will be incorrectly labeled as `1`.
  
  ```no-highlight
@@ -15287,10 +15287,24 @@ index 4f199b6..6dd3724 100644
 +テーブルはコアの Markdown の使用には含まれていませんが、GFMやここでのMarkdownではサポートされています。
  
  ```
- | header 1 | header 2 |
-@@ -568,7 +565,7 @@ Code above produces next output:
- | cell 1   | cell 2   |
- | cell 3   | cell 4   |
+-| header 1 | header 2 |
++| ヘッダ 1 | header 2 |
+ | -------- | -------- |
+-| cell 1   | cell 2   |
+-| cell 3   | cell 4   |
++| セル 1   | cell 2   |
++| セル 3   | cell 4   |
+ ```
+ 
+ Code above produces next output:
+ 
+-| header 1 | header 2 |
++| ヘッダ 1 | header 2 |
+ | -------- | -------- |
+-| cell 1   | cell 2   |
+-| cell 3   | cell 4   |
++| セル 1   | cell 2   |
++| セル 3   | cell 4   |
  
 -**Note**
 +**注意**

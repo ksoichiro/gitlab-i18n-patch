@@ -13829,7 +13829,7 @@ index 192c321..2d25661 100644
 \ No newline at end of file
 +![admin_application](oauth_provider/admin_application.png)
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index bc8e7d1..cf40d77 100644
+index bc8e7d1..5e381e3 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,52 +1,52 @@
@@ -14268,7 +14268,7 @@ index bc8e7d1..cf40d77 100644
  
  If a list item contains multiple paragraphs,
  each subsequent paragraph should be indented with four spaces.
-@@ -361,208 +360,206 @@ If the second paragraph isn't indented with four spaces,
+@@ -361,212 +360,210 @@ If the second paragraph isn't indented with four spaces,
  the second list item will be incorrectly labeled as `1`.
  
  ```no-highlight
@@ -14541,7 +14541,8 @@ index bc8e7d1..cf40d77 100644
 +| セル 3   | cell 4   |
  ```
  
- Code above produces next output:
+-Code above produces next output:
++上記のコードでは、次のように表示されます。
  
 -| header 1 | header 2 |
 +| ヘッダ 1 | header 2 |
@@ -14554,8 +14555,14 @@ index bc8e7d1..cf40d77 100644
 -**Note**
 +**注意**
  
- The row of dashes between the table header and body must have at least three dashes in each column.
+-The row of dashes between the table header and body must have at least three dashes in each column.
++表のヘッダとボディの間のダッシュの行は、それぞれの列に対して3つ以上のダッシュを含んでいる必要があります。
  
+-By including colons in the header row, you can align the text within that column:
++ヘッダ行にコロンを含めることで、列内のテキストの位置を揃えることができます。
+ 
+ ```
+ | Left Aligned | Centered | Right Aligned | Left Aligned | Centered | Right Aligned |
 diff --git a/doc/permissions/permissions.md b/doc/permissions/permissions.md
 index bcd00cf..2b2e43f 100644
 --- a/doc/permissions/permissions.md

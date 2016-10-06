@@ -2478,6 +2478,8 @@ translations:
     replace: '${theRowOfDashesBetweenTheTableHeaderAndBodyMustHaveAtLeastThreeDashesInEachColumn}'
   - pattern: 'By including colons in the header row, you can align the text within that column:'
     replace: '${byIncludingColonsInTheHeaderRowYouCanAlignTheNextWithinThatColumn}'
+  - pattern: '| Left Aligned | Centered | Right Aligned | Left Aligned | Centered | Right Aligned |'
+    replace: '${leftAlignedCenteredRightAlignedLeftAlignedCenteredRightAligned}'
   - pattern: 'For example:'
     replace: '${forExample}:'
   - pattern: '1.  Clone project:'

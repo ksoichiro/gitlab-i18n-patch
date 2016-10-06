@@ -2908,3 +2908,4 @@ cell: セル
 codeAboveProducesNextOutput: 上記のコードでは、次のように表示されます。
 theRowOfDashesBetweenTheTableHeaderAndBodyMustHaveAtLeastThreeDashesInEachColumn: 表のヘッダとボディの間のダッシュの行は、それぞれの列に対して3つ以上のダッシュを含んでいる必要があります。
 byIncludingColonsInTheHeaderRowYouCanAlignTheNextWithinThatColumn: ヘッダ行にコロンを含めることで、列内のテキストの位置を揃えることができます。
+leftAlignedCenteredRightAlignedLeftAlignedCenteredRightAligned: '| 左揃え       | 中央揃え | 右揃え        | 左揃え       | 中央揃え | 右揃え        |'

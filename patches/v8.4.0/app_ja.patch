@@ -14099,7 +14099,7 @@ index 192c321..2d25661 100644
 \ No newline at end of file
 +![admin_application](oauth_provider/admin_application.png)
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index bc8e7d1..5e381e3 100644
+index bc8e7d1..e36f619 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,52 +1,52 @@
@@ -14538,7 +14538,7 @@ index bc8e7d1..5e381e3 100644
  
  If a list item contains multiple paragraphs,
  each subsequent paragraph should be indented with four spaces.
-@@ -361,212 +360,210 @@ If the second paragraph isn't indented with four spaces,
+@@ -361,221 +360,219 @@ If the second paragraph isn't indented with four spaces,
  the second list item will be incorrectly labeled as `1`.
  
  ```no-highlight
@@ -14832,7 +14832,18 @@ index bc8e7d1..5e381e3 100644
 +ヘッダ行にコロンを含めることで、列内のテキストの位置を揃えることができます。
  
  ```
- | Left Aligned | Centered | Right Aligned | Left Aligned | Centered | Right Aligned |
+-| Left Aligned | Centered | Right Aligned | Left Aligned | Centered | Right Aligned |
++| 左揃え       | 中央揃え | 右揃え        | 左揃え       | 中央揃え | 右揃え        |
+ | :----------- | :------: | ------------: | :----------- | :------: | ------------: |
+ | Cell 1       | Cell 2   | Cell 3        | Cell 4       | Cell 5   | Cell 6        |
+ | Cell 7       | Cell 8   | Cell 9        | Cell 10      | Cell 11  | Cell 12       |
+ ```
+ 
+-| Left Aligned | Centered | Right Aligned | Left Aligned | Centered | Right Aligned |
++| 左揃え       | 中央揃え | 右揃え        | 左揃え       | 中央揃え | 右揃え        |
+ | :----------- | :------: | ------------: | :----------- | :------: | ------------: |
+ | Cell 1       | Cell 2   | Cell 3        | Cell 4       | Cell 5   | Cell 6        |
+ | Cell 7       | Cell 8   | Cell 9        | Cell 10      | Cell 11  | Cell 12       |
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index b856e79..91a3683 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md

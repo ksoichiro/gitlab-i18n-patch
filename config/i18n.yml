@@ -2480,6 +2480,12 @@ translations:
     replace: '${byIncludingColonsInTheHeaderRowYouCanAlignTheNextWithinThatColumn}'
   - pattern: '| Left Aligned | Centered | Right Aligned | Left Aligned | Centered | Right Aligned |'
     replace: '${leftAlignedCenteredRightAlignedLeftAlignedCenteredRightAligned}'
+  - pattern: "This document leveraged heavily from the [Markdown-Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)."
+    replace: '${thisDocumentLeveragedHeavilyFromTheMarkdownCheatsheet}'
+  - pattern: "The [Markdown Syntax Guide](https://daringfireball.net/projects/markdown/syntax) at Daring Fireball is an excellent resource for a detailed explanation of standard markdown."
+    replace: '${theMarkdownSyntaxGuideAtDaringFireballIsAnExcellentResourceForADetailedExplanationOfStandardMarkdown}'
+  - pattern: "[Dillinger.io](http://dillinger.io) is a handy tool for testing standard markdown."
+    replace: '${dillingerIoIsAHandyToolForTestingStandardMarkdown}'
   - pattern: 'For example:'
     replace: '${forExample}:'
   - pattern: '1.  Clone project:'
@@ -4839,8 +4845,8 @@ translations:
     #  key: mdTitleRedmine
     #- title: 'Redmine Service'
     #  key: mdTitleRedmineService
-    #- title: 'References'
-    #  key: mdTitleReferences
+    - title: 'References'
+      key: mdTitleReferences
     #- title: 'Referencing JIRA Issues'
     #  key: mdTitleReferencingJIRAIssues
     #- title: 'Register a new runner'

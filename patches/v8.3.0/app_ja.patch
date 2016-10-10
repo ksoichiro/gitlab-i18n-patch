@@ -13645,6 +13645,19 @@ index e244ad4..ce3c28c 100644
  
      ENABLE_BULLET=true bundle exec rails s
  
+diff --git a/doc/development/shell_commands.md b/doc/development/shell_commands.md
+index 65cdd74..48065dd 100644
+--- a/doc/development/shell_commands.md
++++ b/doc/development/shell_commands.md
+@@ -3,7 +3,7 @@
+ This document contains guidelines for working with processes and files in the GitLab codebase.
+ These guidelines are meant to make your code more reliable _and_ secure.
+ 
+-## References
++## リファレンス
+ 
+ - [Google Ruby Security Reviewer's Guide](https://code.google.com/p/ruby-security/wiki/Guide)
+ - [OWASP Command Injection](https://www.owasp.org/index.php/Command_Injection)
 diff --git a/doc/gitlab-basics/add-file.md b/doc/gitlab-basics/add-file.md
 index 57136ac..4ea6e17 100644
 --- a/doc/gitlab-basics/add-file.md
@@ -13802,7 +13815,7 @@ index 192c321..2d25661 100644
 \ No newline at end of file
 +![admin_application](oauth_provider/admin_application.png)
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index bc8e7d1..e36f619 100644
+index bc8e7d1..522d6a1 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,52 +1,52 @@
@@ -14241,7 +14254,7 @@ index bc8e7d1..e36f619 100644
  
  If a list item contains multiple paragraphs,
  each subsequent paragraph should be indented with four spaces.
-@@ -361,221 +360,219 @@ If the second paragraph isn't indented with four spaces,
+@@ -361,227 +360,225 @@ If the second paragraph isn't indented with four spaces,
  the second list item will be incorrectly labeled as `1`.
  
  ```no-highlight
@@ -14547,6 +14560,16 @@ index bc8e7d1..e36f619 100644
  | :----------- | :------: | ------------: | :----------- | :------: | ------------: |
  | Cell 1       | Cell 2   | Cell 3        | Cell 4       | Cell 5   | Cell 6        |
  | Cell 7       | Cell 8   | Cell 9        | Cell 10      | Cell 11  | Cell 12       |
+ 
+-## References
++## リファレンス
+ 
+-- This document leveraged heavily from the [Markdown-Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
+-- The [Markdown Syntax Guide](https://daringfireball.net/projects/markdown/syntax) at Daring Fireball is an excellent resource for a detailed explanation of standard markdown.
+-- [Dillinger.io](http://dillinger.io) is a handy tool for testing standard markdown.
++- このドキュメントは [Markdown-Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) に多いに参考にしています。
++- Daring Fireball の [Markdown Syntax Guide](https://daringfireball.net/projects/markdown/syntax) は標準の Markdown について詳細に説明しているすばらしいリソースです。
++- [Dillinger.io](http://dillinger.io) は標準の Markdown をテストできる便利なツールです。
 diff --git a/doc/permissions/permissions.md b/doc/permissions/permissions.md
 index bcd00cf..2b2e43f 100644
 --- a/doc/permissions/permissions.md
@@ -16018,6 +16041,19 @@ index 8edf7c6..e60a051 100644
  
  After the forking is done, you can start working on the newly created repository. There you will have full
  [Owner](../permissions/permissions.md) access, so you can set it up as you please.
+diff --git a/doc/workflow/gitlab_flow.md b/doc/workflow/gitlab_flow.md
+index 8965e5b..2696a4f 100644
+--- a/doc/workflow/gitlab_flow.md
++++ b/doc/workflow/gitlab_flow.md
+@@ -309,7 +309,7 @@ If you have not pushed your commits to a shared location yet you can also rebase
+ Do not merge in upstream if your code will work and merge cleanly without doing so, Linus even says that [you should never merge in upstream at random points, only at major releases](https://lwn.net/Articles/328438/).
+ Merging only when needed prevents creating merge commits in your feature branch that later end up littering the master history.
+ 
+-### References
++### リファレンス
+ 
+ - [Sketch file](https://www.dropbox.com/s/58dvsj5votbwrzv/git_flows.sketch?dl=0) with vectors of images in this article
+ - [Git Flow by Vincent Driessen](http://nvie.com/posts/a-successful-git-branching-model/)
 diff --git a/doc/workflow/groups.md b/doc/workflow/groups.md
 index 52bf611..d4ef492 100644
 --- a/doc/workflow/groups.md

@@ -13995,7 +13995,7 @@ index 194b8e0..c1cf70d 100644
  ```
  git commit -m "Awesome commit message (Fix #20, Fixes #21 and Closes group/otherproject#22). This commit is also related to #17 and fixes #18, #19 and https://gitlab.example.com/group/otherproject/issues/23."
 diff --git a/doc/development/doc_styleguide.md b/doc/development/doc_styleguide.md
-index 96d1dff..bf915c1 100644
+index 96d1dff..7f2efe0 100644
 --- a/doc/development/doc_styleguide.md
 +++ b/doc/development/doc_styleguide.md
 @@ -49,7 +49,7 @@ it organized and easy to find.
@@ -14016,6 +14016,15 @@ index 96d1dff..bf915c1 100644
  
  - Place images in a separate directory named `img/` in the same directory where
    the `.md` document that you're working on is located. Always prepend their
+@@ -103,7 +103,7 @@ Inside the document:
+   `_**Note:** This feature was introduced in GitLab EE 8.3_`. Otherwise, leave
+   this mention out
+ 
+-## References
++## リファレンス
+ 
+ - **GitLab Restart:**
+   There are many cases that a restart/reconfigure of GitLab is required. To
 @@ -136,7 +136,7 @@ Inside the document:
  Here is a list of must-have items. Use them in the exact order that appears
  on this document. Further explanation is given below.
@@ -14047,6 +14056,19 @@ index e244ad4..ce3c28c 100644
  
      ENABLE_BULLET=true bundle exec rails s
  
+diff --git a/doc/development/shell_commands.md b/doc/development/shell_commands.md
+index 65cdd74..48065dd 100644
+--- a/doc/development/shell_commands.md
++++ b/doc/development/shell_commands.md
+@@ -3,7 +3,7 @@
+ This document contains guidelines for working with processes and files in the GitLab codebase.
+ These guidelines are meant to make your code more reliable _and_ secure.
+ 
+-## References
++## リファレンス
+ 
+ - [Google Ruby Security Reviewer's Guide](https://code.google.com/p/ruby-security/wiki/Guide)
+ - [OWASP Command Injection](https://www.owasp.org/index.php/Command_Injection)
 diff --git a/doc/gitlab-basics/add-file.md b/doc/gitlab-basics/add-file.md
 index 57136ac..4ea6e17 100644
 --- a/doc/gitlab-basics/add-file.md
@@ -14206,7 +14228,7 @@ index 5f8bb57..9558cca 100644
  ![Authorized_applications](img/oauth_provider_authorized_application.png)
  
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index c400cda..81cf481 100644
+index c400cda..40b41c3 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,52 +1,52 @@
@@ -14648,7 +14670,7 @@ index c400cda..81cf481 100644
  
  If a list item contains multiple paragraphs,
  each subsequent paragraph should be indented with four spaces.
-@@ -364,221 +363,219 @@ If the second paragraph isn't indented with four spaces,
+@@ -364,229 +363,227 @@ If the second paragraph isn't indented with four spaces,
  the second list item will be incorrectly labeled as `1`.
  
  ```no-highlight
@@ -14954,6 +14976,18 @@ index c400cda..81cf481 100644
  | :----------- | :------: | ------------: | :----------- | :------: | ------------: |
  | Cell 1       | Cell 2   | Cell 3        | Cell 4       | Cell 5   | Cell 6        |
  | Cell 7       | Cell 8   | Cell 9        | Cell 10      | Cell 11  | Cell 12       |
+ 
+-## References
++## リファレンス
+ 
+-- This document leveraged heavily from the [Markdown-Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
+-- The [Markdown Syntax Guide](https://daringfireball.net/projects/markdown/syntax) at Daring Fireball is an excellent resource for a detailed explanation of standard markdown.
+-- [Dillinger.io](http://dillinger.io) is a handy tool for testing standard markdown.
++- このドキュメントは [Markdown-Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) に多いに参考にしています。
++- Daring Fireball の [Markdown Syntax Guide](https://daringfireball.net/projects/markdown/syntax) は標準の Markdown について詳細に説明しているすばらしいリソースです。
++- [Dillinger.io](http://dillinger.io) は標準の Markdown をテストできる便利なツールです。
+ 
+ [rouge]: http://rouge.jneen.net/ "Rouge website"
 diff --git a/doc/monitoring/performance/gitlab_configuration.md b/doc/monitoring/performance/gitlab_configuration.md
 index b856e79..91a3683 100644
 --- a/doc/monitoring/performance/gitlab_configuration.md
@@ -15646,6 +15680,19 @@ index be1abb8..f3d4021 100644
  
  - [Password length limits](password_length_limits.md)
  - [Rack attack](rack_attack.md)
+diff --git a/doc/security/crime_vulnerability.md b/doc/security/crime_vulnerability.md
+index 94ba5d1..c869a5c 100644
+--- a/doc/security/crime_vulnerability.md
++++ b/doc/security/crime_vulnerability.md
+@@ -50,7 +50,7 @@ attack nor does it check if compression is enabled. With just this approach, it
+ cannot tell that SPDY's compression is disabled and not subject to the CRIME
+ vulnerability.
+ 
+-### References
++### リファレンス
+ 
+ * Nginx ["Module ngx_http_spdy_module"][ngx-spdy]
+ * Tenable Network Security, Inc. ["Transport Layer Security (TLS) Protocol CRIME Vulnerability"][nessus]
 diff --git a/doc/security/rack_attack.md b/doc/security/rack_attack.md
 index 9206699..539ca31 100644
 --- a/doc/security/rack_attack.md
@@ -16521,6 +16568,19 @@ index 217a4a4..b96c82c 100644
  
  Forking a project to your own namespace is useful if you have no write
  access to the project you want to contribute to. If you do have write
+diff --git a/doc/workflow/gitlab_flow.md b/doc/workflow/gitlab_flow.md
+index 0b205ea..4472532 100644
+--- a/doc/workflow/gitlab_flow.md
++++ b/doc/workflow/gitlab_flow.md
+@@ -311,7 +311,7 @@ If you have not pushed your commits to a shared location yet you can also rebase
+ Do not merge in upstream if your code will work and merge cleanly without doing so, Linus even says that [you should never merge in upstream at random points, only at major releases](https://lwn.net/Articles/328438/).
+ Merging only when needed prevents creating merge commits in your feature branch that later end up littering the master history.
+ 
+-### References
++### リファレンス
+ 
+ - [Sketch file](https://www.dropbox.com/s/58dvsj5votbwrzv/git_flows.sketch?dl=0) with vectors of images in this article
+ - [Git Flow by Vincent Driessen](http://nvie.com/posts/a-successful-git-branching-model/)
 diff --git a/doc/workflow/groups.md b/doc/workflow/groups.md
 index 52bf611..d4ef492 100644
 --- a/doc/workflow/groups.md

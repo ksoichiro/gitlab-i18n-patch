@@ -1839,7 +1839,7 @@ mdTitleProjectFeatures: プロジェクトの機能
 #mdTitleRedisAndSidekiq: 
 #mdTitleRedmine: 
 #mdTitleRedmineService: 
-#mdTitleReferences: 
+mdTitleReferences: リファレンス
 #mdTitleReferencingJIRAIssues: 
 #mdTitleRegisterANewRunner: 
 #mdTitleRegisterDockerRunner: 
@@ -2909,3 +2909,6 @@ codeAboveProducesNextOutput: 上記のコードでは、次のように表示さ
 theRowOfDashesBetweenTheTableHeaderAndBodyMustHaveAtLeastThreeDashesInEachColumn: 表のヘッダとボディの間のダッシュの行は、それぞれの列に対して3つ以上のダッシュを含んでいる必要があります。
 byIncludingColonsInTheHeaderRowYouCanAlignTheNextWithinThatColumn: ヘッダ行にコロンを含めることで、列内のテキストの位置を揃えることができます。
 leftAlignedCenteredRightAlignedLeftAlignedCenteredRightAligned: '| 左揃え       | 中央揃え | 右揃え        | 左揃え       | 中央揃え | 右揃え        |'
+thisDocumentLeveragedHeavilyFromTheMarkdownCheatsheet: "このドキュメントは [Markdown-Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) に多いに参考にしています。"
+theMarkdownSyntaxGuideAtDaringFireballIsAnExcellentResourceForADetailedExplanationOfStandardMarkdown: "Daring Fireball の [Markdown Syntax Guide](https://daringfireball.net/projects/markdown/syntax) は標準の Markdown について詳細に説明しているすばらしいリソースです。"
+dillingerIoIsAHandyToolForTestingStandardMarkdown: "[Dillinger.io](http://dillinger.io) は標準の Markdown をテストできる便利なツールです。"

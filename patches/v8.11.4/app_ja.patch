@@ -15382,6 +15382,19 @@ index 2574c2c..bdcf20f 100644
  
  ```ruby
  class MyMigration < ActiveRecord::Migration
+diff --git a/doc/gitlab-basics/README.md b/doc/gitlab-basics/README.md
+index 3aa8397..a6632ab 100644
+--- a/doc/gitlab-basics/README.md
++++ b/doc/gitlab-basics/README.md
+@@ -1,6 +1,6 @@
+-# GitLab basics
++# GitLabの基本
+ 
+-Step-by-step guides on the basics of working with Git and GitLab.
++GitとGitLabでの作業の基本を説明するステップバイステップのガイドです。
+ 
+ - [Start using Git on the command line](start-using-git.md)
+ - [Create and add your SSH Keys](create-your-ssh-keys.md)
 diff --git a/doc/gitlab-basics/add-file.md b/doc/gitlab-basics/add-file.md
 index 57136ac..4ea6e17 100644
 --- a/doc/gitlab-basics/add-file.md

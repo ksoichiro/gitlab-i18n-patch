@@ -13959,6 +13959,19 @@ index 65cdd74..48065dd 100644
  
  - [Google Ruby Security Reviewer's Guide](https://code.google.com/p/ruby-security/wiki/Guide)
  - [OWASP Command Injection](https://www.owasp.org/index.php/Command_Injection)
+diff --git a/doc/gitlab-basics/README.md b/doc/gitlab-basics/README.md
+index 493e1d1..55695ba 100644
+--- a/doc/gitlab-basics/README.md
++++ b/doc/gitlab-basics/README.md
+@@ -1,6 +1,6 @@
+-# GitLab basics
++# GitLabの基本
+ 
+-Step-by-step guides on the basics of working with Git and GitLab.
++GitとGitLabでの作業の基本を説明するステップバイステップのガイドです。
+ 
+ * [Start using Git on the command line](start-using-git.md)
+ 
 diff --git a/doc/gitlab-basics/add-file.md b/doc/gitlab-basics/add-file.md
 index 57136ac..4ea6e17 100644
 --- a/doc/gitlab-basics/add-file.md

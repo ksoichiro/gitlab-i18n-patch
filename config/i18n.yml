@@ -2486,6 +2486,8 @@ translations:
     replace: '${theMarkdownSyntaxGuideAtDaringFireballIsAnExcellentResourceForADetailedExplanationOfStandardMarkdown}'
   - pattern: "[Dillinger.io](http://dillinger.io) is a handy tool for testing standard markdown."
     replace: '${dillingerIoIsAHandyToolForTestingStandardMarkdown}'
+  - pattern: 'Step-by-step guides on the basics of working with Git and GitLab.'
+    replace: '${stepByStepGuidesOnTheBasicsOfWorkingWithGitAndGitLab}'
   - pattern: 'For example:'
     replace: '${forExample}:'
   - pattern: '1.  Clone project:'
@@ -3931,8 +3933,8 @@ translations:
     #  key: mdTitleGitLabAsOAuth2AuthenticationServiceProvider
     #- title: 'GitLab as an OAuth2 client'
     #  key: mdTitleGitLabAsAnOAuth2Client
-    #- title: 'GitLab basics'
-    #  key: mdTitleGitLabBasics
+    - title: 'GitLab basics'
+      key: mdTitleGitLabBasics
     #- title: 'GitLab directory structure'
     #  key: mdTitleGitLabDirectoryStructure
     #- title: 'GitLab is unable to close a ticket'

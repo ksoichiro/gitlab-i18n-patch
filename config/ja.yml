@@ -1384,7 +1384,7 @@ mdTitleGatherInformationAboutGitLabAndTheSystemItRunsOn: GitLabやシステム�
 #mdTitleGitLabWebEditor: 
 #mdTitleGitLabAsOAuth2AuthenticationServiceProvider: 
 #mdTitleGitLabAsAnOAuth2Client: 
-#mdTitleGitLabBasics: 
+mdTitleGitLabBasics: GitLabの基本
 #mdTitleGitLabDirectoryStructure: 
 #mdTitleGitLabIsUnableToCloseATicket: 
 #mdTitleGitLabIsUnableToCommentOnATicket: 
@@ -2912,3 +2912,4 @@ leftAlignedCenteredRightAlignedLeftAlignedCenteredRightAligned: '| 左揃え    
 thisDocumentLeveragedHeavilyFromTheMarkdownCheatsheet: "このドキュメントは [Markdown-Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) に多いに参考にしています。"
 theMarkdownSyntaxGuideAtDaringFireballIsAnExcellentResourceForADetailedExplanationOfStandardMarkdown: "Daring Fireball の [Markdown Syntax Guide](https://daringfireball.net/projects/markdown/syntax) は標準の Markdown について詳細に説明しているすばらしいリソースです。"
 dillingerIoIsAHandyToolForTestingStandardMarkdown: "[Dillinger.io](http://dillinger.io) は標準の Markdown をテストできる便利なツールです。"
+stepByStepGuidesOnTheBasicsOfWorkingWithGitAndGitLab: GitとGitLabでの作業の基本を説明するステップバイステップのガイドです。

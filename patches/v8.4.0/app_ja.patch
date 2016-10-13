@@ -13478,6 +13478,19 @@ index 2fa177f..454d1be 100644
  - [Namespaces](namespaces.md)
  - [Settings](settings.md)
  - [Keys](keys.md)
+diff --git a/doc/api/build_triggers.md b/doc/api/build_triggers.md
+index 4a12e96..6effd50 100644
+--- a/doc/api/build_triggers.md
++++ b/doc/api/build_triggers.md
+@@ -64,7 +64,7 @@ curl -H "PRIVATE_TOKEN: 9koXpg98eAheJpvBs5tK" "https://gitlab.example.com/api/v3
+ }
+ ```
+ 
+-## Create a project trigger
++## プロジェクトを作成する trigger
+ 
+ Create a build trigger for a project.
+ 
 diff --git a/doc/api/deploy_keys.md b/doc/api/deploy_keys.md
 index e4492fc..fdd1726 100644
 --- a/doc/api/deploy_keys.md
@@ -13956,18 +13969,51 @@ index 65cdd74..48065dd 100644
  - [Google Ruby Security Reviewer's Guide](https://code.google.com/p/ruby-security/wiki/Guide)
  - [OWASP Command Injection](https://www.owasp.org/index.php/Command_Injection)
 diff --git a/doc/gitlab-basics/README.md b/doc/gitlab-basics/README.md
-index 493e1d1..55695ba 100644
+index 493e1d1..b887d13 100644
 --- a/doc/gitlab-basics/README.md
 +++ b/doc/gitlab-basics/README.md
-@@ -1,6 +1,6 @@
+@@ -1,27 +1,27 @@
 -# GitLab basics
 +# GitLabの基本
  
 -Step-by-step guides on the basics of working with Git and GitLab.
 +GitとGitLabでの作業の基本を説明するステップバイステップのガイドです。
  
- * [Start using Git on the command line](start-using-git.md)
+-* [Start using Git on the command line](start-using-git.md)
++* [コマンドラインでGitを使い始める](start-using-git.md)
  
+-* [Create and add your SSH Keys](create-your-ssh-keys.md)
++* [SSHキーを作成・追加する](create-your-ssh-keys.md)
+ 
+-* [Command Line basic commands](command-line-commands.md)
++* [コマンドラインでの基本的なコマンド](command-line-commands.md)
+ 
+-* [Basic Git commands](basic-git-commands.md)
++* [基本的なGitコマンド](basic-git-commands.md)
+ 
+-* [Create a project](create-project.md)
++* [プロジェクトを作成する](create-project.md)
+ 
+-* [Create a group](create-group.md)
++* [グループを作成する](create-group.md)
+ 
+-* [Create a branch](create-branch.md)
++* [ブランチを作成する](create-branch.md)
+ 
+-* [Fork a project](fork-project.md)
++* [プロジェクトをフォークする](fork-project.md)
+ 
+-* [Add a file](add-file.md)
++* [ファイルを追加する](add-file.md)
+ 
+-* [Add an image](add-image.md)
++* [画像を追加する](add-image.md)
+ 
+-* [Create a Merge Request](add-merge-request.md)
++* [マージリクエストを作成します](add-merge-request.md)
+ 
+-* [Create an Issue](create-issue.md)
++* [課題を作成する](create-issue.md)
 diff --git a/doc/gitlab-basics/add-file.md b/doc/gitlab-basics/add-file.md
 index 57136ac..4ea6e17 100644
 --- a/doc/gitlab-basics/add-file.md
@@ -14010,10 +14056,47 @@ index 236b424..57567cf 100644
  
  After you created a new branch, you'll immediately find a "create a Merge Request" button at the top of your screen.
  You may automatically create a Merge Request from your recently created branch when clicking on this button:
+diff --git a/doc/gitlab-basics/basic-git-commands.md b/doc/gitlab-basics/basic-git-commands.md
+index 2b5767d..d9388ff 100644
+--- a/doc/gitlab-basics/basic-git-commands.md
++++ b/doc/gitlab-basics/basic-git-commands.md
+@@ -1,4 +1,4 @@
+-# Basic Git commands
++# 基本的なGitコマンド
+ 
+ ### Go to the master branch to pull the latest changes from there
+ ```
+@@ -12,7 +12,7 @@ git pull REMOTE NAME-OF-BRANCH -u
+ ```
+ (REMOTE: origin) (NAME-OF-BRANCH: could be "master" or an existing branch)
+ 
+-### Create a branch
++### ブランチを作成する
+ Spaces won't be recognized, so you need to use a hyphen or underscore.
+ ```
+ git checkout -b NAME-OF-BRANCH
+diff --git a/doc/gitlab-basics/command-line-commands.md b/doc/gitlab-basics/command-line-commands.md
+index addd3b6..1c95948 100644
+--- a/doc/gitlab-basics/command-line-commands.md
++++ b/doc/gitlab-basics/command-line-commands.md
+@@ -1,4 +1,4 @@
+-# Command Line basic commands
++# コマンドラインでの基本的なコマンド
+ 
+ ## Start working on your project
+ 
 diff --git a/doc/gitlab-basics/create-group.md b/doc/gitlab-basics/create-group.md
-index f80ae62..f0cebec 100644
+index f80ae62..16a4309 100644
 --- a/doc/gitlab-basics/create-group.md
 +++ b/doc/gitlab-basics/create-group.md
+@@ -1,6 +1,6 @@
+ # How to create a group in GitLab
+ 
+-## Create a group
++## グループを作成する
+ 
+ Your projects in GitLab can be organized in 2 different ways:
+ under your own namespace for single projects, such as ´your-name/project-1'; or under groups.
 @@ -10,7 +10,7 @@ To create a group, follow the instructions below:
  
  Sign in to [GitLab.com](https://gitlab.com).
@@ -14023,6 +14106,12 @@ index f80ae62..f0cebec 100644
  
  ![Go to groups](basicsimages/select-group2.png)
  
+@@ -40,4 +40,4 @@ There are 2 different ways to add a new project to a group:
+ 
+ * When you are [creating a project](create-project.md), click on "create a group" on the bottom right side of your screen
+ 
+-![Create a group](basicsimages/create_group.png)
++![グループを作成する](basicsimages/create_group.png)
 diff --git a/doc/gitlab-basics/create-issue.md b/doc/gitlab-basics/create-issue.md
 index 87f078d..555dfbe 100644
 --- a/doc/gitlab-basics/create-issue.md
@@ -14033,6 +14122,29 @@ index 87f078d..555dfbe 100644
  
 -Your Issue will now be added to the Issue Tracker and will be ready to be reviewed. You can comment on it and mention the people involved. You can also link Issues to the Merge Requests where the Issues are solved. To do this, you can use an [Issue closing pattern](http://doc.gitlab.com/ce/customization/issue_closing.html).
 +Your Issue will now be added to the Issue Tracker and will be ready to be reviewed. You can comment on it and mention the people involved. You can also link Issues to the マージリクエスト where the Issues are solved. To do this, you can use an [Issue closing pattern](http://doc.gitlab.com/ce/customization/issue_closing.html).
+diff --git a/doc/gitlab-basics/create-project.md b/doc/gitlab-basics/create-project.md
+index b545d62..ed5ff98 100644
+--- a/doc/gitlab-basics/create-project.md
++++ b/doc/gitlab-basics/create-project.md
+@@ -4,7 +4,7 @@ To create a new project, sign in to GitLab.
+ 
+ Go to your Dashboard and click on "new project" on the right side of your screen.
+ 
+-![Create a project](basicsimages/new_project.png)
++![プロジェクトを作成する](basicsimages/new_project.png)
+ 
+ Fill out the required information:
+ 
+diff --git a/doc/gitlab-basics/start-using-git.md b/doc/gitlab-basics/start-using-git.md
+index b2ceda0..af23d47 100644
+--- a/doc/gitlab-basics/start-using-git.md
++++ b/doc/gitlab-basics/start-using-git.md
+@@ -1,4 +1,4 @@
+-# Start using Git on the command line
++# コマンドラインでGitを使い始める
+ 
+ If you want to start using a Git and GitLab, make sure that you have created an account on GitLab.
+ 
 diff --git a/doc/incoming_email/README.md b/doc/incoming_email/README.md
 index 4cfb840..a987b38 100644
 --- a/doc/incoming_email/README.md
@@ -16628,15 +16740,23 @@ index 6176784..c2ba6d3 100644
  You can turn any git tag into a release, by adding a note to it.
  Release notes behave like any other markdown form in GitLab so you can write text and drag-n-drop files to it.
 diff --git a/doc/workflow/web_editor.md b/doc/workflow/web_editor.md
-index 7fc8f96..d260a3b 100644
+index 7fc8f96..f67685c 100644
 --- a/doc/workflow/web_editor.md
 +++ b/doc/workflow/web_editor.md
-@@ -1,4 +1,4 @@
+@@ -1,11 +1,11 @@
 -# GitLab Web Editor
 +# GitLab Webエディタ
  
  In GitLab you can create new files and edit existing files using our web editor.
  This is especially useful if you don't have access to a command line or you just want to do a quick fix.
+ You can easily access the web editor, depending on the context.
+ Let's start from newly created project.
+ 
+-Click on `Add a file`
++Click on `ファイルを追加する`
+ to create the first file and open it in the web editor.
+ 
+ ![web editor 1](web_editor/empty_project.png)
 diff --git a/doc/workflow/wip_merge_requests.md b/doc/workflow/wip_merge_requests.md
 index 46035a5..4718c59 100644
 --- a/doc/workflow/wip_merge_requests.md

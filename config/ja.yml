@@ -2913,3 +2913,15 @@ thisDocumentLeveragedHeavilyFromTheMarkdownCheatsheet: "このドキュメント
 theMarkdownSyntaxGuideAtDaringFireballIsAnExcellentResourceForADetailedExplanationOfStandardMarkdown: "Daring Fireball の [Markdown Syntax Guide](https://daringfireball.net/projects/markdown/syntax) は標準の Markdown について詳細に説明しているすばらしいリソースです。"
 dillingerIoIsAHandyToolForTestingStandardMarkdown: "[Dillinger.io](http://dillinger.io) は標準の Markdown をテストできる便利なツールです。"
 stepByStepGuidesOnTheBasicsOfWorkingWithGitAndGitLab: GitとGitLabでの作業の基本を説明するステップバイステップのガイドです。
+startUsingGitOnTheCommandLine: コマンドラインでGitを使い始める
+createAndAddYourSSHKeys: SSHキーを作成・追加する
+commandLineBasicCommands: コマンドラインでの基本的なコマンド
+basicGitCommands: 基本的なGitコマンド
+createAProject: プロジェクトを作成する
+createAGroup: グループを作成する
+createABranch: ブランチを作成する
+forkAProject: プロジェクトをフォークする
+addAFile: ファイルを追加する
+addAnImage: 画像を追加する
+createAMergeRequestBasic: マージリクエストを作成する
+createAnIssue: 課題を作成する

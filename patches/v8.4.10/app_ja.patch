@@ -13973,7 +13973,7 @@ index 65cdd74..48065dd 100644
  - [Google Ruby Security Reviewer's Guide](https://code.google.com/p/ruby-security/wiki/Guide)
  - [OWASP Command Injection](https://www.owasp.org/index.php/Command_Injection)
 diff --git a/doc/gitlab-basics/README.md b/doc/gitlab-basics/README.md
-index 493e1d1..b887d13 100644
+index 493e1d1..8e66b1a 100644
 --- a/doc/gitlab-basics/README.md
 +++ b/doc/gitlab-basics/README.md
 @@ -1,27 +1,27 @@
@@ -14014,7 +14014,7 @@ index 493e1d1..b887d13 100644
 +* [画像を追加する](add-image.md)
  
 -* [Create a Merge Request](add-merge-request.md)
-+* [マージリクエストを作成します](add-merge-request.md)
++* [マージリクエストを作成する](add-merge-request.md)
  
 -* [Create an Issue](create-issue.md)
 +* [課題を作成する](create-issue.md)

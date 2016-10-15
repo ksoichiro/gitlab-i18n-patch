@@ -2509,7 +2509,7 @@ translations:
   - pattern: 'Add an image'
     replace: '${addAnImage}'
   - pattern: 'Create a Merge Request'
-    replace: '${createAMergeRequest}'
+    replace: '${createAMergeRequestBasic}'
   - pattern: 'Create an Issue'
     replace: '${createAnIssue}'
   - pattern: 'For example:'

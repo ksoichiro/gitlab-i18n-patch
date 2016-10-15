@@ -14219,7 +14219,7 @@ index 23fd760..2a90c21 100644
  ```ruby
  class AddUsersLowerUsernameEmailIndexes < ActiveRecord::Migration
 diff --git a/doc/gitlab-basics/README.md b/doc/gitlab-basics/README.md
-index 3aa8397..1ab18a4 100644
+index 3aa8397..4c7107b 100644
 --- a/doc/gitlab-basics/README.md
 +++ b/doc/gitlab-basics/README.md
 @@ -1,15 +1,15 @@
@@ -14248,7 +14248,7 @@ index 3aa8397..1ab18a4 100644
 +- [プロジェクトをフォークする](fork-project.md)
 +- [ファイルを追加する](add-file.md)
 +- [画像を追加する](add-image.md)
-+- [マージリクエストを作成します](add-merge-request.md)
++- [マージリクエストを作成する](add-merge-request.md)
 +- [課題を作成する](create-issue.md)
 diff --git a/doc/gitlab-basics/add-file.md b/doc/gitlab-basics/add-file.md
 index 57136ac..4ea6e17 100644

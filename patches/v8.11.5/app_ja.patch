@@ -9499,10 +9499,13 @@ index bacc570..6ce7d54 100644
  
  = render 'projects', projects: @forks
 diff --git a/app/views/projects/forks/new.html.haml b/app/views/projects/forks/new.html.haml
-index 5242bc7..9f6cf4d 100644
+index 5242bc7..7712973 100644
 --- a/app/views/projects/forks/new.html.haml
 +++ b/app/views/projects/forks/new.html.haml
-@@ -3,7 +3,7 @@
+@@ -1,9 +1,9 @@
+-- page_title "Fork project"
++- page_title "Fork プロジェクト"
+ 
  .row.prepend-top-default
    .col-lg-3
      %h4.prepend-top-0
@@ -15410,7 +15413,7 @@ index 2574c2c..bdcf20f 100644
  ```ruby
  class MyMigration < ActiveRecord::Migration
 diff --git a/doc/gitlab-basics/README.md b/doc/gitlab-basics/README.md
-index 3aa8397..1ab18a4 100644
+index 3aa8397..4c7107b 100644
 --- a/doc/gitlab-basics/README.md
 +++ b/doc/gitlab-basics/README.md
 @@ -1,15 +1,15 @@
@@ -15439,7 +15442,7 @@ index 3aa8397..1ab18a4 100644
 +- [プロジェクトをフォークする](fork-project.md)
 +- [ファイルを追加する](add-file.md)
 +- [画像を追加する](add-image.md)
-+- [マージリクエストを作成します](add-merge-request.md)
++- [マージリクエストを作成する](add-merge-request.md)
 +- [課題を作成する](create-issue.md)
 diff --git a/doc/gitlab-basics/add-file.md b/doc/gitlab-basics/add-file.md
 index 57136ac..4ea6e17 100644

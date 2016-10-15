@@ -13720,26 +13720,11 @@ index 9017fd5..41cd1f4 100644
  
    %div{ class: container_class }
      .tab-content
-diff --git a/config/application.rb b/config/application.rb
-index 0e5a772..0f003d7 100644
---- a/config/application.rb
-+++ b/config/application.rb
-@@ -35,7 +35,9 @@ module Gitlab
-     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-     # config.i18n.default_locale = :de
--    config.i18n.enforce_available_locales = false
-+    config.i18n.enforce_available_locales = false # done
-+    config.i18n.locale = :ja
-+    config.i18n.default_locale = :ja
- 
-     # Configure the default encoding used in templates for Ruby 1.9.
-     config.encoding = "utf-8"
-diff --git a/config/locales/devise.ja.yml b/config/locales/devise.ja.yml
+diff --git "a/config\nlocales/devise.ja.yml" "b/config\nlocales/devise.ja.yml"
 new file mode 100644
 index 0000000..ca863f7
 --- /dev/null
-+++ b/config/locales/devise.ja.yml
++++ "b/config\nlocales/devise.ja.yml"
 @@ -0,0 +1,100 @@
 +#SOURCE https://gist.github.com/orzccc/3104030
 + 
@@ -13841,11 +13826,11 @@ index 0000000..ca863f7
 +#        one: "1 error prohibited this %{resource} from being saved:"
 +        other: "%{count} つのエラーにより %{resource} は保存されませんでした:"
 +#        other: "%{count} errors prohibited this %{resource} from being saved:"
-diff --git a/config/locales/ja.yml b/config/locales/ja.yml
+diff --git "a/config\nlocales/ja.yml" "b/config\nlocales/ja.yml"
 new file mode 100644
 index 0000000..cee0bea
 --- /dev/null
-+++ b/config/locales/ja.yml
++++ "b/config\nlocales/ja.yml"
 @@ -0,0 +1,236 @@
 +# svenfuchs/rails-i18n
 +# MIT License
@@ -14083,6 +14068,21 @@ index 0000000..cee0bea
 +          attributes:
 +            redirect_uri:
 +              blank: リダイレクトURIは必須です
+diff --git a/config/application.rb b/config/application.rb
+index 0e5a772..0f003d7 100644
+--- a/config/application.rb
++++ b/config/application.rb
+@@ -35,7 +35,9 @@ module Gitlab
+     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
+     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+     # config.i18n.default_locale = :de
+-    config.i18n.enforce_available_locales = false
++    config.i18n.enforce_available_locales = false # done
++    config.i18n.locale = :ja
++    config.i18n.default_locale = :ja
+ 
+     # Configure the default encoding used in templates for Ruby 1.9.
+     config.encoding = "utf-8"
 diff --git a/doc/README.md b/doc/README.md
 index d1345ab..cccbc0a 100644
 --- a/doc/README.md
@@ -14757,7 +14757,7 @@ index 23fd760..2a90c21 100644
  ```ruby
  class AddUsersLowerUsernameEmailIndexes < ActiveRecord::Migration
 diff --git a/doc/gitlab-basics/README.md b/doc/gitlab-basics/README.md
-index 3aa8397..1ab18a4 100644
+index 3aa8397..4c7107b 100644
 --- a/doc/gitlab-basics/README.md
 +++ b/doc/gitlab-basics/README.md
 @@ -1,15 +1,15 @@
@@ -14786,7 +14786,7 @@ index 3aa8397..1ab18a4 100644
 +- [プロジェクトをフォークする](fork-project.md)
 +- [ファイルを追加する](add-file.md)
 +- [画像を追加する](add-image.md)
-+- [マージリクエストを作成します](add-merge-request.md)
++- [マージリクエストを作成する](add-merge-request.md)
 +- [課題を作成する](create-issue.md)
 diff --git a/doc/gitlab-basics/add-file.md b/doc/gitlab-basics/add-file.md
 index 57136ac..4ea6e17 100644

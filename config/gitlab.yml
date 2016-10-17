@@ -62,3 +62,4 @@ versions:
   v8.11.7: "https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_8.11.7-ce.0_amd64.deb/download"
   v8.12.0: "https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_8.12.0-ce.0_amd64.deb/download"
   v8.12.4: "https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_8.12.4-ce.0_amd64.deb/download"
+  v8.12.6: "https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_8.12.6-ce.0_amd64.deb/download"

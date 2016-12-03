@@ -4951,16 +4951,6 @@ index d7fabf5..940c865 100644
 @@ -1 +1 @@
 -- header_title group_title(@group, "Milestones", group_milestones_path(@group))
 +- header_title group_title(@group, "マイルストーン", group_milestones_path(@group))
-diff --git a/app/views/groups/milestones/_milestone.html.haml b/app/views/groups/milestones/_milestone.html.haml
-index 4c4e0a2..f7d26b7 100644
---- a/app/views/groups/milestones/_milestone.html.haml
-+++ b/app/views/groups/milestones/_milestone.html.haml
-@@ -2,4 +2,4 @@
-           milestone_path: group_milestone_path(@group, milestone.safe_title, title: milestone.title),
-           issues_path: issues_group_path(@group, milestone_title: milestone.title),
-           merge_requests_path: merge_requests_group_path(@group, milestone_title: milestone.title),
--          milestone: milestone
-+          milestone: マイルストーン
 diff --git a/app/views/groups/milestones/index.html.haml b/app/views/groups/milestones/index.html.haml
 index 121a7de..d421d23 100644
 --- a/app/views/groups/milestones/index.html.haml
@@ -10549,16 +10539,6 @@ index 5f4b698..0a2f0f7 100644
 @@ -1 +1 @@
 -- header_title project_title(@project, "Milestones", namespace_project_milestones_path(@project.namespace, @project))
 +- header_title project_title(@project, "マイルストーン", namespace_project_milestones_path(@project.namespace, @project))
-diff --git a/app/views/projects/milestones/_milestone.html.haml b/app/views/projects/milestones/_milestone.html.haml
-index 77b566d..c7b8009 100644
---- a/app/views/projects/milestones/_milestone.html.haml
-+++ b/app/views/projects/milestones/_milestone.html.haml
-@@ -2,4 +2,4 @@
-           milestone_path: namespace_project_milestone_path(milestone.project.namespace, milestone.project, milestone),
-           issues_path: namespace_project_issues_path(milestone.project.namespace, milestone.project, milestone_title: milestone.title),
-           merge_requests_path: namespace_project_merge_requests_path(milestone.project.namespace, milestone.project, milestone_title: milestone.title),
--          milestone: milestone
-+          milestone: マイルストーン
 diff --git a/app/views/projects/milestones/edit.html.haml b/app/views/projects/milestones/edit.html.haml
 index 43f8863..92973e5 100644
 --- a/app/views/projects/milestones/edit.html.haml

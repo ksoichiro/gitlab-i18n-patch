@@ -4951,16 +4951,6 @@ index d7fabf5..940c865 100644
 @@ -1 +1 @@
 -- header_title group_title(@group, "Milestones", group_milestones_path(@group))
 +- header_title group_title(@group, "マイルストーン", group_milestones_path(@group))
-diff --git a/app/views/groups/milestones/_milestone.html.haml b/app/views/groups/milestones/_milestone.html.haml
-index 4c4e0a2..f7d26b7 100644
---- a/app/views/groups/milestones/_milestone.html.haml
-+++ b/app/views/groups/milestones/_milestone.html.haml
-@@ -2,4 +2,4 @@
-           milestone_path: group_milestone_path(@group, milestone.safe_title, title: milestone.title),
-           issues_path: issues_group_path(@group, milestone_title: milestone.title),
-           merge_requests_path: merge_requests_group_path(@group, milestone_title: milestone.title),
--          milestone: milestone
-+          milestone: マイルストーン
 diff --git a/app/views/groups/milestones/index.html.haml b/app/views/groups/milestones/index.html.haml
 index a8fdbd8..c1af6a0 100644
 --- a/app/views/groups/milestones/index.html.haml
@@ -10638,16 +10628,6 @@ index cbf1ba0..6337988 100644
 -      = link_to "Cancel", namespace_project_milestone_path(@project.namespace, @project, @milestone), class: "btn btn-cancel"
 +      = f.submit '変更を保存', class: "btn-save btn"
 +      = link_to "キャンセル", namespace_project_milestone_path(@project.namespace, @project, @milestone), class: "btn btn-cancel"
-diff --git a/app/views/projects/milestones/_milestone.html.haml b/app/views/projects/milestones/_milestone.html.haml
-index 77b566d..c7b8009 100644
---- a/app/views/projects/milestones/_milestone.html.haml
-+++ b/app/views/projects/milestones/_milestone.html.haml
-@@ -2,4 +2,4 @@
-           milestone_path: namespace_project_milestone_path(milestone.project.namespace, milestone.project, milestone),
-           issues_path: namespace_project_issues_path(milestone.project.namespace, milestone.project, milestone_title: milestone.title),
-           merge_requests_path: namespace_project_merge_requests_path(milestone.project.namespace, milestone.project, milestone_title: milestone.title),
--          milestone: milestone
-+          milestone: マイルストーン
 diff --git a/app/views/projects/milestones/edit.html.haml b/app/views/projects/milestones/edit.html.haml
 index be68222..1c0f10c 100644
 --- a/app/views/projects/milestones/edit.html.haml

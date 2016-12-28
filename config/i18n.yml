@@ -766,12 +766,15 @@ translations:
     replace: '${setAPasswordOnYourAccountToPullOrPushVia}'
   - pattern: 'Commit message'
     replace: '${commitMessage}'
-  - pattern: 'Remove the <code>WIP</code> prefix from the title to allow this'
+  - pattern: 'This merge request is currently a Work In Progress'
+    replace: '${thisMergeRequestIsCurrentlyAWorkInProgress}'
+  - pattern: !!js/regexp /( +)When this merge request is ready,\n(.+)\n( +).+\n.+\n.+\n( +).+$/m
     replace: '${removeTheWIPPrefixFromTheTitleToAllowThis}'
-  - pattern: !!js/regexp /^( +)Remove the <code>WIP<\/code> prefix from the title to allow this\n( +)<strong>Work In Progress<\/strong> merge request to be merged when it's ready\.$/m
+    match-once: true
+  - pattern: !!js/regexp /^( +%a\.js-toggle-wip.+)\n( +)Remove the\n.+\n.+\n( +)to allow this\n.+\n.+$/m
     replace: '${removeTheWIPPrefix}'
     match-once: true
-  - pattern: !!js/regexp /^( +)Start the title with <code>\[WIP\]</code> or <code>WIP:</code> to prevent a\n( +)<strong>Work In Progress</strong> merge request from being merged before it's ready\.$/m
+  - pattern: !!js/regexp /^( +%a\.js-toggle-wip.+)\n( +)Start the title with\n.+\n( +)to prevent a\n.+\n.+$/m
     replace: '${startTheTitleWithWIP}'
     match-once: true
   - pattern: 'Share code pastes with others out of git repository'

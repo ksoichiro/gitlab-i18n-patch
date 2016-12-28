@@ -577,8 +577,10 @@ startGollumAndEditLocally: Gollumを開始してローカルで編集
 newWikiPage: 新しいWikiページ
 addAnSshKeyToYourProfileToPullOrPushViaSsh: 'SSHでプル/プッシュするためにはプロフィールにSSHキーを追加してください'
 setAPasswordOnYourAccountToPullOrPushVia: '{0}でプル/プッシュするにはパスワードを設定してください'
-removeTheWIPPrefix: "$1マージできる状態になったら <code>WIP</code> プレフィクスをタイトルから削除して\n$2<strong>Work In Progress (仕掛かり)</strong>のマージリクエストをマージできるようにします。"
-startTheTitleWithWIP: "$1タイトルを <code>[WIP]</code> または <code>WIP:</code> で開始すると\n$2<strong>Work In Progress (仕掛かり)</strong>のマージリクエストがマージできないようになります。"
+thisMergeRequestIsCurrentlyAWorkInProgress: 現在、このマージリクエストはWork In Progress (仕掛かり)です。
+removeTheWIPPrefixFromTheTitleToAllowThis: "$1マージできる状態になったら\n$2\n$3%code WIP:\n$3プレフィクスをタイトルから\n$3削除して\n$1マージリクエストをマージできるようにします。"
+removeTheWIPPrefix: "$3マージできる状態になったら\n$1\n$2%code WIP:\n$2プレフィクスをタイトルから\n$2削除して\n$3%strong Work In Progress (仕掛かり)\n$3のマージリクエストをマージできるようにします。"
+startTheTitleWithWIP: "$1\n$2%code WIP:\n$2でタイトルを開始すると\n$3%strong Work In Progress (仕掛かり)\n$3のマージリクエストが\n$3マージできないようになります。"
 shareCodekuninPastesWithOthersOutOfGitRepository: コードをGitリポジトリの外で共有しましょう。
 dontShowAgain: 次から表示しない
 visibilityLevel: 可視性レベル

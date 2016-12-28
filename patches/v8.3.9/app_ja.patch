@@ -10170,6 +10170,17 @@ index c9f0762..398d5b3 100644
 +    存在しません
    %p
      Please restore the target branch or use a different target branch.
+diff --git a/app/views/projects/merge_requests/widget/open/_wip.html.haml b/app/views/projects/merge_requests/widget/open/_wip.html.haml
+index 0cf1654..633f292 100644
+--- a/app/views/projects/merge_requests/widget/open/_wip.html.haml
++++ b/app/views/projects/merge_requests/widget/open/_wip.html.haml
+@@ -1,5 +1,5 @@
+ %h4
+-  This merge request is currently a Work In Progress
++  現在、このマージリクエストはWork In Progress (仕掛かり)です。
+ 
+ %p
+   When this merge request is ready, remove the "WIP" prefix from the title to allow it to be merged.
 diff --git a/app/views/projects/milestones/_form.html.haml b/app/views/projects/milestones/_form.html.haml
 index 39aa243..d5c4c36 100644
 --- a/app/views/projects/milestones/_form.html.haml
@@ -11735,7 +11746,7 @@ index 11c8c4f..d49c4c0 100644
        :preserve
          gollum
 diff --git a/app/views/projects/wikis/history.html.haml b/app/views/projects/wikis/history.html.haml
-index 4322146..d79f9f8 100644
+index 4322146..d79f9f8e 100644
 --- a/app/views/projects/wikis/history.html.haml
 +++ b/app/views/projects/wikis/history.html.haml
 @@ -1,21 +1,21 @@
@@ -12434,7 +12445,7 @@ index ac6c248..71547c7 100644
  :javascript
    new UsersSelect();
 diff --git a/app/views/shared/issuable/_form.html.haml b/app/views/shared/issuable/_form.html.haml
-index 90dc006..73fa7cd 100644
+index 90dc006..03a2596 100644
 --- a/app/views/shared/issuable/_form.html.haml
 +++ b/app/views/shared/issuable/_form.html.haml
 @@ -6,7 +6,7 @@
@@ -12451,14 +12462,11 @@ index 90dc006..73fa7cd 100644
        %p.help-block
          - if issuable.work_in_progress?
 -          Remove the <code>WIP</code> prefix from the title to allow this
--          <strong>Work In Progress</strong> merge request to be merged when it's ready.
-+          マージできる状態になったら <code>WIP</code> プレフィクスをタイトルから削除して
-+          <strong>Work In Progress (仕掛かり)</strong>のマージリクエストをマージできるようにします。
++          the <code>WIP</code> prefix from the title to allow thisを削除
+           <strong>Work In Progress</strong> merge request to be merged when it's ready.
          - else
--          Start the title with <code>[WIP]</code> or <code>WIP:</code> to prevent a
--          <strong>Work In Progress</strong> merge request from being merged before it's ready.
-+          タイトルを <code>[WIP]</code> または <code>WIP:</code> で開始すると
-+          <strong>Work In Progress (仕掛かり)</strong>のマージリクエストがマージできないようになります。
+           Start the title with <code>[WIP]</code> or <code>WIP:</code> to prevent a
+           <strong>Work In Progress</strong> merge request from being merged before it's ready.
  .form-group.detail-page-description
 -  = f.label :description, 'Description', class: 'control-label'
 +  = f.label :description, '説明', class: 'control-label'

@@ -10586,6 +10586,27 @@ index c9f0762..398d5b3 100644
 +    存在しません
    %p
      Please restore the target branch or use a different target branch.
+diff --git a/app/views/projects/merge_requests/widget/open/_wip.html.haml b/app/views/projects/merge_requests/widget/open/_wip.html.haml
+index c296422..bcd1256 100644
+--- a/app/views/projects/merge_requests/widget/open/_wip.html.haml
++++ b/app/views/projects/merge_requests/widget/open/_wip.html.haml
+@@ -1,11 +1,11 @@
+ %h4
+-  This merge request is currently a Work In Progress
++  現在、このマージリクエストはWork In Progress (仕掛かり)です。
+ 
+ - if can?(current_user, :update_merge_request, @merge_request)
+   %p
+-    When this merge request is ready,
++    マージできる状態になったら
+     = link_to remove_wip_namespace_project_merge_request_path(@project.namespace, @project, @merge_request), method: :post do
+-      remove the
+       %code WIP:
+-      prefix from the title
+-    to allow it to be merged.
++      プレフィクスをタイトルから
++      削除して
++    マージリクエストをマージできるようにします。
 diff --git a/app/views/projects/milestones/_form.html.haml b/app/views/projects/milestones/_form.html.haml
 index cbf1ba0..6337988 100644
 --- a/app/views/projects/milestones/_form.html.haml
@@ -13150,7 +13171,7 @@ index 4f8ea7e..b44b46d 100644
    - if !@labels.nil?
      .row-content-block.second-block.filtered-labels{ class: ("hidden" if !@labels.any?) }
 diff --git a/app/views/shared/issuable/_form.html.haml b/app/views/shared/issuable/_form.html.haml
-index 5ea0204..0139152 100644
+index 5ea0204..4b48239 100644
 --- a/app/views/shared/issuable/_form.html.haml
 +++ b/app/views/shared/issuable/_form.html.haml
 @@ -1,7 +1,7 @@
@@ -13171,15 +13192,36 @@ index 5ea0204..0139152 100644
    %div{ class: issuable_template_names.any? ? 'col-sm-7 col-lg-8' : 'col-sm-10' }
      = f.text_field :title, maxlength: 255, autofocus: true, autocomplete: 'off',
          class: 'form-control pad', required: true
-@@ -25,7 +25,7 @@
+@@ -24,20 +24,20 @@
+     - if issuable.is_a?(MergeRequest)
        %p.help-block
          .js-wip-explanation
++          マージできる状態になったら
            %a.js-toggle-wip{href: "", tabindex: -1}
 -            Remove the
-+            theを削除
              %code WIP:
-             prefix from the title
-           to allow this
+-            prefix from the title
+-          to allow this
+-          %strong Work In Progress
+-          merge request to be merged when it's ready.
++            プレフィクスをタイトルから
++            削除して
++          %strong Work In Progress (仕掛かり)
++          のマージリクエストをマージできるようにします。
+         .js-no-wip-explanation
+           %a.js-toggle-wip{href: "", tabindex: -1}
+-            Start the title with
+             %code WIP:
+-          to prevent a
+-          %strong Work In Progress
+-          merge request from being merged before it's ready.
++            でタイトルを開始すると
++          %strong Work In Progress (仕掛かり)
++          のマージリクエストが
++          マージできないようになります。
+ 
+     - if can_add_template?(issuable)
+       %p.help-block
 @@ -46,13 +46,13 @@
          to help your contributors communicate effectively!
  

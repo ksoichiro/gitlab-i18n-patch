@@ -528,7 +528,7 @@ translations:
   - name: wordInSentence
     pattern: "(\"[^\"]* ){word}((?: [^\"]*)?\")|('[^']* ){word}((?: [^']*)?')|( +){word}$"
     flags: 'gi'
-    exclude: '^\s*(?:- if |- when |= .*{word}$|\.[a-z-]+= {word}$|"v-for"|{word}: {word})'
+    exclude: '^\s*(?:- if |- when |= .*{word}$|\.[a-z-]+= {word}$|"v-for"|(?:%td= render .*)? {word}: {word})'
     replace: '$1$3$5${{key}}$2$4'
     params: ['word', 'key']
   - name: doSth

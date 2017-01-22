@@ -1740,7 +1740,7 @@ index c596866..1d70ce2 100644
  - @url = admin_application_path(@application)
  = render 'form', application: @application
 diff --git a/app/views/admin/applications/index.html.haml b/app/views/admin/applications/index.html.haml
-index f8cd98f..f49454d 100644
+index f8cd98f..a81fe36 100644
 --- a/app/views/admin/applications/index.html.haml
 +++ b/app/views/admin/applications/index.html.haml
 @@ -1,14 +1,14 @@
@@ -1768,9 +1768,8 @@ index f8cd98f..f49454d 100644
          %td= application.redirect_uri
          %td= application.access_tokens.map(&:resource_owner_id).uniq.count
 -        %td= link_to 'Edit', edit_admin_application_path(application), class: 'btn btn-link'
--        %td= render 'delete_form', application: application
 +        %td= link_to '編集', edit_admin_application_path(application), class: 'btn btn-link'
-+        %td= render 'delete_form', application: アプリケーション
+         %td= render 'delete_form', application: application
 diff --git a/app/views/admin/applications/new.html.haml b/app/views/admin/applications/new.html.haml
 index 6310d89..7f6c252 100644
 --- a/app/views/admin/applications/new.html.haml
@@ -4497,7 +4496,7 @@ index bfa95ce..4cec945 100644
 -  = submit_tag 'Revoke', onclick: "return confirm('Are you sure?')", class: 'btn btn-link btn-remove btn-sm'
 +  = submit_tag 'Revoke', onclick: "return confirm('本当によろしいですか？')", class: 'btn btn-link btn-remove btn-sm'
 diff --git a/app/views/doorkeeper/authorized_applications/index.html.haml b/app/views/doorkeeper/authorized_applications/index.html.haml
-index b184b9c..6ca4f28 100644
+index b184b9c..f0e857c 100644
 --- a/app/views/doorkeeper/authorized_applications/index.html.haml
 +++ b/app/views/doorkeeper/authorized_applications/index.html.haml
 @@ -1,11 +1,11 @@
@@ -4514,12 +4513,6 @@ index b184b9c..6ca4f28 100644
            %th Created At
            %th
            %th
-@@ -14,4 +14,4 @@
-           %tr
-             %td= application.name
-             %td= application.created_at.strftime('%Y-%m-%d %H:%M:%S')
--            %td= render 'delete_form', application: application
-+            %td= render 'delete_form', application: アプリケーション
 diff --git a/app/views/errors/encoding.html.haml b/app/views/errors/encoding.html.haml
 index 90cfbeb..8e2820c 100644
 --- a/app/views/errors/encoding.html.haml

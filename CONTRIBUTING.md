@@ -36,3 +36,7 @@ GitLab v8.3.0 以降については、基本的に i18n-patch を使ったパッ
 
 1. `README.template.md` を更新
 1. `npm run readme` で更新された `README.md` を一緒にコミット
+
+### (参考)未作成パッチの確認
+
+`npm run check` を実行すると、リリースされているバージョンのうちまだパッチが作られていないものを確認できます。

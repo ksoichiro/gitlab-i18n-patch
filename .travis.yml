@@ -8,3 +8,4 @@ before_install:
 script:
   - 'npm run readme'
   - 'npm run translate'
+  - 'npm test'

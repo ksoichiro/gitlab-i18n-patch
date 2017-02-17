@@ -35,7 +35,7 @@ if [ ! -d /opt/gitlab ]; then
   # $external_url is not replaced in /etc/gitlab/gitlab.rb:
   # https://gitlab.com/gitlab-org/omnibus-gitlab/commit/28731b656b350df9c0224e025dedeca1fee0eb06
   if [ ${GITLAB_VERSION_INT} -ge 740 ]; then
-      sed -i -e "s/^external_url .*$/external_url 'http:\/\/gitlab.example.com'/" /etc/gitlab/gitlab.rb
+    sed -i -e "s/^external_url .*$/external_url 'http:\/\/gitlab.example.com'/" /etc/gitlab/gitlab.rb
   fi
 
   # Postgresql does not start since v8.0.0
@@ -88,4 +88,3 @@ popd > /dev/null 2>&1
 
 echo "[33;1mDone![m"
 echo "[33;1mGitLab ${GITLAB_VERSION} has been installed: http://localhost:${GITLAB_WEB_PORT}/[m"
-

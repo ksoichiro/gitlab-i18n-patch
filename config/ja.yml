@@ -2927,3 +2927,5 @@ addAFile: ファイルを追加する
 addAnImage: 画像を追加する
 createAMergeRequestBasic: マージリクエストを作成する
 createAnIssue: 課題を作成する
+theSnippetIsVisibleOnlyToProjectMembers: スニペットはプロジェクトメンバーのみ閲覧できます。
+spamAndAntiBotProtection: スパムとアンチボットプロテクション

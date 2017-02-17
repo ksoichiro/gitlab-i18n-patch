@@ -232,6 +232,8 @@ translations:
     replace: '$1"${theProjectCanBeClonedByAnyLoggedInUser}"'
   - pattern: !!js/regexp /^(\s+haml_concat )"The project can be cloned"\n\s+haml_concat "without any"\n\s+haml_concat "authentication."/
     replace: '$1"${theProjectCanBeClonedWithoutAnyAuthentication}"'
+  - pattern: "The snippet is visible only to project members."
+    replace: '${theSnippetIsVisibleOnlyToProjectMembers}'
 
 - name: 'rb'
   parallel-group: 'group1'
@@ -1328,6 +1330,8 @@ translations:
     replace: '${stylingWithMarkdownAndSlashCommandsAreSupported}'
   - pattern: 'assign yourself'
     replace: '${assignYourself}'
+  - pattern: 'Spam and Anti-bot Protection'
+    replace: '${spamAndAntiBotProtection}'
 
   - name: formLabel
     params:

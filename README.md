@@ -18,6 +18,7 @@ GitLabはi18nに対応しないとのことですが、
 1. [GitLab CE v8.16.5](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.16.5 "GitLab CE v8.16.5") → [patches/v8.16.5ディレクトリ](patches/v8.16.5)
 1. [GitLab CE v8.16.4](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.16.4 "GitLab CE v8.16.4") → [patches/v8.16.4ディレクトリ](patches/v8.16.4)
 1. [GitLab CE v8.16.2](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.16.2 "GitLab CE v8.16.2") → [patches/v8.16.2ディレクトリ](patches/v8.16.2)
+1. [GitLab CE v8.15.7](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.15.7 "GitLab CE v8.15.7") → [patches/v8.15.7ディレクトリ](patches/v8.15.7)
 1. [GitLab CE v8.15.6](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.15.6 "GitLab CE v8.15.6") → [patches/v8.15.6ディレクトリ](patches/v8.15.6)
 1. [GitLab CE v8.15.5](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.15.5 "GitLab CE v8.15.5") → [patches/v8.15.5ディレクトリ](patches/v8.15.5)
 1. [GitLab CE v8.15.4](https://gitlab.com/gitlab-org/gitlab-ce/commits/v8.15.4 "GitLab CE v8.15.4") → [patches/v8.15.4ディレクトリ](patches/v8.15.4)

@@ -930,7 +930,7 @@ index 8b138a8..437819a 100644
  
    def sort_title_downvotes
 diff --git a/app/helpers/visibility_level_helper.rb b/app/helpers/visibility_level_helper.rb
-index 3a83ae1..a89d39d 100644
+index 3a83ae1..2b8f66c 100644
 --- a/app/helpers/visibility_level_helper.rb
 +++ b/app/helpers/visibility_level_helper.rb
 @@ -1,3 +1,4 @@
@@ -967,9 +967,12 @@ index 3a83ae1..a89d39d 100644
      end
    end
  
-@@ -54,12 +55,12 @@ module VisibilityLevelHelper
+@@ -52,14 +53,14 @@ module VisibilityLevelHelper
+     case level
+     when Gitlab::VisibilityLevel::PRIVATE
        if snippet.is_a? ProjectSnippet
-         "The snippet is visible only to project members."
+-        "The snippet is visible only to project members."
++        "スニペットはプロジェクトメンバーのみ閲覧できます。"
        else
 -        "The snippet is visible only to me."
 +        "スニペットは自分だけが閲覧できます。"
@@ -1368,7 +1371,7 @@ index 6c51639..5978285 100644
 +    = button_tag "サインイン", class: "btn-create btn"
  
 diff --git a/app/views/admin/application_settings/_form.html.haml b/app/views/admin/application_settings/_form.html.haml
-index 0d79ca7..2bc6c5c 100644
+index 0d79ca7..4b40214 100644
 --- a/app/views/admin/application_settings/_form.html.haml
 +++ b/app/views/admin/application_settings/_form.html.haml
 @@ -2,17 +2,17 @@
@@ -1579,7 +1582,14 @@ index 0d79ca7..2bc6c5c 100644
            server threads).
      .form-group
        = f.label :metrics_timeout, 'Connection timeout', class: 'control-label col-sm-2'
-@@ -286,11 +286,11 @@
+@@ -280,17 +280,17 @@
+           results in fewer but larger UDP packets being sent.
+ 
+   %fieldset
+-    %legend Spam and Anti-bot Protection
++    %legend スパムとアンチボットプロテクション
+     .form-group
+       .col-sm-offset-2.col-sm-10
          .checkbox
            = f.label :recaptcha_enabled do
              = f.check_box :recaptcha_enabled
@@ -3717,7 +3727,7 @@ index aa57df1..9bbabdf 100644
  = render 'dashboard/activity_head'
  
 diff --git a/app/views/dashboard/groups/index.html.haml b/app/views/dashboard/groups/index.html.haml
-index caca91a..a6c2154 100644
+index caca91af..a6c2154 100644
 --- a/app/views/dashboard/groups/index.html.haml
 +++ b/app/views/dashboard/groups/index.html.haml
 @@ -1,5 +1,5 @@

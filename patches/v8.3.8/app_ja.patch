@@ -1122,7 +1122,7 @@ index bb12d43..fb05c60 100644
  
    def sort_value_oldest_updated
 diff --git a/app/helpers/visibility_level_helper.rb b/app/helpers/visibility_level_helper.rb
-index 2e69ce9..bfed2a2 100644
+index 2e69ce9..cdd1071 100644
 --- a/app/helpers/visibility_level_helper.rb
 +++ b/app/helpers/visibility_level_helper.rb
 @@ -1,3 +1,4 @@
@@ -1145,9 +1145,12 @@ index 2e69ce9..bfed2a2 100644
      end
    end
  
-@@ -41,17 +42,24 @@ module VisibilityLevelHelper
+@@ -39,19 +40,26 @@ module VisibilityLevelHelper
+     case level
+     when Gitlab::VisibilityLevel::PRIVATE
        if snippet.is_a? ProjectSnippet
-         "The snippet is visible only to project members."
+-        "The snippet is visible only to project members."
++        "スニペットはプロジェクトメンバーのみ閲覧できます。"
        else
 -        "The snippet is visible only to me."
 +        "スニペットは自分だけが閲覧できます。"
@@ -1463,7 +1466,7 @@ index 40a5fe4..964f44d 100644
            %th
        = render @abuse_reports
 diff --git a/app/views/admin/application_settings/_form.html.haml b/app/views/admin/application_settings/_form.html.haml
-index c8dc31f..b72d626 100644
+index c8dc31f..9ab0d5d 100644
 --- a/app/views/admin/application_settings/_form.html.haml
 +++ b/app/views/admin/application_settings/_form.html.haml
 @@ -6,29 +6,29 @@
@@ -1615,7 +1618,7 @@ index c8dc31f..b72d626 100644
  
    %fieldset
      %legend Continuous Integration
-@@ -137,10 +137,10 @@
+@@ -137,34 +137,34 @@
          .checkbox
            = f.label :shared_runners_enabled do
              = f.check_box :shared_runners_enabled
@@ -1628,7 +1631,11 @@ index c8dc31f..b72d626 100644
        .col-sm-10
          = f.number_field :max_artifacts_size, class: 'form-control'
  
-@@ -151,20 +151,20 @@
+   %fieldset
+-    %legend Spam and Anti-bot Protection
++    %legend スパムとアンチボットプロテクション
+     .form-group
+       .col-sm-offset-2.col-sm-10
          .checkbox
            = f.label :recaptcha_enabled do
              = f.check_box :recaptcha_enabled

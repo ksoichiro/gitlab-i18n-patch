@@ -14,6 +14,7 @@
     "translate": "node lib/cli.js translate",
     "readme": "node lib/cli.js readme",
     "check": "node lib/cli.js check",
+    "update": "node lib/cli.js update",
     "test": "ava"
   }
 }

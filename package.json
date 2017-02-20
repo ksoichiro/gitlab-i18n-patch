@@ -11,9 +11,9 @@
   },
   "scripts": {
     "build": "i18n-patch --statistics -- ja gitlabhq",
-    "translate": "node lib/translate.js",
-    "readme": "node lib/update_readme.js",
-    "check": "node lib/check_update.js",
+    "translate": "node lib/cli.js translate",
+    "readme": "node lib/cli.js readme",
+    "check": "node lib/cli.js check",
     "test": "ava"
   }
 }

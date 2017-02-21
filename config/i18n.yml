@@ -1413,6 +1413,10 @@ translations:
     - {word: 'Visibility [lL]evel', key: visibilityLevel}
     - {word: 'About GitLab', key: aboutGitLab}
     - {word: 'Profile [sS]ettings', key: profileSettings}
+    - {word: 'Profile', key: profile}
+    - {word: 'Appearance [sS]ettings', key: appearanceSettings}
+    - {word: 'Appearance', key: appearance}
+    - {word: 'Overview', key: overview}
     - {word: 'SSH Keys', key: sshKey}
     - {word: 'Audit Log', key: auditLog}
     - {word: 'Assign to me', key: assignToMe}
@@ -1430,6 +1434,7 @@ translations:
     - {word: 'Push events', key: pushEvents}
     - {word: 'Merge events', key: mergeEvents}
     - {word: 'Issues events', key: issuesEvents}
+    - {word: 'Issue events', key: issueEvents}
     - {word: 'Build events', key: buildEvents}
     - {word: 'SSL [vV]erification', key: sslVerification}
     - {word: 'Group name', key: groupName}

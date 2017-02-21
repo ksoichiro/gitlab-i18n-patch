@@ -1417,11 +1417,12 @@ index d88f3ad..a0cf47c 100644
        = link_to 'Preview last save', preview_admin_appearances_path, class: 'btn', target: '_blank'
  
 diff --git a/app/views/admin/appearances/preview.html.haml b/app/views/admin/appearances/preview.html.haml
-index dd4a64e..d142f7f 100644
+index dd4a64e..b4da02d 100644
 --- a/app/views/admin/appearances/preview.html.haml
 +++ b/app/views/admin/appearances/preview.html.haml
 @@ -1,11 +1,11 @@
- - page_title "Preview | Appearance"
+-- page_title "Preview | Appearance"
++- page_title "Preview | 外観"
  %h3.page-title
 -  Appearance settings - Preview
 +  Appearance settings - プレビュー
@@ -1446,6 +1447,19 @@ index dd4a64e..d142f7f 100644
 +                = text_field_tag :login, nil, class: "form-control top", placeholder: "ユーザ名またはメールアドレス"
 +                = password_field_tag :password, nil, class: "form-control bottom", placeholder: "パスワード"
 +                = button_tag "サインイン", class: "btn-create btn"
+diff --git a/app/views/admin/appearances/show.html.haml b/app/views/admin/appearances/show.html.haml
+index 089e8e4..1f918a4 100644
+--- a/app/views/admin/appearances/show.html.haml
++++ b/app/views/admin/appearances/show.html.haml
+@@ -1,6 +1,6 @@
+-- page_title "Appearance"
++- page_title "外観"
+ %h3.page-title
+-  Appearance settings
++  外観設定
+ %p.light
+   You can modify the look and feel of GitLab here
+ 
 diff --git a/app/views/admin/application_settings/_form.html.haml b/app/views/admin/application_settings/_form.html.haml
 index f149f9e..6da7d1b 100644
 --- a/app/views/admin/application_settings/_form.html.haml
@@ -3067,7 +3081,7 @@ index 0fdd5bd..81d3e71 100644
            %th
        = render @spam_logs
 diff --git a/app/views/admin/users/_form.html.haml b/app/views/admin/users/_form.html.haml
-index fe0b9d3..e411d8a 100644
+index fe0b9d3..f08498b 100644
 --- a/app/views/admin/users/_form.html.haml
 +++ b/app/views/admin/users/_form.html.haml
 @@ -3,55 +3,55 @@
@@ -3143,9 +3157,12 @@ index fe0b9d3..e411d8a 100644
          - if current_user == @user
            .col-sm-10= f.check_box :admin, disabled: true
            .col-sm-10 You cannot remove your own admin rights.
-@@ -66,7 +66,7 @@
+@@ -64,9 +64,9 @@
+         .col-sm-10 External users cannot see internal or private projects unless access is explicitly granted. Also, external users cannot create projects or groups.
+ 
      %fieldset
-       %legend Profile
+-      %legend Profile
++      %legend プロフィール
        .form-group
 -        = f.label :avatar, class: 'control-label'
 +        = f.label :avatar, 'アバター', class: 'control-label'
@@ -3196,9 +3213,17 @@ index ce5e21e..fb3a5e6 100644
      = link_to "SSH keys", keys_admin_user_path(@user)
    = nav_link(controller: :identities) do
 diff --git a/app/views/admin/users/_profile.html.haml b/app/views/admin/users/_profile.html.haml
-index 6bc217f..9f510e5 100644
+index 6bc217f..693b092 100644
 --- a/app/views/admin/users/_profile.html.haml
 +++ b/app/views/admin/users/_profile.html.haml
+@@ -1,6 +1,6 @@
+ .panel.panel-default
+   .panel-heading
+-    Profile
++    プロフィール
+   %ul.well-list
+     %li
+       %span.light Member since
 @@ -23,9 +23,9 @@
          %strong= link_to user.twitter, "https://twitter.com/#{user.twitter}"
      - unless user.website_url.blank?
@@ -6111,7 +6136,7 @@ index 2fd4859..ef409f5 100644
 +    = link_to "招待を承認", accept_invite_url(@token), method: :post, class: "btn btn-success"
      = link_to "Decline", decline_invite_url(@token), method: :post, class: "btn btn-danger prepend-left-10"
 diff --git a/app/views/layouts/_page.html.haml b/app/views/layouts/_page.html.haml
-index 5be0b54..0c1c6f1 100644
+index 5be0b54..4b3b153 100644
 --- a/app/views/layouts/_page.html.haml
 +++ b/app/views/layouts/_page.html.haml
 @@ -3,7 +3,7 @@
@@ -6123,6 +6148,17 @@ index 5be0b54..0c1c6f1 100644
          .gitlab-text-container
            %h3 GitLab
  
+@@ -17,8 +17,8 @@
+     .collapse-nav
+       = render partial: 'layouts/collapse_button'
+     - if current_user
+-      = link_to current_user, class: 'sidebar-user', title: "Profile" do
+-        = image_tag avatar_icon(current_user, 60), alt: 'Profile', class: 'avatar avatar s36'
++      = link_to current_user, class: 'sidebar-user', title: "プロフィール" do
++        = image_tag avatar_icon(current_user, 60), alt: 'プロフィール', class: 'avatar avatar s36'
+         .username
+           = current_user.username
+   - if defined?(nav) && nav
 diff --git a/app/views/layouts/_search.html.haml b/app/views/layouts/_search.html.haml
 index 6b208c3..3a4237f 100644
 --- a/app/views/layouts/_search.html.haml
@@ -6159,7 +6195,7 @@ index 6591c52..edc5133 100644
  
  = render template: "layouts/application"
 diff --git a/app/views/layouts/ci/_page.html.haml b/app/views/layouts/ci/_page.html.haml
-index a13241b..c9117ab 100644
+index a13241b..25a951b 100644
 --- a/app/views/layouts/ci/_page.html.haml
 +++ b/app/views/layouts/ci/_page.html.haml
 @@ -4,7 +4,7 @@
@@ -6171,6 +6207,17 @@ index a13241b..c9117ab 100644
          .gitlab-text-container
            %h3 GitLab
  
+@@ -15,8 +15,8 @@
+     .collapse-nav
+       = render partial: 'layouts/collapse_button'
+     - if current_user
+-      = link_to current_user, class: 'sidebar-user', title: "Profile" do
+-        = image_tag avatar_icon(current_user, 60), alt: 'Profile', class: 'avatar avatar s36'
++      = link_to current_user, class: 'sidebar-user', title: "プロフィール" do
++        = image_tag avatar_icon(current_user, 60), alt: 'プロフィール', class: 'avatar avatar s36'
+         .username
+           = current_user.username
+   .content-wrapper
 diff --git a/app/views/layouts/dashboard.html.haml b/app/views/layouts/dashboard.html.haml
 index cb96bcc..fef7a4e 100644
 --- a/app/views/layouts/dashboard.html.haml
@@ -6324,12 +6371,18 @@ index 224b24b..b9fb0d7 100644
  
  = render template: "layouts/application"
 diff --git a/app/views/layouts/nav/_admin.html.haml b/app/views/layouts/nav/_admin.html.haml
-index f292730..00eb63a 100644
+index f292730..61a0e36 100644
 --- a/app/views/layouts/nav/_admin.html.haml
 +++ b/app/views/layouts/nav/_admin.html.haml
-@@ -5,25 +5,25 @@
+@@ -1,29 +1,29 @@
+ %ul.nav.nav-sidebar
+   = nav_link(controller: :dashboard, html_options: {class: 'home'}) do
+-    = link_to admin_root_path, title: 'Overview' do
++    = link_to admin_root_path, title: '概要' do
+       = icon('dashboard fw')
        %span
-         Overview
+-        Overview
++        概要
    = nav_link(controller: [:admin, :projects]) do
 -    = link_to admin_namespaces_projects_path, title: 'Projects' do
 +    = link_to admin_namespaces_projects_path, title: 'プロジェクト' do
@@ -6370,7 +6423,7 @@ index f292730..00eb63a 100644
          %span.count= number_with_delimiter(Ci::Build.count(:all))
    = nav_link(controller: :logs) do
      = link_to admin_logs_path, title: 'Logs' do
-@@ -57,10 +57,10 @@
+@@ -57,21 +57,21 @@
        %span
          Hooks
    = nav_link(controller: :background_jobs) do
@@ -6383,8 +6436,9 @@ index f292730..00eb63a 100644
    = nav_link(controller: :appearances) do
      = link_to admin_appearances_path, title: 'Appearances' do
        = icon('image')
-@@ -68,10 +68,10 @@
-         Appearance
+       %span
+-        Appearance
++        外観
  
    = nav_link(controller: :applications) do
 -    = link_to admin_applications_path, title: 'Applications' do
@@ -6610,7 +6664,7 @@ index 0b2673f..d718431 100644
 +              data: { confirm: leave_group_message(@group.name) }, method: :delete, title: 'Leave グループ' do
 +              Leave グループ
 diff --git a/app/views/layouts/nav/_profile.html.haml b/app/views/layouts/nav/_profile.html.haml
-index d730840..243c061 100644
+index d730840..90f3aa5 100644
 --- a/app/views/layouts/nav/_profile.html.haml
 +++ b/app/views/layouts/nav/_profile.html.haml
 @@ -1,49 +1,49 @@
@@ -6620,7 +6674,8 @@ index d730840..243c061 100644
 +    = link_to profile_path, title: 'プロフィール設定' do
        = icon('user fw')
        %span
-         Profile
+-        Profile
++        プロフィール
    = nav_link(controller: [:accounts, :two_factor_auths]) do
 -    = link_to profile_account_path, title: 'Account' do
 +    = link_to profile_account_path, title: 'アカウント' do

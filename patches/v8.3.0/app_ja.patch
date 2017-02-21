@@ -2859,10 +2859,10 @@ index 6a5986f..c541cb5 100644
      - @services.sort_by(&:title).each do |service|
        %tr
 diff --git a/app/views/admin/users/_form.html.haml b/app/views/admin/users/_form.html.haml
-index e18dd9b..75d2c53 100644
+index e18dd9b..5be6010 100644
 --- a/app/views/admin/users/_form.html.haml
 +++ b/app/views/admin/users/_form.html.haml
-@@ -7,55 +7,55 @@
+@@ -7,64 +7,64 @@
              %p= msg
  
      %fieldset
@@ -2935,9 +2935,11 @@ index e18dd9b..75d2c53 100644
          - if current_user == @user
            .col-sm-10= f.check_box :admin, disabled: true
            .col-sm-10 You cannot remove your own admin rights
-@@ -64,7 +64,7 @@
+         - else
+           .col-sm-10= f.check_box :admin
      %fieldset
-       %legend Profile
+-      %legend Profile
++      %legend プロフィール
        .form-group
 -        = f.label :avatar, class: 'control-label'
 +        = f.label :avatar, 'アバター', class: 'control-label'
@@ -2988,9 +2990,17 @@ index 5e17b01..11e4571 100644
      = link_to "SSH keys", keys_admin_user_path(@user)
    = nav_link(controller: :identities) do
 diff --git a/app/views/admin/users/_profile.html.haml b/app/views/admin/users/_profile.html.haml
-index 7d11edc..b45486e 100644
+index 7d11edc..9ef5680 100644
 --- a/app/views/admin/users/_profile.html.haml
 +++ b/app/views/admin/users/_profile.html.haml
+@@ -1,6 +1,6 @@
+ .panel.panel-default
+   .panel-heading
+-    Profile
++    プロフィール
+   %ul.well-list
+     %li
+       %span.light Member since
 @@ -23,9 +23,9 @@
          %strong= link_to user.twitter, "https://twitter.com/#{user.twitter}"
      - unless user.website_url.blank?
@@ -6042,7 +6052,7 @@ index 2fd4859..ef409f5 100644
 +    = link_to "招待を承認", accept_invite_url(@token), method: :post, class: "btn btn-success"
      = link_to "Decline", decline_invite_url(@token), method: :post, class: "btn btn-danger prepend-left-10"
 diff --git a/app/views/layouts/_page.html.haml b/app/views/layouts/_page.html.haml
-index ec7cd79..7418b1b 100644
+index ec7cd79..23dc5a7 100644
 --- a/app/views/layouts/_page.html.haml
 +++ b/app/views/layouts/_page.html.haml
 @@ -2,7 +2,7 @@
@@ -6054,6 +6064,17 @@ index ec7cd79..7418b1b 100644
          = brand_header_logo
          .gitlab-text-container
            %h3 GitLab
+@@ -17,8 +17,8 @@
+     .collapse-nav
+       = render partial: 'layouts/collapse_button'
+     - if current_user
+-      = link_to current_user, class: 'sidebar-user', title: "Profile" do
+-        = image_tag avatar_icon(current_user, 60), alt: 'Profile', class: 'avatar avatar s36'
++      = link_to current_user, class: 'sidebar-user', title: "プロフィール" do
++        = image_tag avatar_icon(current_user, 60), alt: 'プロフィール', class: 'avatar avatar s36'
+         .username
+           = current_user.username
+   .content-wrapper
 diff --git a/app/views/layouts/admin.html.haml b/app/views/layouts/admin.html.haml
 index 6591c52..edc5133 100644
 --- a/app/views/layouts/admin.html.haml
@@ -6067,7 +6088,7 @@ index 6591c52..edc5133 100644
  
  = render template: "layouts/application"
 diff --git a/app/views/layouts/ci/_page.html.haml b/app/views/layouts/ci/_page.html.haml
-index 7e90af2..2bb63f3 100644
+index 7e90af2..541ada0 100644
 --- a/app/views/layouts/ci/_page.html.haml
 +++ b/app/views/layouts/ci/_page.html.haml
 @@ -2,7 +2,7 @@
@@ -6079,6 +6100,17 @@ index 7e90af2..2bb63f3 100644
          = brand_header_logo
          .gitlab-text-container
            %h3 GitLab
+@@ -14,8 +14,8 @@
+     .collapse-nav
+       = render partial: 'layouts/collapse_button'
+     - if current_user
+-      = link_to current_user, class: 'sidebar-user', title: "Profile" do
+-        = image_tag avatar_icon(current_user, 60), alt: 'Profile', class: 'avatar avatar s36'
++      = link_to current_user, class: 'sidebar-user', title: "プロフィール" do
++        = image_tag avatar_icon(current_user, 60), alt: 'プロフィール', class: 'avatar avatar s36'
+         .username
+           = current_user.username
+   .content-wrapper
 diff --git a/app/views/layouts/dashboard.html.haml b/app/views/layouts/dashboard.html.haml
 index cb96bcc..fef7a4e 100644
 --- a/app/views/layouts/dashboard.html.haml
@@ -6220,12 +6252,15 @@ index 224b24b..b9fb0d7 100644
  
  = render template: "layouts/application"
 diff --git a/app/views/layouts/nav/_admin.html.haml b/app/views/layouts/nav/_admin.html.haml
-index c60ac5e..b420adb 100644
+index c60ac5e..dbcb3c4 100644
 --- a/app/views/layouts/nav/_admin.html.haml
 +++ b/app/views/layouts/nav/_admin.html.haml
-@@ -5,25 +5,25 @@
+@@ -3,27 +3,27 @@
+     = link_to admin_root_path, title: "Stats" do
+       = icon('dashboard fw')
        %span
-         Overview
+-        Overview
++        概要
    = nav_link(controller: [:admin, :projects]) do
 -    = link_to admin_namespaces_projects_path, title: 'Projects' do
 +    = link_to admin_namespaces_projects_path, title: 'プロジェクト' do

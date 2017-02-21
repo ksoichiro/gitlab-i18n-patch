@@ -1343,6 +1343,20 @@ index acbe170..d9e3ce0 100644
 -      = button_tag "Sign in", class: "btn-create btn"
 +      = button_tag "サインイン", class: "btn-create btn"
  
+diff --git a/app/views/admin/appearances/show.html.haml b/app/views/admin/appearances/show.html.haml
+index 454b779..9127207 100644
+--- a/app/views/admin/appearances/show.html.haml
++++ b/app/views/admin/appearances/show.html.haml
+@@ -1,7 +1,7 @@
+-- page_title "Appearance"
++- page_title "外観"
+ 
+ %h3.page-title
+-  Appearance settings
++  外観設定
+ %p.light
+   You can modify the look and feel of GitLab here
+ %hr
 diff --git a/app/views/admin/application_settings/_form.html.haml b/app/views/admin/application_settings/_form.html.haml
 index c4c68cd..dcbb11b 100644
 --- a/app/views/admin/application_settings/_form.html.haml
@@ -1980,12 +1994,18 @@ index 26a8846..e922671 100644
    %ul.content-list.builds-content-list
      = render "projects/builds/table", builds: @builds, admin: true
 diff --git a/app/views/admin/dashboard/_head.html.haml b/app/views/admin/dashboard/_head.html.haml
-index ec40391..baf2f61 100644
+index ec40391..10dd643 100644
 --- a/app/views/admin/dashboard/_head.html.haml
 +++ b/app/views/admin/dashboard/_head.html.haml
-@@ -8,21 +8,21 @@
+@@ -4,25 +4,25 @@
+     .nav-links.sub-nav.scrolling-tabs
+       %ul{ class: (container_class) }
+         = nav_link(controller: :dashboard, html_options: {class: 'home'}) do
+-          = link_to admin_root_path, title: 'Overview' do
++          = link_to admin_root_path, title: '概要' do
              %span
-               Overview
+-              Overview
++              概要
          = nav_link(controller: [:admin, :projects]) do
 -          = link_to admin_namespaces_projects_path, title: 'Projects' do
 +          = link_to admin_namespaces_projects_path, title: 'プロジェクト' do
@@ -3031,7 +3051,7 @@ index 0fdd5bd..81d3e71 100644
            %th
        = render @spam_logs
 diff --git a/app/views/admin/users/_form.html.haml b/app/views/admin/users/_form.html.haml
-index 3145212..23c11a6 100644
+index 3145212..a92592a 100644
 --- a/app/views/admin/users/_form.html.haml
 +++ b/app/views/admin/users/_form.html.haml
 @@ -3,55 +3,55 @@
@@ -3107,9 +3127,12 @@ index 3145212..23c11a6 100644
          - if current_user == @user
            .col-sm-10= f.check_box :admin, disabled: true
            .col-sm-10 You cannot remove your own admin rights.
-@@ -66,7 +66,7 @@
+@@ -64,9 +64,9 @@
+         .col-sm-10 External users cannot see internal or private projects unless access is explicitly granted. Also, external users cannot create projects or groups.
+ 
      %fieldset
-       %legend Profile
+-      %legend Profile
++      %legend プロフィール
        .form-group
 -        = f.label :avatar, class: 'control-label'
 +        = f.label :avatar, 'アバター', class: 'control-label'
@@ -3160,9 +3183,17 @@ index ce5e21e..fb3a5e6 100644
      = link_to "SSH keys", keys_admin_user_path(@user)
    = nav_link(controller: :identities) do
 diff --git a/app/views/admin/users/_profile.html.haml b/app/views/admin/users/_profile.html.haml
-index 6bc217f..9f510e5 100644
+index 6bc217f..693b092 100644
 --- a/app/views/admin/users/_profile.html.haml
 +++ b/app/views/admin/users/_profile.html.haml
+@@ -1,6 +1,6 @@
+ .panel.panel-default
+   .panel-heading
+-    Profile
++    プロフィール
+   %ul.well-list
+     %li
+       %span.light Member since
 @@ -23,9 +23,9 @@
          %strong= link_to user.twitter, "https://twitter.com/#{user.twitter}"
      - unless user.website_url.blank?
@@ -4941,7 +4972,7 @@ index a8fdbd8..c1af6a0 100644
        - @milestones.each do |milestone|
          = render 'milestone', milestone: milestone
 diff --git a/app/views/groups/milestones/new.html.haml b/app/views/groups/milestones/new.html.haml
-index 23d438b..fb08c13 100644
+index 23d438b..0275e71 100644
 --- a/app/views/groups/milestones/new.html.haml
 +++ b/app/views/groups/milestones/new.html.haml
 @@ -1,11 +1,11 @@
@@ -4995,7 +5026,7 @@ index 23d438b..fb08c13 100644
    .form-actions
 -    = f.submit 'Create Milestone', class: "btn-create btn"
 -    = link_to "Cancel", group_milestones_path(@group), class: "btn btn-cancel"
-+    = f.submit 'マイルストーンを作成', class: "btn-create btn"
++    = f.submit 'Milestoneを作成', class: "btn-create btn"
 +    = link_to "キャンセル", group_milestones_path(@group), class: "btn btn-cancel"
  
  
@@ -6225,7 +6256,7 @@ index 66b115e..231f812 100644
  
  = render template: "layouts/group"
 diff --git a/app/views/layouts/header/_default.html.haml b/app/views/layouts/header/_default.html.haml
-index 7faa8bd..fc95008 100644
+index 7faa8bd..47d736a 100644
 --- a/app/views/layouts/header/_default.html.haml
 +++ b/app/views/layouts/header/_default.html.haml
 @@ -13,7 +13,7 @@
@@ -6257,9 +6288,12 @@ index 7faa8bd..fc95008 100644
                    = icon('plus fw')
              - if Gitlab::Sherlock.enabled?
                %li
-@@ -47,20 +47,20 @@
+@@ -45,22 +45,22 @@
+               .dropdown-menu-nav.dropdown-menu-align-right
+                 %ul
                    %li
-                     = link_to "Profile", current_user, class: 'profile-link', aria: { label: "Profile" }, data: { user: current_user.username }
+-                    = link_to "Profile", current_user, class: 'profile-link', aria: { label: "Profile" }, data: { user: current_user.username }
++                    = link_to "プロフィール", current_user, class: 'profile-link', aria: { label: "Profile" }, data: { user: current_user.username }
                    %li
 -                    = link_to "Profile Settings", profile_path, aria: { label: "Profile Settings" }
 +                    = link_to "プロフィール設定", profile_path, aria: { label: "Profile 設定" }
@@ -6305,9 +6339,21 @@ index 22319bb..31223ac 100644
  
  = render template: "layouts/application"
 diff --git a/app/views/layouts/nav/_admin.html.haml b/app/views/layouts/nav/_admin.html.haml
-index ac04f57..2a19255 100644
+index ac04f57..33db98f 100644
 --- a/app/views/layouts/nav/_admin.html.haml
 +++ b/app/views/layouts/nav/_admin.html.haml
+@@ -6,9 +6,9 @@
+     = icon('angle-right')
+   %ul.nav-links.scrolling-tabs
+     = nav_link(controller: %w(dashboard admin projects users groups builds runners), html_options: {class: 'home'}) do
+-      = link_to admin_root_path, title: 'Overview', class: 'shortcuts-tree' do
++      = link_to admin_root_path, title: '概要', class: 'shortcuts-tree' do
+         %span
+-          Overview
++          概要
+     = nav_link(controller: %w(system_info background_jobs logs health_check requests_profiles)) do
+       = link_to admin_system_info_path, title: 'Monitoring' do
+         %span
 @@ -20,12 +20,12 @@
      = nav_link(controller: :hooks) do
        = link_to admin_hooks_path, title: 'Hooks' do
@@ -6325,7 +6371,7 @@ index ac04f57..2a19255 100644
      = nav_link(controller: :abuse_reports) do
        = link_to admin_abuse_reports_path, title: "Abuse Reports" do
 diff --git a/app/views/layouts/nav/_admin_settings.html.haml b/app/views/layouts/nav/_admin_settings.html.haml
-index 38e9b80..a5d1ab7 100644
+index 38e9b80..46ad4b1 100644
 --- a/app/views/layouts/nav/_admin_settings.html.haml
 +++ b/app/views/layouts/nav/_admin_settings.html.haml
 @@ -5,9 +5,9 @@
@@ -6340,7 +6386,7 @@ index 38e9b80..a5d1ab7 100644
  
        = nav_link(controller: :services) do
          = link_to admin_application_settings_services_path, title: 'Service Templates' do
-@@ -15,9 +15,9 @@
+@@ -15,17 +15,17 @@
              Service Templates
  
        = nav_link(controller: :labels) do
@@ -6352,7 +6398,9 @@ index 38e9b80..a5d1ab7 100644
  
        = nav_link(controller: :appearances) do
          = link_to admin_appearances_path, title: 'Appearances' do
-@@ -26,6 +26,6 @@
+           %span
+-            Appearance
++            外観
  
        %li.divider
        = nav_link(controller: :application_settings) do
@@ -6542,7 +6590,7 @@ index 75275af..a06edc4 100644
 +                data: { confirm: leave_confirmation_message(@group) }, method: :delete, title: 'Leave グループ' do
 +                Leave グループ
 diff --git a/app/views/layouts/nav/_profile.html.haml b/app/views/layouts/nav/_profile.html.haml
-index 6d514f6..a9cbf46 100644
+index 6d514f6..36e3962 100644
 --- a/app/views/layouts/nav/_profile.html.haml
 +++ b/app/views/layouts/nav/_profile.html.haml
 @@ -5,45 +5,45 @@
@@ -6552,7 +6600,8 @@ index 6d514f6..a9cbf46 100644
 -      = link_to profile_path, title: 'Profile Settings' do
 +      = link_to profile_path, title: 'プロフィール設定' do
          %span
-           Profile
+-          Profile
++          プロフィール
      = nav_link(controller: [:accounts, :two_factor_auths]) do
 -      = link_to profile_account_path, title: 'Account' do
 +      = link_to profile_account_path, title: 'アカウント' do

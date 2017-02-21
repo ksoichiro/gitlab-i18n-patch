@@ -408,6 +408,9 @@ unblock: ブロック解除
 reset: リセット
 hook: フック
 profile: プロフィール
+appearanceSettings: 外観設定
+appearance: 外観
+overview: 概要
 serviceIsUnknownOrItDoesntExist: 不明なサービスまたは存在しないサービスです
 youMustProvideAValidCurrentPassword: 現在のパスワードを正しく入力してください
 passwordSuccessfullyChanged: パスワードは正常に変更されました
@@ -2306,6 +2309,7 @@ tagPushEvents: タグプッシュ
 pushEvents: プッシュ
 mergeEvents: マージ
 issuesEvents: 課題
+issueEvents: 課題
 mergeRequestEvents: マージリクエスト
 buildEvents: ビルド
 sslVerification: SSL検証

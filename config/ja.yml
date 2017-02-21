@@ -2333,6 +2333,8 @@ commandLineInstructions: コマンドラインでの手順
 gitGlobalSetup: Gitのグローバルなセットアップ
 createANewRepository: リポジトリを新しく作成する場合
 existingFolderOrGitRepository: 既存のフォルダまたはGitリポジトリがある場合
+existingFolder: 既存のフォルダがある場合
+existingGitRepository: 既存のGitリポジトリがある場合
 repository: リポジトリ
 importSth: '{0}をインポート'
 importProjectsFromSth: '{0}からプロジェクトをインポート'
@@ -2933,3 +2935,4 @@ createAMergeRequestBasic: マージリクエストを作成する
 createAnIssue: 課題を作成する
 theSnippetIsVisibleOnlyToProjectMembers: スニペットはプロジェクトメンバーのみ閲覧できます。
 spamAndAntiBotProtection: スパムとアンチボットプロテクション
+thereAreNoIssuesToShow: 課題はありません

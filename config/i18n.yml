@@ -991,6 +991,10 @@ translations:
     replace: '${createANewRepository}'
   - pattern: "Existing folder or Git repository"
     replace: '${existingFolderOrGitRepository}'
+  - pattern: "Existing folder"
+    replace: '${existingFolder}'
+  - pattern: "Existing Git repository"
+    replace: '${existingGitRepository}'
   - pattern: !!js/regexp /Import projects from (.*)$/
     replace: '${importProjectsFromSth}'
     args:
@@ -1245,6 +1249,8 @@ translations:
     match-once: true
   - pattern: 'No open milestones available.'
     replace: '${noOpenMilestonesAvailable}'
+  - pattern: 'There are no issues to show.'
+    replace: '${thereAreNoIssuesToShow}'
   - pattern: !!js/regexp /(\s+)Please review the\n(\s+[^']+')guidelines for contribution([^\n]+)\n(\s+)to this repository\./
     replace: '${pleaseReviewTheGuidelinesForContributionToThisRepository}'
     args:

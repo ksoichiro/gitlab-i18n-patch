@@ -9672,7 +9672,7 @@ index 1d7fdf6..e9dca76 100644
  .save-project-loader.hide
    .center
 diff --git a/app/views/projects/empty.html.haml b/app/views/projects/empty.html.haml
-index 58c085c..65d0186 100644
+index 58c085c..ca609d1 100644
 --- a/app/views/projects/empty.html.haml
 +++ b/app/views/projects/empty.html.haml
 @@ -9,10 +9,10 @@
@@ -9709,12 +9709,21 @@ index 58c085c..65d0186 100644
            %pre.light-well
              :preserve
                git clone #{ content_tag(:span, default_url_to_repo, class: 'clone')}
+@@ -52,7 +52,7 @@
+               git push -u origin master
+ 
+         %fieldset
+-          %h5 Existing folder
++          %h5 既存のフォルダがある場合
+           %pre.light-well
+             :preserve
+               cd existing_folder
 @@ -63,7 +63,7 @@
                git push -u origin master
  
          %fieldset
 -          %h5 Existing Git repository
-+          %h5 Existing Git リポジトリ
++          %h5 既存のGitリポジトリがある場合
            %pre.light-well
              :preserve
                cd existing_repo
@@ -13679,7 +13688,7 @@ index b6047ec..da499f0 100644
          = number_with_delimiter(all_builds.running.count(:id))
  
 diff --git a/app/views/shared/empty_states/_issues.html.haml b/app/views/shared/empty_states/_issues.html.haml
-index e203365..202913e 100644
+index e203365..e5f9614 100644
 --- a/app/views/shared/empty_states/_issues.html.haml
 +++ b/app/views/shared/empty_states/_issues.html.haml
 @@ -10,13 +10,13 @@
@@ -13698,7 +13707,8 @@ index e203365..202913e 100644
 -          = link_to 'New issue', button_path, class: 'btn btn-new', title: 'New issue', id: 'new_issue_link'
 +          = link_to '新しい課題', button_path, class: 'btn btn-new', title: 'New 課題', id: 'new_issue_link'
        - else
-         %h4.text-center There are no issues to show.
+-        %h4.text-center There are no issues to show.
++        %h4.text-center 課題はありません
 diff --git a/app/views/shared/groups/_group.html.haml b/app/views/shared/groups/_group.html.haml
 index f9a7aa4..cb90718 100644
 --- a/app/views/shared/groups/_group.html.haml

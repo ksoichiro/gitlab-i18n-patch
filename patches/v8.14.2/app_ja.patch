@@ -13594,7 +13594,7 @@ index 60353ae..f9031b9 100644
          = number_with_delimiter(all_builds.running.count(:id))
  
 diff --git a/app/views/shared/empty_states/_issues.html.haml b/app/views/shared/empty_states/_issues.html.haml
-index e939278..dc010af 100644
+index e939278..cb68e29 100644
 --- a/app/views/shared/empty_states/_issues.html.haml
 +++ b/app/views/shared/empty_states/_issues.html.haml
 @@ -15,8 +15,8 @@
@@ -13607,7 +13607,8 @@ index e939278..dc010af 100644
 -          = link_to 'New issue', button_path, class: 'btn btn-new', title: 'New issue', id: 'new_issue_link'
 +          = link_to '新しい課題', button_path, class: 'btn btn-new', title: 'New 課題', id: 'new_issue_link'
        - else
-         %h4.text-center There are no issues to show.
+-        %h4.text-center There are no issues to show.
++        %h4.text-center 課題はありません
 diff --git a/app/views/shared/groups/_group.html.haml b/app/views/shared/groups/_group.html.haml
 index 19221e3..c45be6e 100644
 --- a/app/views/shared/groups/_group.html.haml

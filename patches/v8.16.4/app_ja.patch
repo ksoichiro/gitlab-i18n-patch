@@ -9672,7 +9672,7 @@ index b6f5aaa..6b6b6f8 100644
  .save-project-loader.hide
    .center
 diff --git a/app/views/projects/empty.html.haml b/app/views/projects/empty.html.haml
-index 58c085c..ca609d1 100644
+index 58c085c..4ea2972 100644
 --- a/app/views/projects/empty.html.haml
 +++ b/app/views/projects/empty.html.haml
 @@ -9,10 +9,10 @@
@@ -9688,7 +9688,15 @@ index 58c085c..ca609d1 100644
      %p
        Otherwise you can start with adding a
        = succeed ',' do
-@@ -31,17 +31,17 @@
+@@ -24,24 +24,24 @@
+       = link_to '.gitignore', add_special_file_path(@project, file_name: '.gitignore'), class: 'underlined-link'
+       to this project.
+     %p
+-      You will need to be owner or have the master permission level for the initial push, as the master branch is automatically protected.
++      masterブランチは自動的に保護されるため、最初のプッシュをするためには所有者であるかMaster権限を持っていなければなりません。
+ 
+ - if can?(current_user, :push_code, @project)
+   %div{ class: container_class }
      .prepend-top-20
      .empty_wrapper
        %h3.page-title-empty

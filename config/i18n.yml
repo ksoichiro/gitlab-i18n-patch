@@ -1338,6 +1338,8 @@ translations:
     replace: '${assignYourself}'
   - pattern: 'Spam and Anti-bot Protection'
     replace: '${spamAndAntiBotProtection}'
+  - pattern: "You will need to be owner or have the master permission level for the initial push, as the master branch is automatically protected."
+    replace: '${youWillNeedToBeOwnerOrHaveTheMasterPermissionLevelForTheInitialPushAsTheMasterBranchIsAutomaticallyProtected}'
 
   - name: formLabel
     params:

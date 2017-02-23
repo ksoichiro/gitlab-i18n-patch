@@ -4972,7 +4972,7 @@ index a8fdbd8..c1af6a0 100644
        - @milestones.each do |milestone|
          = render 'milestone', milestone: milestone
 diff --git a/app/views/groups/milestones/new.html.haml b/app/views/groups/milestones/new.html.haml
-index 23d438b..fb08c13 100644
+index 23d438b..0275e71 100644
 --- a/app/views/groups/milestones/new.html.haml
 +++ b/app/views/groups/milestones/new.html.haml
 @@ -1,11 +1,11 @@
@@ -5026,7 +5026,7 @@ index 23d438b..fb08c13 100644
    .form-actions
 -    = f.submit 'Create Milestone', class: "btn-create btn"
 -    = link_to "Cancel", group_milestones_path(@group), class: "btn btn-cancel"
-+    = f.submit 'マイルストーンを作成', class: "btn-create btn"
++    = f.submit 'Milestoneを作成', class: "btn-create btn"
 +    = link_to "キャンセル", group_milestones_path(@group), class: "btn btn-cancel"
  
  
@@ -9486,7 +9486,7 @@ index fb776e3..73efa89 100644
  .save-project-loader.hide
    .center
 diff --git a/app/views/projects/empty.html.haml b/app/views/projects/empty.html.haml
-index 7a39064..3dc28c7 100644
+index 7a39064..3304a01 100644
 --- a/app/views/projects/empty.html.haml
 +++ b/app/views/projects/empty.html.haml
 @@ -9,10 +9,10 @@
@@ -9502,7 +9502,15 @@ index 7a39064..3dc28c7 100644
      %p
        Otherwise you can start with adding a
        = succeed ',' do
-@@ -31,17 +31,17 @@
+@@ -24,24 +24,24 @@
+       = link_to '.gitignore', add_special_file_path(@project, file_name: '.gitignore'), class: 'underlined-link'
+       to this project.
+     %p
+-      You will need to be owner or have the master permission level for the initial push, as the master branch is automatically protected.
++      masterブランチは自動的に保護されるため、最初のプッシュをするためには所有者であるかMaster権限を持っていなければなりません。
+ 
+ - if can?(current_user, :push_code, @project)
+   %div{ class: container_class }
      .prepend-top-20
      .empty_wrapper
        %h3.page-title-empty

@@ -1437,6 +1437,7 @@ translations:
     - {word: 'Network [gG]raph', key: networkGraph}
     - {word: 'Private [tT]oken', key: privateToken}
     - {word: 'Most stars', key: mostStars}
+    - {word: 'Trending', key: trending}
     - {word: 'Reported by', key: reportedBy}
     - {word: 'Reported at', key: reportedAt}
     - {word: 'Push events', key: pushEvents}

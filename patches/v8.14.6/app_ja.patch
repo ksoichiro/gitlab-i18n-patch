@@ -4645,11 +4645,15 @@ index 4cff14b..739c5f7 100644
        - @tags.each do |tag|
          %li{ class: (tag.name == params[:tag]) ? 'active' : 'light' }
 diff --git a/app/views/explore/projects/_nav.html.haml b/app/views/explore/projects/_nav.html.haml
-index 614b543..0642bee 100644
+index 614b543..15a7e87 100644
 --- a/app/views/explore/projects/_nav.html.haml
 +++ b/app/views/explore/projects/_nav.html.haml
-@@ -4,7 +4,7 @@
-       Trending
+@@ -1,10 +1,10 @@
+ %ul.nav-links
+   = nav_link(page: [trending_explore_projects_path, explore_root_path]) do
+     = link_to trending_explore_projects_path do
+-      Trending
++      トレンド
    = nav_link(page: starred_explore_projects_path) do
      = link_to starred_explore_projects_path do
 -      Most stars
@@ -4976,7 +4980,7 @@ index a8fdbd8..c1af6a0 100644
        - @milestones.each do |milestone|
          = render 'milestone', milestone: milestone
 diff --git a/app/views/groups/milestones/new.html.haml b/app/views/groups/milestones/new.html.haml
-index 0dfaf74..c6373c4 100644
+index 0dfaf74..9f88efe 100644
 --- a/app/views/groups/milestones/new.html.haml
 +++ b/app/views/groups/milestones/new.html.haml
 @@ -1,11 +1,11 @@
@@ -5030,7 +5034,7 @@ index 0dfaf74..c6373c4 100644
    .form-actions
 -    = f.submit 'Create Milestone', class: "btn-create btn"
 -    = link_to "Cancel", group_milestones_path(@group), class: "btn btn-cancel"
-+    = f.submit 'Milestoneを作成', class: "btn-create btn"
++    = f.submit 'マイルストーンを作成', class: "btn-create btn"
 +    = link_to "キャンセル", group_milestones_path(@group), class: "btn btn-cancel"
  
  

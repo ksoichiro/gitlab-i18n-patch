@@ -2281,6 +2281,7 @@ newPassword: 新しいパスワード
 currentPassword: 現在のパスワード
 name: 名前
 trendingProjects: トレンドプロジェクト
+trending: トレンド
 mostStars: スター数
 all: すべて
 discoverProjectsGroupsAndSnippetsShareYourProjectsWithOthers: プロジェクト、グループ、スニペットを見つけましょう。あなたのプロジェクトをシェアしましょう

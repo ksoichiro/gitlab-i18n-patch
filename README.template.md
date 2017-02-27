@@ -71,7 +71,13 @@ GitLabはi18nに対応しないとのことですが、
 ### 基本
 
 `patches/[GitLabバージョン]/app_ja.patch`がパッチです。  
-例えばホームディレクトリに配置した場合、以下で適用します。
+パッチを適用するGitLabのバージョンと完全に一致するものを選びます。  
+リポジトリをクローンするか、wget、curl などで直接パッチファイルをダウンロードします。  
+以下は wget で v8.16.6 のパッチを取得する例です。
+
+    $ wget https://raw.githubusercontent.com/ksoichiro/gitlab-i18n-patch/master/patches/v8.16.6/app_ja.patch
+
+例えばホームディレクトリにパッチファイルを配置した場合、以下で適用します。
 
     $ cd /opt/gitlab/embedded/service/gitlab-rails
     $ patch -p1 < ~/app_ja.patch

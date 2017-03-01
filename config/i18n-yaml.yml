@@ -1,0 +1,18 @@
+translations:
+
+# YAML
+- name: 'devise-ja'
+  parallel-group: 'group1'
+  locale:
+    include: [ja]
+  add:
+    path: 'config/locales/devise.ja.yml'
+    value: devise
+
+- name: 'locale-ja'
+  parallel-group: 'group1'
+  locale:
+    include: [ja]
+  add:
+    path: 'config/locales/ja.yml'
+    value: configLocalesJa

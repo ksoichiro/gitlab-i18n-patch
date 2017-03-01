@@ -1,0 +1,49 @@
+translations:
+
+# JavaScript
+- name: 'js:jquery.timeago'
+  parallel-group: 'group1'
+  src: 'app/assets/javascripts/lib/jquery.timeago.js'
+  patterns:
+  - insert:
+      at: end
+      value: jQueryTimeago
+
+- name: 'js'
+  parallel-group: 'group2'
+  src: 'app/assets/javascripts/**.js'
+  named-patterns:
+  - name: doubleQuoted
+    pattern: "\"{word}\""
+    replace: "\"${{key}}\""
+    params: ['word', 'key']
+  patterns:
+  - pattern: "Nothing to preview."
+    replace: "${nothingToPreview}"
+  - pattern: "Loading..."
+    replace: "${loading}"
+  - pattern: 'Any Label'
+    replace: '${anyLabel}'
+  - pattern: 'Any Milestone'
+    replace: '${anyMilestone}'
+  - pattern: 'Any namepspace'
+    replace: '${anyNamespace}'
+  - pattern: 'Any User'
+    replace: '${anyUser}'
+  - pattern: "'Unassigned'"
+    replace: "'${unassigned}'"
+  - pattern: 'No due date'
+    replace: '${noDueDate}'
+  - pattern: 'No Label'
+    replace: '${noLabel}'
+  - pattern: 'No Milestone'
+    replace: '${noMilestone}'
+  - pattern: 'No contributions'
+    replace: '${noContributions}'
+  - pattern: 'No assignee'
+    replace: '${noAssignee}'
+  - pattern: 'assign yourself'
+    replace: '${assignYourself}'
+  - name: doubleQuoted
+    params:
+    - {word: 'Search for a user', key: searchForAUser}

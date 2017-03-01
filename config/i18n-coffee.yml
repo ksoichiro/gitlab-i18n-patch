@@ -1,0 +1,40 @@
+translations:
+
+# CoffeeScript
+- name: 'coffee'
+  parallel-group: 'group1'
+  src: '**/*.coffee'
+  named-patterns:
+  - name: singleQuoted
+    pattern: "'{word}'"
+    replace: "'${{key}}'"
+    params: ['word', 'key']
+  - name: doubleQuoted
+    pattern: "\"{word}\""
+    replace: "\"${{key}}\""
+    params: ['word', 'key']
+  patterns:
+  - pattern: "Nothing to preview."
+    replace: "${nothingToPreview}"
+  - pattern: "Loading..."
+    replace: "${loading}"
+  - name: singleQuoted
+    params:
+    - {word: Close, key: close}
+    - {word: 'Comment & reopen', key: commentAndReopen}
+    - {word: 'Comment & close', key: commentAndClose}
+    - {word: Reopen, key: reopen}
+    - {word: Unassigned, key: unassigned}
+    - {word: Any, key: any}
+  - name: doubleQuoted
+    params:
+    - {word: 'Search for namespace', key: searchForNamespace}
+    - {word: Unsubscribe, key: unsubscribe}
+    - {word: Subscribe, key: subscribe}
+    - {word: 'Search for a user', key: searchForAUser}
+  - pattern: '" commits"'
+    replace: '" ${commits}"'
+  - pattern: 'd3.time.format("%B %e %Y")'
+    replace: 'd3.time.format("${d3TimeFormat}")'
+  - pattern: 'Appearance settings saved'
+    replace: '${appearanceSettingsSaved}'

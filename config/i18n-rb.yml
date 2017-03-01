@@ -1,0 +1,406 @@
+translations:
+
+# Ruby
+- name: 'rb:helpers'
+  parallel-group: 'group1'
+  src: 'app/helpers/**.rb'
+  patterns:
+  - pattern: "'Oldest updated'"
+    replace: "'${oldestUpdated}'"
+  - pattern: "'Recently updated'"
+    replace: "'${recentlyUpdated}'"
+  - pattern: "'Oldest created'"
+    replace: "'${oldestCreated}'"
+  - pattern: "'Recently created'"
+    replace: "'${recentlyCreated}'"
+  - pattern: "'Milestone due soon'"
+    replace: "'${milestoneDueSoon}'"
+  - pattern: "'Milestone due later'"
+    replace: "'${milestoneDueLater}'"
+  - pattern: "'Name'"
+    replace: "'${name}'"
+  - pattern: "'Largest repository'"
+    replace: "'${largestRepository}'"
+  - pattern: "'Recent sign in'"
+    replace: "'${recentSignIn}'"
+  - pattern: "'Oldest sign in'"
+    replace: "'${oldestSignIn}'"
+  - pattern: "Project access must be granted explicitly to each user."
+    replace: '${projectAccessMustBeGrantedExplicitlyToEachUser}'
+  - pattern: "The project can be cloned by any logged in user."
+    replace: '${theProjectCanBeClonedByAnyLoggedInUser}'
+  - pattern: "The project can be cloned without any authentication."
+    replace: '${theProjectCanBeClonedWithoutAnyAuthentication}'
+  - pattern: !!js/regexp /  def visibility_level_label\(level\)\n    Project.visibility_levels.key\(level\)\n  end/m
+    replace: "  def visibility_level_label(level)\n    case level\n    when Gitlab::VisibilityLevel::PRIVATE\n      \"${private}\"\n    when Gitlab::VisibilityLevel::INTERNAL\n      \"${internal}\"\n    when Gitlab::VisibilityLevel::PUBLIC\n      \"${public}\"\n    end\n  end"
+    match-once: true
+  - pattern: !!js/regexp /You are going to remove ([^\s]+) from ([^\s]+) project team. Are you sure\?/
+    replace: '${youAreGoingToRemoveFromProjectTeamAreYouSure}'
+    args:
+    - '$1'
+    - '$2'
+  - pattern: "End a line with two or more spaces for a line-break, or soft-return"
+    replace: '${endALineWithTwoOrMoreSpacesForALineBreakOrSoftReturn}'
+  - pattern: "Inline code can be denoted by `surrounding it with backticks`"
+    replace: '${inlineCodeCanBeDenotedBySurroundingItWithBackticks}'
+  - pattern: "Blocks of code can be denoted by three backticks ``` or four leading spaces"
+    replace: '${blocksOfCodeCanBeDenotedByThreeBackticksOrFourLeadingSpaces}'
+  - pattern: "Emoji can be added by :emoji_name:, for example :thumbsup:"
+    replace: '${emojiCanBeAddedByEmojiNameForExampleThumbUp}'
+  - pattern: "Notify other participants using @user_name"
+    replace: '${notifyOtherParticipantsUsingUserName}'
+  - pattern: "Notify a specific group using @group_name"
+    replace: '${notifyASpecificGroupUsingGroupName}'
+  - pattern: "Notify the entire team using @all"
+    replace: '${notifyTheEntireTeamUsingAll}'
+  - pattern: "Reference an issue using a hash, for example issue #123"
+    replace: '${referenceAnIssueUsingAHashForExampleIssue123}'
+  - pattern: "Reference a merge request using an exclamation point, for example MR !123"
+    replace: '${referenceAMergeRequestUsingAnExclamationPointForExampleMR123}'
+  - pattern: "Italicize words or phrases using *asterisks* or _underscores_"
+    replace: '${italicizeWordsOrPhrasesUsingAsterisksOrUnderscores}'
+  - pattern: "Bold words or phrases using **double asterisks** or __double underscores__"
+    replace: '${boldWordsOrPhrasesUsingDoubleAsterisksOrDoublsUnderscores}'
+  - pattern: "Strikethrough words or phrases using ~~two tildes~~"
+    replace: '${strikethroughWordsOrPhrasesUsingTwoTildes}'
+  - pattern: "Make a bulleted list using + pluses, - minuses, or * asterisks"
+    replace: '${makeABulletedListUsingPlusesMinusesOrAsterisks}'
+  - pattern: "Denote blockquotes using > at the beginning of a line"
+    replace: '${denoteBlockquotesUsingAtTheBeginningOfALine}'
+  - pattern: "Make a horizontal line using three or more hyphens ---, asterisks ***, or underscores ___"
+    replace: '${makeAHorizontalLineUsingThreeOrMoreHyphensAsterisksOrUnderscores}'
+  - pattern: 'The group and its projects can only be viewed by members.'
+    replace: '${theGroupAndItsProjectsCanOnlyBeViewedByMembers}'
+  - pattern: 'The group and any internal projects can be viewed by any logged in user.'
+    replace: '${theGroupAndAnyInternalProjectsCanBeViewedByAnyLoggedInUser}'
+  - pattern: 'The group and any public projects can be viewed without any authentication.'
+    replace: '${theGroupAndAnyPublicProjectsCanBeViewedWithoutAnyAuthentication}'
+  - pattern: 'Add a reply'
+    replace: '${addAReply}'
+  - pattern: ' Reply'
+    replace: ' ${reply}'
+  - pattern: 'Your Projects (default)'
+    replace: '${yourProjectsDefault}'
+  - pattern: "Starred Projects' Activity"
+    replace: '${starredProjectsActivity}'
+  - pattern: 'Starred Projects'
+    replace: '${starredProjects}'
+  - pattern: "Your Projects' Activity"
+    replace: '${yourProjectsActivity}'
+  - pattern: 'label: "Profile settings"'
+    replace: 'label: "${profileSettings}"'
+  - pattern: 'label: "SSH Keys"'
+    replace: 'label: "${sshKey}"'
+  - pattern: 'label: "Dashboard"'
+    replace: 'label: "${dashboard}"'
+  - pattern: 'label: "Admin Section"'
+    replace: 'label: "${adminSection}"'
+  - pattern: 'label: "help: API Help"'
+    replace: 'label: "${helpAPIHelp}"'
+  - pattern: 'label: "help: Markdown Help"'
+    replace: 'label: "${helpMarkdownHelp}"'
+  - pattern: 'label: "help: Permissions Help"'
+    replace: 'label: "${helpPermissionsHelp}"'
+  - pattern: 'label: "help: Public Access Help"'
+    replace: 'label: "${helpPublicAccessHelp}"'
+  - pattern: 'label: "help: Rake Tasks Help"'
+    replace: 'label: "${helpRakeTasksHelp}"'
+  - pattern: 'label: "help: SSH Keys Help"'
+    replace: 'label: "${helpSSHKeysHelp}"'
+  - pattern: 'label: "help: System Hooks Help"'
+    replace: 'label: "${helpSystemHooksHelp}"'
+  - pattern: 'label: "help: Web Hooks Help"'
+    replace: 'label: "${helpWebHooksHelp}"'
+  - pattern: 'label: "help: Workflow Help"'
+    replace: 'label: "${helpWorkflowHelp}"'
+  - pattern: 'label: "#{prefix} - Files",'
+    replace: 'label: "#{prefix} - ${file}",'
+  - pattern: 'label: "#{prefix} - Commits",'
+    replace: 'label: "#{prefix} - ${commit}",'
+  - pattern: 'label: "#{prefix} - Network",'
+    replace: 'label: "#{prefix} - ${network}",'
+  - pattern: 'label: "#{prefix} - Graph",'
+    replace: 'label: "#{prefix} - ${graph}",'
+  - pattern: 'label: "#{prefix} - Issues",'
+    replace: 'label: "#{prefix} - ${issue}",'
+  - pattern: 'label: "#{prefix} - Merge Requests",'
+    replace: 'label: "#{prefix} - ${mergeRequest}",'
+  - pattern: 'label: "#{prefix} - Milestones",'
+    replace: 'label: "#{prefix} - ${milestone}",'
+  - pattern: 'label: "#{prefix} - Snippets",'
+    replace: 'label: "#{prefix} - ${snippet}",'
+  - pattern: 'label: "#{prefix} - Members",'
+    replace: 'label: "#{prefix} - ${member}",'
+  - pattern: 'label: "#{prefix} - Wiki",'
+    replace: 'label: "#{prefix} - ${wiki}",'
+  - pattern: 'label: "group: '
+    replace: 'label: "${group}: '
+  - pattern: 'label: "project: '
+    replace: 'label: "${project}: '
+  - pattern: 'Search for a user'
+    replace: '${searchForAUser}'
+  - pattern: !!js/regexp /^(\s+haml_concat )"Project access must be granted explicitly for each user."/
+    replace: '$1"${projectAccessMustBeGrantedExplicitlyToEachUser}"'
+  - pattern: !!js/regexp /^(\s+haml_concat )"The project can be cloned by"\n\s+haml_concat "any logged in user."$/
+    replace: '$1"${theProjectCanBeClonedByAnyLoggedInUser}"'
+  - pattern: !!js/regexp /^(\s+haml_concat )"The project can be cloned"\n\s+haml_concat "without any"\n\s+haml_concat "authentication."/
+    replace: '$1"${theProjectCanBeClonedWithoutAnyAuthentication}"'
+  - pattern: "The snippet is visible only to project members."
+    replace: '${theSnippetIsVisibleOnlyToProjectMembers}'
+
+- name: 'rb'
+  parallel-group: 'group1'
+  src: 'app/**/*.rb'
+  skip-patterns:
+  - !!js/regexp /^\s*(?:(?:require|include|class|render|before_action) .*|private|end)?$/
+
+  conditionals:
+    - insert:
+        at: begin
+        value: encodingHeader
+
+  named-patterns:
+  - name: sthWasSuccessfullyDone
+    pattern: "(notice: ['\"]|alert: ['\"]|flash\\[[^\\]]+\\] = ['\"]){obj}s? (?:was|were) successfully {done}\\.?(['\"])"
+    replace: "$1${sthWasSuccessfullyDone}$2"
+    args:
+    - replace: '${{objKey}}'
+    - replace: '${{doneKey}}'
+    params: ['obj', 'objKey', 'done', 'doneKey']
+  - name: sthNamedWasSuccessfullyDone
+    pattern: "(notice: ['\"]|alert: ['\"]|flash\\[[^\\]]+\\] = ['\"]){obj} ([^ ]*) was(?: successfully)? {done}\\.?(['\"])"
+    replace: "$1${sthWasSuccessfullyDone}$3"
+    args:
+    - replace: '${{objKey}} $2 '
+    - replace: '${{doneKey}}'
+    params: ['obj', 'objKey', 'done', 'doneKey']
+  - name: successfullyDone
+    pattern: '"Successfully {done}"'
+    replace: '"${successfullyDone}"'
+    args:
+    - replace: '${{doneKey}}'
+    params: ['done', 'doneKey']
+  - name: errorOccurredObjWasNotDone
+    pattern: "alert: \"Error occurred. {obj}s? (?:was|were) not {done}\\.?\""
+    replace: "alert: \"${errorOccurredObjWasNotDone}\""
+    args:
+    - replace: '${{objKey}}'
+    - replace: '${{doneKey}}'
+    params: ['obj', 'objKey', 'done', 'doneKey']
+  - name: sthCountsDone
+    pattern: "\"([^\"]*) {obj} {done}\""
+    replace: "\"${sthCountsDone}\""
+    args:
+    - '$1'
+    - '${{objKey}}'
+    - '${{doneKey}}'
+  - name: quotedWord
+    pattern: "(\"){word}?\"|('){word}?'"
+    replace: '$1$2${{key}}$1$2'
+    exclude: "(?:\\s+when .* then|type == ['\"]{word}?['\"]|type: ['\"{word}?['\"]|.* class_name: )"
+    params: ['word', 'key']
+
+  patterns:
+  # Normal, non-named patterns
+  - pattern: "'Application settings saved successfully'"
+    replace: "'${applicationSettingsSavedSuccessfully}'"
+  - pattern: '"Are you sure you want to leave \"#{group}\" group?"'
+    replace: '"${areYouSureYouDoSomething}"'
+    args:
+    - replace: '${leaveSth}'
+      args:
+      - '\"#{group}\"'
+  - pattern: "\"Service is unknown or it doesn't exist\""
+    replace: "\"${serviceIsUnknownOrItDoesntExist}\""
+  - pattern: '"Groups"'
+    replace: '"${group}"'
+  - pattern: '"Users"'
+    replace: '"${user}"'
+  - pattern: "alert: 'You must provide a valid current password'"
+    replace: "alert: '${youMustProvideAValidCurrentPassword}'"
+  - pattern: "notice: 'Password successfully changed'"
+    replace: "notice: '${passwordSuccessfullyChanged}'"
+  - pattern: "Password was successfully updated. Please login with it"
+    replace: "${passwordWasSuccessfullyUpdatedPleaseLoginWithIt}"
+    match-once: true
+  - pattern: "notice: 'We sent you an email with reset password instructions'"
+    replace: "notice: '${weSentYouAnEmailWithResetPasswordInstructions}'"
+  - pattern: "Please create a password for your new account."
+    replace: '${pleaseCreateAPasswordForYourNewAccount}'
+  - pattern: "Failed to update profile. #{messages}"
+    replace: "${failedToUpdateProfileAndMessages}"
+  - pattern: "Your changes have been successfully committed"
+    replace: "${yourChangesHaveBeenSuccessfullyCommitted}"
+  - pattern: "Could not create Wiki Repository at this time. Please try again later."
+    replace: "${couldNotCreateWikiRepositoryAtThisTimePleaseTryAgainLater}"
+    match-once: true
+  - pattern: "Page not found"
+    replace: "${pageNotFound}"
+  - pattern: "Account successfully removed."
+    replace: "${accountSuccessfullyRemoved}"
+  - pattern: "Leave edit mode?\\nAll unsaved changes will be lost."
+    replace: "${leaveEditModeAllUnsavedChangesWillBeLost}"
+  - pattern: "Browse File »"
+    replace: "${browseSth} »"
+    args:
+    - replace: '${file}'
+  - pattern: "Browse Dir »"
+    replace: "${browseSth} »"
+    args:
+    - replace: '${directory}'
+  - pattern: "Browse Code »"
+    replace: "${browseSth} »"
+    args:
+    - replace: '${code}'
+  - pattern: "View file @"
+    replace: "${viewFileAt}"
+  - pattern: !!js/regexp /"Filter by ([^"]+)"/
+    replace: '"${filterBySth}"'
+    args:
+    - '$1'
+  - pattern: !!js/regexp /"([^"]*) issues updated"/
+    replace: "\"${sthCountsDone}\""
+    args:
+    - '$1'
+    - '${issue}'
+    - '${update}'
+  - pattern: !!js/regexp /The snippet is visible only (?:for|to) me./
+    replace: '${theSnippetIsVisibleOnlyForMe}'
+  - pattern: !!js/regexp /The snippet is visible (?:for|to) any logged in user./
+    replace: '${theSnippetIsVisibleForAnyLoggedInUser}'
+  - pattern: !!js/regexp /^(\s+haml_concat ")The snippet can be accessed"\n\s+haml_concat "without any"\n\s+haml_concat "authentication."$/m
+    replace: '$1${theSnippetCanBeAccessedWithoutAnyAuthentication}"'
+    match-once: true
+  - pattern: "The snippet can be accessed without any authentication."
+    replace: '${theSnippetCanBeAccessedWithoutAnyAuthentication}'
+  - pattern: 'Add an SSH key to your profile<br>to pull or push via SSH.'
+    replace: '${addAnSshKeyToYourProfileToPullOrPushViaSsh}'
+  - pattern: !!js/regexp /\s{4}titles = \{\n\s{6}opened. "Open"\n\s{4}\}/m
+    replace: "    titles = {\n      opened: \"${open}\",\n      closed: \"${closed}\",\n      merged: \"${merged}\",\n      all: \"${all}\"\n    }"
+  - pattern: 'Group was removed.'
+    replace: '${groupWasRemoved}'
+  - pattern: 'New Group'
+    replace: '${newGroup}'
+  - pattern: 'New password'
+    replace: '${newPassword}'
+  - pattern: 'Failed to update profile'
+    replace: '${failedToUpdateProfile}'
+  - pattern: !!js/regexp /Are you sure you want to remove ([^\s]+) from ([^\s]+)\?/
+    replace: '${areYouSureYouWantToRemoveAFromB}'
+    args:
+    - '$1'
+    - '$2'
+  - pattern: !!js/regexp /Are you sure you want to revoke the invitation for ([^\s]+) to join ([^\s]+)\?/
+    replace: '${areYouSureYouWantToRevokeTheInvitationForAToJoinB}'
+    args:
+    - '$1'
+    - '$2'
+    match-once: true
+  - pattern: 'Status changed to closed'
+    replace: '${statusChangedToClosed}'
+  - pattern: 'Access to group was granted'
+    replace: '${accessToGroupWasGranted}'
+  - pattern: 'Account was created for you'
+    replace: '${accountWasCreatedForYou}'
+  - pattern: 'Email was added to your account'
+    replace: '${emailWasAddedToYourAccount}'
+  - pattern: 'SSH key was added to your account'
+    replace: '${sshKeyWasAddedToYourAccount}'
+  - pattern: 'Invalid repository path'
+    replace: '${invalidRepositoryPath}'
+  - pattern: "Can't check your ability to create project"
+    replace: '${cantCheckYourAbilityToCreateProject}'
+  - pattern: 'Your changes could not be committed, because the file name '
+    replace: '${yourChangesCouldNotBeCommittedBecauseTheFileName}'
+  - pattern: 'Your changes could not be committed because a file with the same name already exists'
+    replace: '${yourChangesCouldNotBeCommittedBecauseAFileWithTheSameNameAlreadyExists}'
+  - pattern: !!js/regexp /(\s+body = ')Milestone ('\n\s+body \+= milestone.nil\? \? ')removed('\s:\s")changed to (#{milestone.title})(")/
+    replace: '${milestoneRemovedChangedTo}'
+    args:
+    - '$1'
+    - '$2'
+    - '$3'
+    - '$4'
+    - '$5'
+  - pattern: 'should be a valid url'
+    replace: '${shouldBeAValidUrl}'
+  - pattern: !!js/regexp /Your project limit is ([^\s]+) projects! Please contact your administrator to increase it/
+    replace: '${yourProjectLimitIsProjectsPleaseContactYourAdministratorToIncreaseIt}'
+    args:
+    - '$1'
+    match-once: true
+  - pattern: 'commits_text = "#{total_count} commit".pluralize(total_count)'
+    replace: 'commits_text = "#{total_count} ${commit}"'
+  - pattern: !!js/regexp /body = "Added (#{commits_text}):\\n\\n"/
+    replace: 'body = "${addedSth}:\n\n"'
+    args:
+    - '$1'
+  - pattern: 'Assignee removed'
+    replace: '${assigneeRemoved}'
+  - pattern: !!js/regexp /Reassigned to (@#{assignee.username})/
+    replace: '${reassignedTo}'
+    args:
+    - '$1'
+  - pattern: 'No Milestone'
+    replace: '${noMilestone}'
+
+  # Named patterns
+  - name: sthWasSuccessfullyDone
+    params:
+    - {obj: 'Broadcast Message', objKey: broadcastMessage, done: created, doneKey: create}
+    - {obj: Group, objKey: group, done: created, doneKey: create}
+    - {obj: Group, objKey: group, done: updated, doneKey: update}
+    - {obj: Group, objKey: group, done: deleted, doneKey: delete}
+    - {obj: User, objKey: user, done: created, doneKey: create}
+    - {obj: User, objKey: user, done: added, doneKey: add}
+    - {obj: User, objKey: user, done: updated, doneKey: update}
+
+    - {obj: User, objKey: user, done: 'removed from group', doneKey: removeFromGroup }
+    - {obj: Hook, objKey: hook, done: created, doneKey: create}
+    - {obj: Project, objKey: project, done: forked, doneKey: fork}
+    - {obj: Username, objKey: username, done: changed, doneKey: change}
+    - {obj: Wiki, objKey: wiki, done: updated, doneKey: update}
+    - {obj: Page, objKey: page, done: deleted, doneKey: delete}
+    - {obj: Profile, objKey: profile, done: updated, doneKey: update}
+    - {obj: Token, objKey: token, done: updated, doneKey: update}
+  - name: sthNamedWasSuccessfullyDone
+    params:
+    - {obj: Group, objKey: group, done: created, doneKey: create}
+    - {obj: Group, objKey: group, done: updated, doneKey: update}
+    - {obj: Group, objKey: group, done: deleted, doneKey: delete}
+    - {obj: Project, objKey: project, done: created, doneKey: create}
+    - {obj: Project, objKey: project, done: updated, doneKey: update}
+    - {obj: Project, objKey: project, done: deleted, doneKey: delete}
+  - name: successfullyDone
+    params:
+    - {done: blocked, doneKey: block}
+    - {done: unblocked, doneKey: unblock}
+  - name: errorOccurredObjWasNotDone
+    params:
+    - {obj: User, objKey: user, done: blocked, doneKey: block}
+    - {obj: User, objKey: user, done: unblocked, doneKey: unblock}
+  - name: quotedWord
+    params:
+    - {word: 'Branch(?:es)', key: branch}
+    - {word: 'Tags', key: tag}
+    - {word: 'Search', key: search}
+    - {word: 'Search snippets', key: searchSnippets}
+    - {word: 'Search in this project', key: searchInThisProject}
+    - {word: 'Search in this group', key: searchInThisGroup}
+    - {word: 'Aug 21, 2011 9:23pm', key: timestampAug212011923pm}
+    - {word: 'Open', key: open}
+    - {word: 'Edit', key: edit}
+    - {word: 'Preview', key: preview}
+    - {word: 'Preview changes', key: previewChanges}
+    - {word: 'Groups', key: group}
+    - {word: 'Users', key: user}
+    - {word: 'Inline', key: inline}
+    - {word: 'Unassigned', key: unassigned}
+
+- name: 'rb:application'
+  parallel-group: 'group1'
+  src: 'config/application.rb'
+  patterns:
+  - pattern: !!js/regexp /^    config.i18n.enforce_available_locales = false/
+    replace: '${configI18nLocale}'
+    exclude: '# done'

@@ -643,6 +643,24 @@ index 75b78a4..2294c78 100644
      end
    end
  
+diff --git a/app/controllers/sessions_controller.rb b/app/controllers/sessions_controller.rb
+index 17aed81..c7107fa 100644
+--- a/app/controllers/sessions_controller.rb
++++ b/app/controllers/sessions_controller.rb
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ class SessionsController < Devise::SessionsController
+   include AuthenticatesWithTwoFactor
+   include Devise::Controllers::Rememberable
+@@ -50,7 +51,7 @@ class SessionsController < Devise::SessionsController
+     user.save
+ 
+     redirect_to edit_user_password_path(reset_password_token: token),
+-      notice: "Please create a password for your new account."
++      notice: "新しいパスワードを設定してください"
+   end
+ 
+   def user_params
 diff --git a/app/helpers/application_helper.rb b/app/helpers/application_helper.rb
 index 4185984..1b91917 100644
 --- a/app/helpers/application_helper.rb

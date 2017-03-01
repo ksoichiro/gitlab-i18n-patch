@@ -312,6 +312,8 @@ translations:
     match-once: true
   - pattern: "notice: 'We sent you an email with reset password instructions'"
     replace: "notice: '${weSentYouAnEmailWithResetPasswordInstructions}'"
+  - pattern: "Please create a password for your new account."
+    replace: '${pleaseCreateAPasswordForYourNewAccount}'
   - pattern: "Failed to update profile. #{messages}"
     replace: "${failedToUpdateProfileAndMessages}"
   - pattern: "Your changes have been successfully committed"

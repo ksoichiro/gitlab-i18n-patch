@@ -24,6 +24,8 @@ translations:
     complete-pattern: true
   - pattern: 'GitLab Basics'
     replace: '${gitLabBasics}'
+  - pattern: 'GitLab basics'
+    replace: '${gitLabBasics}'
   - pattern: 'Find step by step how to start working on your commandline and on GitLab.'
     replace: '${findStepByStepHowToStartWorkingOnYourCommandlineAndOnGitLab}'
     match-once: true
@@ -1279,8 +1281,8 @@ translations:
     #  key: mdTitleAdminPanel
     #- title: 'Admin fork relation'
     #  key: mdTitleAdminForkRelation
-    #- title: 'Administrator documentation'
-    #  key: mdTitleAdministratorDocumentation
+    - title: 'Administrator documentation'
+      key: mdTitleAdministratorDocumentation
     #- title: 'Advanced Setup Tips'
     #  key: mdTitleAdvancedSetupTips
     #- title: 'Advantages'
@@ -1605,8 +1607,8 @@ translations:
     #  key: mdTitleContributeToThisGuide
     #- title: 'Contribution acceptance criteria'
     #  key: mdTitleContributionAcceptanceCriteria
-    #- title: 'Contributor documentation'
-    #  key: mdTitleContributorDocumentation
+    - title: 'Contributor documentation'
+      key: mdTitleContributorDocumentation
     #- title: 'Contributor license agreement'
     #  key: mdTitleContributorLicenseAgreement
     #- title: 'Contributors'
@@ -3187,8 +3189,8 @@ translations:
     #  key: mdTitleProtectedBranches
     #- title: 'Public access'
     #  key: mdTitlePublicAccess
-    #- title: 'Public projects'
-    #  key: mdTitlePublicProjects
+    - title: 'Public projects'
+      key: mdTitlePublicProjects
     #- title: 'Purpose'
     #  key: mdTitlePurpose
     #- title: 'Purpose of describing the contributing process'
@@ -3971,8 +3973,8 @@ translations:
     #  key: mdTitleViewWhat’SInTheDirectoryThatYouAreIn
     - title: 'Visibility of groups'
       key: mdTitleVisibilityOfGroups
-    #- title: 'Visibility of projects'
-    #  key: mdTitleVisibilityOfProjects
+    - title: 'Visibility of projects'
+      key: mdTitleVisibilityOfProjects
     - title: 'Visibility of users'
       key: mdTitleVisibilityOfUsers
     #- title: 'Warning'

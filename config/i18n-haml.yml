@@ -373,6 +373,8 @@ translations:
     replace: '${visitProjectPageAndPressOnStarIconAndItWillAppearOnThisPage}'
   - pattern: 'Welcome to GitLab!'
     replace: '${welcomeToGitLab}'
+  - pattern: 'Welcome to GitLab'
+    replace: '${welcomeToGitLab2}'
   - pattern: 'Self hosted Git management application.'
     replace: '${selfHostedGitManagementApplication}'
   - pattern: !!js/regexp /Paste your public key here. Read more about how to generate a key on ([^"]*")the SSH help page(.*)./
@@ -477,6 +479,8 @@ translations:
     replace: '${sthEnabled}'
     args:
     - '$1'
+  - pattern: "A group is a collection of several projects."
+    replace: '${aGroupIsACollectionOfSeveralProjects}'
   - pattern: "A group is a collection of several projects"
     replace: '${aGroupIsACollectionOfSeveralProjects}'
   - pattern: "Groups are private by default"
@@ -488,6 +492,8 @@ translations:
   - pattern: "Existing projects may be moved into a group"
     replace: '${existingProjectsMayBeMovedIntoAGroup}'
   - pattern: "Username or Email"
+    replace: '${usernameOrEmail}'
+  - pattern: "Username or email"
     replace: '${usernameOrEmail}'
   - pattern: !!js/regexp /You won't be able to pull or push project code via SSH until you ([^']+')add an SSH key('.*) to your profile/
     replace: '${youWontBeAbleToPullOrPushProjectCodeViaSSHUntilYouAddAnSSHKeyToYourProfile}'
@@ -859,6 +865,10 @@ translations:
     replace: '${spamAndAntiBotProtection}'
   - pattern: "You will need to be owner or have the master permission level for the initial push, as the master branch is automatically protected."
     replace: '${youWillNeedToBeOwnerOrHaveTheMasterPermissionLevelForTheInitialPushAsTheMasterBranchIsAutomaticallyProtected}'
+  - pattern: "If you organize your projects under a group, it works like a folder."
+    replace: '${ifYouOrganizeYourProjectsUnderAGroupItWorksLikeAFolder}'
+  - pattern: "You can manage your group member’s permissions and access to each project in the group."
+    replace: '${youCanManageYourGroupMembersPermissionsAndAccessToEachProjectInTheGroup}'
 
   - name: formLabel
     params:
@@ -1078,6 +1088,9 @@ translations:
     - {word: 'Two-Factor Authentication', key: twoFactorAuthentication}
     - {word: 'Application theme', key: applicationTheme}
     - {word: 'Environments?', key: environment}
+    - {word: 'System Info', key: systemInfo}
+    - {word: 'Chat', key: chat}
+    - {word: 'User Settings', key: userSettings}
   - name: wordInSentence
     params:
     - {word: 'broadcast message', key: broadcastMessage}
@@ -1115,6 +1128,7 @@ translations:
     - {word: '[cC]omment', key: comment}
     - {word: '[cC]hanges?', key: change}
     - {word: 'pipelines?', key: pipeline}
+    - {word: 'profile settings?', key: profileSettings}
   - pattern: !!js/regexp /Add ([^\s]+) to ([^\s'":]+)/
     replace: '${addAToB}'
     args:

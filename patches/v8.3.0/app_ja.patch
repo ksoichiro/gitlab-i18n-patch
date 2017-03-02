@@ -13197,7 +13197,7 @@ index 0000000..cee0bea
 +            redirect_uri:
 +              blank: リダイレクトURIは必須です
 diff --git a/doc/README.md b/doc/README.md
-index 8bac00f..0c2ff33 100644
+index 8bac00f..8575eb8 100644
 --- a/doc/README.md
 +++ b/doc/README.md
 @@ -1,32 +1,32 @@
@@ -13258,7 +13258,16 @@ index 8bac00f..0c2ff33 100644
  - [API](ci/api/README.md)
  
  ### CI Languages
-@@ -58,7 +58,7 @@
+@@ -47,7 +47,7 @@
+ - [Test Clojure applications](ci/examples/test-clojure-application.md)
+ - Help your favorite programming language and GitLab by sending a merge request with a guide for that language.
+ 
+-## Administrator documentation
++## 管理者向けドキュメント
+ 
+ - [Custom git hooks](hooks/custom_hooks.md) Custom git hooks (on the filesystem) for when web hooks aren't enough.
+ - [Install](install/README.md) Requirements, directory structures and installation from source.
+@@ -58,14 +58,14 @@
  - [Operations](operations/README.md) Keeping GitLab up and running
  - [Raketasks](raketasks/README.md) Backups, maintenance, automatic web hook setup and the importing of projects.
  - [Security](security/README.md) Learn what you can do to further secure your GitLab instance.
@@ -13267,6 +13276,14 @@ index 8bac00f..0c2ff33 100644
  - [Update](update/README.md) Update guides to upgrade your installation.
  - [Welcome message](customization/welcome_message.md) Add a custom welcome message to the sign-in page.
  - [Reply by email](incoming_email/README.md) Allow users to comment on issues and merge requests by replying to notification emails.
+ - [Migrate GitLab CI to CE/EE](migrate_ci_to_ce/README.md) Follow this guide to migrate your existing GitLab CI data to GitLab CE/EE.
+ - [Git LFS configuration](workflow/lfs/lfs_administration.md)
+ 
+-## Contributor documentation
++## コントリビュータ向けドキュメント
+ 
+ - [Development](development/README.md) Explains the architecture and the guidelines for shell commands.
+ - [Legal](legal/README.md) Contributor license agreements.
 diff --git a/doc/api/README.md b/doc/api/README.md
 index 25a31b2..333d429 100644
 --- a/doc/api/README.md
@@ -13472,7 +13489,7 @@ index f9637d8..fa39c32 100644
  All methods require admin authorization.
  
 diff --git a/doc/ci/README.md b/doc/ci/README.md
-index 5d9d7a8..4342daf 100644
+index 5d9d7a8..e447ffd 100644
 --- a/doc/ci/README.md
 +++ b/doc/ci/README.md
 @@ -1,21 +1,21 @@
@@ -13507,9 +13524,12 @@ index 5d9d7a8..4342daf 100644
  
  + [Using MySQL](services/mysql.md)
  + [Using PostgreSQL](services/postgres.md)
-@@ -31,5 +31,5 @@
+@@ -29,7 +29,7 @@
+ + [Test Clojure applications](examples/test-clojure-application.md)
+ + Help your favorite programming language and GitLab by sending a merge request with a guide for that language.
  
- ### Administrator documentation
+-### Administrator documentation
++### 管理者向けドキュメント
  
 -+ [User permissions](permissions/README.md)
 ++ [ユーザ権限](permissions/README.md)
@@ -14948,7 +14968,7 @@ index 03937d2..2c64ad0 100644
  - Assembla
  - [Atlassian Bamboo CI](bamboo.md) An Atlassian product for continuous integration.
 diff --git a/doc/public_access/public_access.md b/doc/public_access/public_access.md
-index 6e22ea7..bb3534e 100644
+index 6e22ea7..cc9e028 100644
 --- a/doc/public_access/public_access.md
 +++ b/doc/public_access/public_access.md
 @@ -1,59 +1,47 @@
@@ -14967,9 +14987,11 @@ index 6e22ea7..bb3534e 100644
 -Internal projects will only be available to authenticated users.
 +内部のみのプロジェクトは、ログインしたユーザだけが利用することができます。
  
- ## Visibility of projects
+-## Visibility of projects
++## プロジェクトの可視性
  
- ### Public projects
+-### Public projects
++### 公開プロジェクト
  
 -Public projects can be cloned **without any** authentication.
 +公開プロジェクトは **一切の認証なしで** クローンすることができます。

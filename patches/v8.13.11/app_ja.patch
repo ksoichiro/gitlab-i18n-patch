@@ -1835,12 +1835,18 @@ index 3eb9d61..9bcd45b 100644
 +  = link_to '編集', edit_admin_application_path(@application), class: 'btn btn-primary wide pull-left'
    = render 'delete_form', application: @application, submit_btn_css: 'btn btn-danger prepend-left-10'
 diff --git a/app/views/admin/background_jobs/_head.html.haml b/app/views/admin/background_jobs/_head.html.haml
-index b353091..0a042df 100644
+index b353091..863908f 100644
 --- a/app/views/admin/background_jobs/_head.html.haml
 +++ b/app/views/admin/background_jobs/_head.html.haml
-@@ -8,9 +8,9 @@
+@@ -4,13 +4,13 @@
+     .nav-links.sub-nav.scrolling-tabs
+       %ul{ class: (container_class) }
+         = nav_link(controller: :system_info) do
+-          = link_to admin_system_info_path, title: 'System Info' do
++          = link_to admin_system_info_path, title: 'システム情報' do
              %span
-               System Info
+-              System Info
++              システム情報
          = nav_link(controller: :background_jobs) do
 -          = link_to admin_background_jobs_path, title: 'Background Jobs' do
 +          = link_to admin_background_jobs_path, title: 'バックグラウンドジョブ' do
@@ -3068,6 +3074,17 @@ index 0fdd5bd..81d3e71 100644
            %th Primary Action
            %th
        = render @spam_logs
+diff --git a/app/views/admin/system_info/show.html.haml b/app/views/admin/system_info/show.html.haml
+index bfc6142..9745b6f 100644
+--- a/app/views/admin/system_info/show.html.haml
++++ b/app/views/admin/system_info/show.html.haml
+@@ -1,5 +1,5 @@
+ - @no_container = true
+-- page_title "System Info"
++- page_title "システム情報"
+ = render 'admin/background_jobs/head'
+ 
+ %div{ class: container_class }
 diff --git a/app/views/admin/users/_form.html.haml b/app/views/admin/users/_form.html.haml
 index 3145212..a92592a 100644
 --- a/app/views/admin/users/_form.html.haml
@@ -3758,7 +3775,7 @@ index aa57df1..9bbabdf 100644
  = render 'dashboard/activity_head'
  
 diff --git a/app/views/dashboard/groups/_empty_state.html.haml b/app/views/dashboard/groups/_empty_state.html.haml
-index f5222fe..81b39d8 100644
+index f5222fe..5d99e3b 100644
 --- a/app/views/dashboard/groups/_empty_state.html.haml
 +++ b/app/views/dashboard/groups/_empty_state.html.haml
 @@ -2,6 +2,6 @@
@@ -3766,9 +3783,11 @@ index f5222fe..81b39d8 100644
  
    .text-content
 -    %h4 A group is a collection of several projects.
-+    %h4 グループは複数のプロジェクトの集合です。.
-     %p If you organize your projects under a group, it works like a folder.
-     %p You can manage your group member’s permissions and access to each project in the group.
+-    %p If you organize your projects under a group, it works like a folder.
+-    %p You can manage your group member’s permissions and access to each project in the group.
++    %h4 グループは複数のプロジェクトの集合です。
++    %p グループ内にプロジェクトを作るとフォルダのように機能します。
++    %p グループメンバーの権限とグループ内の各プロジェクトへのアクセスを管理できます。
 diff --git a/app/views/dashboard/groups/index.html.haml b/app/views/dashboard/groups/index.html.haml
 index 1a679c5..125156b 100644
 --- a/app/views/dashboard/groups/index.html.haml
@@ -3861,10 +3880,18 @@ index 60c84a2..b821f19 100644
  = render 'shared/milestones/top', milestone: @milestone
  = render 'shared/milestones/summary', milestone: @milestone
 diff --git a/app/views/dashboard/projects/_zero_authorized_projects.html.haml b/app/views/dashboard/projects/_zero_authorized_projects.html.haml
-index fdea834..300dedf 100644
+index fdea834..4fb367a 100644
 --- a/app/views/dashboard/projects/_zero_authorized_projects.html.haml
 +++ b/app/views/dashboard/projects/_zero_authorized_projects.html.haml
-@@ -8,29 +8,29 @@
+@@ -1,36 +1,36 @@
+ - publicish_project_count = ProjectsFinder.new.execute(current_user).count
+ .blank-state.blank-state-welcome
+   %h2.blank-state-welcome-title
+-    Welcome to GitLab
++    GitLabへようこそ
+   %p.blank-state-text
+     Code, test, and deploy together
+ .blank-state
    .blank-state-icon
      = custom_icon("project", size: 50)
    %h3.blank-state-title
@@ -4171,10 +4198,16 @@ index 42cfbbf..fa0bd16 100644
  
  = render 'devise/shared/sign_in_link'
 diff --git a/app/views/devise/sessions/_new_base.html.haml b/app/views/devise/sessions/_new_base.html.haml
-index 525e7d9..15f1661 100644
+index 525e7d9..97e73b1 100644
 --- a/app/views/devise/sessions/_new_base.html.haml
 +++ b/app/views/devise/sessions/_new_base.html.haml
-@@ -6,11 +6,11 @@
+@@ -1,16 +1,16 @@
+ = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'new_user show-gl-field-errors', 'aria-live' => 'assertive'}) do |f|
+   %div.form-group
+-    = f.label "Username or email", for: :login
++    = f.label "ユーザ名またはメールアドレス", for: :login
+     = f.text_field :login, class: "form-control top", autofocus: "autofocus", autocapitalize: "off", autocorrect: "off", required: true, title: "This field is required."
+   %div.form-group
      = f.label :password
      = f.password_field :password, class: "form-control bottom", required: true, title: "This field is required."
    %div.submit-container.move-submit-down
@@ -4190,14 +4223,15 @@ index 525e7d9..15f1661 100644
 -        = link_to "Forgot your password?", new_password_path(resource_name)
 +        = link_to "パスワードを忘れた場合", new_password_path(resource_name)
 diff --git a/app/views/devise/sessions/_new_crowd.html.haml b/app/views/devise/sessions/_new_crowd.html.haml
-index 1d381ad..ae40533 100644
+index 1d381ad..662afc3 100644
 --- a/app/views/devise/sessions/_new_crowd.html.haml
 +++ b/app/views/devise/sessions/_new_crowd.html.haml
 @@ -1,7 +1,7 @@
  = form_tag(omniauth_authorize_path(:user, :crowd), id: 'new_crowd_user', class: 'show-gl-field-errors') do
    .form-group
-     = label_tag :username, 'Username or email'
+-    = label_tag :username, 'Username or email'
 -    = text_field_tag :username, nil, {class: "form-control top", title: "This field is required", autofocus: "autofocus", required: true }
++    = label_tag :username, 'ユーザ名またはメールアドレス'
 +    = text_field_tag :username, nil, {class: "form-control top", title: "This field is 必須", autofocus: "autofocus", required: true }
    .form-group
      = label_tag :password
@@ -7775,7 +7809,7 @@ index 2afa026..25fe351 100644
 -      = f.submit 'Save changes', class: 'btn btn-save'
 +      = f.submit '変更を保存', class: 'btn btn-save'
 diff --git a/app/views/profiles/show.html.haml b/app/views/profiles/show.html.haml
-index 578af9f..f0c60da 100644
+index 578af9f..69f8913 100644
 --- a/app/views/profiles/show.html.haml
 +++ b/app/views/profiles/show.html.haml
 @@ -6,10 +6,10 @@
@@ -7880,7 +7914,7 @@ index 578af9f..f0c60da 100644
        .prepend-top-default.append-bottom-default
 -        = f.submit 'Update profile settings', class: "btn btn-success"
 -        = link_to "Cancel", user_path(current_user), class: "btn btn-cancel"
-+        = f.submit 'profile settingsを更新', class: "btn btn-success"
++        = f.submit 'プロフィール設定を更新', class: "btn btn-success"
 +        = link_to "キャンセル", user_path(current_user), class: "btn btn-cancel"
  
  .modal.modal-profile-crop
@@ -10077,7 +10111,7 @@ index 1b7d878..19631a4 100644
  
  = render "form"
 diff --git a/app/views/projects/issues/index.html.haml b/app/views/projects/issues/index.html.haml
-index cc57cfd..787c546 100644
+index cc57cfd..f1f7cbb 100644
 --- a/app/views/projects/issues/index.html.haml
 +++ b/app/views/projects/issues/index.html.haml
 @@ -1,14 +1,14 @@
@@ -10114,7 +10148,7 @@ index cc57cfd..787c546 100644
      .blank-state.blank-state-welcome
        %h2.blank-state-title.blank-state-welcome-title
 -        Welcome to GitLab Issues
-+        Welcome to GitLab 課題
++        GitLabへようこそ 課題
        %p.blank-state-text
          Code, test, and deploy together
      .blank-state
@@ -15013,10 +15047,10 @@ index 0000000..cee0bea
 +            redirect_uri:
 +              blank: リダイレクトURIは必須です
 diff --git a/doc/README.md b/doc/README.md
-index c30bf32..592f2d0 100644
+index c30bf32..5ac63af 100644
 --- a/doc/README.md
 +++ b/doc/README.md
-@@ -1,24 +1,24 @@
+@@ -1,28 +1,28 @@
 -# Documentation
 +# ドキュメント
  
@@ -15032,7 +15066,7 @@ index c30bf32..592f2d0 100644
  - [Container Registry](user/project/container_registry.md) Learn how to use GitLab Container Registry.
 -- [GitLab basics](gitlab-basics/README.md) Find step by step how to start working on your commandline and on GitLab.
 -- [Importing to GitLab](workflow/importing/README.md).
-+- [GitLab basics](gitlab-basics/README.md) コマンドラインとGitLabでの作業の始め方をステップバイステップで説明します。
++- [GitLabの基本](gitlab-basics/README.md) コマンドラインとGitLabでの作業の始め方をステップバイステップで説明します。
 +- [GitLabへのインポート](workflow/importing/README.md).
  - [Importing and exporting projects between instances](user/project/settings/import_export.md).
 -- [Markdown](user/markdown.md) GitLab's advanced formatting system.
@@ -15056,6 +15090,11 @@ index c30bf32..592f2d0 100644
  - [University](university/README.md) Learn Git and GitLab through videos and courses.
  - [Git Attributes](user/project/git_attributes.md) Managing Git attributes using a `.gitattributes` file.
  
+-## Administrator documentation
++## 管理者向けドキュメント
+ 
+ - [Access restrictions](user/admin_area/settings/visibility_and_access_controls.md#enabled-git-access-protocols) Define which Git access protocols can be used to talk to GitLab
+ - [Authentication/Authorization](administration/auth/README.md) Configure
 @@ -41,7 +41,7 @@
  - [Repository checks](administration/repository_checks.md) Periodic Git repository checks.
  - [Repository storages](administration/repository_storages.md) Manage the paths used to store repositories.
@@ -15065,6 +15104,15 @@ index c30bf32..592f2d0 100644
  - [Update](update/README.md) Update guides to upgrade your installation.
  - [Welcome message](customization/welcome_message.md) Add a custom welcome message to the sign-in page.
  - [Reply by email](administration/reply_by_email.md) Allow users to comment on issues and merge requests by replying to notification emails.
+@@ -57,7 +57,7 @@
+ - [Container Registry](administration/container_registry.md) Configure Docker Registry with GitLab.
+ - [Multiple mountpoints for the repositories storage](administration/repository_storages.md) Define multiple repository storage paths to distribute the storage load.
+ 
+-## Contributor documentation
++## コントリビュータ向けドキュメント
+ 
+ - [Development](development/README.md) All styleguides and explanations how to contribute.
+ - [Legal](legal/README.md) Contributor license agreements.
 diff --git a/doc/administration/auth/ldap.md b/doc/administration/auth/ldap.md
 index bf78148..30310c8 100644
 --- a/doc/administration/auth/ldap.md
@@ -16265,7 +16313,7 @@ index 4442b7c..e4329e1 100644
  | Service |	Description |
  | ------- | ----------- |
 diff --git a/doc/public_access/public_access.md b/doc/public_access/public_access.md
-index a3921f1..38e737f 100644
+index a3921f1..15a94ba 100644
 --- a/doc/public_access/public_access.md
 +++ b/doc/public_access/public_access.md
 @@ -1,41 +1,38 @@
@@ -16284,9 +16332,11 @@ index a3921f1..38e737f 100644
 -Internal projects will only be available to authenticated users.
 +内部のみのプロジェクトは、ログインしたユーザだけが利用することができます。
  
- ## Visibility of projects
+-## Visibility of projects
++## プロジェクトの可視性
  
- ### Public projects
+-### Public projects
++### 公開プロジェクト
  
 -Public projects can be cloned **without any** authentication.
 +公開プロジェクトは **一切の認証なしで** クローンすることができます。
@@ -17061,7 +17111,7 @@ index da991e5..c3bab27 100644
    - [Backup using our Backup rake task](http://docs.gitlab.com/ce/raketasks/backup_restore.html#create-a-backup-of-the-gitlab-system)
    - [Upgrade to 5.0 source using our Upgrade documentation](https://gitlab.com/gitlab-org/gitlab-ee/blob/master/doc/update/4.2-to-5.0.md)
 diff --git a/doc/university/training/end-user/README.md b/doc/university/training/end-user/README.md
-index 03c62a8..970e322 100644
+index 03c62a8..77d282c 100644
 --- a/doc/university/training/end-user/README.md
 +++ b/doc/university/training/end-user/README.md
 @@ -112,7 +112,7 @@ cd ~/workspace
@@ -17082,7 +17132,7 @@ index 03c62a8..970e322 100644
  - The hosted version of GitLab is gitlab.com
  
  ---  
-@@ -137,7 +137,7 @@ cd ~/workspace
+@@ -137,13 +137,13 @@ cd ~/workspace
  ### New Project
  
  - Sign in into your gitlab.com account
@@ -17091,6 +17141,13 @@ index 03c62a8..970e322 100644
  - Choose to import from 'Any Repo by URL' and use https://gitlab.com/gitlab-org/training-examples.git
  - On your machine clone the `training-examples` project
  
+ ---
+ 
+-### Git and GitLab basics
++### Git and GitLabの基本
+ 
+ 1. Edit `edit_this_file.rb` in `training-examples`
+ 2. See it listed as a changed file (working area)
 @@ -229,7 +229,7 @@ git push origin squash_some_bugs
  ### Feedback and Collaboration
  

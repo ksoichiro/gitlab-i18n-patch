@@ -621,6 +621,7 @@ allIssuesForThisMilestoneAreClosedYouMayCloseTheMilestoneNow: このマイルス
 youDontHaveStarredProjectsYet: スターをつけたプロジェクトはありません
 visitProjectPageAndPressOnStarIconAndItWillAppearOnThisPage: プロジェクトのページでスターのアイコンを押すとこのページで確認できます。
 welcomeToGitLab: GitLabへようこそ！
+welcomeToGitLab2: GitLabへようこそ
 selfHostedGitManagementApplication: GitLabはSelf HostedなGit管理アプリケーションです。
 youDontHaveAccessToAnyProjectsRightNow: アクセス権のあるプロジェクトはまだありません。
 youDontHaveAccessToAnyProjectsRightNow2: アクセス権のあるプロジェクトはまだありません
@@ -870,7 +871,7 @@ mdTitleAcceptingMergeRequests: マージリクエストの承認
 #mdTitleAdditionalMarkupStyles: 
 #mdTitleAdminPanel: 
 #mdTitleAdminForkRelation: 
-#mdTitleAdministratorDocumentation: 
+mdTitleAdministratorDocumentation: 管理者向けドキュメント
 #mdTitleAdvancedSetupTips: 
 #mdTitleAdvantages: 
 #mdTitleAkismet: 
@@ -1033,7 +1034,7 @@ mdTitleConfigureCronToMakeDailyBackups: 日次バックアップを行うため�
 #mdTitleContributeToGitLab: 
 #mdTitleContributeToThisGuide: 
 #mdTitleContributionAcceptanceCriteria: 
-#mdTitleContributorDocumentation: 
+mdTitleContributorDocumentation: コントリビュータ向けドキュメント
 #mdTitleContributorLicenseAgreement: 
 #mdTitleContributors: 
 #mdTitleConvertAllTablesToCorrectCharacterSet: 
@@ -1821,7 +1822,7 @@ mdTitleProjectFeatures: プロジェクトの機能
 #mdTitleProtectedBranchFlow: 
 #mdTitleProtectedBranches: 
 #mdTitlePublicAccess: 
-#mdTitlePublicProjects: 
+mdTitlePublicProjects: 公開プロジェクト
 #mdTitlePurpose: 
 #mdTitlePurposeOfDescribingTheContributingProcess: 
 #mdTitlePushGitlabCiymlToGitLab: 
@@ -2212,7 +2213,7 @@ mdTitleUserDocumentation: ユーザ向けドキュメント
 #mdTitleViewTheChangesYouveMade: 
 #mdTitleViewWhat’SInTheDirectoryThatYouAreIn: 
 mdTitleVisibilityOfGroups: グループの可視性
-#mdTitleVisibilityOfProjects: 
+mdTitleVisibilityOfProjects: プロジェクトの可視性
 mdTitleVisibilityOfUsers: ユーザの可視性
 #mdTitleWarning: 
 #mdTitleWarningIfYouHaveGitlab7120OrOlderSkipThisStepAndImportTheDatabasesqlDirectlyIntoTheBackupWith: 
@@ -2939,3 +2940,8 @@ spamAndAntiBotProtection: スパムとアンチボットプロテクション
 thereAreNoIssuesToShow: 課題はありません
 youWillNeedToBeOwnerOrHaveTheMasterPermissionLevelForTheInitialPushAsTheMasterBranchIsAutomaticallyProtected: masterブランチは自動的に保護されるため、最初のプッシュをするためには所有者であるかMaster権限を持っていなければなりません。
 pleaseCreateAPasswordForYourNewAccount: 新しいパスワードを設定してください
+systemInfo: システム情報
+chat: チャット
+userSettings: ユーザ設定
+ifYouOrganizeYourProjectsUnderAGroupItWorksLikeAFolder: グループ内にプロジェクトを作るとフォルダのように機能します。
+youCanManageYourGroupMembersPermissionsAndAccessToEachProjectInTheGroup: グループメンバーの権限とグループ内の各プロジェクトへのアクセスを管理できます。

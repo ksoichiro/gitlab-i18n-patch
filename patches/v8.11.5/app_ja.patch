@@ -1842,12 +1842,18 @@ index 3eb9d61..9bcd45b 100644
 +  = link_to '編集', edit_admin_application_path(@application), class: 'btn btn-primary wide pull-left'
    = render 'delete_form', application: @application, submit_btn_css: 'btn btn-danger prepend-left-10'
 diff --git a/app/views/admin/background_jobs/_head.html.haml b/app/views/admin/background_jobs/_head.html.haml
-index 89d7a40..d3a3de1 100644
+index 89d7a40..0e1b3d7 100644
 --- a/app/views/admin/background_jobs/_head.html.haml
 +++ b/app/views/admin/background_jobs/_head.html.haml
-@@ -5,9 +5,9 @@
+@@ -1,13 +1,13 @@
+ .nav-links.sub-nav
+   %ul{ class: (container_class) }
+     = nav_link(controller: :system_info) do
+-      = link_to admin_system_info_path, title: 'System Info' do
++      = link_to admin_system_info_path, title: 'システム情報' do
          %span
-           System Info
+-          System Info
++          システム情報
      = nav_link(controller: :background_jobs) do
 -      = link_to admin_background_jobs_path, title: 'Background Jobs' do
 +      = link_to admin_background_jobs_path, title: 'バックグラウンドジョブ' do
@@ -3122,6 +3128,17 @@ index 0fdd5bd..81d3e71 100644
            %th Primary Action
            %th
        = render @spam_logs
+diff --git a/app/views/admin/system_info/show.html.haml b/app/views/admin/system_info/show.html.haml
+index bfc6142..9745b6f 100644
+--- a/app/views/admin/system_info/show.html.haml
++++ b/app/views/admin/system_info/show.html.haml
+@@ -1,5 +1,5 @@
+ - @no_container = true
+-- page_title "System Info"
++- page_title "システム情報"
+ = render 'admin/background_jobs/head'
+ 
+ %div{ class: container_class }
 diff --git a/app/views/admin/users/_form.html.haml b/app/views/admin/users/_form.html.haml
 index 3145212..a92592a 100644
 --- a/app/views/admin/users/_form.html.haml
@@ -3887,10 +3904,18 @@ index 60c84a2..b821f19 100644
  = render 'shared/milestones/top', milestone: @milestone
  = render 'shared/milestones/summary', milestone: @milestone
 diff --git a/app/views/dashboard/projects/_zero_authorized_projects.html.haml b/app/views/dashboard/projects/_zero_authorized_projects.html.haml
-index fdea834..300dedf 100644
+index fdea834..4fb367a 100644
 --- a/app/views/dashboard/projects/_zero_authorized_projects.html.haml
 +++ b/app/views/dashboard/projects/_zero_authorized_projects.html.haml
-@@ -8,29 +8,29 @@
+@@ -1,36 +1,36 @@
+ - publicish_project_count = ProjectsFinder.new.execute(current_user).count
+ .blank-state.blank-state-welcome
+   %h2.blank-state-welcome-title
+-    Welcome to GitLab
++    GitLabへようこそ
+   %p.blank-state-text
+     Code, test, and deploy together
+ .blank-state
    .blank-state-icon
      = custom_icon("project", size: 50)
    %h3.blank-state-title
@@ -7677,7 +7702,7 @@ index 2afa026..25fe351 100644
 -      = f.submit 'Save changes', class: 'btn btn-save'
 +      = f.submit '変更を保存', class: 'btn btn-save'
 diff --git a/app/views/profiles/show.html.haml b/app/views/profiles/show.html.haml
-index d9fa74f..1c8b0aa 100644
+index d9fa74f..86a06a2 100644
 --- a/app/views/profiles/show.html.haml
 +++ b/app/views/profiles/show.html.haml
 @@ -6,10 +6,10 @@
@@ -7779,7 +7804,7 @@ index d9fa74f..1c8b0aa 100644
        .prepend-top-default.append-bottom-default
 -        = f.submit 'Update profile settings', class: "btn btn-success"
 -        = link_to "Cancel", user_path(current_user), class: "btn btn-cancel"
-+        = f.submit 'profile settingsを更新', class: "btn btn-success"
++        = f.submit 'プロフィール設定を更新', class: "btn btn-success"
 +        = link_to "キャンセル", user_path(current_user), class: "btn btn-cancel"
  
  .modal.modal-profile-crop
@@ -9515,15 +9540,9 @@ index 9322c82..5e946a6 100644
  .file-finder-holder.tree-holder.clearfix
    .nav-block
 diff --git a/app/views/projects/forks/error.html.haml b/app/views/projects/forks/error.html.haml
-index 3d0ab5b..0be076f 100644
+index 3d0ab5b..f6716fe 100644
 --- a/app/views/projects/forks/error.html.haml
 +++ b/app/views/projects/forks/error.html.haml
-@@ -1,4 +1,4 @@
--- page_title "Fork project"
-+- page_title "Fork プロジェクト"
- - if @forked_project && !@forked_project.saved?
-   .alert.alert-danger.alert-block
-     %h4
 @@ -16,6 +16,6 @@
          = @forked_project.errors.full_messages.first
  
@@ -9859,7 +9878,7 @@ index 7cf1923..7861936 100644
  
  = render "form"
 diff --git a/app/views/projects/issues/index.html.haml b/app/views/projects/issues/index.html.haml
-index 1a87045..393d327 100644
+index 1a87045..55ab0e2 100644
 --- a/app/views/projects/issues/index.html.haml
 +++ b/app/views/projects/issues/index.html.haml
 @@ -1,11 +1,11 @@
@@ -9893,7 +9912,7 @@ index 1a87045..393d327 100644
      .blank-state.blank-state-welcome
        %h2.blank-state-title.blank-state-welcome-title
 -        Welcome to GitLab Issues
-+        Welcome to GitLab 課題
++        GitLabへようこそ 課題
        %p.blank-state-text
          Code, test, and deploy together
      .blank-state
@@ -14724,10 +14743,10 @@ index 0000000..cee0bea
 +            redirect_uri:
 +              blank: リダイレクトURIは必須です
 diff --git a/doc/README.md b/doc/README.md
-index 452cf1c..48c2b51 100644
+index 452cf1c..3905bc9 100644
 --- a/doc/README.md
 +++ b/doc/README.md
-@@ -1,23 +1,23 @@
+@@ -1,25 +1,25 @@
 -# Documentation
 +# ドキュメント
  
@@ -14764,8 +14783,11 @@ index 452cf1c..48c2b51 100644
 +- [Webhooks](web_hooks/web_hooks.md) プロジェクトに新しいコードがプッシュされたときにGitLabがあなたに通知するようにします。
 +- [ワークフロー](workflow/README.md) GitLabの機能を使いGitHubやSVNからプロジェクトをインポートします。
  
- ## Administrator documentation
+-## Administrator documentation
++## 管理者向けドキュメント
  
+ - [Access restrictions](user/admin_area/settings/visibility_and_access_controls.md#enabled-git-access-protocols) Define which Git access protocols can be used to talk to GitLab
+ - [Authentication/Authorization](administration/auth/README.md) Configure
 @@ -38,7 +38,7 @@
  - [Repository checks](administration/repository_checks.md) Periodic Git repository checks.
  - [Repository storages](administration/repository_storages.md) Manage the paths used to store repositories.
@@ -14775,6 +14797,15 @@ index 452cf1c..48c2b51 100644
  - [Update](update/README.md) Update guides to upgrade your installation.
  - [Welcome message](customization/welcome_message.md) Add a custom welcome message to the sign-in page.
  - [Reply by email](incoming_email/README.md) Allow users to comment on issues and merge requests by replying to notification emails.
+@@ -53,7 +53,7 @@
+ - [Container Registry](administration/container_registry.md) Configure Docker Registry with GitLab.
+ - [Multiple mountpoints for the repositories storage](administration/repository_storages.md) Define multiple repository storage paths to distribute the storage load.
+ 
+-## Contributor documentation
++## コントリビュータ向けドキュメント
+ 
+ - [Development](development/README.md) All styleguides and explanations how to contribute.
+ - [Legal](legal/README.md) Contributor license agreements.
 diff --git a/doc/administration/auth/ldap.md b/doc/administration/auth/ldap.md
 index 7186f70..eda9d31 100644
 --- a/doc/administration/auth/ldap.md
@@ -16012,7 +16043,7 @@ index 4442b7c..e4329e1 100644
  | Service |	Description |
  | ------- | ----------- |
 diff --git a/doc/public_access/public_access.md b/doc/public_access/public_access.md
-index a3921f1..38e737f 100644
+index a3921f1..15a94ba 100644
 --- a/doc/public_access/public_access.md
 +++ b/doc/public_access/public_access.md
 @@ -1,41 +1,38 @@
@@ -16031,9 +16062,11 @@ index a3921f1..38e737f 100644
 -Internal projects will only be available to authenticated users.
 +内部のみのプロジェクトは、ログインしたユーザだけが利用することができます。
  
- ## Visibility of projects
+-## Visibility of projects
++## プロジェクトの可視性
  
- ### Public projects
+-### Public projects
++### 公開プロジェクト
  
 -Public projects can be cloned **without any** authentication.
 +公開プロジェクトは **一切の認証なしで** クローンすることができます。

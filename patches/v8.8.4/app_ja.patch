@@ -5034,7 +5034,7 @@ index 121a7de..d421d23 100644
        - @milestones.each do |milestone|
          = render 'milestone', milestone: milestone
 diff --git a/app/views/groups/milestones/new.html.haml b/app/views/groups/milestones/new.html.haml
-index 7d9d27a..24ad8b8 100644
+index 7d9d27a..03e58b7 100644
 --- a/app/views/groups/milestones/new.html.haml
 +++ b/app/views/groups/milestones/new.html.haml
 @@ -1,11 +1,11 @@
@@ -5088,7 +5088,7 @@ index 7d9d27a..24ad8b8 100644
    .form-actions
 -    = f.submit 'Create Milestone', class: "btn-create btn"
 -    = link_to "Cancel", group_milestones_path(@group), class: "btn btn-cancel"
-+    = f.submit 'Milestoneを作成', class: "btn-create btn"
++    = f.submit 'マイルストーンを作成', class: "btn-create btn"
 +    = link_to "キャンセル", group_milestones_path(@group), class: "btn btn-cancel"
  
  
@@ -7804,7 +7804,7 @@ index bfe53be..18a6942 100644
 -      = f.submit 'Save changes', class: 'btn btn-save'
 +      = f.submit '変更を保存', class: 'btn btn-save'
 diff --git a/app/views/profiles/show.html.haml b/app/views/profiles/show.html.haml
-index eef50d8..a32ca40 100644
+index eef50d8..afa12a5 100644
 --- a/app/views/profiles/show.html.haml
 +++ b/app/views/profiles/show.html.haml
 @@ -4,10 +4,10 @@
@@ -7906,7 +7906,7 @@ index eef50d8..a32ca40 100644
        .prepend-top-default.append-bottom-default
 -        = f.submit 'Update profile settings', class: "btn btn-success"
 -        = link_to "Cancel", user_path(current_user), class: "btn btn-cancel"
-+        = f.submit 'profile settingsを更新', class: "btn btn-success"
++        = f.submit 'プロフィール設定を更新', class: "btn btn-success"
 +        = link_to "キャンセル", user_path(current_user), class: "btn btn-cancel"
  
  .modal.modal-profile-crop
@@ -14167,10 +14167,10 @@ index 0000000..cee0bea
 +            redirect_uri:
 +              blank: リダイレクトURIは必須です
 diff --git a/doc/README.md b/doc/README.md
-index d1345ab..cccbc0a 100644
+index d1345ab..45548d1 100644
 --- a/doc/README.md
 +++ b/doc/README.md
-@@ -1,22 +1,22 @@
+@@ -1,24 +1,24 @@
 -# Documentation
 +# ドキュメント
  
@@ -14206,8 +14206,11 @@ index d1345ab..cccbc0a 100644
 +- [Webhooks](web_hooks/web_hooks.md) プロジェクトに新しいコードがプッシュされたときにGitLabがあなたに通知するようにします。
 +- [ワークフロー](workflow/README.md) GitLabの機能を使いGitHubやSVNからプロジェクトをインポートします。
  
- ## Administrator documentation
+-## Administrator documentation
++## 管理者向けドキュメント
  
+ - [Authentication/Authorization](administration/auth/README.md) Configure
+   external authentication with LDAP, SAML, CAS and additional Omniauth providers.
 @@ -34,7 +34,7 @@
  - [Raketasks](raketasks/README.md) Backups, maintenance, automatic webhook setup and the importing of projects.
  - [Repository checks](administration/repository_checks.md) Periodic Git repository checks
@@ -14217,6 +14220,15 @@ index d1345ab..cccbc0a 100644
  - [Update](update/README.md) Update guides to upgrade your installation.
  - [Welcome message](customization/welcome_message.md) Add a custom welcome message to the sign-in page.
  - [Reply by email](incoming_email/README.md) Allow users to comment on issues and merge requests by replying to notification emails.
+@@ -47,7 +47,7 @@
+ - [High Availability](administration/high_availability/README.md) Configure multiple servers for scaling or high availability
+ - [Container Registry](administration/container_registry.md) Configure Docker Registry with GitLab
+ 
+-## Contributor documentation
++## コントリビュータ向けドキュメント
+ 
+ - [Documentation styleguide](development/doc_styleguide.md) Use this styleguide if you are
+   contributing to documentation.
 diff --git a/doc/administration/auth/ldap.md b/doc/administration/auth/ldap.md
 index 1009677..b3b4ad3 100644
 --- a/doc/administration/auth/ldap.md
@@ -16229,7 +16241,7 @@ index a5af620..cb22c6f 100644
  | Service |	Description |
  | ------- | ----------- |
 diff --git a/doc/public_access/public_access.md b/doc/public_access/public_access.md
-index 17bb75e..a7a508a 100644
+index 17bb75e..b13d42d 100644
 --- a/doc/public_access/public_access.md
 +++ b/doc/public_access/public_access.md
 @@ -1,41 +1,36 @@
@@ -16248,9 +16260,11 @@ index 17bb75e..a7a508a 100644
 -Internal projects will only be available to authenticated users.
 +内部のみのプロジェクトは、ログインしたユーザだけが利用することができます。
  
- ## Visibility of projects
+-## Visibility of projects
++## プロジェクトの可視性
  
- ### Public projects
+-### Public projects
++### 公開プロジェクト
  
 -Public projects can be cloned **without any** authentication.
 +公開プロジェクトは **一切の認証なしで** クローンすることができます。

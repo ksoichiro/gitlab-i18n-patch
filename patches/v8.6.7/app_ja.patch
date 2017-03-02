@@ -7791,7 +7791,7 @@ index f802116..c35fffa 100644
 -      = f.submit 'Save changes', class: 'btn btn-save'
 +      = f.submit '変更を保存', class: 'btn btn-save'
 diff --git a/app/views/profiles/show.html.haml b/app/views/profiles/show.html.haml
-index cd582ba..ccf9475 100644
+index cd582ba..2176f14 100644
 --- a/app/views/profiles/show.html.haml
 +++ b/app/views/profiles/show.html.haml
 @@ -7,10 +7,10 @@
@@ -7893,7 +7893,7 @@ index cd582ba..ccf9475 100644
        .prepend-top-default.append-bottom-default
 -        = f.submit 'Update profile settings', class: "btn btn-success"
 -        = link_to "Cancel", user_path(current_user), class: "btn btn-cancel"
-+        = f.submit 'profile settingsを更新', class: "btn btn-success"
++        = f.submit 'プロフィール設定を更新', class: "btn btn-success"
 +        = link_to "キャンセル", user_path(current_user), class: "btn btn-cancel"
 diff --git a/app/views/profiles/two_factor_auths/codes.html.haml b/app/views/profiles/two_factor_auths/codes.html.haml
 index addf356..66d156a 100644
@@ -13740,10 +13740,10 @@ index 0000000..cee0bea
 +            redirect_uri:
 +              blank: リダイレクトURIは必須です
 diff --git a/doc/README.md b/doc/README.md
-index 08d0a6a..eb9cdbb 100644
+index 08d0a6a..6047fdf 100644
 --- a/doc/README.md
 +++ b/doc/README.md
-@@ -1,21 +1,21 @@
+@@ -1,23 +1,23 @@
 -# Documentation
 +# ドキュメント
  
@@ -13778,8 +13778,11 @@ index 08d0a6a..eb9cdbb 100644
 +- [Webhooks](web_hooks/web_hooks.md) プロジェクトに新しいコードがプッシュされたときにGitLabがあなたに通知するようにします。
 +- [ワークフロー](workflow/README.md) GitLabの機能を使いGitHubやSVNからプロジェクトをインポートします。
  
- ## Administrator documentation
+-## Administrator documentation
++## 管理者向けドキュメント
  
+ - [Custom git hooks](hooks/custom_hooks.md) Custom git hooks (on the filesystem) for when webhooks aren't enough.
+ - [Install](install/README.md) Requirements, directory structures and installation from source.
 @@ -30,7 +30,7 @@
  - [Operations](operations/README.md) Keeping GitLab up and running
  - [Raketasks](raketasks/README.md) Backups, maintenance, automatic webhook setup and the importing of projects.
@@ -13789,6 +13792,15 @@ index 08d0a6a..eb9cdbb 100644
  - [Update](update/README.md) Update guides to upgrade your installation.
  - [Welcome message](customization/welcome_message.md) Add a custom welcome message to the sign-in page.
  - [Reply by email](incoming_email/README.md) Allow users to comment on issues and merge requests by replying to notification emails.
+@@ -39,7 +39,7 @@
+ - [Housekeeping](administration/housekeeping.md) Keep your Git repository tidy and fast.
+ - [GitLab Performance Monitoring](monitoring/performance/introduction.md) Configure GitLab and InfluxDB for measuring performance metrics
+ 
+-## Contributor documentation
++## コントリビュータ向けドキュメント
+ 
+ - [Documentation styleguide](development/doc_styleguide.md) Use this styleguide if you are
+   contributing to documentation.
 diff --git a/doc/administration/restart_gitlab.md b/doc/administration/restart_gitlab.md
 index 4830603..d697d44 100644
 --- a/doc/administration/restart_gitlab.md
@@ -15660,7 +15672,7 @@ index 3fea2cf..d3b00ae 100644
  | Service |	Description |
  | ------- | ----------- |
 diff --git a/doc/public_access/public_access.md b/doc/public_access/public_access.md
-index 20aa90f..e505c5a 100644
+index 20aa90f..55aa09e 100644
 --- a/doc/public_access/public_access.md
 +++ b/doc/public_access/public_access.md
 @@ -1,41 +1,36 @@
@@ -15679,9 +15691,11 @@ index 20aa90f..e505c5a 100644
 -Internal projects will only be available to authenticated users.
 +内部のみのプロジェクトは、ログインしたユーザだけが利用することができます。
  
- ## Visibility of projects
+-## Visibility of projects
++## プロジェクトの可視性
  
- ### Public projects
+-### Public projects
++### 公開プロジェクト
  
 -Public projects can be cloned **without any** authentication.
 +公開プロジェクトは **一切の認証なしで** クローンすることができます。

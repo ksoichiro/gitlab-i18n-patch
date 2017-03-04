@@ -10888,7 +10888,7 @@ index 73772cc..6b24d70 100644
  .detail-page-description.milestone-detail
    %h2.title
 diff --git a/app/views/projects/new.html.haml b/app/views/projects/new.html.haml
-index ea4898f..93a2e37 100644
+index ea4898f..4849180 100644
 --- a/app/views/projects/new.html.haml
 +++ b/app/views/projects/new.html.haml
 @@ -1,5 +1,5 @@
@@ -10948,9 +10948,10 @@ index ea4898f..93a2e37 100644
            = f.label :description, class: 'label-light' do
 -            Project description
 -            %span.light (optional)
+-          = f.text_area :description, placeholder: 'Description format',  class: "form-control", rows: 3, maxlength: 250
 +            説明
 +            %span.light (任意)
-           = f.text_area :description, placeholder: 'Description format',  class: "form-control", rows: 3, maxlength: 250
++          = f.text_area :description, placeholder: '記述形式',  class: "form-control", rows: 3, maxlength: 250
  
          .form-group.project-visibility-level-holder
            = f.label :visibility_level, class: 'label-light' do
@@ -10971,7 +10972,7 @@ index ea4898f..93a2e37 100644
      if($('.btn_import_gitlab_project').attr('disabled')) {
        event.preventDefault();
 -      new Flash("Please enter path and name for the project to be imported to.");
-+      new Flash("Please enter path and name for the プロジェクト to be imported to.");
++      new Flash("インポート先のプロジェクトパスとプロジェクト名を入力してください");
      }
    });
  

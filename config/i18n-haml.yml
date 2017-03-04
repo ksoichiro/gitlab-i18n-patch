@@ -869,6 +869,8 @@ translations:
     replace: '${ifYouOrganizeYourProjectsUnderAGroupItWorksLikeAFolder}'
   - pattern: "You can manage your group member’s permissions and access to each project in the group."
     replace: '${youCanManageYourGroupMembersPermissionsAndAccessToEachProjectInTheGroup}'
+  - pattern: "Please enter path and name for the project to be imported to."
+    replace: '${pleaseEnterPathAndNameForTheProjectToBeImportedTo}'
 
   - name: formLabel
     params:
@@ -1091,6 +1093,7 @@ translations:
     - {word: 'System Info', key: systemInfo}
     - {word: 'Chat', key: chat}
     - {word: 'User Settings', key: userSettings}
+    - {word: 'Description format', key: descriptionFormat}
   - name: wordInSentence
     params:
     - {word: 'broadcast message', key: broadcastMessage}

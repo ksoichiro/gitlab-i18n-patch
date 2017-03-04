@@ -2945,3 +2945,5 @@ chat: チャット
 userSettings: ユーザ設定
 ifYouOrganizeYourProjectsUnderAGroupItWorksLikeAFolder: グループ内にプロジェクトを作るとフォルダのように機能します。
 youCanManageYourGroupMembersPermissionsAndAccessToEachProjectInTheGroup: グループメンバーの権限とグループ内の各プロジェクトへのアクセスを管理できます。
+descriptionFormat: 記述形式
+pleaseEnterPathAndNameForTheProjectToBeImportedTo: インポート先のプロジェクトパスとプロジェクト名を入力してください

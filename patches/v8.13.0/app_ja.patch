@@ -11069,7 +11069,7 @@ index c83818e..8260b62 100644
    .detail-page-description.milestone-detail
      %h2.title
 diff --git a/app/views/projects/new.html.haml b/app/views/projects/new.html.haml
-index 399ccf1..8c4b00c 100644
+index 399ccf1..1cd9d23 100644
 --- a/app/views/projects/new.html.haml
 +++ b/app/views/projects/new.html.haml
 @@ -1,5 +1,5 @@
@@ -11088,7 +11088,7 @@ index 399ccf1..8c4b00c 100644
 +        新しいプロジェクト
        %p
 -        Create or Import your project from popular Git services
-+        or your project from popular Git servicesを作成をインポート
++        プロジェクトを作成またはポピュラーなGitサービスからインポート
      .col-lg-9
        = form_for @project, html: { class: 'new_project' } do |f|
          %fieldset.append-bottom-0

@@ -871,6 +871,9 @@ translations:
     replace: '${youCanManageYourGroupMembersPermissionsAndAccessToEachProjectInTheGroup}'
   - pattern: "Please enter path and name for the project to be imported to."
     replace: '${pleaseEnterPathAndNameForTheProjectToBeImportedTo}'
+  - pattern: "Create or Import your project from popular Git services"
+    replace: '${createOrImportYourProjectFromPopularGitServices}'
+
 
   - name: formLabel
     params:

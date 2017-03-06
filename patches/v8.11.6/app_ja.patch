@@ -9589,13 +9589,10 @@ index bacc570..6ce7d54 100644
  
  = render 'projects', projects: @forks
 diff --git a/app/views/projects/forks/new.html.haml b/app/views/projects/forks/new.html.haml
-index 5242bc7..7712973 100644
+index 5242bc7..9f6cf4d 100644
 --- a/app/views/projects/forks/new.html.haml
 +++ b/app/views/projects/forks/new.html.haml
-@@ -1,9 +1,9 @@
--- page_title "Fork project"
-+- page_title "Fork プロジェクト"
- 
+@@ -3,7 +3,7 @@
  .row.prepend-top-default
    .col-lg-3
      %h4.prepend-top-0
@@ -10855,7 +10852,7 @@ index 73772cc..6b24d70 100644
  .detail-page-description.milestone-detail
    %h2.title
 diff --git a/app/views/projects/new.html.haml b/app/views/projects/new.html.haml
-index fda0592..c2758f3 100644
+index fda0592..f14514b 100644
 --- a/app/views/projects/new.html.haml
 +++ b/app/views/projects/new.html.haml
 @@ -1,5 +1,5 @@
@@ -10874,7 +10871,7 @@ index fda0592..c2758f3 100644
 +        新しいプロジェクト
        %p
 -        Create or Import your project from popular Git services
-+        or your project from popular Git servicesを作成をインポート
++        プロジェクトを作成またはポピュラーなGitサービスからインポート
      .col-lg-9
        = form_for @project, html: { class: 'new_project' } do |f|
          %fieldset.append-bottom-0

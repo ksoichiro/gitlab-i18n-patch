@@ -4931,7 +4931,7 @@ index 836981f..da3e034 100644
  
  = render 'shared/labels/form', url: group_label_path(@group, @label), back_path: @previous_labels_path
 diff --git a/app/views/groups/labels/index.html.haml b/app/views/groups/labels/index.html.haml
-index 45325d6..1b802a7 100644
+index 45325d6..be0dfdc 100644
 --- a/app/views/groups/labels/index.html.haml
 +++ b/app/views/groups/labels/index.html.haml
 @@ -1,13 +1,13 @@
@@ -4941,7 +4941,7 @@ index 45325d6..1b802a7 100644
  .top-area.adjust
    .nav-text
 -    Labels can be applied to issues and merge requests. Group labels are available for any project within the group.
-+    ラベルは課題とマージリクエストに適用することができます。 Group labels are available for any project within the group.
++    ラベルは課題とマージリクエストに適用することができます。 グループのラベルはグループ内のすべてのプロジェクトで利用できます。
  
    .nav-controls
      - if can?(current_user, :admin_label, @group)
@@ -4951,6 +4951,12 @@ index 45325d6..1b802a7 100644
  
  .labels
    .other-labels
+@@ -17,4 +17,4 @@
+         = paginate @labels, theme: 'gitlab'
+     - else
+       .nothing-here-block
+-        No labels created yet.
++        ラベルはまだ作られていません
 diff --git a/app/views/groups/labels/new.html.haml b/app/views/groups/labels/new.html.haml
 index 2be8746..77f8f77 100644
 --- a/app/views/groups/labels/new.html.haml

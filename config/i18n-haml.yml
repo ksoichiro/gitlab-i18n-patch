@@ -873,7 +873,10 @@ translations:
     replace: '${pleaseEnterPathAndNameForTheProjectToBeImportedTo}'
   - pattern: "Create or Import your project from popular Git services"
     replace: '${createOrImportYourProjectFromPopularGitServices}'
-
+  - pattern: "Group labels are available for any project within the group."
+    replace: '${groupLabelsAreAvailableForAnyProjectWithinTheGroup}'
+  - pattern: "No labels created yet."
+    replace: '${noLabelsCreatedYet}'
 
   - name: formLabel
     params:

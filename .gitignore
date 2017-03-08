@@ -3,3 +3,4 @@
 /gitlabhq/
 /node_modules/
 *.swp
+*.log

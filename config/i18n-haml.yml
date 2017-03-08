@@ -3,7 +3,14 @@ translations:
 # Haml
 - name: 'haml:shortcuts'
   parallel-group: 'group1'
-  src: 'app/views/**/_shortcuts.html.haml'
+  src: 'app/views/help/_shortcuts.html.haml'
+  skip-patterns:
+  # Tag or class that are not followed by any words
+  - !!js/regexp /^\s*[\.%][^\s]+$/
+  # Empty lines and Ruby codes: comments, render with 1 param,
+  # and else/if/unless with zero or one word.
+  # Or insertion codes that has no quotation characters
+  - !!js/regexp /^\s*(?:$|-[^'"]*$|= render [^,]*$|- ?(?:#.*|(?:if|unless) [^ ]*)$|=[^'"]+$)/
   patterns:
   - pattern: "Go to projects"
     replace: '${shortcutsGoToProjects}'
@@ -32,14 +39,12 @@ translations:
   parallel-group: 'group1'
   src: 'app/views/**/*.haml'
   skip-patterns:
-  # Empty
-  - !!js/regexp /^\s*$/
   # Tag or class that are not followed by any words
   - !!js/regexp /^\s*[\.%][^\s]+$/
-  # Ruby running codes: comments, render with 1 param,
+  # Empty lines and Ruby codes: comments, render with 1 param,
   # and else/if/unless with zero or one word.
   # Or insertion codes that has no quotation characters
-  - !!js/regexp /^\s*(?:-[^'"]*|= render [^,]*|- ?(?:#.*|(?:if|unless) [^ ]*)|=[^'"]+)$/
+  - !!js/regexp /^\s*(?:$|-[^'"]*$|= render [^,]*$|- ?(?:#.*|(?:if|unless) [^ ]*)$|=[^'"]+$)/
   named-patterns:
   - name: singleWord
     pattern: "{word}?(:?)$|(\"){word}?\"|('){word}?'|(\".* ){word}?(\")"

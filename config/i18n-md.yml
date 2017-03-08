@@ -5,7 +5,7 @@ translations:
   parallel-group: 'group1'
   src: 'doc/**/*.md'
   skip-patterns:
-  - !!js/regexp /(^[^a-zA-Z]+$|^```)/
+  - !!js/regexp /(^\s*$|^[^a-zA-Z]+$|^\s*```|^---)/
   named-patterns:
   - name: headerOrComment
     pattern: "^(#+ ){title}$"

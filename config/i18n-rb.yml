@@ -4,6 +4,9 @@ translations:
 - name: 'rb:helpers'
   parallel-group: 'group1'
   src: 'app/helpers/**.rb'
+  skip-patterns:
+  # Comments and lines that consists of reserved keywords
+  - !!js/regexp /^\s*(?:#.*|(?:require|include|class|render|before_action) .*|private|end)?$/
   patterns:
   - pattern: "'Oldest updated'"
     replace: "'${oldestUpdated}'"
@@ -152,7 +155,10 @@ translations:
   parallel-group: 'group1'
   src: 'app/**/*.rb'
   skip-patterns:
-  - !!js/regexp /^\s*(?:(?:require|include|class|render|before_action) .*|private|end)?$/
+  # Lines that does not contain quotes
+  - !!js/regexp /^(?!.*['"]).+$/
+  # Comments and lines that consists of reserved keywords
+  - !!js/regexp /^\s*(?:#.*|(?:require|include|class|render|before_action) .*|private|end)?$/
 
   conditionals:
     - insert:
@@ -275,8 +281,8 @@ translations:
     replace: '${theSnippetCanBeAccessedWithoutAnyAuthentication}'
   - pattern: 'Add an SSH key to your profile<br>to pull or push via SSH.'
     replace: '${addAnSshKeyToYourProfileToPullOrPushViaSsh}'
-  - pattern: !!js/regexp /\s{4}titles = \{\n\s{6}opened. "Open"\n\s{4}\}/m
-    replace: "    titles = {\n      opened: \"${open}\",\n      closed: \"${closed}\",\n      merged: \"${merged}\",\n      all: \"${all}\"\n    }"
+  - pattern: !!js/regexp /\s{6}opened. "Open"\n\s{4}\}/m
+    replace: "      opened: \"${open}\",\n      closed: \"${closed}\",\n      merged: \"${merged}\",\n      all: \"${all}\"\n    }"
   - pattern: 'Group was removed.'
     replace: '${groupWasRemoved}'
   - pattern: 'New Group'
@@ -400,6 +406,9 @@ translations:
 - name: 'rb:application'
   parallel-group: 'group1'
   src: 'config/application.rb'
+  skip-patterns:
+  # Empty or comments
+  - !!js/regexp /(?:^\s*$|^\s*#)/
   patterns:
   - pattern: !!js/regexp /^    config.i18n.enforce_available_locales = false/
     replace: '${configI18nLocale}'

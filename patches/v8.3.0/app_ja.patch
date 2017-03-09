@@ -1246,7 +1246,7 @@ index ac25d38..7fea2c5 100644
    end
  
 diff --git a/app/models/milestone.rb b/app/models/milestone.rb
-index d8c7536..7a841c4 100644
+index d8c7536..72b386c 100644
 --- a/app/models/milestone.rb
 +++ b/app/models/milestone.rb
 @@ -1,3 +1,4 @@
@@ -1254,12 +1254,8 @@ index d8c7536..7a841c4 100644
  # == Schema Information
  #
  # Table name: milestones
-@@ -14,10 +15,10 @@
- #
- 
- class Milestone < ActiveRecord::Base
--  # Represents a "No Milestone" state used for filtering Issues and Merge
-+  # Represents a "マイルストーンなし" state used for filtering Issues and Merge
+@@ -17,7 +18,7 @@ class Milestone < ActiveRecord::Base
+   # Represents a "No Milestone" state used for filtering Issues and Merge
    # Requests that have no milestone assigned.
    MilestoneStruct = Struct.new(:title, :name, :id)
 -  None = MilestoneStruct.new('No Milestone', 'No Milestone', 0)
@@ -1352,7 +1348,7 @@ index bdf7b3a..3a9e2df 100644
      return true if note.is_award
  
 diff --git a/app/services/system_note_service.rb b/app/services/system_note_service.rb
-index 98a71cb..aa8e739 100644
+index 98a71cb..a3ecc34 100644
 --- a/app/services/system_note_service.rb
 +++ b/app/services/system_note_service.rb
 @@ -1,3 +1,4 @@
@@ -1372,14 +1368,7 @@ index 98a71cb..aa8e739 100644
      body << existing_commit_summary(noteable, existing_commits, oldrev)
      body << new_commit_summary(new_commits).join("\n")
  
-@@ -35,13 +36,13 @@ class SystemNoteService
-   #
-   # Example Note text:
-   #
--  #   "Assignee removed"
-+  #   "担当者が削除されました"
-   #
-   #   "Reassigned to @rspeicher"
+@@ -41,7 +42,7 @@ class SystemNoteService
    #
    # Returns the created Note object
    def self.change_assignee(noteable, project, author, assignee)
@@ -1399,15 +1388,6 @@ index 98a71cb..aa8e739 100644
  
      create_note(noteable: noteable, project: project, author: author, note: body)
    end
-@@ -120,7 +121,7 @@ class SystemNoteService
-   #
-   #   "Status changed to merged"
-   #
--  #   "Status changed to closed by bc17db76"
-+  #   "ステータスをクローズに変更しました by bc17db76"
-   #
-   # Returns the created Note object
-   def self.change_status(noteable, project, author, status, source)
 diff --git a/app/views/abuse_reports/new.html.haml b/app/views/abuse_reports/new.html.haml
 index cffd768..c8c3233 100644
 --- a/app/views/abuse_reports/new.html.haml
@@ -5251,7 +5231,7 @@ index dc8e813..b610857 100644
 -      This group does not have public projects
 +      This group does not have 公開プロジェクト
 diff --git a/app/views/help/_shortcuts.html.haml b/app/views/help/_shortcuts.html.haml
-index 7e801b5..cdd1dc9 100644
+index 7e801b5..982da90 100644
 --- a/app/views/help/_shortcuts.html.haml
 +++ b/app/views/help/_shortcuts.html.haml
 @@ -4,7 +4,7 @@
@@ -5263,7 +5243,7 @@ index 7e801b5..cdd1dc9 100644
            %small
              = link_to '(Show all)', '#', class: 'js-more-help-button'
        .modal-body.shortcuts-cheatsheet
-@@ -13,19 +13,19 @@
+@@ -13,134 +13,134 @@
              %tbody
                %tr
                  %th
@@ -5287,7 +5267,20 @@ index 7e801b5..cdd1dc9 100644
                %tr
                  %td.shortcut
                    .key
-@@ -43,104 +43,104 @@
+                     %i.fa.fa-arrow-up
+-                %td Move selection up
++                %td 選択範囲を上に移動
+               %tr
+                 %td.shortcut
+                   .key
+                     %i.fa.fa-arrow-down
+-                %td Move selection down
++                %td 選択範囲を下に移動
+               %tr
+                 %td.shortcut
+                   .key enter
+-                %td Open Selection
++                %td 選択内容を開く
  
          .col-lg-4
            %table.shortcut-mappings

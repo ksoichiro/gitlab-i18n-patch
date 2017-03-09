@@ -472,24 +472,6 @@ index ce417ee..c0a0f20 100644
    end
  
    def closed_by_merge_requests
-diff --git a/app/controllers/projects/merge_requests_controller.rb b/app/controllers/projects/merge_requests_controller.rb
-index e16acab..68ada77 100644
---- a/app/controllers/projects/merge_requests_controller.rb
-+++ b/app/controllers/projects/merge_requests_controller.rb
-@@ -1,3 +1,4 @@
-+# encoding: utf-8
- class Projects::MergeRequestsController < Projects::ApplicationController
-   include ToggleSubscriptionAction
-   include DiffHelper
-@@ -69,7 +70,7 @@ class Projects::MergeRequestsController < Projects::ApplicationController
-     @base_commit = @merge_request.diff_base_commit
- 
-     # MRs created before 8.4 don't have a diff_base_commit,
--    # but we need it for the "View file @ ..." link by deleted files
-+    # but we need it for the "ファイルを表示 @ ..." link by deleted files
-     @base_commit ||= @merge_request.first_commit.parent || @merge_request.first_commit
- 
-     @comments_allowed = @reply_allowed = true
 diff --git a/app/controllers/projects/wikis_controller.rb b/app/controllers/projects/wikis_controller.rb
 index 88fccfed..b262b69 100644
 --- a/app/controllers/projects/wikis_controller.rb
@@ -1234,7 +1216,7 @@ index ef48207..2f9b04d 100644
    end
  
 diff --git a/app/models/milestone.rb b/app/models/milestone.rb
-index de7183b..6646fc2 100644
+index de7183b..c9bd620 100644
 --- a/app/models/milestone.rb
 +++ b/app/models/milestone.rb
 @@ -1,3 +1,4 @@
@@ -1242,12 +1224,8 @@ index de7183b..6646fc2 100644
  # == Schema Information
  #
  # Table name: milestones
-@@ -14,10 +15,10 @@
- #
- 
- class Milestone < ActiveRecord::Base
--  # Represents a "No Milestone" state used for filtering Issues and Merge
-+  # Represents a "マイルストーンなし" state used for filtering Issues and Merge
+@@ -17,7 +18,7 @@ class Milestone < ActiveRecord::Base
+   # Represents a "No Milestone" state used for filtering Issues and Merge
    # Requests that have no milestone assigned.
    MilestoneStruct = Struct.new(:title, :name, :id)
 -  None = MilestoneStruct.new('No Milestone', 'No Milestone', 0)
@@ -1340,7 +1318,7 @@ index 3bdf00a..b5f2362 100644
      return true if note.is_award
  
 diff --git a/app/services/system_note_service.rb b/app/services/system_note_service.rb
-index e022a04..c143a01 100644
+index e022a04..559b4940 100644
 --- a/app/services/system_note_service.rb
 +++ b/app/services/system_note_service.rb
 @@ -1,3 +1,4 @@
@@ -1360,14 +1338,7 @@ index e022a04..c143a01 100644
      body << existing_commit_summary(noteable, existing_commits, oldrev)
      body << new_commit_summary(new_commits).join("\n")
  
-@@ -35,13 +36,13 @@ class SystemNoteService
-   #
-   # Example Note text:
-   #
--  #   "Assignee removed"
-+  #   "担当者が削除されました"
-   #
-   #   "Reassigned to @rspeicher"
+@@ -41,7 +42,7 @@ class SystemNoteService
    #
    # Returns the created Note object
    def self.change_assignee(noteable, project, author, assignee)
@@ -1376,15 +1347,6 @@ index e022a04..c143a01 100644
  
      create_note(noteable: noteable, project: project, author: author, note: body)
    end
-@@ -120,7 +121,7 @@ class SystemNoteService
-   #
-   #   "Status changed to merged"
-   #
--  #   "Status changed to closed by bc17db76"
-+  #   "ステータスをクローズに変更しました by bc17db76"
-   #
-   # Returns the created Note object
-   def self.change_status(noteable, project, author, status, source)
 diff --git a/app/views/abuse_reports/new.html.haml b/app/views/abuse_reports/new.html.haml
 index 3bc1b24..2041e02 100644
 --- a/app/views/abuse_reports/new.html.haml
@@ -5238,7 +5200,7 @@ index 820743d..a7e7e26 100644
    .tab-content
      .tab-pane.active#projects
 diff --git a/app/views/help/_shortcuts.html.haml b/app/views/help/_shortcuts.html.haml
-index da3c371..a7c7269 100644
+index da3c371..7e58fa1 100644
 --- a/app/views/help/_shortcuts.html.haml
 +++ b/app/views/help/_shortcuts.html.haml
 @@ -4,7 +4,7 @@
@@ -5269,7 +5231,12 @@ index da3c371..a7c7269 100644
                %tr
                  %td.shortcut
                    - if browser.mac?
-@@ -33,7 +33,7 @@
+@@ -29,152 +29,152 @@
+                   - else
+                     .key ctrl shift p
+ 
+-                %td Toggle Markdown preview
++                %td Markdownプレビューをトグル
              %tbody
                %tr
                  %th
@@ -5278,7 +5245,20 @@ index da3c371..a7c7269 100644
                %tr
                  %td.shortcut
                    .key
-@@ -51,7 +51,7 @@
+                     %i.fa.fa-arrow-up
+-                %td Move selection up
++                %td 選択範囲を上に移動
+               %tr
+                 %td.shortcut
+                   .key
+                     %i.fa.fa-arrow-down
+-                %td Move selection down
++                %td 選択範囲を下に移動
+               %tr
+                 %td.shortcut
+                   .key enter
+-                %td Open Selection
++                %td 選択内容を開く
              %tbody
                %tr
                  %th
@@ -5287,7 +5267,25 @@ index da3c371..a7c7269 100644
                %tr
                  %td.shortcut
                    .key
-@@ -73,108 +73,108 @@
+                     %i.fa.fa-arrow-up
+-                %td Move selection up
++                %td 選択範囲を上に移動
+               %tr
+                 %td.shortcut
+                   .key
+                     %i.fa.fa-arrow-down
+-                %td Move selection down
++                %td 選択範囲を下に移動
+               %tr
+                 %td.shortcut
+                   .key enter
+-                %td Open Selection
++                %td 選択内容を開く
+               %tr
+                 %td.shortcut
+                   .key esc
+-                %td Go back
++                %td 戻る
  
          .col-lg-4
            %table.shortcut-mappings

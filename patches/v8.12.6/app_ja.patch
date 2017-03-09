@@ -1072,7 +1072,7 @@ index 2f13d33..f80be7c 100644
  
    private
 diff --git a/app/models/merge_request.rb b/app/models/merge_request.rb
-index af9314b..2be345c 100644
+index af9314b..815c16c 100644
 --- a/app/models/merge_request.rb
 +++ b/app/models/merge_request.rb
 @@ -1,3 +1,4 @@
@@ -1080,15 +1080,6 @@ index af9314b..2be345c 100644
  class MergeRequest < ActiveRecord::Base
    include InternalId
    include Issuable
-@@ -194,7 +195,7 @@ class MergeRequest < ActiveRecord::Base
-   end
- 
-   # MRs created before 8.4 don't store a MergeRequestDiff#base_commit_sha,
--  # but we need to get a commit for the "View file @ ..." link by deleted files,
-+  # but we need to get a commit for the "ファイルを表示 @ ..." link by deleted files,
-   # so we find the likely one if we can't get the actual one.
-   # This will not be the actual base commit if the target branch was merged into
-   # the source branch after the merge request was created, but it is good enough
 @@ -688,7 +689,7 @@ class MergeRequest < ActiveRecord::Base
      elsif closed?
        "Closed"
@@ -1099,14 +1090,13 @@ index af9314b..2be345c 100644
    end
  
 diff --git a/app/models/milestone.rb b/app/models/milestone.rb
-index 2bd7f19..28b6302 100644
+index 2bd7f19..36983f8 100644
 --- a/app/models/milestone.rb
 +++ b/app/models/milestone.rb
 @@ -1,8 +1,9 @@
 +# encoding: utf-8
  class Milestone < ActiveRecord::Base
--  # Represents a "No Milestone" state used for filtering Issues and Merge
-+  # Represents a "マイルストーンなし" state used for filtering Issues and Merge
+   # Represents a "No Milestone" state used for filtering Issues and Merge
    # Requests that have no milestone assigned.
    MilestoneStruct = Struct.new(:title, :name, :id)
 -  None = MilestoneStruct.new('No Milestone', 'No Milestone', 0)
@@ -1200,7 +1190,7 @@ index 6139ed5..3d4cd4f 100644
  
      target = note.noteable
 diff --git a/app/services/system_note_service.rb b/app/services/system_note_service.rb
-index 0c8446e..ab2641c 100644
+index 0c8446e..f2a9786 100644
 --- a/app/services/system_note_service.rb
 +++ b/app/services/system_note_service.rb
 @@ -1,3 +1,4 @@
@@ -1220,14 +1210,7 @@ index 0c8446e..ab2641c 100644
      body << existing_commit_summary(noteable, existing_commits, oldrev)
      body << new_commit_summary(new_commits).join("\n")
  
-@@ -37,13 +38,13 @@ module SystemNoteService
-   #
-   # Example Note text:
-   #
--  #   "Assignee removed"
-+  #   "担当者が削除されました"
-   #
-   #   "Reassigned to @rspeicher"
+@@ -43,7 +44,7 @@ module SystemNoteService
    #
    # Returns the created Note object
    def change_assignee(noteable, project, author, assignee)
@@ -1236,15 +1219,6 @@ index 0c8446e..ab2641c 100644
  
      create_note(noteable: noteable, project: project, author: author, note: body)
    end
-@@ -122,7 +123,7 @@ module SystemNoteService
-   #
-   #   "Status changed to merged"
-   #
--  #   "Status changed to closed by bc17db76"
-+  #   "ステータスをクローズに変更しました by bc17db76"
-   #
-   # Returns the created Note object
-   def change_status(noteable, project, author, status, source)
 diff --git a/app/views/abuse_reports/new.html.haml b/app/views/abuse_reports/new.html.haml
 index 06be1a5..4ecb38d 100644
 --- a/app/views/abuse_reports/new.html.haml
@@ -5205,7 +5179,7 @@ index 31db6ee..3e3cf14 100644
    .tab-content
      .tab-pane.active#projects
 diff --git a/app/views/help/_shortcuts.html.haml b/app/views/help/_shortcuts.html.haml
-index 65842a0..5851bd0c 100644
+index 65842a0..d737252 100644
 --- a/app/views/help/_shortcuts.html.haml
 +++ b/app/views/help/_shortcuts.html.haml
 @@ -4,7 +4,7 @@
@@ -5217,7 +5191,7 @@ index 65842a0..5851bd0c 100644
            %small
              = link_to '(Show all)', '#', class: 'js-more-help-button'
        .modal-body
-@@ -14,11 +14,11 @@
+@@ -14,154 +14,154 @@
                %tbody
                  %tr
                    %th
@@ -5231,12 +5205,27 @@ index 65842a0..5851bd0c 100644
                  %tr
                    %td.shortcut
                      .key f
-@@ -38,11 +38,11 @@
+-                  %td Focus Filter
++                  %td フィルタにフォーカス
+                 %tr
+                   %td.shortcut
+                     .key ?
+-                  %td Show/hide this dialog
++                  %td このダイアログを表示/非表示
+                 %tr
+                   %td.shortcut
+                     - if browser.platform.mac?
+                       .key &#8984; shift p
+                     - else
+                       .key ctrl shift p
+-                  %td Toggle Markdown preview
++                  %td Markdownプレビューをトグル
+                 %tr
                    %td.shortcut
                      .key
                        %i.fa.fa-arrow-up
 -                  %td Edit last comment (when focused on an empty textarea)
-+                  %td last comment (when focused on an empty textarea)を編集
++                  %td 最後のコメントを編集 (空のtextareaにフォーカスしたとき)
                %tbody
                  %tr
                    %th
@@ -5245,7 +5234,20 @@ index 65842a0..5851bd0c 100644
                  %tr
                    %td.shortcut
                      .key
-@@ -60,7 +60,7 @@
+                       %i.fa.fa-arrow-up
+-                  %td Move selection up
++                  %td 選択範囲を上に移動
+                 %tr
+                   %td.shortcut
+                     .key
+                       %i.fa.fa-arrow-down
+-                  %td Move selection down
++                  %td 選択範囲を下に移動
+                 %tr
+                   %td.shortcut
+                     .key enter
+-                  %td Open Selection
++                  %td 選択内容を開く
                %tbody
                  %tr
                    %th
@@ -5254,7 +5256,25 @@ index 65842a0..5851bd0c 100644
                  %tr
                    %td.shortcut
                      .key
-@@ -82,86 +82,86 @@
+                       %i.fa.fa-arrow-up
+-                  %td Move selection up
++                  %td 選択範囲を上に移動
+                 %tr
+                   %td.shortcut
+                     .key
+                       %i.fa.fa-arrow-down
+-                  %td Move selection down
++                  %td 選択範囲を下に移動
+                 %tr
+                   %td.shortcut
+                     .key enter
+-                  %td Open Selection
++                  %td 選択内容を開く
+                 %tr
+                   %td.shortcut
+                     .key esc
+-                  %td Go back
++                  %td 戻る
  
            .col-lg-4
              %table.shortcut-mappings
@@ -17272,7 +17292,7 @@ index 881358e..1a5cf36 100644
  
  ### Ask a GitLab administrator to disable two-factor on your account
 diff --git a/doc/user/admin_area/labels.md b/doc/user/admin_area/labels.md
-index 9e2a89e..f8bcbde 100644
+index 9e2a89e..e68e73d 100644
 --- a/doc/user/admin_area/labels.md
 +++ b/doc/user/admin_area/labels.md
 @@ -1,9 +1,9 @@
@@ -17285,7 +17305,7 @@ index 9e2a89e..f8bcbde 100644
  ### Define your own default Label Set
  
 -Labels that are created within the Labels view on the Admin Dashboard will be automatically added to each new project.
-+ラベル that are created within the Labels view on the Admin Dashboard will be automatically added to each new project.
++ラベル that are created within the ラベル view on the Admin Dashboard will be automatically added to each new project.
  
  ![Default label set](img/admin_labels.png)
 diff --git a/doc/user/markdown.md b/doc/user/markdown.md

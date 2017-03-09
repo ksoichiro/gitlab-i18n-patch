@@ -5142,7 +5142,7 @@ index d256d14..71a393c 100644
    .tab-content
      .tab-pane.active#projects
 diff --git a/app/views/help/_shortcuts.html.haml b/app/views/help/_shortcuts.html.haml
-index 705e201..085cda9 100644
+index 705e201..3760a04 100644
 --- a/app/views/help/_shortcuts.html.haml
 +++ b/app/views/help/_shortcuts.html.haml
 @@ -4,7 +4,7 @@
@@ -5154,7 +5154,7 @@ index 705e201..085cda9 100644
            %small
              = link_to '(Show all)', '#', class: 'js-more-help-button'
        .modal-body
-@@ -14,11 +14,11 @@
+@@ -14,75 +14,75 @@
                %tbody
                  %tr
                    %th
@@ -5168,12 +5168,27 @@ index 705e201..085cda9 100644
                  %tr
                    %td.shortcut
                      .key f
-@@ -38,11 +38,11 @@
+-                  %td Focus Filter
++                  %td フィルタにフォーカス
+                 %tr
+                   %td.shortcut
+                     .key ?
+-                  %td Show/hide this dialog
++                  %td このダイアログを表示/非表示
+                 %tr
+                   %td.shortcut
+                     - if browser.platform.mac?
+                       .key &#8984; shift p
+                     - else
+                       .key ctrl shift p
+-                  %td Toggle Markdown preview
++                  %td Markdownプレビューをトグル
+                 %tr
                    %td.shortcut
                      .key
                        %i.fa.fa-arrow-up
 -                  %td Edit last comment (when focused on an empty textarea)
-+                  %td last comment (when focused on an empty textarea)を編集
++                  %td 最後のコメントを編集 (空のtextareaにフォーカスしたとき)
                %tbody
                  %tr
                    %th
@@ -5182,7 +5197,20 @@ index 705e201..085cda9 100644
                  %tr
                    %td.shortcut
                      .key
-@@ -60,7 +60,7 @@
+                       %i.fa.fa-arrow-up
+-                  %td Move selection up
++                  %td 選択範囲を上に移動
+                 %tr
+                   %td.shortcut
+                     .key
+                       %i.fa.fa-arrow-down
+-                  %td Move selection down
++                  %td 選択範囲を下に移動
+                 %tr
+                   %td.shortcut
+                     .key enter
+-                  %td Open Selection
++                  %td 選択内容を開く
                %tbody
                  %tr
                    %th
@@ -5191,7 +5219,25 @@ index 705e201..085cda9 100644
                  %tr
                    %td.shortcut
                      .key
-@@ -82,7 +82,7 @@
+                       %i.fa.fa-arrow-up
+-                  %td Move selection up
++                  %td 選択範囲を上に移動
+                 %tr
+                   %td.shortcut
+                     .key
+                       %i.fa.fa-arrow-down
+-                  %td Move selection down
++                  %td 選択範囲を下に移動
+                 %tr
+                   %td.shortcut
+                     .key enter
+-                  %td Open Selection
++                  %td 選択内容を開く
+                 %tr
+                   %td.shortcut
+                     .key esc
+-                  %td Go back
++                  %td 戻る
                %tbody
                  %tr
                    %th

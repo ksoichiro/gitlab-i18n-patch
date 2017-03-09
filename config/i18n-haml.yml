@@ -34,6 +34,30 @@ translations:
     replace: '${shortcutsGoToGraph}'
   - pattern: "Go to snippets"
     replace: '${shortcutsGoToSnippets}'
+  - pattern: "Keyboard Shortcuts"
+    replace: '${keyboardShortcuts}'
+  - pattern: "Global Shortcuts"
+    replace: '${globalShortcuts}'
+  - pattern: "Focus Filter"
+    replace: '${focusFilter}'
+  - pattern: "Show/hide this dialog"
+    replace: '${showHideThisDialog}'
+  - pattern: "Toggle Markdown preview"
+    replace: '${toggleMarkdownPreview}'
+  - pattern: "Edit last comment (when focused on an empty textarea)"
+    replace: '${editLastCommentWhenFocusedOnAnEmptyTextarea}'
+  - pattern: "Project Files browsing"
+    replace: '${projectFilesBrowsing}'
+  - pattern: "Move selection up"
+    replace: '${moveSelectionUp}'
+  - pattern: "Move selection down"
+    replace: '${moveSelectionDown}'
+  - pattern: "Open Selection"
+    replace: '${openSelection}'
+  - pattern: "Go back"
+    replace: '${goBack}'
+  - pattern: "Global Dashboard"
+    relpace: '${globalDashboard}'
 
 - name: 'haml'
   parallel-group: 'group1'

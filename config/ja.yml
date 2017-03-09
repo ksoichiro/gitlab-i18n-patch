@@ -2950,3 +2950,12 @@ pleaseEnterPathAndNameForTheProjectToBeImportedTo: インポート先のプロ�
 createOrImportYourProjectFromPopularGitServices: プロジェクトを作成またはポピュラーなGitサービスからインポート
 groupLabelsAreAvailableForAnyProjectWithinTheGroup: グループのラベルはグループ内のすべてのプロジェクトで利用できます。
 noLabelsCreatedYet: ラベルはまだ作られていません
+focusFilter: フィルタにフォーカス
+showHideThisDialog: このダイアログを表示/非表示
+toggleMarkdownPreview: Markdownプレビューをトグル
+editLastCommentWhenFocusedOnAnEmptyTextarea: 最後のコメントを編集 (空のtextareaにフォーカスしたとき)
+moveSelectionUp: 選択範囲を上に移動
+moveSelectionDown: 選択範囲を下に移動
+openSelection: 選択内容を開く
+goBack: 戻る
+globalDashboard: グローバルダッシュボード

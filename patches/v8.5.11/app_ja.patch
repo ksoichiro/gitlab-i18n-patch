@@ -505,24 +505,6 @@ index 67faa1e..e49da2a 100644
    end
  
    def toggle_subscription
-diff --git a/app/controllers/projects/merge_requests_controller.rb b/app/controllers/projects/merge_requests_controller.rb
-index 5fe2169..bec4f18 100644
---- a/app/controllers/projects/merge_requests_controller.rb
-+++ b/app/controllers/projects/merge_requests_controller.rb
-@@ -1,3 +1,4 @@
-+# encoding: utf-8
- class Projects::MergeRequestsController < Projects::ApplicationController
-   before_action :module_enabled
-   before_action :merge_request, only: [
-@@ -65,7 +66,7 @@ class Projects::MergeRequestsController < Projects::ApplicationController
-     @base_commit = @merge_request.diff_base_commit
- 
-     # MRs created before 8.4 don't have a diff_base_commit,
--    # but we need it for the "View file @ ..." link by deleted files
-+    # but we need it for the "ファイルを表示 @ ..." link by deleted files
-     @base_commit ||= @merge_request.first_commit.parent || @merge_request.first_commit
- 
-     @comments_allowed = @reply_allowed = true
 diff --git a/app/controllers/projects/wikis_controller.rb b/app/controllers/projects/wikis_controller.rb
 index 88fccfed..b262b69 100644
 --- a/app/controllers/projects/wikis_controller.rb
@@ -1214,7 +1196,7 @@ index 1543ef3..81e9c46 100644
    end
  
 diff --git a/app/models/milestone.rb b/app/models/milestone.rb
-index 7dc2f90..3a4d3dc 100644
+index 7dc2f90..986a771 100644
 --- a/app/models/milestone.rb
 +++ b/app/models/milestone.rb
 @@ -1,3 +1,4 @@
@@ -1222,12 +1204,8 @@ index 7dc2f90..3a4d3dc 100644
  # == Schema Information
  #
  # Table name: milestones
-@@ -14,10 +15,10 @@
- #
- 
- class Milestone < ActiveRecord::Base
--  # Represents a "No Milestone" state used for filtering Issues and Merge
-+  # Represents a "マイルストーンなし" state used for filtering Issues and Merge
+@@ -17,7 +18,7 @@ class Milestone < ActiveRecord::Base
+   # Represents a "No Milestone" state used for filtering Issues and Merge
    # Requests that have no milestone assigned.
    MilestoneStruct = Struct.new(:title, :name, :id)
 -  None = MilestoneStruct.new('No Milestone', 'No Milestone', 0)
@@ -1320,7 +1298,7 @@ index ca8a41d..a1114bd 100644
      return true if note.is_award
  
 diff --git a/app/services/system_note_service.rb b/app/services/system_note_service.rb
-index edced01..53afc79 100644
+index edced01..9c30636 100644
 --- a/app/services/system_note_service.rb
 +++ b/app/services/system_note_service.rb
 @@ -1,3 +1,4 @@
@@ -1340,14 +1318,7 @@ index edced01..53afc79 100644
      body << existing_commit_summary(noteable, existing_commits, oldrev)
      body << new_commit_summary(new_commits).join("\n")
  
-@@ -35,13 +36,13 @@ class SystemNoteService
-   #
-   # Example Note text:
-   #
--  #   "Assignee removed"
-+  #   "担当者が削除されました"
-   #
-   #   "Reassigned to @rspeicher"
+@@ -41,7 +42,7 @@ class SystemNoteService
    #
    # Returns the created Note object
    def self.change_assignee(noteable, project, author, assignee)
@@ -1356,15 +1327,6 @@ index edced01..53afc79 100644
  
      create_note(noteable: noteable, project: project, author: author, note: body)
    end
-@@ -120,7 +121,7 @@ class SystemNoteService
-   #
-   #   "Status changed to merged"
-   #
--  #   "Status changed to closed by bc17db76"
-+  #   "ステータスをクローズに変更しました by bc17db76"
-   #
-   # Returns the created Note object
-   def self.change_status(noteable, project, author, status, source)
 diff --git a/app/views/abuse_reports/new.html.haml b/app/views/abuse_reports/new.html.haml
 index f125ecf..2601a2e 100644
 --- a/app/views/abuse_reports/new.html.haml
@@ -5436,7 +5398,7 @@ index 6148d8c..ffd69f2 100644
  - if can?(current_user, :read_group, @group)
    %div{ class: container_class }
 diff --git a/app/views/help/_shortcuts.html.haml b/app/views/help/_shortcuts.html.haml
-index 8e98271..6df2509 100644
+index 8e98271..ca4c0db 100644
 --- a/app/views/help/_shortcuts.html.haml
 +++ b/app/views/help/_shortcuts.html.haml
 @@ -4,7 +4,7 @@
@@ -5448,7 +5410,7 @@ index 8e98271..6df2509 100644
            %small
              = link_to '(Show all)', '#', class: 'js-more-help-button'
        .modal-body.shortcuts-cheatsheet
-@@ -13,19 +13,19 @@
+@@ -13,160 +13,160 @@
              %tbody
                %tr
                  %th
@@ -5472,7 +5434,20 @@ index 8e98271..6df2509 100644
                %tr
                  %td.shortcut
                    .key
-@@ -43,7 +43,7 @@
+                     %i.fa.fa-arrow-up
+-                %td Move selection up
++                %td 選択範囲を上に移動
+               %tr
+                 %td.shortcut
+                   .key
+                     %i.fa.fa-arrow-down
+-                %td Move selection down
++                %td 選択範囲を下に移動
+               %tr
+                 %td.shortcut
+                   .key enter
+-                %td Open Selection
++                %td 選択内容を開く
              %tbody
                %tr
                  %th
@@ -5481,7 +5456,25 @@ index 8e98271..6df2509 100644
                %tr
                  %td.shortcut
                    .key
-@@ -65,108 +65,108 @@
+                     %i.fa.fa-arrow-up
+-                %td Move selection up
++                %td 選択範囲を上に移動
+               %tr
+                 %td.shortcut
+                   .key
+                     %i.fa.fa-arrow-down
+-                %td Move selection down
++                %td 選択範囲を下に移動
+               %tr
+                 %td.shortcut
+                   .key enter
+-                %td Open Selection
++                %td 選択内容を開く
+               %tr
+                 %td.shortcut
+                   .key esc
+-                %td Go back
++                %td 戻る
  
          .col-lg-4
            %table.shortcut-mappings

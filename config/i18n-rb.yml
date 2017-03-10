@@ -5,6 +5,8 @@ translations:
   parallel-group: 'group1'
   src: 'app/helpers/**.rb'
   skip-patterns:
+  # Lines that does not contain quotes
+  - !!js/regexp /^(?!\s*Project\.visibility_levels\.key)(?!.*['"]).+$/
   # Comments and lines that consists of reserved keywords
   - !!js/regexp /^\s*(?:#.*|(?:def|require|include|class|render|before_action) .*|private|end)?$/
   patterns:

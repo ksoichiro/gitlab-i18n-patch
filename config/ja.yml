@@ -893,11 +893,11 @@ mdTitleAdministratorDocumentation: 管理者向けドキュメント
 #mdTitleAtlassianBambooCIService: 
 #mdTitleAttackVectorsInRunners: 
 #mdTitleAuth0OmniAuthProvider: 
-#mdTitleAuthentication: 
-#mdTitleAuthenticationAndAuthorization: 
-#mdTitleAuthenticationMechanisms: 
-#mdTitleAuthenticationWithOAuth2Token: 
-#mdTitleAuthorizationForMergeRequests: 
+mdTitleAuthentication: 認証
+mdTitleAuthenticationAndAuthorization: 認証と認可
+mdTitleAuthenticationMechanisms: 認証メカニズム
+mdTitleAuthenticationWithOAuth2Token: OAuth2トークンでの認証
+mdTitleAuthorizationForMergeRequests: マージリクエストの承認
 mdTitleAuthorizedApplications: 認可済みアプリケーション
 #mdTitleAvoidUserInputAtTheStartOfPathStrings: 
 #mdTitleAwardEmojis: 

@@ -1325,16 +1325,16 @@ translations:
     #  key: mdTitleAttackVectorsInRunners
     #- title: 'Auth0 OmniAuth Provider'
     #  key: mdTitleAuth0OmniAuthProvider
-    #- title: 'Authentication'
-    #  key: mdTitleAuthentication
-    #- title: 'Authentication and Authorization'
-    #  key: mdTitleAuthenticationAndAuthorization
-    #- title: 'Authentication mechanisms'
-    #  key: mdTitleAuthenticationMechanisms
-    #- title: 'Authentication with OAuth2 token'
-    #  key: mdTitleAuthenticationWithOAuth2Token
-    #- title: 'Authorization for Merge requests'
-    #  key: mdTitleAuthorizationForMergeRequests
+    - title: 'Authentication'
+      key: mdTitleAuthentication
+    - title: 'Authentication and Authorization'
+      key: mdTitleAuthenticationAndAuthorization
+    - title: 'Authentication mechanisms'
+      key: mdTitleAuthenticationMechanisms
+    - title: 'Authentication with OAuth2 token'
+      key: mdTitleAuthenticationWithOAuth2Token
+    - title: 'Authorization for Merge requests'
+      key: mdTitleAuthorizationForMergeRequests
     - title: 'Authorized applications'
       key: mdTitleAuthorizedApplications
     #- title: 'Avoid user input at the start of path strings'

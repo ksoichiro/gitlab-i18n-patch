@@ -68,7 +68,8 @@ translations:
   # Empty lines and Ruby codes: comments, render with 1 param,
   # and else/if/unless with zero or one word.
   # Or insertion codes that has no quotation characters
-  - !!js/regexp /^\s*(?:$|-[^'"]*$|= render [^,]*$|- ?(?:#.*|(?:if|unless) [^ ]*)$|=[^'"]+$)/
+  - !!js/regexp /^\s*(?:$|-[^'"]*$|= render [^,]*$|= icon\('[^']*'\).*$|- ?(?:#.*|(?:if|unless) [^ ]*)$|=[^'"]+$)/
+  - !!js/regexp /^\s*%.*=\s[^'"]*$/
   named-patterns:
   - name: singleWord
     pattern: "{word}?(:?)$|(\"){word}?\"|('){word}?'|(\".* ){word}?(\")"

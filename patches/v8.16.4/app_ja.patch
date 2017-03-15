@@ -5073,7 +5073,7 @@ index 38d63fd..a13764d 100644
 +    = f.submit 'グループを作成', class: "btn btn-create"
 +    = link_to 'キャンセル', dashboard_groups_path, class: 'btn btn-cancel'
 diff --git a/app/views/groups/projects.html.haml b/app/views/groups/projects.html.haml
-index 2e7e5e5..d4856c6 100644
+index 2e7e5e5..16d811e 100644
 --- a/app/views/groups/projects.html.haml
 +++ b/app/views/groups/projects.html.haml
 @@ -1,4 +1,4 @@
@@ -5082,7 +5082,7 @@ index 2e7e5e5..d4856c6 100644
  
  .panel.panel-default.prepend-top-default
    .panel-heading
-@@ -7,22 +7,22 @@
+@@ -7,7 +7,7 @@
      - if can? current_user, :admin_group, @group
        .controls
          = link_to new_project_path(namespace_id: @group.id), class: "btn btn-sm btn-success" do
@@ -5091,13 +5091,7 @@ index 2e7e5e5..d4856c6 100644
    %ul.well-list
      - @projects.each do |project|
        %li
-         .list-item-name
-           %span{ class: visibility_level_color(project.visibility_level) }
-             = visibility_level_icon(project.visibility_level)
--          %strong= link_to project.name_with_namespace, project
-+          %strong= link_to project.name_with_namespace, プロジェクト
-         .pull-right
-           - if project.archived
+@@ -20,9 +20,9 @@
              %span.label.label-warning archived
            %span.badge
              = storage_counter(project.statistics.storage_size)
@@ -15663,6 +15657,16 @@ index fb750ec..6c69ec7 100644
  
  - [Development](development/README.md) All styleguides and explanations how to contribute.
  - [Legal](legal/README.md) Contributor license agreements.
+diff --git a/doc/administration/auth/README.md b/doc/administration/auth/README.md
+index 13bd501..39d7314 100644
+--- a/doc/administration/auth/README.md
++++ b/doc/administration/auth/README.md
+@@ -1,4 +1,4 @@
+-# Authentication and Authorization
++# 認証と認可
+ 
+ GitLab integrates with the following external authentication and authorization
+ providers.
 diff --git a/doc/administration/auth/ldap.md b/doc/administration/auth/ldap.md
 index 0472336..c0fa287 100644
 --- a/doc/administration/auth/ldap.md
@@ -15943,7 +15947,7 @@ index 6f1356d..847854f 100644
      ```ruby
      [1] pry(main)> app.get 'https://gitlab.com/gitlab-org/gitlab-ce/issues/1?private_token=123456'
 diff --git a/doc/api/README.md b/doc/api/README.md
-index 20f28e8..72279ee 100644
+index 20f28e8..4fdd236 100644
 --- a/doc/api/README.md
 +++ b/doc/api/README.md
 @@ -1,6 +1,6 @@
@@ -15974,6 +15978,15 @@ index 20f28e8..72279ee 100644
  - [Open source license templates](templates/licenses.md)
  - [Namespaces](namespaces.md)
  - [Notes](notes.md) (comments)
+@@ -58,7 +58,7 @@ The following documentation is for the [internal CI API](ci/README.md):
+ - [Builds](ci/builds.md)
+ - [Runners](ci/runners.md)
+ 
+-## Authentication
++## 認証
+ 
+ All API requests require authentication via a session cookie or token. There are
+ three types of tokens available: private tokens, OAuth 2 tokens, and personal
 diff --git a/doc/api/award_emoji.md b/doc/api/award_emoji.md
 index 58092bd..b5fb8a1 100644
 --- a/doc/api/award_emoji.md
@@ -15999,6 +16012,32 @@ index b645997..18eb866 100644
 +## プロジェクトを作成する trigger
  
  Create a build trigger for a project.
+ 
+diff --git a/doc/api/ci/builds.md b/doc/api/ci/builds.md
+index b6d7970..961a734 100644
+--- a/doc/api/ci/builds.md
++++ b/doc/api/ci/builds.md
+@@ -7,7 +7,7 @@ This API is intended to be used only by Runners as their own
+ communication channel. For the consumer API see the
+ [Builds API](../builds.md).
+ 
+-## Authentication
++## 認証
+ 
+ This API uses two types of authentication:
+ 
+diff --git a/doc/api/ci/runners.md b/doc/api/ci/runners.md
+index 16028d1..56e6b37 100644
+--- a/doc/api/ci/runners.md
++++ b/doc/api/ci/runners.md
+@@ -7,7 +7,7 @@ This API is intended to be used only by Runners as their own
+ communication channel. For the consumer API see the
+ [new Runners API](../runners.md).
+ 
+-## Authentication
++## 認証
+ 
+ This API uses two types of authentication:
  
 diff --git a/doc/api/deploy_keys.md b/doc/api/deploy_keys.md
 index 284d5f8..8f1bfdf 100644
@@ -16767,6 +16806,19 @@ index bbcd264..d50ec0d 100644
  
  ```ruby
  class MyMigration < ActiveRecord::Migration
+diff --git a/doc/downgrade_ee_to_ce/README.md b/doc/downgrade_ee_to_ce/README.md
+index a6d22e5..1fa2a1c 100644
+--- a/doc/downgrade_ee_to_ce/README.md
++++ b/doc/downgrade_ee_to_ce/README.md
+@@ -9,7 +9,7 @@ before you change remotes and fetch the latest CE code.
+ 
+ First thing to do is to disable the following features.
+ 
+-### Authentication mechanisms
++### 認証メカニズム
+ 
+ Kerberos and Atlassian Crowd are only available on the Enterprise Edition, so
+ you should disable these mechanisms before downgrading and you should provide
 diff --git a/doc/gitlab-basics/README.md b/doc/gitlab-basics/README.md
 index d7e3aa3..e201b47 100644
 --- a/doc/gitlab-basics/README.md
@@ -19747,6 +19799,16 @@ index be09337..0d75400 100644
  
 -## Authorization for merge requests
 +## マージリクエストの承認
+ 
+ There are two main ways to have a merge request flow with GitLab:
+ 
+diff --git a/doc/user/project/merge_requests/authorization_for_merge_requests.md b/doc/user/project/merge_requests/authorization_for_merge_requests.md
+index 59b3fe7..d6f77a1 100644
+--- a/doc/user/project/merge_requests/authorization_for_merge_requests.md
++++ b/doc/user/project/merge_requests/authorization_for_merge_requests.md
+@@ -1,4 +1,4 @@
+-# Authorization for Merge requests
++# マージリクエストの承認
  
  There are two main ways to have a merge request flow with GitLab:
  

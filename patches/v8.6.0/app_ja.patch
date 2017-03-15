@@ -5132,7 +5132,7 @@ index 30ab8ae..b435e40 100644
 +    = f.submit 'グループを作成', class: "btn btn-create", tabindex: 3
 +    = link_to 'キャンセル', dashboard_groups_path, class: 'btn btn-cancel'
 diff --git a/app/views/groups/projects.html.haml b/app/views/groups/projects.html.haml
-index dd75766..bf16b9e 100644
+index dd75766..0bd9290 100644
 --- a/app/views/groups/projects.html.haml
 +++ b/app/views/groups/projects.html.haml
 @@ -1,5 +1,5 @@
@@ -5143,7 +5143,7 @@ index dd75766..bf16b9e 100644
  
  .panel.panel-default.prepend-top-default
    .panel-heading
-@@ -9,22 +9,22 @@
+@@ -9,7 +9,7 @@
        .controls
          = link_to new_project_path(namespace_id: @group.id), class: "btn btn-sm btn-success" do
            = icon('plus')
@@ -5152,13 +5152,7 @@ index dd75766..bf16b9e 100644
    %ul.well-list
      - @projects.each do |project|
        %li
-         .list-item-name
-           %span{ class: visibility_level_color(project.visibility_level) }
-             = visibility_level_icon(project.visibility_level)
--          %strong= link_to project.name_with_namespace, project
-+          %strong= link_to project.name_with_namespace, プロジェクト
-         .pull-right
-           - if project.archived
+@@ -22,9 +22,9 @@
              %span.label.label-warning archived
            %span.label.label-gray
              = repository_size(project)
@@ -13814,7 +13808,7 @@ index 4830603..d697d44 100644
  If you have used the [Omnibus packages][omnibus-dl] to install GitLab, then
  you should already have `gitlab-ctl` in your `PATH`.
 diff --git a/doc/api/README.md b/doc/api/README.md
-index 7629ef2..4c5385e 100644
+index 7629ef2..7ff3843 100644
 --- a/doc/api/README.md
 +++ b/doc/api/README.md
 @@ -1,6 +1,6 @@
@@ -13844,6 +13838,24 @@ index 7629ef2..4c5385e 100644
  - [Namespaces](namespaces.md)
  - [Settings](settings.md)
  - [Keys](keys.md)
+@@ -34,7 +34,7 @@ following locations:
+ - [Build Variables](build_variables.md)
+ - [Runners](runners.md)
+ 
+-## Authentication
++## 認証
+ 
+ All API requests require authentication. You need to pass a `private_token`
+ parameter via query string or header. If passed as a header, the header name
+@@ -68,7 +68,7 @@ curl --header "PRIVATE-TOKEN: 9koXpg98eAheJpvBs5tK" "https://gitlab.example.com/
+ The API uses JSON to serialize data. You don't need to specify `.json` at the
+ end of an API URL.
+ 
+-## Authentication with OAuth2 token
++## OAuth2トークンでの認証
+ 
+ Instead of the `private_token` you can transmit the OAuth2 access token as a
+ header or as a parameter.
 diff --git a/doc/api/build_triggers.md b/doc/api/build_triggers.md
 index 4a12e96..6effd50 100644
 --- a/doc/api/build_triggers.md
@@ -14072,6 +14084,32 @@ index 4abc45b..0d43d90 100644
 +- [ユーザ権限](permissions/README.md)
  - [API](api/README.md)
  - [CI services (linked docker containers)](services/README.md)
+diff --git a/doc/ci/api/builds.md b/doc/ci/api/builds.md
+index d100e26..8aedfcc 100644
+--- a/doc/ci/api/builds.md
++++ b/doc/ci/api/builds.md
+@@ -6,7 +6,7 @@ _**Note:** This API is intended to be used only by Runners as their own
+ communication channel. For the consumer API see the
+ [Builds API](../../api/builds.md)._
+ 
+-## Authentication
++## 認証
+ 
+ This API uses two types of authentication:
+ 
+diff --git a/doc/ci/api/runners.md b/doc/ci/api/runners.md
+index 2f01da4..18c7700 100644
+--- a/doc/ci/api/runners.md
++++ b/doc/ci/api/runners.md
+@@ -6,7 +6,7 @@ _**Note:** This API is intended to be used only by Runners as their own
+ communication channel. For the consumer API see the
+ [new Runners API](../../api/runners.md)._
+ 
+-## Authentication
++## 認証
+ 
+ This API uses two types of authentication:
+ 
 diff --git a/doc/ci/docker/README.md b/doc/ci/docker/README.md
 index 84eaf29..e6991eb 100644
 --- a/doc/ci/docker/README.md
@@ -16941,6 +16979,16 @@ index fffa0ab..9009fca 100644
  
  You can manage the groups and users and their access levels in all of your
  projects. You can also personalize the access level you give each user,
+diff --git a/doc/workflow/authorization_for_merge_requests.md b/doc/workflow/authorization_for_merge_requests.md
+index d1d6d94..6cb8d2f 100644
+--- a/doc/workflow/authorization_for_merge_requests.md
++++ b/doc/workflow/authorization_for_merge_requests.md
+@@ -1,4 +1,4 @@
+-# Authorization for Merge requests
++# マージリクエストの承認
+ 
+ There are two main ways to have a merge request flow with GitLab: working with protected branches in a single repository, or working with forks of an authoritative project.
+ 
 diff --git a/doc/workflow/file_finder.md b/doc/workflow/file_finder.md
 index b69ae66..eb17062 100644
 --- a/doc/workflow/file_finder.md

@@ -5256,7 +5256,7 @@ index 4bc31ca..3c51868 100644
 +    = f.submit 'グループを作成', class: "btn btn-create", tabindex: 3
 +    = link_to 'キャンセル', dashboard_groups_path, class: 'btn btn-cancel'
 diff --git a/app/views/groups/projects.html.haml b/app/views/groups/projects.html.haml
-index 9ca11ed..b03f863 100644
+index 9ca11ed..f840895 100644
 --- a/app/views/groups/projects.html.haml
 +++ b/app/views/groups/projects.html.haml
 @@ -1,5 +1,5 @@
@@ -5267,7 +5267,7 @@ index 9ca11ed..b03f863 100644
  
  .panel.panel-default.prepend-top-default
    .panel-heading
-@@ -9,22 +9,22 @@
+@@ -9,7 +9,7 @@
        .panel-head-actions
          = link_to new_project_path(namespace_id: @group.id), class: "btn btn-sm btn-success" do
            %i.fa.fa-plus
@@ -5276,13 +5276,7 @@ index 9ca11ed..b03f863 100644
    %ul.well-list
      - @projects.each do |project|
        %li
-         .list-item-name
-           %span{ class: visibility_level_color(project.visibility_level) }
-             = visibility_level_icon(project.visibility_level)
--          %strong= link_to project.name_with_namespace, project
-+          %strong= link_to project.name_with_namespace, プロジェクト
-         .pull-right
-           - if project.archived
+@@ -22,9 +22,9 @@
              %span.label.label-warning archived
            %span.label.label-gray
              = repository_size(project)
@@ -13516,7 +13510,7 @@ index 4830603..d697d44 100644
  If you have used the [Omnibus packages][omnibus-dl] to install GitLab, then
  you should already have `gitlab-ctl` in your `PATH`.
 diff --git a/doc/api/README.md b/doc/api/README.md
-index 2fa177f..454d1be 100644
+index 2fa177f..1cd8e33 100644
 --- a/doc/api/README.md
 +++ b/doc/api/README.md
 @@ -12,14 +12,14 @@
@@ -13538,6 +13532,15 @@ index 2fa177f..454d1be 100644
  - [Namespaces](namespaces.md)
  - [Settings](settings.md)
  - [Keys](keys.md)
+@@ -60,7 +60,7 @@ curl --header "PRIVATE-TOKEN: QVy1PB7sTxfy4pqfZM1U" "http://example.com/api/v3/p
+ 
+ The API uses JSON to serialize data. You don't need to specify `.json` at the end of API URL.
+ 
+-## Authentication with OAuth2 token
++## OAuth2トークンでの認証
+ 
+ Instead of the private_token you can transmit the OAuth2 access token as a header or as a parameter.
+ 
 diff --git a/doc/api/build_triggers.md b/doc/api/build_triggers.md
 index 4a12e96..6effd50 100644
 --- a/doc/api/build_triggers.md
@@ -13803,6 +13806,19 @@ index 5886829..e5eb9a5 100644
 -* [User permissions](permissions/README.md)
 +* [ユーザ権限](permissions/README.md)
  * [API](api/README.md)
+diff --git a/doc/ci/api/README.md b/doc/ci/api/README.md
+index cf9710e..fdaee71 100644
+--- a/doc/ci/api/README.md
++++ b/doc/ci/api/README.md
+@@ -8,7 +8,7 @@
+ - [Builds](builds.md)
+ 
+ 
+-## Authentication
++## 認証
+ 
+ GitLab CI API uses different types of authentication depends on what API you use.
+ Each API document has section with information about authentication you need to use.
 diff --git a/doc/ci/docker/README.md b/doc/ci/docker/README.md
 index 84eaf29..e6991eb 100644
 --- a/doc/ci/docker/README.md
@@ -16576,6 +16592,16 @@ index fffa0ab..9009fca 100644
  
  You can manage the groups and users and their access levels in all of your
  projects. You can also personalize the access level you give each user,
+diff --git a/doc/workflow/authorization_for_merge_requests.md b/doc/workflow/authorization_for_merge_requests.md
+index d1d6d94..6cb8d2f 100644
+--- a/doc/workflow/authorization_for_merge_requests.md
++++ b/doc/workflow/authorization_for_merge_requests.md
+@@ -1,4 +1,4 @@
+-# Authorization for Merge requests
++# マージリクエストの承認
+ 
+ There are two main ways to have a merge request flow with GitLab: working with protected branches in a single repository, or working with forks of an authoritative project.
+ 
 diff --git a/doc/workflow/file_finder.md b/doc/workflow/file_finder.md
 index b69ae66..eb17062 100644
 --- a/doc/workflow/file_finder.md

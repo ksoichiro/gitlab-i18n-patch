@@ -473,6 +473,7 @@ change: 変更
 removeSth: '{0}を削除'
 deleteSth: '{0}を削除'
 sourceBranch: マージ元ブランチ
+targetBranch: 対象ブランチ
 selectSth: '{0}を選択'
 removeThisLabelAreYouSure: 本当にこのラベルを削除しますか？
 publicDeployKey: 公開デプロイキー
@@ -2538,6 +2539,7 @@ graph: グラフ
 noOpenMilestonesAvailable: オープン中のマイルストーンがありません。
 updateSth: '{0}を更新'
 runSth: '{0}を実行'
+cloneSth: '{0}をクローン'
 pleaseReviewTheGuidelinesForContributionToThisRepository: "{0}このリポジトリの\n{1}コントリビューション・ガイドライン{2}\n{3}を確認してください"
 statusChangedToClosed: ステータスをクローズに変更しました
 systemOAuthApplications: システムOAuthアプリケーション
@@ -2846,6 +2848,7 @@ accessToken: アクセストークン
 publicAvatar: 公開アバター
 applicationTheme: アプリケーションテーマ
 pipeline: パイプライン
+job: ジョブ
 validate: 検証
 running: 実行中
 youDontHaveAnyIssuesRightNow: 課題は何もありません
@@ -2893,7 +2896,8 @@ blockquotesAreVeryHandyInEmailToEmulateReplyText: 引用はメールの返信を
 thisLineIsPartOfTheSameQuote: この行は引用の一部です。
 quoteBreak: 引用は終わります。
 thisIsAVeryLongLineThatWillStillBeQuotedProperlyWhenItWrapsOhBOyLetsKeepWritingToMakeSureThisIsLongEnoughToActuallyWrapForEveryoneOhYouCanPutMarkdownIntoABlockquote: "これはとても長い行ですが正常にワードラップされて引用することができます。さあ、これが実際にワードラップしてくれることを皆が確かめられるように、十分に長く書き続けましょう。この引用にも **Markdown** を入れることができます。"
-writeACommentOrDragYourFilesHere: コメントを書くかここにファイルをドラッグ
+writeACommentOrDragYourFilesHere: コメントを入力またはファイルをここにドラッグ
+writeYourContentOrDragFilesHere: コンテンツを入力またはファイルをここにドラッグ
 thisIssueIsConfidentialAndShouldOnlyBeVisibleToTeamMembersWithAtLeastReporterAccess: この課題はコンフィデンシャルで、Reporter以上のアクセス権を持つチームメンバーにのみ表示する
 selectDueDate: 期限を選択
 stylingWithMarkdownAndSlashCommandsAreSupported: "$2Markdown$3\n$4\n$1  と\n$5スラッシュコマンド$6\n$1でのスタイリングがサポートされています"
@@ -2959,3 +2963,13 @@ moveSelectionDown: 選択範囲を下に移動
 openSelection: 選択内容を開く
 goBack: 戻る
 globalDashboard: グローバルダッシュボード
+findingProjectFile: プロジェクトのファイルを探す
+projectFile: プロジェクトのファイル
+gotoFilePermalink: ファイルのパーマリンクを表示
+confirmNewPassword: 新しいパスワード(確認)
+welcomeToYourIssueBoard: 課題ボードへようこそ！
+addTheFollowingDefaultListsToYourIssueBoardWithOneClick: '次のデフォルトリストを課題ボードに1クリックで追加:'
+startingOutWithTheDefaultSetOfListsWillGetYouRightOnTheWayToMakingTheMostOfYourBoard: デフォルトリストのセットから始めればボードの大部分は作ることができます。
+defaultLists: デフォルトリスト
+nevermindIllUserMyOwn: いいえ、自分のものを使います
+compareBranchesAndContinue: ブランチを比較して続行

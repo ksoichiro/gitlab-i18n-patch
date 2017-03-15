@@ -1413,7 +1413,7 @@ index bc4a9ce..6cbecaa 100644
            %th
        = render @abuse_reports
 diff --git a/app/views/admin/application_settings/_form.html.haml b/app/views/admin/application_settings/_form.html.haml
-index c4020c8..0649fb6 100644
+index c4020c8..643358a 100644
 --- a/app/views/admin/application_settings/_form.html.haml
 +++ b/app/views/admin/application_settings/_form.html.haml
 @@ -6,29 +6,29 @@
@@ -1602,7 +1602,7 @@ index c4020c8..0649fb6 100644
            server threads).
      .form-group
        = f.label :metrics_timeout, 'Connection timeout', class: 'control-label col-sm-2'
-@@ -211,13 +211,13 @@
+@@ -211,18 +211,18 @@
            retained Ruby objects, file descriptors and so on.
  
    %fieldset
@@ -1618,6 +1618,12 @@ index c4020c8..0649fb6 100644
            .help-block Helps preventing accounts creation from 'known spam sources'
  
      .form-group
+       = f.label :dnsbl_servers_list, class: 'control-label col-sm-2' do
+-        DNSBL servers list
++        DNSBL servers リスト
+       .col-sm-10
+         = f.text_field :dnsbl_servers_list, class: 'form-control'
+         .help-block
 @@ -233,18 +233,18 @@
          .checkbox
            = f.label :recaptcha_enabled do
@@ -4040,7 +4046,7 @@ index 52b327e..296ee43 100644
 -%p= link_to 'Unlock your account', unlock_url(@resource, unlock_token: @token)
 +%p= link_to 'Unlock your アカウント', unlock_url(@resource, unlock_token: @token)
 diff --git a/app/views/devise/passwords/edit.html.haml b/app/views/devise/passwords/edit.html.haml
-index 56048e9..8ad1082 100644
+index 56048e9..e8685b7 100644
 --- a/app/views/devise/passwords/edit.html.haml
 +++ b/app/views/devise/passwords/edit.html.haml
 @@ -1,19 +1,19 @@
@@ -4058,7 +4064,7 @@ index 56048e9..8ad1082 100644
 +        = f.password_field :password, class: "form-control top", placeholder: "新しいパスワード", required: true
        %div
 -        = f.password_field :password_confirmation, class: "form-control bottom", placeholder: "Confirm new password", required: true
-+        = f.password_field :password_confirmation, class: "form-control bottom", placeholder: "Confirm new パスワード", required: true
++        = f.password_field :password_confirmation, class: "form-control bottom", placeholder: "新しいパスワード(確認)", required: true
        .clearfix
 -        = f.submit "Change your password", class: "btn btn-primary"
 +        = f.submit "パスワードの変更", class: "btn btn-primary"
@@ -5308,7 +5314,7 @@ index ebb3df7..ebccf34 100644
  - if can?(current_user, :read_group, @group)
    %div{ class: container_class }
 diff --git a/app/views/help/_shortcuts.html.haml b/app/views/help/_shortcuts.html.haml
-index 9ee6f07..ebd7021 100644
+index 9ee6f07..daee8e9 100644
 --- a/app/views/help/_shortcuts.html.haml
 +++ b/app/views/help/_shortcuts.html.haml
 @@ -4,7 +4,7 @@
@@ -5367,7 +5373,7 @@ index 9ee6f07..ebd7021 100644
                %tr
                  %th
 -                %th Finding Project File
-+                %th Finding Project ファイル
++                %th プロジェクトのファイルを探す
                %tr
                  %td.shortcut
                    .key
@@ -5596,7 +5602,7 @@ index 57bc91e..6c061a4 100644
          %li= link_to 'Get a support subscription', 'https://about.gitlab.com/pricing/'
          %li= link_to 'Compare GitLab editions', 'https://about.gitlab.com/features/#compare'
 diff --git a/app/views/help/ui.html.haml b/app/views/help/ui.html.haml
-index 7b45bd0..9284f40 100644
+index 7b45bd0..63f01eb 100644
 --- a/app/views/help/ui.html.haml
 +++ b/app/views/help/ui.html.haml
 @@ -1,4 +1,4 @@
@@ -5614,12 +5620,21 @@ index 7b45bd0..9284f40 100644
      %li
        = link_to 'Markdown', '#markdown'
  
+@@ -62,7 +62,7 @@
+       = link_to '#', class: 'btn btn-gray' do
+         = icon('rss')
+ 
+-  %h2#lists Lists
++  %h2#lists リスト
+ 
+   %h4
+     %code .content-list
 @@ -88,7 +88,7 @@
      %code .panel .well-list
  
    .panel.panel-default
 -    .panel-heading Your list
-+    .panel-heading あなたのlist
++    .panel-heading あなたのリスト
      %ul.well-list
        %li
          One item
@@ -9939,7 +9954,7 @@ index 29d09d0..3c0d337 100644
  - if @merge_requests.present?
    .issuable-filter-count
 diff --git a/app/views/projects/merge_requests/_new_compare.html.haml b/app/views/projects/merge_requests/_new_compare.html.haml
-index 236a545..c551b1f 100644
+index 236a545..f7d37aa 100644
 --- a/app/views/projects/merge_requests/_new_compare.html.haml
 +++ b/app/views/projects/merge_requests/_new_compare.html.haml
 @@ -1,5 +1,5 @@
@@ -9959,7 +9974,7 @@ index 236a545..c551b1f 100644
            = f.select(:source_project_id, [[@merge_request.source_project_path,@merge_request.source_project.id]] , {}, { class: 'source_project select2 span3', disabled: @merge_request.persisted?, required: true })
            &nbsp;
 -          = f.select(:source_branch, @merge_request.source_branches, { include_blank: true }, { class: 'source_branch select2 span2', required: true, data: { placeholder: "Select source branch" } })
-+          = f.select(:source_branch, @merge_request.source_branches, { include_blank: true }, { class: 'source_branch select2 span2', required: true, data: { placeholder: "source ブランチを選択" } })
++          = f.select(:source_branch, @merge_request.source_branches, { include_blank: true }, { class: 'source_branch select2 span2', required: true, data: { placeholder: "マージ元ブランチを選択" } })
          .panel-footer
            .mr_source_commit
  
@@ -9967,13 +9982,13 @@ index 236a545..c551b1f 100644
        .panel.panel-default
          .panel-heading
 -          %strong Target branch
-+          %strong Target ブランチ
++          %strong 対象ブランチ
          .panel-body
            - projects =  @project.forked_from_project.nil? ? [@project] : [@project, @project.forked_from_project]
            = f.select(:target_project_id, options_from_collection_for_select(projects, 'id', 'path_with_namespace', f.object.target_project_id), {}, { class: 'target_project select2 span3', disabled: @merge_request.persisted?, required: true })
            &nbsp;
 -          = f.select(:target_branch, @merge_request.target_branches, { include_blank: true }, { class: 'target_branch select2 span2', required: true, data: { placeholder: "Select target branch" } })
-+          = f.select(:target_branch, @merge_request.target_branches, { include_blank: true }, { class: 'target_branch select2 span2', required: true, data: { placeholder: "target ブランチを選択" } })
++          = f.select(:target_branch, @merge_request.target_branches, { include_blank: true }, { class: 'target_branch select2 span2', required: true, data: { placeholder: "対象ブランチを選択" } })
          .panel-footer
            .mr_target_commit
  
@@ -9982,7 +9997,7 @@ index 236a545..c551b1f 100644
  
    .form-actions
 -    = f.submit 'Compare branches and continue', class: "btn btn-new mr-compare-btn"
-+    = f.submit 'Compare ブランチ and continue', class: "btn btn-new mr-compare-btn"
++    = f.submit 'ブランチを比較して続行', class: "btn btn-new mr-compare-btn"
  
  :javascript
    var source_branch = $("#merge_request_source_branch")
@@ -9991,7 +10006,7 @@ index 236a545..c551b1f 100644
    $(".merge-request-form").on('submit', function () {
      if ($("#merge_request_source_branch").val() === "" || $('#merge_request_target_branch').val() === "") {
 -      $(".mr-compare-errors").html("You must select source and target branch to proceed");
-+      $(".mr-compare-errors").html("You must select source and target ブランチ to proceed");
++      $(".mr-compare-errors").html("You must select source and 対象ブランチ to proceed");
        $(".mr-compare-errors").fadeIn();
        event.preventDefault();
        return;
@@ -10247,7 +10262,7 @@ index d1d602e..66916d6 100644
          .remove_source_branch_widget.failed.hide
            %p
 diff --git a/app/views/projects/merge_requests/widget/open/_accept.html.haml b/app/views/projects/merge_requests/widget/open/_accept.html.haml
-index d9a1730..9dcae82 100644
+index d9a1730..ea39f06 100644
 --- a/app/views/projects/merge_requests/widget/open/_accept.html.haml
 +++ b/app/views/projects/merge_requests/widget/open/_accept.html.haml
 @@ -12,7 +12,7 @@
@@ -10270,7 +10285,7 @@ index d9a1730..9dcae82 100644
            = label_tag :should_remove_source_branch, class: "remove_source_checkbox" do
              = check_box_tag :should_remove_source_branch
 -            Remove source branch
-+            source ブランチを削除
++            マージ元ブランチを削除
        .accept-control.right
          = link_to "#", class: "modify-merge-commit-link js-toggle-button" do
            = icon('edit')
@@ -10290,7 +10305,7 @@ index 2168294..c1eed1f 100644
 -          Cancel Automatic Merge
 +          Cancel Automatic マージ済み
 diff --git a/app/views/projects/merge_requests/widget/open/_missing_branch.html.haml b/app/views/projects/merge_requests/widget/open/_missing_branch.html.haml
-index c9f0762..398d5b3 100644
+index c9f0762..08931c1 100644
 --- a/app/views/projects/merge_requests/widget/open/_missing_branch.html.haml
 +++ b/app/views/projects/merge_requests/widget/open/_missing_branch.html.haml
 @@ -1,16 +1,16 @@
@@ -10308,7 +10323,7 @@ index c9f0762..398d5b3 100644
    %h4
      = icon("exclamation-triangle")
 -    Target branch
-+    Target ブランチ
++    対象ブランチ
      %span.label-branch= @merge_request.target_branch
 -    does not exist
 +    存在しません
@@ -12371,7 +12386,7 @@ index f77feeb..226a0bd 100644
 -        All
 +        すべて
 diff --git a/app/views/shared/_new_commit_form.html.haml b/app/views/shared/_new_commit_form.html.haml
-index 0c8ac48..ba675bf 100644
+index 0c8ac48..88fd8d5 100644
 --- a/app/views/shared/_new_commit_form.html.haml
 +++ b/app/views/shared/_new_commit_form.html.haml
 @@ -5,7 +5,7 @@
@@ -12379,7 +12394,7 @@ index 0c8ac48..ba675bf 100644
    - if can?(current_user, :push_code, @project)
      .form-group.branch
 -      = label_tag 'target_branch', 'Target branch', class: 'control-label'
-+      = label_tag 'target_branch', 'Target ブランチ', class: 'control-label'
++      = label_tag 'target_branch', '対象ブランチ', class: 'control-label'
        .col-sm-10
          = text_field_tag 'target_branch', @target_branch || tree_edit_branch, required: true, class: "form-control js-target-branch"
  

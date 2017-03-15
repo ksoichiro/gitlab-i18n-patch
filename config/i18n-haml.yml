@@ -28,6 +28,8 @@ translations:
     replace: '${shortcutsGoToFiles}'
   - pattern: "Go to commits"
     replace: '${shortcutsGoToCommits}'
+  - pattern: "Go to jobs"
+    replace: '${goToJobs}'
   - pattern: "Go to network graph"
     replace: '${shortcutsGoToNetworkGraph}'
   - pattern: "Go to graphs"
@@ -40,6 +42,12 @@ translations:
     replace: '${globalShortcuts}'
   - pattern: "Focus Filter"
     replace: '${focusFilter}'
+  - pattern: 'Focus Search'
+    replace: '${focusSearch}'
+  - pattern: 'Finding Project File'
+    replace: '${findingProjectFile}'
+  - pattern: 'Go to file permalink'
+    replace: '${gotoFilePermalink}'
   - pattern: "Show/hide this dialog"
     replace: '${showHideThisDialog}'
   - pattern: "Toggle Markdown preview"
@@ -48,6 +56,8 @@ translations:
     replace: '${editLastCommentWhenFocusedOnAnEmptyTextarea}'
   - pattern: "Project Files browsing"
     replace: '${projectFilesBrowsing}'
+  - pattern: 'Project File'
+    replace: '${projectFile}'
   - pattern: "Move selection up"
     replace: '${moveSelectionUp}'
   - pattern: "Move selection down"
@@ -236,6 +246,10 @@ translations:
     replace: '${transferProject}'
   - pattern: 'Reset link will be generated and sent to the user.'
     replace: '${resetLinkWillBeGeneratedAndSentToTheUser}'
+  - pattern: 'New password'
+    replace: '${newPassword}'
+  - pattern: 'Confirm new password'
+    replace: '${confirmNewPassword}'
   - pattern: 'New User'
     replace: '${newUser}'
   - pattern: 'Maximum attachment size'
@@ -907,6 +921,18 @@ translations:
     replace: '${groupLabelsAreAvailableForAnyProjectWithinTheGroup}'
   - pattern: "No labels created yet."
     replace: '${noLabelsCreatedYet}'
+  - pattern: "Welcome to your Issue Board!"
+    replace: '${welcomeToYourIssueBoard}'
+  - pattern: "Add the following default lists to your Issue Board with one click:"
+    replace: '${addTheFollowingDefaultListsToYourIssueBoardWithOneClick}'
+  - pattern: "Starting out with the default set of lists will get you right on the way to making the most of your board."
+    replace: '${startingOutWithTheDefaultSetOfListsWillGetYouRightOnTheWayToMakingTheMostOfYourBoard}'
+  - pattern: "Nevermind, I'll use my own"
+    replace: '${nevermindIllUserMyOwn}'
+  - pattern: "Compare branches and continue"
+    replace: '${compareBranchesAndContinue}'
+  - pattern: "Write your content or drag files here..."
+    replace: '${writeYourContentOrDragFilesHere}'
 
   - name: formLabel
     params:
@@ -976,6 +1002,7 @@ translations:
     - {word: 'Archive Format', key: archiveFormat}
     - {word: 'Titles and Filenames', key: titlesAndFilenames}
     - {word: 'Source branch', key: sourceBranch}
+    - {word: 'Target branch', key: targetBranch}
     - {word: 'Web hooks', key: webHook}
     - {word: 'Show all', key: showAll}
     - {word: 'Remind later', key: remindLater}
@@ -1078,6 +1105,7 @@ translations:
     - {word: 'Help', key: help}
     - {word: 'Activity', key: activity}
     - {word: 'Pipeline[s]', key: pipeline}
+    - {word: 'Job[s]', key: job}
     - {word: 'Validate', key: validate}
     - {word: 'Running', key: running}
     - {word: 'Explore', key: explore}
@@ -1145,6 +1173,8 @@ translations:
     - {word: 'snippets?', key: snippet}
     - {word: 'milestones?', key: milestone}
     - {word: 'protected branches', key: protectedBranch}
+    - {word: 'source branch', key: sourceBranch}
+    - {word: 'target branch', key: targetBranch}
     - {word: 'branch(?:es)?', key: branch}
     - {word: 'issues?', key: issue}
     - {word: 'files?', key: file}
@@ -1168,6 +1198,8 @@ translations:
     - {word: '[cC]hanges?', key: change}
     - {word: 'pipelines?', key: pipeline}
     - {word: 'profile settings?', key: profileSettings}
+    - {word: 'default lists?', key: defaultLists}
+    - {word: 'lists?', key: lists}
   - pattern: !!js/regexp /Add ([^\s]+) to ([^\s'":]+)/
     replace: '${addAToB}'
     args:
@@ -1204,6 +1236,7 @@ translations:
     - {verb: Commit, key: commitSth}
     - {verb: Update, key: updateSth}
     - {verb: Run, key: runSth}
+    - {verb: Clone, key: cloneSth}
   - name: sthCountsDone
     params:
     - {obj: issues, objKey: issue, done: updated, doneKey: update}

@@ -4133,7 +4133,7 @@ index 9990d1c..b9b1981 100644
 -      = link_to('Unlock account', unlock_url(@resource, unlock_token: @token))
 +      = link_to('Unlock アカウント', unlock_url(@resource, unlock_token: @token))
 diff --git a/app/views/devise/passwords/edit.html.haml b/app/views/devise/passwords/edit.html.haml
-index 5e189e6..86cb478 100644
+index 5e189e6..d0b3a5d 100644
 --- a/app/views/devise/passwords/edit.html.haml
 +++ b/app/views/devise/passwords/edit.html.haml
 @@ -1,4 +1,4 @@
@@ -4148,12 +4148,12 @@ index 5e189e6..86cb478 100644
        .form-group
 -        = f.label 'New password', for: :password
 -        = f.password_field :password, class: "form-control top",  required: true, title: 'This field is required'
-+        = f.label '新しいpassword', for: :password
++        = f.label '新しいパスワード', for: :password
 +        = f.password_field :password, class: "form-control top",  required: true, title: 'This field is 必須'
        .form-group
 -        = f.label 'Confirm new password', for: :password_confirmation
 -        = f.password_field :password_confirmation, class: "form-control bottom", title: 'This field is required', required: true
-+        = f.label 'Confirm new パスワード', for: :password_confirmation
++        = f.label '新しいパスワード(確認)', for: :password_confirmation
 +        = f.password_field :password_confirmation, class: "form-control bottom", title: 'This field is 必須', required: true
        .clearfix
 -        = f.submit "Change your password", class: "btn btn-primary"
@@ -5182,7 +5182,7 @@ index 52ce26a..4aa3cda 100644
    .tab-content
      .tab-pane.active#projects
 diff --git a/app/views/help/_shortcuts.html.haml b/app/views/help/_shortcuts.html.haml
-index 65842a0..d737252 100644
+index 65842a0..3df79ae 100644
 --- a/app/views/help/_shortcuts.html.haml
 +++ b/app/views/help/_shortcuts.html.haml
 @@ -4,7 +4,7 @@
@@ -5255,7 +5255,7 @@ index 65842a0..d737252 100644
                  %tr
                    %th
 -                  %th Finding Project File
-+                  %th Finding Project ファイル
++                  %th プロジェクトのファイルを探す
                  %tr
                    %td.shortcut
                      .key
@@ -5517,7 +5517,7 @@ index 3163188..c81e2b4 100644
          %li= link_to 'Get a support subscription', 'https://about.gitlab.com/pricing/'
          %li= link_to 'Compare GitLab editions', 'https://about.gitlab.com/features/#compare'
 diff --git a/app/views/help/ui.html.haml b/app/views/help/ui.html.haml
-index 070ed90..1baf0d4 100644
+index 070ed90..23e18c7 100644
 --- a/app/views/help/ui.html.haml
 +++ b/app/views/help/ui.html.haml
 @@ -1,4 +1,4 @@
@@ -5535,6 +5535,15 @@ index 070ed90..1baf0d4 100644
      %li
        = link_to 'Markdown', '#markdown'
  
+@@ -80,7 +80,7 @@
+         = link_to '#', class: 'btn btn-gray' do
+           = icon('rss')
+ 
+-  %h2#lists Lists
++  %h2#lists リスト
+ 
+   .lead
+     Simple list using
 @@ -103,16 +103,16 @@
      %ul.content-list
        %li
@@ -5563,7 +5572,7 @@ index 070ed90..1baf0d4 100644
    .example
      .panel.panel-default
 -      .panel-heading Your list
-+      .panel-heading あなたのlist
++      .panel-heading あなたのリスト
        %ul.well-list
          %li
            One item
@@ -8120,7 +8129,7 @@ index 1c3bccc..9baacc6 100644
 +            = link_to new_mr_path_from_push_event(event), title: "新しいマージリクエスト", class: "btn btn-info btn-sm" do
 +              マージリクエストを作成
 diff --git a/app/views/projects/_md_preview.html.haml b/app/views/projects/_md_preview.html.haml
-index 58d961d..e139aab 100644
+index 58d961d..9c01406 100644
 --- a/app/views/projects/_md_preview.html.haml
 +++ b/app/views/projects/_md_preview.html.haml
 @@ -3,25 +3,25 @@
@@ -8151,9 +8160,9 @@ index 58d961d..e139aab 100644
 -          = markdown_toolbar_button({icon: "list-ul fw", data: { "md-tag" => "* ", "md-prepend" => true }, title: "Add a bullet list" })
 -          = markdown_toolbar_button({icon: "list-ol fw", data: { "md-tag" => "1. ", "md-prepend" => true }, title: "Add a numbered list" })
 -          = markdown_toolbar_button({icon: "check-square-o fw", data: { "md-tag" => "* [ ] ", "md-prepend" => true }, title: "Add a task list" })
-+          = markdown_toolbar_button({icon: "list-ul fw", data: { "md-tag" => "* ", "md-prepend" => true }, title: "bullet listを追加" })
-+          = markdown_toolbar_button({icon: "list-ol fw", data: { "md-tag" => "1. ", "md-prepend" => true }, title: "numbered listを追加" })
-+          = markdown_toolbar_button({icon: "check-square-o fw", data: { "md-tag" => "* [ ] ", "md-prepend" => true }, title: "task listを追加" })
++          = markdown_toolbar_button({icon: "list-ul fw", data: { "md-tag" => "* ", "md-prepend" => true }, title: "bullet リストを追加" })
++          = markdown_toolbar_button({icon: "list-ol fw", data: { "md-tag" => "1. ", "md-prepend" => true }, title: "numbered リストを追加" })
++          = markdown_toolbar_button({icon: "check-square-o fw", data: { "md-tag" => "* [ ] ", "md-prepend" => true }, title: "task リストを追加" })
          .toolbar-group
            %button.toolbar-btn.js-zen-enter.has-tooltip.hidden-xs{ type: "button", tabindex: -1, aria: { label: "Go full screen" }, title: "Go full screen", data: { container: "body" } }
              =icon("arrows-alt fw")
@@ -8414,28 +8423,30 @@ index 0ab78a3..5f8f89e 100644
 -    = render 'projects/blob/upload', title: title, placeholder: title, button_title: 'Replace file', form_path: namespace_project_update_blob_path(@project.namespace, @project, @id), method: :put
 +    = render 'projects/blob/upload', title: title, placeholder: title, button_title: 'Replace ファイル', form_path: namespace_project_update_blob_path(@project.namespace, @project, @id), method: :put
 diff --git a/app/views/projects/boards/components/_blank_state.html.haml b/app/views/projects/boards/components/_blank_state.html.haml
-index 0af40dd..fa3eaa5 100644
+index 0af40dd..0cf1fd8 100644
 --- a/app/views/projects/boards/components/_blank_state.html.haml
 +++ b/app/views/projects/boards/components/_blank_state.html.haml
-@@ -2,7 +2,7 @@
+@@ -2,14 +2,14 @@
    "v-if" => 'list.id == "blank"' }
    .board-blank-state
      %p
 -      Add the following default lists to your Issue Board with one click:
-+      the following default lists to your Issue Board with one click:を追加
++      次のデフォルトリストを課題ボードに1クリックで追加:
      %ul.board-blank-state-list
        %li{ "v-for" => "label in predefinedLabels" }
          %span.label-color{ ":style" =>  "{ backgroundColor: label.color } " }
-@@ -10,6 +10,6 @@
+         {{ label.title }}
      %p
-       Starting out with the default set of lists will get you right on the way to making the most of your board.
+-      Starting out with the default set of lists will get you right on the way to making the most of your board.
++      デフォルトリストのセットから始めればボードの大部分は作ることができます。
      %button.btn.btn-create.btn-inverted.btn-block{ type: "button", "@click.stop" => "addDefaultLists" }
 -      Add default lists
-+      default listsを追加
++      デフォルトリストを追加
      %button.btn.btn-default.btn-block{ type: "button", "@click.stop" => "clearBlankState" }
-       Nevermind, I'll use my own
+-      Nevermind, I'll use my own
++      いいえ、自分のものを使います
 diff --git a/app/views/projects/boards/components/_board.html.haml b/app/views/projects/boards/components/_board.html.haml
-index a2e5118..828438f 100644
+index a2e5118..b20cf0d 100644
 --- a/app/views/projects/boards/components/_board.html.haml
 +++ b/app/views/projects/boards/components/_board.html.haml
 @@ -13,15 +13,15 @@
@@ -8453,7 +8464,7 @@ index a2e5118..828438f 100644
              ":list" => "list",
              "v-if" => "!list.preset && list.id" }
 -            %button.board-delete.has-tooltip.pull-right{ type: "button", title: "Delete list", "aria-label" => "Delete list", data: { placement: "bottom" }, "@click.stop" => "deleteBoard" }
-+            %button.board-delete.has-tooltip.pull-right{ type: "button", title: "listを削除", "aria-label" => "listを削除", data: { placement: "bottom" }, "@click.stop" => "deleteBoard" }
++            %button.board-delete.has-tooltip.pull-right{ type: "button", title: "リストを削除", "aria-label" => "リストを削除", data: { placement: "bottom" }, "@click.stop" => "deleteBoard" }
                = icon("trash")
      %board-list{ "v-if" => 'list.type !== "blank"',
        ":list" => "list",
@@ -10537,7 +10548,7 @@ index fe82f75..e642a23 100644
  - if @merge_requests.present?
    = paginate @merge_requests, theme: "gitlab"
 diff --git a/app/views/projects/merge_requests/_new_compare.html.haml b/app/views/projects/merge_requests/_new_compare.html.haml
-index 466ec14..f3601fc 100644
+index 466ec14..6af6c7b 100644
 --- a/app/views/projects/merge_requests/_new_compare.html.haml
 +++ b/app/views/projects/merge_requests/_new_compare.html.haml
 @@ -1,5 +1,5 @@
@@ -10569,11 +10580,11 @@ index 466ec14..f3601fc 100644
            .merge-request-select.dropdown
              = f.hidden_field :source_branch
 -            = dropdown_toggle f.object.source_branch || "Select source branch", { toggle: "dropdown", field_name: "#{f.object_name}[source_branch]" }, { toggle_class: "js-compare-dropdown js-source-branch" }
-+            = dropdown_toggle f.object.source_branch || "source ブランチを選択", { toggle: "dropdown", field_name: "#{f.object_name}[source_branch]" }, { toggle_class: "js-compare-dropdown js-source-branch" }
++            = dropdown_toggle f.object.source_branch || "マージ元ブランチを選択", { toggle: "dropdown", field_name: "#{f.object_name}[source_branch]" }, { toggle_class: "js-compare-dropdown js-source-branch" }
              .dropdown-menu.dropdown-menu-selectable.dropdown-source-branch
 -              = dropdown_title("Select source branch")
 -              = dropdown_filter("Search branches")
-+              = dropdown_title("source ブランチを選択")
++              = dropdown_title("マージ元ブランチを選択")
 +              = dropdown_filter("Search ブランチ")
                = dropdown_content do
                  = render 'projects/merge_requests/dropdowns/branch',
@@ -10583,7 +10594,7 @@ index 466ec14..f3601fc 100644
        .panel.panel-default.panel-new-merge-request
          .panel-heading
 -          Target branch
-+          Target ブランチ
++          対象ブランチ
          .panel-body.clearfix
            - projects =  @project.forked_from_project.nil? ? [@project] : [@project, @project.forked_from_project]
            .merge-request-select.dropdown
@@ -10603,7 +10614,7 @@ index 466ec14..f3601fc 100644
              .dropdown-menu.dropdown-menu-selectable.dropdown-target-branch.js-target-branch-dropdown
 -              = dropdown_title("Select target branch")
 -              = dropdown_filter("Search branches")
-+              = dropdown_title("target ブランチを選択")
++              = dropdown_title("対象ブランチを選択")
 +              = dropdown_filter("Search ブランチ")
                = dropdown_content do
                  = render 'projects/merge_requests/dropdowns/branch',
@@ -10613,7 +10624,7 @@ index 466ec14..f3601fc 100644
    - if @merge_request.errors.any?
      = form_errors(@merge_request)
 -  = f.submit 'Compare branches and continue', class: "btn btn-new mr-compare-btn"
-+  = f.submit 'Compare ブランチ and continue', class: "btn btn-new mr-compare-btn"
++  = f.submit 'ブランチを比較して続行', class: "btn btn-new mr-compare-btn"
  
  :javascript
    new Compare({
@@ -11001,7 +11012,7 @@ index 608fdf1..5f143d0 100644
      },
      builds_path: "#{builds_namespace_project_merge_request_path(@project.namespace, @project, @merge_request)}",
 diff --git a/app/views/projects/merge_requests/widget/open/_accept.html.haml b/app/views/projects/merge_requests/widget/open/_accept.html.haml
-index ce43ca3..cbed974 100644
+index ce43ca3..1761bcd 100644
 --- a/app/views/projects/merge_requests/widget/open/_accept.html.haml
 +++ b/app/views/projects/merge_requests/widget/open/_accept.html.haml
 @@ -14,7 +14,7 @@
@@ -11027,7 +11038,7 @@ index ce43ca3..cbed974 100644
            = label_tag :should_remove_source_branch, class: "remove_source_checkbox" do
              = check_box_tag :should_remove_source_branch
 -            Remove source branch
-+            source ブランチを削除
++            マージ元ブランチを削除
        .accept-control.right
          = link_to "#", class: "modify-merge-commit-link js-toggle-button" do
            = icon('edit')
@@ -11047,7 +11058,7 @@ index 1aeb12e..7223f25 100644
 -          Cancel Automatic Merge
 +          Cancel Automatic マージ済み
 diff --git a/app/views/projects/merge_requests/widget/open/_missing_branch.html.haml b/app/views/projects/merge_requests/widget/open/_missing_branch.html.haml
-index c9f0762..398d5b3 100644
+index c9f0762..08931c1 100644
 --- a/app/views/projects/merge_requests/widget/open/_missing_branch.html.haml
 +++ b/app/views/projects/merge_requests/widget/open/_missing_branch.html.haml
 @@ -1,16 +1,16 @@
@@ -11065,7 +11076,7 @@ index c9f0762..398d5b3 100644
    %h4
      = icon("exclamation-triangle")
 -    Target branch
-+    Target ブランチ
++    対象ブランチ
      %span.label-branch= @merge_request.target_branch
 -    does not exist
 +    存在しません
@@ -11368,7 +11379,7 @@ index 720957e..5100c6e 100644
 -    = link_to 'Remove project', project_path(@project), data: { confirm: remove_project_message(@project)}, method: :delete, class: "btn btn-remove pull-right"
 +    = link_to 'プロジェクトを削除', project_path(@project), data: { confirm: remove_project_message(@project)}, method: :delete, class: "btn btn-remove pull-right"
 diff --git a/app/views/projects/notes/_edit_form.html.haml b/app/views/projects/notes/_edit_form.html.haml
-index 8620f49..fd0bf5b 100644
+index 8620f49..ba436db 100644
 --- a/app/views/projects/notes/_edit_form.html.haml
 +++ b/app/views/projects/notes/_edit_form.html.haml
 @@ -2,10 +2,10 @@
@@ -11376,7 +11387,7 @@ index 8620f49..fd0bf5b 100644
      = note_target_fields(note)
      = render layout: 'projects/md_preview', locals: { preview_class: 'md-preview' } do
 -      = render 'projects/zen', f: f, attr: :note, classes: 'note-textarea js-note-text js-task-list-field', placeholder: "Write a comment or drag your files here..."
-+      = render 'projects/zen', f: f, attr: :note, classes: 'note-textarea js-note-text js-task-list-field', placeholder: "コメントを書くかここにファイルをドラッグ..."
++      = render 'projects/zen', f: f, attr: :note, classes: 'note-textarea js-note-text js-task-list-field', placeholder: "コメントを入力またはファイルをここにドラッグ..."
        = render 'projects/notes/hints'
  
      .note-form-actions.clearfix
@@ -11386,7 +11397,7 @@ index 8620f49..fd0bf5b 100644
 -        Cancel
 +        キャンセル
 diff --git a/app/views/projects/notes/_form.html.haml b/app/views/projects/notes/_form.html.haml
-index 46b4025..803b7bb 100644
+index 46b4025..288f1c3 100644
 --- a/app/views/projects/notes/_form.html.haml
 +++ b/app/views/projects/notes/_form.html.haml
 @@ -15,13 +15,13 @@
@@ -11394,7 +11405,7 @@ index 46b4025..803b7bb 100644
        attr: :note,
        classes: 'note-textarea js-note-text',
 -      placeholder: "Write a comment or drag your files here...",
-+      placeholder: "コメントを書くかここにファイルをドラッグ...",
++      placeholder: "コメントを入力またはファイルをここにドラッグ...",
        supports_slash_commands: supports_slash_commands
      = render 'projects/notes/hints', supports_slash_commands: supports_slash_commands
      .error-alert
@@ -11431,7 +11442,7 @@ index 6c14f48..8693b86 100644
 -    Attach a file
 +    ファイルを添付
 diff --git a/app/views/projects/notes/_note.html.haml b/app/views/projects/notes/_note.html.haml
-index ba88954..f4e66ba 100644
+index ba88954..67e7505 100644
 --- a/app/views/projects/notes/_note.html.haml
 +++ b/app/views/projects/notes/_note.html.haml
 @@ -57,9 +57,9 @@
@@ -11446,6 +11457,15 @@ index ba88954..f4e66ba 100644
                    = icon('trash-o', class: 'danger-highlight')
        .note-body{class: note_editable ? 'js-task-list-container' : ''}
          .note-text.md
+@@ -72,7 +72,7 @@
+           = render 'award_emoji/awards_block', awardable: note, inline: false
+         - if note.system
+           .system-note-commit-list-toggler
+-            Toggle commit list
++            Toggle commit リスト
+       - if note.attachment.url
+         .note-attachment
+           - if note.attachment.image?
 @@ -83,5 +83,5 @@
                = icon('paperclip')
                = note.attachment_identifier
@@ -12829,7 +12849,7 @@ index 297a53c..e8814b6 100644
 +      variableを更新
 +    = render "form", btn_text: "variableを保存"
 diff --git a/app/views/projects/wikis/_form.html.haml b/app/views/projects/wikis/_form.html.haml
-index 4e41a15..a9627eb 100644
+index 4e41a15..7df1668 100644
 --- a/app/views/projects/wikis/_form.html.haml
 +++ b/app/views/projects/wikis/_form.html.haml
 @@ -3,15 +3,15 @@
@@ -12847,7 +12867,7 @@ index 4e41a15..a9627eb 100644
      .col-sm-10
        = render layout: 'projects/md_preview', locals: { preview_class: "md-preview" } do
 -        = render 'projects/zen', f: f, attr: :content, classes: 'note-textarea', placeholder: 'Write your content or drag files here...'
-+        = render 'projects/zen', f: f, attr: :content, classes: 'note-textarea', placeholder: 'Write your content or drag ファイル here...'
++        = render 'projects/zen', f: f, attr: :content, classes: 'note-textarea', placeholder: 'コンテンツを入力またはファイルをここにドラッグ'
          = render 'projects/notes/hints'
  
        .clearfix
@@ -13551,7 +13571,7 @@ index 73d288e..d5946bb 100644
        - if @project
          %span.badge #{counts[:all]}
 diff --git a/app/views/shared/_new_commit_form.html.haml b/app/views/shared/_new_commit_form.html.haml
-index 0c8ac48..ba675bf 100644
+index 0c8ac48..88fd8d5 100644
 --- a/app/views/shared/_new_commit_form.html.haml
 +++ b/app/views/shared/_new_commit_form.html.haml
 @@ -5,7 +5,7 @@
@@ -13559,7 +13579,7 @@ index 0c8ac48..ba675bf 100644
    - if can?(current_user, :push_code, @project)
      .form-group.branch
 -      = label_tag 'target_branch', 'Target branch', class: 'control-label'
-+      = label_tag 'target_branch', 'Target ブランチ', class: 'control-label'
++      = label_tag 'target_branch', '対象ブランチ', class: 'control-label'
        .col-sm-10
          = text_field_tag 'target_branch', @target_branch || tree_edit_branch, required: true, class: "form-control js-target-branch"
  
@@ -13727,7 +13747,7 @@ index 427595c..4f1c24b 100644
 -  .nothing-here-block No groups found
 +  .nothing-here-block グループがありません
 diff --git a/app/views/shared/issuable/_filter.html.haml b/app/views/shared/issuable/_filter.html.haml
-index ed93857..e4bc417 100644
+index ed93857..7983859 100644
 --- a/app/views/shared/issuable/_filter.html.haml
 +++ b/app/views/shared/issuable/_filter.html.haml
 @@ -14,14 +14,14 @@
@@ -13765,10 +13785,10 @@ index ed93857..e4bc417 100644
                  .dropdown.pull-right
                    %button.btn.btn-create.js-new-board-list{ type: "button", data: { toggle: "dropdown", labels: labels_filter_path, namespace_path: @project.try(:namespace).try(:path), project_path: @project.try(:path) } }
 -                    Create new list
-+                    新しいlistを作成
++                    新しいリストを作成
                    .dropdown-menu.dropdown-menu-paging.dropdown-menu-align-right.dropdown-menu-issues-board-new.dropdown-menu-selectable
 -                    = render partial: "shared/issuable/label_page_default", locals: { show_footer: true, show_create: true, show_boards_content: true, title: "Create a new list" }
-+                    = render partial: "shared/issuable/label_page_default", locals: { show_footer: true, show_create: true, show_boards_content: true, title: "new listを作成" }
++                    = render partial: "shared/issuable/label_page_default", locals: { show_footer: true, show_create: true, show_boards_content: true, title: "new リストを作成" }
                      - if can?(current_user, :admin_label, @project)
                        = render partial: "shared/issuable/label_page_create"
                      = dropdown_loading
@@ -13810,7 +13830,7 @@ index ed93857..e4bc417 100644
    .row-content-block.second-block.filtered-labels{ class: ("hidden" unless has_labels) }
      - if has_labels
 diff --git a/app/views/shared/issuable/_form.html.haml b/app/views/shared/issuable/_form.html.haml
-index 9b9ad51..d798389 100644
+index 9b9ad51..d3022a3 100644
 --- a/app/views/shared/issuable/_form.html.haml
 +++ b/app/views/shared/issuable/_form.html.haml
 @@ -17,13 +17,13 @@
@@ -13825,7 +13845,7 @@ index 9b9ad51..d798389 100644
        = render 'projects/zen', f: form, attr: :description,
                                 classes: 'note-textarea',
 -                               placeholder: "Write a comment or drag your files here...",
-+                               placeholder: "コメントを書くかここにファイルをドラッグ...",
++                               placeholder: "コメントを入力またはファイルをここにドラッグ...",
                                 supports_slash_commands: !issuable.persisted?
        = render 'projects/notes/hints', supports_slash_commands: !issuable.persisted?
        .clearfix

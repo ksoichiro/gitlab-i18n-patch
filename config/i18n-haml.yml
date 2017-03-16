@@ -229,6 +229,7 @@ translations:
     replace: '${filterByName}'
   - pattern: ' sort:'
     replace: ' ${sort}:'
+    exclude: '= link_to '
   - pattern: ' visibility:'
     replace: ' ${visibility}:'
   - pattern: 'group settings'

@@ -14314,38 +14314,22 @@ index 5482152..7e9bc12 100644
          %td
            = ms.expires_at
 diff --git a/app/views/shared/projects/_dropdown.html.haml b/app/views/shared/projects/_dropdown.html.haml
-index b7f8551..58ea5d9 100644
+index b7f8551..23629cd 100644
 --- a/app/views/shared/projects/_dropdown.html.haml
 +++ b/app/views/shared/projects/_dropdown.html.haml
-@@ -10,21 +10,21 @@
-       Sort by
-     - projects_sort_options_hash.each do |value, title|
-       %li
--        = link_to filter_projects_path(namespace_id: namespace_id, sort: value, archived: archived, personal: personal), class: ("is-active" if @sort == value) do
-+        = link_to filter_projects_path(namespace_id: namespace_id, 並び替え: value, archived: archived, personal: personal), class: ("is-active" if @sort == value) do
-           = title
- 
+@@ -16,10 +16,10 @@
      %li.divider
      %li
--      = link_to filter_projects_path(namespace_id: namespace_id, sort: @sort, archived: nil), class: ("is-active" unless params[:archived].present?) do
+       = link_to filter_projects_path(namespace_id: namespace_id, sort: @sort, archived: nil), class: ("is-active" unless params[:archived].present?) do
 -        Hide archived projects
-+      = link_to filter_projects_path(namespace_id: namespace_id, 並び替え: @sort, archived: nil), class: ("is-active" unless params[:archived].present?) do
 +        Hide archived プロジェクト
      %li
--      = link_to filter_projects_path(namespace_id: namespace_id, sort: @sort, archived: true), class: ("is-active" if params[:archived].present?) do
+       = link_to filter_projects_path(namespace_id: namespace_id, sort: @sort, archived: true), class: ("is-active" if params[:archived].present?) do
 -        Show archived projects
-+      = link_to filter_projects_path(namespace_id: namespace_id, 並び替え: @sort, archived: true), class: ("is-active" if params[:archived].present?) do
 +        アーカイブされたプロジェクトを表示
      - if current_user
        %li.divider
        %li
--        = link_to filter_projects_path(namespace_id: namespace_id, sort: @sort, personal: nil), class: ("is-active" unless personal.present?) do
-+        = link_to filter_projects_path(namespace_id: namespace_id, 並び替え: @sort, personal: nil), class: ("is-active" unless personal.present?) do
-           Owned by anyone
-       %li
--        = link_to filter_projects_path(namespace_id: namespace_id, sort: @sort, personal: true), class: ("is-active" if personal.present?) do
-+        = link_to filter_projects_path(namespace_id: namespace_id, 並び替え: @sort, personal: true), class: ("is-active" if personal.present?) do
-           Owned by me
 diff --git a/app/views/shared/projects/_list.html.haml b/app/views/shared/projects/_list.html.haml
 index 3a9dd37..28d4d99 100644
 --- a/app/views/shared/projects/_list.html.haml

@@ -7,6 +7,8 @@ translations:
   skip-patterns:
   # Lines that does not contain quotes
   - !!js/regexp /^(?!\s*Project\.visibility_levels\.key)(?!.*['"]).+$/
+  - !!js/regexp /^[^']*('[^a-zA-Z0-9]*'[^']*)+$/
+  - !!js/regexp /^[^"]*("[^a-zA-Z0-9]*"[^"]*)+$/
   # Comments and lines that consists of reserved keywords
   - !!js/regexp /^\s*(?:#.*|(?:def|require|include|class|render|before_action) .*|private|end)?$/
   patterns:
@@ -159,6 +161,8 @@ translations:
   skip-patterns:
   # Lines that does not contain quotes
   - !!js/regexp /^(?!.*['"]).+$/
+  - !!js/regexp /^[^']*('([^a-zA-Z0-9]*|[a-z]+(-[a-z]+)+)'[^']*)+$/
+  - !!js/regexp /^[^"]*("([^a-zA-Z0-9]*|[a-z]+(-[a-z]+)+)"[^"]*)+$/
   # Comments and lines that consists of reserved keywords
   - !!js/regexp /^\s*(?:#.*|(?:require|include|class|render|before_action) .*|private|end)?$/
 

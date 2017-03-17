@@ -1,0 +1,70 @@
+translations:
+
+# Haml
+- name: 'haml:shortcuts'
+  parallel-group: 'group1'
+  src: 'app/views/help/_shortcuts.html.haml'
+  skip-patterns:
+  # Tag or class that are not followed by any words
+  - !!js/regexp /^\s*[\.%][^\s]+$/
+  # Empty lines and Ruby codes: comments, render with 1 param,
+  # and else/if/unless with zero or one word.
+  # Or insertion codes that has no quotation characters
+  - !!js/regexp /^\s*(?:$|-[^'"]*$|= render [^,]*$|- ?(?:#.*|(?:if|unless) [^ ]*)$|=[^'"]+$)/
+  patterns:
+  - pattern: "Go to projects"
+    replace: '${shortcutsGoToProjects}'
+  - pattern: "Go to the activity feed"
+    replace: '${shortcutsGoToTheActivityFeed}'
+  - pattern: "Go to issues"
+    replace: '${shortcutsGoToIssues}'
+  - pattern: "Go to merge requests"
+    replace: '${shortcutsGoToMergeRequests}'
+  - pattern: "Go to the project's home page"
+    replace: '${shortcutsGoToTheProjectsHomePage}'
+  - pattern: "Go to the project's activity feed"
+    replace: '${shortcutsGoToTheProjectsActivityFeed}'
+  - pattern: "Go to files"
+    replace: '${shortcutsGoToFiles}'
+  - pattern: "Go to commits"
+    replace: '${shortcutsGoToCommits}'
+  - pattern: "Go to jobs"
+    replace: '${goToJobs}'
+  - pattern: "Go to network graph"
+    replace: '${shortcutsGoToNetworkGraph}'
+  - pattern: "Go to graphs"
+    replace: '${shortcutsGoToGraph}'
+  - pattern: "Go to snippets"
+    replace: '${shortcutsGoToSnippets}'
+  - pattern: "Keyboard Shortcuts"
+    replace: '${keyboardShortcuts}'
+  - pattern: "Global Shortcuts"
+    replace: '${globalShortcuts}'
+  - pattern: "Focus Filter"
+    replace: '${focusFilter}'
+  - pattern: 'Focus Search'
+    replace: '${focusSearch}'
+  - pattern: 'Finding Project File'
+    replace: '${findingProjectFile}'
+  - pattern: 'Go to file permalink'
+    replace: '${gotoFilePermalink}'
+  - pattern: "Show/hide this dialog"
+    replace: '${showHideThisDialog}'
+  - pattern: "Toggle Markdown preview"
+    replace: '${toggleMarkdownPreview}'
+  - pattern: "Edit last comment (when focused on an empty textarea)"
+    replace: '${editLastCommentWhenFocusedOnAnEmptyTextarea}'
+  - pattern: "Project Files browsing"
+    replace: '${projectFilesBrowsing}'
+  - pattern: 'Project File'
+    replace: '${projectFile}'
+  - pattern: "Move selection up"
+    replace: '${moveSelectionUp}'
+  - pattern: "Move selection down"
+    replace: '${moveSelectionDown}'
+  - pattern: "Open Selection"
+    replace: '${openSelection}'
+  - pattern: "Go back"
+    replace: '${goBack}'
+  - pattern: "Global Dashboard"
+    relpace: '${globalDashboard}'

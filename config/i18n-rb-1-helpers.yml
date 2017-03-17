@@ -1,0 +1,156 @@
+translations:
+
+# Ruby
+- name: 'rb:helpers'
+  parallel-group: 'group1'
+  src: 'app/helpers/**.rb'
+  skip-patterns:
+  # Lines that does not contain quotes
+  - !!js/regexp /^(?!\s*Project\.visibility_levels\.key)(?!.*['"]).+$/
+  - !!js/regexp /^[^']*('[^a-zA-Z0-9]*'[^']*)+$/
+  - !!js/regexp /^[^"]*("[^a-zA-Z0-9]*"[^"]*)+$/
+  # Comments and lines that consists of reserved keywords
+  - !!js/regexp /^\s*(?:#.*|(?:def|require|include|class|render|before_action) .*|private|end)?$/
+  patterns:
+  - pattern: "'Oldest updated'"
+    replace: "'${oldestUpdated}'"
+  - pattern: "'Recently updated'"
+    replace: "'${recentlyUpdated}'"
+  - pattern: "'Oldest created'"
+    replace: "'${oldestCreated}'"
+  - pattern: "'Recently created'"
+    replace: "'${recentlyCreated}'"
+  - pattern: "'Milestone due soon'"
+    replace: "'${milestoneDueSoon}'"
+  - pattern: "'Milestone due later'"
+    replace: "'${milestoneDueLater}'"
+  - pattern: "'Name'"
+    replace: "'${name}'"
+  - pattern: "'Largest repository'"
+    replace: "'${largestRepository}'"
+  - pattern: "'Recent sign in'"
+    replace: "'${recentSignIn}'"
+  - pattern: "'Oldest sign in'"
+    replace: "'${oldestSignIn}'"
+  - pattern: "Project access must be granted explicitly to each user."
+    replace: '${projectAccessMustBeGrantedExplicitlyToEachUser}'
+  - pattern: "The project can be cloned by any logged in user."
+    replace: '${theProjectCanBeClonedByAnyLoggedInUser}'
+  - pattern: "The project can be cloned without any authentication."
+    replace: '${theProjectCanBeClonedWithoutAnyAuthentication}'
+  - pattern: !!js/regexp /Project.visibility_levels.key\(level\)\n  end/m
+    replace: "case level\n    when Gitlab::VisibilityLevel::PRIVATE\n      \"${private}\"\n    when Gitlab::VisibilityLevel::INTERNAL\n      \"${internal}\"\n    when Gitlab::VisibilityLevel::PUBLIC\n      \"${public}\"\n    end\n  end"
+    match-once: true
+  - pattern: !!js/regexp /You are going to remove ([^\s]+) from ([^\s]+) project team. Are you sure\?/
+    replace: '${youAreGoingToRemoveFromProjectTeamAreYouSure}'
+    args:
+    - '$1'
+    - '$2'
+  - pattern: "End a line with two or more spaces for a line-break, or soft-return"
+    replace: '${endALineWithTwoOrMoreSpacesForALineBreakOrSoftReturn}'
+  - pattern: "Inline code can be denoted by `surrounding it with backticks`"
+    replace: '${inlineCodeCanBeDenotedBySurroundingItWithBackticks}'
+  - pattern: "Blocks of code can be denoted by three backticks ``` or four leading spaces"
+    replace: '${blocksOfCodeCanBeDenotedByThreeBackticksOrFourLeadingSpaces}'
+  - pattern: "Emoji can be added by :emoji_name:, for example :thumbsup:"
+    replace: '${emojiCanBeAddedByEmojiNameForExampleThumbUp}'
+  - pattern: "Notify other participants using @user_name"
+    replace: '${notifyOtherParticipantsUsingUserName}'
+  - pattern: "Notify a specific group using @group_name"
+    replace: '${notifyASpecificGroupUsingGroupName}'
+  - pattern: "Notify the entire team using @all"
+    replace: '${notifyTheEntireTeamUsingAll}'
+  - pattern: "Reference an issue using a hash, for example issue #123"
+    replace: '${referenceAnIssueUsingAHashForExampleIssue123}'
+  - pattern: "Reference a merge request using an exclamation point, for example MR !123"
+    replace: '${referenceAMergeRequestUsingAnExclamationPointForExampleMR123}'
+  - pattern: "Italicize words or phrases using *asterisks* or _underscores_"
+    replace: '${italicizeWordsOrPhrasesUsingAsterisksOrUnderscores}'
+  - pattern: "Bold words or phrases using **double asterisks** or __double underscores__"
+    replace: '${boldWordsOrPhrasesUsingDoubleAsterisksOrDoublsUnderscores}'
+  - pattern: "Strikethrough words or phrases using ~~two tildes~~"
+    replace: '${strikethroughWordsOrPhrasesUsingTwoTildes}'
+  - pattern: "Make a bulleted list using + pluses, - minuses, or * asterisks"
+    replace: '${makeABulletedListUsingPlusesMinusesOrAsterisks}'
+  - pattern: "Denote blockquotes using > at the beginning of a line"
+    replace: '${denoteBlockquotesUsingAtTheBeginningOfALine}'
+  - pattern: "Make a horizontal line using three or more hyphens ---, asterisks ***, or underscores ___"
+    replace: '${makeAHorizontalLineUsingThreeOrMoreHyphensAsterisksOrUnderscores}'
+  - pattern: 'The group and its projects can only be viewed by members.'
+    replace: '${theGroupAndItsProjectsCanOnlyBeViewedByMembers}'
+  - pattern: 'The group and any internal projects can be viewed by any logged in user.'
+    replace: '${theGroupAndAnyInternalProjectsCanBeViewedByAnyLoggedInUser}'
+  - pattern: 'The group and any public projects can be viewed without any authentication.'
+    replace: '${theGroupAndAnyPublicProjectsCanBeViewedWithoutAnyAuthentication}'
+  - pattern: 'Add a reply'
+    replace: '${addAReply}'
+  - pattern: ' Reply'
+    replace: ' ${reply}'
+  - pattern: 'Your Projects (default)'
+    replace: '${yourProjectsDefault}'
+  - pattern: "Starred Projects' Activity"
+    replace: '${starredProjectsActivity}'
+  - pattern: 'Starred Projects'
+    replace: '${starredProjects}'
+  - pattern: "Your Projects' Activity"
+    replace: '${yourProjectsActivity}'
+  - pattern: 'label: "Profile settings"'
+    replace: 'label: "${profileSettings}"'
+  - pattern: 'label: "SSH Keys"'
+    replace: 'label: "${sshKey}"'
+  - pattern: 'label: "Dashboard"'
+    replace: 'label: "${dashboard}"'
+  - pattern: 'label: "Admin Section"'
+    replace: 'label: "${adminSection}"'
+  - pattern: 'label: "help: API Help"'
+    replace: 'label: "${helpAPIHelp}"'
+  - pattern: 'label: "help: Markdown Help"'
+    replace: 'label: "${helpMarkdownHelp}"'
+  - pattern: 'label: "help: Permissions Help"'
+    replace: 'label: "${helpPermissionsHelp}"'
+  - pattern: 'label: "help: Public Access Help"'
+    replace: 'label: "${helpPublicAccessHelp}"'
+  - pattern: 'label: "help: Rake Tasks Help"'
+    replace: 'label: "${helpRakeTasksHelp}"'
+  - pattern: 'label: "help: SSH Keys Help"'
+    replace: 'label: "${helpSSHKeysHelp}"'
+  - pattern: 'label: "help: System Hooks Help"'
+    replace: 'label: "${helpSystemHooksHelp}"'
+  - pattern: 'label: "help: Web Hooks Help"'
+    replace: 'label: "${helpWebHooksHelp}"'
+  - pattern: 'label: "help: Workflow Help"'
+    replace: 'label: "${helpWorkflowHelp}"'
+  - pattern: 'label: "#{prefix} - Files",'
+    replace: 'label: "#{prefix} - ${file}",'
+  - pattern: 'label: "#{prefix} - Commits",'
+    replace: 'label: "#{prefix} - ${commit}",'
+  - pattern: 'label: "#{prefix} - Network",'
+    replace: 'label: "#{prefix} - ${network}",'
+  - pattern: 'label: "#{prefix} - Graph",'
+    replace: 'label: "#{prefix} - ${graph}",'
+  - pattern: 'label: "#{prefix} - Issues",'
+    replace: 'label: "#{prefix} - ${issue}",'
+  - pattern: 'label: "#{prefix} - Merge Requests",'
+    replace: 'label: "#{prefix} - ${mergeRequest}",'
+  - pattern: 'label: "#{prefix} - Milestones",'
+    replace: 'label: "#{prefix} - ${milestone}",'
+  - pattern: 'label: "#{prefix} - Snippets",'
+    replace: 'label: "#{prefix} - ${snippet}",'
+  - pattern: 'label: "#{prefix} - Members",'
+    replace: 'label: "#{prefix} - ${member}",'
+  - pattern: 'label: "#{prefix} - Wiki",'
+    replace: 'label: "#{prefix} - ${wiki}",'
+  - pattern: 'label: "group: '
+    replace: 'label: "${group}: '
+  - pattern: 'label: "project: '
+    replace: 'label: "${project}: '
+  - pattern: 'Search for a user'
+    replace: '${searchForAUser}'
+  - pattern: !!js/regexp /^(\s+haml_concat )"Project access must be granted explicitly for each user."/
+    replace: '$1"${projectAccessMustBeGrantedExplicitlyToEachUser}"'
+  - pattern: !!js/regexp /^(\s+haml_concat )"The project can be cloned by"\n\s+haml_concat "any logged in user."$/
+    replace: '$1"${theProjectCanBeClonedByAnyLoggedInUser}"'
+  - pattern: !!js/regexp /^(\s+haml_concat )"The project can be cloned"\n\s+haml_concat "without any"\n\s+haml_concat "authentication."/
+    replace: '$1"${theProjectCanBeClonedWithoutAnyAuthentication}"'
+  - pattern: "The snippet is visible only to project members."
+    replace: '${theSnippetIsVisibleOnlyToProjectMembers}'

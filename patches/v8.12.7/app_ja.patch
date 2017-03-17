@@ -1,3 +1,38 @@
+diff --git a/app/assets/javascripts/due_date_select.js.es6 b/app/assets/javascripts/due_date_select.js.es6
+index 41925fc..a17908d 100644
+--- a/app/assets/javascripts/due_date_select.js.es6
++++ b/app/assets/javascripts/due_date_select.js.es6
+@@ -72,7 +72,7 @@
+         let dateObj = new Date(this.rawSelectedDate);
+         this.displayedDate = $.datepicker.formatDate('M d, yy', dateObj);
+       } else {
+-        this.displayedDate = 'No due date';
++        this.displayedDate = '期限なし';
+       }
+     }
+ 
+@@ -91,7 +91,7 @@
+         dataType: 'json',
+         beforeSend: () => {
+           const selectedDateValue = this.datePayload[this.abilityName].due_date;
+-          const displayedDateStyle = this.displayedDate !== 'No due date' ? 'bold' : 'no-value';
++          const displayedDateStyle = this.displayedDate !== '期限なし' ? 'bold' : 'no-value';
+ 
+           this.$loading.fadeIn();
+ 
+diff --git a/app/assets/javascripts/gfm_auto_complete.js.es6 b/app/assets/javascripts/gfm_auto_complete.js.es6
+index 845313b..fd5de2b 100644
+--- a/app/assets/javascripts/gfm_auto_complete.js.es6
++++ b/app/assets/javascripts/gfm_auto_complete.js.es6
+@@ -29,7 +29,7 @@
+       template: '<li>${title}</li>'
+     },
+     Loading: {
+-      template: '<li><i class="fa fa-refresh fa-spin"></i> Loading...</li>'
++      template: '<li><i class="fa fa-refresh fa-spin"></i> 読み込み中...</li>'
+     },
+     DefaultOptions: {
+       sorter: function(query, items, searchKey) {
 diff --git a/app/assets/javascripts/labels_select.js b/app/assets/javascripts/labels_select.js
 index 2e73e6e..c576e67 100644
 --- a/app/assets/javascripts/labels_select.js
@@ -15888,8 +15923,72 @@ index e524708..c0189eb 100644
      - Domain: `test1234.auth0.com`
      - Client ID: `t6X8L2465bNePWLOvt9yi41i`
      - Client Secret: `KbveM3nqfjwCbrhaUy_gDu2dss8TIlHIdzlyf33pB7dEK5u_NyQdp65O_o02hXs2`
+diff --git a/doc/integration/azure.md b/doc/integration/azure.md
+index 48dddf7..0938303 100644
+--- a/doc/integration/azure.md
++++ b/doc/integration/azure.md
+@@ -76,7 +76,7 @@ To enable the Microsoft Azure OAuth2 OmniAuth provider you must register your ap
+ 
+ 1.  Replace 'CLIENT ID', 'CLIENT SECRET' and 'TENANT ID' with the values you got above.
+ 
+-1.  Save the configuration file.
++1.  設定ファイルを保存します。
+ 
+ 1.  Restart GitLab for the changes to take effect.
+ 
+diff --git a/doc/integration/bitbucket.md b/doc/integration/bitbucket.md
+index 556d71b..7bdb67b 100644
+--- a/doc/integration/bitbucket.md
++++ b/doc/integration/bitbucket.md
+@@ -61,7 +61,7 @@ you to use.
+ 
+       ![Bitbucket OAuth key](img/bitbucket_oauth_keys.png)
+ 
+-1.  On your GitLab server, open the configuration file:
++1.  あなたのGitLabサーバで設定ファイルを開きます:
+ 
+     ```
+     # For Omnibus packages
+@@ -101,7 +101,7 @@ you to use.
+     Where `BITBUCKET_APP_KEY` is the Key and `BITBUCKET_APP_SECRET` the Secret
+     from the Bitbucket application page.
+ 
+-1.  Save the configuration file.
++1.  設定ファイルを保存します。
+ 1.  [Reconfigure][] or [restart GitLab][] for the changes to take effect if you
+     installed GitLab via Omnibus or from source respectively.
+ 
+diff --git a/doc/integration/cas.md b/doc/integration/cas.md
+index e34e306..9fecf8d 100644
+--- a/doc/integration/cas.md
++++ b/doc/integration/cas.md
+@@ -56,7 +56,7 @@ To enable the CAS OmniAuth provider you must register your application with your
+ 
+ 1.  If your CAS instance does not use default TGC lifetimes, update the `cas3.session_duration` to at least the current TGC maximum lifetime. To explicitly disable SLO, regardless of CAS settings, set this to 0.
+ 
+-1.  Save the configuration file.
++1.  設定ファイルを保存します。
+ 
+ 1.  Run `gitlab-ctl reconfigure` for the omnibus package.
+ 
+diff --git a/doc/integration/crowd.md b/doc/integration/crowd.md
+index 40d93ae..d3243fd 100644
+--- a/doc/integration/crowd.md
++++ b/doc/integration/crowd.md
+@@ -51,8 +51,8 @@ To enable the Crowd OmniAuth provider you must register your application with Cr
+ 
+ 1.  Change 'YOUR_APP_PASSWORD' to the application password you've set.
+ 
+-1.  Save the configuration file.
++1.  設定ファイルを保存します。
+ 
+ 1.  Restart GitLab for the changes to take effect.
+ 
+-On the sign in page there should now be a Crowd tab in the sign in form.
+\ No newline at end of file
++On the sign in page there should now be a Crowd tab in the sign in form.
 diff --git a/doc/integration/facebook.md b/doc/integration/facebook.md
-index 77bb75c..79b3f6e 100644
+index 77bb75c..c388784 100644
 --- a/doc/integration/facebook.md
 +++ b/doc/integration/facebook.md
 @@ -23,7 +23,7 @@ something else descriptive.
@@ -15900,6 +15999,54 @@ index 77bb75c..79b3f6e 100644
 +1. Choose "Skip クイックスタート" in the upper right corner
  
  1. Choose "Settings" in the menu on the left
+ 
+@@ -90,7 +90,7 @@ something else descriptive.
+ 
+ 1.  Change 'YOUR_APP_SECRET' to the API secret from the Facebook page in step 10.
+ 
+-1.  Save the configuration file.
++1.  設定ファイルを保存します。
+ 
+ 1.  Restart GitLab for the changes to take effect.
+ 
+diff --git a/doc/integration/github.md b/doc/integration/github.md
+index 8a01afd..df13f67 100644
+--- a/doc/integration/github.md
++++ b/doc/integration/github.md
+@@ -86,7 +86,7 @@ GitHub will generate an application ID and secret key for you to use.
+ 
+ 1.  Change 'YOUR_APP_SECRET' to the client secret from the GitHub application page  from step 7.
+ 
+-1.  Save the configuration file.
++1.  設定ファイルを保存します。
+ 
+ 1.  Restart GitLab for the changes to take effect.
+ 
+diff --git a/doc/integration/gitlab.md b/doc/integration/gitlab.md
+index 6d8f391..a09440e 100644
+--- a/doc/integration/gitlab.md
++++ b/doc/integration/gitlab.md
+@@ -75,7 +75,7 @@ GitLab.com will generate an application ID and secret key for you to use.
+ 
+ 1.  Change 'YOUR_APP_SECRET' to the secret from the GitLab.com application page.
+ 
+-1.  Save the configuration file.
++1.  設定ファイルを保存します。
+ 
+ 1.  Restart GitLab for the changes to take effect.
+ 
+diff --git a/doc/integration/google.md b/doc/integration/google.md
+index 82978b6..d50afca 100644
+--- a/doc/integration/google.md
++++ b/doc/integration/google.md
+@@ -72,7 +72,7 @@ To enable the Google OAuth2 OmniAuth provider you must register your application
+ 
+ 1.  Change 'YOUR_APP_SECRET' to the client secret from the Google Developer page from step 10.
+ 
+-1.  Save the configuration file.
++1.  設定ファイルを保存します。
+ 
+ 1.  Restart GitLab for the changes to take effect.
  
 diff --git a/doc/integration/oauth_provider.md b/doc/integration/oauth_provider.md
 index 0c53584..273eaf6 100644
@@ -15964,6 +16111,19 @@ index f3b2a28..3c21d05 100644
    external_groups: ['Freelancers', 'Interns'],
    args: {
            assertion_consumer_service_url: 'https://gitlab.example.com/users/auth/saml/callback',
+diff --git a/doc/integration/twitter.md b/doc/integration/twitter.md
+index abbea09..39060dc 100644
+--- a/doc/integration/twitter.md
++++ b/doc/integration/twitter.md
+@@ -72,7 +72,7 @@ To enable the Twitter OmniAuth provider you must register your application with
+ 
+ 1.  Change 'YOUR_APP_SECRET' to the API secret from the Twitter page in step 11.
+ 
+-1.  Save the configuration file.
++1.  設定ファイルを保存します。
+ 
+ 1.  Restart GitLab for the changes to take effect.
+ 
 diff --git a/doc/intro/README.md b/doc/intro/README.md
 index 1790b2b..f6ca16e 100644
 --- a/doc/intro/README.md

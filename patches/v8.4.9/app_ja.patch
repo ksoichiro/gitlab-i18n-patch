@@ -120,7 +120,7 @@ index 7f41616..b0cad27 100644
          $(".subscription-status>div").toggleClass("hidden")
  
 diff --git a/app/assets/javascripts/users_select.js.coffee b/app/assets/javascripts/users_select.js.coffee
-index 9467011..5fba0b7 100644
+index 9467011..2f56225 100644
 --- a/app/assets/javascripts/users_select.js.coffee
 +++ b/app/assets/javascripts/users_select.js.coffee
 @@ -13,7 +13,7 @@ class @UsersSelect
@@ -132,7 +132,7 @@ index 9467011..5fba0b7 100644
          multiple: $(select).hasClass('multiselect')
          minimumInputLength: 0
          query: (query) =>
-@@ -31,7 +31,7 @@ class @UsersSelect
+@@ -31,14 +31,14 @@ class @UsersSelect
  
                if showNullUser
                  nullUser = {
@@ -141,6 +141,14 @@ index 9467011..5fba0b7 100644
                    id: 0
                  }
                  data.results.unshift(nullUser)
+ 
+               if showAnyUser
+                 name = showAnyUser
+-                name = 'Any User' if name == true
++                name = 'すべてのユーザ' if name == true
+                 anyUser = {
+                   name: name,
+                   id: null
 @@ -68,7 +68,7 @@ class @UsersSelect
    initSelection: (element, callback) ->
      id = $(element).val()
@@ -14274,8 +14282,63 @@ index 5edac74..adec2b0 100644
  adding functionality to GitLab. For example there is also a service that can
  send an email every time someone pushes new commits.
  
+diff --git a/doc/integration/azure.md b/doc/integration/azure.md
+index 48dddf7..0938303 100644
+--- a/doc/integration/azure.md
++++ b/doc/integration/azure.md
+@@ -76,7 +76,7 @@ To enable the Microsoft Azure OAuth2 OmniAuth provider you must register your ap
+ 
+ 1.  Replace 'CLIENT ID', 'CLIENT SECRET' and 'TENANT ID' with the values you got above.
+ 
+-1.  Save the configuration file.
++1.  設定ファイルを保存します。
+ 
+ 1.  Restart GitLab for the changes to take effect.
+ 
+diff --git a/doc/integration/bitbucket.md b/doc/integration/bitbucket.md
+index 63432b0..b4b2c13 100644
+--- a/doc/integration/bitbucket.md
++++ b/doc/integration/bitbucket.md
+@@ -66,7 +66,7 @@ Bitbucket will generate an application ID and secret key for you to use.
+ 
+ 1.  Change 'YOUR_APP_SECRET' to the secret from the Bitbucket application page from step 7.
+ 
+-1.  Save the configuration file.
++1.  設定ファイルを保存します。
+ 
+ 1.  If you're using the omnibus package, reconfigure GitLab (```gitlab-ctl reconfigure```).
+ 
+diff --git a/doc/integration/cas.md b/doc/integration/cas.md
+index e6b2071..0a5639e 100644
+--- a/doc/integration/cas.md
++++ b/doc/integration/cas.md
+@@ -55,7 +55,7 @@ To enable the CAS OmniAuth provider you must register your application with your
+ 
+ 1.  If your CAS instance does not use default TGC lifetimes, update the `cas3.session_duration` to at least the current TGC maximum lifetime. To explicitly disable SLO, regardless of CAS settings, set this to 0.
+ 
+-1.  Save the configuration file.
++1.  設定ファイルを保存します。
+ 
+ 1.  Restart GitLab for the changes to take effect.
+ 
+diff --git a/doc/integration/crowd.md b/doc/integration/crowd.md
+index 40d93ae..d3243fd 100644
+--- a/doc/integration/crowd.md
++++ b/doc/integration/crowd.md
+@@ -51,8 +51,8 @@ To enable the Crowd OmniAuth provider you must register your application with Cr
+ 
+ 1.  Change 'YOUR_APP_PASSWORD' to the application password you've set.
+ 
+-1.  Save the configuration file.
++1.  設定ファイルを保存します。
+ 
+ 1.  Restart GitLab for the changes to take effect.
+ 
+-On the sign in page there should now be a Crowd tab in the sign in form.
+\ No newline at end of file
++On the sign in page there should now be a Crowd tab in the sign in form.
 diff --git a/doc/integration/facebook.md b/doc/integration/facebook.md
-index bc1f167..3b99bc5 100644
+index bc1f167..6e1d2f4 100644
 --- a/doc/integration/facebook.md
 +++ b/doc/integration/facebook.md
 @@ -23,7 +23,7 @@ something else descriptive.
@@ -14286,6 +14349,54 @@ index bc1f167..3b99bc5 100644
 +1. Choose "Skip クイックスタート" in the upper right corner
  
  1. Choose "Settings" in the menu on the left
+ 
+@@ -90,7 +90,7 @@ something else descriptive.
+ 
+ 1.  Change 'YOUR_APP_SECRET' to the API secret from the Facebook page in step 10.
+ 
+-1.  Save the configuration file.
++1.  設定ファイルを保存します。
+ 
+ 1.  Restart GitLab for the changes to take effect.
+ 
+diff --git a/doc/integration/github.md b/doc/integration/github.md
+index a789d2c..4b7b49d 100644
+--- a/doc/integration/github.md
++++ b/doc/integration/github.md
+@@ -70,7 +70,7 @@ GitHub will generate an application ID and secret key for you to use.
+ 
+ 1.  Change 'YOUR_APP_SECRET' to the client secret from the GitHub application page  from step 7.
+ 
+-1.  Save the configuration file.
++1.  設定ファイルを保存します。
+ 
+ 1.  Restart GitLab for the changes to take effect.
+ 
+diff --git a/doc/integration/gitlab.md b/doc/integration/gitlab.md
+index 80e3c01..7ad4030 100644
+--- a/doc/integration/gitlab.md
++++ b/doc/integration/gitlab.md
+@@ -75,7 +75,7 @@ GitLab.com will generate an application ID and secret key for you to use.
+ 
+ 1.  Change 'YOUR_APP_SECRET' to the secret from the GitLab.com application page.
+ 
+-1.  Save the configuration file.
++1.  設定ファイルを保存します。
+ 
+ 1.  Restart GitLab for the changes to take effect.
+ 
+diff --git a/doc/integration/google.md b/doc/integration/google.md
+index 91e9b24..455c61f 100644
+--- a/doc/integration/google.md
++++ b/doc/integration/google.md
+@@ -72,7 +72,7 @@ To enable the Google OAuth2 OmniAuth provider you must register your application
+ 
+ 1.  Change 'YOUR_APP_SECRET' to the client secret from the Google Developer page from step 10.
+ 
+-1.  Save the configuration file.
++1.  設定ファイルを保存します。
+ 
+ 1.  Restart GitLab for the changes to take effect.
  
 diff --git a/doc/integration/jira.md b/doc/integration/jira.md
 index de574d5..aa3cbdf 100644
@@ -14339,6 +14450,22 @@ index 192c321..2d25661 100644
 -![admin_application](oauth_provider/admin_application.png)
 \ No newline at end of file
 +![admin_application](oauth_provider/admin_application.png)
+diff --git a/doc/integration/twitter.md b/doc/integration/twitter.md
+index 52ed4a2..e3bd762 100644
+--- a/doc/integration/twitter.md
++++ b/doc/integration/twitter.md
+@@ -72,8 +72,8 @@ To enable the Twitter OmniAuth provider you must register your application with
+ 
+ 1.  Change 'YOUR_APP_SECRET' to the API secret from the Twitter page in step 11.
+ 
+-1.  Save the configuration file.
++1.  設定ファイルを保存します。
+ 
+ 1.  Restart GitLab for the changes to take effect.
+ 
+-On the sign in page there should now be a Twitter icon below the regular sign in form. Click the icon to begin the authentication process. Twitter will ask the user to sign in and authorize the GitLab application. If everything goes well the user will be returned to GitLab and will be signed in.
+\ No newline at end of file
++On the sign in page there should now be a Twitter icon below the regular sign in form. Click the icon to begin the authentication process. Twitter will ask the user to sign in and authorize the GitLab application. If everything goes well the user will be returned to GitLab and will be signed in.
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
 index bc8e7d1..522d6a1 100644
 --- a/doc/markdown/markdown.md

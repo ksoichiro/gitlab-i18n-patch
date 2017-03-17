@@ -1,3 +1,16 @@
+diff --git a/app/assets/javascripts/due_date_select.js.coffee b/app/assets/javascripts/due_date_select.js.coffee
+index d65c018..f0982f5 100644
+--- a/app/assets/javascripts/due_date_select.js.coffee
++++ b/app/assets/javascripts/due_date_select.js.coffee
+@@ -48,7 +48,7 @@ class @DueDateSelect
+           date = new Date value.replace(new RegExp('-', 'g'), ',')
+           mediumDate = $.datepicker.formatDate 'M d, yy', date
+         else
+-          mediumDate = 'No due date'
++          mediumDate = '期限なし'
+ 
+         data = {}
+         data[abilityName] = {}
 diff --git a/app/assets/javascripts/gfm_auto_complete.js.coffee b/app/assets/javascripts/gfm_auto_complete.js.coffee
 index 4a851d9..e53b8cb 100644
 --- a/app/assets/javascripts/gfm_auto_complete.js.coffee
@@ -11,28 +24,26 @@ index 4a851d9..e53b8cb 100644
  
    DefaultOptions:
      sorter: (query, items, searchKey) ->
-diff --git a/app/assets/javascripts/graphs/stat_graph_contributors.js.coffee b/app/assets/javascripts/graphs/stat_graph_contributors.js.coffee
-index 1d9fae7..bcfe379 100644
---- a/app/assets/javascripts/graphs/stat_graph_contributors.js.coffee
-+++ b/app/assets/javascripts/graphs/stat_graph_contributors.js.coffee
-@@ -25,7 +25,7 @@ class @ContributorsStatGraph
-     commits = $('<span/>', {
-       class: 'graph-author-commits-count'
-     })
--    commits.text(author.commits + " commits")
-+    commits.text(author.commits + " コミット")
-     $('<span/>').append(commits)
+diff --git a/app/assets/javascripts/labels_select.js.coffee b/app/assets/javascripts/labels_select.js.coffee
+index 7688609..2fcb5b5 100644
+--- a/app/assets/javascripts/labels_select.js.coffee
++++ b/app/assets/javascripts/labels_select.js.coffee
+@@ -187,13 +187,13 @@ class @LabelsSelect
+               if showNo
+                 data.unshift(
+                   id: 0
+-                  title: 'No Label'
++                  title: 'ラベルなし'
+                 )
  
-   create_author_header: (author) ->
-@@ -62,7 +62,7 @@ class @ContributorsStatGraph
-     @field = field
-   change_date_header: ->
-     x_domain = ContributorsGraph.prototype.x_domain
--    print_date_format = d3.time.format("%B %e %Y")
-+    print_date_format = d3.time.format("%Y/%m/%d")
-     print = print_date_format(x_domain[0]) + " - " + print_date_format(x_domain[1])
-     $("#date_header").text(print)
-   redraw_author_commit_info: (author) ->
+               if showAny
+                 data.unshift(
+                   isAny: true
+-                  title: 'Any Label'
++                  title: 'すべてのラベル'
+                 )
+ 
+               if data.length > 2
 diff --git a/app/assets/javascripts/markdown_preview.js.coffee b/app/assets/javascripts/markdown_preview.js.coffee
 index 2a0b947..2630928 100644
 --- a/app/assets/javascripts/markdown_preview.js.coffee
@@ -50,28 +61,28 @@ index 2a0b947..2630928 100644
        @renderMarkdown mdText, (response) =>
          preview.html(response.body)
          preview.syntaxHighlight()
-diff --git a/app/assets/javascripts/search.js.coffee b/app/assets/javascripts/search.js.coffee
-index 661e119..a7308fb 100644
---- a/app/assets/javascripts/search.js.coffee
-+++ b/app/assets/javascripts/search.js.coffee
-@@ -11,7 +11,7 @@ class @Search
-       data: (term, callback) ->
-         Api.groups term, null, (data) ->
-           data.unshift(
--            name: 'Any'
-+            name: '指定なし'
-           )
-           data.splice 1, 0, 'divider'
+diff --git a/app/assets/javascripts/milestone_select.js.coffee b/app/assets/javascripts/milestone_select.js.coffee
+index 8ab03ed..b9120e0 100644
+--- a/app/assets/javascripts/milestone_select.js.coffee
++++ b/app/assets/javascripts/milestone_select.js.coffee
+@@ -45,14 +45,14 @@ class @MilestoneSelect
+               extraOptions.push(
+                 id: 0
+                 name: ''
+-                title: 'Any Milestone'
++                title: 'すべてのマイルストーン'
+               )
  
-@@ -33,7 +33,7 @@ class @Search
-       data: (term, callback) ->
-         Api.projects term, 'id', (data) ->
-           data.unshift(
--            name_with_namespace: 'Any'
-+            name_with_namespace: '指定なし'
-           )
-           data.splice 1, 0, 'divider'
+             if showNo
+               extraOptions.push(
+                 id: -1
+-                name: 'No Milestone'
+-                title: 'No Milestone'
++                name: 'マイルストーンなし'
++                title: 'マイルストーンなし'
+               )
  
+             if showUpcoming
 diff --git a/app/assets/javascripts/search_autocomplete.js.coffee b/app/assets/javascripts/search_autocomplete.js.coffee
 index 2c83bc0..319d1e4 100644
 --- a/app/assets/javascripts/search_autocomplete.js.coffee
@@ -86,7 +97,7 @@ index 2c83bc0..319d1e4 100644
      @dropdownContent.html(html)
  
 diff --git a/app/assets/javascripts/users_select.js.coffee b/app/assets/javascripts/users_select.js.coffee
-index 344be81..10a872c 100644
+index 344be81..a0b98e7 100644
 --- a/app/assets/javascripts/users_select.js.coffee
 +++ b/app/assets/javascripts/users_select.js.coffee
 @@ -52,7 +52,7 @@ class @UsersSelect
@@ -98,7 +109,7 @@ index 344be81..10a872c 100644
                username: ''
                avatar: ''
            $value.html(assigneeTemplate(user))
-@@ -115,7 +115,7 @@ class @UsersSelect
+@@ -115,14 +115,14 @@ class @UsersSelect
                  showDivider += 1
                  users.unshift(
                    beforeDivider: true
@@ -107,6 +118,14 @@ index 344be81..10a872c 100644
                    id: 0
                  )
  
+               if showAnyUser
+                 showDivider += 1
+                 name = showAnyUser
+-                name = 'Any User' if name == true
++                name = 'すべてのユーザ' if name == true
+                 anyUser = {
+                   beforeDivider: true
+                   name: name,
 @@ -221,7 +221,7 @@ class @UsersSelect
        firstUser = $(select).data('first-user')
  
@@ -116,7 +135,7 @@ index 344be81..10a872c 100644
          multiple: $(select).hasClass('multiselect')
          minimumInputLength: 0
          query: (query) =>
-@@ -239,7 +239,7 @@ class @UsersSelect
+@@ -239,14 +239,14 @@ class @UsersSelect
  
                if showNullUser
                  nullUser = {
@@ -125,6 +144,14 @@ index 344be81..10a872c 100644
                    id: 0
                  }
                  data.results.unshift(nullUser)
+ 
+               if showAnyUser
+                 name = showAnyUser
+-                name = 'Any User' if name == true
++                name = 'すべてのユーザ' if name == true
+                 anyUser = {
+                   name: name,
+                   id: null
 @@ -276,7 +276,7 @@ class @UsersSelect
    initSelection: (element, callback) ->
      id = $(element).val()
@@ -15542,8 +15569,63 @@ index e524708..c0189eb 100644
      - Domain: `test1234.auth0.com`
      - Client ID: `t6X8L2465bNePWLOvt9yi41i`
      - Client Secret: `KbveM3nqfjwCbrhaUy_gDu2dss8TIlHIdzlyf33pB7dEK5u_NyQdp65O_o02hXs2`
+diff --git a/doc/integration/azure.md b/doc/integration/azure.md
+index 48dddf7..0938303 100644
+--- a/doc/integration/azure.md
++++ b/doc/integration/azure.md
+@@ -76,7 +76,7 @@ To enable the Microsoft Azure OAuth2 OmniAuth provider you must register your ap
+ 
+ 1.  Replace 'CLIENT ID', 'CLIENT SECRET' and 'TENANT ID' with the values you got above.
+ 
+-1.  Save the configuration file.
++1.  設定ファイルを保存します。
+ 
+ 1.  Restart GitLab for the changes to take effect.
+ 
+diff --git a/doc/integration/bitbucket.md b/doc/integration/bitbucket.md
+index 63432b0..b4b2c13 100644
+--- a/doc/integration/bitbucket.md
++++ b/doc/integration/bitbucket.md
+@@ -66,7 +66,7 @@ Bitbucket will generate an application ID and secret key for you to use.
+ 
+ 1.  Change 'YOUR_APP_SECRET' to the secret from the Bitbucket application page from step 7.
+ 
+-1.  Save the configuration file.
++1.  設定ファイルを保存します。
+ 
+ 1.  If you're using the omnibus package, reconfigure GitLab (```gitlab-ctl reconfigure```).
+ 
+diff --git a/doc/integration/cas.md b/doc/integration/cas.md
+index e34e306..9fecf8d 100644
+--- a/doc/integration/cas.md
++++ b/doc/integration/cas.md
+@@ -56,7 +56,7 @@ To enable the CAS OmniAuth provider you must register your application with your
+ 
+ 1.  If your CAS instance does not use default TGC lifetimes, update the `cas3.session_duration` to at least the current TGC maximum lifetime. To explicitly disable SLO, regardless of CAS settings, set this to 0.
+ 
+-1.  Save the configuration file.
++1.  設定ファイルを保存します。
+ 
+ 1.  Run `gitlab-ctl reconfigure` for the omnibus package.
+ 
+diff --git a/doc/integration/crowd.md b/doc/integration/crowd.md
+index 40d93ae..d3243fd 100644
+--- a/doc/integration/crowd.md
++++ b/doc/integration/crowd.md
+@@ -51,8 +51,8 @@ To enable the Crowd OmniAuth provider you must register your application with Cr
+ 
+ 1.  Change 'YOUR_APP_PASSWORD' to the application password you've set.
+ 
+-1.  Save the configuration file.
++1.  設定ファイルを保存します。
+ 
+ 1.  Restart GitLab for the changes to take effect.
+ 
+-On the sign in page there should now be a Crowd tab in the sign in form.
+\ No newline at end of file
++On the sign in page there should now be a Crowd tab in the sign in form.
 diff --git a/doc/integration/facebook.md b/doc/integration/facebook.md
-index 77bb75c..79b3f6e 100644
+index 77bb75c..c388784 100644
 --- a/doc/integration/facebook.md
 +++ b/doc/integration/facebook.md
 @@ -23,7 +23,7 @@ something else descriptive.
@@ -15554,6 +15636,54 @@ index 77bb75c..79b3f6e 100644
 +1. Choose "Skip クイックスタート" in the upper right corner
  
  1. Choose "Settings" in the menu on the left
+ 
+@@ -90,7 +90,7 @@ something else descriptive.
+ 
+ 1.  Change 'YOUR_APP_SECRET' to the API secret from the Facebook page in step 10.
+ 
+-1.  Save the configuration file.
++1.  設定ファイルを保存します。
+ 
+ 1.  Restart GitLab for the changes to take effect.
+ 
+diff --git a/doc/integration/github.md b/doc/integration/github.md
+index 340c8a5..b36ccab 100644
+--- a/doc/integration/github.md
++++ b/doc/integration/github.md
+@@ -86,7 +86,7 @@ GitHub will generate an application ID and secret key for you to use.
+ 
+ 1.  Change 'YOUR_APP_SECRET' to the client secret from the GitHub application page  from step 7.
+ 
+-1.  Save the configuration file.
++1.  設定ファイルを保存します。
+ 
+ 1.  Restart GitLab for the changes to take effect.
+ 
+diff --git a/doc/integration/gitlab.md b/doc/integration/gitlab.md
+index b215cc7..6903461 100644
+--- a/doc/integration/gitlab.md
++++ b/doc/integration/gitlab.md
+@@ -75,7 +75,7 @@ GitLab.com will generate an application ID and secret key for you to use.
+ 
+ 1.  Change 'YOUR_APP_SECRET' to the secret from the GitLab.com application page.
+ 
+-1.  Save the configuration file.
++1.  設定ファイルを保存します。
+ 
+ 1.  Restart GitLab for the changes to take effect.
+ 
+diff --git a/doc/integration/google.md b/doc/integration/google.md
+index 82978b6..d50afca 100644
+--- a/doc/integration/google.md
++++ b/doc/integration/google.md
+@@ -72,7 +72,7 @@ To enable the Google OAuth2 OmniAuth provider you must register your application
+ 
+ 1.  Change 'YOUR_APP_SECRET' to the client secret from the Google Developer page from step 10.
+ 
+-1.  Save the configuration file.
++1.  設定ファイルを保存します。
+ 
+ 1.  Restart GitLab for the changes to take effect.
  
 diff --git a/doc/integration/oauth_provider.md b/doc/integration/oauth_provider.md
 index 0c53584..273eaf6 100644
@@ -15618,6 +15748,19 @@ index f3b2a28..3c21d05 100644
    external_groups: ['Freelancers', 'Interns'],
    args: {
            assertion_consumer_service_url: 'https://gitlab.example.com/users/auth/saml/callback',
+diff --git a/doc/integration/twitter.md b/doc/integration/twitter.md
+index 4769f26..262e988 100644
+--- a/doc/integration/twitter.md
++++ b/doc/integration/twitter.md
+@@ -72,7 +72,7 @@ To enable the Twitter OmniAuth provider you must register your application with
+ 
+ 1.  Change 'YOUR_APP_SECRET' to the API secret from the Twitter page in step 11.
+ 
+-1.  Save the configuration file.
++1.  設定ファイルを保存します。
+ 
+ 1.  Restart GitLab for the changes to take effect.
+ 
 diff --git a/doc/intro/README.md b/doc/intro/README.md
 index 1850031..7db99f2 100644
 --- a/doc/intro/README.md
@@ -18518,43 +18661,3 @@ index f70e41d..84ec9ef 100644
  
 -1.  Your team lead will review the code &amp; merge it to the main branch.
 +1.  チームリーダがコードレビューしメインのブランチにマージします
-diff --git a/spec/javascripts/issue_spec.js.coffee b/spec/javascripts/issue_spec.js.coffee
-index d84d80f..21ae521 100644
---- a/spec/javascripts/issue_spec.js.coffee
-+++ b/spec/javascripts/issue_spec.js.coffee
-@@ -35,7 +35,7 @@ describe 'reopen/close issue', ->
-     $btnClose = $('a.btn-close')
-     $btnReopen = $('a.btn-reopen')
-     expect($btnReopen).toBeHidden()
--    expect($btnClose.text()).toBe('Close')
-+    expect($btnClose.text()).toBe('クローズ')
-     expect(typeof $btnClose.prop('disabled')).toBe('undefined')
- 
-     $btnClose.trigger('click')
-@@ -56,7 +56,7 @@ describe 'reopen/close issue', ->
-     $btnReopen = $('a.btn-reopen')
-     $btnClose.attr('href','http://goesnowhere.nothing/whereami')
-     expect($btnReopen).toBeHidden()
--    expect($btnClose.text()).toBe('Close')
-+    expect($btnClose.text()).toBe('クローズ')
-     expect(typeof $btnClose.prop('disabled')).toBe('undefined')
- 
-     $btnClose.trigger('click')
-@@ -79,7 +79,7 @@ describe 'reopen/close issue', ->
-     $btnReopen = $('a.btn-reopen')
-     $btnClose.attr('href','http://goesnowhere.nothing/whereami')
-     expect($btnReopen).toBeHidden()
--    expect($btnClose.text()).toBe('Close')
-+    expect($btnClose.text()).toBe('クローズ')
-     expect(typeof $btnClose.prop('disabled')).toBe('undefined')
- 
-     $btnClose.trigger('click')
-@@ -99,7 +99,7 @@ describe 'reopen/close issue', ->
- 
-     $btnClose = $('a.btn-close')
-     $btnReopen = $('a.btn-reopen')
--    expect($btnReopen.text()).toBe('Reopen')
-+    expect($btnReopen.text()).toBe('再オープン')
- 
-     $btnReopen.trigger('click')
- 

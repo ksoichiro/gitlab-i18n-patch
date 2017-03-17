@@ -2,6 +2,7 @@ translations:
 
 # CoffeeScript
 - name: 'coffee'
+  evaluate-when: "semver.lt(version, '8.10.0')"
   parallel-group: 'group1'
   src: '**/*.coffee'
   named-patterns:

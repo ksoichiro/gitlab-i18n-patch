@@ -11,7 +11,7 @@ translations:
 
 - name: 'js'
   parallel-group: 'group2'
-  src: 'app/assets/javascripts/**.js'
+  src: 'app/assets/javascripts/**.js*'
   skip-patterns:
   # Lines that does not contain quotes
   - !!js/regexp /^(?!.*\$\('[^']*'\))(?!.*['"]).+$/

@@ -14238,7 +14238,7 @@ index 0000000..cee0bea
 +            redirect_uri:
 +              blank: リダイレクトURIは必須です
 diff --git a/doc/README.md b/doc/README.md
-index d1345ab..45548d1 100644
+index d1345ab..e01f4bf 100644
 --- a/doc/README.md
 +++ b/doc/README.md
 @@ -1,24 +1,24 @@
@@ -14260,19 +14260,20 @@ index d1345ab..45548d1 100644
 -- [Profile Settings](profile/README.md)
 -- [Project Services](project_services/project_services.md) Integrate a project with external services, such as CI and chat.
 -- [Public access](public_access/public_access.md) Learn how you can allow public and internal access to projects.
+-- [Container Registry](container_registry/README.md) Learn how to use GitLab Container Registry.
+-- [SSH](ssh/README.md) Setup your ssh keys and deploy keys for secure access to your projects.
+-- [Webhooks](web_hooks/web_hooks.md) Let GitLab notify you when new code has been pushed to your project.
+-- [Workflow](workflow/README.md) Using GitLab functionality and importing projects from GitHub and SVN.
 +- [OAuth2認証サービスプロバイダとしてのGitLab](integration/oauth_provider.md). GitLabから他のアプリケーションにログインできるようにします。
 +- [GitLabの基本](gitlab-basics/README.md) コマンドラインとGitLabでの作業の始め方をステップバイステップで説明します。
 +- [GitLabへのインポート](workflow/importing/README.md).
 +- [Markdown](markdown/markdown.md) GitLabの高度なフォーマットシステムです。
 +- [SVNからの移行](workflow/importing/migrating_from_svn.md) GitとGitLabへのSVNリポジトリの変換
-+- [アクセス権](permissions/permissions.md) Learn what each role in a project (external/guest/reporter/developer/master/owner) can do.
++- [アクセス権](permissions/permissions.md) プロジェクトの各ロール(External/Guest/Reporter/Developer/Master/Owner)が何を行えるかを学びます。
 +- [プロフィール設定](profile/README.md)
 +- [プロジェクトサービス](project_services/project_services.md) CIやチャットなどの外部サービスと、プロジェクトを統合します。
 +- [公開アクセス](public_access/public_access.md) プロジェクトのアクセス範囲を公開・内部にする方法を学びます。
- - [Container Registry](container_registry/README.md) Learn how to use GitLab Container Registry.
--- [SSH](ssh/README.md) Setup your ssh keys and deploy keys for secure access to your projects.
--- [Webhooks](web_hooks/web_hooks.md) Let GitLab notify you when new code has been pushed to your project.
--- [Workflow](workflow/README.md) Using GitLab functionality and importing projects from GitHub and SVN.
++- [コンテナレジストリ](container_registry/README.md) GitLabコンテナレジストリの使い方を学びます。
 +- [SSH](ssh/README.md) セキュアなアクセスのためにSSHキーやデプロイキーをプロジェクトに設定します。
 +- [Webhooks](web_hooks/web_hooks.md) プロジェクトに新しいコードがプッシュされたときにGitLabがあなたに通知するようにします。
 +- [ワークフロー](workflow/README.md) GitLabの機能を使いGitHubやSVNからプロジェクトをインポートします。
@@ -14291,9 +14292,12 @@ index d1345ab..45548d1 100644
  - [Update](update/README.md) Update guides to upgrade your installation.
  - [Welcome message](customization/welcome_message.md) Add a custom welcome message to the sign-in page.
  - [Reply by email](incoming_email/README.md) Allow users to comment on issues and merge requests by replying to notification emails.
-@@ -47,7 +47,7 @@
+@@ -45,9 +45,9 @@
+ - [Monitoring uptime](monitoring/health_check.md) Check the server status using the health check endpoint
+ - [Sidekiq Troubleshooting](administration/troubleshooting/sidekiq.md) Debug when Sidekiq appears hung and is not processing jobs
  - [High Availability](administration/high_availability/README.md) Configure multiple servers for scaling or high availability
- - [Container Registry](administration/container_registry.md) Configure Docker Registry with GitLab
+-- [Container Registry](administration/container_registry.md) Configure Docker Registry with GitLab
++- [コンテナレジストリ](administration/container_registry.md) Configure Docker Registry with GitLab
  
 -## Contributor documentation
 +## コントリビュータ向けドキュメント
@@ -14430,7 +14434,7 @@ index 27c5962..08c44ba 100644
  Instead of the `private_token` you can transmit the OAuth2 access token as a
  header or as a parameter.
 diff --git a/doc/api/build_triggers.md b/doc/api/build_triggers.md
-index 0881a7d..050914b 100644
+index 0881a7d..d0ee281 100644
 --- a/doc/api/build_triggers.md
 +++ b/doc/api/build_triggers.md
 @@ -64,7 +64,7 @@ curl -H "PRIVATE_TOKEN: 9koXpg98eAheJpvBs5tK" "https://gitlab.example.com/api/v3
@@ -14438,7 +14442,7 @@ index 0881a7d..050914b 100644
  ```
  
 -## Create a project trigger
-+## プロジェクトを作成する trigger
++## プロジェクトのトリガーの作成
  
  Create a build trigger for a project.
  
@@ -14451,16 +14455,6 @@ index 9da1fe2..3ba8033 100644
 +# デプロイキー
  
  ## List deploy keys
- 
-diff --git a/doc/api/groups.md b/doc/api/groups.md
-index 2821bc2..36d7efb 100644
---- a/doc/api/groups.md
-+++ b/doc/api/groups.md
-@@ -1,4 +1,4 @@
--# Groups
-+# グループ
- 
- ## List groups
  
 diff --git a/doc/api/issues.md b/doc/api/issues.md
 index fc7a7ae..1c91042 100644
@@ -14729,12 +14723,12 @@ index c10f820..6c80057 100644
  
  ![Features settings](img/features_settings.png)
 diff --git a/doc/ci/permissions/README.md b/doc/ci/permissions/README.md
-index d77061c..fbe70d1 100644
+index d77061c..22a60d4 100644
 --- a/doc/ci/permissions/README.md
 +++ b/doc/ci/permissions/README.md
 @@ -1,4 +1,4 @@
 -# Users Permissions
-+# Users アクセス権
++# ユーザ権限
  
  GitLab CI relies on user's role on the GitLab. There are three permissions levels on GitLab CI: admin, master, developer, other.
  
@@ -15083,17 +15077,9 @@ index addd3b6..1c95948 100644
  ## Start working on your project
  
 diff --git a/doc/gitlab-basics/create-group.md b/doc/gitlab-basics/create-group.md
-index f80ae62..16a4309 100644
+index f80ae62..e652344 100644
 --- a/doc/gitlab-basics/create-group.md
 +++ b/doc/gitlab-basics/create-group.md
-@@ -1,6 +1,6 @@
- # How to create a group in GitLab
- 
--## Create a group
-+## グループを作成する
- 
- Your projects in GitLab can be organized in 2 different ways:
- under your own namespace for single projects, such as ´your-name/project-1'; or under groups.
 @@ -10,7 +10,7 @@ To create a group, follow the instructions below:
  
  Sign in to [GitLab.com](https://gitlab.com).
@@ -15364,7 +15350,7 @@ index 5f8bb57..9558cca 100644
  ![Authorized_applications](img/oauth_provider_authorized_application.png)
  
 diff --git a/doc/integration/saml.md b/doc/integration/saml.md
-index 8a7205c..29c0422 100644
+index 8a7205c..342a134 100644
 --- a/doc/integration/saml.md
 +++ b/doc/integration/saml.md
 @@ -131,7 +131,7 @@ On the sign in page there should now be a SAML button below the regular sign in
@@ -15372,7 +15358,7 @@ index 8a7205c..29c0422 100644
  will be returned to GitLab and will be signed in.
  
 -## External Groups
-+## External グループ
++## 外部グループ
  
  >**Note:**
  This setting is only available on GitLab 8.7 and above.
@@ -16218,7 +16204,7 @@ index 168bd85..370ff04 100644
  will be `admin`.
  
 diff --git a/doc/permissions/permissions.md b/doc/permissions/permissions.md
-index b76ce31..fde0fd1 100644
+index b76ce31..b052bf9 100644
 --- a/doc/permissions/permissions.md
 +++ b/doc/permissions/permissions.md
 @@ -1,10 +1,10 @@
@@ -16236,7 +16222,7 @@ index b76ce31..fde0fd1 100644
  
  On public and internal projects the Guest role is not enforced.
  All users will be able to create issues, leave comments, and pull or download the project code.
-@@ -14,67 +14,66 @@ documentation](../workflow/add-user/add-user.md).
+@@ -14,69 +14,68 @@ documentation](../workflow/add-user/add-user.md).
  
  ## Project
  
@@ -16341,8 +16327,11 @@ index b76ce31..fde0fd1 100644
 +| メンバーを管理する    |       |          |           |        | ✓     |
 +| グループを削除する            |       |          |           |        | ✓     |
  
- ## External Users
+-## External Users
++## 外部ユーザ
  
+ In cases where it is desired that a user has access only to some internal or
+ private projects, there is the option of creating **External Users**. This
 diff --git a/doc/profile/README.md b/doc/profile/README.md
 index 6f8359d..725c384 100644
 --- a/doc/profile/README.md
@@ -16356,12 +16345,12 @@ index 6f8359d..725c384 100644
 +- [設定](preferences.md)
 +- [二段階認証 (2FA)](two_factor_authentication.md)
 diff --git a/doc/profile/preferences.md b/doc/profile/preferences.md
-index 073b879..203b5b7 100644
+index 073b879..8e9b0c1 100644
 --- a/doc/profile/preferences.md
 +++ b/doc/profile/preferences.md
 @@ -1,6 +1,6 @@
 -# Profile Preferences
-+# Profile 設定
++# プロフィール設定
  
 -Settings in the **Profile > Preferences** page allow the user to customize
 +Settings in the **Profile > 設定** page allow the user to customize
@@ -16369,12 +16358,11 @@ index 073b879..203b5b7 100644
  
  ## Application theme
 diff --git a/doc/profile/two_factor_authentication.md b/doc/profile/two_factor_authentication.md
-index a0e23c1..bd15086 100644
+index a0e23c1..e48bde7 100644
 --- a/doc/profile/two_factor_authentication.md
 +++ b/doc/profile/two_factor_authentication.md
 @@ -1,6 +1,6 @@
--# Two-factor Authentication (2FA)
-+# 二段階認証 (2FA)
+ # Two-factor Authentication (2FA)
  
 -Two-factor Authentication (2FA) provides an additional level of security to your
 +二段階認証 (2FA) provides an additional level of security to your
@@ -16837,7 +16825,7 @@ index d9dce2a..2173e7b 100644
  ```
  Checking Environment ...
 diff --git a/doc/raketasks/user_management.md b/doc/raketasks/user_management.md
-index 629d38e..4f991ad 100644
+index 629d38e..1b376e0 100644
 --- a/doc/raketasks/user_management.md
 +++ b/doc/raketasks/user_management.md
 @@ -1,6 +1,6 @@
@@ -16888,15 +16876,6 @@ index 629d38e..4f991ad 100644
  
  ```bash
  # omnibus-gitlab
-@@ -57,7 +57,7 @@ bundle exec rake gitlab:import:all_users_to_all_groups RAILS_ENV=production
- block_auto_created_users: false
- ```
- 
--## Disable Two-factor Authentication (2FA) for all users
-+## Disable 二段階認証 (2FA) for all users
- 
- This task will disable 2FA for all users that have it enabled. This can be
- useful if GitLab's `.secret` file has been lost and users are unable to login,
 diff --git a/doc/security/README.md b/doc/security/README.md
 index 38706e4..50712b3 100644
 --- a/doc/security/README.md
@@ -16962,12 +16941,11 @@ index 9206699..539ca31 100644
 -For more information on how to use these options check out [rack-attack README](https://github.com/kickstarter/rack-attack/blob/master/README.md).
 +これらのオプションに関するさらに詳細な情報については [rack-attack README](https://github.com/kickstarter/rack-attack/blob/master/README.md) を参照してください。
 diff --git a/doc/security/two_factor_authentication.md b/doc/security/two_factor_authentication.md
-index c849938..88aff09 100644
+index c849938..d83918a 100644
 --- a/doc/security/two_factor_authentication.md
 +++ b/doc/security/two_factor_authentication.md
 @@ -1,12 +1,12 @@
--# Enforce Two-factor Authentication (2FA)
-+# Enforce 二段階認証 (2FA)
+ # Enforce Two-factor Authentication (2FA)
  
 -Two-factor Authentication (2FA) provides an additional level of security to your
 +二段階認証 (2FA) provides an additional level of security to your
@@ -17142,489 +17120,10 @@ index c44930a..d7bcd00 100644
  
  ```json
  {
-diff --git a/doc/update/2.6-to-3.0.md b/doc/update/2.6-to-3.0.md
-index 4827ef9..e375f71 100644
---- a/doc/update/2.6-to-3.0.md
-+++ b/doc/update/2.6-to-3.0.md
-@@ -1,4 +1,4 @@
--# From 2.6 to 3.0
-+# 2.6から3.0へ
- *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/2.6-to-3.0.md) for the most up to date instructions.*
- 
- ## 1. Stop server & resque
-diff --git a/doc/update/2.9-to-3.0.md b/doc/update/2.9-to-3.0.md
-index f4a997a..2f0ee69 100644
---- a/doc/update/2.9-to-3.0.md
-+++ b/doc/update/2.9-to-3.0.md
-@@ -1,4 +1,4 @@
--# From 2.9 to 3.0
-+# 2.9から3.0へ
- *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/2.9-to-3.0.md) for the most up to date instructions.*
- 
- ## 1. Stop server & resque
-diff --git a/doc/update/3.0-to-3.1.md b/doc/update/3.0-to-3.1.md
-index a30485c..60739de 100644
---- a/doc/update/3.0-to-3.1.md
-+++ b/doc/update/3.0-to-3.1.md
-@@ -1,4 +1,4 @@
--# From 3.0 to 3.1
-+# 3.0から3.1へ
- *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/3.0-to-3.1.md) for the most up to date instructions.*
- 
- **IMPORTANT!**
-diff --git a/doc/update/3.1-to-4.0.md b/doc/update/3.1-to-4.0.md
-index f1ef4df..07dda79 100644
---- a/doc/update/3.1-to-4.0.md
-+++ b/doc/update/3.1-to-4.0.md
-@@ -1,4 +1,4 @@
--# From 3.1 to 4.0
-+# 3.1から4.0へ
- *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/3.1-to-4.0.md) for the most up to date instructions.*
- 
- ## Important changes
-diff --git a/doc/update/4.0-to-4.1.md b/doc/update/4.0-to-4.1.md
-index d89d523..0d92dbf 100644
---- a/doc/update/4.0-to-4.1.md
-+++ b/doc/update/4.0-to-4.1.md
-@@ -1,4 +1,4 @@
--# From 4.0 to 4.1
-+# 4.0から4.1へ
- *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/4.0-to-4.1.md) for the most up to date instructions.*
- 
- ## Important changes
-diff --git a/doc/update/4.1-to-4.2.md b/doc/update/4.1-to-4.2.md
-index 6fe4412..b77772d 100644
---- a/doc/update/4.1-to-4.2.md
-+++ b/doc/update/4.1-to-4.2.md
-@@ -1,4 +1,4 @@
--# From 4.1 to 4.2
-+# 4.1から4.2へ
- *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/4.1-to-4.2.md) for the most up to date instructions.*
- 
- ## 1. Stop server & Resque
-diff --git a/doc/update/4.2-to-5.0.md b/doc/update/4.2-to-5.0.md
-index f9faf65..1f6b9c4 100644
---- a/doc/update/4.2-to-5.0.md
-+++ b/doc/update/4.2-to-5.0.md
-@@ -1,4 +1,4 @@
--# From 4.2 to 5.0
-+# 4.2から5.0へ
- *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/4.2-to-5.0.md) for the most up to date instructions.*
- 
- ## Warning
-diff --git a/doc/update/5.0-to-5.1.md b/doc/update/5.0-to-5.1.md
-index 9fbd1f8..508d2b5 100644
---- a/doc/update/5.0-to-5.1.md
-+++ b/doc/update/5.0-to-5.1.md
-@@ -1,4 +1,4 @@
--# From 5.0 to 5.1
-+# 5.0から5.1へ
- *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/5.0-to-5.1.md) for the most up to date instructions.*
- 
- ## Warning
-diff --git a/doc/update/5.1-to-5.2.md b/doc/update/5.1-to-5.2.md
-index cf9c4e4..76817c5 100644
---- a/doc/update/5.1-to-5.2.md
-+++ b/doc/update/5.1-to-5.2.md
-@@ -1,4 +1,4 @@
--# From 5.1 to 5.2
-+# 5.1から5.2へ
- *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/5.1-to-5.2.md) for the most up to date instructions.*
- 
- ## Warning
-diff --git a/doc/update/5.1-to-5.4.md b/doc/update/5.1-to-5.4.md
-index 97a98ed..7f72fac 100644
---- a/doc/update/5.1-to-5.4.md
-+++ b/doc/update/5.1-to-5.4.md
-@@ -1,4 +1,4 @@
--# From 5.1 to 5.4
-+# 5.1から5.4へ
- *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/5.1-to-5.4.md) for the most up to date instructions.*
- 
- Also works starting from 5.2.
-diff --git a/doc/update/5.1-to-6.0.md b/doc/update/5.1-to-6.0.md
-index a3fdd92..f3e8d44 100644
---- a/doc/update/5.1-to-6.0.md
-+++ b/doc/update/5.1-to-6.0.md
-@@ -1,4 +1,4 @@
--# From 5.1 to 6.0
-+# 5.1から6.0へ
- *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/5.1-to-6.0.md) for the most up to date instructions.*
- 
- ## Warning
-diff --git a/doc/update/5.2-to-5.3.md b/doc/update/5.2-to-5.3.md
-index 27613ae..f5d7238 100644
---- a/doc/update/5.2-to-5.3.md
-+++ b/doc/update/5.2-to-5.3.md
-@@ -1,4 +1,4 @@
--# From 5.2 to 5.3
-+# 5.2から5.3へ
- *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/5.2-to-5.3.md) for the most up to date instructions.*
- 
- ## Warning
-diff --git a/doc/update/5.3-to-5.4.md b/doc/update/5.3-to-5.4.md
-index 577b9a5..8192b4b 100644
---- a/doc/update/5.3-to-5.4.md
-+++ b/doc/update/5.3-to-5.4.md
-@@ -1,4 +1,4 @@
--# From 5.3 to 5.4
-+# 5.3から5.4へ
- *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/5.3-to-5.4.md) for the most up to date instructions.*
- 
- ## 0. Backup
-diff --git a/doc/update/5.4-to-6.0.md b/doc/update/5.4-to-6.0.md
-index d9c6d9b..a7ead71 100644
---- a/doc/update/5.4-to-6.0.md
-+++ b/doc/update/5.4-to-6.0.md
-@@ -1,4 +1,4 @@
--# From 5.4 to 6.0
-+# 5.4から6.0へ
- *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/5.4-to-6.0.md) for the most up to date instructions.*
- 
- ## Warning
-diff --git a/doc/update/6.0-to-6.1.md b/doc/update/6.0-to-6.1.md
-index c5eba1c..fd8670c 100644
---- a/doc/update/6.0-to-6.1.md
-+++ b/doc/update/6.0-to-6.1.md
-@@ -1,4 +1,4 @@
--# From 6.0 to 6.1
-+# 6.0から6.1へ
- *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/6.0-to-6.1.md) for the most up to date instructions.*
- 
- ## Warning
-diff --git a/doc/update/6.1-to-6.2.md b/doc/update/6.1-to-6.2.md
-index a534528..28e171d 100644
---- a/doc/update/6.1-to-6.2.md
-+++ b/doc/update/6.1-to-6.2.md
-@@ -1,4 +1,4 @@
--# From 6.1 to 6.2
-+# 6.1から6.2へ
- *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/6.1-to-6.2.md) for the most up to date instructions.*
- 
- **You should update to 6.1 before installing 6.2 so all the necessary conversions are run.**
-diff --git a/doc/update/6.2-to-6.3.md b/doc/update/6.2-to-6.3.md
-index b08ebde..db4815f 100644
---- a/doc/update/6.2-to-6.3.md
-+++ b/doc/update/6.2-to-6.3.md
-@@ -1,4 +1,4 @@
--# From 6.2 to 6.3
-+# 6.2から6.3へ
- *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/6.2-to-6.3.md) for the most up to date instructions.*
- 
- **Requires version: 6.1 or 6.2.**
-diff --git a/doc/update/6.3-to-6.4.md b/doc/update/6.3-to-6.4.md
-index 951d92d..8373d56 100644
---- a/doc/update/6.3-to-6.4.md
-+++ b/doc/update/6.3-to-6.4.md
-@@ -1,4 +1,4 @@
--# From 6.3 to 6.4
-+# 6.3から6.4へ
- *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/6.3-to-6.4.md) for the most up to date instructions.*
- 
- ## 0. Backup
-diff --git a/doc/update/6.4-to-6.5.md b/doc/update/6.4-to-6.5.md
-index 0dae9a9..d940114 100644
---- a/doc/update/6.4-to-6.5.md
-+++ b/doc/update/6.4-to-6.5.md
-@@ -1,4 +1,4 @@
--# From 6.4 to 6.5
-+# 6.4から6.5へ
- *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/6.4-to-6.5.md) for the most up to date instructions.*
- 
- ## 0. Backup
-diff --git a/doc/update/6.5-to-6.6.md b/doc/update/6.5-to-6.6.md
-index c24e83e..7f0c180 100644
---- a/doc/update/6.5-to-6.6.md
-+++ b/doc/update/6.5-to-6.6.md
-@@ -1,4 +1,4 @@
--# From 6.5 to 6.6
-+# 6.5から6.6へ
- *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/6.5-to-6.6.md) for the most up to date instructions.*
- 
- ## 0. Backup
-diff --git a/doc/update/6.6-to-6.7.md b/doc/update/6.6-to-6.7.md
-index b4298c9..e2b50a8 100644
---- a/doc/update/6.6-to-6.7.md
-+++ b/doc/update/6.6-to-6.7.md
-@@ -1,4 +1,4 @@
--# From 6.6 to 6.7
-+# 6.6から6.7へ
- *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/6.6-to-6.7.md) for the most up to date instructions.*
- 
- ## 0. Backup
-diff --git a/doc/update/6.7-to-6.8.md b/doc/update/6.7-to-6.8.md
-index 4fb9063..914e0e7 100644
---- a/doc/update/6.7-to-6.8.md
-+++ b/doc/update/6.7-to-6.8.md
-@@ -1,4 +1,4 @@
--# From 6.7 to 6.8
-+# 6.7から6.8へ
- *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/6.7-to-6.8.md) for the most up to date instructions.*
- 
- ## 0. Backup
-diff --git a/doc/update/6.8-to-6.9.md b/doc/update/6.8-to-6.9.md
-index b9b8b63..6854cc9 100644
---- a/doc/update/6.8-to-6.9.md
-+++ b/doc/update/6.8-to-6.9.md
-@@ -1,4 +1,4 @@
--# From 6.8 to 6.9
-+# 6.8から6.9へ
- *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/6.8-to-6.9.md) for the most up to date instructions.*
- 
- ### 0. Backup
-diff --git a/doc/update/6.9-to-7.0.md b/doc/update/6.9-to-7.0.md
-index 236430b..99da73e 100644
---- a/doc/update/6.9-to-7.0.md
-+++ b/doc/update/6.9-to-7.0.md
-@@ -1,4 +1,4 @@
--# From 6.9 to 7.0
-+# 6.9から7.0へ
- *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/6.9-to-7.0.md) for the most up to date instructions.*
- 
- ### 0. Backup
-diff --git a/doc/update/7.0-to-7.1.md b/doc/update/7.0-to-7.1.md
-index a4e9be9..f78c51c 100644
---- a/doc/update/7.0-to-7.1.md
-+++ b/doc/update/7.0-to-7.1.md
-@@ -1,4 +1,4 @@
--# From 7.0 to 7.1
-+# 7.0から7.1へ
- *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/7.0-to-7.1.md) for the most up to date instructions.*
- 
- ### 0. Backup
-diff --git a/doc/update/7.1-to-7.2.md b/doc/update/7.1-to-7.2.md
-index 88cb63d..825f5e8 100644
---- a/doc/update/7.1-to-7.2.md
-+++ b/doc/update/7.1-to-7.2.md
-@@ -1,4 +1,4 @@
--# From 7.1 to 7.2
-+# 7.1から7.2へ
- *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/7.1-to-7.2.md) for the most up to date instructions.*
- 
- ## Editable labels
-diff --git a/doc/update/7.10-to-7.11.md b/doc/update/7.10-to-7.11.md
-index 79bc6de..c03c207 100644
---- a/doc/update/7.10-to-7.11.md
-+++ b/doc/update/7.10-to-7.11.md
-@@ -1,4 +1,4 @@
--# From 7.10 to 7.11
-+# 7.10から7.11へ
- 
- ### 0. Stop server
- 
-diff --git a/doc/update/7.11-to-7.12.md b/doc/update/7.11-to-7.12.md
-index cc14a13..8f0df69 100644
---- a/doc/update/7.11-to-7.12.md
-+++ b/doc/update/7.11-to-7.12.md
-@@ -1,4 +1,4 @@
--# From 7.11 to 7.12
-+# 7.11から7.12へ
- 
- ### 0. Double-check your Git version
- 
-diff --git a/doc/update/7.12-to-7.13.md b/doc/update/7.12-to-7.13.md
-index 57ebe32..1908ccd 100644
---- a/doc/update/7.12-to-7.13.md
-+++ b/doc/update/7.12-to-7.13.md
-@@ -1,4 +1,4 @@
--# From 7.12 to 7.13
-+# 7.12から7.13へ
- 
- ### 0. Double-check your Git version
- 
-diff --git a/doc/update/7.13-to-7.14.md b/doc/update/7.13-to-7.14.md
-index 6dd9727..ecd1c75 100644
---- a/doc/update/7.13-to-7.14.md
-+++ b/doc/update/7.13-to-7.14.md
-@@ -1,4 +1,4 @@
--# From 7.13 to 7.14
-+# 7.13から7.14へ
- 
- ### 0. Double-check your Git version
- 
-diff --git a/doc/update/7.14-to-8.0.md b/doc/update/7.14-to-8.0.md
-index 305017b..4c82a82 100644
---- a/doc/update/7.14-to-8.0.md
-+++ b/doc/update/7.14-to-8.0.md
-@@ -1,4 +1,4 @@
--# From 7.14 to 8.0
-+# 7.14から8.0へ
- 
- ### 0. Double-check your Git version
- 
-diff --git a/doc/update/7.2-to-7.3.md b/doc/update/7.2-to-7.3.md
-index 18f77d6..9dd182b 100644
---- a/doc/update/7.2-to-7.3.md
-+++ b/doc/update/7.2-to-7.3.md
-@@ -1,4 +1,4 @@
--# From 7.2 to 7.3
-+# 7.2から7.3へ
- *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/7.2-to-7.3.md) for the most up to date instructions.*
- 
- ### 0. Backup
-diff --git a/doc/update/7.3-to-7.4.md b/doc/update/7.3-to-7.4.md
-index 53e739c..2456cde 100644
---- a/doc/update/7.3-to-7.4.md
-+++ b/doc/update/7.3-to-7.4.md
-@@ -1,4 +1,4 @@
--# From 7.3 to 7.4
-+# 7.3から7.4へ
- *Make sure you view this [upgrade guide from the `master` branch](../../../master/doc/update/7.3-to-7.4.md) for the most up to date instructions.*
- 
- ### 0. Stop server
-diff --git a/doc/update/7.4-to-7.5.md b/doc/update/7.4-to-7.5.md
-index 673eab3..22c2df3 100644
---- a/doc/update/7.4-to-7.5.md
-+++ b/doc/update/7.4-to-7.5.md
-@@ -1,4 +1,4 @@
--# From 7.4 to 7.5
-+# 7.4から7.5へ
- 
- ### 0. Stop server
- 
-diff --git a/doc/update/7.5-to-7.6.md b/doc/update/7.5-to-7.6.md
-index 35cd437..70edb64 100644
---- a/doc/update/7.5-to-7.6.md
-+++ b/doc/update/7.5-to-7.6.md
-@@ -1,4 +1,4 @@
--# From 7.5 to 7.6
-+# 7.5から7.6へ
- 
- ### 0. Stop server
- 
-diff --git a/doc/update/7.6-to-7.7.md b/doc/update/7.6-to-7.7.md
-index 910c7dc..bdf7622 100644
---- a/doc/update/7.6-to-7.7.md
-+++ b/doc/update/7.6-to-7.7.md
-@@ -1,4 +1,4 @@
--# From 7.6 to 7.7
-+# 7.6から7.7へ
- 
- ### 0. Stop server
- 
-diff --git a/doc/update/7.7-to-7.8.md b/doc/update/7.7-to-7.8.md
-index 46ca163..b26773d 100644
---- a/doc/update/7.7-to-7.8.md
-+++ b/doc/update/7.7-to-7.8.md
-@@ -1,4 +1,4 @@
--# From 7.7 to 7.8
-+# 7.7から7.8へ
- 
- ### 0. Stop server
- 
-diff --git a/doc/update/7.8-to-7.9.md b/doc/update/7.8-to-7.9.md
-index 6ffa21c..5d83818 100644
---- a/doc/update/7.8-to-7.9.md
-+++ b/doc/update/7.8-to-7.9.md
-@@ -1,4 +1,4 @@
--# From 7.8 to 7.9
-+# 7.8から7.9へ
- 
- ### 0. Stop server
- 
-diff --git a/doc/update/7.9-to-7.10.md b/doc/update/7.9-to-7.10.md
-index d1179dc..bbdf7ff 100644
---- a/doc/update/7.9-to-7.10.md
-+++ b/doc/update/7.9-to-7.10.md
-@@ -1,4 +1,4 @@
--# From 7.9 to 7.10
-+# 7.9から7.10へ
- 
- ### 0. Stop server
- 
-diff --git a/doc/update/8.0-to-8.1.md b/doc/update/8.0-to-8.1.md
-index d57c0d0..9c665ad 100644
---- a/doc/update/8.0-to-8.1.md
-+++ b/doc/update/8.0-to-8.1.md
-@@ -1,4 +1,4 @@
--# From 8.0 to 8.1
-+# 8.0から8.1へ
- 
- **NOTE:** GitLab 8.0 introduced several significant changes related to
- installation and configuration which *are not duplicated here*. Be sure you're
-diff --git a/doc/update/8.1-to-8.2.md b/doc/update/8.1-to-8.2.md
-index 46dfa22..c5a6e77 100644
---- a/doc/update/8.1-to-8.2.md
-+++ b/doc/update/8.1-to-8.2.md
-@@ -1,4 +1,4 @@
--# From 8.1 to 8.2
-+# 8.1から8.2へ
- 
- **NOTE:** GitLab 8.0 introduced several significant changes related to
- installation and configuration which *are not duplicated here*. Be sure you're
-diff --git a/doc/update/8.2-to-8.3.md b/doc/update/8.2-to-8.3.md
-index 9f5c6c4..9bdcbda 100644
---- a/doc/update/8.2-to-8.3.md
-+++ b/doc/update/8.2-to-8.3.md
-@@ -1,4 +1,4 @@
--# From 8.2 to 8.3
-+# 8.2から8.3へ
- 
- Make sure you view this update guide from the tag (version) of GitLab you would
- like to install. In most cases this should be the highest numbered production
-diff --git a/doc/update/8.3-to-8.4.md b/doc/update/8.3-to-8.4.md
-index 9f6517d..dbf6963 100644
---- a/doc/update/8.3-to-8.4.md
-+++ b/doc/update/8.3-to-8.4.md
-@@ -1,4 +1,4 @@
--# From 8.3 to 8.4
-+# 8.3から8.4へ
- 
- Make sure you view this update guide from the tag (version) of GitLab you would
- like to install. In most cases this should be the highest numbered production
-diff --git a/doc/update/8.4-to-8.5.md b/doc/update/8.4-to-8.5.md
-index 0cb137a..3551fa7 100644
---- a/doc/update/8.4-to-8.5.md
-+++ b/doc/update/8.4-to-8.5.md
-@@ -1,4 +1,4 @@
--# From 8.4 to 8.5
-+# 8.4から8.5へ
- 
- Make sure you view this update guide from the tag (version) of GitLab you would
- like to install. In most cases this should be the highest numbered production
-diff --git a/doc/update/8.5-to-8.6.md b/doc/update/8.5-to-8.6.md
-index 6267f14..a1014b4 100644
---- a/doc/update/8.5-to-8.6.md
-+++ b/doc/update/8.5-to-8.6.md
-@@ -1,4 +1,4 @@
--# From 8.5 to 8.6
-+# 8.5から8.6へ
- 
- Make sure you view this update guide from the tag (version) of GitLab you would
- like to install. In most cases this should be the highest numbered production
-diff --git a/doc/update/8.6-to-8.7.md b/doc/update/8.6-to-8.7.md
-index 4a2c6ea..a98dfaf 100644
---- a/doc/update/8.6-to-8.7.md
-+++ b/doc/update/8.6-to-8.7.md
-@@ -1,4 +1,4 @@
--# From 8.6 to 8.7
-+# 8.6から8.7へ
- 
- Make sure you view this update guide from the tag (version) of GitLab you would
- like to install. In most cases this should be the highest numbered production
-diff --git a/doc/update/8.7-to-8.8.md b/doc/update/8.7-to-8.8.md
-index b4d9212..136351d 100644
---- a/doc/update/8.7-to-8.8.md
-+++ b/doc/update/8.7-to-8.8.md
-@@ -1,4 +1,4 @@
--# From 8.7 to 8.8
-+# 8.7から8.8へ
- 
- Make sure you view this update guide from the tag (version) of GitLab you would
- like to install. In most cases this should be the highest numbered production
 diff --git a/doc/web_hooks/web_hooks.md b/doc/web_hooks/web_hooks.md
-index 45506ac..2c424c9 100644
+index 45506ac..3aa7b65 100644
 --- a/doc/web_hooks/web_hooks.md
 +++ b/doc/web_hooks/web_hooks.md
-@@ -26,7 +26,7 @@ GitLab webhooks keep in mind the following things:
-     you are writing a low-level hook this is important to remember.
- -   GitLab ignores the HTTP status code returned by your endpoint.
- 
--## SSL Verification
-+## SSL検証
- 
- By default, the SSL certificate of the webhook endpoint is verified based on
- an internal list of Certificate Authorities,
 @@ -34,19 +34,19 @@ which means the certificate cannot be self-signed.
  
  You can turn this off in the webhook settings in your GitLab projects.
@@ -17931,12 +17430,12 @@ index 520c421..605c8da 100644
 -Milestones and wiki pages are not imported from Bitbucket.
 +マイルストーン and wiki pages are not imported from Bitbucket.
 diff --git a/doc/workflow/importing/migrating_from_svn.md b/doc/workflow/importing/migrating_from_svn.md
-index 4828bb5..32112d2 100644
+index 4828bb5..5bd3b9f 100644
 --- a/doc/workflow/importing/migrating_from_svn.md
 +++ b/doc/workflow/importing/migrating_from_svn.md
 @@ -1,4 +1,4 @@
 -# Migrating from SVN to GitLab
-+# SVNからの移行 to GitLab
++# SVNからGitLabへの移行
  
  Subversion (SVN) is a central version control system (VCS) while
  Git is a distributed version control system. There are some major differences
@@ -17970,7 +17469,7 @@ index 1b5718c..fd7fda5 100644
  Merge requests allow you to exchange changes you made to source code
  
 diff --git a/doc/workflow/milestones.md b/doc/workflow/milestones.md
-index dff3689..e6365d8 100644
+index dff3689..e81723f 100644
 --- a/doc/workflow/milestones.md
 +++ b/doc/workflow/milestones.md
 @@ -1,11 +1,11 @@
@@ -17985,7 +17484,7 @@ index dff3689..e6365d8 100644
  ![milestone form](milestones/form.png)
  
 -## Groups and milestones
-+## グループ and milestones
++## グループとマイルストーン
  
  You can create a milestone for several projects in the same group simultaneously. 
  On the group's milestones page, you will be able to see the status of that milestone across all of the selected projects.
@@ -18060,12 +17559,11 @@ index a523b3f..d9aabd6 100644
 -For example, a specific config file that is used by > the team that is only valid for the people that work on the code.
 +例えば、あるコードを扱うメンバーにのみ有効な特定の設定ファイルなどです。
 diff --git a/doc/workflow/protected_branches.md b/doc/workflow/protected_branches.md
-index d854ec1..c1db5d2 100644
+index d854ec1..60d12cf 100644
 --- a/doc/workflow/protected_branches.md
 +++ b/doc/workflow/protected_branches.md
 @@ -1,6 +1,6 @@
--# Protected branches
-+# 保護ブランチ
+ # Protected branches
  
 -Permissions in GitLab are fundamentally defined around the idea of having read or write permission to the repository and branches.
 +アクセス権 in GitLab are fundamentally defined around the idea of having read or write permission to the repository and branches.
@@ -18108,18 +17606,18 @@ index 399366b..2dc7857 100644
  by reverting the merge commit from the list of Commits page._
  
 diff --git a/doc/workflow/share_projects_with_other_groups.md b/doc/workflow/share_projects_with_other_groups.md
-index 4c59f59..1b61ae3 100644
+index 4c59f59..d2a8546 100644
 --- a/doc/workflow/share_projects_with_other_groups.md
 +++ b/doc/workflow/share_projects_with_other_groups.md
 @@ -1,9 +1,9 @@
 -# Share Projects with other Groups
-+# Share Projects with other グループ
++# 他のグループとのプロジェクトの共有
  
  In GitLab Enterprise Edition you can share projects with other groups.
  This makes it possible to add a group of users to a project with a single action.
  
 -## Groups as collections of users
-+## グループ as collections of users
++## ユーザのコレクションとしてのグループ
  
  In GitLab Community Edition groups are used primarily to [create collections of projects](groups.md).
  In GitLab Enterprise Edition you can also take advantage of the fact that groups define collections of _users_, namely the group members.

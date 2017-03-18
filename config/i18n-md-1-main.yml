@@ -1,0 +1,954 @@
+translations:
+
+# Markdown
+- name: 'md'
+  parallel-group: 'group1'
+  src: 'doc/**/*.md'
+  skip-patterns:
+  - !!js/regexp /(^#+|^\s*$|^[^a-zA-Z]+$|^\s*```|^---)/
+  patterns:
+  - pattern: 'Automate GitLab via a simple and powerful API.'
+    replace: '${automateGitlabViaASimpleAndPowerfulApi}'
+    complete-pattern: true
+  - pattern: 'GitLab as OAuth2 authentication service provider'
+    replace: '${gitlabAsOAuth2AuthenticationServiceProvider}'
+  - pattern: 'It allows you to login to other applications from GitLab.'
+    replace: '${itAllowsYouToLoginToOtherApplicationsFromGitLab}'
+    complete-pattern: true
+  - pattern: 'GitLab Basics'
+    replace: '${gitLabBasics}'
+  - pattern: 'GitLab basics'
+    replace: '${gitLabBasics}'
+  - pattern: 'Find step by step how to start working on your commandline and on GitLab.'
+    replace: '${findStepByStepHowToStartWorkingOnYourCommandlineAndOnGitLab}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Importing to GitLab'
+    replace: '${importingToGitLab}'
+  - pattern: "GitLab's advanced formatting system."
+    replace: '${gitLabsAdvancedFormattingSystem}'
+  - pattern: 'Migrating from SVN'
+    replace: '${migratingFromSVN}'
+  - pattern: 'Convert a SVN repository to Git and GitLab'
+    replace: '${convertASVNRepositoryToGitAndGitLab}'
+  - pattern: 'Permissions'
+    replace: '${permissions}'
+  - pattern: 'Learn what each role in a project (guest/reporter/developer/master/owner) can do.'
+    replace: '${learnWhatEachRoleInAProjectCanDo}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Profile Settings'
+    replace: '${profileSettings}'
+  - pattern: 'Project Services'
+    replace: '${projectServices}'
+  - pattern: 'Integrate a project with external services, such as CI and chat.'
+    replace: '${integrateAProjectWithExternalServicesSuchAsCIAndChat}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Public access'
+    replace: '${publicAccess}'
+  - pattern: 'Learn how you can allow public and internal access to projects.'
+    replace: '${learnHowYouCanAllowPublicAndInternalAccessToProjects}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Setup your ssh keys and deploy keys for secure access to your projects.'
+    replace: '${setupYourSshKeysAndDeployKeysForSecureAccessToYourProjects}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Web hooks'
+    replace: '${webHook}'
+  - pattern: 'Let GitLab notify you when new code has been pushed to your project.'
+    replace: '${letGitLabNotifyYouWhenNewCodeHasBeenPushedToYourProject}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Workflow'
+    replace: '${workflow}'
+  - pattern: 'Using GitLab functionality and importing projects from GitHub and SVN.'
+    replace: '${usingGitLabFunctionalityAndImportingProjectsFromGitHubAndSVN}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Quick Start'
+    replace: '${quickStart}'
+  - pattern: 'Configuring project'
+    replace: '${configuringProject}'
+  - pattern: 'Configuring runner'
+    replace: '${configuringRunner}'
+  - pattern: 'Configuring deployment'
+    replace: '${configuringDeployment}'
+  - pattern: 'Using Docker Images'
+    replace: '${usingDockerImages}'
+  - pattern: 'Using Docker Build'
+    replace: '${usingDockerBuild}'
+  - pattern: 'Using Variables'
+    replace: '${usingVariables}'
+  - pattern: 'User permissions'
+    replace: '${userPermissions}'
+  - pattern: 'Using SSH keys'
+    replace: '${usingSshKeys}'
+  - pattern: "When in a Project -> Settings, you will find Features on the bottom of the page that you can toggle."
+    replace: '${whenInAProjectSettingsYouWillFindFeaturesOnTheBottomOfThePageThatYouCanToggle}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Below you will find a more elaborate explanation of each of these.'
+    replace: '${belowYouWillFindAMoreElaborateExplanationOfEachOfThese}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Issues is a really powerful, but lightweight issue tracking system.'
+    replace: '${issuesIsAreallyPowerfulButLightweightIssueTrackingSystem}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'You can make tickets, assign them to people, file them under milestones, order them with labels and have discussion in them.'
+    replace: '${youCanMakeTicketsAssignThemToPeopleFileThemUnderMilestonesOrderThemWithLabelsAndHaveDiscussionInThem}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'They integrate deeply into GitLab and are easily referenced from anywhere by using `#` and the issue number.'
+    replace: '${theyIntegrateDeeplyIntoGitLabAndAreEasilyReferencedFromAnywhereByUsingAndTheIssueNumber}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Using a merge request, you can review and discuss code before it is merged in the branch of your code.'
+    replace: '${usingAMergeRequestYouCanReviewAndDiscussCodeBeforeItIsMergedInTheBranchOfYourCode}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'As with issues, it can be assigned; people, issues, etc. can be referenced; milestones attached.'
+    replace: '${asWithIssuesItCanBeAssignedPeopleIssuesEtcCanBeReferencedMilestonesAttached}'
+    match-once: true
+    complete-pattern: true
+  - pattern: "We see it as an integral part of working together on code and couldn't work without it."
+    replace: '${weSeeItAsAnIntegralPartOfWorkingTogetherOnCodeAndCouldntWorkWithoutIt}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'This is a separate system for documentation, built right into GitLab.'
+    replace: '${thisIsASeparateSystemForDocumentationBuildRightIntoGitLab}'
+    match-once: true
+    complete-pattern: true
+  - pattern: "It is source controlled and is very convenient if you don't want to keep you documentation in your source code, but you do want to keep it in your GitLab project."
+    replace: '${itIsSourceControlledAndIsVeryConvenientIfYouDontWantToKeepYouDocumentationInYourSourceCodeButYouDoWantToKeepItInYourGitLabProject}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Snippets are little bits of code or text.'
+    replace: '${snippetsAreLittleBitsOfCodeOrText}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'This is a nice place to put code or text that is used semi-regularly within the project, but does not belong in source control.'
+    replace: '${thisIsANicePlaceToPutCodeOrTextThatIsUsedSemiRegularlyWithinTheProjectButDoesNotBelongInSourceControl}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'For example, a specific config file that is used by > the team that is only valid for the people that work on the code.'
+    replace: '${forExampleASpecificConfigFileThatIsUsedByTheTeamThatIsOnlyValidForThePeopleThatWorkOnTheCode}'
+    match-once: true
+    complete-pattern: true
+  - pattern: "If you'd like to migrate from a self-hosted GitLab instance to GitLab.com, you can copy your repos by changing the remote and pushing to the new server; but issues and merge requests can't be imported."
+    replace: '${ifYoudLikeToMigrateFromASelfHostedGitlabInstanceToGitlabComYouCanCopyYourReposByChangingTheRemoteAndPushingToTheNewServerButIssuesAndMergeRequestsCantBeImported}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Authorization for merge requests'
+    replace: '${authorizationForMergeRequests}'
+  - pattern: 'Change your time zone'
+    replace: '${changeYourTimeZone}'
+  - pattern: 'Feature branch workflow'
+    replace: '${mdTitleFeatureBranchWorkflow}'
+  - pattern: 'Groups'
+    replace: '${group}'
+  - pattern: 'Keyboard shortcuts'
+    replace: '${keyboardShortcuts}'
+  - pattern: 'Labels'
+    replace: '${label}'
+  - pattern: 'Notification emails'
+    replace: '${notificationEmail}'
+  - pattern: 'Project Features'
+    replace: '${projectFeatures}'
+  - pattern: 'Project forking workflow'
+    replace: '${projectForkingWorkflow}'
+  - pattern: 'Project users'
+    replace: '${projectUsers}'
+  - pattern: 'Protected branches'
+    replace: '${protectedBranch}'
+  - pattern: 'Web Editor'
+    replace: '${webEditor}'
+  - pattern: 'Releases'
+    replace: '${release}'
+  - pattern: 'Milestones'
+    replace: '${milestone}'
+  - pattern: 'Merge Requests'
+    replace: '${mergeRequest}'
+  - pattern: '"Work In Progress" Merge Requests'
+    replace: '${workInProgressMergeRequest}'
+  - pattern: 'Project web hooks allow you to trigger an URL if new code is pushed or a new issue is created.'
+    replace: '${projectWebHooksAllowYouToTriggerAnURLIfNewCodeIsPushedOrANewIssueIsCreated}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'You can configure web hooks to listen for specific events like pushes, issues or merge requests. GitLab will send a POST request with data to the web hook URL.'
+    replace: '${youCanConfigureWebHooksToListenForSpecificEventsLikePushesIssuesOrMergeRequestsGitlabWIllSendAPostRequestWithDataToTheWebHookUrl}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Web hooks can be used to update an external issue tracker, trigger CI builds, update a backup mirror, or even deploy to your production server.'
+    replace: '${webHooksCanBeUsedToUpdateAnExternalIssueTrackerTriggerCIBuildsUpdateABackupMirrorOrEVenDeployToYourProductionServer}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'SSL Verification'
+    replace: '${sslVerification}'
+  - pattern: !!js/regexp /By default, the SSL certificate of the webhook endpoint is verified based on \nan internal list of Certificate Authorities, \nwhich means the certificate cannot be self-signed./
+    replace: '${byDefaultTheSslCertificateOfTheWebhookEndpointIsVerifiedBasedOnAnInternalListOfCertificateAuthoritiesWhichMeansTheCertificateCannotBeSelfSigned}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'You can turn this off in the web hook settings in your GitLab projects.'
+    replace: '${youCanTurnThisOffInTheWebHookSettingsInYourGitlabProjects}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Push events'
+    replace: '${mdTitlePushEvents}'
+  - pattern: 'Triggered when you push to the repository except when pushing tags.'
+    replace: '${triggeredWhenYouPushToTheRepositoryExceptWhenPushingTags}'
+    complete-pattern: true
+  - pattern: 'Request header'
+    replace: '${requestHeader}'
+  - pattern: 'Request body'
+    replace: '${requestBody}'
+  - pattern: 'Tag events'
+    replace: '${tagEvents}'
+  - pattern: 'Triggered when you create (or delete) tags to the repository.'
+    replace: '${triggeredWhenYouCreateOrDeleteTagsToTheRepository}'
+    complete-pattern: true
+  - pattern: 'Issues events'
+    replace: '${mdTitleIssuesEvents}'
+  - pattern: 'Triggered when a new issue is created or an existing issue was updated/closed/reopened.'
+    replace: '${triggeredWhenANewIssueIsCreatedOrAnExistingIssueWasUpdatedClosedReopened}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Merge request events'
+    replace: '${mdTitleMergeRequestEvents}'
+  - pattern: 'Triggered when a new merge request is created, an existing merge request was updated/merged/closed or a commit is added in the source branch.'
+    replace: '${triggeredWhenANewMergeRequestIsCreatedAnExistingMergeRequestWasUpdatedMergedClosedOrACommitIsAddedInTheSourceBranch}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'System hooks'
+    replace: '${systemHook}'
+  - pattern: 'Your GitLab instance can perform HTTP POST requests on the following events: `project_create`, `project_destroy`, `user_add_to_team`, `user_remove_from_team`, `user_create`, `user_destroy`, `key_create`, `key_destroy`, `group_create`, `group_destroy`, `user_add_to_group` and `user_remove_from_group`.'
+    replace: '${yourGitlabInstanceCanPerformHttpPOSTRequestsOnTheFollowingEventsProjectCreateProjectDestroyUserAddToTeamUserRemoveFromTeamUserCreateUserDestroyKeyCreateKeyDestroyGroupCreateGroupDestroyUserAddToGroupAndUserRemoveFromGroup}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'System hooks can be used, e.g. for logging or changing information in a LDAP server.'
+    replace: '${systemHooksCanBeUsedEGForLoggingOrChangingInformationInALDAPServer}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Hooks request example'
+    replace: '${hooksRequestExample}'
+    match-once: true
+  - pattern: 'Project created'
+    replace: '${projectCreated}'
+  - pattern: 'Project destroyed'
+    replace: '${projectDestroyed}'
+  - pattern: 'New Team Member'
+    replace: '${newTeamMember}'
+  - pattern: 'Team Member Removed'
+    replace: '${teamMemberRemoved}'
+  - pattern: 'User created'
+    replace: '${userCreated}'
+  - pattern: 'User removed'
+    replace: '${userRemoved}'
+  - pattern: 'To prevent abusive clients doing damage GitLab uses rack-attack gem.'
+    replace: '${toPreventAbusiveClientsDoingDamageGitlabUsesRackAttackGem}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'If you installed or upgraded GitLab by following the official guides this should be enabled by default.'
+    replace: '${ifYouInstalledOrUpgradedGitlabByFollowingTheOfficialGuidesThisShouldBeEnabledByDefault}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'If you are missing `config/initializers/rack_attack.rb` the following steps need to be taken in order to enable protection for your GitLab instance:'
+    replace: '${ifYouAreMissingConfigInitializersRackAttackRbTheFollowingStepsNeedToBeTakenInOrderToEnableProtectionForYourGitlabInstance}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'In config/application.rb find and uncomment the following line:'
+    replace: '${inConfigApplicationRbFindAndUncommentTheFollowingLine}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Rename `config/initializers/rack_attack.rb.example` to `config/initializers/rack_attack.rb`.'
+    replace: '${renameConfigInitializersRackAttackRbExampleToConfigInitializersRackAttackRb}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Review the `paths_to_be_protected` and add any other path you need protecting.'
+    replace: '${reviewThePathsToBeProtectedAndAddAnyOtherPathYouNeedProtecting}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Restart GitLab instance.'
+    replace: '${restartGitLabInstance}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'By default, user sign-in, user sign-up(if enabled) and user password reset is limited to 6 requests per minute. After trying for 6 times, client will have to wait for the next minute to be able to try again. These settings can be found in `config/initializers/rack_attack.rb`'
+    replace: '${byDefaultUserSignIn,UserSIgnUpIfEnabledAndUserPasswordResetIsLimitedTo6RequestsPerMinuteAfterTryingFor6TimesClientWillHaveToWaitForTheNextMinuteToBeAbleToTryAgainTheseSettingsCanBeFoundInConfigInitializersRackAttackRb}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'If you want more restrictive/relaxed throttle rule change the `limit` or `period` values. For example, more relaxed throttle rule will be if you set limit: 3 and period: 1.second(this will allow 3 requests per second). You can also add other paths to the protected list by adding to `paths_to_be_protected` variable. If you change any of these settings do not forget to restart your GitLab instance.'
+    replace: '${ifYouWantMoreRestrictiveRelaxedThrottleRuleChangeTheLimitOrPeriodValuesForExampleMoreRelaxedThrottleRuleWillBeIfYouSetLimit3AndPeriod1secondThisWillAllow3RequestsPerSecondYouCanAlsoAddOtherPathsToTheProtectedListByAddingToPathsToBeProtectedVariableIfYouChangeAnyOfTheseSettingsDoNotForgetToRestartYourGitlabInstance}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'In case you find throttling is not enough to protect you against abusive clients, rack-attack gem offers IP whitelisting, blacklisting, Fail2ban style filter and tracking.'
+    replace: '${inCaseYouFindThrottlingIsNotEnoughToProtectYouAgainstAbusiveClientsRack-AttackGemOffersIPWhitelistingBlacklistingFail2banStyleFilterAndTracking}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'For more information on how to use these options check out [rack-attack README](https://github.com/kickstarter/rack-attack/blob/master/README.md).'
+    replace: '${forMoreInformationOnHowToUseTheseOptionsCheckOutRackAttackReadme}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'User management'
+    replace: '${mdTitleUserManagement}'
+  - pattern: 'Add user as a developer to all projects'
+    replace: '${mdTitleAddUserAsADeveloperToAllProjects}'
+  - pattern: 'Add all users to all projects'
+    replace: '${mdTitleAddAllUsersToAllProjects}'
+  - pattern: 'admin users are added as masters'
+    replace: '${adminUsersAreAddedAsMasters}'
+  - pattern: 'Add user as a developer to all groups'
+    replace: '${mdTitleAddUserAsADeveloperToAllGroups}'
+  - pattern: 'Add all users to all groups'
+    replace: '${mdTitleAddAllUsersToAllGroups}'
+  - pattern: !!js/regexp /^Notes:/
+    replace: '${mdTitleNote}:'
+  - pattern: 'admin users are added as owners so they can add additional users to the group'
+    replace: '${adminUsersAreAddedAsOwnersSoTheyCanAddAdditionalUsersToTheGroup}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'This command gathers information about your GitLab installation and the System it runs on. These may be useful when asking for help or reporting issues.'
+    replace: '${thisCommandGathersInformationAboutYourGitlabInstallationAndTheSystemItRunsOnTheseMayBeUsefulWhenAskingForHelpOrReportingIssues}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Example output:'
+    replace: '${exampleOutput}:'
+  - pattern: 'Runs the following rake tasks:'
+    replace: '${runsTheFollowingRakeTasks}:'
+  - pattern: 'It will check that each component was setup according to the installation guide and suggest fixes for issues found.'
+    replace: '${itWillCheckThatEachComponentWasSetupAccordingToTheInstallationGuideAndSuggestFixesForIssuesFound}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'You may also have a look at our [Trouble Shooting Guide](https://github.com/gitlabhq/gitlab-public-wiki/wiki/Trouble-Shooting-Guide).'
+    replace: '${youMayAlsoHaveALookAtOurTroubleShootingGuide}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'NOTE: Use SANITIZE=true for gitlab:check if you want to omit project names from the output.'
+    replace: '${noteUseSanitizeTrueForGitlabCheckIfYouWantToOmitProjectNamesFromTheOutput}'
+    complete-pattern: true
+  - pattern: 'Enable usernames and namespaces for user projects'
+    replace: '${enableUsernamesAndNamespacesForUserProjects}'
+  - pattern: 'This command will enable the namespaces feature introduced in v4.0. It will move every project in its namespace folder.'
+    replace: '${thisCommandWillEnableTheNamepsacesFeaturesIntroducedInV40ItWillMoveEveryProjectInItsNamespaceFolder}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Because the **repository location will change**, you will need to **update all your git URLs** to point to the new location.'
+    replace: '${becauseTheRepositoryLocationWillChangeYouWillNeedToUpdateAllYourGitURLsToPointToTheNewLocation}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Username can be changed at [Profile / Account](/profile/account)'
+    replace: '${usernameCanBeChangedAtProfileAccount}'
+  - pattern: '**Example:**'
+    replace: '**${example}:**'
+  - pattern: 'Old path:'
+    replace: '${oldPath}:'
+  - pattern: 'New path:'
+    replace: '${newPath}:'
+  - pattern: 'Remove garbage from filesystem. Important! Data loss!'
+    replace: '${removeGarbageFromFilesystemImportantDatLoss}'
+    complete-pattern: true
+  - pattern: "Remove namespaces(dirs) from `/home/git/repositories` if they don't exist in GitLab database."
+    replace: '${removeNamespacesDirsFromHomeGitRepositoriesIfTheyDontExistInGitLabDatabase}'
+    complete-pattern: true
+  - pattern: "Rename repositories from `/home/git/repositories` if they don't exist in GitLab database."
+    replace: '${renameRepositoriesFromHomeGitRepositoriesIfTheyDontExistInGitLabDatabase}'
+    complete-pattern: true
+  - pattern: 'The repositories get a `+orphaned+TIMESTAMP` suffix so that they cannot block new repositories from being created.'
+    replace: '${theRepositoriesGetAOrphanedTimestampSuffixSoThatTheyCannotBlockNewRepositoriesFromBeingCreated}'
+    match-once: true
+    complete-pattern: true
+  - pattern: !!js/regexp /A backup creates an archive file that contains the database, all repositories and all attachments.\nThis archive will be saved in backup_path \(see `config\/gitlab.yml`\).\nThe filename will be `\[TIMESTAMP\]_gitlab_backup.tar`. This timestamp can be used to restore an specific backup.\nYou can only restore a backup to exactly the same version of GitLab that you created it\non, for example 7.2.1. The best way to migrate your repositories from one server to\nanother is through backup restore./
+    replace: '${aBackupCreatesAnArchiveFileThatContainsTheDatabaseAllRepositoriesAndAllAttachmentsThisArchiveWillBeSavedInBackupPathTheFilenameWillBeTimestampGitlabBackupTarThisTimestampCanBeUsedToRestoreOnSpecificBackupYouCanOnlyRestoreABackupToExactlyTheSameVersionOfGitLabThatYouCreatedItOnForExample721TheBestwayToMigreateYourRepositoriesFromOneServerToAnotherIsThroughBackupRestore}'
+    match-once: true
+    complete-pattern: true
+  - pattern: !!js/regexp /Please be informed that a backup does not store your configuration\nfiles.  One reason for this is that your database contains encrypted\ninformation for two-factor authentication.  Storing encrypted\ninformation along with its key in the same place defeats the purpose\nof using encryption in the first place!/
+    replace: '${pleaseBeInformedThatABackupDoesNotStoreYourConfigurationFilesOneReasonForThisIsThatYourDatabaseContainsEncryptedInformationForTwoFactorAuthenticationStoringEncryptedInformationAlongWithItsKeyInTheSamePlaceDefeatsThePurposeOfUsingEncryptionInTheFirstPlace}'
+    match-once: true
+    complete-pattern: true
+  - pattern: !!js/regexp /If you use an Omnibus package please see the \[instructions in the readme to backup your configuration\]\(https:\/\/gitlab.com\/gitlab-org\/omnibus-gitlab\/blob\/master\/README.md#backup-and-restore-omnibus-gitlab-configuration\).\nIf you have a cookbook installation there should be a copy of your configuration in Chef.\nIf you have an installation from source, please consider backing up your `.secret` file, `gitlab.yml` file, any SSL keys and certificates, and your \[SSH host keys\]\(https:\/\/superuser.com\/questions\/532040\/copy-ssh-keys-from-one-server-to-another-server\/532079#532079\)./
+    replace: '${ifYouUseAnOmnibusPackagePleaseSeeTheInstructionsInTheReadmeToBackupYourConfigurationIfYouHaveACookbookInstallationThereShouldBeACopyOfYourConfigurationInChefIfYouHaveAnInstallationFromSourcePleaseConsiderBackingUpYourSecretFileGitlabYmlFileAnySslKeysAndCertificatesAndYourSshHostKeys}'
+    match-once: true
+    complete-pattern: true
+  - pattern: !!js/regexp /At the very \*\*minimum\*\* you should backup `\/etc\/gitlab\/gitlab-secrets.json`\n\(Omnibus\) or `\/home\/git\/gitlab\/.secret` \(source\) to preserve your\ndatabase encryption key./
+    replace: '${atTheVeryMinimumYouShouldBackupEtcGitlabGitlabSecretsJsonOrHomeGitGitlabSecretToPreserveYourDatabaseEncryptionKey}'
+    complete-pattern: true
+  - pattern: 'Add the following lines at the bottom'
+    replace: '${addTheFollowingLinesAtTheBottom}'
+  - pattern: 'GitLab allows you to open selected projects to be accessed **publicly** or **internally**.'
+    replace: '${gitLabAllowsYouToOpenSelectedProjectsToBeAccessedPubliclyOrInternally}'
+    complete-pattern: true
+  - pattern: !!js/regexp /GitLab allows you to change your projects' visibility in order be accessed\n\*\*publicly\*\* or \*\*internally\*\*\./
+    replace: '${gitLabAllowsYouToChangeYourProjectsVisibilityInOrderBeAccessedPubliclyOrInternally}'
+    complete-pattern: true
+  - pattern: 'Projects with either of these visibility levels will be listed in the [public access directory](/public).'
+    replace: '${projectsWithEitherOfTheseVisibilityLevelsWillBeListedInThePublicAccessDirectory}'
+    complete-pattern: true
+  - pattern: !!js/regexp /Projects with either of these visibility levels will be listed in the\npublic access directory \(`\/public` under your GitLab instance\)\./
+    replace: '${projectsWithEitherOfTheseVisibilityLevelsWillBeListedInThePublicAccessDirectoryPublicUnderYourGitLabInstance}'
+    complete-pattern: true
+  - pattern: 'Internal projects will only be available to authenticated users.'
+    replace: '${internalProjectsWillOnlyBeAvailableToAuthenticatedUsers}'
+  - pattern: 'Public projects can be cloned **without any** authentication.'
+    replace: '${publicProjectsCanBeClonedWithoutAnyAuthentication}'
+    complete-pattern: true
+  - pattern: 'It will also be listed on the [public access directory](/public).'
+    replace: '${itWillAlsoBeListedOnThePublicAccessDirectory}'
+    complete-pattern: true
+  - pattern: 'They will also be listed on the public access directory (`/public`).'
+    replace: '${theyWillAlsoBeListedOnThePublicAccessDirectory}'
+    complete-pattern: true
+  - pattern: !!js/regexp /\*\*Any logged in user\*\* will have \[Guest\]\(\.\.\/permissions\/permissions\)\npermissions on the repository./
+    replace: '${anyLoggedInUserWillHaveGuestPermissionsOnTheRepository}'
+    complete-pattern: true
+  - pattern: '**Any logged in user** will have [Guest](../permissions/permissions) permissions on the repository.'
+    replace: '${anyLoggedInUserWillHaveGuestPermissionsOnTheRepository}'
+    complete-pattern: true
+  - pattern: 'Internal projects can be cloned by any logged in user.'
+    replace: '${internalProjectsCanBeClonedByAnyLoggedInUser}'
+    complete-pattern: true
+  - pattern: "It will also be listed on the [public access directory](/public) for logged in users."
+    replace: '${itWillAlsoBeListedOnThePublicAccessDirectoryForLoggedInUsers}'
+    complete-pattern: true
+  - pattern: !!js/regexp /They will also be listed on the public access directory \(`/public`\) for logged\nin users./
+    replace: '${theyWillAlsoBeListedOnThePublicAccessDirectoryForLoggedInUsers}'
+    complete-pattern: true
+  - pattern: "Any logged in user will have [Guest](../permissions/permissions) permissions on the repository."
+    replace: '${anyLoggedInUserWillHaveGuestPermissionOnTheRepository}'
+    complete-pattern: true
+  - pattern: !!js/regexp /Any logged in user will have \[Guest\]\(\.\.\/permissions\/permissions\) permissions on\nthe repository./
+    replace: '${anyLoggedInUserWillHaveGuestPermissionOnTheRepository}'
+    complete-pattern: true
+  - pattern: 'Go to your project dashboard'
+    replace: '${goToYourProjectDashboard}'
+  - pattern: 'Click on the "Edit" tab'
+    replace: '${clickOnTheEditTab}'
+  - pattern: 'Change "Visibility Level"'
+    replace: '${changeVisibilityLevel}'
+  - pattern: "Go to your project's **Settings**"
+    replace: '${goToYourProjectsSettings}'
+  - pattern: 'Change "Visibility Level" to either Public, Internal or Private'
+    replace: '${changeVisibilityLevelToEitherPublicInternalOrPrivate}'
+  - pattern: 'The public page of users, located at `/u/username` is visible if either:'
+    replace: '${thePublicPageOfUsersLocatedAtUUsernameIsVisibleIfEither}'
+    complete-pattern: true
+  - pattern: 'You are logged in.'
+    replace: '${youAreLoggedIn}'
+  - pattern: 'You are logged out, and the target user is authorized to (is Guest, Reporter, etc.) at least one public project.'
+    replace: '${youAreLoggedOutAndTheTargetUserIsAuthorizedToIsGuestReporterEtcAtLeastOnePublicProject}'
+    complete-pattern: true
+  - pattern: 'Otherwise, you will be redirected to the sign in page.'
+    replace: '${otherwiseYouWillBeRedirectedToTheSignInPage}'
+    complete-pattern: true
+  - pattern: 'When visiting the public page of an user, you will only see listed projects which you can view yourself.'
+    replace: '${whenVisitingThePublicPageOfAnUserYouWillOnlySeeListedProjectsWhichYouCanViewYourself}'
+    complete-pattern: true
+  - pattern: !!js/regexp /The public page of a user, located at `\/u\/username`, is always visible whether\nyou are logged in or not./
+    replace: '${thePublicPageOfAUserLocatedUUsernameIsAlwaysVisibleWhetherYouAreLoggedInOrNot}'
+    complete-pattern: true
+  - pattern: !!js/regexp /When visiting the public page of a user, you can only see the projects which\nyou are privileged to./
+    replace: '${whenVisitingThePublicPageOfAUserYouCanOnlySeeTheProjectsWhichYouArePrivilegedTo}'
+    complete-pattern: true
+  - pattern: !!js/regexp /The public page of a group, located at `/groups/groupname`, is always visible\nto everyone./
+    replace: '${thePublicPageOfAGroupLocatedAtGroupsGroupnameIsAlwaysVisibleToEveryone}'
+    complete-pattern: true
+  - pattern: !!js/regexp /Logged out users will be able to see the description and the avatar of the\ngroup as well as all public projects belonging to that group./
+    replace: '${loggedOutUsersWillBeAbleToSeeTheDescriptionAndTheAvatarOfTheGroupAsWellAsAllPublicProjectsBelongingToThatGroup}'
+    complete-pattern: true
+  - pattern: 'In the Admin area under Settings you can disable public projects or public and internal projects for the entire GitLab installation to prevent people making code public by accident. The restricted visibility settings do not apply to admin users.'
+    replace: '${inTheAdminAreaUnderSettingsYouCanDisablePublicProjectsOrPublicAndInternalProjectsForTheEntireGitlabInstallationToPreventPeopleMakingCodePublicByAccidentTheREstrictedVisibilitySettingsDoNotApplyToAdminUsers}'
+    complete-pattern: true
+  - pattern: !!js/regexp /In the Admin area under \*\*Settings\*\* \(`\/admin\/application_settings`\), you can\nrestrict the use of visibility levels for users when they create a project or a\nsnippet. This is useful to prevent people exposing their repositories to public\nby accident. The restricted visibility settings do not apply to admin users./
+    replace: '${inTheAdminAreaUnderSettingsAdminApplicationSettingsYouCanRestrictTheUseOfVisibilityLevelsForUsersWhenTheyCreateAProjectOrASnippetThisIsUsefulToPreventPeopleExposingTheirRepositoriesToPublicByAccidentTheRestrictedVisibilitySettingsDoNotApplyToAdminUsers}'
+    complete-pattern: true
+  - pattern: 'Project integrations with external services for continuous integration and more.'
+    replace: '${projectIntegrationsWithExternalServicesForContinuousIntegrationAndMore}'
+    complete-pattern: true
+  - pattern: 'Preferences'
+    replace: '${preference}'
+  - pattern: 'Two-factor Authentication'
+    replace: '${twoFactorAuthentication}'
+  - pattern: 'Users have different abilities depending on the access level they have in a particular group or project.'
+    replace: '${usersHaveDifferentAbilitiesDependingOnTheAccessLevelTheyHaveInAParticularGroupOrProject}'
+    complete-pattern: true
+  - pattern: 'If a user is both in a project group and in the project itself, the highest permission level is used.'
+    replace: '${ifAUserIsBothInAProjectGroupAndInTheProjectItselfTheHighestPermissionLevelIsUsed}'
+    complete-pattern: true
+  - pattern: 'If a user is a GitLab administrator they receive all permissions.'
+    replace: '${ifAUserIsAGitLabAdministratorTheyReceiveAllPermissions}'
+    complete-pattern: true
+  - pattern: !!js/regexp /On public projects the Guest role is not enforced.  \nAll users will be able to create issues, leave comments, and pull or download the project code./
+    replace: '${onPublicProjectTheGuestRoleIsNotEnforcedAllUsersWillBeAbleToCreateIssuesLeaveCommentsAndPullOrDownloadTheProjectCode}'
+    complete-pattern: true
+  - pattern: !!js/regexp /To add or import a user, you can follow the \[project users and members\ndocumentation\]\(doc\/workflow\/add-user\/add-user\.md\)\./
+    replace: '${toAddOrImportAUserYouCanFollowTheProjectUsersAndMembersDocumentation}'
+    complete-pattern: true
+  - pattern: '| Action'
+    replace: '| ${action}'
+  - pattern: '| Create new issue'
+    replace: '| ${createNewIssue}'
+  - pattern: '| Leave comments'
+    replace: '| ${leaveComments}'
+  - pattern: '| Pull project code'
+    replace: '| ${pullProjectCode}'
+  - pattern: '| Download project'
+    replace: '| ${downlaodProject}'
+  - pattern: '| Create code snippets'
+    replace: '| ${createCodeSnippets}'
+  - pattern: '| Manage issue tracker'
+    replace: '| ${manageIssueTracker}'
+  - pattern: '| Manage labels'
+    replace: '| ${manageLabels}'
+  - pattern: '| Manage merge requests'
+    replace: '| ${manageMergeRequests}'
+  - pattern: '| Create new merge request'
+    replace: '| ${createNewMergeRequests}'
+  - pattern: '| Create new branches'
+    replace: '| ${createNewBranches}'
+  - pattern: '| Push to non-protected branches'
+    replace: '| ${pushToNonProtectedBranches}'
+  - pattern: '| Force push to non-protected branches'
+    replace: '| ${forcePushToNonProtectedBranches}'
+  - pattern: '| Remove non-protected branches'
+    replace: '| ${removeNonProtectedBranches}'
+  - pattern: '| Add tags'
+    replace: '| ${addTags}'
+  - pattern: '| Write a wiki'
+    replace: '| ${writeAWiki}'
+  - pattern: '| Create new milestones'
+    replace: '| ${createNewMilestones}'
+  - pattern: '| Add new team members'
+    replace: '| ${addNewTeamMembers}'
+  - pattern: '| Push to protected branches'
+    replace: '| ${pushToProtectedBranches}'
+  - pattern: '| Enable/disable branch protection'
+    replace: '| ${enableDisableBranchProtection}'
+  - pattern: '| Turn on/off prot. branch push for devs'
+    replace: '| ${turnOnOffProtBranchPushForDevs}'
+  - pattern: '| Rewrite/remove git tags'
+    replace: '| ${rewriteRemoveGitTags}'
+  - pattern: '| Edit project'
+    replace: '| ${editProject}'
+  - pattern: '| Add deploy keys to project'
+    replace: '| ${addDeployKeysToProject}'
+  - pattern: '| Configure project hooks'
+    replace: '| ${configureProjectHooks}'
+  - pattern: '| Switch visibility level'
+    replace: '| ${switchVisibilityLevel}'
+  - pattern: '| Transfer project to another namespace'
+    replace: '| ${transferProjectToAnotherNamespace}'
+  - pattern: '| Remove project'
+    replace: '| ${removeProject}'
+  - pattern: '| Force push to protected branches'
+    replace: '| ${forcePushToProtectedBranches}'
+  - pattern: '| Remove protected branches'
+    replace: '| ${removeProtectedBranches}'
+  - pattern: !!js/regexp /In order for a group to appear as public and be browsable, it must contain at\nleast one public project\./
+    replace: '${inOrderForAGroupToAppearAsPublicAndBeBrowsableItMustContainAtLeastOnePublicProject}'
+    complete-pattern: true
+  - pattern: 'Any user can remove themselves from a group, unless they are the last Owner of the group.'
+    replace: '${anyUserCanRemoveThemselvesFromAGroupUnlessTheyAreTheLastOwnerOfTheGroup}'
+    complete-pattern: true
+  - pattern: '| Browse group'
+    replace: '| ${browseGroup}'
+  - pattern: '| Edit group'
+    replace: '| ${editGroup}'
+  - pattern: '| Create project in group'
+    replace: '| ${createProjectInGroup}'
+  - pattern: '| Manage group members'
+    replace: '| ${manageGroupMembers}'
+  - pattern: '| Remove group'
+    replace: '| ${removeGroup}'
+  - pattern: '[Newlines]'
+    replace: '[${newlines}]'
+  - pattern: '[Multiple underscores in words]'
+    replace: '[${multipleUnderscoresInWords}]'
+  - pattern: '[URL auto-linking]'
+    replace: '[${urlAutoLinking}]'
+  - pattern: '[Code and Syntax Highlighting]'
+    replace: '[${codeAndSyntaxHighlighting}]'
+  - pattern: '[Emoji]'
+    replace: '[${emoji}]'
+  - pattern: '[Special GitLab references]'
+    replace: '[${specialGitLabReferences}]'
+  - pattern: '[Task lists]'
+    replace: '[${taskLists}]'
+  - pattern: '[Standard Markdown]'
+    replace: '[${standardMarkdown}]'
+  - pattern: '[Headers]'
+    replace: '[${headers}]'
+  - pattern: '[Emphasis]'
+    replace: '[${emphasis}]'
+  - pattern: '[Lists]'
+    replace: '${lists}'
+  - pattern: '[Links]'
+    replace: '[${links}]'
+  - pattern: '[Images]'
+    replace: '[${images}]'
+  - pattern: '[Blockquotes]'
+    replace: '[${blockquotes}]'
+  - pattern: '[Inline HTML]'
+    replace: '[${inlineHTML}]'
+  - pattern: '[Horizontal Rule]'
+    replace: '[${horizontalRule}]'
+  - pattern: '[Line Breaks]'
+    replace: '[${lineBreaks}]'
+  - pattern: '[Tables]'
+    replace: '[${tables}]'
+  - pattern: '[References]'
+    replace: '[${references}]'
+  - pattern: 'For GitLab we developed something we call "GitLab Flavored Markdown" (GFM). It extends the standard Markdown in a few significant ways to add some useful functionality.'
+    replace: '${forGitLabWeDevelopedSomethingWeCallGitLabFlavoredMarkdownItExtendsTheStandardMarkdownInAFewSignificantWaysToAddSomeUsefulFunctionality}'
+    complete-pattern: true
+  - pattern: 'You can use GFM in'
+    replace: '${youCanUseGFMIn}'
+  - pattern: '- comments'
+    replace: '- ${comment}'
+  - pattern: '- issues'
+    replace: '- ${issue}'
+  - pattern: '- merge requests'
+    replace: '- ${mergeRequest}'
+  - pattern: '- milestones'
+    replace: '- ${milestone}'
+  - pattern: '- wiki pages'
+    replace: '- ${wikiPage}'
+  - pattern: 'You can also use other rich text files in GitLab. You might have to install a dependency to do so. Please see the [github-markup gem readme](https://github.com/gitlabhq/markup#markups) for more information.'
+    replace: '${youCanAlsoUseOtherRichTextFilesInGitLabYouMightHaveToInstallADependencyToDoSoPleaseSeeTheGithubMarkupGemReadmeForMoreInformation}'
+    complete-pattern: true
+  - pattern: "GFM honors the markdown specification in how [paragraphs and line breaks are handled](https://daringfireball.net/projects/markdown/syntax#p)."
+    replace: '${gfmHonorsTheMarkdownSpecificationInHowParagraphsAndLineBreaksAreHandled}'
+    complete-pattern: true
+  - pattern: 'A paragraph is simply one or more consecutive lines of text, separated by one or more blank lines.'
+    replace: '${aParagraphIsSimplyOneOrMoreConsecutiveLinesOfTextSeparatedByOneOrMoreBlankLines}'
+    complete-pattern: true
+  - pattern: 'Line-breaks, or softreturns, are rendered if you end a line with two or more spaces'
+    replace: '${lineBreaksOrSoftreturnsAreRenderedIfYouEndALineWithTwoOrMoreSpaces}'
+    complete-pattern: true
+  - pattern: "It is not reasonable to italicize just _part_ of a word, especially when you're dealing with code and names that often appear with multiple underscores. Therefore, GFM ignores multiple underscores in words."
+    replace: '${itIsNotReasonableToItalicizeJustPartOfAWordEspeciallyWhenYoureDealingWithCodeAndNamesThatOftenAppearWithMultipleUnderscoresThereforeGFMIgnoresMultipleUnderscoresInWOrds}'
+    complete-pattern: true
+  - pattern: 'GFM will autolink almost any URL you copy and paste into your text.'
+    replace: '${gfmWillAutolinkAlmostAnyURLYouCopyAndPasteIntoYourText}'
+    complete-pattern: true
+  - pattern: 'Blocks of code are either fenced by lines with three back-ticks <code>```</code>, or are indented with four spaces. Only the fenced code blocks support syntax highlighting.'
+    replace: '${blocksOfCodeAreEitherFencedByLinesWithThreeBackTicksOrAreIndentedWithFourSpacesOnlyTheFencedCodeBlocksSupportSyntaxHighlighting}'
+    complete-pattern: true
+  - pattern: "Inline `code` has `back-ticks around` it."
+    replace: '${inlineCodeHasBackTicksAroundIt}'
+    complete-pattern: true
+  - pattern: 'indenting works just fine in the fenced code block'
+    replace: '${indentingWorksJustFineInTheFencedCodeBlock}'
+    complete-pattern: true
+  - pattern: 'No language indicated, so no syntax highlighting.'
+    replace: '${noLanguageIndicatedSoNoSyntaxHighlighting}'
+    complete-pattern: true
+  - pattern: 'becomes:'
+    replace: '${becomes}'
+    complete-pattern: true
+  - pattern: 'Sometimes you want to :monkey: around a bit and add some :star2: to your :speech_balloon:. Well we have a gift for you:'
+    replace: '${sometimesYouWantToMonkeyAroundABitAndAddSomeStar2ToYourSpeechBalloonWellWEHaveAGiftForYou}'
+    complete-pattern: true
+  - pattern: ":zap: You can use emoji anywhere GFM is supported. :v:"
+    replace: '${zapYouCanUseEmojiAnywhereGFMIsSupported}'
+    complete-pattern: true
+  - pattern: "You can use it to point out a :bug: or warn about :speak_no_evil: patches. And if someone improves your really :snail: code, send them some :birthday:. People will :heart: you for that."
+    replace: '${youCanUseItToPointOutABugOrWarnAboutSpeakNoEvilPatchesAndIfSomeoneImprovesYourReallySnailCodeSendTHemSomeBirthdayPeopleWIllHeartYouForThat}'
+    complete-pattern: true
+  - pattern: "If you are new to this, don't be :fearful:. You can easily join the emoji :family:. All you need to do is to look up on the supported codes."
+    replace: '${ifYouAreNewToThisDontBeFearfulYouCanEasilyJoinTheEmojiFamilyAllYouNeedToDoIsToLookUpOnTheSupportedCodes}'
+    complete-pattern: true
+  - pattern: "Consult the [Emoji Cheat Sheet](http://emoji.codes) for a list of all supported emoji codes. :thumbsup:"
+    replace: '${consultTheEmojiCheatSheetForAListOfAllSupportedEmojiCodesThumbsup}'
+    complete-pattern: true
+  - pattern: 'GFM recognizes special references.'
+    replace: '${gfmRecognizesSpecialReferences}'
+    complete-pattern: true
+  - pattern: 'You can easily reference e.g. an issue, a commit, a team member or even the whole team within a project.'
+    replace: '${youCanEasilyReferenceEGAnIssueACommitATeamMemberOrEvenTheWholeTeamWithinAProject}'
+    complete-pattern: true
+  - pattern: 'GFM will turn that reference into a link so you can navigate between them easily.'
+    replace: '${gfmWillTurnThatReferenceIntoALinkSoYouCanNavigateBetweenThemEasily}'
+    complete-pattern: true
+  - pattern: 'GFM will recognize the following:'
+    replace: '${gfmWillRecognizeTheFollowing}'
+  - pattern: !!js/regexp /\| input /
+    replace: '| ${thInput} '
+  - pattern: !!js/regexp /\| references /
+    replace: '| ${thReferences} '
+  - pattern: !!js/regexp /From ([^\s]*) to ([^\s]*)/
+    replace: '${fromXToY}'
+    args:
+    - '$1'
+    - '$2'
+    complete-pattern: true
+  - pattern: '| specific user '
+    replace: '| ${thSpecificUser} '
+  - pattern: '| specific group '
+    replace: '| ${thSpecificGroup} '
+  - pattern: '| entire team '
+    replace: '| ${thEntireTeam} '
+  - pattern: '| issue '
+    replace: '| ${thIssue} '
+  - pattern: '| merge request '
+    replace: '| ${thMergeRequest} '
+  - pattern: '| snippet '
+    replace: '| ${thSnippet} '
+  - pattern: '| label by ID '
+    replace: '| ${thLabelByID} '
+  - pattern: '| one-word label by name '
+    replace: '| ${thOneWordLabelByName} '
+  - pattern: '| multi-word label by name '
+    replace: '| ${thMultiWordLabelByName} '
+  - pattern: '| specific commit '
+    replace: '| ${thSpecificCommit} '
+  - pattern: '| commit range comparison '
+    replace: '| ${thCommitRangeComparison} '
+  - pattern: '| repository file references '
+    replace: '| ${thRepositoryFileReferences} '
+  - pattern: 'GFM also recognizes certain cross-project references:'
+    replace: '${gfmAlsoRecognizesCertainCrossProjectReferences}'
+  - pattern: 'Alternatively, for H1 and H2, an underline-ish style:'
+    replace: '${alternativelyForH1AndH2AnUnderlineishStyle}'
+  - pattern: 'Alt-H1'
+    replace: '${altH1}'
+  - pattern: 'Alt-H2'
+    replace: '${altH2}'
+  - pattern: 'All Markdown-rendered headers automatically get IDs, except in comments.'
+    replace: '${allMarkdownRenderedHeadersAutomaticallyGetIdsExceptInComments}'
+  - pattern: 'On hover a link to those IDs becomes visible to make it easier to copy the link to the header to give it to someone else.'
+    replace: '${onHoverALinkToThoseIdsBecomesVisibleToMakeItEasierToCopyTheLinkToTheHeaderToGiveItToSomeoneElse}'
+  - pattern: 'The IDs are generated from the content of the header according to the following rules:'
+    replace: '${theIdsAreGeneratedFromTheContentOfTheHeaderAccordingToTheFollowingRules}'
+  - pattern: '1. All text is converted to lowercase'
+    replace: '1. ${allTextIsConvertedToLowercase}'
+  - pattern: '1. All non-word text (e.g., punctuation, HTML) is removed'
+    replace: '1. ${allNonWordTextEGPuctuationHTMLIsRemoved}'
+  - pattern: '1. All spaces are converted to hyphens'
+    replace: '1. ${allSpacesAreConvertedToHyphens}'
+  - pattern: '1. Two or more hyphens in a row are converted to one'
+    replace: '1. ${twoOrMoreHyphensInARowAreConvertedToOne}'
+  - pattern: !!js/regexp /1. If a header with the same ID has already been generated, a unique\n   incrementing number is appended, starting at 1./
+    replace: '1. ${ifAHeaderWithTheSameIDHasAlreadyBeenGeneratedAUniqueIncrementingNumberIsAppendedStartingAt1}'
+  - pattern: 'Would generate the following link IDs:'
+    replace: '${wouldGenerateTheFollowingLinkIds}:'
+  - pattern: 'Note that the Emoji processing happens before the header IDs are generated, so the Emoji is converted to an image which then gets removed from the ID.'
+    replace: '${noteThatTheEmojiProcessingHappensBeforeTheHeaderIdsAreGeneratedSoTheEmojiIsConvertedToAnImageWhichThenGetsRemovedFromTheID}'
+  - pattern: 'Emphasis, aka italics, with *asterisks* or _underscores_.'
+    replace: '${emphasisAkaItalicsWithAsterisksOrUnderscores}'
+  - pattern: 'Strong emphasis, aka bold, with **asterisks** or __underscores__.'
+    replace: '${strongEmphasisAkaBoldWithAsterisksOrUnderscores}'
+  - pattern: 'Combined emphasis with **asterisks and _underscores_**.'
+    replace: '${combinedEmphasisWithAsterisksAndUnderscores}'
+  - pattern: 'Strikethrough uses two tildes. ~~Scratch this.~~'
+    replace: '${strikethroughUsesTwoTildesScratchThis}'
+  - pattern: '1. First ordered list item'
+    replace: '1. ${firstOrderedListItem}'
+  - pattern: '2. Another item'
+    replace: '2. ${anotherItem}'
+  - pattern: '* Unordered sub-list.'
+    replace: '* ${unorderedSubList}'
+  - pattern: "1. Actual numbers don't matter, just that it's a number"
+    replace: '1. ${actualNumbersDontMatterJustThatItsANumber}'
+  - pattern: '1. Ordered sub-list'
+    replace: '1. ${orderedSubList}'
+  - pattern: '4. And another item.'
+    replace: '4. ${andAnotherItem}'
+  - pattern: '* Unordered list can use asterisks'
+    replace: '* ${unorderedListCanUseAsterisks}'
+  - pattern: '- Or minuses'
+    replace: '- ${orMinuses}'
+  - pattern: '+ Or pluses'
+    replace: '+ ${orPluses}'
+  - pattern: 'There are two ways to create links, inline-style and reference-style.'
+    replace: '${thereAreTwoWaysToCreateLinksInlineStyleAndReferenceStyle}'
+  - pattern: "I'm an inline-style link"
+    replace: '${imAnInlineStyleLink}'
+  - pattern: "I'm a reference-style link"
+    replace: '${imAReferenceStyleLink}'
+  - pattern: "I'm a relative reference to a repository file"
+    replace: '${imARelativeReferenceToARepositoryFile}'
+  - pattern: 'You can use numbers for reference-style link definitions'
+    replace: '${youCanUseNumbersForReferenceStyleLinkDefinitions}'
+  - pattern: 'Or leave it empty and use the [link text itself][]'
+    replace: '${orLeaveItEmptyAndUseTheLinkTextItself}'
+  - pattern: 'Some text to show that the reference links can follow later.'
+    replace: '${someTextToShowThatTheReferenceLinksCanFollowLater}'
+  - pattern: '**Note**'
+    replace: '**${mdNote}**'
+  - pattern: !!js/regexp /Relative links do not allow referencing project files in a wiki page or wiki page in a project file\. The reason for this is that, in GitLab, wiki is always a separate git repository\. For example:\n\n`\[I'm a reference-style link\]\(style\)`\n\nwill point the link to `wikis\/style` when the link is inside of a wiki markdown file./m
+    replace: '${relativeLinksDoNotAllowReferencingProjectFilesInAWikiPageOrWikiPageInAProjectFileTheReasonForThisIsThatInGitlabWikiIsAlwaysASeparateGitRepositoryForExampleImAReferenceStyleLinkWillPointTheLinkToWikisStyleWhenTheLinkIsInsideOfAWikiMarkdownFile}'
+  - pattern: "will point the link to `wikis/style` when the link is inside of a wiki markdown file."
+    replace: '${willPointTheLinkToWikisStyleWhenTheLinkIsInsideOfAWikiMarkdownFile}'
+  - pattern: "Here's our logo (hover to see the title text):"
+    replace: '${heresOurLogoHoverToSeeTheTitleText}'
+  - pattern: "Inline-style"
+    replace: '${inlineStyle}'
+  - pattern: "Reference-style"
+    replace: '${referenceStyle}'
+  - pattern: "Here's our logo:"
+    replace: '${heresOurLogo}'
+  - pattern: 'Blockquotes are very handy in email to emulate reply text.'
+    replace: '${blockquotesAreVeryHandyInEmailToEmulateReplyText}'
+  - pattern: 'This line is part of the same quote.'
+    replace: '${thisLineIsPartOfTheSameQuote}'
+  - pattern: 'Quote break.'
+    replace: '${quoteBreak}'
+  - pattern: "This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote."
+    replace: '${thisIsAVeryLongLineThatWillStillBeQuotedProperlyWhenItWrapsOhBOyLetsKeepWritingToMakeSureThisIsLongEnoughToActuallyWrapForEveryoneOhYouCanPutMarkdownIntoABlockquote}'
+  - pattern: "You can also use raw HTML in your Markdown, and it'll mostly work pretty well."
+    replace: '${youCanAlsoUseRawHTMLInYourMarkdownAndItllmostlyWorkPrettyWell}'
+  - pattern: !!js/regexp /  <dt>Definition list<\/dt>\n  <dd>Is something people use sometimes.<\/dd>/m
+    replace: '${definitionListIsSomethingPeopleUseSometimes}'
+  - pattern: !!js/regexp /  <dt>Markdown in HTML<\/dt>\n  <dd>Does \*not\* work \*\*very\*\* well. Use HTML <em>tags<\/em>.<\/dd>/m
+    replace: '${markdownInHTMLDoesNotWorkVeryWellUseHTMLTags}'
+  - pattern: 'Three or more...'
+    replace: '${threeOrMore}...'
+  - pattern: !!js/regexp /^Hyphens$/
+    replace: '${hyphens}'
+  - pattern: !!js/regexp /^Asterisks$/
+    replace: '${asterisks}'
+  - pattern: !!js/regexp /^Underscores$/
+    replace: '${underscores}'
+  - pattern: "My basic recommendation for learning how line breaks work is to experiment and discover -- hit &lt;Enter&gt; once (i.e., insert one newline), then hit it twice (i.e., insert two newlines), see what happens. You'll soon learn to get what you want. \"Markdown Toggle\" is your friend."
+    replace: '${myBasicRecommendationForLearningHowLineBreaksWorkIsToExperimentAndDiscoverHitEnterOnceInsertOneNewlineThenHitItTwiceInsertTwoNewlinesSeeWhatHappensYoullSoonLearnToGetWhatYouWantMarkdownToggleIsYourFriend}'
+  - pattern: 'Here are some things to try out:'
+    replace: '${hereAreSomeThingsToTryOut}'
+  - pattern: "Here's a line for us to start with."
+    replace: '${heresALineForUsToStartWith}'
+  - pattern: "This line is separated from the one above by two newlines, so it will be a *separate paragraph*."
+    replace: '${thisLineIsSeparatedFromTheOneAboveByTwoNewlinesSoItWillBeASeparateParagraph}'
+  - pattern: 'This line is also a separate paragraph, but...'
+    replace: '${thisLineIsAlsoASeparateParagraphBut}'
+  - pattern: "This line is only separated by a single newline, so it's a separate line in the *same paragraph*."
+    replace: '${thisLineIsOnlySeparatedByASingleNewlineSoItsASeparateLineInTheSameParagraph}'
+  - pattern: !!js/regexp /This line is also a separate paragraph, and...(:?  )?\nThis line is on its own line, because the previous line ends with two\nspaces./m
+    replace: '${thisLineIsAlsoASeparateParagraphAndThisLineIsOnItsOwnLineBecauseThePreviousLineEndsWithTwoSpaces}'
+  - pattern: "Tables aren't part of the core Markdown spec, but they are part of GFM and Markdown Here supports them."
+    replace: '${tablesArentPartOfTheCoreMarkdownSpecButTheyArePartOfGFMAndMarkdownHereSupportsThem}'
+  - pattern: '| header'
+    replace: '| ${header}'
+  - pattern: '| cell'
+    replace: '| ${cell}'
+  - pattern: 'Code above produces next output:'
+    replace: '${codeAboveProducesNextOutput}'
+  - pattern: 'The row of dashes between the table header and body must have at least three dashes in each column.'
+    replace: '${theRowOfDashesBetweenTheTableHeaderAndBodyMustHaveAtLeastThreeDashesInEachColumn}'
+  - pattern: 'By including colons in the header row, you can align the text within that column:'
+    replace: '${byIncludingColonsInTheHeaderRowYouCanAlignTheNextWithinThatColumn}'
+  - pattern: '| Left Aligned | Centered | Right Aligned | Left Aligned | Centered | Right Aligned |'
+    replace: '${leftAlignedCenteredRightAlignedLeftAlignedCenteredRightAligned}'
+  - pattern: "This document leveraged heavily from the [Markdown-Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)."
+    replace: '${thisDocumentLeveragedHeavilyFromTheMarkdownCheatsheet}'
+  - pattern: "The [Markdown Syntax Guide](https://daringfireball.net/projects/markdown/syntax) at Daring Fireball is an excellent resource for a detailed explanation of standard markdown."
+    replace: '${theMarkdownSyntaxGuideAtDaringFireballIsAnExcellentResourceForADetailedExplanationOfStandardMarkdown}'
+  - pattern: "[Dillinger.io](http://dillinger.io) is a handy tool for testing standard markdown."
+    replace: '${dillingerIoIsAHandyToolForTestingStandardMarkdown}'
+  - pattern: 'Step-by-step guides on the basics of working with Git and GitLab.'
+    replace: '${stepByStepGuidesOnTheBasicsOfWorkingWithGitAndGitLab}'
+  - pattern: 'Start using Git on the command line'
+    replace: '${startUsingGitOnTheCommandLine}'
+  - pattern: 'Create and add your SSH Keys'
+    replace: '${createAndAddYourSSHKeys}'
+  - pattern: 'Command Line basic commands'
+    replace: '${commandLineBasicCommands}'
+  - pattern: 'Basic Git commands'
+    replace: '${basicGitCommands}'
+  - pattern: 'Create a project'
+    replace: '${createAProject}'
+  - pattern: 'Create a group'
+    replace: '${createAGroup}'
+  - pattern: 'Create a branch'
+    replace: '${createABranch}'
+  - pattern: 'Fork a project'
+    replace: '${forkAProject}'
+  - pattern: 'Add a file'
+    replace: '${addAFile}'
+  - pattern: 'Add an image'
+    replace: '${addAnImage}'
+  - pattern: 'Create a Merge Request'
+    replace: '${createAMergeRequestBasic}'
+  - pattern: 'Create an Issue'
+    replace: '${createAnIssue}'
+  - pattern: 'For example:'
+    replace: '${forExample}:'
+  - pattern: '1.  Clone project:'
+    replace: '1.  ${cloneProject}:'
+    match-once: true
+    complete-pattern: true
+  - pattern: '1.  Create branch with your feature:'
+    replace: '1.  ${createBranchWithYourFeature}:'
+    match-once: true
+    complete-pattern: true
+  - pattern: '1.  Write code. Commit changes:'
+    replace: '1.  ${writeCodeCommitChanges}:'
+    match-once: true
+    complete-pattern: true
+  - pattern: '1.  Push your branch to GitLab:'
+    replace: '1.  ${pushYourBranchToGitLab}:'
+    match-once: true
+    complete-pattern: true
+  - pattern: '1.  Review your code on commits page.'
+    replace: '1.  ${reviewYourCodeOnCommitsPage}'
+    match-once: true
+    complete-pattern: true
+  - pattern: '1.  Create a merge request.'
+    replace: '1.  ${createAMergeRequest}'
+    match-once: true
+    complete-pattern: true
+  - pattern: '1.  Your team lead will review the code &amp; merge it to the main branch.'
+    replace: '1.  ${yourTeamLeadWillReviewTheCodeAndMergeItToTheMainBranch}'
+    match-once: true
+    complete-pattern: true
+  - pattern: "To enable the Authentiq OmniAuth provider for passwordless authentication you must register an application with Authentiq."
+    replace: '${toEnableTheAuthentiqOmniAuthProviderForPasswordlessAuthenticationYouMustRegisterAnApplicationWithAuthentiq}'
+    complete-pattern: true
+  - pattern: "Authentiq will generate a Client ID and the accompanying Client Secret for you to use."
+    replace: '${authentiqWillGenerateAClientIDAndTheAccompanyingClientSecretForYouToUse}'
+    complete-pattern: true
+  - pattern: "Get your Client credentials (Client ID and Client Secret) at [Authentiq](https://www.authentiq.com/register)."
+    replace: '${getYourClientCredentialsClientIDAndClientSecretAtAuthentiq}'
+    complete-pattern: true
+  - pattern: "On your GitLab server, open the configuration file:"
+    replace: '${onYourGitLabServerOpenTheConfigurationFile}'
+    complete-pattern: true
+  - pattern: "See [Initial OmniAuth Configuration](../../integration/omniauth.md#initial-omniauth-configuration) for initial settings to enable single sign-on and add Authentiq as an OAuth provider."
+    replace: '${seeInitialOmniAuthConfigurationForInitialSettingsToEnableSingleSignOnAndAddAuthentiqAsAnOAuthProvider}'
+    complete-pattern: true
+  - pattern: "Add the provider configuration for Authentiq:"
+    replace: '${addTheProviderConfigurationForAuthentiq}'
+    complete-pattern: true
+  - pattern: "The `scope` is set to request the user's name, email (required and signed), and permission to send push notifications to sign in on subsequent visits."
+    replace: '${theScopeIsSetToRequestTheUsersNameEmailRequiredAndSignedAndPermissionToSendPushNotificationsToSignInOnSubsequentVisits}'
+    complete-pattern: true
+  - pattern: "See [OmniAuth Authentiq strategy](https://github.com/AuthentiqID/omniauth-authentiq#scopes-and-redirect-uri-configuration) for more information on scopes and modifiers."
+    replace: '${seeOmniAuthAuthentiqStrategyForMoreInformationOnScopesAndModifiers}'
+    complete-pattern: true
+  - pattern: "Change 'YOUR_CLIENT_ID' and 'YOUR_CLIENT_SECRET' to the Client credentials you received in step 1."
+    replace: '${changeYourClientIdAndYourClientSecretToTheClientCredentialsYouReceivedInStep1}'
+    complete-pattern: true
+  - pattern: "Save the configuration file."
+    replace: '${saveTheConfigurationFile}'
+    complete-pattern: true
+  - pattern: !!js/regexp /\[Reconfigure\]\(\.\.\/restart_gitlab.md#omnibus-gitlab-reconfigure\) or \[restart GitLab\]\(\.\.\/restart_gitlab.md#installations-from-source\)\n\s+for the changes to take effect if you installed GitLab via Omnibus or from source respectively\./m
+    replace: '${reconfigureOrRestartGitLabForTheChangesToTakeEffectIfYouInstalledGitLabViaOmnibusOrFromSourceRespectively}'
+    complete-pattern: true
+  - pattern: "Securing your account via two-factor authentication, etc."
+    replace: '${securingYourAccountViaTwoFactorAuthenticationEtc}'
+  - pattern: '[Account Security]'
+    replace: '[${accountSecurity}]'
+  - pattern: '[Container Registry]'
+    replace: '[${containerRegistry}]'
+  - pattern: '[Importing and exporting projects between instances]'
+    replace: '[${importingAndExportingProjectsBetweenInstances}]'
+    complete-pattern: true
+  - pattern: "[University](university/README.md) contain guides to learn Git and GitLab through courses and videos."
+    replace: '${universityContainsGuidesToLearnGitAndGitLabThroughCoursesAndVideos}'
+    complete-pattern: true
+  - pattern: "Learn how to use GitLab Container Registry."
+    replace: '${learnHowToUseGitLabContainerRegistry}'
+  - pattern: "Using GitLab Pages."
+    replace: '${usingGitLabPages}'
+  - pattern: "Import your projects from GitHub, Bitbucket, GitLab.com, FogBugz and SVN into GitLab."
+    replace: '${importYourProjectsFromGitHubBitBucketGitLabComFogBugzAndSVNIntoGitLab}'
+  - pattern: "Learn what each role in a project (external/guest/reporter/developer/master/owner) can do."
+    replace: '${learnWhatEachRoleInAProjectExternalGuestReporterDeveloperMasterOwnerCanDo}'

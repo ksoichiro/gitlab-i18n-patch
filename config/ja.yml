@@ -2985,3 +2985,14 @@ seeOmniAuthAuthentiqStrategyForMoreInformationOnScopesAndModifiers: "scopeとmod
 changeYourClientIdAndYourClientSecretToTheClientCredentialsYouReceivedInStep1: "'YOUR_CLIENT_ID' と 'YOUR_CLIENT_SECRET' を、ステップ1.で受信したクライアント資格情報に変更してください。"
 saveTheConfigurationFile: 設定ファイルを保存します。
 reconfigureOrRestartGitLabForTheChangesToTakeEffectIfYouInstalledGitLabViaOmnibusOrFromSourceRespectively: "GitLabをOmnibusまたはソースからインストールしている場合、変更を反映するには[reconfigure](../restart_gitlab.md#omnibus-gitlab-reconfigure)または[GitLabを再起動](../restart_gitlab.md#installations-from-source)します。"
+accountSecurity: アカウントセキュリティ
+securingYourAccountViaTwoFactorAuthenticationEtc: 二段階認証などによりあなたのアカウントを安全にします。
+containerRegistry: コンテナレジストリ
+importingAndExportingProjectsBetweenInstances: インスタンス間でのプロジェクトのインポートとエクスポート
+mdTitleGitLabCommunityEditionDocumentation: GitLab Community Edition ドキュメント
+university: ユニバーシティ
+universityContainsGuidesToLearnGitAndGitLabThroughCoursesAndVideos: "[ユニバーシティ](university/README.md) にはコースとビデオを通じてGitとGitLabを学ぶためのガイドが含まれています。"
+learnHowToUseGitLabContainerRegistry: GitLabコンテナレジストリの使い方を学びます。
+usingGitLabPages: GitLab Pagesを使います。
+importYourProjectsFromGitHubBitBucketGitLabComFogBugzAndSVNIntoGitLab: GitHub, Bitbucket, GitLab.com, FogBugz, SVN からGitLabへプロジェクトをインポートします。
+learnWhatEachRoleInAProjectExternalGuestReporterDeveloperMasterOwnerCanDo: プロジェクトの各ロール(External/Guest/Reporter/Developer/Master/Owner)が何を行えるかを学びます。

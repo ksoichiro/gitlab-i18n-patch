@@ -15736,29 +15736,33 @@ index 0000000..cee0bea
 +            redirect_uri:
 +              blank: リダイレクトURIは必須です
 diff --git a/doc/README.md b/doc/README.md
-index 78030ce..2d10605 100644
+index 78030ce..2c4988e 100644
 --- a/doc/README.md
 +++ b/doc/README.md
-@@ -4,30 +4,30 @@
+@@ -1,33 +1,33 @@
+-# GitLab Community Edition documentation
++# GitLab Community Edition ドキュメント
  
- [University](university/README.md) contain guides to learn Git and GitLab through courses and videos.
+-## University
++## ユニバーシティ
+ 
+-[University](university/README.md) contain guides to learn Git and GitLab through courses and videos.
++[ユニバーシティ](university/README.md) にはコースとビデオを通じてGitとGitLabを学ぶためのガイドが含まれています。
  
 -## User documentation
 +## ユーザ向けドキュメント
  
- - [Account Security](user/profile/account/two_factor_authentication.md) Securing your account via two-factor authentication, etc.
+-- [Account Security](user/profile/account/two_factor_authentication.md) Securing your account via two-factor authentication, etc.
 -- [API](api/README.md) Automate GitLab via a simple and powerful API.
++- [アカウントセキュリティ](user/profile/account/two_factor_authentication.md) 二段階認証などによりあなたのアカウントを安全にします。
 +- [API](api/README.md) シンプルで強力なAPIでGitLabを自動化します。
  - [CI/CD](ci/README.md) GitLab Continuous Integration (CI) and Continuous Delivery (CD) getting started, `.gitlab-ci.yml` options, and examples.
 -- [GitLab as OAuth2 authentication service provider](integration/oauth_provider.md). It allows you to login to other applications from GitLab.
-+- [OAuth2認証サービスプロバイダとしてのGitLab](integration/oauth_provider.md). GitLabから他のアプリケーションにログインできるようにします。
- - [Container Registry](user/project/container_registry.md) Learn how to use GitLab Container Registry.
+-- [Container Registry](user/project/container_registry.md) Learn how to use GitLab Container Registry.
 -- [GitLab basics](gitlab-basics/README.md) Find step by step how to start working on your commandline and on GitLab.
-+- [GitLabの基本](gitlab-basics/README.md) コマンドラインとGitLabでの作業の始め方をステップバイステップで説明します。
- - [GitLab Pages](user/project/pages/index.md) Using GitLab Pages.
+-- [GitLab Pages](user/project/pages/index.md) Using GitLab Pages.
 -- [Importing to GitLab](workflow/importing/README.md) Import your projects from GitHub, Bitbucket, GitLab.com, FogBugz and SVN into GitLab.
-+- [GitLabへのインポート](workflow/importing/README.md) Import your projects from GitHub, Bitbucket, GitLab.com, FogBugz and SVN into GitLab.
- - [Importing and exporting projects between instances](user/project/settings/import_export.md).
+-- [Importing and exporting projects between instances](user/project/settings/import_export.md).
 -- [Markdown](user/markdown.md) GitLab's advanced formatting system.
 -- [Migrating from SVN](workflow/importing/migrating_from_svn.md) Convert a SVN repository to Git and GitLab.
 -- [Permissions](user/permissions.md) Learn what each role in a project (external/guest/reporter/developer/master/owner) can do.
@@ -15768,9 +15772,15 @@ index 78030ce..2d10605 100644
 -- [SSH](ssh/README.md) Setup your ssh keys and deploy keys for secure access to your projects.
 -- [Webhooks](user/project/integrations/webhooks.md) Let GitLab notify you when new code has been pushed to your project.
 -- [Workflow](workflow/README.md) Using GitLab functionality and importing projects from GitHub and SVN.
++- [OAuth2認証サービスプロバイダとしてのGitLab](integration/oauth_provider.md). GitLabから他のアプリケーションにログインできるようにします。
++- [コンテナレジストリ](user/project/container_registry.md) GitLabコンテナレジストリの使い方を学びます。
++- [GitLabの基本](gitlab-basics/README.md) コマンドラインとGitLabでの作業の始め方をステップバイステップで説明します。
++- [GitLab Pages](user/project/pages/index.md) GitLab Pagesを使います。
++- [GitLabへのインポート](workflow/importing/README.md) GitHub, Bitbucket, GitLab.com, FogBugz, SVN からGitLabへプロジェクトをインポートします。
++- [インスタンス間でのプロジェクトのインポートとエクスポート](user/project/settings/import_export.md).
 +- [Markdown](user/markdown.md) GitLabの高度なフォーマットシステムです。
 +- [SVNからの移行](workflow/importing/migrating_from_svn.md) GitとGitLabへのSVNリポジトリの変換.
-+- [アクセス権](user/permissions.md) Learn what each role in a project (external/guest/reporter/developer/master/owner) can do.
++- [アクセス権](user/permissions.md) プロジェクトの各ロール(External/Guest/Reporter/Developer/Master/Owner)が何を行えるかを学びます。
 +- [プロフィール設定](profile/README.md)
 +- [プロジェクトサービス](user/project/integrations//project_services.md) CIやチャットなどの外部サービスと、プロジェクトを統合します。
 +- [公開アクセス](public_access/public_access.md) プロジェクトのアクセス範囲を公開・内部にする方法を学びます。
@@ -15794,9 +15804,12 @@ index 78030ce..2d10605 100644
  - [Update](update/README.md) Update guides to upgrade your installation.
  - [Welcome message](customization/welcome_message.md) Add a custom welcome message to the sign-in page.
  - [Reply by email](administration/reply_by_email.md) Allow users to comment on issues and merge requests by replying to notification emails.
-@@ -64,7 +64,7 @@
+@@ -62,9 +62,9 @@
+ - [Debugging Tips](administration/troubleshooting/debug.md) Tips to debug problems when things go wrong
+ - [Sidekiq Troubleshooting](administration/troubleshooting/sidekiq.md) Debug when Sidekiq appears hung and is not processing jobs.
  - [High Availability](administration/high_availability/README.md) Configure multiple servers for scaling or high availability.
- - [Container Registry](administration/container_registry.md) Configure Docker Registry with GitLab.
+-- [Container Registry](administration/container_registry.md) Configure Docker Registry with GitLab.
++- [コンテナレジストリ](administration/container_registry.md) Configure Docker Registry with GitLab.
  
 -## Contributor documentation
 +## コントリビュータ向けドキュメント

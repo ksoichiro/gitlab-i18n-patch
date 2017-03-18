@@ -939,9 +939,33 @@ translations:
   - pattern: !!js/regexp /\[Reconfigure\]\(\.\.\/restart_gitlab.md#omnibus-gitlab-reconfigure\) or \[restart GitLab\]\(\.\.\/restart_gitlab.md#installations-from-source\)\n\s+for the changes to take effect if you installed GitLab via Omnibus or from source respectively\./m
     replace: '${reconfigureOrRestartGitLabForTheChangesToTakeEffectIfYouInstalledGitLabViaOmnibusOrFromSourceRespectively}'
     complete-pattern: true
+  - pattern: "Securing your account via two-factor authentication, etc."
+    replace: '${securingYourAccountViaTwoFactorAuthenticationEtc}'
+  - pattern: '[Account Security]'
+    replace: '[${accountSecurity}]'
+  - pattern: '[Container Registry]'
+    replace: '[${containerRegistry}]'
+  - pattern: '[Importing and exporting projects between instances]'
+    replace: '[${importingAndExportingProjectsBetweenInstances}]'
+    complete-pattern: true
+  - pattern: "[University](university/README.md) contain guides to learn Git and GitLab through courses and videos."
+    replace: '${universityContainsGuidesToLearnGitAndGitLabThroughCoursesAndVideos}'
+    complete-pattern: true
+  - pattern: "Learn how to use GitLab Container Registry."
+    replace: '${learnHowToUseGitLabContainerRegistry}'
+  - pattern: "Using GitLab Pages."
+    replace: '${usingGitLabPages}'
+  - pattern: "Import your projects from GitHub, Bitbucket, GitLab.com, FogBugz and SVN into GitLab."
+    replace: '${importYourProjectsFromGitHubBitBucketGitLabComFogBugzAndSVNIntoGitLab}'
+  - pattern: "Learn what each role in a project (external/guest/reporter/developer/master/owner) can do."
+    replace: '${learnWhatEachRoleInAProjectExternalGuestReporterDeveloperMasterOwnerCanDo}'
 
   - name: headerOrComment
     params:
+    - title: 'GitLab Community Edition documentation'
+      key: mdTitleGitLabCommunityEditionDocumentation
+    - title: 'University'
+      key: university
     - title: 'Accept MR'
       key: mdTitleAcceptMR
     #- title: ' Making an existing Shared Runner Specific'

@@ -1395,8 +1395,8 @@ mdTitleGitLabBasics: GitLabの基本
 #mdTitleGitLabDirectoryStructure: 
 #mdTitleGitLabIsUnableToCloseATicket: 
 #mdTitleGitLabIsUnableToCommentOnATicket: 
-#mdTitleGitLabKeyboardShortcuts: 
-#mdTitleGitLabOperations: 
+mdTitleGitLabKeyboardShortcuts: GitLabのキーボードショートカット
+mdTitleGitLabOperations: GitLabの運用
 #mdTitleGitLabReleaseCycle: 
 #mdTitleGitLabServerConfiguration: 
 #mdTitleGitLabShellRequiresSystemRuby19: 
@@ -2313,6 +2313,7 @@ pushEvents: プッシュ
 mergeEvents: マージ
 issuesEvents: 課題
 issueEvents: 課題
+register: 登録
 mergeRequestEvents: マージリクエスト
 buildEvents: ビルド
 sslVerification: SSL検証
@@ -3013,3 +3014,19 @@ mdTitleGitLabGroups: GitLab グループ
 mdTitleGitWorkflow: Gitワークフロー
 mdTitleGitAndGitLabBasics: GitとGitLabの基本
 mdTitleLabelsOverview: ラベルの概観
+goToJobs: ジョブに移動
+goToIssueBoards: 課題ボードに移動
+goToFindingFile: ファイルを探す
+newIssue: 新しい課題
+scrollLeft: 左にスクロール
+scrollRight: 右にスクロール
+scrollUp: 上にスクロール
+scrollDown: 下にスクロール
+scrollToTop: 最上部にスクロール
+scrollToBottom: 最下部にスクロール
+changeAssignee: 担当者を変更
+changeMilestone: マイルストーンを変更
+replyQuotingSelectedText: "返信 (選択中のテキストを引用)"
+editIssue: 課題を編集
+changeLabel: ラベルを変更
+editMergeRequest: マージリクエストを編集

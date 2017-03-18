@@ -5,7 +5,7 @@ translations:
   parallel-group: 'group2'
   src: 'doc/**/*.md'
   skip-patterns:
-  - !!js/regexp /(^\s*$|^[^a-zA-Z]+$|^\s*```|^---)/
+  - !!js/regexp /^([^#]|$)/
   named-patterns:
   - name: headerOrComment
     pattern: "^(#+ ){title}$"
@@ -1426,10 +1426,10 @@ translations:
     #  key: mdTitleGitLabIsUnableToCloseATicket
     #- title: 'GitLab is unable to comment on a ticket'
     #  key: mdTitleGitLabIsUnableToCommentOnATicket
-    #- title: 'GitLab keyboard shortcuts'
-    #  key: mdTitleGitLabKeyboardShortcuts
-    #- title: 'GitLab operations'
-    #  key: mdTitleGitLabOperations
+    - title: 'GitLab keyboard shortcuts'
+      key: mdTitleGitLabKeyboardShortcuts
+    - title: 'GitLab operations'
+      key: mdTitleGitLabOperations
     #- title: 'GitLab release cycle'
     #  key: mdTitleGitLabReleaseCycle
     #- title: 'GitLab server configuration'
@@ -3204,3 +3204,15 @@ translations:
       key: projectForkingWorkflow
     - title: 'GitLab Groups'
       key: mdTitleGitLabGroups
+    - title: 'Global Shortcuts'
+      key: globalShortcuts
+    - title: 'Project Files Browsing'
+      key: projectFilesBrowsing
+    - title: 'Finding Project File'
+      key: findingProjectFile
+    - title: 'Global Dashboard'
+      key: globalDashboard
+    - title: 'Project'
+      key: project
+    - title: 'Network Graph'
+      key: networkGraph

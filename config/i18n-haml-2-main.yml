@@ -127,6 +127,10 @@ translations:
     replace: '${openSourceSoftwareToCollaborateOnCode}'
   - pattern: "Manage git repositories with fine grained access controls that keep your code secure."
     replace: '${manageGitRepositoriesWithFineGrainedAccessControlsThatKeepYourCodeSecure}'
+  - pattern: 'Manage git repositories with fine-grained access controls that keep your code secure.'
+    replace: '${manageGitRepositoriesWithFineGrainedAccessControlsThatKeepYourCodeSecure}'
+  - pattern: "Manage Git repositories with fine-grained access controls that keep your code secure."
+    replace: '${manageGitRepositoriesWithFineGrainedAccessControlsThatKeepYourCodeSecure}'
   - pattern: "Perform code reviews and enhance collaboration with merge requests."
     replace: '${performCodeReviewsAndEnhanceCollaborationWithMergeRequests}'
   - pattern: "Each project can also have an issue tracker and a wiki."
@@ -207,8 +211,6 @@ translations:
     replace: '${gitlabIsOpenSourceSoftwareToCollaborateOnCode}'
   - pattern: 'Quick help'
     replace: '${quickHelp}'
-  - pattern: 'Manage git repositories with fine-grained access controls that keep your code secure.'
-    replace: '${manageGitRepositoriesWithFineGrainedAccessControlsThatKeepYourCodeSecure}'
     match-once: true
   - pattern: 'Perform code reviews and enhance collaboration with merge requests.'
     replace: '${performCodeReviewsAndEnhanceCollaborationWithMergeRequests}'
@@ -1091,6 +1093,7 @@ translations:
     - {word: 'Chat', key: chat}
     - {word: 'User Settings', key: userSettings}
     - {word: 'Description format', key: descriptionFormat}
+    - {word: 'Register', key: register}
   - name: wordInSentence
     params:
     - {word: 'broadcast message', key: broadcastMessage}

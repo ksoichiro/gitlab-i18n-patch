@@ -15,8 +15,8 @@ translations:
   skip-patterns:
   # Lines that does not contain quotes
   - !!js/regexp /^(?!.*\$\('[^']*'\))(?!.*['"]).+$/
-  - !!js/regexp /^[^']*('([^a-zA-Z0-9]*|[a-z]+(-[a-z]+)+)'[^']*)+$/
-  - !!js/regexp /^[^"]*("([^a-zA-Z0-9]*|[a-z]+(-[a-z]+)+)"[^"]*)+$/
+  - !!js/regexp /^[^']*('([^a-zA-Z0-9]*|[a-z]+([-_][a-z]+)+|[0-9.]+|true|false)'[^']*)+$/
+  - !!js/regexp /^[^"]*("([^a-zA-Z0-9]*|[a-z]+([-_][a-z]+)+|[0-9.]+|true|false)"[^"]*)+$/
   - !!js/regexp /^[^'"]*(\$|data|require)\(['"][^'"]*['"]\)[^'"]*$/
   - !!js/regexp /^[^'"]*\$\([^\)]*\)\.(on|off|addClass|removeClass|find)\(['"][^'"]*['"](,\s['"][^'"]*['"])?[^'"]*$/
   # Empty

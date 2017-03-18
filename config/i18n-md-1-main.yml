@@ -302,8 +302,8 @@ translations:
     replace: '${mdTitleAddUserAsADeveloperToAllGroups}'
   - pattern: 'Add all users to all groups'
     replace: '${mdTitleAddAllUsersToAllGroups}'
-  - pattern: !!js/regexp /^Notes:/
-    replace: '${mdTitleNote}:'
+  - pattern: !!js/regexp /^(\>\s?\*\*)?Notes?(\*\*)?:/
+    replace: '$1${mdTitleNote}$2:'
   - pattern: 'admin users are added as owners so they can add additional users to the group'
     replace: '${adminUsersAreAddedAsOwnersSoTheyCanAddAdditionalUsersToTheGroup}'
     match-once: true

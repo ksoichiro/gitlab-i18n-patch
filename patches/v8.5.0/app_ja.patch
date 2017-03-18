@@ -5312,7 +5312,7 @@ index a0ba11b..dbe5f19 100644
  - if can?(current_user, :read_group, @group)
    %div{ class: container_class }
 diff --git a/app/views/help/_shortcuts.html.haml b/app/views/help/_shortcuts.html.haml
-index 8e98271..af84efc 100644
+index 8e98271..9b47372 100644
 --- a/app/views/help/_shortcuts.html.haml
 +++ b/app/views/help/_shortcuts.html.haml
 @@ -4,7 +4,7 @@
@@ -5324,7 +5324,7 @@ index 8e98271..af84efc 100644
            %small
              = link_to '(Show all)', '#', class: 'js-more-help-button'
        .modal-body.shortcuts-cheatsheet
-@@ -13,160 +13,160 @@
+@@ -13,188 +13,188 @@
              %tbody
                %tr
                  %th
@@ -5397,7 +5397,7 @@ index 8e98271..af84efc 100644
                %tr
                  %th
 -                %th Global Dashboard
-+                %th Global ダッシュボード
++                %th グローバルダッシュボード
                %tr
                  %td.shortcut
                    .key g
@@ -5505,7 +5505,7 @@ index 8e98271..af84efc 100644
                  %td.shortcut
                    .key t
 -                %td Go to finding file
-+                %td Go to finding ファイル
++                %td ファイルを探す
          .col-lg-4
            %table.shortcut-mappings
              %tbody{ class: 'hidden-shortcut network', style: 'display:none' }
@@ -5516,11 +5516,54 @@ index 8e98271..af84efc 100644
                %tr
                  %td.shortcut
                    .key
-@@ -213,18 +213,18 @@
+                     %i.fa.fa-arrow-left
+                   \/
+                   .key h
+-                %td Scroll left
++                %td 左にスクロール
+               %tr
+                 %td.shortcut
+                   .key
+                     %i.fa.fa-arrow-right
+                   \/
+                   .key l
+-                %td Scroll right
++                %td 右にスクロール
+               %tr
+                 %td.shortcut
+                   .key
+                     %i.fa.fa-arrow-up
+                   \/
+                   .key k
+-                %td Scroll up
++                %td 上にスクロール
+               %tr
+                 %td.shortcut
+                   .key
+                     %i.fa.fa-arrow-down
+                   \/
+                   .key j
+-                %td Scroll down
++                %td 下にスクロール
+               %tr
+                 %td.shortcut
+                   .key
+@@ -203,7 +203,7 @@
+                   \/
+                   .key
+                     shift k
+-                %td Scroll to top
++                %td 最上部にスクロール
+               %tr
+                 %td.shortcut
+                   .key
+@@ -212,36 +212,36 @@
+                   \/
                    .key
                      shift j
-                 %td Scroll to bottom
+-                %td Scroll to bottom
 -            %tbody{ class: 'hidden-shortcut issues', style: 'display:none' }
++                %td 最下部にスクロール
 +            %tbody{ class: 'hidden-shortcut 課題', style: 'display:none' }
                %tr
                  %th
@@ -5539,7 +5582,8 @@ index 8e98271..af84efc 100644
                %tr
                  %td.shortcut
                    .key r
-@@ -232,15 +232,15 @@
+-                %td Reply (quoting selected text)
++                %td 返信 (選択中のテキストを引用)
              %tbody{ class: 'hidden-shortcut merge_requests', style: 'display:none' }
                %tr
                  %th
@@ -5558,6 +5602,8 @@ index 8e98271..af84efc 100644
                %tr
                  %td.shortcut
                    .key r
+-                %td Reply (quoting selected text)
++                %td 返信 (選択中のテキストを引用)
 diff --git a/app/views/help/index.html.haml b/app/views/help/index.html.haml
 index 57bc91e..6c061a4 100644
 --- a/app/views/help/index.html.haml
@@ -14098,6 +14144,25 @@ index 194b8e0..c1cf70d 100644
  
  ```
  git commit -m "Awesome commit message (Fix #20, Fixes #21 and Closes group/otherproject#22). This commit is also related to #17 and fixes #18, #19 and https://gitlab.example.com/group/otherproject/issues/23."
+diff --git a/doc/development/architecture.md b/doc/development/architecture.md
+index 6101a71..e1bd11c 100644
+--- a/doc/development/architecture.md
++++ b/doc/development/architecture.md
+@@ -125,7 +125,7 @@ Usage: /etc/init.d/postgresql {start|stop|restart|reload|force-reload|status} [v
+ 
+ ### Log locations of the services
+ 
+-Note: `/home/git/` is shorthand for `/home/git`.
++注意: `/home/git/` is shorthand for `/home/git`.
+ 
+ gitlabhq (includes Unicorn and Sidekiq logs)
+ 
+@@ -185,4 +185,4 @@ bundle exec rake gitlab:env:info RAILS_ENV=production
+ bundle exec rake gitlab:check RAILS_ENV=production
+ ```
+ 
+-Note: It is recommended to log into the `git` user using `sudo -i -u git` or `sudo su - git`. While the sudo commands provided by gitlabhq work in Ubuntu they do not always work in RHEL.
++注意: It is recommended to log into the `git` user using `sudo -i -u git` or `sudo su - git`. While the sudo commands provided by gitlabhq work in Ubuntu they do not always work in RHEL.
 diff --git a/doc/development/doc_styleguide.md b/doc/development/doc_styleguide.md
 index 96d1dff..7f2efe0 100644
 --- a/doc/development/doc_styleguide.md
@@ -14159,6 +14224,19 @@ index e244ad4..ce3c28c 100644
 +starting GitLab. 例:
  
      ENABLE_BULLET=true bundle exec rails s
+ 
+diff --git a/doc/development/rake_tasks.md b/doc/development/rake_tasks.md
+index 9f3fd69..886c269 100644
+--- a/doc/development/rake_tasks.md
++++ b/doc/development/rake_tasks.md
+@@ -10,7 +10,7 @@ bundle exec rake setup
+ 
+ The `setup` task is a alias for `gitlab:setup`.
+ This tasks calls `db:setup` to create the database, calls `add_limits_mysql` that adds limits to the database schema in case of a MySQL database and finally it calls `db:seed_fu` to seed the database.
+-Note: `db:setup` calls `db:seed` but this does nothing.
++注意: `db:setup` calls `db:seed` but this does nothing.
+ 
+ ## Run tests
  
 diff --git a/doc/development/shell_commands.md b/doc/development/shell_commands.md
 index 65cdd74..48065dd 100644
@@ -15325,8 +15403,18 @@ index b856e79..91a3683 100644
  sudo gitlab-ctl restart
  
  # For installations from source
+diff --git a/doc/operations/README.md b/doc/operations/README.md
+index 6a35dab..9661b38 100644
+--- a/doc/operations/README.md
++++ b/doc/operations/README.md
+@@ -1,4 +1,4 @@
+-# GitLab operations
++# GitLabの運用
+ 
+ - [Sidekiq MemoryKiller](sidekiq_memory_killer.md)
+ - [Cleaning up Redis sessions](cleaning_up_redis_sessions.md)
 diff --git a/doc/permissions/permissions.md b/doc/permissions/permissions.md
-index 168e7d1..e87bccd 100644
+index 168e7d1..dd5c701 100644
 --- a/doc/permissions/permissions.md
 +++ b/doc/permissions/permissions.md
 @@ -1,10 +1,10 @@
@@ -15344,9 +15432,12 @@ index 168e7d1..e87bccd 100644
  
  On public projects the Guest role is not enforced.
  All users will be able to create issues, leave comments, and pull or download the project code.
-@@ -14,58 +14,57 @@ documentation](../workflow/add-user/add-user.md).
+@@ -12,60 +12,59 @@ All users will be able to create issues, leave comments, and pull or download th
+ To add or import a user, you can follow the [project users and members
+ documentation](../workflow/add-user/add-user.md).
  
- ## Project
+-## Project
++## プロジェクト
  
 -| Action                                | Guest   | Reporter   | Developer   | Master   | Owner  |
 +| アクション                                | Guest   | Reporter   | Developer   | Master   | Owner  |
@@ -15834,7 +15925,7 @@ index 8fbcbb9..9cbfe7e 100644
  ```
  # omnibus-gitlab
 diff --git a/doc/raketasks/features.md b/doc/raketasks/features.md
-index f9a4619..3f89f56 100644
+index f9a4619..2adc533 100644
 --- a/doc/raketasks/features.md
 +++ b/doc/raketasks/features.md
 @@ -1,19 +1,19 @@
@@ -15847,7 +15938,8 @@ index f9a4619..3f89f56 100644
 -This command will enable the namespaces feature introduced in v4.0. It will move every project in its namespace folder.
 +このコマンドは、v4.0 で導入されたネームスペースの機能を有効にします。すべてのプロジェクトをネームスペースフォルダに移動します。
  
- Note:
+-Note:
++注意:
  
 -- Because the **repository location will change**, you will need to **update all your git URLs** to point to the new location.
 -- Username can be changed at [Profile / Account](/profile/account)
@@ -16069,7 +16161,7 @@ index 8365bdb..a8e0e6b 100644
  
  # Installations from source
 diff --git a/doc/ssh/README.md b/doc/ssh/README.md
-index a1198e5..c8bae01 100644
+index a1198e5..f981a4e 100644
 --- a/doc/ssh/README.md
 +++ b/doc/ssh/README.md
 @@ -1,6 +1,6 @@
@@ -16080,6 +16172,15 @@ index a1198e5..c8bae01 100644
  
  An SSH key allows you to establish a secure connection between your
  computer and GitLab. Before generating an SSH key in your shell, check if your system
+@@ -17,7 +17,7 @@ cat ~/.ssh/id_rsa.pub
+ 
+ If you see a long string starting with `ssh-rsa`, you can skip the `ssh-keygen` step.
+ 
+-Note: It is a best practice to use a password for an SSH key, but it is not
++注意: It is a best practice to use a password for an SSH key, but it is not
+ required and you can skip creating a password by pressing enter. Note that
+ the password you choose here can't be altered or retrieved.
+ 
 @@ -68,7 +68,7 @@ pbcopy < ~/.ssh/id_rsa.pub
  xclip -sel clip < ~/.ssh/id_rsa.pub
  ```
@@ -16169,6 +16270,32 @@ index 612376e..bd94954 100644
  
  ```json
  {
+diff --git a/doc/update/5.1-to-6.0.md b/doc/update/5.1-to-6.0.md
+index a3fdd92..6c466b1 100644
+--- a/doc/update/5.1-to-6.0.md
++++ b/doc/update/5.1-to-6.0.md
+@@ -163,7 +163,7 @@ sudo -u git -H git config --global core.autocrlf input
+ 
+ ## 6. Update config files
+ 
+-Note: We switched from Puma in GitLab 5.x to unicorn in GitLab 6.0.
++注意: We switched from Puma in GitLab 5.x to unicorn in GitLab 6.0.
+ 
+ - Make `/home/git/gitlab/config/gitlab.yml` the same as https://gitlab.com/gitlab-org/gitlab-ce/blob/6-0-stable/config/gitlab.yml.example but with your settings.
+ - Make `/home/git/gitlab/config/unicorn.rb` the same as https://gitlab.com/gitlab-org/gitlab-ce/blob/6-0-stable/config/unicorn.rb.example but with your settings.
+diff --git a/doc/update/5.4-to-6.0.md b/doc/update/5.4-to-6.0.md
+index d9c6d9b..f0a6400 100644
+--- a/doc/update/5.4-to-6.0.md
++++ b/doc/update/5.4-to-6.0.md
+@@ -96,7 +96,7 @@ sudo -u git -H bundle exec rake assets:precompile RAILS_ENV=production
+ 
+ ## 6. Update config files
+ 
+-Note: We switched from Puma in GitLab 5.4 to unicorn in GitLab 6.0.
++注意: We switched from Puma in GitLab 5.4 to unicorn in GitLab 6.0.
+ 
+ - Make `/home/git/gitlab/config/gitlab.yml` the same as https://gitlab.com/gitlab-org/gitlab-ce/blob/master/config/gitlab.yml.example but with your settings.
+ - Make `/home/git/gitlab/config/unicorn.rb` the same as https://gitlab.com/gitlab-org/gitlab-ce/blob/master/config/unicorn.rb.example but with your settings.
 diff --git a/doc/web_hooks/web_hooks.md b/doc/web_hooks/web_hooks.md
 index b82306b..ca705e1 100644
 --- a/doc/web_hooks/web_hooks.md
@@ -16657,6 +16784,19 @@ index 399366b..2dc7857 100644
  created since GitLab 8.5. However, you can still revert a Merge Request
  by reverting the merge commit from the list of Commits page._
  
+diff --git a/doc/workflow/shortcuts.md b/doc/workflow/shortcuts.md
+index ffcb832..592beab 100644
+--- a/doc/workflow/shortcuts.md
++++ b/doc/workflow/shortcuts.md
+@@ -1,5 +1,5 @@
+-# GitLab keyboard shortcuts
++# GitLabのキーボードショートカット
+ 
+ You can see GitLab's keyboard shortcuts by using 'shift + ?'
+ 
+-![Shortcuts](shortcuts.png)
+\ No newline at end of file
++![Shortcuts](shortcuts.png)
 diff --git a/doc/workflow/web_editor.md b/doc/workflow/web_editor.md
 index 4a451d9..4d6a474 100644
 --- a/doc/workflow/web_editor.md

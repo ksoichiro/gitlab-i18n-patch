@@ -4345,7 +4345,7 @@ index 289bf40..6d0d4aa 100644
 +    ログインアカウントとパスワードをお持ちですか？
 +    = link_to "サインイン", new_session_path(resource_name)
 diff --git a/app/views/devise/shared/_signup_box.html.haml b/app/views/devise/shared/_signup_box.html.haml
-index 3133f6d..5d13623 100644
+index 3133f6d..e8b2712 100644
 --- a/app/views/devise/shared/_signup_box.html.haml
 +++ b/app/views/devise/shared/_signup_box.html.haml
 @@ -8,7 +8,7 @@
@@ -4357,8 +4357,12 @@ index 3133f6d..5d13623 100644
          %p.validation-error.hide Username is already taken.
          %p.validation-success.hide Username is available.
          %p.validation-pending.hide Checking username availability...
-@@ -26,6 +26,6 @@
-         = f.submit "Register", class: "btn-register btn"
+@@ -23,9 +23,9 @@
+       - if current_application_settings.recaptcha_enabled
+         = recaptcha_tags
+       %div
+-        = f.submit "Register", class: "btn-register btn"
++        = f.submit "登録", class: "btn-register btn"
  .clearfix.submit-container
    %p
 -    %span.light Didn't receive a confirmation email?
@@ -4366,8 +4370,18 @@ index 3133f6d..5d13623 100644
      = succeed '.' do
 -      = link_to "Request a new one", new_confirmation_path(resource_name)
 +      = link_to "もう一度送信", new_confirmation_path(resource_name)
+diff --git a/app/views/devise/shared/_tabs_ldap.html.haml b/app/views/devise/shared/_tabs_ldap.html.haml
+index aec1b31..369d9ce 100644
+--- a/app/views/devise/shared/_tabs_ldap.html.haml
++++ b/app/views/devise/shared/_tabs_ldap.html.haml
+@@ -10,4 +10,4 @@
+       = link_to 'Standard', '#ldap-standard', 'data-toggle' => 'tab'
+   - if signin_enabled? && signup_enabled?
+     %li
+-      = link_to 'Register', '#register-pane', 'data-toggle' => 'tab'
++      = link_to '登録', '#register-pane', 'data-toggle' => 'tab'
 diff --git a/app/views/devise/shared/_tabs_normal.html.haml b/app/views/devise/shared/_tabs_normal.html.haml
-index 0524630..faed5bc 100644
+index 0524630..c35acee 100644
 --- a/app/views/devise/shared/_tabs_normal.html.haml
 +++ b/app/views/devise/shared/_tabs_normal.html.haml
 @@ -1,6 +1,6 @@
@@ -4377,7 +4391,8 @@ index 0524630..faed5bc 100644
 +    %a{ href: '#login-pane', data: { toggle: 'tab' }, role: 'tab'} サインイン
    - if signin_enabled? && signup_enabled?
      %li{ role: 'presentation'}
-       %a{ href: '#register-pane', data: { toggle: 'tab' }, role: 'tab'} Register
+-      %a{ href: '#register-pane', data: { toggle: 'tab' }, role: 'tab'} Register
++      %a{ href: '#register-pane', data: { toggle: 'tab' }, role: 'tab'} 登録
 diff --git a/app/views/discussions/_headline.html.haml b/app/views/discussions/_headline.html.haml
 index c1dabee..4986249 100644
 --- a/app/views/discussions/_headline.html.haml
@@ -5231,7 +5246,7 @@ index 52ce26a..4aa3cda 100644
    .tab-content
      .tab-pane.active#projects
 diff --git a/app/views/help/_shortcuts.html.haml b/app/views/help/_shortcuts.html.haml
-index 65842a0..3df79ae 100644
+index 65842a0..cba1660 100644
 --- a/app/views/help/_shortcuts.html.haml
 +++ b/app/views/help/_shortcuts.html.haml
 @@ -4,7 +4,7 @@
@@ -5243,7 +5258,7 @@ index 65842a0..3df79ae 100644
            %small
              = link_to '(Show all)', '#', class: 'js-more-help-button'
        .modal-body
-@@ -14,154 +14,154 @@
+@@ -14,214 +14,214 @@
                %tbody
                  %tr
                    %th
@@ -5335,7 +5350,7 @@ index 65842a0..3df79ae 100644
                  %tr
                    %th
 -                  %th Global Dashboard
-+                  %th Global ダッシュボード
++                  %th グローバルダッシュボード
                  %tr
                    %td.shortcut
                      .key g
@@ -5428,7 +5443,12 @@ index 65842a0..3df79ae 100644
                  %tr
                    %td.shortcut
                      .key g
-@@ -173,27 +173,27 @@
+                     .key l
+                   %td
+-                    Go to issue boards
++                    課題ボードに移動
+                 %tr
+                   %td.shortcut
                      .key g
                      .key m
                    %td
@@ -5445,7 +5465,7 @@ index 65842a0..3df79ae 100644
                    %td.shortcut
                      .key t
 -                  %td Go to finding file
-+                  %td Go to finding ファイル
++                  %td ファイルを探す
                  %tr
                    %td.shortcut
                      .key i
@@ -5461,11 +5481,54 @@ index 65842a0..3df79ae 100644
                  %tr
                    %td.shortcut
                      .key
-@@ -240,18 +240,18 @@
+                       %i.fa.fa-arrow-left
+                     \/
+                     .key h
+-                  %td Scroll left
++                  %td 左にスクロール
+                 %tr
+                   %td.shortcut
+                     .key
+                       %i.fa.fa-arrow-right
+                     \/
+                     .key l
+-                  %td Scroll right
++                  %td 右にスクロール
+                 %tr
+                   %td.shortcut
+                     .key
+                       %i.fa.fa-arrow-up
+                     \/
+                     .key k
+-                  %td Scroll up
++                  %td 上にスクロール
+                 %tr
+                   %td.shortcut
+                     .key
+                       %i.fa.fa-arrow-down
+                     \/
+                     .key j
+-                  %td Scroll down
++                  %td 下にスクロール
+                 %tr
+                   %td.shortcut
+                     .key
+@@ -230,7 +230,7 @@
+                     \/
+                     .key
+                       shift k
+-                  %td Scroll to top
++                  %td 最上部にスクロール
+                 %tr
+                   %td.shortcut
+                     .key
+@@ -239,52 +239,52 @@
+                     \/
                      .key
                        shift j
-                   %td Scroll to bottom
+-                  %td Scroll to bottom
 -              %tbody{ class: 'hidden-shortcut issues', style: 'display:none' }
++                  %td 最下部にスクロール
 +              %tbody{ class: 'hidden-shortcut 課題', style: 'display:none' }
                  %tr
                    %th
@@ -5484,7 +5547,8 @@ index 65842a0..3df79ae 100644
                  %tr
                    %td.shortcut
                      .key r
-@@ -259,23 +259,23 @@
+-                  %td Reply (quoting selected text)
++                  %td 返信 (選択中のテキストを引用)
                  %tr
                    %td.shortcut
                      .key e
@@ -5513,7 +5577,8 @@ index 65842a0..3df79ae 100644
                  %tr
                    %td.shortcut
                      .key r
-@@ -283,8 +283,8 @@
+-                  %td Reply (quoting selected text)
++                  %td 返信 (選択中のテキストを引用)
                  %tr
                    %td.shortcut
                      .key e
@@ -6333,7 +6398,7 @@ index cb96bcc..fef7a4e 100644
  
  = render template: "layouts/application"
 diff --git a/app/views/layouts/devise.html.haml b/app/views/layouts/devise.html.haml
-index afd9958..d67ea21 100644
+index afd9958..823b51a 100644
 --- a/app/views/layouts/devise.html.haml
 +++ b/app/views/layouts/devise.html.haml
 @@ -19,12 +19,12 @@
@@ -6344,9 +6409,10 @@ index afd9958..d67ea21 100644
 +                %h3 コード共同編集のためのオープンソース
  
                  %p
-                   Manage Git repositories with fine-grained access controls that keep your code secure.
+-                  Manage Git repositories with fine-grained access controls that keep your code secure.
 -                  Perform code reviews and enhance collaboration with merge requests.
 -                  Each project can also have an issue tracker and a wiki.
++                  Gitリポジトリをきめ細かくアクセス管理でき、あなたのソースコードを安全な状態に保ちます。
 +                  マージリクエストを使えば、ソースコードレビューや共同作業を向上することができます。
 +                  各プロジェクトには課題トラッカーとWikiを備えることができます。
  
@@ -15497,6 +15563,94 @@ index d3f216f..011accd 100644
  one GitLab server.
  
  Prior to version 7.4, GitLab used a different syntax for configuring
+diff --git a/doc/administration/build_artifacts.md b/doc/administration/build_artifacts.md
+index 64353f7..e2836f4 100644
+--- a/doc/administration/build_artifacts.md
++++ b/doc/administration/build_artifacts.md
+@@ -1,6 +1,6 @@
+ # Build artifacts administration
+ 
+->**Notes:**
++>**注意:**
+ >- Introduced in GitLab 8.2 and GitLab Runner 0.7.0.
+ >- Starting from GitLab 8.4 and GitLab Runner 1.0, the artifacts archive format
+    changed to `ZIP`.
+diff --git a/doc/administration/container_registry.md b/doc/administration/container_registry.md
+index d7cfb46..770e04b 100644
+--- a/doc/administration/container_registry.md
++++ b/doc/administration/container_registry.md
+@@ -4,7 +4,7 @@
+ 
+ ---
+ 
+-> **Notes:**
++> **注意:**
+ - Container Registry manifest `v1` support was added in GitLab 8.9 to support
+   Docker versions earlier than 1.10.
+ - This document is about the admin guide. To learn how to use GitLab Container
+@@ -25,7 +25,7 @@ Registry will listen to. Read
+ [#container-registry-domain-configuration](#container-registry-domain-configuration)
+ and pick one of the two options that fits your case.
+ 
+->**Note:**
++>**注意:**
+ The container registry works under HTTPS by default. Using HTTP is possible
+ but not recommended and out of the scope of this document.
+ Read the [insecure Registry documentation][docker-insecure] if you want to
+@@ -69,7 +69,7 @@ where:
+ | `path`    | This should be the same directory like specified in Registry's `rootdirectory`. Read the [storage configuration documentation][storage-config]. This path needs to be readable by the GitLab user, the web-server user and the Registry user. Read more in [#container-registry-storage-path](#container-registry-storage-path). |
+ | `issuer`  | This should be the same value as configured in Registry's `issuer`. Read the [token auth configuration documentation][token-config]. |
+ 
+->**Note:**
++>**注意:**
+ A Registry init file is not shipped with GitLab if you install it from source.
+ Hence, [restarting GitLab][restart gitlab] will not restart the Registry should
+ you modify its settings. Read the upstream documentation on how to achieve that.
+@@ -113,7 +113,7 @@ Registry is exposed to the outside world is `4567`, here is what you need to set
+ in `gitlab.rb` or `gitlab.yml` if you are using Omnibus GitLab or installed
+ GitLab from source respectively.
+ 
+->**Note:**
++>**注意:**
+ Be careful to choose a port different than the one that Registry listens to (`5000` by default),
+ otherwise you will run into conflicts .
+ 
+@@ -201,7 +201,7 @@ Let's assume that you want the container Registry to be accessible at
+ 
+ 1. Save the file and [reconfigure GitLab][] for the changes to take effect.
+ 
+-> **Note:**
++> **注意:**
+ If you have a [wildcard certificate][], you need to specify the path to the
+ certificate in addition to the URL, in this case `/etc/gitlab/gitlab.rb` will
+ look like:
+@@ -238,7 +238,7 @@ docker login registry.gitlab.example.com
+ 
+ ## Disable Container Registry site-wide
+ 
+->**Note:**
++>**注意:**
+ Disabling the Registry in the Rails GitLab application as set by the following
+ steps, will not remove any existing Docker images. This is handled by the
+ Registry application itself.
+@@ -307,7 +307,7 @@ the Container Registry by themselves, follow the steps below.
+ 
+ ## Container Registry storage path
+ 
+->**Note:**
++>**注意:**
+ For configuring storage in the cloud instead of the filesystem, see the
+ [storage driver configuration](#container-registry-storage-driver).
+ 
+@@ -424,7 +424,7 @@ storage:
+ 
+ ## Change the registry's internal port
+ 
+-> **Note:**
++> **注意:**
+ This is not to be confused with the port that GitLab itself uses to expose
+ the Registry to the world.
+ 
 diff --git a/doc/administration/high_availability/database.md b/doc/administration/high_availability/database.md
 index 538dada..0901349 100644
 --- a/doc/administration/high_availability/database.md
@@ -15510,6 +15664,107 @@ index 538dada..0901349 100644
        That's OK - don't be alarmed.
  
  1. Open a database prompt:
+diff --git a/doc/administration/high_availability/gitlab.md b/doc/administration/high_availability/gitlab.md
+index 137fed3..3b47e1c 100644
+--- a/doc/administration/high_availability/gitlab.md
++++ b/doc/administration/high_availability/gitlab.md
+@@ -4,7 +4,7 @@ Assuming you have already configured a database, Redis, and NFS, you can
+ configure the GitLab application server(s) now. Complete the steps below
+ for each GitLab application server in your environment.
+ 
+-> **Note:** There is some additional configuration near the bottom for
++> **注意:** There is some additional configuration near the bottom for
+   secondary GitLab application servers. It's important to read and understand
+   these additional steps before proceeding with GitLab installation.
+ 
+@@ -83,7 +83,7 @@ It is not necessary to run this on additional application servers.
+ > **WARNING:** Only run this setup task on **NEW** GitLab instances because it
+   will wipe any existing data.
+ 
+-> **Note:** When you specify `https` in the `external_url`, as in the example
++> **注意:** When you specify `https` in the `external_url`, as in the example
+   above, GitLab assumes you have SSL certificates in `/etc/gitlab/ssl/`. If
+   certificates are not present, Nginx will fail to start. See
+   [Nginx documentation](http://docs.gitlab.com/omnibus/settings/nginx.html#enable-https)
+diff --git a/doc/administration/high_availability/redis.md b/doc/administration/high_availability/redis.md
+index f532a10..ea9e53b 100644
+--- a/doc/administration/high_availability/redis.md
++++ b/doc/administration/high_availability/redis.md
+@@ -14,7 +14,7 @@ You can choose to install and manage Redis and Sentinel yourself, use
+ a hosted cloud solution or you can use the one that comes bundled with
+ Omnibus GitLab packages.
+ 
+-> **Notes:**
++> **注意:**
+ - Redis requires authentication for High Availability. See
+   [Redis Security](http://redis.io/topics/security) documentation for more
+   information. We recommend using a combination of a Redis password and tight
+@@ -55,7 +55,7 @@ components below.
+ 
+ ### High Availability with Sentinel
+ 
+->**Notes:**
++>**注意:**
+ - Starting with GitLab `8.11`, you can configure a list of Redis Sentinel
+   servers that will monitor a group of Redis servers to provide failover support.
+ - Starting with GitLab `8.14`, the Omnibus GitLab Enterprise Edition package
+@@ -178,7 +178,7 @@ is not achieved (see the odd number of nodes requirement above). In that case,
+ a new attempt will be made after the amount of time defined in
+ `sentinel['failover_timeout']` (in milliseconds).
+ 
+->**Note:**
++>**注意:**
+ We will see where `sentinel['failover_timeout']` is defined later.
+ 
+ The `failover_timeout` variable has a lot of different use cases. According to
+@@ -231,7 +231,7 @@ Pick the one that suits your needs.
+ 
+ This is the section where we install and setup the new Redis instances.
+ 
+->**Notes:**
++>**注意:**
+ - We assume that you install GitLab and all HA components from scratch. If you
+   already have it installed and running, read how to
+   [switch from a single-machine installation to Redis HA](#switching-from-an-existing-single-machine-installation-to-redis-ha).
+@@ -355,7 +355,7 @@ the same Sentinels.
+ 
+ ### Step 3. Configuring the Redis Sentinel instances
+ 
+->**Note:**
++>**注意:**
+ Redis Sentinel is bundled with Omnibus GitLab Enterprise Edition only. The
+ following section assumes you are using Omnibus GitLab Enterprise Edition.
+ For the Omnibus Community Edition and installations from source, follow the
+@@ -480,7 +480,7 @@ the correct credentials for the Sentinel nodes.
+ While it doesn't require a list of all Sentinel nodes, in case of a failure,
+ it needs to access at least one of the listed.
+ 
+->**Note:**
++>**注意:**
+ The following steps should be performed in the [GitLab application server](gitlab.md)
+ which ideally should not have Redis or Sentinels on it for a HA setup.
+ 
+@@ -528,7 +528,7 @@ If you fail to replicate first, you may loose data (unprocessed background jobs)
+ 
+ ## Example of a minimal configuration with 1 master, 2 slaves and 3 Sentinels
+ 
+->**Note:**
++>**注意:**
+ Redis Sentinel is bundled with Omnibus GitLab Enterprise Edition only. For
+ different setups, read the
+ [available configuration setups](#available-configuration-setups) section.
+diff --git a/doc/administration/issue_closing_pattern.md b/doc/administration/issue_closing_pattern.md
+index 28e1fd4..6e8a152 100644
+--- a/doc/administration/issue_closing_pattern.md
++++ b/doc/administration/issue_closing_pattern.md
+@@ -1,6 +1,6 @@
+ # Issue closing pattern
+ 
+->**Note:**
++>**注意:**
+ This is the administration documentation.
+ There is a separate [user documentation] on issue closing pattern.
+ 
 diff --git a/doc/administration/logs.md b/doc/administration/logs.md
 index d757a3c..22d0b26 100644
 --- a/doc/administration/logs.md
@@ -15585,6 +15840,16 @@ index 7947b0f..6663965 100644
  and password in `/etc/grafana/grafana.ini`. Otherwise, the default password
  will be `admin`.
  
+diff --git a/doc/administration/operations.md b/doc/administration/operations.md
+index 0daceb9..21b74b7 100644
+--- a/doc/administration/operations.md
++++ b/doc/administration/operations.md
+@@ -1,4 +1,4 @@
+-# GitLab operations
++# GitLabの運用
+ 
+ - [Sidekiq MemoryKiller](operations/sidekiq_memory_killer.md)
+ - [Sidekiq Job throttling](operations/sidekiq_job_throttling.md)
 diff --git a/doc/administration/raketasks/check.md b/doc/administration/raketasks/check.md
 index d1d2fed..71f83dc 100644
 --- a/doc/administration/raketasks/check.md
@@ -15657,9 +15922,17 @@ index f3c2e72..0b2fb00 100644
  ```
  Checking Environment ...
 diff --git a/doc/administration/raketasks/project_import_export.md b/doc/administration/raketasks/project_import_export.md
-index 39b1883..ecf7387 100644
+index 39b1883..162d46d 100644
 --- a/doc/administration/raketasks/project_import_export.md
 +++ b/doc/administration/raketasks/project_import_export.md
+@@ -1,6 +1,6 @@
+ # Project import/export
+ 
+->**Note:**
++>**注意:**
+ >
+ >  - [Introduced][ce-3050] in GitLab 8.9.
+ >  - Importing will not be possible if the import instance version is lower
 @@ -13,7 +13,7 @@
  The GitLab Import/Export version can be checked by using:
  
@@ -15688,6 +15961,28 @@ index 14cd7a0..f7526c8 100644
  
  GitLab can be set up to allow users to comment on issues and merge requests by
  replying to notification emails.
+diff --git a/doc/administration/repository_storages.md b/doc/administration/repository_storages.md
+index ab70557..1de9492 100644
+--- a/doc/administration/repository_storages.md
++++ b/doc/administration/repository_storages.md
+@@ -5,7 +5,7 @@
+ GitLab allows you to define multiple repository storage paths to distribute the
+ storage load between several mount points.
+ 
+->**Notes:**
++>**注意:**
+ >
+ - You must have at least one storage path called `default`.
+ - The paths are defined in key-value pairs. The key is an arbitrary name you
+@@ -59,7 +59,7 @@ respectively.
+ 
+ 1. [Restart GitLab] for the changes to take effect.
+ 
+->**Note:**
++>**注意:**
+ The [`gitlab_shell: repos_path` entry][repospath] in `gitlab.yml` will be
+ deprecated and replaced by `repositories: storages` in the future, so if you
+ are upgrading from a version prior to 8.10, make sure to add the configuration
 diff --git a/doc/administration/restart_gitlab.md b/doc/administration/restart_gitlab.md
 index b561c2f..dda437a 100644
 --- a/doc/administration/restart_gitlab.md
@@ -15723,6 +16018,33 @@ index 6f1356d..847854f 100644
  
      ```ruby
      [1] pry(main)> app.get 'https://gitlab.com/gitlab-org/gitlab-ce/issues/1?private_token=123456'
+diff --git a/doc/administration/troubleshooting/sidekiq.md b/doc/administration/troubleshooting/sidekiq.md
+index b71f8fa..94d0f51 100644
+--- a/doc/administration/troubleshooting/sidekiq.md
++++ b/doc/administration/troubleshooting/sidekiq.md
+@@ -7,11 +7,11 @@ may be filling up. Users will notice when this happens because new branches
+ may not show up and merge requests may not be updated. The following are some
+ troubleshooting steps that will help you diagnose the bottleneck.
+ 
+-> **Note:** GitLab administrators/users should consider working through these
++> **注意:** GitLab administrators/users should consider working through these
+ debug steps with GitLab Support so the backtraces can be analyzed by our team.
+ It may reveal a bug or necessary improvement in GitLab.
+ 
+-> **Note:** In any of the backtraces, be weary of suspecting cases where every
++> **注意:** In any of the backtraces, be weary of suspecting cases where every
+   thread appears to be waiting in the database, Redis, or waiting to acquire
+   a mutex. This **may** mean there's contention in the database, for example,
+   but look for one thread that is different than the rest. This other thread
+@@ -96,7 +96,7 @@ corresponding Ruby code where this is happening.
+ `gdb` can be another effective tool for debugging Sidekiq. It gives you a little
+ more interactive way to look at each thread and see what's causing problems.
+ 
+-> **Note:** Attaching to a process with `gdb` will suspends the normal operation
++> **注意:** Attaching to a process with `gdb` will suspends the normal operation
+   of the process (Sidekiq will not process jobs while `gdb` is attached).
+ 
+ Start by attaching to the Sidekiq PID:
 diff --git a/doc/api/README.md b/doc/api/README.md
 index f65b934..7ede8aa 100644
 --- a/doc/api/README.md
@@ -15777,6 +16099,18 @@ index 06111f4..f5674a6 100644
  describe working with Award Emoji on notes for an Issue, but can be
  easily adapted for notes on a Merge Request.
  
+diff --git a/doc/api/broadcast_messages.md b/doc/api/broadcast_messages.md
+index c3a9207..bbaeace 100644
+--- a/doc/api/broadcast_messages.md
++++ b/doc/api/broadcast_messages.md
+@@ -1,6 +1,6 @@
+ # Broadcast Messages
+ 
+-> **Note:** This feature was introduced in GitLab 8.12.
++> **注意:** This feature was introduced in GitLab 8.12.
+ 
+ The broadcast message API is only accessible to administrators. All requests by
+ guests will respond with `401 Unauthorized`, and all requests by normal users
 diff --git a/doc/api/build_triggers.md b/doc/api/build_triggers.md
 index 1b7a184..d756dc2 100644
 --- a/doc/api/build_triggers.md
@@ -15791,10 +16125,16 @@ index 1b7a184..d756dc2 100644
  Create a build trigger for a project.
  
 diff --git a/doc/api/ci/builds.md b/doc/api/ci/builds.md
-index b6d7970..961a734 100644
+index b6d7970..2c9b334 100644
 --- a/doc/api/ci/builds.md
 +++ b/doc/api/ci/builds.md
-@@ -7,7 +7,7 @@ This API is intended to be used only by Runners as their own
+@@ -2,12 +2,12 @@
+ 
+ API used by runners to receive and update builds.
+ 
+->**Note:**
++>**注意:**
+ This API is intended to be used only by Runners as their own
  communication channel. For the consumer API see the
  [Builds API](../builds.md).
  
@@ -15804,10 +16144,16 @@ index b6d7970..961a734 100644
  This API uses two types of authentication:
  
 diff --git a/doc/api/ci/runners.md b/doc/api/ci/runners.md
-index 16028d1..56e6b37 100644
+index 16028d1..9f358ba 100644
 --- a/doc/api/ci/runners.md
 +++ b/doc/api/ci/runners.md
-@@ -7,7 +7,7 @@ This API is intended to be used only by Runners as their own
+@@ -2,12 +2,12 @@
+ 
+ API used by Runners to register and delete themselves.
+ 
+->**Note:**
++>**注意:**
+ This API is intended to be used only by Runners as their own
  communication channel. For the consumer API see the
  [new Runners API](../runners.md).
  
@@ -15946,6 +16292,56 @@ index 9971806..242ef8a 100644
  
  Creates a new note for a single merge request.
  If you create a note where the body only contains an Award Emoji, you'll receive
+diff --git a/doc/api/notification_settings.md b/doc/api/notification_settings.md
+index aea1c12..7a2aa45 100644
+--- a/doc/api/notification_settings.md
++++ b/doc/api/notification_settings.md
+@@ -1,6 +1,6 @@
+ # Notification settings
+ 
+->**Note:** This feature was [introduced][ce-5632] in GitLab 8.12.
++>**注意:** This feature was [introduced][ce-5632] in GitLab 8.12.
+ 
+ **Valid notification levels**
+ 
+diff --git a/doc/api/oauth2.md b/doc/api/oauth2.md
+index 5ef5e3f..b04a58a 100644
+--- a/doc/api/oauth2.md
++++ b/doc/api/oauth2.md
+@@ -12,7 +12,7 @@ This functionality is based on [doorkeeper gem](https://github.com/doorkeeper-ge
+ 
+ This is the most common type of flow and is used by server-side clients that wish to access GitLab on a user's behalf.
+ 
+->**Note:**
++>**注意:**
+ This flow **should not** be used for client-side clients as you would leak your `client_secret`. Client-side clients should use the Implicit Grant (which is currently unsupported).
+ 
+ For more detailed information, check out the [RFC spec](http://tools.ietf.org/html/rfc6749#section-4.1)
+@@ -24,7 +24,7 @@ In the following sections you will be introduced to the three steps needed for t
+ First, you should create an application (`/profile/applications`) in your user's account.
+ Each application gets a unique App ID and App Secret parameters.
+ 
+->**Note:**
++>**注意:**
+ **You should not share/leak your App ID or App Secret.**
+ 
+ ### 2. Requesting authorization
+@@ -67,7 +67,7 @@ RestClient.post 'http://localhost:3000/oauth/token', parameters
+  "refresh_token": "8257e65c97202ed1726cf9571600918f3bffb2544b26e00a61df9897668c33a1"
+ }
+ ```
+->**Note:**
++>**注意:**
+ The `redirect_uri` must match the `redirect_uri` used in the original authorization request.
+ 
+ You can now make requests to the API with the access token returned.
+@@ -134,4 +134,4 @@ access_token = client.password.get_token('user@example.com', 'secret')
+ puts access_token.token
+ ```
+ 
+-[personal access tokens]: ./README.md#personal-access-tokens
+\ No newline at end of file
++[personal access tokens]: ./README.md#personal-access-tokens
 diff --git a/doc/api/projects.md b/doc/api/projects.md
 index 467a880..7f1572f 100644
 --- a/doc/api/projects.md
@@ -15969,7 +16365,7 @@ index 467a880..7f1572f 100644
  Edits a hook for a specified project.
  
 diff --git a/doc/api/services.md b/doc/api/services.md
-index a5d733f..c88ab0c 100644
+index a5d733f..7ebc188 100644
 --- a/doc/api/services.md
 +++ b/doc/api/services.md
 @@ -1,4 +1,4 @@
@@ -15978,6 +16374,15 @@ index a5d733f..c88ab0c 100644
  
  ## Asana
  
+@@ -465,7 +465,7 @@ GET /projects/:id/services/jira
+ 
+ Set JIRA service for a project.
+ 
+->**Notes:**
++>**注意:**
+ - Starting with GitLab 8.14, `api_url`, `issues_url`, `new_issue_url` and
+   `project_url` are replaced by `project_key`, `url`.  If you are using an
+   older version, [follow this documentation][old-jira-api].
 @@ -481,7 +481,7 @@ PUT /projects/:id/services/jira
  | `project_key`   | string | yes | The short identifier for your JIRA project, all uppercase, e.g., `PROJ`. |
  | `username`      | string | no  | The username of the user created to be used with GitLab/JIRA. |
@@ -15987,6 +16392,18 @@ index a5d733f..c88ab0c 100644
  
  ### Delete JIRA service
  
+diff --git a/doc/api/sidekiq_metrics.md b/doc/api/sidekiq_metrics.md
+index 1ae732d..93bae5e 100644
+--- a/doc/api/sidekiq_metrics.md
++++ b/doc/api/sidekiq_metrics.md
+@@ -1,6 +1,6 @@
+ # Sidekiq Metrics
+ 
+->**Note:** This endpoint is only available on GitLab 8.9 and above.
++>**注意:** This endpoint is only available on GitLab 8.9 and above.
+ 
+ This API endpoint allows you to retrieve some information about the current state
+ of Sidekiq, its jobs, queues, and processes.
 diff --git a/doc/api/system_hooks.md b/doc/api/system_hooks.md
 index efd23d5..74c9bd8 100644
 --- a/doc/api/system_hooks.md
@@ -15996,6 +16413,19 @@ index efd23d5..74c9bd8 100644
 +# システムフック
  
  All methods require administrator authorization.
+ 
+diff --git a/doc/api/templates/licenses.md b/doc/api/templates/licenses.md
+index ae7218c..b9d614c 100644
+--- a/doc/api/templates/licenses.md
++++ b/doc/api/templates/licenses.md
+@@ -111,7 +111,7 @@ GET /templates/licenses/:key
+ | `project`  | string | no       | The copyrighted project name |
+ | `fullname` | string | no       | The full-name of the copyright holder |
+ 
+->**Note:**
++>**注意:**
+ If you omit the `fullname` parameter but authenticate your request, the name of
+ the authenticated user will be used to replace the copyright holder placeholder.
  
 diff --git a/doc/api/users.md b/doc/api/users.md
 index 041df07..67f8494 100644
@@ -16010,6 +16440,18 @@ index 041df07..67f8494 100644
  
  ```
  GET /users?username=jack_smith
+diff --git a/doc/api/version.md b/doc/api/version.md
+index 287d17c..0ea1645 100644
+--- a/doc/api/version.md
++++ b/doc/api/version.md
+@@ -1,6 +1,6 @@
+ # Version API
+ 
+->**Note:** This feature was introduced in GitLab 8.13
++>**注意:** This feature was introduced in GitLab 8.13
+ 
+ Retrieve version information for this GitLab instance. Responds `200 OK` for
+ authenticated users.
 diff --git a/doc/ci/README.md b/doc/ci/README.md
 index 545cc72..bcf26fc 100644
 --- a/doc/ci/README.md
@@ -16036,7 +16478,7 @@ index 84eaf29..e6991eb 100644
 ++ [Dockerイメージの利用](using_docker_images.md)
 ++ [Docker Buildの利用](using_docker_build.md)
 diff --git a/doc/ci/docker/using_docker_build.md b/doc/ci/docker/using_docker_build.md
-index 89088cf..fab788c 100644
+index 89088cf..236cd51 100644
 --- a/doc/ci/docker/using_docker_build.md
 +++ b/doc/ci/docker/using_docker_build.md
 @@ -1,4 +1,4 @@
@@ -16045,6 +16487,24 @@ index 89088cf..fab788c 100644
  
  GitLab CI allows you to use Docker Engine to build and test docker-based projects.
  
+@@ -72,7 +72,7 @@ GitLab Runner then executes build scripts as the `gitlab-runner` user.
+ 
+ 5. You can now use `docker` command and install `docker-compose` if needed.
+ 
+-> **Note:**
++> **注意:**
+ * By adding `gitlab-runner` to the `docker` group you are effectively granting `gitlab-runner` full root permissions.
+ For more information please read [On Docker security: `docker` group considered harmful](https://www.andreas-jung.com/contents/on-docker-security-docker-group-considered-harmful).
+ 
+@@ -270,7 +270,7 @@ which can be avoided if a different driver is used, for example `overlay`.
+ 
+ ## Using the GitLab Container Registry
+ 
+-> **Note:**
++> **注意:**
+ This feature requires GitLab 8.8 and GitLab Runner 1.2.
+ 
+ Once you've built a Docker image, you can push it up to the built-in [GitLab Container Registry](../../user/project/container_registry.md). For example, if you're using
 diff --git a/doc/ci/docker/using_docker_images.md b/doc/ci/docker/using_docker_images.md
 index aba7749..03cbae9 100644
 --- a/doc/ci/docker/using_docker_images.md
@@ -16068,6 +16528,72 @@ index c10f820..6c80057 100644
  and hit **Save** for the settings to take effect.
  
  ![Features settings](img/features_settings.png)
+diff --git a/doc/ci/environments.md b/doc/ci/environments.md
+index 9dd84a5..98be5e9 100644
+--- a/doc/ci/environments.md
++++ b/doc/ci/environments.md
+@@ -1,6 +1,6 @@
+ # Introduction to environments and deployments
+ 
+->**Note:**
++>**注意:**
+ Introduced in GitLab 8.9.
+ 
+ During the development of software, there can be many stages until it's ready
+@@ -120,7 +120,7 @@ There's a bunch of information there, specifically you can see:
+ - A button that re-deploys the latest deployment, meaning it runs the job
+   defined by the environment name for that specific commit
+ 
+->**Notes:**
++>**注意:**
+ - While you can create environments manually in the web interface, we recommend
+   that you define your environments in `.gitlab-ci.yml` first. They will
+   be automatically created for you after the first deploy.
+@@ -156,7 +156,7 @@ that can be found in the deployments page
+ (**Pipelines ➔ Environments ➔ `environment name`**) you can relaunch the
+ job with the commit associated with it.
+ 
+->**Note:**
++>**注意:**
+ Bare in mind that your mileage will vary and it's entirely up to how you define
+ the deployment process in the job's `script` whether the rollback succeeds or not.
+ GitLab CI is just following orders.
+@@ -221,7 +221,7 @@ Clicking on the play button in either of these places will trigger the
+ `deploy_prod` job, and the deployment will be recorded under a new
+ environment named `production`.
+ 
+->**Note:**
++>**注意:**
+ Remember that if your environment's name is `production` (all lowercase), then
+ it will get recorded in [Cycle Analytics](../user/project/cycle_analytics.md).
+ Double the benefit!
+@@ -272,7 +272,7 @@ the webserver to serve these requests is based on your setup.
+ Last but not least, we tell the job to run [`only`][only] on branches
+ [`except`][only] master.
+ 
+->**Note:**
++>**注意:**
+ You are not bound to use the same prefix or only slashes in the dynamic
+ environments' names (`/`), but as we will see later, this will enable the
+ [grouping similar environments](#grouping-similar-environments) feature.
+@@ -344,7 +344,7 @@ review_app:
+ It is assumed that the user has already setup NGINX and GitLab Runner in the
+ server this job will run on.
+ 
+->**Note:**
++>**注意:**
+ Be sure to check out the [limitations](#limitations) section for some edge
+ cases regarding naming of you branches and Review Apps.
+ 
+@@ -440,7 +440,7 @@ Setting the [`GIT_STRATEGY`][git-strategy] to `none` is necessary on the
+ `stop_review` job so that the [GitLab Runner] won't try to checkout the code
+ after the branch is deleted.
+ 
+->**Note:**
++>**注意:**
+ Starting with GitLab 8.14, dynamic environments will be stopped automatically
+ when their associated branch is deleted.
+ 
 diff --git a/doc/ci/permissions/README.md b/doc/ci/permissions/README.md
 index 42eb59f..660bf5f 100644
 --- a/doc/ci/permissions/README.md
@@ -16077,16 +16603,31 @@ index 42eb59f..660bf5f 100644
 +# ユーザ権限
  
  This document was moved to [user/permissions.md](../../user/permissions.md#gitlab-ci).
+diff --git a/doc/ci/pipelines.md b/doc/ci/pipelines.md
+index 7d100a4..03d1fb9 100644
+--- a/doc/ci/pipelines.md
++++ b/doc/ci/pipelines.md
+@@ -1,6 +1,6 @@
+ # Introduction to pipelines and builds
+ 
+->**Note:**
++>**注意:**
+ Introduced in GitLab 8.8.
+ 
+ ## Pipelines
 diff --git a/doc/ci/quick_start/README.md b/doc/ci/quick_start/README.md
-index c40cdd5..0495ab5 100644
+index c40cdd5..b95e900 100644
 --- a/doc/ci/quick_start/README.md
 +++ b/doc/ci/quick_start/README.md
-@@ -1,4 +1,4 @@
+@@ -1,6 +1,6 @@
 -# Quick Start
 +# クイックスタート
  
- >**Note:** Starting from version 8.0, GitLab [Continuous Integration][ci] (CI)
+->**Note:** Starting from version 8.0, GitLab [Continuous Integration][ci] (CI)
++>**注意:** Starting from version 8.0, GitLab [Continuous Integration][ci] (CI)
  is fully integrated into GitLab itself and is [enabled] by default on all
+ projects.
+ 
 @@ -208,7 +208,7 @@ you expected.
  ![Build log](img/build_log.png)
  
@@ -16142,7 +16683,7 @@ index a4c3a73..39ba2c7 100644
  #### Debug tracing
  
 diff --git a/doc/ci/yaml/README.md b/doc/ci/yaml/README.md
-index 6fee750..0a02098 100644
+index 6fee750..03aad6a 100644
 --- a/doc/ci/yaml/README.md
 +++ b/doc/ci/yaml/README.md
 @@ -303,8 +303,8 @@ job_name:
@@ -16174,7 +16715,33 @@ index 6fee750..0a02098 100644
  
  ```yaml
  stages:
-@@ -696,7 +696,7 @@ be complications during deployment. Follow the
+@@ -571,7 +571,7 @@ deployment to the `production` environment.
+ 
+ > Introduced in GitLab 8.11.
+ 
+->**Note:**
++>**注意:**
+ Before GitLab 8.11, the name of an environment could be defined as a string like
+ `environment: production`. The recommended way now is to define it under the
+ `name` keyword.
+@@ -607,7 +607,7 @@ deploy to production:
+ 
+ > Introduced in GitLab 8.11.
+ 
+->**Note:**
++>**注意:**
+ Before GitLab 8.11, the URL could be added only in GitLab's UI. The
+ recommended way now is to define it in `.gitlab-ci.yml`.
+ 
+@@ -689,14 +689,14 @@ The `stop_review_app` job is **required** to have the following keywords defined
+ These parameters can use any of the defined [CI variables](#variables)
+ (including predefined, secure variables and `.gitlab-ci.yml` variables).
+ 
+->**Note:**
++>**注意:**
+ Be aware than if the branch name contains special characters and you use the
+ `$CI_BUILD_REF_NAME` variable to dynamically create environments, there might
+ be complications during deployment. Follow the
  [issue 22849](https://gitlab.com/gitlab-org/gitlab-ce/issues/22849) for more
  information.
  
@@ -16183,10 +16750,69 @@ index 6fee750..0a02098 100644
  
  ```
  deploy as review app:
+@@ -722,7 +722,7 @@ https://gitlab.com/gitlab-examples/review-apps-nginx/.
+ 
+ ### artifacts
+ 
+->**Notes:**
++>**注意:**
+ >
+ > - Introduced in GitLab Runner v0.7.0 for non-Windows platforms.
+ > - Windows support was added in GitLab Runner v.1.0.0.
+@@ -1033,7 +1033,7 @@ shallow cloning of the repository which can significantly speed up cloning for
+ repositories with a large number of commits or old, large binaries. The value is
+ passed to `git fetch` and `git clone`.
+ 
+->**Note:**
++>**注意:**
+ If you use a depth of 1 and have a queue of builds or retry
+ builds, jobs may fail.
+ 
+diff --git a/doc/development/api_styleguide.md b/doc/development/api_styleguide.md
+index ce444eb..aeb7920 100644
+--- a/doc/development/api_styleguide.md
++++ b/doc/development/api_styleguide.md
+@@ -79,7 +79,7 @@ User.create(params) # imagine the user submitted `admin=1`... :)
+ User.create(declared(params, include_parent_namespaces: false).to_h)
+ ```
+ 
+->**Note:**
++>**注意:**
+ `declared(params)` return a `Hashie::Mash` object, on which you will have to
+ call `.to_h`.
+ 
+diff --git a/doc/development/architecture.md b/doc/development/architecture.md
+index 33fd50f..75ceebf 100644
+--- a/doc/development/architecture.md
++++ b/doc/development/architecture.md
+@@ -127,7 +127,7 @@ Usage: /etc/init.d/postgresql {start|stop|restart|reload|force-reload|status} [v
+ 
+ ### Log locations of the services
+ 
+-Note: `/home/git/` is shorthand for `/home/git`.
++注意: `/home/git/` is shorthand for `/home/git`.
+ 
+ gitlabhq (includes Unicorn and Sidekiq logs)
+ 
+@@ -187,4 +187,4 @@ bundle exec rake gitlab:env:info RAILS_ENV=production
+ bundle exec rake gitlab:check RAILS_ENV=production
+ ```
+ 
+-Note: It is recommended to log into the `git` user using `sudo -i -u git` or `sudo su - git`. While the sudo commands provided by gitlabhq work in Ubuntu they do not always work in RHEL.
++注意: It is recommended to log into the `git` user using `sudo -i -u git` or `sudo su - git`. While the sudo commands provided by gitlabhq work in Ubuntu they do not always work in RHEL.
 diff --git a/doc/development/doc_styleguide.md b/doc/development/doc_styleguide.md
-index b137e6a..0d7c98b 100644
+index b137e6a..c913a2f 100644
 --- a/doc/development/doc_styleguide.md
 +++ b/doc/development/doc_styleguide.md
+@@ -5,7 +5,7 @@ it organized and easy to find.
+ 
+ ## Location and naming of documents
+ 
+->**Note:**
++>**注意:**
+ These guidelines derive from the discussion taken place in issue [#3349][ce-3349].
+ 
+ The documentation hierarchy can be vastly improved by providing a better layout
 @@ -103,7 +103,7 @@ merge request.
    corrected
  - Leave exactly one newline after a heading
@@ -16223,6 +16849,15 @@ index b137e6a..0d7c98b 100644
  
      ```
      GET /projects/:id/repository/branches
+@@ -420,7 +420,7 @@ curl --data "name=foo" --header "PRIVATE-TOKEN: 9koXpg98eAheJpvBs5tK" "https://g
+ 
+ #### Post data using JSON content
+ 
+-> **Note:** In this example we create a new group. Watch carefully the single
++> **注意:** In this example we create a new group. Watch carefully the single
+ and double quotes.
+ 
+ ```bash
 diff --git a/doc/development/frontend.md b/doc/development/frontend.md
 index ec8f2d6..6464c95 100644
 --- a/doc/development/frontend.md
@@ -16324,6 +16959,35 @@ index e244ad4..ce3c28c 100644
  
      ENABLE_BULLET=true bundle exec rails s
  
+diff --git a/doc/development/rake_tasks.md b/doc/development/rake_tasks.md
+index 827db7e..574411a 100644
+--- a/doc/development/rake_tasks.md
++++ b/doc/development/rake_tasks.md
+@@ -10,7 +10,7 @@ bundle exec rake setup
+ 
+ The `setup` task is a alias for `gitlab:setup`.
+ This tasks calls `db:reset` to create the database, calls `add_limits_mysql` that adds limits to the database schema in case of a MySQL database and finally it calls `db:seed_fu` to seed the database.
+-Note: `db:setup` calls `db:seed` but this does nothing.
++注意: `db:setup` calls `db:seed` but this does nothing.
+ 
+ ## Run tests
+ 
+@@ -20,13 +20,13 @@ In order to run the test you can use the following commands:
+ - `rake teaspoon` to run the teaspoon test suite
+ - `rake gitlab:test` to run all the tests
+ 
+-Note: Both `rake spinach` and `rake spec` takes significant time to pass. 
++注意: Both `rake spinach` and `rake spec` takes significant time to pass. 
+ Instead of running full test suite locally you can save a lot of time by running
+ a single test or directory related to your changes. After you submit merge request 
+ CI will run full test suite for you. Green CI status in the merge request means 
+ full test suite is passed.  
+ 
+-Note: You can't run `rspec .` since this will try to run all the `_spec.rb`
++注意: You can't run `rspec .` since this will try to run all the `_spec.rb`
+ files it can find, also the ones in `/tmp`
+ 
+ To run a single test file you can use:
 diff --git a/doc/development/shell_commands.md b/doc/development/shell_commands.md
 index 73893f9..e5c382e 100644
 --- a/doc/development/shell_commands.md
@@ -16417,9 +17081,18 @@ index 764c335..1c8dc6b 100644
  #### `@` People
  
 diff --git a/doc/development/ux_guide/copy.md b/doc/development/ux_guide/copy.md
-index 03392a0..177157b 100644
+index 03392a0..4504b47 100644
 --- a/doc/development/ux_guide/copy.md
 +++ b/doc/development/ux_guide/copy.md
+@@ -2,7 +2,7 @@
+ 
+ The copy and messaging is a core part of the experience of GitLab and the conversation with our users. Follow the below conventions throughout GitLab.
+ 
+->**Note:**
++>**注意:**
+ We are currently inconsistent with this guidance. Images below are created to illustrate the point. As this guidance is refined, we will ensure that our experiences align.
+ 
+ ## Contents
 @@ -21,7 +21,7 @@ We should _not_ rely on words as a crutch to explain the purpose of a screen.
  The current navigation and composition of the elements on the screen should get the user 95% there, with the remaining 5% being specific elements such as text.
  This means that, as a rule, copy should be very short. A long message or label is a red flag hinting at design that needs improvement.
@@ -16565,6 +17238,19 @@ index 1c54984..2cd1d71 100644
  
  1. From there you can see several options.
  
+diff --git a/doc/gitlab-basics/create-your-ssh-keys.md b/doc/gitlab-basics/create-your-ssh-keys.md
+index b6ebe37..a2b2f84 100644
+--- a/doc/gitlab-basics/create-your-ssh-keys.md
++++ b/doc/gitlab-basics/create-your-ssh-keys.md
+@@ -28,7 +28,7 @@
+     ![SSH key single page](img/profile_settings_ssh_keys_single_key.png)
+ 
+ 
+->**Note:**
++>**注意:**
+ Once you add a key, you cannot edit it, only remove it. In case the paste
+ didn't work, you will have to remove the offending key and re-add it.
+ 
 diff --git a/doc/gitlab-basics/start-using-git.md b/doc/gitlab-basics/start-using-git.md
 index 42cd8bb..adf7c31 100644
 --- a/doc/gitlab-basics/start-using-git.md
@@ -16652,9 +17338,18 @@ index 48dddf7..0938303 100644
  1.  Restart GitLab for the changes to take effect.
  
 diff --git a/doc/integration/bitbucket.md b/doc/integration/bitbucket.md
-index 556d71b..7bdb67b 100644
+index 556d71b..a4d7236 100644
 --- a/doc/integration/bitbucket.md
 +++ b/doc/integration/bitbucket.md
+@@ -17,7 +17,7 @@ Bitbucket.org.
+ 
+ ## Bitbucket OmniAuth provider
+ 
+-> **Note:**
++> **注意:**
+ Make sure to first follow the [Initial OmniAuth configuration][init-oauth]
+ before proceeding with setting up the Bitbucket integration.
+ 
 @@ -61,7 +61,7 @@ you to use.
  
        ![Bitbucket OAuth key](img/bitbucket_oauth_keys.png)
@@ -16795,19 +17490,77 @@ index 0c53584..273eaf6 100644
  
  ![Authorized_applications](img/oauth_provider_authorized_application.png)
  
+diff --git a/doc/integration/omniauth.md b/doc/integration/omniauth.md
+index 8a55fce..322f9b9 100644
+--- a/doc/integration/omniauth.md
++++ b/doc/integration/omniauth.md
+@@ -44,7 +44,7 @@ that are in common for all providers that we need to consider.
+   be blocked by default and will have to be unblocked by an administrator before
+   they are able to sign in.
+ 
+->**Note:**
++>**注意:**
+ If you set `block_auto_created_users` to `false`, make sure to only
+ define providers under `allow_single_sign_on` that you are able to control, like
+ SAML, Shibboleth, Crowd or Google, or set it to `false` otherwise any user on
+@@ -123,7 +123,7 @@ The chosen OmniAuth provider is now active and can be used to sign in to GitLab
+ 
+ ## Configure OmniAuth Providers as External
+ 
+->**Note:**
++>**注意:**
+ This setting was introduced with version 8.7 of GitLab
+ 
+ You can define which OmniAuth providers you want to be `external` so that all users
+@@ -132,7 +132,7 @@ access to internal projects. You will need to use the full name of the provider,
+ like `google_oauth2` for Google. Refer to the examples for the full names of the
+ supported providers.
+ 
+->**Note:**
++>**注意:**
+ If you decide to remove an OmniAuth provider from the external providers list
+ you will need to manually update the users that use this method to login, if you
+ want their accounts to be upgraded to full internal accounts.
+@@ -152,7 +152,7 @@ want their accounts to be upgraded to full internal accounts.
+ 
+ ## Using Custom Omniauth Providers
+ 
+->**Note:**
++>**注意:**
+ The following information only applies for installations from source.
+ 
+ GitLab uses [Omniauth](http://www.omniauth.org/) for authentication and already ships
+@@ -201,12 +201,12 @@ we'd like to at least help those with specific needs.
+ 
+ ## Enable or disable Sign In with an OmniAuth provider without disabling import sources
+ 
+->**Note:**
++>**注意:**
+ This setting was introduced with version 8.8 of GitLab.
+ 
+ Administrators are able to enable or disable Sign In via some OmniAuth providers.
+ 
+->**Note:**
++>**注意:**
+ By default Sign In is enabled via all the OAuth Providers that have been configured in `config/gitlab.yml`.
+ 
+ In order to enable/disable an OmniAuth provider, go to Admin Area -> Settings -> Sign-in Restrictions section -> Enabled OAuth Sign-In sources and select the providers you want to enable or disable.
 diff --git a/doc/integration/saml.md b/doc/integration/saml.md
-index 4a242c3..ad94ab3 100644
+index 4a242c3..1578a6a 100644
 --- a/doc/integration/saml.md
 +++ b/doc/integration/saml.md
-@@ -131,7 +131,7 @@ On the sign in page there should now be a SAML button below the regular sign in
+@@ -131,9 +131,9 @@ On the sign in page there should now be a SAML button below the regular sign in
  Click the icon to begin the authentication process. If everything goes well the user
  will be returned to GitLab and will be signed in.
  
 -## External Groups
 +## 外部グループ
  
- >**Note:**
+->**Note:**
++>**注意:**
  This setting is only available on GitLab 8.7 and above.
+ 
+ SAML login includes support for external groups. You can define in the SAML
 @@ -148,7 +148,7 @@ with the regular SAML response. Here is an example:
  
  ```xml
@@ -16826,6 +17579,15 @@ index 4a242c3..ad94ab3 100644
    external_groups: ['Freelancers', 'Interns'],
    args: {
            assertion_consumer_service_url: 'https://gitlab.example.com/users/auth/saml/callback',
+@@ -202,7 +202,7 @@ of the SAML users has admin permissions.
+ 
+ ### `attribute_statements`
+ 
+->**Note:**
++>**注意:**
+ This setting is only available on GitLab 8.6 and above.
+ This setting should only be used to map attributes that are part of the
+ OmniAuth info hash schema.
 diff --git a/doc/integration/twitter.md b/doc/integration/twitter.md
 index abbea09..39060dc 100644
 --- a/doc/integration/twitter.md
@@ -16887,7 +17649,7 @@ index 073b879..8e9b0c1 100644
  
  ## Application theme
 diff --git a/doc/profile/two_factor_authentication.md b/doc/profile/two_factor_authentication.md
-index 3f6dfe0..f13cc0c 100644
+index 3f6dfe0..c841b95 100644
 --- a/doc/profile/two_factor_authentication.md
 +++ b/doc/profile/two_factor_authentication.md
 @@ -1,6 +1,6 @@
@@ -16898,6 +17660,31 @@ index 3f6dfe0..f13cc0c 100644
  GitLab account. Once enabled, in addition to supplying your username and
  password to login, you'll be prompted for a code generated by an application on
  your phone.
+@@ -8,7 +8,7 @@ your phone.
+ By enabling 2FA, the only way someone other than you can log into your account
+ is to know your username and password *and* have access to your phone.
+ 
+-> **Note:**
++> **注意:**
+ When you enable 2FA, don't forget to back up your recovery codes. For your safety, if you
+ lose your codes for GitLab.com, we can't disable or recover them.  
+ 
+@@ -17,13 +17,13 @@ the second factor of authentication. Once enabled, in addition to supplying your
+ password to login, you'll be prompted to activate your U2F device (usually by pressing
+ a button on it), and it will perform secure authentication on your behalf.
+ 
+-> **Note:** Support for U2F devices was added in version 8.8
++> **注意:** Support for U2F devices was added in version 8.8
+ 
+ The U2F workflow is only supported by Google Chrome at this point, so we _strongly_ recommend 
+ that you set up both methods of two-factor authentication, so you can still access your account 
+ from other browsers.
+ 
+-> **Note:** GitLab officially only supports [Yubikey] U2F devices.
++> **注意:** GitLab officially only supports [Yubikey] U2F devices.
+ 
+ ## Enabling 2FA
+ 
 @@ -32,9 +32,9 @@ from other browsers.
  **In GitLab:**
  
@@ -16919,14 +17706,17 @@ index 3f6dfe0..f13cc0c 100644
  1. Go to **Account**.
  1. Click **Enable Two-Factor Authentication**.
  1. Plug in your U2F device.
-@@ -81,7 +81,7 @@ storage in a safe place. **Each code can be used only once** to log in to your
+@@ -81,9 +81,9 @@ storage in a safe place. **Each code can be used only once** to log in to your
  account.
  
  If you lose the recovery codes or just want to generate new ones, you can do so
 -from the **Profile Settings** > **Account** page where you first enabled 2FA.
 +from the **プロフィール設定** > **Account** page where you first enabled 2FA.
  
- > **Note:** Recovery codes are not generated for U2F devices.
+-> **Note:** Recovery codes are not generated for U2F devices.
++> **注意:** Recovery codes are not generated for U2F devices.
+ 
+ ## Logging in with 2FA Enabled
  
 @@ -110,7 +110,7 @@ Click on **Authenticate via U2F Device** to complete the process.
  ## Disabling 2FA
@@ -16973,7 +17763,7 @@ index 2f9f36f..8adaf6e 100644
  + **Send from committer** - Send notifications from the committer's email address if the domain is part of the domain GitLab is running on (e.g. `user@gitlab.com`).
  + **Disable code diffs** - Don't include possibly sensitive code diffs in notification body.
 diff --git a/doc/project_services/jira.md b/doc/project_services/jira.md
-index 366e4b2..1b0863f 100644
+index 366e4b2..75079c1 100644
 --- a/doc/project_services/jira.md
 +++ b/doc/project_services/jira.md
 @@ -49,7 +49,7 @@ We have split this stage in steps so it is easier to follow.
@@ -16985,6 +17775,15 @@ index 366e4b2..1b0863f 100644
  
       ![JIRA create new user](img/jira_create_new_group.png)
  
+@@ -83,7 +83,7 @@ password as they will be needed when configuring GitLab in the next section.
+ 
+ ### Configuring GitLab
+ 
+->**Notes:**
++>**注意:**
+ - The currently supported JIRA versions are `v6.x` and `v7.x.`. GitLab 7.8 or
+   higher is required.
+ - GitLab 8.14 introduced a new way to integrate with JIRA which greatly simplified
 diff --git a/doc/project_services/mattermost_slash_commands.md b/doc/project_services/mattermost_slash_commands.md
 index 1507dfa..83f2c79 100644
 --- a/doc/project_services/mattermost_slash_commands.md
@@ -17025,11 +17824,24 @@ index 890f752..ad58673 100644
  
  | Service |	Description |
  | ------- | ----------- |
+diff --git a/doc/project_services/slack.md b/doc/project_services/slack.md
+index 3cfe77c..558b993 100644
+--- a/doc/project_services/slack.md
++++ b/doc/project_services/slack.md
+@@ -40,7 +40,7 @@ At the end, fill in your Slack details:
+ 
+ After you are all done, click **Save changes** for the changes to take effect.
+ 
+->**Note:**
++>**注意:**
+ You can set "branch,pushed,Compare changes" as highlight words on your Slack
+ profile settings, so that you can be aware of new commits when somebody pushes
+ them.
 diff --git a/doc/public_access/public_access.md b/doc/public_access/public_access.md
-index a3921f1..15a94ba 100644
+index a3921f1..cfc51f2 100644
 --- a/doc/public_access/public_access.md
 +++ b/doc/public_access/public_access.md
-@@ -1,41 +1,38 @@
+@@ -1,43 +1,40 @@
 -# Public access
 +# 公開アクセス
  
@@ -17084,8 +17896,11 @@ index a3921f1..15a94ba 100644
 -## Visibility of groups
 +## グループの可視性
  
- >**Note:**
+->**Note:**
++>**注意:**
  [Starting with][3323] GitLab 8.6, the group visibility has changed and can be
+ configured the same way as projects. In previous versions, a group's page was
+ always visible to all users.
 @@ -50,20 +47,15 @@ for anonymous users. The group page now has a visibility level icon.
  
  [3323]: https://gitlab.com/gitlab-org/gitlab-ce/merge_requests/3323
@@ -17246,7 +18061,7 @@ index cf891cd..f4b0d26 100644
  ```
  # omnibus-gitlab
 diff --git a/doc/raketasks/features.md b/doc/raketasks/features.md
-index f9a4619..3f89f56 100644
+index f9a4619..2adc533 100644
 --- a/doc/raketasks/features.md
 +++ b/doc/raketasks/features.md
 @@ -1,19 +1,19 @@
@@ -17259,7 +18074,8 @@ index f9a4619..3f89f56 100644
 -This command will enable the namespaces feature introduced in v4.0. It will move every project in its namespace folder.
 +このコマンドは、v4.0 で導入されたネームスペースの機能を有効にします。すべてのプロジェクトをネームスペースフォルダに移動します。
  
- Note:
+-Note:
++注意:
  
 -- Because the **repository location will change**, you will need to **update all your git URLs** to point to the new location.
 -- Username can be changed at [Profile / Account](/profile/account)
@@ -17422,7 +18238,7 @@ index c849938..d83918a 100644
  
  # Installations from source
 diff --git a/doc/ssh/README.md b/doc/ssh/README.md
-index d6a0979..6bcfced 100644
+index d6a0979..5b9404f 100644
 --- a/doc/ssh/README.md
 +++ b/doc/ssh/README.md
 @@ -1,6 +1,6 @@
@@ -17433,6 +18249,15 @@ index d6a0979..6bcfced 100644
  
  An SSH key allows you to establish a secure connection between your
  computer and GitLab. Before generating an SSH key in your shell, check if your system
+@@ -26,7 +26,7 @@ pair and for a password. When prompted for the location and filename, just
+ press enter to use the default. If you use a different name, the key will not
+ be used automatically.
+ 
+-Note: It is a best practice to use a password for an SSH key, but it is not
++注意: It is a best practice to use a password for an SSH key, but it is not
+ required and you can skip creating a password by pressing enter.
+ 
+ If you want to change the password of your key later, you can use the following
 @@ -70,7 +70,7 @@ pbcopy < ~/.ssh/id_rsa.pub
  xclip -sel clip < ~/.ssh/id_rsa.pub
  ```
@@ -17450,7 +18275,7 @@ index d6a0979..6bcfced 100644
 \ No newline at end of file
 +have when pushing code via SSH. That's why it needs to uniquely map to a single user.
 diff --git a/doc/system_hooks/system_hooks.md b/doc/system_hooks/system_hooks.md
-index c44930a..d7bcd00 100644
+index c44930a..7be4ca2 100644
 --- a/doc/system_hooks/system_hooks.md
 +++ b/doc/system_hooks/system_hooks.md
 @@ -1,24 +1,24 @@
@@ -17462,7 +18287,8 @@ index c44930a..d7bcd00 100644
 -System hooks can be used, e.g. for logging or changing information in a LDAP server.
 +システムフック can be used, e.g. for logging or changing information in a LDAP server.
  
- > **Note:**
+-> **Note:**
++> **注意:**
  >
 -> We follow the same structure from Webhooks for Push and Tag events, but we never display commits.
 +> We follow the same structure from Webhooks for Push and タグイベント, but we never display commits.
@@ -17912,10 +18738,58 @@ index 35afe73..5ce7c78
  - Manage project members
  - Project settings
  
+diff --git a/doc/update/5.1-to-6.0.md b/doc/update/5.1-to-6.0.md
+index c992c69..d1e0064 100644
+--- a/doc/update/5.1-to-6.0.md
++++ b/doc/update/5.1-to-6.0.md
+@@ -179,7 +179,7 @@ sudo -u git -H git config --global core.autocrlf input
+ 
+ ## 6. Update config files
+ 
+-Note: We switched from Puma in GitLab 5.x to unicorn in GitLab 6.0.
++注意: We switched from Puma in GitLab 5.x to unicorn in GitLab 6.0.
+ 
+ - Make `/home/git/gitlab/config/gitlab.yml` the same as https://gitlab.com/gitlab-org/gitlab-ce/blob/6-0-stable/config/gitlab.yml.example but with your settings.
+ - Make `/home/git/gitlab/config/unicorn.rb` the same as https://gitlab.com/gitlab-org/gitlab-ce/blob/6-0-stable/config/unicorn.rb.example but with your settings.
+diff --git a/doc/update/5.4-to-6.0.md b/doc/update/5.4-to-6.0.md
+index f0fee63..d0e3370 100644
+--- a/doc/update/5.4-to-6.0.md
++++ b/doc/update/5.4-to-6.0.md
+@@ -112,7 +112,7 @@ sudo -u git -H bundle exec rake assets:precompile RAILS_ENV=production
+ 
+ ## 6. Update config files
+ 
+-Note: We switched from Puma in GitLab 5.4 to unicorn in GitLab 6.0.
++注意: We switched from Puma in GitLab 5.4 to unicorn in GitLab 6.0.
+ 
+ - Make `/home/git/gitlab/config/gitlab.yml` the same as https://gitlab.com/gitlab-org/gitlab-ce/blob/master/config/gitlab.yml.example but with your settings.
+ - Make `/home/git/gitlab/config/unicorn.rb` the same as https://gitlab.com/gitlab-org/gitlab-ce/blob/master/config/unicorn.rb.example but with your settings.
+diff --git a/doc/update/README.md b/doc/update/README.md
+index 837b31a..55bb71a 100644
+--- a/doc/update/README.md
++++ b/doc/update/README.md
+@@ -58,7 +58,7 @@ Below you can find some guides to help you change editions easily.
+ 
+ ### Community to Enterprise Edition
+ 
+->**Note:**
++>**注意:**
+ The following guides are for subscribers of the Enterprise Edition only.
+ 
+ If you wish to upgrade your GitLab installation from Community to Enterprise
 diff --git a/doc/user/account/two_factor_authentication.md b/doc/user/account/two_factor_authentication.md
-index 881358e..1a5cf36 100644
+index 881358e..fe8ebf5 100644
 --- a/doc/user/account/two_factor_authentication.md
 +++ b/doc/user/account/two_factor_authentication.md
+@@ -15,7 +15,7 @@ First, enter your username/email and password on the GitLab sign in page. When
+ prompted for a two-factor code, enter one of the recovery codes you saved
+ previously.
+ 
+-> **Note:** Once a particular recovery code has been used, it cannot be used again.
++> **注意:** Once a particular recovery code has been used, it cannot be used again.
+   You may still use the other saved recovery codes at a later time.
+ 
+ ### Generate new recovery codes using SSH
 @@ -48,7 +48,7 @@ b510e7422e81c947
  df9d3b9403b9c9f0
  
@@ -17930,7 +18804,7 @@ index 881358e..1a5cf36 100644
  from the command line output.
  
 -> **Note:** After signing in, you should immediately visit your **Profile Settings
-+> **Note:** After signing in, you should immediately visit your **プロフィール設定
++> **注意:** After signing in, you should immediately visit your **プロフィール設定
    -> Account** to set up two-factor authentication with a new device.
  
  ### Ask a GitLab administrator to disable two-factor on your account
@@ -17951,10 +18825,32 @@ index 9e2a89e..de275ce 100644
 +ラベル that are created within the ラベル view on the Admin Dashboard will be automatically added to each new project.
  
  ![Default label set](img/admin_labels.png)
+diff --git a/doc/user/admin_area/settings/visibility_and_access_controls.md b/doc/user/admin_area/settings/visibility_and_access_controls.md
+index 633f16a..f551514 100644
+--- a/doc/user/admin_area/settings/visibility_and_access_controls.md
++++ b/doc/user/admin_area/settings/visibility_and_access_controls.md
+@@ -32,7 +32,7 @@ When you choose to allow only one of the protocols, a couple of things will happ
+ On top of these UI restrictions, GitLab will deny all Git actions on the protocol
+ not selected.
+ 
+-> **Note:** Please keep in mind that disabling an access protocol does not actually
++> **注意:** Please keep in mind that disabling an access protocol does not actually
+   block access to the server itself. The ports used for the protocol, be it SSH or
+   HTTP, will still be accessible. What GitLab does is restrict access on the
+   application level.
 diff --git a/doc/user/markdown.md b/doc/user/markdown.md
-index 162d1bd..16ee827 100644
+index 162d1bd..1ce9bb0 100644
 --- a/doc/user/markdown.md
 +++ b/doc/user/markdown.md
+@@ -2,7 +2,7 @@
+ 
+ ## GitLab Flavored Markdown (GFM)
+ 
+-> **Note:**
++> **注意:**
+ Not all of the GitLab-specific extensions to Markdown that are described in
+ this document currently work on our documentation website.
+ >
 @@ -13,28 +13,28 @@ _GitLab uses the [Redcarpet Ruby library][redcarpet] for Markdown processing._
  
  GitLab uses "GitLab Flavored Markdown" (GFM). It extends the standard Markdown in a few significant ways to add some useful functionality. It was inspired by [GitHub Flavored Markdown](https://help.github.com/articles/basic-writing-and-formatting-syntax/).
@@ -18660,7 +19556,7 @@ index 162d1bd..16ee827 100644
  [^1]: This link will be broken if you see this document from the Help page or docs.gitlab.com
  [^2]: This is my awesome footnote.
 diff --git a/doc/user/permissions.md b/doc/user/permissions.md
-index cea7886..2fb5373 100644
+index cea7886..e5bb71d 100644
 --- a/doc/user/permissions.md
 +++ b/doc/user/permissions.md
 @@ -1,4 +1,4 @@
@@ -18669,7 +19565,12 @@ index cea7886..2fb5373 100644
  
  Users have different abilities depending on the access level they have in a
  particular group or project. If a user is both in a group's project and the
-@@ -16,19 +16,19 @@ documentation](../workflow/add-user/add-user.md).
+@@ -12,23 +12,23 @@ GitLab administrators receive all permissions.
+ To add or import a user, you can follow the [project users and members
+ documentation](../workflow/add-user/add-user.md).
+ 
+-## Project
++## プロジェクト
  
  The following table depicts the various user permission levels in a project.
  
@@ -18810,8 +19711,29 @@ index cea7886..2fb5373 100644
  |---------------------------------------------|-----------------|-------------|----------|--------|
  | Run CI build                                |                 | ✓           | ✓        | ✓      |
  | Clone source and LFS from current project   |                 | ✓           | ✓        | ✓      |
+diff --git a/doc/user/project/builds/artifacts.md b/doc/user/project/builds/artifacts.md
+index 88f1863..bedafa5 100644
+--- a/doc/user/project/builds/artifacts.md
++++ b/doc/user/project/builds/artifacts.md
+@@ -1,6 +1,6 @@
+ # Introduction to build artifacts
+ 
+->**Notes:**
++>**注意:**
+ >- Since GitLab 8.2 and GitLab Runner 0.7.0, build artifacts that are created by
+    GitLab Runner are uploaded to GitLab and are downloadable as a single archive
+    (`tar.gz`) using the GitLab UI.
+@@ -72,7 +72,7 @@ the archive and at this point there is one directory and one HTML file.
+ 
+ ## Downloading build artifacts
+ 
+->**Note:**
++>**注意:**
+ GitLab does not extract the entire artifacts archive to send just a single file
+ to the user. When clicking on a specific file, [GitLab Workhorse] extracts it
+ from the archive and the download begins. This implementation saves space,
 diff --git a/doc/user/project/container_registry.md b/doc/user/project/container_registry.md
-index b205fea..1e563b4 100644
+index b205fea..abcffb0 100644
 --- a/doc/user/project/container_registry.md
 +++ b/doc/user/project/container_registry.md
 @@ -4,7 +4,7 @@
@@ -18823,7 +19745,12 @@ index b205fea..1e563b4 100644
  Docker Registry manifest `v1` support was added in GitLab 8.9 to support Docker
  versions earlier than 1.10.
  >
-@@ -96,7 +96,7 @@ delete them.
+@@ -92,11 +92,11 @@ delete them.
+ 
+ ## Build and push images using GitLab CI
+ 
+-> **Note:**
++> **注意:**
  This feature requires GitLab 8.8 and GitLab Runner 1.2.
  
  Make sure that your GitLab Runner is configured to allow building Docker images by
@@ -18867,6 +19794,18 @@ index 4a6c0d8..7b12309 100644
  
  [Developers and up](../permissions.md) can use all the functionality of the
  Issue Board, that is create/delete lists and drag issues around.
+diff --git a/doc/user/project/issues/automatic_issue_closing.md b/doc/user/project/issues/automatic_issue_closing.md
+index d6f3a7d..92d35f9 100644
+--- a/doc/user/project/issues/automatic_issue_closing.md
++++ b/doc/user/project/issues/automatic_issue_closing.md
+@@ -1,6 +1,6 @@
+ # Automatic issue closing
+ 
+->**Note:**
++>**注意:**
+ This is the user docs. In order to change the default issue closing pattern,
+ follow the steps in the [administration docs].
+ 
 diff --git a/doc/user/project/koding.md b/doc/user/project/koding.md
 index c56a1ef..b3bd28f 100644
 --- a/doc/user/project/koding.md
@@ -18881,7 +19820,7 @@ index c56a1ef..b3bd28f 100644
  by using `Set Up Koding` button which will be visible on every project's
  landing page;
 diff --git a/doc/user/project/labels.md b/doc/user/project/labels.md
-index cf1d9cb..55407a1 100644
+index cf1d9cb..a7029b8 100644
 --- a/doc/user/project/labels.md
 +++ b/doc/user/project/labels.md
 @@ -1,6 +1,6 @@
@@ -18893,7 +19832,12 @@ index cf1d9cb..55407a1 100644
  descriptive titles like `bug`, `documentation` or any other text you feel like.
  They can have different colors, a description, and are visible throughout
  the issue tracker or inside each issue individually.
-@@ -15,7 +15,7 @@ that works.
+@@ -11,11 +11,11 @@ that works.
+ 
+ ## Create new labels
+ 
+->**Note:**
++>**注意:**
  A permission level of `Developer` or higher is required in order to manage
  labels.
  
@@ -18920,6 +19864,15 @@ index cf1d9cb..55407a1 100644
  
  ![Default generated labels](img/labels_default.png)
  
+@@ -57,7 +57,7 @@ issues and merge requests assigned to each label.
+ 
+ ## Prioritize labels
+ 
+->**Notes:**
++>**注意:**
+ >
+ > - Introduced in GitLab 8.9.
+ > - Priority sorting is based on the highest priority label only. This might
 @@ -67,12 +67,12 @@ issues and merge requests assigned to each label.
  Prioritized labels are like any other label, but sorted by priority. This allows
  you to sort issues and merge requests by priority.
@@ -18963,7 +19916,7 @@ index cf1d9cb..55407a1 100644
  
  Pick an existing label from the dropdown _Label_ menu or click on an existing
 diff --git a/doc/user/project/merge_requests.md b/doc/user/project/merge_requests.md
-index 5af9a5d..f43451a 100644
+index 5af9a5d..931dc26 100644
 --- a/doc/user/project/merge_requests.md
 +++ b/doc/user/project/merge_requests.md
 @@ -1,9 +1,9 @@
@@ -18978,6 +19931,15 @@ index 5af9a5d..f43451a 100644
  
  There are two main ways to have a merge request flow with GitLab:
  
+@@ -84,7 +84,7 @@ whitespace changes.
+ Here are some tips that will help you be more efficient with merge requests in
+ the command line.
+ 
+-> **Note:**
++> **注意:**
+ This section might move in its own document in the future.
+ 
+ ### Checkout merge requests locally
 diff --git a/doc/user/project/merge_requests/authorization_for_merge_requests.md b/doc/user/project/merge_requests/authorization_for_merge_requests.md
 index 59b3fe7..d6f77a1 100644
 --- a/doc/user/project/merge_requests/authorization_for_merge_requests.md
@@ -19001,6 +19963,19 @@ index 64b94d8..06c2553 100644
  
  ## Cherry-picking a Merge Request
  
+diff --git a/doc/user/project/merge_requests/merge_when_build_succeeds.md b/doc/user/project/merge_requests/merge_when_build_succeeds.md
+index d4e5b5d..a3445d6 100644
+--- a/doc/user/project/merge_requests/merge_when_build_succeeds.md
++++ b/doc/user/project/merge_requests/merge_when_build_succeeds.md
+@@ -29,7 +29,7 @@ changes to be reviewed.
+ 
+ ## Only allow merge requests to be merged if the build succeeds
+ 
+-> **Note:**
++> **注意:**
+ You need to have builds configured to enable this feature.
+ 
+ You can prevent merge requests from being merged if their build did not succeed.
 diff --git a/doc/user/project/merge_requests/revert_changes.md b/doc/user/project/merge_requests/revert_changes.md
 index 5ead9f4..41a7bd5 100644
 --- a/doc/user/project/merge_requests/revert_changes.md
@@ -19019,6 +19994,19 @@ index 5ead9f4..41a7bd5 100644
  created since GitLab 8.5. However, you can still revert a Merge Request
  by reverting the merge commit from the list of Commits page._
  
+diff --git a/doc/user/project/merge_requests/versions.md b/doc/user/project/merge_requests/versions.md
+index 77eab7b..d60dd18 100644
+--- a/doc/user/project/merge_requests/versions.md
++++ b/doc/user/project/merge_requests/versions.md
+@@ -32,7 +32,7 @@ changes appears as a system note.
+ 
+ ---
+ 
+->**Notes:**
++>**注意:**
+ - Comments are disabled while viewing outdated merge versions or comparing to
+   versions other than base.
+ - Merge request versions are based on push not on commit. So, if you pushed 5
 diff --git a/doc/user/project/merge_requests/work_in_progress_merge_requests.md b/doc/user/project/merge_requests/work_in_progress_merge_requests.md
 index 546c8bd..4f666fe 100644
 --- a/doc/user/project/merge_requests/work_in_progress_merge_requests.md
@@ -19030,7 +20018,7 @@ index 546c8bd..4f666fe 100644
  To prevent merge requests from accidentally being accepted before they're
  completely ready, GitLab blocks the "Accept" button for merge requests that
 diff --git a/doc/user/project/new_ci_build_permissions_model.md b/doc/user/project/new_ci_build_permissions_model.md
-index 60b7bec..1f7c95f 100644
+index 60b7bec..017b8dc 100644
 --- a/doc/user/project/new_ci_build_permissions_model.md
 +++ b/doc/user/project/new_ci_build_permissions_model.md
 @@ -116,7 +116,7 @@ https://gitlab-ci-token:<project-runners-token>/gitlab.com/gitlab-org/gitlab-ce.
@@ -19042,6 +20030,24 @@ index 60b7bec..1f7c95f 100644
  
  ```
  docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+@@ -198,7 +198,7 @@ If dealing with submodules, your project will probably have a file named
+ 	url = git@gitlab.com/group/tools.git
+ ```
+ 
+-> **Note:**
++> **注意:**
+ If you are **not** using GitLab 8.12 or higher, you would need to work your way
+ around this issue in order to access the sources of `gitlab.com/group/tools`
+ (e.g., use [SSH keys](../ssh_keys/README.md)).
+@@ -287,7 +287,7 @@ before_script:
+ With the update permission model we also extended the support for accessing
+ Container Registries for private projects.
+ 
+-> **Note:**
++> **注意:**
+ As GitLab Runner 1.6 doesn't yet incorporate the introduced changes for
+ permissions, this makes the `image:` directive to not work with private projects
+ automatically. The manual configuration by an Administrator is required to use
 diff --git a/doc/user/project/protected_branches.md b/doc/user/project/protected_branches.md
 index f7a686d..cd21bb3 100644
 --- a/doc/user/project/protected_branches.md
@@ -19087,7 +20093,7 @@ index f7a686d..cd21bb3 100644
  | Wildcard Protected Branch | Matching Branches                                      |
  |---------------------------+--------------------------------------------------------|
 diff --git a/doc/user/project/repository/web_editor.md b/doc/user/project/repository/web_editor.md
-index 675e89e..3dcb9fc 100644
+index 675e89e..3cb26d5 100644
 --- a/doc/user/project/repository/web_editor.md
 +++ b/doc/user/project/repository/web_editor.md
 @@ -1,4 +1,4 @@
@@ -19096,6 +20102,27 @@ index 675e89e..3dcb9fc 100644
  
  Sometimes it's easier to make quick changes directly from the GitLab interface
  than to clone the project and use the Git command line tool. In this feature
+@@ -44,7 +44,7 @@ has already been created, which creates a link to the license itself.
+ 
+ ![New file button](img/web_editor_template_dropdown_buttons.png)
+ 
+->**Note:**
++>**注意:**
+ The **Set up CI** button will not appear on an empty repository. You have to at
+ least add a file in order for the button to show up.
+ 
+diff --git a/doc/user/project/settings/import_export.md b/doc/user/project/settings/import_export.md
+index dfc762f..31b91f6 100644
+--- a/doc/user/project/settings/import_export.md
++++ b/doc/user/project/settings/import_export.md
+@@ -1,6 +1,6 @@
+ # Project import/export
+ 
+->**Notes:**
++>**注意:**
+ >
+ >  - [Introduced][ce-3050] in GitLab 8.9.
+ >  - Importing will not be possible if the import instance version differs from
 diff --git a/doc/user/project/slash_commands.md b/doc/user/project/slash_commands.md
 index 5f6a6c6..4a3b326 100644
 --- a/doc/user/project/slash_commands.md
@@ -19328,6 +20355,36 @@ index e541111..71d1c83 100644
  
  You can manage the groups and users and their access levels in all of your
  projects. You can also personalize the access level you give each user,
+diff --git a/doc/workflow/award_emoji.md b/doc/workflow/award_emoji.md
+index 1df0698..68740e1 100644
+--- a/doc/workflow/award_emoji.md
++++ b/doc/workflow/award_emoji.md
+@@ -1,6 +1,6 @@
+ # Award emoji
+ 
+->**Note:**
++>**注意:**
+ [Introduced][1825] in GitLab 8.2.
+ 
+ When you're collaborating online, you get fewer opportunities for high-fives
+@@ -15,7 +15,7 @@ award emoji.
+ 
+ ## Sort issues and merge requests on vote count
+ 
+->**Note:**
++>**注意:**
+ [Introduced][2871] in GitLab 8.5.
+ 
+ You can quickly sort issues and merge requests by the number of votes they
+@@ -44,7 +44,7 @@ downvotes.
+ 
+ ## Award emoji for comments
+ 
+->**Note:**
++>**注意:**
+ [Introduced][4291] in GitLab 8.9.
+ 
+ Award emoji can also be applied to individual comments when you want to
 diff --git a/doc/workflow/file_finder.md b/doc/workflow/file_finder.md
 index 8d87b03..1728b10 100644
 --- a/doc/workflow/file_finder.md
@@ -19396,6 +20453,28 @@ index 520c421..605c8da 100644
  ### Note
 -Milestones and wiki pages are not imported from Bitbucket.
 +マイルストーン and wiki pages are not imported from Bitbucket.
+diff --git a/doc/workflow/importing/import_projects_from_github.md b/doc/workflow/importing/import_projects_from_github.md
+index c36dfdb..a8ed2ba 100644
+--- a/doc/workflow/importing/import_projects_from_github.md
++++ b/doc/workflow/importing/import_projects_from_github.md
+@@ -4,7 +4,7 @@ Import your projects from GitHub to GitLab with minimal effort.
+ 
+ ## Overview
+ 
+->**Note:**
++>**注意:**
+ If you are an administrator you can enable the [GitHub integration][gh-import]
+ in your GitLab instance sitewide. This configuration is optional, users will be
+ able import their GitHub repositories with a [personal access token][gh-token].
+@@ -69,7 +69,7 @@ You can now go on and [select which repositories to import](#select-which-reposi
+ 
+ ### Authorize access to your repositories using a personal access token
+ 
+->**Note:**
++>**注意:**
+ For a proper author/assignee mapping for issues and pull requests, the
+ [GitHub integration][gh-integration] should be used instead of the
+ [personal access token][gh-token]. If the GitHub integration is enabled by your
 diff --git a/doc/workflow/importing/migrating_from_svn.md b/doc/workflow/importing/migrating_from_svn.md
 index 423b095..4567dbf 100644
 --- a/doc/workflow/importing/migrating_from_svn.md
@@ -19471,10 +20550,10 @@ index c936e88..e331a53 100644
  somebody else comments or adds changes to the ones that you've created or
  mentions you.
 diff --git a/doc/workflow/project_features.md b/doc/workflow/project_features.md
-index f19e7df..87979b7 100644
+index f19e7df..d1096b7 100644
 --- a/doc/workflow/project_features.md
 +++ b/doc/workflow/project_features.md
-@@ -1,36 +1,36 @@
+@@ -1,42 +1,42 @@
 -# Project features
 +# プロジェクトの機能
  
@@ -19527,6 +20606,13 @@ index f19e7df..87979b7 100644
  
  For example, a specific config file that is used by the team that is only valid for the people that work on the code.
  
+ ## Git LFS
+ 
+->**Note:** Project-specific LFS setting was added on 8.12 and is available only to admins.
++>**注意:** Project-specific LFS setting was added on 8.12 and is available only to admins.
+ 
+ Git Large File Storage allows you to easily manage large binary files with Git.
+ With this setting admins can better control which projects are allowed to use 
 diff --git a/doc/workflow/releases.md b/doc/workflow/releases.md
 index 6176784..c2ba6d3 100644
 --- a/doc/workflow/releases.md
@@ -19569,9 +20655,65 @@ index 8e50cb0..499e6db 100644
  Now you can add the 'Engineering' group with the maximum access level of your choice.
  After sharing 'Project Acme' with 'Engineering', the project is listed on the group dashboard.
 diff --git a/doc/workflow/shortcuts.md b/doc/workflow/shortcuts.md
-index 3651688..da81d75 100644
+index 3651688..3ec32f5 100644
 --- a/doc/workflow/shortcuts.md
 +++ b/doc/workflow/shortcuts.md
+@@ -1,8 +1,8 @@
+-# GitLab keyboard shortcuts
++# GitLabのキーボードショートカット
+ 
+ You can see GitLab's keyboard shortcuts by using 'shift + ?'
+ 
+-## Global Shortcuts
++## グローバルショートカット
+ 
+ | Keyboard Shortcut | Description |
+ | ----------------- | ----------- |
+@@ -11,7 +11,7 @@ You can see GitLab's keyboard shortcuts by using 'shift + ?'
+ | <kbd>⌘</kbd> + <kbd>shift</kbd> + <kbd>p</kbd> | Toggle markdown preview |
+ | <kbd>↑</kbd> | Edit last comment (when focused on an empty textarea) |
+ 
+-## Project Files Browsing
++## プロジェクトのファイル閲覧
+ 
+ | Keyboard Shortcut | Description |
+ | ----------------- | ----------- |
+@@ -19,7 +19,7 @@ You can see GitLab's keyboard shortcuts by using 'shift + ?'
+ | <kbd>↓</kbd> | Move selection down |
+ | <kbd>enter</kbd> | Open selection |
+ 
+-## Finding Project File
++## プロジェクトのファイルを探す
+ 
+ | Keyboard Shortcut | Description |
+ | ----------------- | ----------- |
+@@ -28,7 +28,7 @@ You can see GitLab's keyboard shortcuts by using 'shift + ?'
+ | <kbd>enter</kbd> | Open selection |
+ | <kbd>esc</kbd> | Go back |
+ 
+-## Global Dashboard
++## グローバルダッシュボード
+ 
+ | Keyboard Shortcut | Description |
+ | ----------------- | ----------- |
+@@ -37,7 +37,7 @@ You can see GitLab's keyboard shortcuts by using 'shift + ?'
+ | <kbd>g</kbd> + <kbd>i</kbd> | Go to issues |
+ | <kbd>g</kbd> + <kbd>m</kbd> | Go to merge requests |
+ 
+-## Project
++## プロジェクト
+ 
+ | Keyboard Shortcut | Description |
+ | ----------------- | ----------- |
+@@ -54,7 +54,7 @@ You can see GitLab's keyboard shortcuts by using 'shift + ?'
+ | <kbd>t</kbd> | Go to finding file |
+ | <kbd>i</kbd> | New issue |
+ 
+-## Network Graph
++## ネットワークグラフ
+ 
+ | Keyboard Shortcut | Description |
+ | ----------------- | ----------- |
 @@ -65,7 +65,7 @@ You can see GitLab's keyboard shortcuts by using 'shift + ?'
  | <kbd>shift</kbd> + <kbd>↑</kbd> or <kbd>shift</kbd> + <kbd>k</kbd> | Scroll to top |
  | <kbd>shift</kbd> + <kbd>↓</kbd> or <kbd>shift</kbd> + <kbd>j</kbd> | Scroll to bottom |
@@ -19589,9 +20731,18 @@ index 3651688..da81d75 100644
 \ No newline at end of file
 +| <kbd>l</kbd> | Change label |
 diff --git a/doc/workflow/todos.md b/doc/workflow/todos.md
-index 54e7ae1..8e7bb06 100644
+index 54e7ae1..1fa6064 100644
 --- a/doc/workflow/todos.md
 +++ b/doc/workflow/todos.md
+@@ -30,7 +30,7 @@ A Todo appears in your Todos dashboard when:
+ - build in the CI pipeline running for your merge request failed, but this
+   build is not allowed to fail.
+ 
+->**Note:** Commenting on a commit will _not_ trigger a Todo.
++>**注意:** Commenting on a commit will _not_ trigger a Todo.
+ 
+ ### Manually creating a Todo
+ 
 @@ -85,7 +85,7 @@ There are four kinds of filters you can use on your Todos dashboard.
  | Project | Filter by project |
  | Author  | Filter by the author that triggered the Todo |

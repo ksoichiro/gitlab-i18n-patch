@@ -11,6 +11,7 @@ translations:
   # and else/if/unless with zero or one word.
   # Or insertion codes that has no quotation characters
   - !!js/regexp /^\s*(?:$|-[^'"]*$|= render [^,]*$|- ?(?:#.*|(?:if|unless) [^ ]*)$|=[^'"]+$)/
+  - !!js/regexp /^\s*(\.key .*|\\\/)$/
   patterns:
   - pattern: "Go to projects"
     replace: '${shortcutsGoToProjects}'
@@ -36,6 +37,8 @@ translations:
     replace: '${shortcutsGoToGraph}'
   - pattern: "Go to snippets"
     replace: '${shortcutsGoToSnippets}'
+  - pattern: "Go to issue boards"
+    replace: '${goToIssueBoards}'
   - pattern: "Keyboard Shortcuts"
     replace: '${keyboardShortcuts}'
   - pattern: "Global Shortcuts"
@@ -67,4 +70,40 @@ translations:
   - pattern: "Go back"
     replace: '${goBack}'
   - pattern: "Global Dashboard"
-    relpace: '${globalDashboard}'
+    replace: '${globalDashboard}'
+  - pattern: "Go to finding file"
+    replace: '${goToFindingFile}'
+  - pattern: "New issue"
+    replace: '${newIssue}'
+  - pattern: "Project"
+    replace: '${project}'
+  - pattern: "Issues"
+    replace: '${issue}'
+  - pattern: "Network Graph"
+    replace: '${networkGraph}'
+  - pattern: "Scroll left"
+    replace: '${scrollLeft}'
+  - pattern: "Scroll right"
+    replace: '${scrollRight}'
+  - pattern: "Scroll up"
+    replace: '${scrollUp}'
+  - pattern: "Scroll down"
+    replace: '${scrollDown}'
+  - pattern: "Scroll to top"
+    replace: '${scrollToTop}'
+  - pattern: "Scroll to bottom"
+    replace: '${scrollToBottom}'
+  - pattern: "Change assignee"
+    replace: '${changeAssignee}'
+  - pattern: "Change milestone"
+    replace: '${changeMilestone}'
+  - pattern: "Reply (quoting selected text)"
+    replace: '${replyQuotingSelectedText}'
+  - pattern: "Edit issue"
+    replace: '${editIssue}'
+  - pattern: "Change Label"
+    replace: '${changeLabel}'
+  - pattern: "Merge Requests"
+    replace: '${mergeRequest}'
+  - pattern: "Edit merge request"
+    replace: '${editMergeRequest}'

@@ -2,7 +2,7 @@ translations:
 
 # Markdown
 - name: 'md:headers'
-  parallel-group: 'group2'
+  parallel-group: 'group5'
   src: 'doc/**/*.md'
   skip-patterns:
   - !!js/regexp /^([^#]|$)/

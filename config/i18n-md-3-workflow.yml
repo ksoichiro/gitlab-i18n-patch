@@ -1,0 +1,102 @@
+translations:
+
+# Markdown
+- name: 'md:workflow'
+  parallel-group: 'group3'
+  src: 'doc/**/workflow/*.md'
+  skip-patterns:
+  - !!js/regexp /(^#+|^\s*$|^[^a-zA-Z]+$|^\s*```|^---)/
+  patterns:
+  - pattern: 'Change your time zone'
+    replace: '${changeYourTimeZone}'
+  - pattern: 'Feature branch workflow'
+    replace: '${mdTitleFeatureBranchWorkflow}'
+  - pattern: 'Project forking workflow'
+    replace: '${projectForkingWorkflow}'
+  - pattern: "When in a Project -> Settings, you will find Features on the bottom of the page that you can toggle."
+    replace: '${whenInAProjectSettingsYouWillFindFeaturesOnTheBottomOfThePageThatYouCanToggle}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Below you will find a more elaborate explanation of each of these.'
+    replace: '${belowYouWillFindAMoreElaborateExplanationOfEachOfThese}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Issues is a really powerful, but lightweight issue tracking system.'
+    replace: '${issuesIsAreallyPowerfulButLightweightIssueTrackingSystem}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'You can make tickets, assign them to people, file them under milestones, order them with labels and have discussion in them.'
+    replace: '${youCanMakeTicketsAssignThemToPeopleFileThemUnderMilestonesOrderThemWithLabelsAndHaveDiscussionInThem}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'They integrate deeply into GitLab and are easily referenced from anywhere by using `#` and the issue number.'
+    replace: '${theyIntegrateDeeplyIntoGitLabAndAreEasilyReferencedFromAnywhereByUsingAndTheIssueNumber}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Using a merge request, you can review and discuss code before it is merged in the branch of your code.'
+    replace: '${usingAMergeRequestYouCanReviewAndDiscussCodeBeforeItIsMergedInTheBranchOfYourCode}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'As with issues, it can be assigned; people, issues, etc. can be referenced; milestones attached.'
+    replace: '${asWithIssuesItCanBeAssignedPeopleIssuesEtcCanBeReferencedMilestonesAttached}'
+    match-once: true
+    complete-pattern: true
+  - pattern: "We see it as an integral part of working together on code and couldn't work without it."
+    replace: '${weSeeItAsAnIntegralPartOfWorkingTogetherOnCodeAndCouldntWorkWithoutIt}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'This is a separate system for documentation, built right into GitLab.'
+    replace: '${thisIsASeparateSystemForDocumentationBuildRightIntoGitLab}'
+    match-once: true
+    complete-pattern: true
+  - pattern: "It is source controlled and is very convenient if you don't want to keep you documentation in your source code, but you do want to keep it in your GitLab project."
+    replace: '${itIsSourceControlledAndIsVeryConvenientIfYouDontWantToKeepYouDocumentationInYourSourceCodeButYouDoWantToKeepItInYourGitLabProject}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Snippets are little bits of code or text.'
+    replace: '${snippetsAreLittleBitsOfCodeOrText}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'This is a nice place to put code or text that is used semi-regularly within the project, but does not belong in source control.'
+    replace: '${thisIsANicePlaceToPutCodeOrTextThatIsUsedSemiRegularlyWithinTheProjectButDoesNotBelongInSourceControl}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'For example, a specific config file that is used by the team that is only valid for the people that work on the code.'
+    replace: '${forExampleASpecificConfigFileThatIsUsedByTheTeamThatIsOnlyValidForThePeopleThatWorkOnTheCode}'
+    match-once: true
+    complete-pattern: true
+  # From 7.x to 8.2.x
+  - pattern: "If you'd like to migrate from a self-hosted GitLab instance to GitLab.com, you can copy your repos by changing the remote and pushing to the new server; but issues and merge requests can't be imported."
+    replace: '${ifYoudLikeToMigrateFromASelfHostedGitlabInstanceToGitlabComYouCanCopyYourReposByChangingTheRemoteAndPushingToTheNewServerButIssuesAndMergeRequestsCantBeImported}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Web Editor'
+    replace: '${webEditor}'
+  - pattern: '1.  Clone project:'
+    replace: '1.  ${cloneProject}:'
+    match-once: true
+    complete-pattern: true
+  - pattern: '1.  Create branch with your feature:'
+    replace: '1.  ${createBranchWithYourFeature}:'
+    match-once: true
+    complete-pattern: true
+  - pattern: '1.  Write code. Commit changes:'
+    replace: '1.  ${writeCodeCommitChanges}:'
+    match-once: true
+    complete-pattern: true
+  - pattern: '1.  Push your branch to GitLab:'
+    replace: '1.  ${pushYourBranchToGitLab}:'
+    match-once: true
+    complete-pattern: true
+  - pattern: '1.  Review your code on commits page.'
+    replace: '1.  ${reviewYourCodeOnCommitsPage}'
+    match-once: true
+    complete-pattern: true
+  - pattern: '1.  Create a merge request.'
+    replace: '1.  ${createAMergeRequest}'
+    match-once: true
+    complete-pattern: true
+  - pattern: '1.  Your team lead will review the code &amp; merge it to the main branch.'
+    replace: '1.  ${yourTeamLeadWillReviewTheCodeAndMergeItToTheMainBranch}'
+    match-once: true
+    complete-pattern: true

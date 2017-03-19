@@ -1,72 +1,98 @@
 translations:
 
 # Markdown
+- name: 'md:web_hooks'
+  parallel-group: 'group3'
+  src: 'doc/**/web_hooks/*.md'
+  skip-patterns:
+  - !!js/regexp /(^#+|^\s*$|^[^a-zA-Z]+$|^\s*```|^---)/
+  patterns:
+  # From 7.x to 8.5.x
+  - pattern: 'Project web hooks allow you to trigger an URL if new code is pushed or a new issue is created.'
+    replace: '${projectWebHooksAllowYouToTriggerAnURLIfNewCodeIsPushedOrANewIssueIsCreated}'
+    match-once: true
+    complete-pattern: true
+  # From 7.x to 8.5.x
+  - pattern: 'You can configure web hooks to listen for specific events like pushes, issues or merge requests. GitLab will send a POST request with data to the web hook URL.'
+    replace: '${youCanConfigureWebHooksToListenForSpecificEventsLikePushesIssuesOrMergeRequestsGitlabWIllSendAPostRequestWithDataToTheWebHookUrl}'
+    match-once: true
+    complete-pattern: true
+  # From 7.x to 8.5.x
+  - pattern: 'Web hooks can be used to update an external issue tracker, trigger CI builds, update a backup mirror, or even deploy to your production server.'
+    replace: '${webHooksCanBeUsedToUpdateAnExternalIssueTrackerTriggerCIBuildsUpdateABackupMirrorOrEVenDeployToYourProductionServer}'
+    match-once: true
+    complete-pattern: true
+  # From 7.x to 8.5.x
+  - pattern: 'You can turn this off in the web hook settings in your GitLab projects.'
+    replace: '${youCanTurnThisOffInTheWebHookSettingsInYourGitlabProjects}'
+    match-once: true
+    complete-pattern: true
+
+- name: 'md:system_hooks'
+  parallel-group: 'group3'
+  src: 'doc/**/system_hooks/*.md'
+  skip-patterns:
+  - !!js/regexp /(^#+|^\s*$|^[^a-zA-Z]+$|^\s*```|^---)/
+  patterns:
+  - pattern: 'Your GitLab instance can perform HTTP POST requests on the following events: `project_create`, `project_destroy`, `user_add_to_team`, `user_remove_from_team`, `user_create`, `user_destroy`, `key_create`, `key_destroy`, `group_create`, `group_destroy`, `user_add_to_group` and `user_remove_from_group`.'
+    replace: '${yourGitlabInstanceCanPerformHttpPOSTRequestsOnTheFollowingEventsProjectCreateProjectDestroyUserAddToTeamUserRemoveFromTeamUserCreateUserDestroyKeyCreateKeyDestroyGroupCreateGroupDestroyUserAddToGroupAndUserRemoveFromGroup}'
+    match-once: true
+    complete-pattern: true
+
+- name: 'md:merge_requests'
+  parallel-group: 'group3'
+  src: 'doc/**/merge_requests/*.md'
+  skip-patterns:
+  - !!js/regexp /(^#+|^\s*$|^[^a-zA-Z]+$|^\s*```|^---)/
+  patterns:
+  - pattern: '"Work In Progress" Merge Requests'
+    replace: '${workInProgressMergeRequest}'
+
+- name: 'md:integration'
+  parallel-group: 'group3'
+  src: 'doc/**/integration/*.md'
+  skip-patterns:
+  - !!js/regexp /(^#+|^\s*$|^[^a-zA-Z]+$|^\s*```|^---)/
+  patterns:
+  - pattern: 'GitLab as OAuth2 authentication service provider'
+    replace: '${gitlabAsOAuth2AuthenticationServiceProvider}'
+  - pattern: !!js/regexp /By default, the SSL certificate of the webhook endpoint is verified based on \nan internal list of Certificate Authorities, \nwhich means the certificate cannot be self-signed./
+    replace: '${byDefaultTheSslCertificateOfTheWebhookEndpointIsVerifiedBasedOnAnInternalListOfCertificateAuthoritiesWhichMeansTheCertificateCannotBeSelfSigned}'
+    match-once: true
+    complete-pattern: true
+
+- name: 'md:auth'
+  parallel-group: 'group3'
+  src: 'doc/**/auth/*.md'
+  skip-patterns:
+  - !!js/regexp /(^#+|^\s*$|^[^a-zA-Z]+$|^\s*```|^---)/
+  patterns:
+  - pattern: !!js/regexp /\[Reconfigure\]\(\.\.\/restart_gitlab.md#omnibus-gitlab-reconfigure\) or \[restart GitLab\]\(\.\.\/restart_gitlab.md#installations-from-source\)\n\s+for the changes to take effect if you installed GitLab via Omnibus or from source respectively\./m
+    replace: '${reconfigureOrRestartGitLabForTheChangesToTakeEffectIfYouInstalledGitLabViaOmnibusOrFromSourceRespectively}'
+    complete-pattern: true
+
 - name: 'md'
-  parallel-group: 'group1'
+  parallel-group: 'group4'
   src: 'doc/**/*.md'
   skip-patterns:
   - !!js/regexp /(^#+|^\s*$|^[^a-zA-Z]+$|^\s*```|^---)/
   patterns:
-  - pattern: 'Automate GitLab via a simple and powerful API.'
-    replace: '${automateGitlabViaASimpleAndPowerfulApi}'
-    complete-pattern: true
-  - pattern: 'GitLab as OAuth2 authentication service provider'
-    replace: '${gitlabAsOAuth2AuthenticationServiceProvider}'
-  - pattern: 'It allows you to login to other applications from GitLab.'
-    replace: '${itAllowsYouToLoginToOtherApplicationsFromGitLab}'
-    complete-pattern: true
   - pattern: 'GitLab Basics'
     replace: '${gitLabBasics}'
-  - pattern: 'GitLab basics'
-    replace: '${gitLabBasics}'
-  - pattern: 'Find step by step how to start working on your commandline and on GitLab.'
-    replace: '${findStepByStepHowToStartWorkingOnYourCommandlineAndOnGitLab}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'Importing to GitLab'
-    replace: '${importingToGitLab}'
-  - pattern: "GitLab's advanced formatting system."
-    replace: '${gitLabsAdvancedFormattingSystem}'
   - pattern: 'Migrating from SVN'
     replace: '${migratingFromSVN}'
-  - pattern: 'Convert a SVN repository to Git and GitLab'
-    replace: '${convertASVNRepositoryToGitAndGitLab}'
   - pattern: 'Permissions'
     replace: '${permissions}'
-  - pattern: 'Learn what each role in a project (guest/reporter/developer/master/owner) can do.'
-    replace: '${learnWhatEachRoleInAProjectCanDo}'
-    match-once: true
-    complete-pattern: true
   - pattern: 'Profile Settings'
     replace: '${profileSettings}'
   - pattern: 'Project Services'
     replace: '${projectServices}'
-  - pattern: 'Integrate a project with external services, such as CI and chat.'
-    replace: '${integrateAProjectWithExternalServicesSuchAsCIAndChat}'
-    match-once: true
-    complete-pattern: true
   - pattern: 'Public access'
     replace: '${publicAccess}'
-  - pattern: 'Learn how you can allow public and internal access to projects.'
-    replace: '${learnHowYouCanAllowPublicAndInternalAccessToProjects}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'Setup your ssh keys and deploy keys for secure access to your projects.'
-    replace: '${setupYourSshKeysAndDeployKeysForSecureAccessToYourProjects}'
-    match-once: true
-    complete-pattern: true
   - pattern: 'Web hooks'
     replace: '${webHook}'
-  - pattern: 'Let GitLab notify you when new code has been pushed to your project.'
-    replace: '${letGitLabNotifyYouWhenNewCodeHasBeenPushedToYourProject}'
-    match-once: true
-    complete-pattern: true
   - pattern: 'Workflow'
     replace: '${workflow}'
-  - pattern: 'Using GitLab functionality and importing projects from GitHub and SVN.'
-    replace: '${usingGitLabFunctionalityAndImportingProjectsFromGitHubAndSVN}'
-    match-once: true
-    complete-pattern: true
   - pattern: 'Quick Start'
     replace: '${quickStart}'
   - pattern: 'Configuring project'
@@ -85,68 +111,8 @@ translations:
     replace: '${userPermissions}'
   - pattern: 'Using SSH keys'
     replace: '${usingSshKeys}'
-  - pattern: "When in a Project -> Settings, you will find Features on the bottom of the page that you can toggle."
-    replace: '${whenInAProjectSettingsYouWillFindFeaturesOnTheBottomOfThePageThatYouCanToggle}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'Below you will find a more elaborate explanation of each of these.'
-    replace: '${belowYouWillFindAMoreElaborateExplanationOfEachOfThese}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'Issues is a really powerful, but lightweight issue tracking system.'
-    replace: '${issuesIsAreallyPowerfulButLightweightIssueTrackingSystem}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'You can make tickets, assign them to people, file them under milestones, order them with labels and have discussion in them.'
-    replace: '${youCanMakeTicketsAssignThemToPeopleFileThemUnderMilestonesOrderThemWithLabelsAndHaveDiscussionInThem}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'They integrate deeply into GitLab and are easily referenced from anywhere by using `#` and the issue number.'
-    replace: '${theyIntegrateDeeplyIntoGitLabAndAreEasilyReferencedFromAnywhereByUsingAndTheIssueNumber}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'Using a merge request, you can review and discuss code before it is merged in the branch of your code.'
-    replace: '${usingAMergeRequestYouCanReviewAndDiscussCodeBeforeItIsMergedInTheBranchOfYourCode}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'As with issues, it can be assigned; people, issues, etc. can be referenced; milestones attached.'
-    replace: '${asWithIssuesItCanBeAssignedPeopleIssuesEtcCanBeReferencedMilestonesAttached}'
-    match-once: true
-    complete-pattern: true
-  - pattern: "We see it as an integral part of working together on code and couldn't work without it."
-    replace: '${weSeeItAsAnIntegralPartOfWorkingTogetherOnCodeAndCouldntWorkWithoutIt}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'This is a separate system for documentation, built right into GitLab.'
-    replace: '${thisIsASeparateSystemForDocumentationBuildRightIntoGitLab}'
-    match-once: true
-    complete-pattern: true
-  - pattern: "It is source controlled and is very convenient if you don't want to keep you documentation in your source code, but you do want to keep it in your GitLab project."
-    replace: '${itIsSourceControlledAndIsVeryConvenientIfYouDontWantToKeepYouDocumentationInYourSourceCodeButYouDoWantToKeepItInYourGitLabProject}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'Snippets are little bits of code or text.'
-    replace: '${snippetsAreLittleBitsOfCodeOrText}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'This is a nice place to put code or text that is used semi-regularly within the project, but does not belong in source control.'
-    replace: '${thisIsANicePlaceToPutCodeOrTextThatIsUsedSemiRegularlyWithinTheProjectButDoesNotBelongInSourceControl}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'For example, a specific config file that is used by > the team that is only valid for the people that work on the code.'
-    replace: '${forExampleASpecificConfigFileThatIsUsedByTheTeamThatIsOnlyValidForThePeopleThatWorkOnTheCode}'
-    match-once: true
-    complete-pattern: true
-  - pattern: "If you'd like to migrate from a self-hosted GitLab instance to GitLab.com, you can copy your repos by changing the remote and pushing to the new server; but issues and merge requests can't be imported."
-    replace: '${ifYoudLikeToMigrateFromASelfHostedGitlabInstanceToGitlabComYouCanCopyYourReposByChangingTheRemoteAndPushingToTheNewServerButIssuesAndMergeRequestsCantBeImported}'
-    match-once: true
-    complete-pattern: true
   - pattern: 'Authorization for merge requests'
     replace: '${authorizationForMergeRequests}'
-  - pattern: 'Change your time zone'
-    replace: '${changeYourTimeZone}'
-  - pattern: 'Feature branch workflow'
-    replace: '${mdTitleFeatureBranchWorkflow}'
   - pattern: 'Groups'
     replace: '${group}'
   - pattern: 'Keyboard shortcuts'
@@ -157,44 +123,18 @@ translations:
     replace: '${notificationEmail}'
   - pattern: 'Project Features'
     replace: '${projectFeatures}'
-  - pattern: 'Project forking workflow'
-    replace: '${projectForkingWorkflow}'
   - pattern: 'Project users'
     replace: '${projectUsers}'
   - pattern: 'Protected branches'
     replace: '${protectedBranch}'
-  - pattern: 'Web Editor'
-    replace: '${webEditor}'
   - pattern: 'Releases'
     replace: '${release}'
   - pattern: 'Milestones'
     replace: '${milestone}'
   - pattern: 'Merge Requests'
     replace: '${mergeRequest}'
-  - pattern: '"Work In Progress" Merge Requests'
-    replace: '${workInProgressMergeRequest}'
-  - pattern: 'Project web hooks allow you to trigger an URL if new code is pushed or a new issue is created.'
-    replace: '${projectWebHooksAllowYouToTriggerAnURLIfNewCodeIsPushedOrANewIssueIsCreated}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'You can configure web hooks to listen for specific events like pushes, issues or merge requests. GitLab will send a POST request with data to the web hook URL.'
-    replace: '${youCanConfigureWebHooksToListenForSpecificEventsLikePushesIssuesOrMergeRequestsGitlabWIllSendAPostRequestWithDataToTheWebHookUrl}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'Web hooks can be used to update an external issue tracker, trigger CI builds, update a backup mirror, or even deploy to your production server.'
-    replace: '${webHooksCanBeUsedToUpdateAnExternalIssueTrackerTriggerCIBuildsUpdateABackupMirrorOrEVenDeployToYourProductionServer}'
-    match-once: true
-    complete-pattern: true
   - pattern: 'SSL Verification'
     replace: '${sslVerification}'
-  - pattern: !!js/regexp /By default, the SSL certificate of the webhook endpoint is verified based on \nan internal list of Certificate Authorities, \nwhich means the certificate cannot be self-signed./
-    replace: '${byDefaultTheSslCertificateOfTheWebhookEndpointIsVerifiedBasedOnAnInternalListOfCertificateAuthoritiesWhichMeansTheCertificateCannotBeSelfSigned}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'You can turn this off in the web hook settings in your GitLab projects.'
-    replace: '${youCanTurnThisOffInTheWebHookSettingsInYourGitlabProjects}'
-    match-once: true
-    complete-pattern: true
   - pattern: 'Push events'
     replace: '${mdTitlePushEvents}'
   - pattern: 'Triggered when you push to the repository except when pushing tags.'
@@ -223,10 +163,6 @@ translations:
     complete-pattern: true
   - pattern: 'System hooks'
     replace: '${systemHook}'
-  - pattern: 'Your GitLab instance can perform HTTP POST requests on the following events: `project_create`, `project_destroy`, `user_add_to_team`, `user_remove_from_team`, `user_create`, `user_destroy`, `key_create`, `key_destroy`, `group_create`, `group_destroy`, `user_add_to_group` and `user_remove_from_group`.'
-    replace: '${yourGitlabInstanceCanPerformHttpPOSTRequestsOnTheFollowingEventsProjectCreateProjectDestroyUserAddToTeamUserRemoveFromTeamUserCreateUserDestroyKeyCreateKeyDestroyGroupCreateGroupDestroyUserAddToGroupAndUserRemoveFromGroup}'
-    match-once: true
-    complete-pattern: true
   - pattern: 'System hooks can be used, e.g. for logging or changing information in a LDAP server.'
     replace: '${systemHooksCanBeUsedEGForLoggingOrChangingInformationInALDAPServer}'
     match-once: true
@@ -871,34 +807,6 @@ translations:
     replace: '${createAnIssue}'
   - pattern: 'For example:'
     replace: '${forExample}:'
-  - pattern: '1.  Clone project:'
-    replace: '1.  ${cloneProject}:'
-    match-once: true
-    complete-pattern: true
-  - pattern: '1.  Create branch with your feature:'
-    replace: '1.  ${createBranchWithYourFeature}:'
-    match-once: true
-    complete-pattern: true
-  - pattern: '1.  Write code. Commit changes:'
-    replace: '1.  ${writeCodeCommitChanges}:'
-    match-once: true
-    complete-pattern: true
-  - pattern: '1.  Push your branch to GitLab:'
-    replace: '1.  ${pushYourBranchToGitLab}:'
-    match-once: true
-    complete-pattern: true
-  - pattern: '1.  Review your code on commits page.'
-    replace: '1.  ${reviewYourCodeOnCommitsPage}'
-    match-once: true
-    complete-pattern: true
-  - pattern: '1.  Create a merge request.'
-    replace: '1.  ${createAMergeRequest}'
-    match-once: true
-    complete-pattern: true
-  - pattern: '1.  Your team lead will review the code &amp; merge it to the main branch.'
-    replace: '1.  ${yourTeamLeadWillReviewTheCodeAndMergeItToTheMainBranch}'
-    match-once: true
-    complete-pattern: true
   - pattern: "To enable the Authentiq OmniAuth provider for passwordless authentication you must register an application with Authentiq."
     replace: '${toEnableTheAuthentiqOmniAuthProviderForPasswordlessAuthenticationYouMustRegisterAnApplicationWithAuthentiq}'
     complete-pattern: true
@@ -929,26 +837,3 @@ translations:
   - pattern: "Save the configuration file."
     replace: '${saveTheConfigurationFile}'
     complete-pattern: true
-  - pattern: !!js/regexp /\[Reconfigure\]\(\.\.\/restart_gitlab.md#omnibus-gitlab-reconfigure\) or \[restart GitLab\]\(\.\.\/restart_gitlab.md#installations-from-source\)\n\s+for the changes to take effect if you installed GitLab via Omnibus or from source respectively\./m
-    replace: '${reconfigureOrRestartGitLabForTheChangesToTakeEffectIfYouInstalledGitLabViaOmnibusOrFromSourceRespectively}'
-    complete-pattern: true
-  - pattern: "Securing your account via two-factor authentication, etc."
-    replace: '${securingYourAccountViaTwoFactorAuthenticationEtc}'
-  - pattern: '[Account Security]'
-    replace: '[${accountSecurity}]'
-  - pattern: '[Container Registry]'
-    replace: '[${containerRegistry}]'
-  - pattern: '[Importing and exporting projects between instances]'
-    replace: '[${importingAndExportingProjectsBetweenInstances}]'
-    complete-pattern: true
-  - pattern: "[University](university/README.md) contain guides to learn Git and GitLab through courses and videos."
-    replace: '${universityContainsGuidesToLearnGitAndGitLabThroughCoursesAndVideos}'
-    complete-pattern: true
-  - pattern: "Learn how to use GitLab Container Registry."
-    replace: '${learnHowToUseGitLabContainerRegistry}'
-  - pattern: "Using GitLab Pages."
-    replace: '${usingGitLabPages}'
-  - pattern: "Import your projects from GitHub, Bitbucket, GitLab.com, FogBugz and SVN into GitLab."
-    replace: '${importYourProjectsFromGitHubBitBucketGitLabComFogBugzAndSVNIntoGitLab}'
-  - pattern: "Learn what each role in a project (external/guest/reporter/developer/master/owner) can do."
-    replace: '${learnWhatEachRoleInAProjectExternalGuestReporterDeveloperMasterOwnerCanDo}'

@@ -2,7 +2,7 @@ translations:
 
 # Ruby
 - name: 'rb'
-  parallel-group: 'group1'
+  parallel-group: 'group2'
   src: 'app/**/*.rb'
   skip-patterns:
   # Lines that does not contain quotes

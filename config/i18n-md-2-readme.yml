@@ -1,0 +1,62 @@
+translations:
+
+# Markdown
+- name: 'md:README'
+  parallel-group: 'group2'
+  src: 'doc/**/README.md'
+  skip-patterns:
+  - !!js/regexp /(^#+|^\s*$|^[^a-zA-Z]+$|^\s*```|^---)/
+  patterns:
+  - pattern: 'Automate GitLab via a simple and powerful API.'
+    replace: '${automateGitlabViaASimpleAndPowerfulApi}'
+  - pattern: 'GitLab as OAuth2 authentication service provider'
+    replace: '${gitlabAsOAuth2AuthenticationServiceProvider}'
+  - pattern: 'It allows you to login to other applications from GitLab.'
+    replace: '${itAllowsYouToLoginToOtherApplicationsFromGitLab}'
+  - pattern: 'Find step by step how to start working on your commandline and on GitLab.'
+    replace: '${findStepByStepHowToStartWorkingOnYourCommandlineAndOnGitLab}'
+  - pattern: "GitLab's advanced formatting system."
+    replace: '${gitLabsAdvancedFormattingSystem}'
+  - pattern: 'Importing to GitLab'
+    replace: '${importingToGitLab}'
+  - pattern: 'Convert a SVN repository to Git and GitLab'
+    replace: '${convertASVNRepositoryToGitAndGitLab}'
+  - pattern: 'Learn what each role in a project (guest/reporter/developer/master/owner) can do.'
+    replace: '${learnWhatEachRoleInAProjectCanDo}'
+  - pattern: 'Learn how you can allow public and internal access to projects.'
+    replace: '${learnHowYouCanAllowPublicAndInternalAccessToProjects}'
+    match-once: true
+  - pattern: 'Integrate a project with external services, such as CI and chat.'
+    replace: '${integrateAProjectWithExternalServicesSuchAsCIAndChat}'
+    match-once: true
+  - pattern: 'Setup your ssh keys and deploy keys for secure access to your projects.'
+    replace: '${setupYourSshKeysAndDeployKeysForSecureAccessToYourProjects}'
+    match-once: true
+  - pattern: 'Let GitLab notify you when new code has been pushed to your project.'
+    replace: '${letGitLabNotifyYouWhenNewCodeHasBeenPushedToYourProject}'
+    match-once: true
+  - pattern: 'Using GitLab functionality and importing projects from GitHub and SVN.'
+    replace: '${usingGitLabFunctionalityAndImportingProjectsFromGitHubAndSVN}'
+    match-once: true
+  - pattern: 'GitLab basics'
+    replace: '${gitLabBasics}'
+  - pattern: "Securing your account via two-factor authentication, etc."
+    replace: '${securingYourAccountViaTwoFactorAuthenticationEtc}'
+  - pattern: '[Account Security]'
+    replace: '[${accountSecurity}]'
+  - pattern: '[Container Registry]'
+    replace: '[${containerRegistry}]'
+  - pattern: '[Importing and exporting projects between instances]'
+    replace: '[${importingAndExportingProjectsBetweenInstances}]'
+    complete-pattern: true
+  - pattern: "[University](university/README.md) contain guides to learn Git and GitLab through courses and videos."
+    replace: '${universityContainsGuidesToLearnGitAndGitLabThroughCoursesAndVideos}'
+    complete-pattern: true
+  - pattern: "Learn how to use GitLab Container Registry."
+    replace: '${learnHowToUseGitLabContainerRegistry}'
+  - pattern: "Using GitLab Pages."
+    replace: '${usingGitLabPages}'
+  - pattern: "Import your projects from GitHub, Bitbucket, GitLab.com, FogBugz and SVN into GitLab."
+    replace: '${importYourProjectsFromGitHubBitBucketGitLabComFogBugzAndSVNIntoGitLab}'
+  - pattern: "Learn what each role in a project (external/guest/reporter/developer/master/owner) can do."
+    replace: '${learnWhatEachRoleInAProjectExternalGuestReporterDeveloperMasterOwnerCanDo}'

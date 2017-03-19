@@ -1,3 +1,19 @@
+diff --git a/app/assets/javascripts/application.js b/app/assets/javascripts/application.js
+index ea3f13b..56bf0a9 100644
+--- a/app/assets/javascripts/application.js
++++ b/app/assets/javascripts/application.js
+@@ -171,9 +171,9 @@ window.ES6Promise.polyfill();
+     $(document).ajaxError(function (e, xhrObj) {
+       var ref = xhrObj.status;
+       if (xhrObj.status === 401) {
+-        return new Flash('You need to be logged in.', 'alert');
++        return new Flash('ログインしてください。', 'alert');
+       } else if (ref === 404 || ref === 500) {
+-        return new Flash('Something went wrong on our end.', 'alert');
++        return new Flash('サーバで問題が発生しました。', 'alert');
+       }
+     });
+     $('.account-box').hover(function () {
 diff --git a/app/assets/javascripts/due_date_select.js.es6 b/app/assets/javascripts/due_date_select.js.es6
 index d81d4cf..b5df17a 100644
 --- a/app/assets/javascripts/due_date_select.js.es6

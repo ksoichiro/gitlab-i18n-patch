@@ -15,14 +15,25 @@ translations:
   skip-patterns:
   # Lines that does not contain quotes
   - !!js/regexp /^(?!.*\$\('[^']*'\))(?!.*['"]).+$/
-  - !!js/regexp /^[^']*('([^a-zA-Z0-9]*|[a-z]+([-_][a-z]+)+|[0-9.]+|true|false)'[^']*)+$/
-  - !!js/regexp /^[^"]*("([^a-zA-Z0-9]*|[a-z]+([-_][a-z]+)+|[0-9.]+|true|false)"[^"]*)+$/
+  # Quoted strings don't require translation: symbols, css-id or css-class, digits, true/false (single quote)
+  - !!js/regexp /^[^']*('([^a-zA-Z0-9]*|[.#]?[a-z]+([-_][a-z]+)+|[0-9.]+|true|false)'[^']*)+$/
+  # Quoted strings don't require translation: symbols, css-id or css-class, digits, true/false (double quote)
+  - !!js/regexp /^[^"]*("([^a-zA-Z0-9]*|[.#]?[a-z]+([-_][a-z]+)+|[0-9.]+|true|false)"[^"]*)+$/
+  # Quotes are only included in known function parameters: $('*'), data('*'), require('*')
   - !!js/regexp /^[^'"]*(\$|data|require)\(['"][^'"]*['"]\)[^'"]*$/
-  - !!js/regexp /^[^'"]*\$\([^\)]*\)\.(on|off|addClass|removeClass|find)\(['"][^'"]*['"](,\s['"][^'"]*['"])?[^'"]*$/
+  # Quotes are only included in jQuery function parameters: $(*).on('*'), $(*).off('*'), .on('*'), ...
+  - !!js/regexp /^([^'"]*(\$(\([^\)]*\)|[a-z][A-Za-z]+)|form|\.parent\(\))|\s*)\.(on|off|is|attr|prop|data|addClass|removeClass|toggleClass|hasClass|find|bind|closest|parents|tooltip|trigger)\(['"][^'"]*['"](,\s['"][^'"]*['"])?[^'"]*$/
+  - !!js/regexp /^([^'"]*(\$(\([^\)]*\)|[a-z][A-Za-z]+)|form|\.parent\(\))|\s*)(\.(on|off|is|attr|prop|data|addClass|removeClass|toggleClass|hasClass|find|bind|closest|parents|tooltip|trigger)\(['"][^'"]*['"]\))+[^'"]*$/
+  # jQuery function parameter
+  - !!js/regexp /^\s*(dataType|type):\s['"][^'"]*['"],?$/
+  # known function fragments
+  - !!js/regexp /^\s*(window|document)\.(addEventListener|createElement)\(['"][^'"]*['"](,\s['"][^'"]*['"])?[^'"]*$/
   # Empty
   - !!js/regexp /^\s*$/
   # Comments
   - !!js/regexp /^\s*\/\//
+  # Paths
+  - !!js/regexp /^\s*[a-z][A-Za-z]+:\s"\/[^"]*",?$/
   named-patterns:
   - name: doubleQuoted
     pattern: "\"{word}\""
@@ -55,6 +66,10 @@ translations:
     replace: '${noAssignee}'
   - pattern: 'assign yourself'
     replace: '${assignYourself}'
+  - pattern: 'You need to be logged in.'
+    replace: '${youNeedToBeLoggedIn}'
+  - pattern: 'Something went wrong on our end.'
+    replace: '${somethingWentWrongOnOurEnd}'
   - name: doubleQuoted
     params:
     - {word: 'Search for a user', key: searchForAUser}

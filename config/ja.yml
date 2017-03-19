@@ -3030,3 +3030,5 @@ replyQuotingSelectedText: "返信 (選択中のテキストを引用)"
 editIssue: 課題を編集
 changeLabel: ラベルを変更
 editMergeRequest: マージリクエストを編集
+youNeedToBeLoggedIn: ログインしてください。
+somethingWentWrongOnOurEnd: サーバで問題が発生しました。

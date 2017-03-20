@@ -60,3 +60,5 @@ translations:
     replace: '${importYourProjectsFromGitHubBitBucketGitLabComFogBugzAndSVNIntoGitLab}'
   - pattern: "Learn what each role in a project (external/guest/reporter/developer/master/owner) can do."
     replace: '${learnWhatEachRoleInAProjectExternalGuestReporterDeveloperMasterOwnerCanDo}'
+  - pattern: 'Step-by-step guides on the basics of working with Git and GitLab.'
+    replace: '${stepByStepGuidesOnTheBasicsOfWorkingWithGitAndGitLab}'

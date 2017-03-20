@@ -1,0 +1,42 @@
+translations:
+
+# Markdown
+- name: 'md:auth'
+  parallel-group: 'group3'
+  src: 'doc/**/auth/*.md'
+  skip-patterns:
+  - !!js/regexp /(^#+|^\s*$|^[^a-zA-Z]+$|^\s*```|^---)/
+  patterns:
+  - pattern: !!js/regexp /\[Reconfigure\]\(\.\.\/restart_gitlab.md#omnibus-gitlab-reconfigure\) or \[restart GitLab\]\(\.\.\/restart_gitlab.md#installations-from-source\)\n\s+for the changes to take effect if you installed GitLab via Omnibus or from source respectively\./m
+    replace: '${reconfigureOrRestartGitLabForTheChangesToTakeEffectIfYouInstalledGitLabViaOmnibusOrFromSourceRespectively}'
+    complete-pattern: true
+  - pattern: "To enable the Authentiq OmniAuth provider for passwordless authentication you must register an application with Authentiq."
+    replace: '${toEnableTheAuthentiqOmniAuthProviderForPasswordlessAuthenticationYouMustRegisterAnApplicationWithAuthentiq}'
+    complete-pattern: true
+  - pattern: "Authentiq will generate a Client ID and the accompanying Client Secret for you to use."
+    replace: '${authentiqWillGenerateAClientIDAndTheAccompanyingClientSecretForYouToUse}'
+    complete-pattern: true
+  - pattern: "Get your Client credentials (Client ID and Client Secret) at [Authentiq](https://www.authentiq.com/register)."
+    replace: '${getYourClientCredentialsClientIDAndClientSecretAtAuthentiq}'
+    complete-pattern: true
+  - pattern: "See [Initial OmniAuth Configuration](../../integration/omniauth.md#initial-omniauth-configuration) for initial settings to enable single sign-on and add Authentiq as an OAuth provider."
+    replace: '${seeInitialOmniAuthConfigurationForInitialSettingsToEnableSingleSignOnAndAddAuthentiqAsAnOAuthProvider}'
+    complete-pattern: true
+  - pattern: "Add the provider configuration for Authentiq:"
+    replace: '${addTheProviderConfigurationForAuthentiq}'
+    complete-pattern: true
+  - pattern: "The `scope` is set to request the user's name, email (required and signed), and permission to send push notifications to sign in on subsequent visits."
+    replace: '${theScopeIsSetToRequestTheUsersNameEmailRequiredAndSignedAndPermissionToSendPushNotificationsToSignInOnSubsequentVisits}'
+    complete-pattern: true
+  - pattern: "See [OmniAuth Authentiq strategy](https://github.com/AuthentiqID/omniauth-authentiq#scopes-and-redirect-uri-configuration) for more information on scopes and modifiers."
+    replace: '${seeOmniAuthAuthentiqStrategyForMoreInformationOnScopesAndModifiers}'
+    complete-pattern: true
+  - pattern: "Change 'YOUR_CLIENT_ID' and 'YOUR_CLIENT_SECRET' to the Client credentials you received in step 1."
+    replace: '${changeYourClientIdAndYourClientSecretToTheClientCredentialsYouReceivedInStep1}'
+    complete-pattern: true
+  - pattern: "Save the configuration file."
+    replace: '${saveTheConfigurationFile}'
+    complete-pattern: true
+  - pattern: "On your GitLab server, open the configuration file:"
+    replace: '${onYourGitLabServerOpenTheConfigurationFile}'
+    complete-pattern: true

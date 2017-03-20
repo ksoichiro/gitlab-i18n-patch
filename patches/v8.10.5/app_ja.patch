@@ -14728,9 +14728,18 @@ index d5d4330..65ed9f9 100644
  [storage driver configuration](#container-registry-storage-driver).
  
 diff --git a/doc/administration/custom_hooks.md b/doc/administration/custom_hooks.md
-index e3306c2..71f9f50 100644
+index e3306c2..25a6236 100644
 --- a/doc/administration/custom_hooks.md
 +++ b/doc/administration/custom_hooks.md
+@@ -1,7 +1,7 @@
+ # Custom Git Hooks
+ 
+ >
+-**Note:** Custom Git hooks must be configured on the filesystem of the GitLab
++**注意:** Custom Git hooks must be configured on the filesystem of the GitLab
+ server. Only GitLab server administrators will be able to complete these tasks.
+ Please explore [webhooks](../web_hooks/web_hooks.md) as an option if you do not
+ have filesystem access. For a user configurable Git hook interface, please see
 @@ -44,7 +44,7 @@ as appropriate.
  
  ## Custom error messages
@@ -15020,9 +15029,17 @@ index d1e6c54..4abdc49 100644
  You can create as many personal access tokens as you like from your GitLab
  profile (`/profile/personal_access_tokens`); perhaps one for each application
 diff --git a/doc/api/award_emoji.md b/doc/api/award_emoji.md
-index b44f8cf..0e64262 100644
+index b44f8cf..d616599 100644
 --- a/doc/api/award_emoji.md
 +++ b/doc/api/award_emoji.md
+@@ -1,6 +1,6 @@
+ # Award Emoji
+ 
+- >**Note:** This feature was introduced in GitLab 8.9
++ >**注意:** This feature was introduced in GitLab 8.9
+ 
+ An awarded emoji tells a thousand words, and can be awarded on issues, merge
+ requests and notes/comments. Issues, merge requests and notes are further called
 @@ -197,7 +197,7 @@ Example Response:
  ## Award Emoji on Notes
  
@@ -15288,6 +15305,18 @@ index dc036d7..87b1720 100644
  
  All methods require administrator authorization.
  
+diff --git a/doc/api/todos.md b/doc/api/todos.md
+index 937c71d..aacb3c4 100644
+--- a/doc/api/todos.md
++++ b/doc/api/todos.md
+@@ -1,6 +1,6 @@
+ # Todos
+ 
+-**Note:** This feature was [introduced][ce-3188] in GitLab 8.10
++**注意:** This feature was [introduced][ce-3188] in GitLab 8.10
+ 
+ ## Get a list of todos
+ 
 diff --git a/doc/api/users.md b/doc/api/users.md
 index 7e84858..1c3f35d 100644
 --- a/doc/api/users.md
@@ -15313,6 +15342,19 @@ index 0833027..6221919 100644
 +- [ユーザ権限](../user/permissions.md#gitlab-ci)
  - [API](../api/ci/README.md)
  - [CI services (linked docker containers)](services/README.md)
+diff --git a/doc/ci/build_artifacts/README.md b/doc/ci/build_artifacts/README.md
+index 9553bb1..2bfdff6 100644
+--- a/doc/ci/build_artifacts/README.md
++++ b/doc/ci/build_artifacts/README.md
+@@ -14,7 +14,7 @@ Starting from GitLab 8.4 and GitLab Runner 1.0, the artifacts archive format
+ changed to `ZIP`, and it is now possible to browse its contents, with the added
+ ability of downloading the files separately.
+ 
+-**Note:**
++**注意:**
+ The artifacts browser will be available only for new artifacts that are sent
+ to GitLab using GitLab Runner version 1.0 and up. It will not be possible to
+ browse old artifacts already uploaded to GitLab.
 diff --git a/doc/ci/docker/README.md b/doc/ci/docker/README.md
 index 84eaf29..e6991eb 100644
 --- a/doc/ci/docker/README.md
@@ -15428,7 +15470,7 @@ index 48a9f99..2f31933 100644
  
  ## Pipelines
 diff --git a/doc/ci/quick_start/README.md b/doc/ci/quick_start/README.md
-index 7fa1a47..b405971 100644
+index 7fa1a47..35091cf 100644
 --- a/doc/ci/quick_start/README.md
 +++ b/doc/ci/quick_start/README.md
 @@ -1,6 +1,6 @@
@@ -15440,6 +15482,15 @@ index 7fa1a47..b405971 100644
  is fully integrated into GitLab itself and is [enabled] by default on all
  projects.
  
+@@ -63,7 +63,7 @@ have different pipelines and jobs, and you have a single source of truth for CI.
+ You can read more about the reasons why we are using `.gitlab-ci.yml` [in our
+ blog about it][blog-ci].
+ 
+-**Note:** `.gitlab-ci.yml` is a [YAML](https://en.wikipedia.org/wiki/YAML) file
++**注意:** `.gitlab-ci.yml` is a [YAML](https://en.wikipedia.org/wiki/YAML) file
+ so you have to pay extra attention to indentation. Always use spaces, not tabs.
+ 
+ ### Creating a simple `.gitlab-ci.yml` file
 @@ -207,7 +207,7 @@ you expected.
  ![Build log](img/build_log.png)
  
@@ -15713,7 +15764,7 @@ index 33fd50f..75ceebf 100644
 -Note: It is recommended to log into the `git` user using `sudo -i -u git` or `sudo su - git`. While the sudo commands provided by gitlabhq work in Ubuntu they do not always work in RHEL.
 +注意: It is recommended to log into the `git` user using `sudo -i -u git` or `sudo su - git`. While the sudo commands provided by gitlabhq work in Ubuntu they do not always work in RHEL.
 diff --git a/doc/development/doc_styleguide.md b/doc/development/doc_styleguide.md
-index 6ee7b3c..d9d3502 100644
+index 6ee7b3c..21fb9b2 100644
 --- a/doc/development/doc_styleguide.md
 +++ b/doc/development/doc_styleguide.md
 @@ -49,7 +49,7 @@ it organized and easy to find.
@@ -15734,6 +15785,22 @@ index 6ee7b3c..d9d3502 100644
  
  - Place images in a separate directory named `img/` in the same directory where
    the `.md` document that you're working on is located. Always prepend their
+@@ -88,13 +88,13 @@ Inside the document:
+ - Notes should be quoted with the word `Note:` being bold. Use this form:
+ 
+     ```
+-    >**Note:**
++    >**注意:**
+     This is something to note.
+     ```
+ 
+     which renders to:
+ 
+-    >**Note:**
++    >**注意:**
+     This is something to note.
+ 
+     If the note spans across multiple lines it's OK to split the line.
 @@ -113,7 +113,7 @@ Inside the document:
    `>**Note:** This feature was introduced in GitLab EE 8.3`. Otherwise, leave
    this mention out
@@ -16069,9 +16136,36 @@ index e8093f0..3e1de8a 100644
  We do not recommend using MySQL due to various issues. For example, case [(in)sensitivity](https://dev.mysql.com/doc/refman/5.0/en/case-sensitivity.html) and [problems](https://bugs.mysql.com/bug.php?id=65830) that [suggested](https://bugs.mysql.com/bug.php?id=50909) [fixes](https://bugs.mysql.com/bug.php?id=65830) [have](https://bugs.mysql.com/bug.php?id=63164).
  
 diff --git a/doc/install/installation.md b/doc/install/installation.md
-index 9bc0dbb..e7470ef 100644
+index 9bc0dbb..c460a96 100644
 --- a/doc/install/installation.md
 +++ b/doc/install/installation.md
+@@ -55,7 +55,7 @@ up-to-date and install it.
+     apt-get upgrade -y
+     apt-get install sudo -y
+ 
+-**Note:** During this installation some files will need to be edited manually. If you are familiar with vim set it as default editor with the commands below. If you are not familiar with vim please skip this and keep using the default editor.
++**注意:** During this installation some files will need to be edited manually. If you are familiar with vim set it as default editor with the commands below. If you are not familiar with vim please skip this and keep using the default editor.
+ 
+     # Install vim and set as default editor
+     sudo apt-get install -y vim
+@@ -69,7 +69,7 @@ If you want to use Kerberos for user authentication, then install libkrb5-dev:
+ 
+     sudo apt-get install libkrb5-dev
+ 
+-**Note:** If you don't know what Kerberos is, you can assume you don't need it.
++**注意:** If you don't know what Kerberos is, you can assume you don't need it.
+ 
+ Make sure you have the right version of Git installed
+ 
+@@ -100,7 +100,7 @@ Is the system packaged Git too old? Remove it and compile from source.
+ 
+     # When editing config/gitlab.yml (Step 5), change the git -> bin_path to /usr/local/bin/git
+ 
+-**Note:** In order to receive mail notifications, make sure to install a mail server. By default, Debian is shipped with exim4 but this [has problems](https://github.com/gitlabhq/gitlabhq/issues/4866#issuecomment-32726573) while Ubuntu does not ship with one. The recommended mail server is postfix and you can install it with:
++**注意:** In order to receive mail notifications, make sure to install a mail server. By default, Debian is shipped with exim4 but this [has problems](https://github.com/gitlabhq/gitlabhq/issues/4866#issuecomment-32726573) while Ubuntu does not ship with one. The recommended mail server is postfix and you can install it with:
+ 
+     sudo apt-get install -y postfix
+ 
 @@ -160,7 +160,7 @@ Create a `git` user for GitLab:
  We recommend using a PostgreSQL database. For MySQL check the
  [MySQL setup guide](database_mysql.md).
@@ -16080,6 +16174,94 @@ index 9bc0dbb..e7470ef 100644
 +> **注意**: because we need to make use of extensions you need at least pgsql 9.1.
  
  1. Install the database packages:
+ 
+@@ -271,7 +271,7 @@ sudo usermod -aG redis git
+     # Clone GitLab repository
+     sudo -u git -H git clone https://gitlab.com/gitlab-org/gitlab-ce.git -b 8-10-stable gitlab
+ 
+-**Note:** You can change `8-10-stable` to `master` if you want the *bleeding edge* version, but never install master on a production server!
++**注意:** You can change `8-10-stable` to `master` if you want the *bleeding edge* version, but never install master on a production server!
+ 
+ ### Configure It
+ 
+@@ -340,7 +340,7 @@ sudo usermod -aG redis git
+ 
+ **Important Note:** Make sure to edit both `gitlab.yml` and `unicorn.rb` to match your setup.
+ 
+-**Note:** If you want to use HTTPS, see [Using HTTPS](#using-https) for the additional steps.
++**注意:** If you want to use HTTPS, see [Using HTTPS](#using-https) for the additional steps.
+ 
+ ### Configure GitLab DB Settings
+ 
+@@ -364,7 +364,7 @@ sudo usermod -aG redis git
+ 
+ ### Install Gems
+ 
+-**Note:** As of bundler 1.5.2, you can invoke `bundle install -jN` (where `N` the number of your processor cores) and enjoy the parallel gems installation with measurable difference in completion time (~60% faster). Check the number of your cores with `nproc`. For more information check this [post](https://robots.thoughtbot.com/parallel-gem-installing-using-bundler). First make sure you have bundler >= 1.5.2 (run `bundle -v`) as it addresses some [issues](https://devcenter.heroku.com/changelog-items/411) that were [fixed](https://github.com/bundler/bundler/pull/2817) in 1.5.2.
++**注意:** As of bundler 1.5.2, you can invoke `bundle install -jN` (where `N` the number of your processor cores) and enjoy the parallel gems installation with measurable difference in completion time (~60% faster). Check the number of your cores with `nproc`. For more information check this [post](https://robots.thoughtbot.com/parallel-gem-installing-using-bundler). First make sure you have bundler >= 1.5.2 (run `bundle -v`) as it addresses some [issues](https://devcenter.heroku.com/changelog-items/411) that were [fixed](https://github.com/bundler/bundler/pull/2817) in 1.5.2.
+ 
+     # For PostgreSQL (note, the option says "without ... mysql")
+     sudo -u git -H bundle install --deployment --without development test mysql aws kerberos
+@@ -372,7 +372,7 @@ sudo usermod -aG redis git
+     # Or if you use MySQL (note, the option says "without ... postgres")
+     sudo -u git -H bundle install --deployment --without development test postgres aws kerberos
+ 
+-**Note:** If you want to use Kerberos for user authentication, then omit `kerberos` in the `--without` option above.
++**注意:** If you want to use Kerberos for user authentication, then omit `kerberos` in the `--without` option above.
+ 
+ ### Install GitLab Shell
+ 
+@@ -385,9 +385,9 @@ GitLab Shell is an SSH access and repository management software developed speci
+     # You can review (and modify) the gitlab-shell config as follows:
+     sudo -u git -H editor /home/git/gitlab-shell/config.yml
+ 
+-**Note:** If you want to use HTTPS, see [Using HTTPS](#using-https) for the additional steps.
++**注意:** If you want to use HTTPS, see [Using HTTPS](#using-https) for the additional steps.
+ 
+-**Note:** Make sure your hostname can be resolved on the machine itself by either a proper DNS record or an additional line in /etc/hosts ("127.0.0.1  hostname"). This might be necessary for example if you set up GitLab behind a reverse proxy. If the hostname cannot be resolved, the final installation check will fail with "Check GitLab API access: FAILED. code: 401" and pushing commits will be rejected with "[remote rejected] master -> master (hook declined)".
++**注意:** Make sure your hostname can be resolved on the machine itself by either a proper DNS record or an additional line in /etc/hosts ("127.0.0.1  hostname"). This might be necessary for example if you set up GitLab behind a reverse proxy. If the hostname cannot be resolved, the final installation check will fail with "Check GitLab API access: FAILED. code: 401" and pushing commits will be rejected with "[remote rejected] master -> master (hook declined)".
+ 
+ ### Install gitlab-workhorse
+ 
+@@ -413,7 +413,7 @@ If you are not using Linux you may have to run `gmake` instead of
+ 
+     # When done you see 'Administrator account created:'
+ 
+-**Note:** You can set the Administrator/root password and e-mail by supplying them in environmental variables, `GITLAB_ROOT_PASSWORD` and `GITLAB_ROOT_EMAIL` respectively, as seen below. If you don't set the password (and it is set to the default one) please wait with exposing GitLab to the public internet until the installation is done and you've logged into the server the first time. During the first login you'll be forced to change the default password.
++**注意:** You can set the Administrator/root password and e-mail by supplying them in environmental variables, `GITLAB_ROOT_PASSWORD` and `GITLAB_ROOT_EMAIL` respectively, as seen below. If you don't set the password (and it is set to the default one) please wait with exposing GitLab to the public internet until the installation is done and you've logged into the server the first time. During the first login you'll be forced to change the default password.
+ 
+     sudo -u git -H bundle exec rake gitlab:setup RAILS_ENV=production GITLAB_ROOT_PASSWORD=yourpassword GITLAB_ROOT_EMAIL=youremail
+ 
+@@ -461,7 +461,7 @@ Check if GitLab and its environment are configured correctly:
+ 
+ ## 8. Nginx
+ 
+-**Note:** Nginx is the officially supported web server for GitLab. If you cannot or do not want to use Nginx as your web server, have a look at the [GitLab recipes](https://gitlab.com/gitlab-org/gitlab-recipes/).
++**注意:** Nginx is the officially supported web server for GitLab. If you cannot or do not want to use Nginx as your web server, have a look at the [GitLab recipes](https://gitlab.com/gitlab-org/gitlab-recipes/).
+ 
+ ### Installation
+ 
+@@ -483,7 +483,7 @@ Make sure to edit the config file to match your setup:
+     # or else sudo rm -f /etc/nginx/sites-enabled/default
+     sudo editor /etc/nginx/sites-available/gitlab
+ 
+-**Note:** If you want to use HTTPS, replace the `gitlab` Nginx config with `gitlab-ssl`. See [Using HTTPS](#using-https) for HTTPS configuration details.
++**注意:** If you want to use HTTPS, replace the `gitlab` Nginx config with `gitlab-ssl`. See [Using HTTPS](#using-https) for HTTPS configuration details.
+ 
+ ### Test Configuration
+ 
+diff --git a/doc/install/relative_url.md b/doc/install/relative_url.md
+index 44d2a14..5598eb9 100644
+--- a/doc/install/relative_url.md
++++ b/doc/install/relative_url.md
+@@ -109,7 +109,7 @@ Make sure to follow all steps below:
+     -authBackend http://127.0.0.1:8080/gitlab
+     ```
+ 
+-    **Note:**
++    **注意:**
+     If you are using a custom init script, make sure to edit the above
+     gitlab-workhorse setting as needed.
  
 diff --git a/doc/integration/auth0.md b/doc/integration/auth0.md
 index e524708..c0189eb 100644
@@ -16374,7 +16556,7 @@ index 1850031..7db99f2 100644
  - [Automatically close issues from merge requests](../customization/issue_closing.md)
  - [Automatically merge when your builds succeed](../workflow/merge_when_build_succeeds.md)
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index c6c7ac8..ed5e83a 100644
+index c6c7ac8..641d618 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,38 +1,38 @@
@@ -16417,7 +16599,7 @@ index c6c7ac8..ed5e83a 100644
 -* [Tables](#tables)
 +* [ヘッダ](#headers)
 +* [強調](#emphasis)
-+* リスト(#lists)
++* [リスト](#lists)
 +* [リンク](#links)
 +* [画像](#images)
 +* [引用](#blockquotes)
@@ -18096,6 +18278,19 @@ index 975d721..a9c2749 100644
  The following guides are for subscribers of the Enterprise Edition only.
  
  If you wish to upgrade your GitLab installation from Community to Enterprise
+diff --git a/doc/update/mysql_to_postgresql.md b/doc/update/mysql_to_postgresql.md
+index a7de564..268f9dc 100644
+--- a/doc/update/mysql_to_postgresql.md
++++ b/doc/update/mysql_to_postgresql.md
+@@ -28,7 +28,7 @@ sudo service gitlab start
+ ```
+ 
+ ## Converting a GitLab backup file from MySQL to Postgres
+-**Note:** Please make sure to have Python 2.7.x (or higher) installed.
++**注意:** Please make sure to have Python 2.7.x (or higher) installed.
+ 
+ GitLab backup files (`<timestamp>_gitlab_backup.tar`) contain a SQL dump. Using the lanyrd database converter we can replace a MySQL database dump inside the tar file with a Postgres database dump. This can be useful if you are moving to another server.
+ 
 diff --git a/doc/user/admin_area/settings/visibility_and_access_controls.md b/doc/user/admin_area/settings/visibility_and_access_controls.md
 index 633f16a..f551514 100644
 --- a/doc/user/admin_area/settings/visibility_and_access_controls.md
@@ -18675,7 +18870,7 @@ index b69ae66..eb17062 100644
  Start typing what you are searching for and watch the magic happen. With the
  up/down arrows, you go up and down the results, with `Esc` you close the search
 diff --git a/doc/workflow/forking_workflow.md b/doc/workflow/forking_workflow.md
-index 733d079..b9561ae 100644
+index 733d079..09f56ba 100644
 --- a/doc/workflow/forking_workflow.md
 +++ b/doc/workflow/forking_workflow.md
 @@ -1,4 +1,4 @@
@@ -18684,6 +18879,15 @@ index 733d079..b9561ae 100644
  
  Forking a project to your own namespace is useful if you have no write
  access to the project you want to contribute to. If you do have write
+@@ -27,7 +27,7 @@ Forking a project is in most cases a two-step process.
+ 
+     ---
+ 
+-    **Note:**
++    **注意:**
+     If the namespace you chose to fork the project to has another project with
+     the same path name, you will be presented with a warning that the forking
+     could not be completed. Try to resolve the error and repeat the forking
 diff --git a/doc/workflow/gitlab_flow.md b/doc/workflow/gitlab_flow.md
 index 2b2f140..fe567ee 100644
 --- a/doc/workflow/gitlab_flow.md
@@ -18930,7 +19134,7 @@ index ffcb832..592beab 100644
 \ No newline at end of file
 +![Shortcuts](shortcuts.png)
 diff --git a/doc/workflow/todos.md b/doc/workflow/todos.md
-index 9524ffd..f2db072 100644
+index 9524ffd..47d648f 100644
 --- a/doc/workflow/todos.md
 +++ b/doc/workflow/todos.md
 @@ -1,6 +1,6 @@
@@ -18949,15 +19153,6 @@ index 9524ffd..f2db072 100644
 +>**注意:** Commenting on a commit will _not_ trigger a Todo.
  
  ### Manually creating a Todo
- 
-@@ -83,7 +83,7 @@ There are four kinds of filters you can use on your Todos dashboard.
- | Project | Filter by project |
- | Author  | Filter by the author that triggered the Todo |
- | Type    | Filter by issue or merge request |
--| Action  | Filter by the action that triggered the Todo (Assigned or Mentioned)|
-+| アクション  | Filter by the action that triggered the Todo (Assigned or Mentioned)|
- 
- You can also filter by more than one of these at the same time.
  
 diff --git a/doc/workflow/web_editor.md b/doc/workflow/web_editor.md
 index 1832567..160c91e 100644

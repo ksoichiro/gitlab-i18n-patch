@@ -13920,7 +13920,7 @@ index 9bd2f5a..5a8fb19 100644
  
  ![Features settings](img/features_settings.png)
 diff --git a/doc/ci/permissions/README.md b/doc/ci/permissions/README.md
-index d77061c..22a60d4 100644
+index d77061c..7302de2 100644
 --- a/doc/ci/permissions/README.md
 +++ b/doc/ci/permissions/README.md
 @@ -1,4 +1,4 @@
@@ -13929,22 +13929,8 @@ index d77061c..22a60d4 100644
  
  GitLab CI relies on user's role on the GitLab. There are three permissions levels on GitLab CI: admin, master, developer, other.
  
-@@ -7,11 +7,11 @@ Admin user can perform any actions on GitLab CI in scope of instance and project
- 
- 
- 
--| Action                                | Guest, Reporter | Developer   | Master   | Admin  |
-+| アクション                                | Guest, Reporter | Developer   | Master   | Admin  |
- |---------------------------------------|-----------------|-------------|----------|--------|
- | See commits and builds                | ✓               | ✓           | ✓        | ✓      |
- | Retry or cancel build                 |                 | ✓           | ✓        | ✓      |
--| Remove project                        |                 |             | ✓        | ✓      |
-+| プロジェクトを削除する                        |                 |             | ✓        | ✓      |
- | Create project                        |                 |             | ✓        | ✓      |
- | Change project configuration          |                 |             | ✓        | ✓      |
- | Add specific runners                  |                 |             | ✓        | ✓      |
 diff --git a/doc/ci/quick_start/README.md b/doc/ci/quick_start/README.md
-index a9b3613..5ca1068 100644
+index a9b3613..2b99122 100644
 --- a/doc/ci/quick_start/README.md
 +++ b/doc/ci/quick_start/README.md
 @@ -1,4 +1,4 @@
@@ -13953,6 +13939,15 @@ index a9b3613..5ca1068 100644
  
  Starting from version 8.0, GitLab Continuous Integration (CI) is fully
  integrated into GitLab itself and is enabled by default on all projects.
+@@ -41,7 +41,7 @@ branches can have separate builds and you have a single source of truth for CI.
+ You can read more about the reasons why we are using `.gitlab-ci.yml`
+ [in our blog about it][blog-ci].
+ 
+-**Note:** `.gitlab-ci.yml` is a [YAML](https://en.wikipedia.org/wiki/YAML) file
++**注意:** `.gitlab-ci.yml` is a [YAML](https://en.wikipedia.org/wiki/YAML) file
+ so you have to pay extra attention to the identation. Always use spaces, not
+ tabs.
+ 
 @@ -182,7 +182,7 @@ you expected.
  ![Build log](img/build_log.png)
  
@@ -14296,6 +14291,18 @@ index b2ceda0..af23d47 100644
  
  If you want to start using a Git and GitLab, make sure that you have created an account on GitLab.
  
+diff --git a/doc/hooks/custom_hooks.md b/doc/hooks/custom_hooks.md
+index 0f2665a..629dba0 100644
+--- a/doc/hooks/custom_hooks.md
++++ b/doc/hooks/custom_hooks.md
+@@ -1,6 +1,6 @@
+ # Custom Git Hooks
+ 
+-**Note: Custom git hooks must be configured on the filesystem of the GitLab
++**注意: Custom git hooks must be configured on the filesystem of the GitLab
+ server. Only GitLab server administrators will be able to complete these tasks.
+ Please explore webhooks as an option if you do not have filesystem access. For a user configurable Git Hooks interface, please see [GitLab Enterprise Edition Git Hooks](http://doc.gitlab.com/ee/git_hooks/git_hooks.html).**
+ 
 diff --git a/doc/incoming_email/README.md b/doc/incoming_email/README.md
 index 4cfb840..a987b38 100644
 --- a/doc/incoming_email/README.md
@@ -14317,6 +14324,112 @@ index e51ff5a..5313e88 100644
 +## 注意
  
  We do not recommend using MySQL due to various issues. For example, case [(in)sensitivity](https://dev.mysql.com/doc/refman/5.0/en/case-sensitivity.html) and [problems](https://bugs.mysql.com/bug.php?id=65830) that [suggested](https://bugs.mysql.com/bug.php?id=50909) [fixes](https://bugs.mysql.com/bug.php?id=65830) [have](https://bugs.mysql.com/bug.php?id=63164).
+ 
+diff --git a/doc/install/installation.md b/doc/install/installation.md
+index 0003072..0bf73f8 100644
+--- a/doc/install/installation.md
++++ b/doc/install/installation.md
+@@ -55,7 +55,7 @@ up-to-date and install it.
+     apt-get upgrade -y
+     apt-get install sudo -y
+ 
+-**Note:** During this installation some files will need to be edited manually. If you are familiar with vim set it as default editor with the commands below. If you are not familiar with vim please skip this and keep using the default editor.
++**注意:** During this installation some files will need to be edited manually. If you are familiar with vim set it as default editor with the commands below. If you are not familiar with vim please skip this and keep using the default editor.
+ 
+     # Install vim and set as default editor
+     sudo apt-get install -y vim
+@@ -69,7 +69,7 @@ If you want to use Kerberos for user authentication, then install libkrb5-dev:
+ 
+     sudo apt-get install libkrb5-dev
+ 
+-**Note:** If you don't know what Kerberos is, you can assume you don't need it.
++**注意:** If you don't know what Kerberos is, you can assume you don't need it.
+ 
+ Make sure you have the right version of Git installed
+ 
+@@ -99,7 +99,7 @@ Is the system packaged Git too old? Remove it and compile from source.
+ 
+     # When editing config/gitlab.yml (Step 5), change the git -> bin_path to /usr/local/bin/git
+ 
+-**Note:** In order to receive mail notifications, make sure to install a mail server. By default, Debian is shipped with exim4 but this [has problems](https://github.com/gitlabhq/gitlabhq/issues/4866#issuecomment-32726573) while Ubuntu does not ship with one. The recommended mail server is postfix and you can install it with:
++**注意:** In order to receive mail notifications, make sure to install a mail server. By default, Debian is shipped with exim4 but this [has problems](https://github.com/gitlabhq/gitlabhq/issues/4866#issuecomment-32726573) while Ubuntu does not ship with one. The recommended mail server is postfix and you can install it with:
+ 
+     sudo apt-get install -y postfix
+ 
+@@ -233,7 +233,7 @@ sudo usermod -aG redis git
+     # Clone GitLab repository
+     sudo -u git -H git clone https://gitlab.com/gitlab-org/gitlab-ce.git -b 8-4-stable gitlab
+ 
+-**Note:** You can change `8-4-stable` to `master` if you want the *bleeding edge* version, but never install master on a production server!
++**注意:** You can change `8-4-stable` to `master` if you want the *bleeding edge* version, but never install master on a production server!
+ 
+ ### Configure It
+ 
+@@ -294,7 +294,7 @@ sudo usermod -aG redis git
+ 
+ **Important Note:** Make sure to edit both `gitlab.yml` and `unicorn.rb` to match your setup.
+ 
+-**Note:** If you want to use HTTPS, see [Using HTTPS](#using-https) for the additional steps.
++**注意:** If you want to use HTTPS, see [Using HTTPS](#using-https) for the additional steps.
+ 
+ ### Configure GitLab DB Settings
+ 
+@@ -318,7 +318,7 @@ sudo usermod -aG redis git
+ 
+ ### Install Gems
+ 
+-**Note:** As of bundler 1.5.2, you can invoke `bundle install -jN` (where `N` the number of your processor cores) and enjoy the parallel gems installation with measurable difference in completion time (~60% faster). Check the number of your cores with `nproc`. For more information check this [post](https://robots.thoughtbot.com/parallel-gem-installing-using-bundler). First make sure you have bundler >= 1.5.2 (run `bundle -v`) as it addresses some [issues](https://devcenter.heroku.com/changelog-items/411) that were [fixed](https://github.com/bundler/bundler/pull/2817) in 1.5.2.
++**注意:** As of bundler 1.5.2, you can invoke `bundle install -jN` (where `N` the number of your processor cores) and enjoy the parallel gems installation with measurable difference in completion time (~60% faster). Check the number of your cores with `nproc`. For more information check this [post](https://robots.thoughtbot.com/parallel-gem-installing-using-bundler). First make sure you have bundler >= 1.5.2 (run `bundle -v`) as it addresses some [issues](https://devcenter.heroku.com/changelog-items/411) that were [fixed](https://github.com/bundler/bundler/pull/2817) in 1.5.2.
+ 
+     # For PostgreSQL (note, the option says "without ... mysql")
+     sudo -u git -H bundle install --deployment --without development test mysql aws kerberos
+@@ -326,7 +326,7 @@ sudo usermod -aG redis git
+     # Or if you use MySQL (note, the option says "without ... postgres")
+     sudo -u git -H bundle install --deployment --without development test postgres aws kerberos
+ 
+-**Note:** If you want to use Kerberos for user authentication, then omit `kerberos` in the `--without` option above.
++**注意:** If you want to use Kerberos for user authentication, then omit `kerberos` in the `--without` option above.
+ 
+ ### Install GitLab Shell
+ 
+@@ -339,9 +339,9 @@ GitLab Shell is an SSH access and repository management software developed speci
+     # You can review (and modify) the gitlab-shell config as follows:
+     sudo -u git -H editor /home/git/gitlab-shell/config.yml
+ 
+-**Note:** If you want to use HTTPS, see [Using HTTPS](#using-https) for the additional steps.
++**注意:** If you want to use HTTPS, see [Using HTTPS](#using-https) for the additional steps.
+ 
+-**Note:** Make sure your hostname can be resolved on the machine itself by either a proper DNS record or an additional line in /etc/hosts ("127.0.0.1  hostname"). This might be necessary for example if you set up GitLab behind a reverse proxy. If the hostname cannot be resolved, the final installation check will fail with "Check GitLab API access: FAILED. code: 401" and pushing commits will be rejected with "[remote rejected] master -> master (hook declined)".
++**注意:** Make sure your hostname can be resolved on the machine itself by either a proper DNS record or an additional line in /etc/hosts ("127.0.0.1  hostname"). This might be necessary for example if you set up GitLab behind a reverse proxy. If the hostname cannot be resolved, the final installation check will fail with "Check GitLab API access: FAILED. code: 401" and pushing commits will be rejected with "[remote rejected] master -> master (hook declined)".
+ 
+ ### Install gitlab-workhorse
+ 
+@@ -363,7 +363,7 @@ GitLab Shell is an SSH access and repository management software developed speci
+ 
+     # When done you see 'Administrator account created:'
+ 
+-**Note:** You can set the Administrator/root password by supplying it in environmental variable `GITLAB_ROOT_PASSWORD` as seen below. If you don't set the password (and it is set to the default one) please wait with exposing GitLab to the public internet until the installation is done and you've logged into the server the first time. During the first login you'll be forced to change the default password.
++**注意:** You can set the Administrator/root password by supplying it in environmental variable `GITLAB_ROOT_PASSWORD` as seen below. If you don't set the password (and it is set to the default one) please wait with exposing GitLab to the public internet until the installation is done and you've logged into the server the first time. During the first login you'll be forced to change the default password.
+ 
+     sudo -u git -H bundle exec rake gitlab:setup RAILS_ENV=production GITLAB_ROOT_PASSWORD=yourpassword
+ 
+@@ -411,7 +411,7 @@ Check if GitLab and its environment are configured correctly:
+ 
+ ## 8. Nginx
+ 
+-**Note:** Nginx is the officially supported web server for GitLab. If you cannot or do not want to use Nginx as your web server, have a look at the [GitLab recipes](https://gitlab.com/gitlab-org/gitlab-recipes/).
++**注意:** Nginx is the officially supported web server for GitLab. If you cannot or do not want to use Nginx as your web server, have a look at the [GitLab recipes](https://gitlab.com/gitlab-org/gitlab-recipes/).
+ 
+ ### Installation
+ 
+@@ -433,7 +433,7 @@ Make sure to edit the config file to match your setup:
+     # or else sudo rm -f /etc/nginx/sites-enabled/default
+     sudo editor /etc/nginx/sites-available/gitlab
+ 
+-**Note:** If you want to use HTTPS, replace the `gitlab` Nginx config with `gitlab-ssl`. See [Using HTTPS](#using-https) for HTTPS configuration details.
++**注意:** If you want to use HTTPS, replace the `gitlab` Nginx config with `gitlab-ssl`. See [Using HTTPS](#using-https) for HTTPS configuration details.
+ 
+ ### Test Configuration
  
 diff --git a/doc/integration/README.md b/doc/integration/README.md
 index 5edac74..adec2b0 100644
@@ -14516,7 +14629,7 @@ index 52ed4a2..e3bd762 100644
 \ No newline at end of file
 +On the sign in page there should now be a Twitter icon below the regular sign in form. Click the icon to begin the authentication process. Twitter will ask the user to sign in and authorize the GitLab application. If everything goes well the user will be returned to GitLab and will be signed in.
 diff --git a/doc/markdown/markdown.md b/doc/markdown/markdown.md
-index bc8e7d1..522d6a1 100644
+index bc8e7d1..971454f 100644
 --- a/doc/markdown/markdown.md
 +++ b/doc/markdown/markdown.md
 @@ -1,52 +1,52 @@
@@ -14561,7 +14674,7 @@ index bc8e7d1..522d6a1 100644
 +
 +* [ヘッダ](#headers)
 +* [強調](#emphasis)
-+* リスト(#lists)
++* [リスト](#lists)
 +* [リンク](#links)
 +* [画像](#images)
 +* [引用](#blockquotes)
@@ -16141,6 +16254,19 @@ index d9c6d9b..f0a6400 100644
  
  - Make `/home/git/gitlab/config/gitlab.yml` the same as https://gitlab.com/gitlab-org/gitlab-ce/blob/master/config/gitlab.yml.example but with your settings.
  - Make `/home/git/gitlab/config/unicorn.rb` the same as https://gitlab.com/gitlab-org/gitlab-ce/blob/master/config/unicorn.rb.example but with your settings.
+diff --git a/doc/update/mysql_to_postgresql.md b/doc/update/mysql_to_postgresql.md
+index a7de564..268f9dc 100644
+--- a/doc/update/mysql_to_postgresql.md
++++ b/doc/update/mysql_to_postgresql.md
+@@ -28,7 +28,7 @@ sudo service gitlab start
+ ```
+ 
+ ## Converting a GitLab backup file from MySQL to Postgres
+-**Note:** Please make sure to have Python 2.7.x (or higher) installed.
++**注意:** Please make sure to have Python 2.7.x (or higher) installed.
+ 
+ GitLab backup files (`<timestamp>_gitlab_backup.tar`) contain a SQL dump. Using the lanyrd database converter we can replace a MySQL database dump inside the tar file with a Postgres database dump. This can be useful if you are moving to another server.
+ 
 diff --git a/doc/web_hooks/web_hooks.md b/doc/web_hooks/web_hooks.md
 index 6420d65..775c8b3 100644
 --- a/doc/web_hooks/web_hooks.md

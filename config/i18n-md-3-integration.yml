@@ -1,0 +1,21 @@
+translations:
+
+# Markdown
+- name: 'md:integration'
+  parallel-group: 'group3'
+  src: 'doc/**/integration/*.md'
+  skip-patterns:
+  - !!js/regexp /(^#+|^\s*$|^[^a-zA-Z]+$|^\s*```|^---)/
+  patterns:
+  - pattern: 'GitLab as OAuth2 authentication service provider'
+    replace: '${gitlabAsOAuth2AuthenticationServiceProvider}'
+  - pattern: !!js/regexp /By default, the SSL certificate of the webhook endpoint is verified based on \nan internal list of Certificate Authorities, \nwhich means the certificate cannot be self-signed./
+    replace: '${byDefaultTheSslCertificateOfTheWebhookEndpointIsVerifiedBasedOnAnInternalListOfCertificateAuthoritiesWhichMeansTheCertificateCannotBeSelfSigned}'
+    match-once: true
+    complete-pattern: true
+  - pattern: "Save the configuration file."
+    replace: '${saveTheConfigurationFile}'
+    complete-pattern: true
+  - pattern: "On your GitLab server, open the configuration file:"
+    replace: '${onYourGitLabServerOpenTheConfigurationFile}'
+    complete-pattern: true

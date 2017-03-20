@@ -1,0 +1,39 @@
+translations:
+
+# Markdown
+- name: 'md:web_hooks'
+  parallel-group: 'group3'
+  src: 'doc/**/web_hooks/*.md'
+  skip-patterns:
+  - !!js/regexp /(^#+|^\s*$|^[^a-zA-Z]+$|^\s*```|^---)/
+  patterns:
+  # From 7.x to 8.5.x
+  - pattern: 'Project web hooks allow you to trigger an URL if new code is pushed or a new issue is created.'
+    replace: '${projectWebHooksAllowYouToTriggerAnURLIfNewCodeIsPushedOrANewIssueIsCreated}'
+    match-once: true
+    complete-pattern: true
+    evaluate-when: "semver.lt(version, '8.6.0')"
+  # From 7.x to 8.5.x
+  - pattern: 'You can configure web hooks to listen for specific events like pushes, issues or merge requests. GitLab will send a POST request with data to the web hook URL.'
+    replace: '${youCanConfigureWebHooksToListenForSpecificEventsLikePushesIssuesOrMergeRequestsGitlabWIllSendAPostRequestWithDataToTheWebHookUrl}'
+    match-once: true
+    complete-pattern: true
+    evaluate-when: "semver.lt(version, '8.6.0')"
+  # From 7.x to 8.5.x
+  - pattern: 'Web hooks can be used to update an external issue tracker, trigger CI builds, update a backup mirror, or even deploy to your production server.'
+    replace: '${webHooksCanBeUsedToUpdateAnExternalIssueTrackerTriggerCIBuildsUpdateABackupMirrorOrEVenDeployToYourProductionServer}'
+    match-once: true
+    complete-pattern: true
+    evaluate-when: "semver.lt(version, '8.6.0')"
+  # From 7.x to 8.5.x
+  - pattern: 'You can turn this off in the web hook settings in your GitLab projects.'
+    replace: '${youCanTurnThisOffInTheWebHookSettingsInYourGitlabProjects}'
+    match-once: true
+    complete-pattern: true
+    evaluate-when: "semver.lt(version, '8.6.0')"
+  # To 8.4.x
+  - pattern: !!js/regexp /By default, the SSL certificate of the webhook endpoint is verified based on \nan internal list of Certificate Authorities, \nwhich means the certificate cannot be self-signed./
+    replace: '${byDefaultTheSslCertificateOfTheWebhookEndpointIsVerifiedBasedOnAnInternalListOfCertificateAuthoritiesWhichMeansTheCertificateCannotBeSelfSigned}'
+    match-once: true
+    complete-pattern: true
+    evaluate-when: "semver.lt(version, '8.5.0')"

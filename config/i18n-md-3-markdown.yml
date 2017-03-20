@@ -1,0 +1,291 @@
+translations:
+
+# Markdown
+- name: 'md:markdown'
+  parallel-group: 'group3'
+  src: 'doc/**/markdown.md'
+  skip-patterns:
+  - !!js/regexp /(^#+|^\s*$|^[^a-zA-Z]+$|^\s*```|^---)/
+  patterns:
+  - pattern: '[Newlines]'
+    replace: '[${newlines}]'
+  - pattern: '[Multiple underscores in words]'
+    replace: '[${multipleUnderscoresInWords}]'
+  - pattern: '[URL auto-linking]'
+    replace: '[${urlAutoLinking}]'
+  - pattern: '[Code and Syntax Highlighting]'
+    replace: '[${codeAndSyntaxHighlighting}]'
+  - pattern: '[Emoji]'
+    replace: '[${emoji}]'
+  - pattern: '[Special GitLab references]'
+    replace: '[${specialGitLabReferences}]'
+  - pattern: '[Task lists]'
+    replace: '[${taskLists}]'
+  - pattern: '[Standard Markdown]'
+    replace: '[${standardMarkdown}]'
+  - pattern: '[Headers]'
+    replace: '[${headers}]'
+  - pattern: '[Emphasis]'
+    replace: '[${emphasis}]'
+  - pattern: '[Lists]'
+    replace: '[${lists}]'
+  - pattern: '[Links]'
+    replace: '[${links}]'
+  - pattern: '[Images]'
+    replace: '[${images}]'
+  - pattern: '[Blockquotes]'
+    replace: '[${blockquotes}]'
+  - pattern: '[Inline HTML]'
+    replace: '[${inlineHTML}]'
+  - pattern: '[Horizontal Rule]'
+    replace: '[${horizontalRule}]'
+  - pattern: '[Line Breaks]'
+    replace: '[${lineBreaks}]'
+  - pattern: '[Tables]'
+    replace: '[${tables}]'
+  - pattern: '[References]'
+    replace: '[${references}]'
+  - pattern: 'For GitLab we developed something we call "GitLab Flavored Markdown" (GFM). It extends the standard Markdown in a few significant ways to add some useful functionality.'
+    replace: '${forGitLabWeDevelopedSomethingWeCallGitLabFlavoredMarkdownItExtendsTheStandardMarkdownInAFewSignificantWaysToAddSomeUsefulFunctionality}'
+    complete-pattern: true
+  - pattern: 'You can use GFM in'
+    replace: '${youCanUseGFMIn}'
+  - pattern: '- comments'
+    replace: '- ${comment}'
+  - pattern: '- issues'
+    replace: '- ${issue}'
+  - pattern: '- merge requests'
+    replace: '- ${mergeRequest}'
+  - pattern: '- milestones'
+    replace: '- ${milestone}'
+  - pattern: '- wiki pages'
+    replace: '- ${wikiPage}'
+  - pattern: 'You can also use other rich text files in GitLab. You might have to install a dependency to do so. Please see the [github-markup gem readme](https://github.com/gitlabhq/markup#markups) for more information.'
+    replace: '${youCanAlsoUseOtherRichTextFilesInGitLabYouMightHaveToInstallADependencyToDoSoPleaseSeeTheGithubMarkupGemReadmeForMoreInformation}'
+    complete-pattern: true
+  - pattern: "GFM honors the markdown specification in how [paragraphs and line breaks are handled](https://daringfireball.net/projects/markdown/syntax#p)."
+    replace: '${gfmHonorsTheMarkdownSpecificationInHowParagraphsAndLineBreaksAreHandled}'
+    complete-pattern: true
+  - pattern: 'A paragraph is simply one or more consecutive lines of text, separated by one or more blank lines.'
+    replace: '${aParagraphIsSimplyOneOrMoreConsecutiveLinesOfTextSeparatedByOneOrMoreBlankLines}'
+    complete-pattern: true
+  - pattern: 'Line-breaks, or softreturns, are rendered if you end a line with two or more spaces'
+    replace: '${lineBreaksOrSoftreturnsAreRenderedIfYouEndALineWithTwoOrMoreSpaces}'
+    complete-pattern: true
+  - pattern: "It is not reasonable to italicize just _part_ of a word, especially when you're dealing with code and names that often appear with multiple underscores. Therefore, GFM ignores multiple underscores in words."
+    replace: '${itIsNotReasonableToItalicizeJustPartOfAWordEspeciallyWhenYoureDealingWithCodeAndNamesThatOftenAppearWithMultipleUnderscoresThereforeGFMIgnoresMultipleUnderscoresInWOrds}'
+    complete-pattern: true
+  - pattern: 'GFM will autolink almost any URL you copy and paste into your text.'
+    replace: '${gfmWillAutolinkAlmostAnyURLYouCopyAndPasteIntoYourText}'
+    complete-pattern: true
+  - pattern: 'Blocks of code are either fenced by lines with three back-ticks <code>```</code>, or are indented with four spaces. Only the fenced code blocks support syntax highlighting.'
+    replace: '${blocksOfCodeAreEitherFencedByLinesWithThreeBackTicksOrAreIndentedWithFourSpacesOnlyTheFencedCodeBlocksSupportSyntaxHighlighting}'
+    complete-pattern: true
+  - pattern: "Inline `code` has `back-ticks around` it."
+    replace: '${inlineCodeHasBackTicksAroundIt}'
+    complete-pattern: true
+  - pattern: 'indenting works just fine in the fenced code block'
+    replace: '${indentingWorksJustFineInTheFencedCodeBlock}'
+    complete-pattern: true
+  - pattern: 'No language indicated, so no syntax highlighting.'
+    replace: '${noLanguageIndicatedSoNoSyntaxHighlighting}'
+    complete-pattern: true
+  - pattern: 'becomes:'
+    replace: '${becomes}'
+    complete-pattern: true
+  - pattern: 'Sometimes you want to :monkey: around a bit and add some :star2: to your :speech_balloon:. Well we have a gift for you:'
+    replace: '${sometimesYouWantToMonkeyAroundABitAndAddSomeStar2ToYourSpeechBalloonWellWEHaveAGiftForYou}'
+    complete-pattern: true
+  - pattern: ":zap: You can use emoji anywhere GFM is supported. :v:"
+    replace: '${zapYouCanUseEmojiAnywhereGFMIsSupported}'
+    complete-pattern: true
+  - pattern: "You can use it to point out a :bug: or warn about :speak_no_evil: patches. And if someone improves your really :snail: code, send them some :birthday:. People will :heart: you for that."
+    replace: '${youCanUseItToPointOutABugOrWarnAboutSpeakNoEvilPatchesAndIfSomeoneImprovesYourReallySnailCodeSendTHemSomeBirthdayPeopleWIllHeartYouForThat}'
+    complete-pattern: true
+  - pattern: "If you are new to this, don't be :fearful:. You can easily join the emoji :family:. All you need to do is to look up on the supported codes."
+    replace: '${ifYouAreNewToThisDontBeFearfulYouCanEasilyJoinTheEmojiFamilyAllYouNeedToDoIsToLookUpOnTheSupportedCodes}'
+    complete-pattern: true
+  - pattern: "Consult the [Emoji Cheat Sheet](http://emoji.codes) for a list of all supported emoji codes. :thumbsup:"
+    replace: '${consultTheEmojiCheatSheetForAListOfAllSupportedEmojiCodesThumbsup}'
+    complete-pattern: true
+  - pattern: 'GFM recognizes special references.'
+    replace: '${gfmRecognizesSpecialReferences}'
+    complete-pattern: true
+  - pattern: 'You can easily reference e.g. an issue, a commit, a team member or even the whole team within a project.'
+    replace: '${youCanEasilyReferenceEGAnIssueACommitATeamMemberOrEvenTheWholeTeamWithinAProject}'
+    complete-pattern: true
+  - pattern: 'GFM will turn that reference into a link so you can navigate between them easily.'
+    replace: '${gfmWillTurnThatReferenceIntoALinkSoYouCanNavigateBetweenThemEasily}'
+    complete-pattern: true
+  - pattern: 'GFM will recognize the following:'
+    replace: '${gfmWillRecognizeTheFollowing}'
+  - pattern: !!js/regexp /\| input /
+    replace: '| ${thInput} '
+  - pattern: !!js/regexp /\| references /
+    replace: '| ${thReferences} '
+  - pattern: !!js/regexp /From ([^\s]*) to ([^\s]*)/
+    replace: '${fromXToY}'
+    args:
+    - '$1'
+    - '$2'
+    complete-pattern: true
+  - pattern: '| specific user '
+    replace: '| ${thSpecificUser} '
+  - pattern: '| specific group '
+    replace: '| ${thSpecificGroup} '
+  - pattern: '| entire team '
+    replace: '| ${thEntireTeam} '
+  - pattern: '| issue '
+    replace: '| ${thIssue} '
+  - pattern: '| merge request '
+    replace: '| ${thMergeRequest} '
+  - pattern: '| snippet '
+    replace: '| ${thSnippet} '
+  - pattern: '| label by ID '
+    replace: '| ${thLabelByID} '
+  - pattern: '| one-word label by name '
+    replace: '| ${thOneWordLabelByName} '
+  - pattern: '| multi-word label by name '
+    replace: '| ${thMultiWordLabelByName} '
+  - pattern: '| specific commit '
+    replace: '| ${thSpecificCommit} '
+  - pattern: '| commit range comparison '
+    replace: '| ${thCommitRangeComparison} '
+  - pattern: '| repository file references '
+    replace: '| ${thRepositoryFileReferences} '
+  - pattern: 'GFM also recognizes certain cross-project references:'
+    replace: '${gfmAlsoRecognizesCertainCrossProjectReferences}'
+  - pattern: 'Alternatively, for H1 and H2, an underline-ish style:'
+    replace: '${alternativelyForH1AndH2AnUnderlineishStyle}'
+  - pattern: 'Alt-H1'
+    replace: '${altH1}'
+  - pattern: 'Alt-H2'
+    replace: '${altH2}'
+  - pattern: 'All Markdown-rendered headers automatically get IDs, except in comments.'
+    replace: '${allMarkdownRenderedHeadersAutomaticallyGetIdsExceptInComments}'
+  - pattern: 'On hover a link to those IDs becomes visible to make it easier to copy the link to the header to give it to someone else.'
+    replace: '${onHoverALinkToThoseIdsBecomesVisibleToMakeItEasierToCopyTheLinkToTheHeaderToGiveItToSomeoneElse}'
+  - pattern: 'The IDs are generated from the content of the header according to the following rules:'
+    replace: '${theIdsAreGeneratedFromTheContentOfTheHeaderAccordingToTheFollowingRules}'
+  - pattern: '1. All text is converted to lowercase'
+    replace: '1. ${allTextIsConvertedToLowercase}'
+  - pattern: '1. All non-word text (e.g., punctuation, HTML) is removed'
+    replace: '1. ${allNonWordTextEGPuctuationHTMLIsRemoved}'
+  - pattern: '1. All spaces are converted to hyphens'
+    replace: '1. ${allSpacesAreConvertedToHyphens}'
+  - pattern: '1. Two or more hyphens in a row are converted to one'
+    replace: '1. ${twoOrMoreHyphensInARowAreConvertedToOne}'
+  - pattern: !!js/regexp /1. If a header with the same ID has already been generated, a unique\n   incrementing number is appended, starting at 1./
+    replace: '1. ${ifAHeaderWithTheSameIDHasAlreadyBeenGeneratedAUniqueIncrementingNumberIsAppendedStartingAt1}'
+  - pattern: 'Would generate the following link IDs:'
+    replace: '${wouldGenerateTheFollowingLinkIds}:'
+  - pattern: 'Note that the Emoji processing happens before the header IDs are generated, so the Emoji is converted to an image which then gets removed from the ID.'
+    replace: '${noteThatTheEmojiProcessingHappensBeforeTheHeaderIdsAreGeneratedSoTheEmojiIsConvertedToAnImageWhichThenGetsRemovedFromTheID}'
+  - pattern: 'Emphasis, aka italics, with *asterisks* or _underscores_.'
+    replace: '${emphasisAkaItalicsWithAsterisksOrUnderscores}'
+  - pattern: 'Strong emphasis, aka bold, with **asterisks** or __underscores__.'
+    replace: '${strongEmphasisAkaBoldWithAsterisksOrUnderscores}'
+  - pattern: 'Combined emphasis with **asterisks and _underscores_**.'
+    replace: '${combinedEmphasisWithAsterisksAndUnderscores}'
+  - pattern: 'Strikethrough uses two tildes. ~~Scratch this.~~'
+    replace: '${strikethroughUsesTwoTildesScratchThis}'
+  - pattern: '1. First ordered list item'
+    replace: '1. ${firstOrderedListItem}'
+  - pattern: '2. Another item'
+    replace: '2. ${anotherItem}'
+  - pattern: '* Unordered sub-list.'
+    replace: '* ${unorderedSubList}'
+  - pattern: "1. Actual numbers don't matter, just that it's a number"
+    replace: '1. ${actualNumbersDontMatterJustThatItsANumber}'
+  - pattern: '1. Ordered sub-list'
+    replace: '1. ${orderedSubList}'
+  - pattern: '4. And another item.'
+    replace: '4. ${andAnotherItem}'
+  - pattern: '* Unordered list can use asterisks'
+    replace: '* ${unorderedListCanUseAsterisks}'
+  - pattern: '- Or minuses'
+    replace: '- ${orMinuses}'
+  - pattern: '+ Or pluses'
+    replace: '+ ${orPluses}'
+  - pattern: 'There are two ways to create links, inline-style and reference-style.'
+    replace: '${thereAreTwoWaysToCreateLinksInlineStyleAndReferenceStyle}'
+  - pattern: "I'm an inline-style link"
+    replace: '${imAnInlineStyleLink}'
+  - pattern: "I'm a reference-style link"
+    replace: '${imAReferenceStyleLink}'
+  - pattern: "I'm a relative reference to a repository file"
+    replace: '${imARelativeReferenceToARepositoryFile}'
+  - pattern: 'You can use numbers for reference-style link definitions'
+    replace: '${youCanUseNumbersForReferenceStyleLinkDefinitions}'
+  - pattern: 'Or leave it empty and use the [link text itself][]'
+    replace: '${orLeaveItEmptyAndUseTheLinkTextItself}'
+  - pattern: 'Some text to show that the reference links can follow later.'
+    replace: '${someTextToShowThatTheReferenceLinksCanFollowLater}'
+  - pattern: !!js/regexp /Relative links do not allow referencing project files in a wiki page or wiki page in a project file\. The reason for this is that, in GitLab, wiki is always a separate git repository\. For example:\n\n`\[I'm a reference-style link\]\(style\)`\n\nwill point the link to `wikis\/style` when the link is inside of a wiki markdown file./m
+    replace: '${relativeLinksDoNotAllowReferencingProjectFilesInAWikiPageOrWikiPageInAProjectFileTheReasonForThisIsThatInGitlabWikiIsAlwaysASeparateGitRepositoryForExampleImAReferenceStyleLinkWillPointTheLinkToWikisStyleWhenTheLinkIsInsideOfAWikiMarkdownFile}'
+  - pattern: "will point the link to `wikis/style` when the link is inside of a wiki markdown file."
+    replace: '${willPointTheLinkToWikisStyleWhenTheLinkIsInsideOfAWikiMarkdownFile}'
+  - pattern: "Here's our logo (hover to see the title text):"
+    replace: '${heresOurLogoHoverToSeeTheTitleText}'
+  - pattern: "Inline-style"
+    replace: '${inlineStyle}'
+  - pattern: "Reference-style"
+    replace: '${referenceStyle}'
+  - pattern: "Here's our logo:"
+    replace: '${heresOurLogo}'
+  - pattern: 'Blockquotes are very handy in email to emulate reply text.'
+    replace: '${blockquotesAreVeryHandyInEmailToEmulateReplyText}'
+  - pattern: 'This line is part of the same quote.'
+    replace: '${thisLineIsPartOfTheSameQuote}'
+  - pattern: 'Quote break.'
+    replace: '${quoteBreak}'
+  - pattern: "This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote."
+    replace: '${thisIsAVeryLongLineThatWillStillBeQuotedProperlyWhenItWrapsOhBOyLetsKeepWritingToMakeSureThisIsLongEnoughToActuallyWrapForEveryoneOhYouCanPutMarkdownIntoABlockquote}'
+  - pattern: "You can also use raw HTML in your Markdown, and it'll mostly work pretty well."
+    replace: '${youCanAlsoUseRawHTMLInYourMarkdownAndItllmostlyWorkPrettyWell}'
+  - pattern: !!js/regexp /  <dt>Definition list<\/dt>\n  <dd>Is something people use sometimes.<\/dd>/m
+    replace: '${definitionListIsSomethingPeopleUseSometimes}'
+  - pattern: !!js/regexp /  <dt>Markdown in HTML<\/dt>\n  <dd>Does \*not\* work \*\*very\*\* well. Use HTML <em>tags<\/em>.<\/dd>/m
+    replace: '${markdownInHTMLDoesNotWorkVeryWellUseHTMLTags}'
+  - pattern: 'Three or more...'
+    replace: '${threeOrMore}...'
+  - pattern: !!js/regexp /^Hyphens$/
+    replace: '${hyphens}'
+  - pattern: !!js/regexp /^Asterisks$/
+    replace: '${asterisks}'
+  - pattern: !!js/regexp /^Underscores$/
+    replace: '${underscores}'
+  - pattern: "My basic recommendation for learning how line breaks work is to experiment and discover -- hit &lt;Enter&gt; once (i.e., insert one newline), then hit it twice (i.e., insert two newlines), see what happens. You'll soon learn to get what you want. \"Markdown Toggle\" is your friend."
+    replace: '${myBasicRecommendationForLearningHowLineBreaksWorkIsToExperimentAndDiscoverHitEnterOnceInsertOneNewlineThenHitItTwiceInsertTwoNewlinesSeeWhatHappensYoullSoonLearnToGetWhatYouWantMarkdownToggleIsYourFriend}'
+  - pattern: 'Here are some things to try out:'
+    replace: '${hereAreSomeThingsToTryOut}'
+  - pattern: "Here's a line for us to start with."
+    replace: '${heresALineForUsToStartWith}'
+  - pattern: "This line is separated from the one above by two newlines, so it will be a *separate paragraph*."
+    replace: '${thisLineIsSeparatedFromTheOneAboveByTwoNewlinesSoItWillBeASeparateParagraph}'
+  - pattern: 'This line is also a separate paragraph, but...'
+    replace: '${thisLineIsAlsoASeparateParagraphBut}'
+  - pattern: "This line is only separated by a single newline, so it's a separate line in the *same paragraph*."
+    replace: '${thisLineIsOnlySeparatedByASingleNewlineSoItsASeparateLineInTheSameParagraph}'
+  - pattern: !!js/regexp /This line is also a separate paragraph, and...(:?  )?\nThis line is on its own line, because the previous line ends with two\nspaces./m
+    replace: '${thisLineIsAlsoASeparateParagraphAndThisLineIsOnItsOwnLineBecauseThePreviousLineEndsWithTwoSpaces}'
+  - pattern: "Tables aren't part of the core Markdown spec, but they are part of GFM and Markdown Here supports them."
+    replace: '${tablesArentPartOfTheCoreMarkdownSpecButTheyArePartOfGFMAndMarkdownHereSupportsThem}'
+  - pattern: '| header'
+    replace: '| ${header}'
+  - pattern: '| cell'
+    replace: '| ${cell}'
+  - pattern: 'Code above produces next output:'
+    replace: '${codeAboveProducesNextOutput}'
+  - pattern: 'The row of dashes between the table header and body must have at least three dashes in each column.'
+    replace: '${theRowOfDashesBetweenTheTableHeaderAndBodyMustHaveAtLeastThreeDashesInEachColumn}'
+  - pattern: 'By including colons in the header row, you can align the text within that column:'
+    replace: '${byIncludingColonsInTheHeaderRowYouCanAlignTheNextWithinThatColumn}'
+  - pattern: '| Left Aligned | Centered | Right Aligned | Left Aligned | Centered | Right Aligned |'
+    replace: '${leftAlignedCenteredRightAlignedLeftAlignedCenteredRightAligned}'
+  - pattern: "This document leveraged heavily from the [Markdown-Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)."
+    replace: '${thisDocumentLeveragedHeavilyFromTheMarkdownCheatsheet}'
+  - pattern: "The [Markdown Syntax Guide](https://daringfireball.net/projects/markdown/syntax) at Daring Fireball is an excellent resource for a detailed explanation of standard markdown."
+    replace: '${theMarkdownSyntaxGuideAtDaringFireballIsAnExcellentResourceForADetailedExplanationOfStandardMarkdown}'
+  - pattern: "[Dillinger.io](http://dillinger.io) is a handy tool for testing standard markdown."
+    replace: '${dillingerIoIsAHandyToolForTestingStandardMarkdown}'

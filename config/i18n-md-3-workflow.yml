@@ -61,6 +61,11 @@ translations:
     replace: '${thisIsANicePlaceToPutCodeOrTextThatIsUsedSemiRegularlyWithinTheProjectButDoesNotBelongInSourceControl}'
     match-once: true
     complete-pattern: true
+  # To 8.11.x
+  - pattern: 'For example, a specific config file that is used by > the team that is only valid for the people that work on the code.'
+    replace: '${forExampleASpecificConfigFileThatIsUsedByTheTeamThatIsOnlyValidForThePeopleThatWorkOnTheCode}'
+    match-once: true
+    complete-pattern: true
   - pattern: 'For example, a specific config file that is used by the team that is only valid for the people that work on the code.'
     replace: '${forExampleASpecificConfigFileThatIsUsedByTheTeamThatIsOnlyValidForThePeopleThatWorkOnTheCode}'
     match-once: true

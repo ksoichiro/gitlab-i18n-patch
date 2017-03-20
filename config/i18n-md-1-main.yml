@@ -27,6 +27,11 @@ translations:
     replace: '${youCanTurnThisOffInTheWebHookSettingsInYourGitlabProjects}'
     match-once: true
     complete-pattern: true
+  # To 8.4.x
+  - pattern: !!js/regexp /By default, the SSL certificate of the webhook endpoint is verified based on \nan internal list of Certificate Authorities, \nwhich means the certificate cannot be self-signed./
+    replace: '${byDefaultTheSslCertificateOfTheWebhookEndpointIsVerifiedBasedOnAnInternalListOfCertificateAuthoritiesWhichMeansTheCertificateCannotBeSelfSigned}'
+    match-once: true
+    complete-pattern: true
 
 - name: 'md:system_hooks'
   parallel-group: 'group3'

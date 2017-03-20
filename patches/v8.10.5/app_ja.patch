@@ -1,3 +1,20 @@
+diff --git a/app/assets/javascripts/application.js.coffee b/app/assets/javascripts/application.js.coffee
+index eceff6d..174ad95 100644
+--- a/app/assets/javascripts/application.js.coffee
++++ b/app/assets/javascripts/application.js.coffee
+@@ -185,10 +185,10 @@ $ ->
+   $(document).ajaxError (e, xhrObj, xhrSetting, xhrErrorText) ->
+ 
+     if xhrObj.status is 401
+-      new Flash 'You need to be logged in.', 'alert'
++      new Flash 'ログインしてください。', 'alert'
+ 
+     else if xhrObj.status in [ 404, 500 ]
+-      new Flash 'Something went wrong on our end.', 'alert'
++      new Flash 'サーバで問題が発生しました。', 'alert'
+ 
+ 
+   # Show/Hide the profile menu when hovering the account box
 diff --git a/app/assets/javascripts/due_date_select.js.coffee b/app/assets/javascripts/due_date_select.js.coffee
 index d65c018..f0982f5 100644
 --- a/app/assets/javascripts/due_date_select.js.coffee

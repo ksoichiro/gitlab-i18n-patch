@@ -15743,7 +15743,7 @@ index d9c6d9b..f0a6400 100644
  - Make `/home/git/gitlab/config/gitlab.yml` the same as https://gitlab.com/gitlab-org/gitlab-ce/blob/master/config/gitlab.yml.example but with your settings.
  - Make `/home/git/gitlab/config/unicorn.rb` the same as https://gitlab.com/gitlab-org/gitlab-ce/blob/master/config/unicorn.rb.example but with your settings.
 diff --git a/doc/web_hooks/web_hooks.md b/doc/web_hooks/web_hooks.md
-index 6420d65..79b1b0d 100644
+index 6420d65..775c8b3 100644
 --- a/doc/web_hooks/web_hooks.md
 +++ b/doc/web_hooks/web_hooks.md
 @@ -1,32 +1,30 @@
@@ -15756,7 +15756,7 @@ index 6420d65..79b1b0d 100644
 +プッシュ、課題、マージリクエストといったイベントから特定のものに対してWebフックを設定することができます。GitLab はWebフックのURLに対して POST リクエストでデータを送信します。
  
 -Web hooks can be used to update an external issue tracker, trigger CI builds, update a backup mirror, or even deploy to your production server.
-+Webフック can be used to update an external issue tracker, trigger CI builds, update a backup mirror, or even deploy to your production server.
++Webフックは、外部の課題トラッカーの更新、CIビルドの起動、バックアップミラーの更新、本番サーバへのデプロイなどに利用することができます。
  
  ## SSL Verification
  

@@ -1,3 +1,19 @@
+diff --git a/app/assets/javascripts/application.js b/app/assets/javascripts/application.js
+index c029bf3..a1d0a2b 100644
+--- a/app/assets/javascripts/application.js
++++ b/app/assets/javascripts/application.js
+@@ -219,9 +219,9 @@
+     $(document).ajaxError(function(e, xhrObj, xhrSetting, xhrErrorText) {
+       var ref;
+       if (xhrObj.status === 401) {
+-        return new Flash('You need to be logged in.', 'alert');
++        return new Flash('ログインしてください。', 'alert');
+       } else if ((ref = xhrObj.status) === 404 || ref === 500) {
+-        return new Flash('Something went wrong on our end.', 'alert');
++        return new Flash('サーバで問題が発生しました。', 'alert');
+       }
+     });
+     $('.account-box').hover(function() {
 diff --git a/app/assets/javascripts/due_date_select.js b/app/assets/javascripts/due_date_select.js
 index bf68b7e..166cef5 100644
 --- a/app/assets/javascripts/due_date_select.js
@@ -19399,7 +19415,7 @@ index 1b49a5c..7880176 100644
  somebody else comments or adds changes to the ones that you've created or
  mentions you.
 diff --git a/doc/workflow/project_features.md b/doc/workflow/project_features.md
-index f19e7df..d1096b7 100644
+index f19e7df..c9d2fa6 100644
 --- a/doc/workflow/project_features.md
 +++ b/doc/workflow/project_features.md
 @@ -1,42 +1,42 @@
@@ -19453,7 +19469,8 @@ index f19e7df..d1096b7 100644
 -This is a nice place to put code or text that is used semi-regularly within the project, but does not belong in source control.
 +スニペットは、プロジェクトで半定期的に参照するけれどもソースコード管理はしないようなソースコードやテキストを置いておくのに良い場所です。
  
- For example, a specific config file that is used by the team that is only valid for the people that work on the code.
+-For example, a specific config file that is used by the team that is only valid for the people that work on the code.
++例えば、あるコードを扱うメンバーにのみ有効な特定の設定ファイルなどです。
  
  ## Git LFS
  

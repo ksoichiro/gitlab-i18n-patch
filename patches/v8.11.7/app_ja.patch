@@ -1,3 +1,19 @@
+diff --git a/app/assets/javascripts/application.js b/app/assets/javascripts/application.js
+index ce9cbb6..1ca5d1d 100644
+--- a/app/assets/javascripts/application.js
++++ b/app/assets/javascripts/application.js
+@@ -201,9 +201,9 @@
+     $(document).ajaxError(function(e, xhrObj, xhrSetting, xhrErrorText) {
+       var ref;
+       if (xhrObj.status === 401) {
+-        return new Flash('You need to be logged in.', 'alert');
++        return new Flash('ログインしてください。', 'alert');
+       } else if ((ref = xhrObj.status) === 404 || ref === 500) {
+-        return new Flash('Something went wrong on our end.', 'alert');
++        return new Flash('サーバで問題が発生しました。', 'alert');
+       }
+     });
+     $('.account-box').hover(function() {
 diff --git a/app/assets/javascripts/due_date_select.js b/app/assets/javascripts/due_date_select.js
 index 5a725a4..29aace9 100644
 --- a/app/assets/javascripts/due_date_select.js

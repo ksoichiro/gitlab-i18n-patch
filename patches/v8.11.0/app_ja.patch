@@ -1,3 +1,19 @@
+diff --git a/app/assets/javascripts/application.js b/app/assets/javascripts/application.js
+index ce9cbb6..1ca5d1d 100644
+--- a/app/assets/javascripts/application.js
++++ b/app/assets/javascripts/application.js
+@@ -201,9 +201,9 @@
+     $(document).ajaxError(function(e, xhrObj, xhrSetting, xhrErrorText) {
+       var ref;
+       if (xhrObj.status === 401) {
+-        return new Flash('You need to be logged in.', 'alert');
++        return new Flash('ログインしてください。', 'alert');
+       } else if ((ref = xhrObj.status) === 404 || ref === 500) {
+-        return new Flash('Something went wrong on our end.', 'alert');
++        return new Flash('サーバで問題が発生しました。', 'alert');
+       }
+     });
+     $('.account-box').hover(function() {
 diff --git a/app/assets/javascripts/due_date_select.js b/app/assets/javascripts/due_date_select.js
 index 5a725a4..29aace9 100644
 --- a/app/assets/javascripts/due_date_select.js
@@ -9705,10 +9721,13 @@ index a1d79bd..03febb7 100644
  
  = render 'projects', projects: @forks
 diff --git a/app/views/projects/forks/new.html.haml b/app/views/projects/forks/new.html.haml
-index 5242bc7..9f6cf4d 100644
+index 5242bc7..7712973 100644
 --- a/app/views/projects/forks/new.html.haml
 +++ b/app/views/projects/forks/new.html.haml
-@@ -3,7 +3,7 @@
+@@ -1,9 +1,9 @@
+-- page_title "Fork project"
++- page_title "Fork プロジェクト"
+ 
  .row.prepend-top-default
    .col-lg-3
      %h4.prepend-top-0

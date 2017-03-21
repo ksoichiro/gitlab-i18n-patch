@@ -83,3 +83,22 @@ translations:
     replace: '| ${manageGroupMembers}'
   - pattern: '| Remove group'
     replace: '| ${removeGroup}'
+  - pattern: !!js/regexp /On public projects the Guest role is not enforced.  \nAll users will be able to create issues, leave comments, and pull or download the project code./
+    replace: '${onPublicProjectTheGuestRoleIsNotEnforcedAllUsersWillBeAbleToCreateIssuesLeaveCommentsAndPullOrDownloadTheProjectCode}'
+    complete-pattern: true
+    evaluate-when: "semver.lt(version, '8.6.0')"
+  - pattern: !!js/regexp /To add or import a user, you can follow the \[project users and members\ndocumentation\]\(doc\/workflow\/add-user\/add-user\.md\)\./
+    replace: '${toAddOrImportAUserYouCanFollowTheProjectUsersAndMembersDocumentation}'
+    complete-pattern: true
+  - pattern: 'Users have different abilities depending on the access level they have in a particular group or project.'
+    replace: '${usersHaveDifferentAbilitiesDependingOnTheAccessLevelTheyHaveInAParticularGroupOrProject}'
+    complete-pattern: true
+    evaluate-when: "semver.lt(version, '8.10.0')"
+  - pattern: 'If a user is both in a project group and in the project itself, the highest permission level is used.'
+    replace: '${ifAUserIsBothInAProjectGroupAndInTheProjectItselfTheHighestPermissionLevelIsUsed}'
+    complete-pattern: true
+    evaluate-when: "semver.lt(version, '8.10.0')"
+  - pattern: 'If a user is a GitLab administrator they receive all permissions.'
+    replace: '${ifAUserIsAGitLabAdministratorTheyReceiveAllPermissions}'
+    complete-pattern: true
+    evaluate-when: "semver.lt(version, '8.10.0')"

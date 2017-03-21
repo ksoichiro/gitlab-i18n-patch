@@ -1,6 +1,22 @@
 translations:
 
 # Markdown
+- name: 'md:gitlab-basics'
+  parallel-group: 'group3'
+  src: 'doc/**/gitlab-basics/*.md'
+  skip-patterns:
+  - !!js/regexp /(^#+|^\s*$|^[^a-zA-Z]+$|^\s*```|^---)/
+  patterns:
+    # gitlab-basics
+  - pattern: 'Basic Git commands'
+    replace: '${basicGitCommands}'
+  - pattern: 'Command Line basic commands'
+    replace: '${commandLineBasicCommands}'
+  - pattern: 'Start using Git on the command line'
+    replace: '${startUsingGitOnTheCommandLine}'
+  - pattern: 'Create a group'
+    replace: '${createAGroup}'
+
 - name: 'md:system_hooks'
   parallel-group: 'group3'
   src: 'doc/**/system_hooks/*.md'
@@ -9,6 +25,10 @@ translations:
   patterns:
   - pattern: 'Your GitLab instance can perform HTTP POST requests on the following events: `project_create`, `project_destroy`, `user_add_to_team`, `user_remove_from_team`, `user_create`, `user_destroy`, `key_create`, `key_destroy`, `group_create`, `group_destroy`, `user_add_to_group` and `user_remove_from_group`.'
     replace: '${yourGitlabInstanceCanPerformHttpPOSTRequestsOnTheFollowingEventsProjectCreateProjectDestroyUserAddToTeamUserRemoveFromTeamUserCreateUserDestroyKeyCreateKeyDestroyGroupCreateGroupDestroyUserAddToGroupAndUserRemoveFromGroup}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'System hooks can be used, e.g. for logging or changing information in a LDAP server.'
+    replace: '${systemHooksCanBeUsedEGForLoggingOrChangingInformationInALDAPServer}'
     match-once: true
     complete-pattern: true
 
@@ -90,6 +110,140 @@ translations:
     replace: '${mdTitleAddUserAsADeveloperToAllGroups}'
   - pattern: 'Add all users to all groups'
     replace: '${mdTitleAddAllUsersToAllGroups}'
+  - pattern: 'admin users are added as owners so they can add additional users to the group'
+    replace: '${adminUsersAreAddedAsOwnersSoTheyCanAddAdditionalUsersToTheGroup}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'This command gathers information about your GitLab installation and the System it runs on. These may be useful when asking for help or reporting issues.'
+    replace: '${thisCommandGathersInformationAboutYourGitlabInstallationAndTheSystemItRunsOnTheseMayBeUsefulWhenAskingForHelpOrReportingIssues}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Runs the following rake tasks:'
+    replace: '${runsTheFollowingRakeTasks}:'
+  - pattern: 'It will check that each component was setup according to the installation guide and suggest fixes for issues found.'
+    replace: '${itWillCheckThatEachComponentWasSetupAccordingToTheInstallationGuideAndSuggestFixesForIssuesFound}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'You may also have a look at our [Trouble Shooting Guide](https://github.com/gitlabhq/gitlab-public-wiki/wiki/Trouble-Shooting-Guide).'
+    replace: '${youMayAlsoHaveALookAtOurTroubleShootingGuide}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'NOTE: Use SANITIZE=true for gitlab:check if you want to omit project names from the output.'
+    replace: '${noteUseSanitizeTrueForGitlabCheckIfYouWantToOmitProjectNamesFromTheOutput}'
+    complete-pattern: true
+  - pattern: 'Enable usernames and namespaces for user projects'
+    replace: '${enableUsernamesAndNamespacesForUserProjects}'
+  - pattern: 'This command will enable the namespaces feature introduced in v4.0. It will move every project in its namespace folder.'
+    replace: '${thisCommandWillEnableTheNamepsacesFeaturesIntroducedInV40ItWillMoveEveryProjectInItsNamespaceFolder}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Because the **repository location will change**, you will need to **update all your git URLs** to point to the new location.'
+    replace: '${becauseTheRepositoryLocationWillChangeYouWillNeedToUpdateAllYourGitURLsToPointToTheNewLocation}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Username can be changed at [Profile / Account](/profile/account)'
+    replace: '${usernameCanBeChangedAtProfileAccount}'
+  - pattern: 'Remove garbage from filesystem. Important! Data loss!'
+    replace: '${removeGarbageFromFilesystemImportantDatLoss}'
+    complete-pattern: true
+  - pattern: "Remove namespaces(dirs) from `/home/git/repositories` if they don't exist in GitLab database."
+    replace: '${removeNamespacesDirsFromHomeGitRepositoriesIfTheyDontExistInGitLabDatabase}'
+    complete-pattern: true
+    evaluate-when: "semver.lt(version, '8.11.0')"
+  - pattern: "Rename repositories from `/home/git/repositories` if they don't exist in GitLab database."
+    replace: '${renameRepositoriesFromHomeGitRepositoriesIfTheyDontExistInGitLabDatabase}'
+    complete-pattern: true
+    evaluate-when: "semver.lt(version, '8.11.0')"
+  - pattern: 'The repositories get a `+orphaned+TIMESTAMP` suffix so that they cannot block new repositories from being created.'
+    replace: '${theRepositoriesGetAOrphanedTimestampSuffixSoThatTheyCannotBlockNewRepositoriesFromBeingCreated}'
+    match-once: true
+    complete-pattern: true
+  - pattern: !!js/regexp /A backup creates an archive file that contains the database, all repositories and all attachments.\nThis archive will be saved in backup_path \(see `config\/gitlab.yml`\).\nThe filename will be `\[TIMESTAMP\]_gitlab_backup.tar`. This timestamp can be used to restore an specific backup.\nYou can only restore a backup to exactly the same version of GitLab that you created it\non, for example 7.2.1. The best way to migrate your repositories from one server to\nanother is through backup restore./
+    replace: '${aBackupCreatesAnArchiveFileThatContainsTheDatabaseAllRepositoriesAndAllAttachmentsThisArchiveWillBeSavedInBackupPathTheFilenameWillBeTimestampGitlabBackupTarThisTimestampCanBeUsedToRestoreOnSpecificBackupYouCanOnlyRestoreABackupToExactlyTheSameVersionOfGitLabThatYouCreatedItOnForExample721TheBestwayToMigreateYourRepositoriesFromOneServerToAnotherIsThroughBackupRestore}'
+    match-once: true
+    complete-pattern: true
+    evaluate-when: "semver.lt(version, '8.13.0')"
+  - pattern: !!js/regexp /Please be informed that a backup does not store your configuration\nfiles.  One reason for this is that your database contains encrypted\ninformation for two-factor authentication.  Storing encrypted\ninformation along with its key in the same place defeats the purpose\nof using encryption in the first place!/
+    replace: '${pleaseBeInformedThatABackupDoesNotStoreYourConfigurationFilesOneReasonForThisIsThatYourDatabaseContainsEncryptedInformationForTwoFactorAuthenticationStoringEncryptedInformationAlongWithItsKeyInTheSamePlaceDefeatsThePurposeOfUsingEncryptionInTheFirstPlace}'
+    match-once: true
+    complete-pattern: true
+  - pattern: !!js/regexp /If you use an Omnibus package please see the \[instructions in the readme to backup your configuration\]\(https:\/\/gitlab.com\/gitlab-org\/omnibus-gitlab\/blob\/master\/README.md#backup-and-restore-omnibus-gitlab-configuration\).\nIf you have a cookbook installation there should be a copy of your configuration in Chef.\nIf you have an installation from source, please consider backing up your `.secret` file, `gitlab.yml` file, any SSL keys and certificates, and your \[SSH host keys\]\(https:\/\/superuser.com\/questions\/532040\/copy-ssh-keys-from-one-server-to-another-server\/532079#532079\)./
+    replace: '${ifYouUseAnOmnibusPackagePleaseSeeTheInstructionsInTheReadmeToBackupYourConfigurationIfYouHaveACookbookInstallationThereShouldBeACopyOfYourConfigurationInChefIfYouHaveAnInstallationFromSourcePleaseConsiderBackingUpYourSecretFileGitlabYmlFileAnySslKeysAndCertificatesAndYourSshHostKeys}'
+    match-once: true
+    complete-pattern: true
+  - pattern: !!js/regexp /At the very \*\*minimum\*\* you should backup `\/etc\/gitlab\/gitlab-secrets.json`\n\(Omnibus\) or `\/home\/git\/gitlab\/.secret` \(source\) to preserve your\ndatabase encryption key./
+    replace: '${atTheVeryMinimumYouShouldBackupEtcGitlabGitlabSecretsJsonOrHomeGitGitlabSecretToPreserveYourDatabaseEncryptionKey}'
+    complete-pattern: true
+  - pattern: 'Add the following lines at the bottom'
+    replace: '${addTheFollowingLinesAtTheBottom}'
+
+- name: 'md:public_access'
+  parallel-group: 'group3'
+  src: 'doc/**/public_access/*.md'
+  skip-patterns:
+  - !!js/regexp /(^#+|^\s*$|^[^a-zA-Z]+$|^\s*```|^---)/
+  patterns:
+  - pattern: !!js/regexp /GitLab allows you to change your projects' visibility in order be accessed\n\*\*publicly\*\* or \*\*internally\*\*\./
+    replace: '${gitLabAllowsYouToChangeYourProjectsVisibilityInOrderBeAccessedPubliclyOrInternally}'
+    complete-pattern: true
+  - pattern: 'Projects with either of these visibility levels will be listed in the [public access directory](/public).'
+    replace: '${projectsWithEitherOfTheseVisibilityLevelsWillBeListedInThePublicAccessDirectory}'
+    complete-pattern: true
+  - pattern: !!js/regexp /Projects with either of these visibility levels will be listed in the\npublic access directory \(`\/public` under your GitLab instance\)\./
+    replace: '${projectsWithEitherOfTheseVisibilityLevelsWillBeListedInThePublicAccessDirectoryPublicUnderYourGitLabInstance}'
+    complete-pattern: true
+  - pattern: 'Internal projects will only be available to authenticated users.'
+    replace: '${internalProjectsWillOnlyBeAvailableToAuthenticatedUsers}'
+  - pattern: 'Public projects can be cloned **without any** authentication.'
+    replace: '${publicProjectsCanBeClonedWithoutAnyAuthentication}'
+    complete-pattern: true
+  - pattern: 'It will also be listed on the [public access directory](/public).'
+    replace: '${itWillAlsoBeListedOnThePublicAccessDirectory}'
+    complete-pattern: true
+    evaluate-when: "semver.lt(version, '8.3.0')"
+  - pattern: 'They will also be listed on the public access directory (`/public`).'
+    replace: '${theyWillAlsoBeListedOnThePublicAccessDirectory}'
+    complete-pattern: true
+  - pattern: !!js/regexp /\*\*Any logged in user\*\* will have \[Guest\]\(\.\.\/permissions\/permissions\)\npermissions on the repository./
+    replace: '${anyLoggedInUserWillHaveGuestPermissionsOnTheRepository}'
+    complete-pattern: true
+  - pattern: '**Any logged in user** will have [Guest](../permissions/permissions) permissions on the repository.'
+    replace: '${anyLoggedInUserWillHaveGuestPermissionsOnTheRepository}'
+    complete-pattern: true
+  - pattern: 'Internal projects can be cloned by any logged in user.'
+    replace: '${internalProjectsCanBeClonedByAnyLoggedInUser}'
+    complete-pattern: true
+  - pattern: "It will also be listed on the [public access directory](/public) for logged in users."
+    replace: '${itWillAlsoBeListedOnThePublicAccessDirectoryForLoggedInUsers}'
+    complete-pattern: true
+  - pattern: !!js/regexp /They will also be listed on the public access directory \(`/public`\) for logged\nin users./
+    replace: '${theyWillAlsoBeListedOnThePublicAccessDirectoryForLoggedInUsers}'
+    complete-pattern: true
+  - pattern: "Any logged in user will have [Guest](../permissions/permissions) permissions on the repository."
+    replace: '${anyLoggedInUserWillHaveGuestPermissionOnTheRepository}'
+    complete-pattern: true
+  - pattern: !!js/regexp /Any logged in user will have \[Guest\]\(\.\.\/permissions\/permissions\) permissions on\nthe repository./
+    replace: '${anyLoggedInUserWillHaveGuestPermissionOnTheRepository}'
+    complete-pattern: true
+  - pattern: 'Change "Visibility Level"'
+    replace: '${changeVisibilityLevel}'
+  - pattern: "Go to your project's **Settings**"
+    replace: '${goToYourProjectsSettings}'
+  - pattern: 'Change "Visibility Level" to either Public, Internal or Private'
+    replace: '${changeVisibilityLevelToEitherPublicInternalOrPrivate}'
+  - pattern: 'The public page of users, located at `/u/username` is visible if either:'
+    replace: '${thePublicPageOfUsersLocatedAtUUsernameIsVisibleIfEither}'
+    complete-pattern: true
+    evaluate-when: "semver.lt(version, '8.3.0')"
+  - pattern: !!js/regexp /The public page of a user, located at `\/u\/username`, is always visible whether\nyou are logged in or not./
+    replace: '${thePublicPageOfAUserLocatedUUsernameIsAlwaysVisibleWhetherYouAreLoggedInOrNot}'
+    complete-pattern: true
+  - pattern: !!js/regexp /When visiting the public page of a user, you can only see the projects which\nyou are privileged to./
+    replace: '${whenVisitingThePublicPageOfAUserYouCanOnlySeeTheProjectsWhichYouArePrivilegedTo}'
+    complete-pattern: true
+  - pattern: !!js/regexp /In the Admin area under \*\*Settings\*\* \(`\/admin\/application_settings`\), you can\nrestrict the use of visibility levels for users when they create a project or a\nsnippet. This is useful to prevent people exposing their repositories to public\nby accident. The restricted visibility settings do not apply to admin users./
+    replace: '${inTheAdminAreaUnderSettingsAdminApplicationSettingsYouCanRestrictTheUseOfVisibilityLevelsForUsersWhenTheyCreateAProjectOrASnippetThisIsUsefulToPreventPeopleExposingTheirRepositoriesToPublicByAccidentTheRestrictedVisibilitySettingsDoNotApplyToAdminUsers}'
+    complete-pattern: true
 
 - name: 'md'
   parallel-group: 'group4'
@@ -157,36 +311,27 @@ translations:
     replace: '${sslVerification}'
   - pattern: 'Push events'
     replace: '${mdTitlePushEvents}'
+
+  # system_hooks/system_hooks.md and user/project/integrations/webhooks.md
   - pattern: 'Triggered when you push to the repository except when pushing tags.'
     replace: '${triggeredWhenYouPushToTheRepositoryExceptWhenPushingTags}'
+    complete-pattern: true
+  - pattern: 'Triggered when you create (or delete) tags to the repository.'
+    replace: '${triggeredWhenYouCreateOrDeleteTagsToTheRepository}'
     complete-pattern: true
   - pattern: 'Request header'
     replace: '${requestHeader}'
   - pattern: 'Request body'
     replace: '${requestBody}'
+
   - pattern: 'Tag events'
     replace: '${tagEvents}'
-  - pattern: 'Triggered when you create (or delete) tags to the repository.'
-    replace: '${triggeredWhenYouCreateOrDeleteTagsToTheRepository}'
-    complete-pattern: true
   - pattern: 'Issues events'
     replace: '${mdTitleIssuesEvents}'
-  - pattern: 'Triggered when a new issue is created or an existing issue was updated/closed/reopened.'
-    replace: '${triggeredWhenANewIssueIsCreatedOrAnExistingIssueWasUpdatedClosedReopened}'
-    match-once: true
-    complete-pattern: true
   - pattern: 'Merge request events'
     replace: '${mdTitleMergeRequestEvents}'
-  - pattern: 'Triggered when a new merge request is created, an existing merge request was updated/merged/closed or a commit is added in the source branch.'
-    replace: '${triggeredWhenANewMergeRequestIsCreatedAnExistingMergeRequestWasUpdatedMergedClosedOrACommitIsAddedInTheSourceBranch}'
-    match-once: true
-    complete-pattern: true
   - pattern: 'System hooks'
     replace: '${systemHook}'
-  - pattern: 'System hooks can be used, e.g. for logging or changing information in a LDAP server.'
-    replace: '${systemHooksCanBeUsedEGForLoggingOrChangingInformationInALDAPServer}'
-    match-once: true
-    complete-pattern: true
   - pattern: 'Hooks request example'
     replace: '${hooksRequestExample}'
     match-once: true
@@ -206,209 +351,66 @@ translations:
     replace: '$1${mdTitleNote}$2:'
   - pattern: '**Note**'
     replace: '**${mdNote}**'
-  - pattern: 'admin users are added as owners so they can add additional users to the group'
-    replace: '${adminUsersAreAddedAsOwnersSoTheyCanAddAdditionalUsersToTheGroup}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'This command gathers information about your GitLab installation and the System it runs on. These may be useful when asking for help or reporting issues.'
-    replace: '${thisCommandGathersInformationAboutYourGitlabInstallationAndTheSystemItRunsOnTheseMayBeUsefulWhenAskingForHelpOrReportingIssues}'
-    match-once: true
-    complete-pattern: true
   - pattern: 'Example output:'
     replace: '${exampleOutput}:'
-  - pattern: 'Runs the following rake tasks:'
-    replace: '${runsTheFollowingRakeTasks}:'
-  - pattern: 'It will check that each component was setup according to the installation guide and suggest fixes for issues found.'
-    replace: '${itWillCheckThatEachComponentWasSetupAccordingToTheInstallationGuideAndSuggestFixesForIssuesFound}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'You may also have a look at our [Trouble Shooting Guide](https://github.com/gitlabhq/gitlab-public-wiki/wiki/Trouble-Shooting-Guide).'
-    replace: '${youMayAlsoHaveALookAtOurTroubleShootingGuide}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'NOTE: Use SANITIZE=true for gitlab:check if you want to omit project names from the output.'
-    replace: '${noteUseSanitizeTrueForGitlabCheckIfYouWantToOmitProjectNamesFromTheOutput}'
-    complete-pattern: true
-  - pattern: 'Enable usernames and namespaces for user projects'
-    replace: '${enableUsernamesAndNamespacesForUserProjects}'
-  - pattern: 'This command will enable the namespaces feature introduced in v4.0. It will move every project in its namespace folder.'
-    replace: '${thisCommandWillEnableTheNamepsacesFeaturesIntroducedInV40ItWillMoveEveryProjectInItsNamespaceFolder}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'Because the **repository location will change**, you will need to **update all your git URLs** to point to the new location.'
-    replace: '${becauseTheRepositoryLocationWillChangeYouWillNeedToUpdateAllYourGitURLsToPointToTheNewLocation}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'Username can be changed at [Profile / Account](/profile/account)'
-    replace: '${usernameCanBeChangedAtProfileAccount}'
   - pattern: '**Example:**'
     replace: '**${example}:**'
   - pattern: 'Old path:'
     replace: '${oldPath}:'
   - pattern: 'New path:'
     replace: '${newPath}:'
-  - pattern: 'Remove garbage from filesystem. Important! Data loss!'
-    replace: '${removeGarbageFromFilesystemImportantDatLoss}'
-    complete-pattern: true
-  - pattern: "Remove namespaces(dirs) from `/home/git/repositories` if they don't exist in GitLab database."
-    replace: '${removeNamespacesDirsFromHomeGitRepositoriesIfTheyDontExistInGitLabDatabase}'
-    complete-pattern: true
-  - pattern: "Rename repositories from `/home/git/repositories` if they don't exist in GitLab database."
-    replace: '${renameRepositoriesFromHomeGitRepositoriesIfTheyDontExistInGitLabDatabase}'
-    complete-pattern: true
-  - pattern: 'The repositories get a `+orphaned+TIMESTAMP` suffix so that they cannot block new repositories from being created.'
-    replace: '${theRepositoriesGetAOrphanedTimestampSuffixSoThatTheyCannotBlockNewRepositoriesFromBeingCreated}'
-    match-once: true
-    complete-pattern: true
-  - pattern: !!js/regexp /A backup creates an archive file that contains the database, all repositories and all attachments.\nThis archive will be saved in backup_path \(see `config\/gitlab.yml`\).\nThe filename will be `\[TIMESTAMP\]_gitlab_backup.tar`. This timestamp can be used to restore an specific backup.\nYou can only restore a backup to exactly the same version of GitLab that you created it\non, for example 7.2.1. The best way to migrate your repositories from one server to\nanother is through backup restore./
-    replace: '${aBackupCreatesAnArchiveFileThatContainsTheDatabaseAllRepositoriesAndAllAttachmentsThisArchiveWillBeSavedInBackupPathTheFilenameWillBeTimestampGitlabBackupTarThisTimestampCanBeUsedToRestoreOnSpecificBackupYouCanOnlyRestoreABackupToExactlyTheSameVersionOfGitLabThatYouCreatedItOnForExample721TheBestwayToMigreateYourRepositoriesFromOneServerToAnotherIsThroughBackupRestore}'
-    match-once: true
-    complete-pattern: true
-  - pattern: !!js/regexp /Please be informed that a backup does not store your configuration\nfiles.  One reason for this is that your database contains encrypted\ninformation for two-factor authentication.  Storing encrypted\ninformation along with its key in the same place defeats the purpose\nof using encryption in the first place!/
-    replace: '${pleaseBeInformedThatABackupDoesNotStoreYourConfigurationFilesOneReasonForThisIsThatYourDatabaseContainsEncryptedInformationForTwoFactorAuthenticationStoringEncryptedInformationAlongWithItsKeyInTheSamePlaceDefeatsThePurposeOfUsingEncryptionInTheFirstPlace}'
-    match-once: true
-    complete-pattern: true
-  - pattern: !!js/regexp /If you use an Omnibus package please see the \[instructions in the readme to backup your configuration\]\(https:\/\/gitlab.com\/gitlab-org\/omnibus-gitlab\/blob\/master\/README.md#backup-and-restore-omnibus-gitlab-configuration\).\nIf you have a cookbook installation there should be a copy of your configuration in Chef.\nIf you have an installation from source, please consider backing up your `.secret` file, `gitlab.yml` file, any SSL keys and certificates, and your \[SSH host keys\]\(https:\/\/superuser.com\/questions\/532040\/copy-ssh-keys-from-one-server-to-another-server\/532079#532079\)./
-    replace: '${ifYouUseAnOmnibusPackagePleaseSeeTheInstructionsInTheReadmeToBackupYourConfigurationIfYouHaveACookbookInstallationThereShouldBeACopyOfYourConfigurationInChefIfYouHaveAnInstallationFromSourcePleaseConsiderBackingUpYourSecretFileGitlabYmlFileAnySslKeysAndCertificatesAndYourSshHostKeys}'
-    match-once: true
-    complete-pattern: true
-  - pattern: !!js/regexp /At the very \*\*minimum\*\* you should backup `\/etc\/gitlab\/gitlab-secrets.json`\n\(Omnibus\) or `\/home\/git\/gitlab\/.secret` \(source\) to preserve your\ndatabase encryption key./
-    replace: '${atTheVeryMinimumYouShouldBackupEtcGitlabGitlabSecretsJsonOrHomeGitGitlabSecretToPreserveYourDatabaseEncryptionKey}'
-    complete-pattern: true
-  - pattern: 'Add the following lines at the bottom'
-    replace: '${addTheFollowingLinesAtTheBottom}'
   - pattern: 'GitLab allows you to open selected projects to be accessed **publicly** or **internally**.'
     replace: '${gitLabAllowsYouToOpenSelectedProjectsToBeAccessedPubliclyOrInternally}'
     complete-pattern: true
-  - pattern: !!js/regexp /GitLab allows you to change your projects' visibility in order be accessed\n\*\*publicly\*\* or \*\*internally\*\*\./
-    replace: '${gitLabAllowsYouToChangeYourProjectsVisibilityInOrderBeAccessedPubliclyOrInternally}'
-    complete-pattern: true
-  - pattern: 'Projects with either of these visibility levels will be listed in the [public access directory](/public).'
-    replace: '${projectsWithEitherOfTheseVisibilityLevelsWillBeListedInThePublicAccessDirectory}'
-    complete-pattern: true
-  - pattern: !!js/regexp /Projects with either of these visibility levels will be listed in the\npublic access directory \(`\/public` under your GitLab instance\)\./
-    replace: '${projectsWithEitherOfTheseVisibilityLevelsWillBeListedInThePublicAccessDirectoryPublicUnderYourGitLabInstance}'
-    complete-pattern: true
-  - pattern: 'Internal projects will only be available to authenticated users.'
-    replace: '${internalProjectsWillOnlyBeAvailableToAuthenticatedUsers}'
-  - pattern: 'Public projects can be cloned **without any** authentication.'
-    replace: '${publicProjectsCanBeClonedWithoutAnyAuthentication}'
-    complete-pattern: true
-  - pattern: 'It will also be listed on the [public access directory](/public).'
-    replace: '${itWillAlsoBeListedOnThePublicAccessDirectory}'
-    complete-pattern: true
-  - pattern: 'They will also be listed on the public access directory (`/public`).'
-    replace: '${theyWillAlsoBeListedOnThePublicAccessDirectory}'
-    complete-pattern: true
-  - pattern: !!js/regexp /\*\*Any logged in user\*\* will have \[Guest\]\(\.\.\/permissions\/permissions\)\npermissions on the repository./
-    replace: '${anyLoggedInUserWillHaveGuestPermissionsOnTheRepository}'
-    complete-pattern: true
-  - pattern: '**Any logged in user** will have [Guest](../permissions/permissions) permissions on the repository.'
-    replace: '${anyLoggedInUserWillHaveGuestPermissionsOnTheRepository}'
-    complete-pattern: true
-  - pattern: 'Internal projects can be cloned by any logged in user.'
-    replace: '${internalProjectsCanBeClonedByAnyLoggedInUser}'
-    complete-pattern: true
-  - pattern: "It will also be listed on the [public access directory](/public) for logged in users."
-    replace: '${itWillAlsoBeListedOnThePublicAccessDirectoryForLoggedInUsers}'
-    complete-pattern: true
-  - pattern: !!js/regexp /They will also be listed on the public access directory \(`/public`\) for logged\nin users./
-    replace: '${theyWillAlsoBeListedOnThePublicAccessDirectoryForLoggedInUsers}'
-    complete-pattern: true
-  - pattern: "Any logged in user will have [Guest](../permissions/permissions) permissions on the repository."
-    replace: '${anyLoggedInUserWillHaveGuestPermissionOnTheRepository}'
-    complete-pattern: true
-  - pattern: !!js/regexp /Any logged in user will have \[Guest\]\(\.\.\/permissions\/permissions\) permissions on\nthe repository./
-    replace: '${anyLoggedInUserWillHaveGuestPermissionOnTheRepository}'
-    complete-pattern: true
+    evaluate-when: "semver.lt(version, '8.3.0')"
   - pattern: 'Go to your project dashboard'
     replace: '${goToYourProjectDashboard}'
+    evaluate-when: "semver.lt(version, '8.3.0')"
   - pattern: 'Click on the "Edit" tab'
     replace: '${clickOnTheEditTab}'
-  - pattern: 'Change "Visibility Level"'
-    replace: '${changeVisibilityLevel}'
-  - pattern: "Go to your project's **Settings**"
-    replace: '${goToYourProjectsSettings}'
-  - pattern: 'Change "Visibility Level" to either Public, Internal or Private'
-    replace: '${changeVisibilityLevelToEitherPublicInternalOrPrivate}'
-  - pattern: 'The public page of users, located at `/u/username` is visible if either:'
-    replace: '${thePublicPageOfUsersLocatedAtUUsernameIsVisibleIfEither}'
-    complete-pattern: true
+    evaluate-when: "semver.lt(version, '8.3.0')"
   - pattern: 'You are logged in.'
     replace: '${youAreLoggedIn}'
+    evaluate-when: "semver.lt(version, '8.3.0')"
   - pattern: 'You are logged out, and the target user is authorized to (is Guest, Reporter, etc.) at least one public project.'
     replace: '${youAreLoggedOutAndTheTargetUserIsAuthorizedToIsGuestReporterEtcAtLeastOnePublicProject}'
     complete-pattern: true
+    evaluate-when: "semver.lt(version, '8.3.0')"
   - pattern: 'Otherwise, you will be redirected to the sign in page.'
     replace: '${otherwiseYouWillBeRedirectedToTheSignInPage}'
     complete-pattern: true
+    evaluate-when: "semver.lt(version, '8.3.0')"
   - pattern: 'When visiting the public page of an user, you will only see listed projects which you can view yourself.'
     replace: '${whenVisitingThePublicPageOfAnUserYouWillOnlySeeListedProjectsWhichYouCanViewYourself}'
     complete-pattern: true
-  - pattern: !!js/regexp /The public page of a user, located at `\/u\/username`, is always visible whether\nyou are logged in or not./
-    replace: '${thePublicPageOfAUserLocatedUUsernameIsAlwaysVisibleWhetherYouAreLoggedInOrNot}'
-    complete-pattern: true
-  - pattern: !!js/regexp /When visiting the public page of a user, you can only see the projects which\nyou are privileged to./
-    replace: '${whenVisitingThePublicPageOfAUserYouCanOnlySeeTheProjectsWhichYouArePrivilegedTo}'
-    complete-pattern: true
+    evaluate-when: "semver.lt(version, '8.3.0')"
   - pattern: !!js/regexp /The public page of a group, located at `/groups/groupname`, is always visible\nto everyone./
     replace: '${thePublicPageOfAGroupLocatedAtGroupsGroupnameIsAlwaysVisibleToEveryone}'
     complete-pattern: true
+    evaluate-when: "semver.lt(version, '8.6.0')"
   - pattern: !!js/regexp /Logged out users will be able to see the description and the avatar of the\ngroup as well as all public projects belonging to that group./
     replace: '${loggedOutUsersWillBeAbleToSeeTheDescriptionAndTheAvatarOfTheGroupAsWellAsAllPublicProjectsBelongingToThatGroup}'
     complete-pattern: true
+    evaluate-when: "semver.lt(version, '8.6.0')"
   - pattern: 'In the Admin area under Settings you can disable public projects or public and internal projects for the entire GitLab installation to prevent people making code public by accident. The restricted visibility settings do not apply to admin users.'
     replace: '${inTheAdminAreaUnderSettingsYouCanDisablePublicProjectsOrPublicAndInternalProjectsForTheEntireGitlabInstallationToPreventPeopleMakingCodePublicByAccidentTheREstrictedVisibilitySettingsDoNotApplyToAdminUsers}'
     complete-pattern: true
-  - pattern: !!js/regexp /In the Admin area under \*\*Settings\*\* \(`\/admin\/application_settings`\), you can\nrestrict the use of visibility levels for users when they create a project or a\nsnippet. This is useful to prevent people exposing their repositories to public\nby accident. The restricted visibility settings do not apply to admin users./
-    replace: '${inTheAdminAreaUnderSettingsAdminApplicationSettingsYouCanRestrictTheUseOfVisibilityLevelsForUsersWhenTheyCreateAProjectOrASnippetThisIsUsefulToPreventPeopleExposingTheirRepositoriesToPublicByAccidentTheRestrictedVisibilitySettingsDoNotApplyToAdminUsers}'
-    complete-pattern: true
+    evaluate-when: "semver.lt(version, '8.3.0')"
   - pattern: 'Project integrations with external services for continuous integration and more.'
     replace: '${projectIntegrationsWithExternalServicesForContinuousIntegrationAndMore}'
     complete-pattern: true
+    evaluate-when: "semver.lt(version, '8.4.0')"
   - pattern: 'Preferences'
     replace: '${preference}'
-  - pattern: 'Two-factor Authentication'
-    replace: '${twoFactorAuthentication}'
-  - pattern: 'Users have different abilities depending on the access level they have in a particular group or project.'
-    replace: '${usersHaveDifferentAbilitiesDependingOnTheAccessLevelTheyHaveInAParticularGroupOrProject}'
-    complete-pattern: true
-  - pattern: 'If a user is both in a project group and in the project itself, the highest permission level is used.'
-    replace: '${ifAUserIsBothInAProjectGroupAndInTheProjectItselfTheHighestPermissionLevelIsUsed}'
-    complete-pattern: true
-  - pattern: 'If a user is a GitLab administrator they receive all permissions.'
-    replace: '${ifAUserIsAGitLabAdministratorTheyReceiveAllPermissions}'
-    complete-pattern: true
-  - pattern: !!js/regexp /On public projects the Guest role is not enforced.  \nAll users will be able to create issues, leave comments, and pull or download the project code./
-    replace: '${onPublicProjectTheGuestRoleIsNotEnforcedAllUsersWillBeAbleToCreateIssuesLeaveCommentsAndPullOrDownloadTheProjectCode}'
-    complete-pattern: true
-    evaluate-when: "semver.lt(version, '8.6.0')"
-  - pattern: !!js/regexp /To add or import a user, you can follow the \[project users and members\ndocumentation\]\(doc\/workflow\/add-user\/add-user\.md\)\./
-    replace: '${toAddOrImportAUserYouCanFollowTheProjectUsersAndMembersDocumentation}'
-    complete-pattern: true
-  - pattern: 'Start using Git on the command line'
-    replace: '${startUsingGitOnTheCommandLine}'
-  - pattern: 'Create and add your SSH Keys'
-    replace: '${createAndAddYourSSHKeys}'
-  - pattern: 'Command Line basic commands'
-    replace: '${commandLineBasicCommands}'
-  - pattern: 'Basic Git commands'
-    replace: '${basicGitCommands}'
   - pattern: 'Create a project'
     replace: '${createAProject}'
-  - pattern: 'Create a group'
-    replace: '${createAGroup}'
   - pattern: 'Create a branch'
     replace: '${createABranch}'
-  - pattern: 'Fork a project'
-    replace: '${forkAProject}'
-  - pattern: 'Add a file'
-    replace: '${addAFile}'
-  - pattern: 'Add an image'
-    replace: '${addAnImage}'
   - pattern: 'Create a Merge Request'
     replace: '${createAMergeRequestBasic}'
+    evaluate-when: "semver.lt(version, '8.13.0')"
   - pattern: 'Create an Issue'
     replace: '${createAnIssue}'
+    evaluate-when: "semver.lt(version, '8.13.0')"
   - pattern: 'For example:'
     replace: '${forExample}:'

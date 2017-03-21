@@ -3,7 +3,7 @@ translations:
 # Markdown
 - name: 'md:integration'
   parallel-group: 'group3'
-  src: 'doc/**/integration/*.md'
+  src: 'doc/**/integration*/*.md'
   skip-patterns:
   - !!js/regexp /(^#+|^\s*$|^[^a-zA-Z]+$|^\s*```|^---)/
   patterns:
@@ -19,3 +19,13 @@ translations:
   - pattern: "On your GitLab server, open the configuration file:"
     replace: '${onYourGitLabServerOpenTheConfigurationFile}'
     complete-pattern: true
+  - pattern: 'Triggered when a new issue is created or an existing issue was updated/closed/reopened.'
+    replace: '${triggeredWhenANewIssueIsCreatedOrAnExistingIssueWasUpdatedClosedReopened}'
+    match-once: true
+    complete-pattern: true
+    evaluate-when: "semver.gte(version, '8.17.0')"
+  - pattern: 'Triggered when a new merge request is created, an existing merge request was updated/merged/closed or a commit is added in the source branch.'
+    replace: '${triggeredWhenANewMergeRequestIsCreatedAnExistingMergeRequestWasUpdatedMergedClosedOrACommitIsAddedInTheSourceBranch}'
+    match-once: true
+    complete-pattern: true
+    evaluate-when: "semver.gte(version, '8.17.0')"

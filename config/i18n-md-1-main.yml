@@ -21,6 +21,57 @@ translations:
   - pattern: '"Work In Progress" Merge Requests'
     replace: '${workInProgressMergeRequest}'
 
+- name: 'md:security'
+  parallel-group: 'group3'
+  src: 'doc/**/security/*.md'
+  skip-patterns:
+  - !!js/regexp /(^#+|^\s*$|^[^a-zA-Z]+$|^\s*```|^---)/
+  patterns:
+  - pattern: 'To prevent abusive clients doing damage GitLab uses rack-attack gem.'
+    replace: '${toPreventAbusiveClientsDoingDamageGitlabUsesRackAttackGem}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'If you installed or upgraded GitLab by following the official guides this should be enabled by default.'
+    replace: '${ifYouInstalledOrUpgradedGitlabByFollowingTheOfficialGuidesThisShouldBeEnabledByDefault}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'If you are missing `config/initializers/rack_attack.rb` the following steps need to be taken in order to enable protection for your GitLab instance:'
+    replace: '${ifYouAreMissingConfigInitializersRackAttackRbTheFollowingStepsNeedToBeTakenInOrderToEnableProtectionForYourGitlabInstance}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'In config/application.rb find and uncomment the following line:'
+    replace: '${inConfigApplicationRbFindAndUncommentTheFollowingLine}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Rename `config/initializers/rack_attack.rb.example` to `config/initializers/rack_attack.rb`.'
+    replace: '${renameConfigInitializersRackAttackRbExampleToConfigInitializersRackAttackRb}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Review the `paths_to_be_protected` and add any other path you need protecting.'
+    replace: '${reviewThePathsToBeProtectedAndAddAnyOtherPathYouNeedProtecting}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'Restart GitLab instance.'
+    replace: '${restartGitLabInstance}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'By default, user sign-in, user sign-up(if enabled) and user password reset is limited to 6 requests per minute. After trying for 6 times, client will have to wait for the next minute to be able to try again. These settings can be found in `config/initializers/rack_attack.rb`'
+    replace: '${byDefaultUserSignIn,UserSIgnUpIfEnabledAndUserPasswordResetIsLimitedTo6RequestsPerMinuteAfterTryingFor6TimesClientWillHaveToWaitForTheNextMinuteToBeAbleToTryAgainTheseSettingsCanBeFoundInConfigInitializersRackAttackRb}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'If you want more restrictive/relaxed throttle rule change the `limit` or `period` values. For example, more relaxed throttle rule will be if you set limit: 3 and period: 1.second(this will allow 3 requests per second). You can also add other paths to the protected list by adding to `paths_to_be_protected` variable. If you change any of these settings do not forget to restart your GitLab instance.'
+    replace: '${ifYouWantMoreRestrictiveRelaxedThrottleRuleChangeTheLimitOrPeriodValuesForExampleMoreRelaxedThrottleRuleWillBeIfYouSetLimit3AndPeriod1secondThisWillAllow3RequestsPerSecondYouCanAlsoAddOtherPathsToTheProtectedListByAddingToPathsToBeProtectedVariableIfYouChangeAnyOfTheseSettingsDoNotForgetToRestartYourGitlabInstance}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'In case you find throttling is not enough to protect you against abusive clients, rack-attack gem offers IP whitelisting, blacklisting, Fail2ban style filter and tracking.'
+    replace: '${inCaseYouFindThrottlingIsNotEnoughToProtectYouAgainstAbusiveClientsRack-AttackGemOffersIPWhitelistingBlacklistingFail2banStyleFilterAndTracking}'
+    match-once: true
+    complete-pattern: true
+  - pattern: 'For more information on how to use these options check out [rack-attack README](https://github.com/kickstarter/rack-attack/blob/master/README.md).'
+    replace: '${forMoreInformationOnHowToUseTheseOptionsCheckOutRackAttackReadme}'
+    match-once: true
+    complete-pattern: true
+
 - name: 'md:raketasks'
   parallel-group: 'group3'
   src: 'doc/**/raketasks/*.md'
@@ -151,50 +202,6 @@ translations:
     replace: '${userCreated}'
   - pattern: 'User removed'
     replace: '${userRemoved}'
-  - pattern: 'To prevent abusive clients doing damage GitLab uses rack-attack gem.'
-    replace: '${toPreventAbusiveClientsDoingDamageGitlabUsesRackAttackGem}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'If you installed or upgraded GitLab by following the official guides this should be enabled by default.'
-    replace: '${ifYouInstalledOrUpgradedGitlabByFollowingTheOfficialGuidesThisShouldBeEnabledByDefault}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'If you are missing `config/initializers/rack_attack.rb` the following steps need to be taken in order to enable protection for your GitLab instance:'
-    replace: '${ifYouAreMissingConfigInitializersRackAttackRbTheFollowingStepsNeedToBeTakenInOrderToEnableProtectionForYourGitlabInstance}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'In config/application.rb find and uncomment the following line:'
-    replace: '${inConfigApplicationRbFindAndUncommentTheFollowingLine}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'Rename `config/initializers/rack_attack.rb.example` to `config/initializers/rack_attack.rb`.'
-    replace: '${renameConfigInitializersRackAttackRbExampleToConfigInitializersRackAttackRb}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'Review the `paths_to_be_protected` and add any other path you need protecting.'
-    replace: '${reviewThePathsToBeProtectedAndAddAnyOtherPathYouNeedProtecting}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'Restart GitLab instance.'
-    replace: '${restartGitLabInstance}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'By default, user sign-in, user sign-up(if enabled) and user password reset is limited to 6 requests per minute. After trying for 6 times, client will have to wait for the next minute to be able to try again. These settings can be found in `config/initializers/rack_attack.rb`'
-    replace: '${byDefaultUserSignIn,UserSIgnUpIfEnabledAndUserPasswordResetIsLimitedTo6RequestsPerMinuteAfterTryingFor6TimesClientWillHaveToWaitForTheNextMinuteToBeAbleToTryAgainTheseSettingsCanBeFoundInConfigInitializersRackAttackRb}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'If you want more restrictive/relaxed throttle rule change the `limit` or `period` values. For example, more relaxed throttle rule will be if you set limit: 3 and period: 1.second(this will allow 3 requests per second). You can also add other paths to the protected list by adding to `paths_to_be_protected` variable. If you change any of these settings do not forget to restart your GitLab instance.'
-    replace: '${ifYouWantMoreRestrictiveRelaxedThrottleRuleChangeTheLimitOrPeriodValuesForExampleMoreRelaxedThrottleRuleWillBeIfYouSetLimit3AndPeriod1secondThisWillAllow3RequestsPerSecondYouCanAlsoAddOtherPathsToTheProtectedListByAddingToPathsToBeProtectedVariableIfYouChangeAnyOfTheseSettingsDoNotForgetToRestartYourGitlabInstance}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'In case you find throttling is not enough to protect you against abusive clients, rack-attack gem offers IP whitelisting, blacklisting, Fail2ban style filter and tracking.'
-    replace: '${inCaseYouFindThrottlingIsNotEnoughToProtectYouAgainstAbusiveClientsRack-AttackGemOffersIPWhitelistingBlacklistingFail2banStyleFilterAndTracking}'
-    match-once: true
-    complete-pattern: true
-  - pattern: 'For more information on how to use these options check out [rack-attack README](https://github.com/kickstarter/rack-attack/blob/master/README.md).'
-    replace: '${forMoreInformationOnHowToUseTheseOptionsCheckOutRackAttackReadme}'
-    match-once: true
-    complete-pattern: true
   - pattern: !!js/regexp /^(\s*\>?\s?\*\*)?Notes?(\*\*)?:/
     replace: '$1${mdTitleNote}$2:'
   - pattern: '**Note**'

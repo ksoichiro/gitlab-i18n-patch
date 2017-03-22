@@ -5535,7 +5535,7 @@ index 70e88da..efb0eee 100644
 -                %td Change Label
 +                %td ラベルを変更
 diff --git a/app/views/help/index.html.haml b/app/views/help/index.html.haml
-index 57bc91e..6c061a4 100644
+index 57bc91e..45dc694 100644
 --- a/app/views/help/index.html.haml
 +++ b/app/views/help/index.html.haml
 @@ -7,17 +7,17 @@
@@ -5569,12 +5569,16 @@ index 57bc91e..6c061a4 100644
 -        Quick help
 +        クイックヘルプ
        %ul.well-list
-         %li= link_to 'See our website for getting help', promo_url + '/getting-help/'
+-        %li= link_to 'See our website for getting help', promo_url + '/getting-help/'
 -        %li= link_to 'Use the search bar on the top of this page', '#', onclick: 'Shortcuts.focusSearch(event)'
-+        %li= link_to 'Use the search bar on the top of this ページ', '#', onclick: 'Shortcuts.focusSearch(event)'
-         %li= link_to 'Use shortcuts', '#', onclick: 'Shortcuts.showHelp(event)'
-         %li= link_to 'Get a support subscription', 'https://about.gitlab.com/pricing/'
-         %li= link_to 'Compare GitLab editions', 'https://about.gitlab.com/features/#compare'
+-        %li= link_to 'Use shortcuts', '#', onclick: 'Shortcuts.showHelp(event)'
+-        %li= link_to 'Get a support subscription', 'https://about.gitlab.com/pricing/'
+-        %li= link_to 'Compare GitLab editions', 'https://about.gitlab.com/features/#compare'
++        %li= link_to 'Webサイトのヘルプを見る', promo_url + '/getting-help/'
++        %li= link_to 'ページトップの検索バーを使う', '#', onclick: 'Shortcuts.focusSearch(event)'
++        %li= link_to 'ショートカットを使う', '#', onclick: 'Shortcuts.showHelp(event)'
++        %li= link_to 'サポートサブスクリプションを購入', 'https://about.gitlab.com/pricing/'
++        %li= link_to 'GitLabのEditionを比較', 'https://about.gitlab.com/features/#compare'
 diff --git a/app/views/help/ui.html.haml b/app/views/help/ui.html.haml
 index d676bc2..bab06ee 100644
 --- a/app/views/help/ui.html.haml

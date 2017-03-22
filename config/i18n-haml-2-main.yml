@@ -868,6 +868,16 @@ translations:
     replace: '${compareBranchesAndContinue}'
   - pattern: "Write your content or drag files here..."
     replace: '${writeYourContentOrDragFilesHere}'
+  - pattern: 'See our website for getting help'
+    replace: '${seeOurWebsiteForGettingHelp}'
+  - pattern: 'Use the search bar on the top of this page'
+    replace: '${useTheSearchBarOnTheTopOfThisPage}'
+  - pattern: 'Use shortcuts'
+    replace: '${useShortcuts}'
+  - pattern: 'Get a support subscription'
+    replace: '${getASupportSubscription}'
+  - pattern: 'Compare GitLab editions'
+    replace: '${compareGitLabEditions}'
 
   - name: formLabel
     params:

@@ -53,3 +53,7 @@ versions:
   v8.16.7: 'https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_8.16.7-ce.0_amd64.deb/download'
   v8.17.2: 'https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_8.17.2-ce.0_amd64.deb/download'
   v8.17.3: 'https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_8.17.3-ce.0_amd64.deb/download'
+  v8.15.8: 'https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_8.15.8-ce.0_amd64.deb/download'
+  v8.16.8: 'https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_8.16.8-ce.0_amd64.deb/download'
+  v8.17.4: 'https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_8.17.4-ce.0_amd64.deb/download'
+  v9.0.0: 'https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_9.0.0-ce.0_amd64.deb/download'

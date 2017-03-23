@@ -1107,6 +1107,8 @@ translations:
   - name: wordInSentence
     params:
     - {word: 'broadcast message', key: broadcastMessage}
+    - {word: 'commit message', key: commitMessage}
+    - {word: 'Git revision', key: gitRevision}
     - {word: 'applications?', key: application}
     - {word: 'public deploy keys?', key: publicDeployKey}
     - {word: 'merge requests?', key: mergeRequest}
@@ -1121,10 +1123,12 @@ translations:
     - {word: 'protected branches', key: protectedBranch}
     - {word: 'source branch', key: sourceBranch}
     - {word: 'target branch', key: targetBranch}
+    - {word: 'branch name', key: branchName}
     - {word: 'branch(?:es)?', key: branch}
     - {word: 'issues?', key: issue}
     - {word: 'files?', key: file}
     - {word: 'directory', key: directory}
+    - {word: 'tag name', key: tagName}
     - {word: 'tags?', key: tag}
     - {word: 'deploy keys?', key: deployKey}
     - {word: 'public projects?', key: publicProject}
@@ -1146,6 +1150,7 @@ translations:
     - {word: 'profile settings?', key: profileSettings}
     - {word: 'default lists?', key: defaultLists}
     - {word: 'lists?', key: lists}
+    - {word: 'author', key: author}
   - pattern: !!js/regexp /Add ([^\s]+) to ([^\s'":]+)/
     replace: '${addAToB}'
     args:
@@ -1183,6 +1188,7 @@ translations:
     - {verb: Update, key: updateSth}
     - {verb: Run, key: runSth}
     - {verb: Clone, key: cloneSth}
+    - {verb: 'Filter by', key: filterBySth}
   - name: sthCountsDone
     params:
     - {obj: issues, objKey: issue, done: updated, doneKey: update}

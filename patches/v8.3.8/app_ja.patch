@@ -10187,7 +10187,7 @@ index d1d602e..66916d6 100644
          .remove_source_branch_widget.failed.hide
            %p
 diff --git a/app/views/projects/merge_requests/widget/open/_accept.html.haml b/app/views/projects/merge_requests/widget/open/_accept.html.haml
-index d9a1730..ea39f06 100644
+index d9a1730..b66888f 100644
 --- a/app/views/projects/merge_requests/widget/open/_accept.html.haml
 +++ b/app/views/projects/merge_requests/widget/open/_accept.html.haml
 @@ -12,7 +12,7 @@
@@ -10199,7 +10199,7 @@ index d9a1730..ea39f06 100644
              %ul.js-merge-dropdown.dropdown-menu.dropdown-menu-right{ role: 'menu' }
                %li
                  = link_to "#", class: "merge_when_build_succeeds" do
-@@ -24,12 +24,12 @@
+@@ -24,16 +24,16 @@
                    Merge Immediately
          - else
            = f.button class: "btn btn-create btn-grouped js-merge-button accept_merge_request #{status_class}" do
@@ -10214,6 +10214,11 @@ index d9a1730..ea39f06 100644
        .accept-control.right
          = link_to "#", class: "modify-merge-commit-link js-toggle-button" do
            = icon('edit')
+-          Modify commit message
++          Modify コミットメッセージ
+     .js-toggle-content.hide.prepend-top-default
+       = render 'shared/commit_message_container', params: params,
+           text: @merge_request.merge_commit_message,
 diff --git a/app/views/projects/merge_requests/widget/open/_merge_when_build_succeeds.html.haml b/app/views/projects/merge_requests/widget/open/_merge_when_build_succeeds.html.haml
 index 2168294..c1eed1f 100644
 --- a/app/views/projects/merge_requests/widget/open/_merge_when_build_succeeds.html.haml
@@ -12479,7 +12484,7 @@ index a54c5fa..e070e0a 100644
  
    = image_tag group_icon(group), class: "avatar s46 hidden-xs"
 diff --git a/app/views/shared/issuable/_filter.html.haml b/app/views/shared/issuable/_filter.html.haml
-index ac6c248..71547c7 100644
+index ac6c248..1fc7110 100644
 --- a/app/views/shared/issuable/_filter.html.haml
 +++ b/app/views/shared/issuable/_filter.html.haml
 @@ -31,21 +31,21 @@
@@ -12492,7 +12497,7 @@ index ac6c248..71547c7 100644
          .filter-item.inline
            = users_select_tag(:author_id, selected: params[:author_id],
 -            placeholder: 'Author', class: 'trigger-submit', any_user: "Any Author", first_user: true, current_user: true)
-+            placeholder: '作成者', class: 'trigger-submit', any_user: "Any Author", first_user: true, current_user: true)
++            placeholder: '作成者', class: 'trigger-submit', any_user: "Any 作成者", first_user: true, current_user: true)
  
          .filter-item.inline.milestone-filter
            = select_tag('milestone_title', projects_milestones_options,
@@ -12647,6 +12652,18 @@ index da6bacb..637d768 100644
 +    #{participants.count} 参加者
    - participants.each do |participant|
      = link_to_member(@project, participant, name: false, size: 24)
+diff --git a/app/views/shared/issuable/_search_form.html.haml b/app/views/shared/issuable/_search_form.html.haml
+index 3a5ad00..b1f22f8 100644
+--- a/app/views/shared/issuable/_search_form.html.haml
++++ b/app/views/shared/issuable/_search_form.html.haml
+@@ -1,6 +1,6 @@
+ = form_tag(path, method: :get, id: "issue_search_form", class: 'pull-left issue-search-form') do
+   .append-right-10.hidden-xs.hidden-sm
+-    = search_field_tag :issue_search, params[:issue_search], { placeholder: 'Filter by title or description', class: 'form-control issue_search search-text-input', spellcheck: false }
++    = search_field_tag :issue_search, params[:issue_search], { placeholder: 'title or descriptionで絞り込み', class: 'form-control issue_search search-text-input', spellcheck: false }
+     = hidden_field_tag :state, params['state']
+     = hidden_field_tag :scope, params['scope']
+     = hidden_field_tag :assignee_id, params['assignee_id']
 diff --git a/app/views/shared/issuable/_sidebar.html.haml b/app/views/shared/issuable/_sidebar.html.haml
 index 79c5cc7..cc9af59 100644
 --- a/app/views/shared/issuable/_sidebar.html.haml

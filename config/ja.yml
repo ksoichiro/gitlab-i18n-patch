@@ -3037,3 +3037,6 @@ useTheSearchBarOnTheTopOfThisPage: ページトップの検索バーを使う
 useShortcuts: ショートカットを使う
 getASupportSubscription: サポートサブスクリプションを購入
 compareGitLabEditions: GitLabのEditionを比較
+branchName: ブランチ名
+gitRevision: Gitリビジョン
+tagName: タグ名

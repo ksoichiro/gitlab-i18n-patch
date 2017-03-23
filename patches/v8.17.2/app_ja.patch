@@ -4079,7 +4079,7 @@ index 605bfd0..e8d6f2a 100644
 +        完了
          = icon('spinner spin')
 diff --git a/app/views/dashboard/todos/index.html.haml b/app/views/dashboard/todos/index.html.haml
-index c4bf2c9..fe90834 100644
+index c4bf2c9..971c7be 100644
 --- a/app/views/dashboard/todos/index.html.haml
 +++ b/app/views/dashboard/todos/index.html.haml
 @@ -1,5 +1,5 @@
@@ -4105,15 +4105,15 @@ index c4bf2c9..fe90834 100644
              = hidden_field_tag(:project_id, params[:project_id])
 -          = dropdown_tag(project_dropdown_label(params[:project_id], 'Project'), options: { toggle_class: 'js-project-search js-filter-submit', title: 'Filter by project', filter: true, filterInput: 'input#project-search', dropdown_class: 'dropdown-menu-selectable dropdown-menu-project js-filter-submit',
 -            placeholder: 'Search projects', data: { data: todo_projects_options, default_label: 'Project' } })
-+          = dropdown_tag(project_dropdown_label(params[:project_id], 'プロジェクト'), options: { toggle_class: 'js-project-search js-filter-submit', title: 'Filter by プロジェクト', filter: true, filterInput: 'input#project-search', dropdown_class: 'dropdown-menu-selectable dropdown-menu-project js-filter-submit',
++          = dropdown_tag(project_dropdown_label(params[:project_id], 'プロジェクト'), options: { toggle_class: 'js-project-search js-filter-submit', title: 'プロジェクトで絞り込み', filter: true, filterInput: 'input#project-search', dropdown_class: 'dropdown-menu-selectable dropdown-menu-project js-filter-submit',
 +            placeholder: 'Search プロジェクト', data: { data: todo_projects_options, default_label: 'プロジェクト' } })
          .filter-item.inline
            - if params[:author_id].present?
              = hidden_field_tag(:author_id, params[:author_id])
 -          = dropdown_tag(user_dropdown_label(params[:author_id], 'Author'), options: { toggle_class: 'js-user-search js-filter-submit js-author-search', title: 'Filter by author', filter: true, filterInput: 'input#author-search', dropdown_class: 'dropdown-menu-user dropdown-menu-selectable dropdown-menu-author js-filter-submit',
 -            placeholder: 'Search authors', data: { any_user: 'Any Author', first_user: (current_user.username if current_user), project_id: (@project.id if @project), selected: params[:author_id], field_name: 'author_id', default_label: 'Author', todo_filter: true, todo_state_filter: params[:state] || 'pending' } })
-+          = dropdown_tag(user_dropdown_label(params[:author_id], '作成者'), options: { toggle_class: 'js-user-search js-filter-submit js-author-search', title: 'Filter by author', filter: true, filterInput: 'input#author-search', dropdown_class: 'dropdown-menu-user dropdown-menu-selectable dropdown-menu-author js-filter-submit',
-+            placeholder: 'Search authors', data: { any_user: 'Any Author', first_user: (current_user.username if current_user), project_id: (@project.id if @project), selected: params[:author_id], field_name: 'author_id', default_label: '作成者', todo_filter: true, todo_state_filter: params[:state] || 'pending' } })
++          = dropdown_tag(user_dropdown_label(params[:author_id], '作成者'), options: { toggle_class: 'js-user-search js-filter-submit js-author-search', title: '作成者で絞り込み', filter: true, filterInput: 'input#author-search', dropdown_class: 'dropdown-menu-user dropdown-menu-selectable dropdown-menu-author js-filter-submit',
++            placeholder: 'Search authors', data: { any_user: 'Any 作成者', first_user: (current_user.username if current_user), project_id: (@project.id if @project), selected: params[:author_id], field_name: 'author_id', default_label: '作成者', todo_filter: true, todo_state_filter: params[:state] || 'pending' } })
          .filter-item.inline
            - if params[:type].present?
              = hidden_field_tag(:type, params[:type])
@@ -8841,7 +8841,7 @@ index 19ffe73..0e00a5c 100644
 -      Cant find HEAD commit for this branch
 +      Cant find HEAD commit for this ブランチ
 diff --git a/app/views/projects/branches/index.html.haml b/app/views/projects/branches/index.html.haml
-index bd1f2d9..a226896 100644
+index bd1f2d9..18c3086 100644
 --- a/app/views/projects/branches/index.html.haml
 +++ b/app/views/projects/branches/index.html.haml
 @@ -1,5 +1,5 @@
@@ -8856,7 +8856,7 @@ index bd1f2d9..a226896 100644
      .nav-controls
        = form_tag(filter_branches_path, method: :get) do
 -        = search_field_tag :search, params[:search], { placeholder: 'Filter by branch name', id: 'branch-search', class: 'form-control search-text-input input-short', spellcheck: false }
-+        = search_field_tag :search, params[:search], { placeholder: 'Filter by ブランチ name', id: 'branch-search', class: 'form-control search-text-input input-short', spellcheck: false }
++        = search_field_tag :search, params[:search], { placeholder: 'ブランチ名で絞り込み', id: 'branch-search', class: 'form-control search-text-input input-short', spellcheck: false }
  
        .dropdown.inline>
          %button.dropdown-menu-toggle{ type: 'button', 'data-toggle' => 'dropdown' }
@@ -9408,10 +9408,10 @@ index 80763ce..5dd9589 100644
 -            Tags
 +            タグ
 diff --git a/app/views/projects/commits/show.html.haml b/app/views/projects/commits/show.html.haml
-index d94f23f..6805153 100644
+index d94f23f..f0cae89 100644
 --- a/app/views/projects/commits/show.html.haml
 +++ b/app/views/projects/commits/show.html.haml
-@@ -19,12 +19,12 @@
+@@ -19,16 +19,16 @@
      .block-controls.hidden-xs.hidden-sm
        - if @merge_request.present?
          .control
@@ -9426,6 +9426,11 @@ index d94f23f..6805153 100644
  
        .control
          = form_tag(namespace_project_commits_path(@project.namespace, @project, @id), method: :get, class: 'commits-search-form') do
+-          = search_field_tag :search, params[:search], { placeholder: 'Filter by commit message', id: 'commits-search', class: 'form-control search-text-input input-short', spellcheck: false }
++          = search_field_tag :search, params[:search], { placeholder: 'コミットメッセージで絞り込み', id: 'commits-search', class: 'form-control search-text-input input-short', spellcheck: false }
+       - if current_user && current_user.private_token
+         .control
+           = link_to namespace_project_commits_path(@project.namespace, @project, @ref, { format: :atom, private_token: current_user.private_token }), title: "Commits Feed", class: 'btn' do
 diff --git a/app/views/projects/compare/_form.html.haml b/app/views/projects/compare/_form.html.haml
 index d76d481..bd94719 100644
 --- a/app/views/projects/compare/_form.html.haml
@@ -9457,14 +9462,15 @@ index d76d481..bd94719 100644
 -        Create Merge Request
 +        マージリクエストを作成
 diff --git a/app/views/projects/compare/_ref_dropdown.html.haml b/app/views/projects/compare/_ref_dropdown.html.haml
-index 05fb37c..c6aea72 100644
+index 05fb37c..819b742 100644
 --- a/app/views/projects/compare/_ref_dropdown.html.haml
 +++ b/app/views/projects/compare/_ref_dropdown.html.haml
 @@ -1,5 +1,5 @@
  .dropdown-menu.dropdown-menu-selectable
 -  = dropdown_title "Select Git revision"
-+  = dropdown_title "Git revisionを選択"
-   = dropdown_filter "Filter by Git revision"
+-  = dropdown_filter "Filter by Git revision"
++  = dropdown_title "Gitリビジョンを選択"
++  = dropdown_filter "Gitリビジョンで絞り込み"
    = dropdown_content
    = dropdown_loading
 diff --git a/app/views/projects/container_registry/_tag.html.haml b/app/views/projects/container_registry/_tag.html.haml
@@ -11168,7 +11174,7 @@ index 0b0fb78..b6e1177 100644
      },
      ci_sha: "#{@merge_request.head_pipeline ? @merge_request.head_pipeline.short_sha : ''}",
 diff --git a/app/views/projects/merge_requests/widget/open/_accept.html.haml b/app/views/projects/merge_requests/widget/open/_accept.html.haml
-index b730ced..1eed06b 100644
+index b730ced..d627781 100644
 --- a/app/views/projects/merge_requests/widget/open/_accept.html.haml
 +++ b/app/views/projects/merge_requests/widget/open/_accept.html.haml
 @@ -17,7 +17,7 @@
@@ -11189,7 +11195,7 @@ index b730ced..1eed06b 100644
        - if @merge_request.force_remove_source_branch?
          .accept-control
            The source branch will be removed.
-@@ -37,7 +37,7 @@
+@@ -37,11 +37,11 @@
          .accept-control.checkbox
            = label_tag :should_remove_source_branch, class: "merge-param-checkbox" do
              = check_box_tag :should_remove_source_branch
@@ -11198,6 +11204,11 @@ index b730ced..1eed06b 100644
        .accept-control
          = link_to "#", class: "modify-merge-commit-link js-toggle-button" do
            = icon('edit')
+-          Modify commit message
++          Modify コミットメッセージ
+     .js-toggle-content.hide.prepend-top-default
+       = render 'shared/commit_message_container', params: params,
+           message_with_description: @merge_request.merge_commit_message(include_description: true),
 diff --git a/app/views/projects/merge_requests/widget/open/_merge_when_build_succeeds.html.haml b/app/views/projects/merge_requests/widget/open/_merge_when_build_succeeds.html.haml
 index cf7abf3..66a8473 100644
 --- a/app/views/projects/merge_requests/widget/open/_merge_when_build_succeeds.html.haml
@@ -12824,7 +12835,7 @@ index 8ef069b..4438c7a 100644
 +      = link_to namespace_project_tag_path(@project.namespace, @project, tag.name), class: 'btn btn-remove remove-row has-tooltip', title: "タグを削除", method: :delete, data: { confirm: "Deleting the '#{tag.name}' タグ cannot be undone. 本当によろしいですか？", container: 'body' }, remote: true do
          = icon("trash-o")
 diff --git a/app/views/projects/tags/index.html.haml b/app/views/projects/tags/index.html.haml
-index e2f132f..b80a9d8 100644
+index e2f132f..5326eaa 100644
 --- a/app/views/projects/tags/index.html.haml
 +++ b/app/views/projects/tags/index.html.haml
 @@ -1,15 +1,15 @@
@@ -12842,7 +12853,7 @@ index e2f132f..b80a9d8 100644
      .nav-controls.row-fixed-content
        = form_tag(filter_tags_path, method: :get) do
 -        = search_field_tag :search, params[:search], { placeholder: 'Filter by tag name', id: 'tag-search', class: 'form-control search-text-input input-short', spellcheck: false }
-+        = search_field_tag :search, params[:search], { placeholder: 'Filter by タグ name', id: 'tag-search', class: 'form-control search-text-input input-short', spellcheck: false }
++        = search_field_tag :search, params[:search], { placeholder: 'タグ名で絞り込み', id: 'tag-search', class: 'form-control search-text-input input-short', spellcheck: false }
  
        .dropdown
          %button.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown'} }
@@ -13683,7 +13694,7 @@ index 9429597..47b6305 100644
 -.light The maximum file size allowed is 200KB.
 +.light ファイルの最大サイズは200KBです
 diff --git a/app/views/shared/_commit_message_container.html.haml b/app/views/shared/_commit_message_container.html.haml
-index c196bc0..0c7abea 100644
+index c196bc0..56925b8 100644
 --- a/app/views/shared/_commit_message_container.html.haml
 +++ b/app/views/shared/_commit_message_container.html.haml
 @@ -2,7 +2,7 @@
@@ -13695,6 +13706,16 @@ index c196bc0..0c7abea 100644
    .col-sm-10
      .commit-message-container
        .max-width-marker
+@@ -19,7 +19,7 @@
+     - if descriptions.present?
+       %p.hint.js-with-description-hint
+         = link_to "#", class: "js-with-description-link" do
+-          Include description in commit message
++          Include description in コミットメッセージ
+       %p.hint.js-without-description-hint.hide
+         = link_to "#", class: "js-without-description-link" do
+-          Don't include description in commit message
++          Don't include description in コミットメッセージ
 diff --git a/app/views/shared/_confirm_modal.html.haml b/app/views/shared/_confirm_modal.html.haml
 index f94f8ff..8647d0c 100644
 --- a/app/views/shared/_confirm_modal.html.haml
@@ -14115,7 +14136,7 @@ index 427595c..4f1c24b 100644
 -  .nothing-here-block No groups found
 +  .nothing-here-block グループがありません
 diff --git a/app/views/shared/issuable/_filter.html.haml b/app/views/shared/issuable/_filter.html.haml
-index f17ae9f..4878c1c 100644
+index f17ae9f..49dabb9 100644
 --- a/app/views/shared/issuable/_filter.html.haml
 +++ b/app/views/shared/issuable/_filter.html.haml
 @@ -14,14 +14,14 @@
@@ -14124,7 +14145,7 @@ index f17ae9f..4878c1c 100644
              = hidden_field_tag(:author_id, params[:author_id])
 -          = dropdown_tag(user_dropdown_label(params[:author_id], "Author"), options: { toggle_class: "js-user-search js-filter-submit js-author-search", title: "Filter by author", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable dropdown-menu-author js-filter-submit",
 -            placeholder: "Search authors", data: { any_user: "Any Author", first_user: current_user.try(:username), current_user: true, project_id: @project.try(:id), selected: params[:author_id], field_name: "author_id", default_label: "Author" } })
-+          = dropdown_tag(user_dropdown_label(params[:author_id], "作成者"), options: { toggle_class: "js-user-search js-filter-submit js-author-search", title: "Filter by author", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable dropdown-menu-author js-filter-submit",
++          = dropdown_tag(user_dropdown_label(params[:author_id], "作成者"), options: { toggle_class: "js-user-search js-filter-submit js-author-search", title: "作成者で絞り込み", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable dropdown-menu-author js-filter-submit",
 +            placeholder: "Search authors", data: { any_user: "Any 作成者", first_user: current_user.try(:username), current_user: true, project_id: @project.try(:id), selected: params[:author_id], field_name: "author_id", default_label: "Author" } })
  
          .filter-item.inline
@@ -14132,7 +14153,7 @@ index f17ae9f..4878c1c 100644
              = hidden_field_tag(:assignee_id, params[:assignee_id])
 -          = dropdown_tag(user_dropdown_label(params[:assignee_id], "Assignee"), options: { toggle_class: "js-user-search js-filter-submit js-assignee-search", title: "Filter by assignee", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable dropdown-menu-assignee js-filter-submit",
 -            placeholder: "Search assignee", data: { any_user: "Any Assignee", first_user: current_user.try(:username), null_user: true, current_user: true, project_id: @project.try(:id), selected: params[:assignee_id], field_name: "assignee_id", default_label: "Assignee" } })
-+          = dropdown_tag(user_dropdown_label(params[:assignee_id], "担当者"), options: { toggle_class: "js-user-search js-filter-submit js-assignee-search", title: "Filter by 担当者", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable dropdown-menu-assignee js-filter-submit",
++          = dropdown_tag(user_dropdown_label(params[:assignee_id], "担当者"), options: { toggle_class: "js-user-search js-filter-submit js-assignee-search", title: "担当者で絞り込み", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable dropdown-menu-assignee js-filter-submit",
 +            placeholder: "Search 担当者", data: { any_user: "Any 担当者", first_user: current_user.try(:username), null_user: true, current_user: true, project_id: @project.try(:id), selected: params[:assignee_id], field_name: "assignee_id", default_label: "Assignee" } })
  
          .filter-item.inline.milestone-filter
@@ -14255,7 +14276,7 @@ index cb92b2e..5aaadc6 100644
  
  = form.hidden_field :lock_version
 diff --git a/app/views/shared/issuable/_label_dropdown.html.haml b/app/views/shared/issuable/_label_dropdown.html.haml
-index 93c7fa0..71d520c 100644
+index 93c7fa0..a119f1e 100644
 --- a/app/views/shared/issuable/_label_dropdown.html.haml
 +++ b/app/views/shared/issuable/_label_dropdown.html.haml
 @@ -8,8 +8,8 @@
@@ -14264,7 +14285,7 @@ index 93c7fa0..71d520c 100644
  - selected_toggle = local_assigns.fetch(:selected_toggle, nil)
 -- dropdown_title = local_assigns.fetch(:dropdown_title, "Filter by label")
 -- dropdown_data = {toggle: 'dropdown', field_name: "label_name[]", show_no: "true", show_any: "true", namespace_path: @project.try(:namespace).try(:path), project_path: @project.try(:path), labels: labels_filter_path, default_label: "Labels"}
-+- dropdown_title = local_assigns.fetch(:dropdown_title, "Filter by ラベル")
++- dropdown_title = local_assigns.fetch(:dropdown_title, "ラベルで絞り込み")
 +- dropdown_data = {toggle: 'dropdown', field_name: "label_name[]", show_no: "true", show_any: "true", namespace_path: @project.try(:namespace).try(:path), project_path: @project.try(:path), labels: labels_filter_path, default_label: "ラベル"}
  - dropdown_data.merge!(data_options)
  - classes << 'js-extra-options' if extra_options
@@ -14337,7 +14358,7 @@ index 9a8529c..5fb9ae1 100644
 +              View ラベル
    = dropdown_loading
 diff --git a/app/views/shared/issuable/_milestone_dropdown.html.haml b/app/views/shared/issuable/_milestone_dropdown.html.haml
-index 415361f..bb42af2 100644
+index 415361f..a826082 100644
 --- a/app/views/shared/issuable/_milestone_dropdown.html.haml
 +++ b/app/views/shared/issuable/_milestone_dropdown.html.haml
 @@ -2,20 +2,20 @@
@@ -14345,7 +14366,7 @@ index 415361f..bb42af2 100644
  - show_menu_above = show_menu_above || false
  - selected_text = selected.try(:title) || params[:milestone_title]
 -- dropdown_title = local_assigns.fetch(:dropdown_title, "Filter by milestone")
-+- dropdown_title = local_assigns.fetch(:dropdown_title, "Filter by マイルストーン")
++- dropdown_title = local_assigns.fetch(:dropdown_title, "マイルストーンで絞り込み")
  - if selected.present? || params[:milestone_title].present?
    = hidden_field_tag(name, name == :milestone_title ? selected_text : selected.id)
  = dropdown_tag(milestone_dropdown_label(selected_text), options: { title: dropdown_title, toggle_class: "js-milestone-select js-filter-submit #{extra_class}", filter: true, dropdown_class: "dropdown-menu-selectable dropdown-menu-milestone",
@@ -14368,25 +14389,31 @@ index 415361f..bb42af2 100644
 -            View milestones
 +            View マイルストーン
 diff --git a/app/views/shared/issuable/_nav.html.haml b/app/views/shared/issuable/_nav.html.haml
-index 1154316..7c5fbdf 100644
+index 1154316..f5032b7 100644
 --- a/app/views/shared/issuable/_nav.html.haml
 +++ b/app/views/shared/issuable/_nav.html.haml
-@@ -9,15 +9,15 @@
+@@ -4,20 +4,20 @@
+ 
+ %ul.nav-links.issues-state-filters
+   %li{ class: ("active" if params[:state] == 'opened') }>
+-    = link_to page_filter_path(state: 'opened', label: true), id: 'state-opened', title: "Filter by #{page_context_word} that are currently opened." do
++    = link_to page_filter_path(state: 'opened', label: true), id: 'state-opened', title: "#{page_context_word} that are currently opened.で絞り込み" do
+       #{issuables_state_counter_text(type, :opened)}
  
    - if type == :merge_requests
      %li{ class: ("active" if params[:state] == 'merged') }>
 -      = link_to page_filter_path(state: 'merged', label: true), id: 'state-merged', title: 'Filter by merge requests that are currently merged.' do
-+      = link_to page_filter_path(state: 'merged', label: true), id: 'state-merged', title: 'Filter by マージリクエスト that are currently merged.' do
++      = link_to page_filter_path(state: 'merged', label: true), id: 'state-merged', title: 'マージリクエスト that are currently merged.で絞り込み' do
          #{issuables_state_counter_text(type, :merged)}
  
      %li{ class: ("active" if params[:state] == 'closed') }>
 -      = link_to page_filter_path(state: 'closed', label: true), id: 'state-closed', title: 'Filter by merge requests that are currently closed and unmerged.' do
-+      = link_to page_filter_path(state: 'closed', label: true), id: 'state-closed', title: 'Filter by マージリクエスト that are currently closed and unmerged.' do
++      = link_to page_filter_path(state: 'closed', label: true), id: 'state-closed', title: 'マージリクエスト that are currently closed and unmerged.で絞り込み' do
          #{issuables_state_counter_text(type, :closed)}
    - else
      %li{ class: ("active" if params[:state] == 'closed') }>
 -      = link_to page_filter_path(state: 'closed', label: true), id: 'state-all', title: 'Filter by issues that are currently closed.' do
-+      = link_to page_filter_path(state: 'closed', label: true), id: 'state-all', title: 'Filter by 課題 that are currently closed.' do
++      = link_to page_filter_path(state: 'closed', label: true), id: 'state-all', title: '課題 that are currently closed.で絞り込み' do
          #{issuables_state_counter_text(type, :closed)}
  
    %li{ class: ("active" if params[:state] == 'all') }>

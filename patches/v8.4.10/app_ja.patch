@@ -8900,10 +8900,10 @@ index 498c5e0..90a445f 100644
 +      タグ
        %span.badge.js-totaltags-count= @repository.tags.length
 diff --git a/app/views/projects/commits/show.html.haml b/app/views/projects/commits/show.html.haml
-index f21beaf..6a3aebd 100644
+index f21beaf..3bfe006 100644
 --- a/app/views/projects/commits/show.html.haml
 +++ b/app/views/projects/commits/show.html.haml
-@@ -15,7 +15,7 @@
+@@ -15,11 +15,11 @@
        .control
          = link_to create_mr_path(@repository.root_ref, @ref), class: 'btn btn-success' do
            = icon('plus')
@@ -8912,6 +8912,11 @@ index f21beaf..6a3aebd 100644
  
      .control
        = form_tag(namespace_project_commits_path(@project.namespace, @project, @id), method: :get, class: 'pull-left commits-search-form') do
+-        = search_field_tag :search, params[:search], { placeholder: 'Filter by commit message', id: 'commits-search', class: 'form-control search-text-input', spellcheck: false }
++        = search_field_tag :search, params[:search], { placeholder: 'コミットメッセージで絞り込み', id: 'commits-search', class: 'form-control search-text-input', spellcheck: false }
+ 
+     - if current_user && current_user.private_token
+       .control
 diff --git a/app/views/projects/compare/_form.html.haml b/app/views/projects/compare/_form.html.haml
 index efc25ed..f51d3d9 100644
 --- a/app/views/projects/compare/_form.html.haml
@@ -10320,7 +10325,7 @@ index d1d602e..66916d6 100644
          .remove_source_branch_widget.failed.hide
            %p
 diff --git a/app/views/projects/merge_requests/widget/open/_accept.html.haml b/app/views/projects/merge_requests/widget/open/_accept.html.haml
-index d9a1730..ea39f06 100644
+index d9a1730..b66888f 100644
 --- a/app/views/projects/merge_requests/widget/open/_accept.html.haml
 +++ b/app/views/projects/merge_requests/widget/open/_accept.html.haml
 @@ -12,7 +12,7 @@
@@ -10332,7 +10337,7 @@ index d9a1730..ea39f06 100644
              %ul.js-merge-dropdown.dropdown-menu.dropdown-menu-right{ role: 'menu' }
                %li
                  = link_to "#", class: "merge_when_build_succeeds" do
-@@ -24,12 +24,12 @@
+@@ -24,16 +24,16 @@
                    Merge Immediately
          - else
            = f.button class: "btn btn-create btn-grouped js-merge-button accept_merge_request #{status_class}" do
@@ -10347,6 +10352,11 @@ index d9a1730..ea39f06 100644
        .accept-control.right
          = link_to "#", class: "modify-merge-commit-link js-toggle-button" do
            = icon('edit')
+-          Modify commit message
++          Modify コミットメッセージ
+     .js-toggle-content.hide.prepend-top-default
+       = render 'shared/commit_message_container', params: params,
+           text: @merge_request.merge_commit_message,
 diff --git a/app/views/projects/merge_requests/widget/open/_merge_when_build_succeeds.html.haml b/app/views/projects/merge_requests/widget/open/_merge_when_build_succeeds.html.haml
 index 2168294..c1eed1f 100644
 --- a/app/views/projects/merge_requests/widget/open/_merge_when_build_succeeds.html.haml
@@ -12633,25 +12643,31 @@ index 778b20f..09b3f56 100644
  
    = image_tag group_icon(group), class: "avatar s46 hidden-xs"
 diff --git a/app/views/shared/issuable/_filter.html.haml b/app/views/shared/issuable/_filter.html.haml
-index 8d6f47b..6c05a07 100644
+index 8d6f47b..fdf42c4 100644
 --- a/app/views/shared/issuable/_filter.html.haml
 +++ b/app/views/shared/issuable/_filter.html.haml
-@@ -11,15 +11,15 @@
+@@ -6,20 +6,20 @@
+       - else
+         - page_context_word = 'issues'
+       %li{class: ("active" if params[:state] == 'opened')}
+-        = link_to page_filter_path(state: 'opened'), title: "Filter by #{page_context_word} that are currently opened." do
++        = link_to page_filter_path(state: 'opened'), title: "#{page_context_word} that are currently opened.で絞り込み" do
+           #{state_filters_text_for(:opened, @project)}
  
        - if defined?(type) && type == :merge_requests
          %li{class: ("active" if params[:state] == 'merged')}
 -          = link_to page_filter_path(state: 'merged'), title: 'Filter by merge requests that are currently merged.' do
-+          = link_to page_filter_path(state: 'merged'), title: 'Filter by マージリクエスト that are currently merged.' do
++          = link_to page_filter_path(state: 'merged'), title: 'マージリクエスト that are currently merged.で絞り込み' do
              #{state_filters_text_for(:merged, @project)}
  
          %li{class: ("active" if params[:state] == 'closed')}
 -          = link_to page_filter_path(state: 'closed'), title: 'Filter by merge requests that are currently closed and unmerged.' do
-+          = link_to page_filter_path(state: 'closed'), title: 'Filter by マージリクエスト that are currently closed and unmerged.' do
++          = link_to page_filter_path(state: 'closed'), title: 'マージリクエスト that are currently closed and unmerged.で絞り込み' do
              #{state_filters_text_for(:closed, @project)}
        - else
          %li{class: ("active" if params[:state] == 'closed')}
 -          = link_to page_filter_path(state: 'closed'), title: 'Filter by issues that are currently closed.' do
-+          = link_to page_filter_path(state: 'closed'), title: 'Filter by 課題 that are currently closed.' do
++          = link_to page_filter_path(state: 'closed'), title: '課題 that are currently closed.で絞り込み' do
              #{state_filters_text_for(:closed, @project)}
  
        %li{class: ("active" if params[:state] == 'all')}
@@ -12660,7 +12676,7 @@ index 8d6f47b..6c05a07 100644
          .filter-item.inline
            = users_select_tag(:author_id, selected: params[:author_id],
 -            placeholder: 'Author', class: 'trigger-submit', any_user: "Any Author", first_user: true, current_user: true)
-+            placeholder: '作成者', class: 'trigger-submit', any_user: "Any Author", first_user: true, current_user: true)
++            placeholder: '作成者', class: 'trigger-submit', any_user: "Any 作成者", first_user: true, current_user: true)
  
          .filter-item.inline
            = users_select_tag(:assignee_id, selected: params[:assignee_id],
@@ -12820,6 +12836,18 @@ index da6bacb..637d768 100644
 +    #{participants.count} 参加者
    - participants.each do |participant|
      = link_to_member(@project, participant, name: false, size: 24)
+diff --git a/app/views/shared/issuable/_search_form.html.haml b/app/views/shared/issuable/_search_form.html.haml
+index 3a5ad00..b1f22f8 100644
+--- a/app/views/shared/issuable/_search_form.html.haml
++++ b/app/views/shared/issuable/_search_form.html.haml
+@@ -1,6 +1,6 @@
+ = form_tag(path, method: :get, id: "issue_search_form", class: 'pull-left issue-search-form') do
+   .append-right-10.hidden-xs.hidden-sm
+-    = search_field_tag :issue_search, params[:issue_search], { placeholder: 'Filter by title or description', class: 'form-control issue_search search-text-input', spellcheck: false }
++    = search_field_tag :issue_search, params[:issue_search], { placeholder: 'title or descriptionで絞り込み', class: 'form-control issue_search search-text-input', spellcheck: false }
+     = hidden_field_tag :state, params['state']
+     = hidden_field_tag :scope, params['scope']
+     = hidden_field_tag :assignee_id, params['assignee_id']
 diff --git a/app/views/shared/issuable/_sidebar.html.haml b/app/views/shared/issuable/_sidebar.html.haml
 index 9f4a709..cc4c5fe 100644
 --- a/app/views/shared/issuable/_sidebar.html.haml

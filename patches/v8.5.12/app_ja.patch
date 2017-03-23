@@ -4115,7 +4115,7 @@ index f38caf1..6469754 100644
      .todo-body
        .todo-note
 diff --git a/app/views/dashboard/todos/index.html.haml b/app/views/dashboard/todos/index.html.haml
-index 946d7df..779500a 100644
+index 946d7df..5209228 100644
 --- a/app/views/dashboard/todos/index.html.haml
 +++ b/app/views/dashboard/todos/index.html.haml
 @@ -1,5 +1,5 @@
@@ -4144,7 +4144,7 @@ index 946d7df..779500a 100644
        .filter-item.inline
          = users_select_tag(:author_id, selected: params[:author_id],
 -          placeholder: 'Author', class: 'trigger-submit', any_user: "Any Author", first_user: true, current_user: true)
-+          placeholder: '作成者', class: 'trigger-submit', any_user: "Any Author", first_user: true, current_user: true)
++          placeholder: '作成者', class: 'trigger-submit', any_user: "Any 作成者", first_user: true, current_user: true)
        .filter-item.inline
          = select_tag('type', todo_types_options,
            class: 'select2 trigger-submit', include_blank: true,
@@ -9075,10 +9075,10 @@ index 498c5e0..90a445f 100644
 +      タグ
        %span.badge.js-totaltags-count= @repository.tags.length
 diff --git a/app/views/projects/commits/show.html.haml b/app/views/projects/commits/show.html.haml
-index bcdb092..1b28760 100644
+index bcdb092..0fbe974 100644
 --- a/app/views/projects/commits/show.html.haml
 +++ b/app/views/projects/commits/show.html.haml
-@@ -13,12 +13,12 @@
+@@ -13,16 +13,16 @@
    .block-controls.hidden-xs.hidden-sm
      - if @merge_request.present?
        .control
@@ -9093,6 +9093,11 @@ index bcdb092..1b28760 100644
  
      .control
        = form_tag(namespace_project_commits_path(@project.namespace, @project, @id), method: :get, class: 'pull-left commits-search-form') do
+-        = search_field_tag :search, params[:search], { placeholder: 'Filter by commit message', id: 'commits-search', class: 'form-control search-text-input', spellcheck: false }
++        = search_field_tag :search, params[:search], { placeholder: 'コミットメッセージで絞り込み', id: 'commits-search', class: 'form-control search-text-input', spellcheck: false }
+ 
+     - if current_user && current_user.private_token
+       .control
 diff --git a/app/views/projects/compare/_form.html.haml b/app/views/projects/compare/_form.html.haml
 index 4ab81f3..2ced14b 100644
 --- a/app/views/projects/compare/_form.html.haml
@@ -10541,7 +10546,7 @@ index 85a3a6b..9630f03 100644
      - if mr_can_be_reverted
        = revert_commit_link(@merge_request.merge_commit, namespace_project_merge_request_path(@project.namespace, @project, @merge_request), btn_class: 'sm')
 diff --git a/app/views/projects/merge_requests/widget/open/_accept.html.haml b/app/views/projects/merge_requests/widget/open/_accept.html.haml
-index d9a1730..ea39f06 100644
+index d9a1730..b66888f 100644
 --- a/app/views/projects/merge_requests/widget/open/_accept.html.haml
 +++ b/app/views/projects/merge_requests/widget/open/_accept.html.haml
 @@ -12,7 +12,7 @@
@@ -10553,7 +10558,7 @@ index d9a1730..ea39f06 100644
              %ul.js-merge-dropdown.dropdown-menu.dropdown-menu-right{ role: 'menu' }
                %li
                  = link_to "#", class: "merge_when_build_succeeds" do
-@@ -24,12 +24,12 @@
+@@ -24,16 +24,16 @@
                    Merge Immediately
          - else
            = f.button class: "btn btn-create btn-grouped js-merge-button accept_merge_request #{status_class}" do
@@ -10568,6 +10573,11 @@ index d9a1730..ea39f06 100644
        .accept-control.right
          = link_to "#", class: "modify-merge-commit-link js-toggle-button" do
            = icon('edit')
+-          Modify commit message
++          Modify コミットメッセージ
+     .js-toggle-content.hide.prepend-top-default
+       = render 'shared/commit_message_container', params: params,
+           text: @merge_request.merge_commit_message,
 diff --git a/app/views/projects/merge_requests/widget/open/_merge_when_build_succeeds.html.haml b/app/views/projects/merge_requests/widget/open/_merge_when_build_succeeds.html.haml
 index 2168294..c1eed1f 100644
 --- a/app/views/projects/merge_requests/widget/open/_merge_when_build_succeeds.html.haml
@@ -12813,7 +12823,7 @@ index 289b0bf..4e64f68 100644
  
    .stats
 diff --git a/app/views/shared/issuable/_filter.html.haml b/app/views/shared/issuable/_filter.html.haml
-index e55159d..b46afaa 100644
+index e55159d..7814603 100644
 --- a/app/views/shared/issuable/_filter.html.haml
 +++ b/app/views/shared/issuable/_filter.html.haml
 @@ -8,21 +8,21 @@
@@ -12821,7 +12831,7 @@ index e55159d..b46afaa 100644
          .filter-item.inline
            = users_select_tag(:author_id, selected: params[:author_id],
 -            placeholder: 'Author', class: 'trigger-submit', any_user: "Any Author", first_user: true, current_user: true)
-+            placeholder: '作成者', class: 'trigger-submit', any_user: "Any Author", first_user: true, current_user: true)
++            placeholder: '作成者', class: 'trigger-submit', any_user: "Any 作成者", first_user: true, current_user: true)
  
          .filter-item.inline
            = users_select_tag(:assignee_id, selected: params[:assignee_id],
@@ -12971,25 +12981,31 @@ index 90dc006..03a2596 100644
 -  = link_to 'Cancel', [cancel_project.namespace.becomes(Namespace), cancel_project, issuable], class: 'btn btn-cancel'
 +  = link_to 'キャンセル', [cancel_project.namespace.becomes(Namespace), cancel_project, issuable], class: 'btn btn-cancel'
 diff --git a/app/views/shared/issuable/_nav.html.haml b/app/views/shared/issuable/_nav.html.haml
-index a6970b7..bfa34eb 100644
+index a6970b7..f727a2f 100644
 --- a/app/views/shared/issuable/_nav.html.haml
 +++ b/app/views/shared/issuable/_nav.html.haml
-@@ -9,15 +9,15 @@
+@@ -4,20 +4,20 @@
+   - else
+     - page_context_word = 'issues'
+   %li{class: ("active" if params[:state] == 'opened')}
+-    = link_to page_filter_path(state: 'opened'), title: "Filter by #{page_context_word} that are currently opened." do
++    = link_to page_filter_path(state: 'opened'), title: "#{page_context_word} that are currently opened.で絞り込み" do
+       #{state_filters_text_for(:opened, @project)}
  
    - if defined?(type) && type == :merge_requests
      %li{class: ("active" if params[:state] == 'merged')}
 -      = link_to page_filter_path(state: 'merged'), title: 'Filter by merge requests that are currently merged.' do
-+      = link_to page_filter_path(state: 'merged'), title: 'Filter by マージリクエスト that are currently merged.' do
++      = link_to page_filter_path(state: 'merged'), title: 'マージリクエスト that are currently merged.で絞り込み' do
          #{state_filters_text_for(:merged, @project)}
  
      %li{class: ("active" if params[:state] == 'closed')}
 -      = link_to page_filter_path(state: 'closed'), title: 'Filter by merge requests that are currently closed and unmerged.' do
-+      = link_to page_filter_path(state: 'closed'), title: 'Filter by マージリクエスト that are currently closed and unmerged.' do
++      = link_to page_filter_path(state: 'closed'), title: 'マージリクエスト that are currently closed and unmerged.で絞り込み' do
          #{state_filters_text_for(:closed, @project)}
    - else
      %li{class: ("active" if params[:state] == 'closed')}
 -      = link_to page_filter_path(state: 'closed'), title: 'Filter by issues that are currently closed.' do
-+      = link_to page_filter_path(state: 'closed'), title: 'Filter by 課題 that are currently closed.' do
++      = link_to page_filter_path(state: 'closed'), title: '課題 that are currently closed.で絞り込み' do
          #{state_filters_text_for(:closed, @project)}
  
    %li{class: ("active" if params[:state] == 'all')}

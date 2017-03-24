@@ -3040,3 +3040,4 @@ compareGitLabEditions: GitLabのEditionを比較
 branchName: ブランチ名
 gitRevision: Gitリビジョン
 tagName: タグ名
+signedInWithAuthentication: "{0}\n{1}認証でサインイン"

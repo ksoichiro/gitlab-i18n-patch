@@ -7423,16 +7423,26 @@ index 5ac23aa..b840ba1 100644
          \
          \=====================================
 diff --git a/app/views/profiles/_event_table.html.haml b/app/views/profiles/_event_table.html.haml
-index 879fc17..0b9f4ea 100644
+index 879fc17..113511a 100644
 --- a/app/views/profiles/_event_table.html.haml
 +++ b/app/views/profiles/_event_table.html.haml
-@@ -1,5 +1,5 @@
+@@ -1,14 +1,13 @@
  %h5.prepend-top-0
 -  History of authentications
 +  認証の履歴です。
  
  %ul.well-list
    - events.each do |event|
+     %li
+       %span.description
+         = audit_icon(event.details[:with], class: "append-right-5")
+-        Signed in with
+         = event.details[:with]
+-        authentication
++        認証でサインイン
+       %span.pull-right
+         #{time_ago_in_words event.created_at} ago
+ 
 diff --git a/app/views/profiles/accounts/show.html.haml b/app/views/profiles/accounts/show.html.haml
 index 72f658d..ec5de43 100644
 --- a/app/views/profiles/accounts/show.html.haml

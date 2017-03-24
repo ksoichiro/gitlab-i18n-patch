@@ -878,6 +878,11 @@ translations:
     replace: '${getASupportSubscription}'
   - pattern: 'Compare GitLab editions'
     replace: '${compareGitLabEditions}'
+  - pattern: !!js/regexp /^(\s+)Signed in with\n(\s+[^\n]+)\n(\s+)authentication$/
+    replace: '${signedInWithAuthentication}'
+    args:
+    - '$2'
+    - '$3'
 
   - name: formLabel
     params:

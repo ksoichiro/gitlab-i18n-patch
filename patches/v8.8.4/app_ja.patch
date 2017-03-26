@@ -439,7 +439,7 @@ index 48dbf65..d724cda 100644
      end
    end
 diff --git a/app/controllers/groups_controller.rb b/app/controllers/groups_controller.rb
-index ee4fcc4..b5b967c 100644
+index ee4fcc4..3a54de2 100644
 --- a/app/controllers/groups_controller.rb
 +++ b/app/controllers/groups_controller.rb
 @@ -1,3 +1,4 @@
@@ -452,7 +452,7 @@ index ee4fcc4..b5b967c 100644
  
      if @group.persisted?
 -      redirect_to @group, notice: "Group '#{@group.name}' was successfully created."
-+      redirect_to @group, notice: "グループ '#{@group.name}' が作成されました"
++      redirect_to @group, notice: "グループ'#{@group.name}'を作成しました"
      else
        render action: "new"
      end
@@ -9508,10 +9508,10 @@ index f6a53fd..c12588a 100644
          .nothing-here-block Only the project owner can remove a project.
  
 diff --git a/app/views/projects/empty.html.haml b/app/views/projects/empty.html.haml
-index 636beb7..f47e48c 100644
+index 636beb7..002057d 100644
 --- a/app/views/projects/empty.html.haml
 +++ b/app/views/projects/empty.html.haml
-@@ -9,10 +9,10 @@
+@@ -9,37 +9,37 @@
  
  .row-content-block.second-block.center
    %h3.page-title
@@ -9522,9 +9522,22 @@ index 636beb7..f47e48c 100644
 -      If you already have files you can push them using command line instructions below.
 +      すでにファイルがある場合は以下のコマンドラインでの手順に沿ってプッシュできます。
      %p
-       Otherwise you can start with adding a
+-      Otherwise you can start with adding a
++      そうでない場合は、このプロジェクトにまず
        = succeed ',' do
-@@ -29,17 +29,17 @@
+         = link_to "README", new_readme_path, class: 'underlined-link'
+-      a
++      
+       = succeed ',' do
+         = link_to "LICENSE", add_special_file_path(@project, file_name: 'LICENSE'), class: 'underlined-link'
+-      or a
++      または
+       = link_to '.gitignore', add_special_file_path(@project, file_name: '.gitignore'), class: 'underlined-link'
+-      to this project.
++      を追加しましょう。
+ 
+ - if can?(current_user, :push_code, @project)
+   %div{ class: container_class }
      .prepend-top-20
      .empty_wrapper
        %h3.page-title-empty

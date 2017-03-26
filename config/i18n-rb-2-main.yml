@@ -78,6 +78,10 @@ translations:
     replace: "alert: '${youMustProvideAValidCurrentPassword}'"
   - pattern: "notice: 'Password successfully changed'"
     replace: "notice: '${passwordSuccessfullyChanged}'"
+  - pattern: !!js/regexp /Group '([^']*)' was successfully created\./
+    replace: '${groupWasSuccessfullyCreated}'
+    args:
+    - '$1'
   - pattern: "Password was successfully updated. Please login with it"
     replace: "${passwordWasSuccessfullyUpdatedPleaseLoginWithIt}"
     match-once: true

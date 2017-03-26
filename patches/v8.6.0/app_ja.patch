@@ -402,7 +402,7 @@ index d5ef338..f228390 100644
      end
    end
 diff --git a/app/controllers/groups_controller.rb b/app/controllers/groups_controller.rb
-index 87efb0a..d1edfbf 100644
+index 87efb0a..de5423e 100644
 --- a/app/controllers/groups_controller.rb
 +++ b/app/controllers/groups_controller.rb
 @@ -1,3 +1,4 @@
@@ -415,7 +415,7 @@ index 87efb0a..d1edfbf 100644
  
      if @group.persisted?
 -      redirect_to @group, notice: "Group '#{@group.name}' was successfully created."
-+      redirect_to @group, notice: "グループ '#{@group.name}' が作成されました"
++      redirect_to @group, notice: "グループ'#{@group.name}'を作成しました"
      else
        render action: "new"
      end

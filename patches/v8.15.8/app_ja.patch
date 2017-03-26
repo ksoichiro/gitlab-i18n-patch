@@ -419,7 +419,7 @@ index 4f273a8..c3b8e49 100644
      end
    end
 diff --git a/app/controllers/groups_controller.rb b/app/controllers/groups_controller.rb
-index efe9c00..7b48e0b 100644
+index efe9c00..05bd913 100644
 --- a/app/controllers/groups_controller.rb
 +++ b/app/controllers/groups_controller.rb
 @@ -1,3 +1,4 @@
@@ -432,7 +432,7 @@ index efe9c00..7b48e0b 100644
  
      if @group.persisted?
 -      redirect_to @group, notice: "Group '#{@group.name}' was successfully created."
-+      redirect_to @group, notice: "グループ '#{@group.name}' が作成されました"
++      redirect_to @group, notice: "グループ'#{@group.name}'を作成しました"
      else
        render action: "new"
      end
@@ -6084,7 +6084,7 @@ index c8a6fa1..1f10efe 100644
        - @already_added_projects.each do |project|
          %tr{id: "project_#{project.id}", class: "#{project_status_css_class(project.import_status)}"}
 diff --git a/app/views/import/gitea/new.html.haml b/app/views/import/gitea/new.html.haml
-index 02a116f..de0b0ba 100644
+index 02a116f..b078fdd 100644
 --- a/app/views/import/gitea/new.html.haml
 +++ b/app/views/import/gitea/new.html.haml
 @@ -1,14 +1,14 @@
@@ -6095,7 +6095,7 @@ index 02a116f..de0b0ba 100644
  %h3.page-title
    = custom_icon('go_logo')
 -  Import Projects from Gitea
-+  Projects from Giteaをインポート
++  Giteaからプロジェクトをインポート
  
  %p
    To get started, please enter your Gitea Host URL and a
@@ -6117,7 +6117,7 @@ index 02a116f..de0b0ba 100644
 -    = submit_tag 'List Your Gitea Repositories', class: 'btn btn-create'
 +    = submit_tag 'List あなたのGitea Repositories', class: 'btn btn-create'
 diff --git a/app/views/import/gitea/status.html.haml b/app/views/import/gitea/status.html.haml
-index 589ca27..acdc520 100644
+index 589ca27..17f3c4f 100644
 --- a/app/views/import/gitea/status.html.haml
 +++ b/app/views/import/gitea/status.html.haml
 @@ -1,7 +1,7 @@
@@ -6127,11 +6127,11 @@ index 589ca27..acdc520 100644
  %h3.page-title
    = custom_icon('go_logo')
 -  Import Projects from Gitea
-+  Projects from Giteaをインポート
++  Giteaからプロジェクトをインポート
  
  = render 'import/githubish_status', provider: 'gitea'
 diff --git a/app/views/import/github/new.html.haml b/app/views/import/github/new.html.haml
-index 4c6af0b..37b38d3 100644
+index 4c6af0b..0ff6ddd 100644
 --- a/app/views/import/github/new.html.haml
 +++ b/app/views/import/github/new.html.haml
 @@ -1,15 +1,15 @@
@@ -6141,7 +6141,7 @@ index 4c6af0b..37b38d3 100644
  
  %h3.page-title
 -  = icon 'github', text: 'Import Projects from GitHub'
-+  = icon 'github', text: 'プロジェクト from GitHubをインポート'
++  = icon 'github', text: 'GitHubからプロジェクトをインポート'
  
  - if github_import_configured?
    %p
@@ -6149,7 +6149,7 @@ index 4c6af0b..37b38d3 100644
      the list of your GitHub repositories:
  
 -  = link_to 'List Your GitHub Repositories', status_import_github_path, class: 'btn btn-success'
-+  = link_to 'List あなたのGitHub Repositories', status_import_github_path, class: 'btn btn-success'
++  = link_to 'あなたのGitHubリポジトリを一覧表示', status_import_github_path, class: 'btn btn-success'
  
    %hr
  
@@ -6168,18 +6168,18 @@ index 4c6af0b..37b38d3 100644
 -    = text_field_tag :personal_access_token, '', class: 'form-control', placeholder: "Personal Access Token", size: 40
 -    = submit_tag 'List Your GitHub Repositories', class: 'btn btn-success'
 +    = text_field_tag :personal_access_token, '', class: 'form-control', placeholder: "パーソナルアクセストークン", size: 40
-+    = submit_tag 'List あなたのGitHub Repositories', class: 'btn btn-success'
++    = submit_tag 'あなたのGitHubリポジトリを一覧表示', class: 'btn btn-success'
  
  - unless github_import_configured?
    %hr
    %p
 -    Note:
-+    ノート:
++    注意:
      - if current_user.admin?
        As an administrator you may like to configure
      - else
 diff --git a/app/views/import/github/status.html.haml b/app/views/import/github/status.html.haml
-index 0fe578a..9bfe5f0 100644
+index 0fe578a..d2beb9e 100644
 --- a/app/views/import/github/status.html.haml
 +++ b/app/views/import/github/status.html.haml
 @@ -1,6 +1,6 @@
@@ -6188,7 +6188,7 @@ index 0fe578a..9bfe5f0 100644
 +- header_title "プロジェクト", root_path
  %h3.page-title
 -  = icon 'github', text: 'Import Projects from GitHub'
-+  = icon 'github', text: 'プロジェクト from GitHubをインポート'
++  = icon 'github', text: 'GitHubからプロジェクトをインポート'
  
  = render 'import/githubish_status', provider: 'github'
 diff --git a/app/views/import/gitlab/status.html.haml b/app/views/import/gitlab/status.html.haml
@@ -8601,7 +8601,7 @@ index 0af40dd..0cf1fd8 100644
 -      Nevermind, I'll use my own
 +      いいえ、自分のものを使います
 diff --git a/app/views/projects/boards/components/_board.html.haml b/app/views/projects/boards/components/_board.html.haml
-index a2e5118..b20cf0d 100644
+index a2e5118..1fd4aaa 100644
 --- a/app/views/projects/boards/components/_board.html.haml
 +++ b/app/views/projects/boards/components/_board.html.haml
 @@ -13,15 +13,15 @@
@@ -8619,7 +8619,7 @@ index a2e5118..b20cf0d 100644
              ":list" => "list",
              "v-if" => "!list.preset && list.id" }
 -            %button.board-delete.has-tooltip.pull-right{ type: "button", title: "Delete list", "aria-label" => "Delete list", data: { placement: "bottom" }, "@click.stop" => "deleteBoard" }
-+            %button.board-delete.has-tooltip.pull-right{ type: "button", title: "リストを削除", "aria-label" => "リストを削除", data: { placement: "bottom" }, "@click.stop" => "deleteBoard" }
++            %button.board-delete.has-tooltip.pull-right{ type: "button", title: "リストを削除", "aria-label" => "Delete リスト", data: { placement: "bottom" }, "@click.stop" => "deleteBoard" }
                = icon("trash")
      %board-list{ "v-if" => 'list.type !== "blank"',
        ":list" => "list",
@@ -9932,10 +9932,10 @@ index 38e7fc4..ae161d6 100644
  .save-project-loader.hide
    .center
 diff --git a/app/views/projects/empty.html.haml b/app/views/projects/empty.html.haml
-index c0a8309..42cecf9 100644
+index c0a8309..95e773d 100644
 --- a/app/views/projects/empty.html.haml
 +++ b/app/views/projects/empty.html.haml
-@@ -9,10 +9,10 @@
+@@ -9,39 +9,39 @@
  
  .row-content-block.second-block.center
    %h3.page-title
@@ -9946,11 +9946,19 @@ index c0a8309..42cecf9 100644
 -      If you already have files you can push them using command line instructions below.
 +      すでにファイルがある場合は以下のコマンドラインでの手順に沿ってプッシュできます。
      %p
-       Otherwise you can start with adding a
+-      Otherwise you can start with adding a
++      そうでない場合は、このプロジェクトにまず
        = succeed ',' do
-@@ -24,24 +24,24 @@
+         = link_to "README", add_special_file_path(@project, file_name: 'README.md'), class: 'underlined-link'
+-      a
++      
+       = succeed ',' do
+         = link_to "LICENSE", add_special_file_path(@project, file_name: 'LICENSE'), class: 'underlined-link'
+-      or a
++      または
        = link_to '.gitignore', add_special_file_path(@project, file_name: '.gitignore'), class: 'underlined-link'
-       to this project.
+-      to this project.
++      を追加しましょう。
      %p
 -      You will need to be owner or have the master permission level for the initial push, as the master branch is automatically protected.
 +      masterブランチは自動的に保護されるため、最初のプッシュをするためには所有者であるかMaster権限を持っていなければなりません。

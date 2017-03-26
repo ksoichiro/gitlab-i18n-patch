@@ -487,6 +487,9 @@ translations:
   - pattern: !!js/regexp /^(\s+)Otherwise you can start with\n(\s+[^"]+")adding README([^\n]*)\n(\s+)file to this project./m
     replace: '${otherwiseYouCanStartWithAddingReadmeFileToThisProject}'
     match-once: true
+  - pattern: !!js/regexp /^(\s+)Otherwise you can start with adding a\n([^\n]+)\n([^\n]+)\n(\s+)a\n([^\n]+)\n([^\n]+)\n(\s+)or a\n([^\n]+)\n(\s+)to this project./m
+    replace: '${otherwiseYouCanStartWithAddingAReadmeALicenseOrAGitignoreToThisProject}'
+    match-once: true
   - pattern: "Command line instructions"
     replace: '${commandLineInstructions}'
   - pattern: "Git global setup"
@@ -499,8 +502,8 @@ translations:
     replace: '${existingFolder}'
   - pattern: "Existing Git repository"
     replace: '${existingGitRepository}'
-  - pattern: !!js/regexp /Import projects from (.*)$/
-    replace: '${importProjectsFromSth}'
+  - pattern: !!js/regexp /Import [Pp]rojects? from ([^']*)('?)$/
+    replace: '${importProjectsFromSth}$2'
     args:
     - '$1'
   - pattern: "Programming languages used in this repository"
@@ -755,6 +758,10 @@ translations:
     replace: '${noOpenMilestonesAvailable}'
   - pattern: 'There are no issues to show.'
     replace: '${thereAreNoIssuesToShow}'
+  - pattern: 'There are no subgroups to show.'
+    replace: '${thereAreNoSubgroupsToShow}'
+    evaluate-when: "semver.gte(version, '9.0.0')"
+    complete-pattern: true
   - pattern: !!js/regexp /(\s+)Please review the\n(\s+[^']+')guidelines for contribution([^\n]+)\n(\s+)to this repository\./
     replace: '${pleaseReviewTheGuidelinesForContributionToThisRepository}'
     args:
@@ -883,6 +890,16 @@ translations:
     args:
     - '$2'
     - '$3'
+  - pattern: 'Note:'
+    replace: '${mdNote}:'
+  - pattern: 'List Your GitHub Repositories'
+    replace: '${listYourGitHubRepositories}'
+  - pattern: 'The Issue Tracker is the place to add things that need to be improved or solved in a project'
+    replace: '${theIssueTrackerIsThePlaceToAddThingsThatNeedToBeImprovedOrSolvedInAProject}'
+  - pattern: 'Issues can be bugs, tasks or ideas to be discussed.'
+    replace: '${issuesCanBeBugsTasksOrIdeasToBeDiscussed}'
+  - pattern: 'Also, issues are searchable and filterable.'
+    replace: '${alsoIssuesAreSearchableAndFilterable}'
 
   - name: formLabel
     params:
@@ -1109,6 +1126,10 @@ translations:
     - {word: 'User Settings', key: userSettings}
     - {word: 'Description format', key: descriptionFormat}
     - {word: 'Register', key: register}
+  - name: singleWord
+    evaluate-when: "semver.gte(version, '9.0.0')"
+    params:
+    - {word: 'Subgroups?', key: subgroup}
   - name: wordInSentence
     params:
     - {word: 'broadcast message', key: broadcastMessage}

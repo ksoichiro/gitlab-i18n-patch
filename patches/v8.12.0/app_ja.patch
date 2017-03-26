@@ -401,7 +401,7 @@ index 272164c..9fb8ea3 100644
      end
    end
 diff --git a/app/controllers/groups_controller.rb b/app/controllers/groups_controller.rb
-index b83c3a8..dc8ac10 100644
+index b83c3a8..7130c1f 100644
 --- a/app/controllers/groups_controller.rb
 +++ b/app/controllers/groups_controller.rb
 @@ -1,3 +1,4 @@
@@ -414,7 +414,7 @@ index b83c3a8..dc8ac10 100644
  
      if @group.persisted?
 -      redirect_to @group, notice: "Group '#{@group.name}' was successfully created."
-+      redirect_to @group, notice: "グループ '#{@group.name}' が作成されました"
++      redirect_to @group, notice: "グループ'#{@group.name}'を作成しました"
      else
        render action: "new"
      end
@@ -6030,7 +6030,7 @@ index c8a6fa1..1f10efe 100644
        - @already_added_projects.each do |project|
          %tr{id: "project_#{project.id}", class: "#{project_status_css_class(project.import_status)}"}
 diff --git a/app/views/import/github/new.html.haml b/app/views/import/github/new.html.haml
-index 4c6af0b..37b38d3 100644
+index 4c6af0b..0ff6ddd 100644
 --- a/app/views/import/github/new.html.haml
 +++ b/app/views/import/github/new.html.haml
 @@ -1,15 +1,15 @@
@@ -6040,7 +6040,7 @@ index 4c6af0b..37b38d3 100644
  
  %h3.page-title
 -  = icon 'github', text: 'Import Projects from GitHub'
-+  = icon 'github', text: 'プロジェクト from GitHubをインポート'
++  = icon 'github', text: 'GitHubからプロジェクトをインポート'
  
  - if github_import_configured?
    %p
@@ -6048,7 +6048,7 @@ index 4c6af0b..37b38d3 100644
      the list of your GitHub repositories:
  
 -  = link_to 'List Your GitHub Repositories', status_import_github_path, class: 'btn btn-success'
-+  = link_to 'List あなたのGitHub Repositories', status_import_github_path, class: 'btn btn-success'
++  = link_to 'あなたのGitHubリポジトリを一覧表示', status_import_github_path, class: 'btn btn-success'
  
    %hr
  
@@ -6067,13 +6067,13 @@ index 4c6af0b..37b38d3 100644
 -    = text_field_tag :personal_access_token, '', class: 'form-control', placeholder: "Personal Access Token", size: 40
 -    = submit_tag 'List Your GitHub Repositories', class: 'btn btn-success'
 +    = text_field_tag :personal_access_token, '', class: 'form-control', placeholder: "パーソナルアクセストークン", size: 40
-+    = submit_tag 'List あなたのGitHub Repositories', class: 'btn btn-success'
++    = submit_tag 'あなたのGitHubリポジトリを一覧表示', class: 'btn btn-success'
  
  - unless github_import_configured?
    %hr
    %p
 -    Note:
-+    ノート:
++    注意:
      - if current_user.admin?
        As an administrator you may like to configure
      - else
@@ -6743,7 +6743,7 @@ index 27ac176..2547ae8 100644
 -          Members
 +          メンバー
 diff --git a/app/views/layouts/nav/_group_settings.html.haml b/app/views/layouts/nav/_group_settings.html.haml
-index 75275af..a06edc4 100644
+index 75275af..2831e9c 100644
 --- a/app/views/layouts/nav/_group_settings.html.haml
 +++ b/app/views/layouts/nav/_group_settings.html.haml
 @@ -13,14 +13,14 @@
@@ -6751,7 +6751,7 @@ index 75275af..a06edc4 100644
            - if can_admin_group
              = nav_link(path: 'groups#projects') do
 -              = link_to 'Projects', projects_group_path(@group), title: 'Projects'
-+              = link_to 'プロジェクト', projects_group_path(@group), title: 'プロジェクト'
++              = link_to 'プロジェクト', projects_group_path(@group), title: 'Projects'
            - if can_edit || can_leave
              %li.divider
            - if can_edit
@@ -9452,10 +9452,10 @@ index a04d53e..147dfac 100644
  .save-project-loader.hide
    .center
 diff --git a/app/views/projects/empty.html.haml b/app/views/projects/empty.html.haml
-index 636beb7..f47e48c 100644
+index 636beb7..002057d 100644
 --- a/app/views/projects/empty.html.haml
 +++ b/app/views/projects/empty.html.haml
-@@ -9,10 +9,10 @@
+@@ -9,37 +9,37 @@
  
  .row-content-block.second-block.center
    %h3.page-title
@@ -9466,9 +9466,22 @@ index 636beb7..f47e48c 100644
 -      If you already have files you can push them using command line instructions below.
 +      すでにファイルがある場合は以下のコマンドラインでの手順に沿ってプッシュできます。
      %p
-       Otherwise you can start with adding a
+-      Otherwise you can start with adding a
++      そうでない場合は、このプロジェクトにまず
        = succeed ',' do
-@@ -29,17 +29,17 @@
+         = link_to "README", new_readme_path, class: 'underlined-link'
+-      a
++      
+       = succeed ',' do
+         = link_to "LICENSE", add_special_file_path(@project, file_name: 'LICENSE'), class: 'underlined-link'
+-      or a
++      または
+       = link_to '.gitignore', add_special_file_path(@project, file_name: '.gitignore'), class: 'underlined-link'
+-      to this project.
++      を追加しましょう。
+ 
+ - if can?(current_user, :push_code, @project)
+   %div{ class: container_class }
      .prepend-top-20
      .empty_wrapper
        %h3.page-title-empty

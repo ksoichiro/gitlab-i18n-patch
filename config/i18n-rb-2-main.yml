@@ -48,6 +48,7 @@ translations:
   - name: sthCountsDone
     pattern: "\"([^\"]*) {obj} {done}\""
     replace: "\"${sthCountsDone}\""
+    evaluate-when: "semver.lt(version, '9.0.0')"
     args:
     - '$1'
     - '${{objKey}}'
@@ -258,6 +259,9 @@ translations:
     - {word: 'Users', key: user}
     - {word: 'Inline', key: inline}
     - {word: 'Unassigned', key: unassigned}
+  - name: sthCountsDone
+    params:
+    - {obj: issues, objKey: issue, done: updated, doneKey: update}
 
 - name: 'rb:application'
   parallel-group: 'group1'

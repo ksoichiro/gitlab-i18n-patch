@@ -1215,6 +1215,3 @@ translations:
     - {verb: Run, key: runSth}
     - {verb: Clone, key: cloneSth}
     - {verb: 'Filter by', key: filterBySth}
-  - name: sthCountsDone
-    params:
-    - {obj: issues, objKey: issue, done: updated, doneKey: update}

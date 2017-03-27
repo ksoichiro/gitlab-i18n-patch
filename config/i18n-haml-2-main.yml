@@ -900,6 +900,12 @@ translations:
     replace: '${issuesCanBeBugsTasksOrIdeasToBeDiscussed}'
   - pattern: 'Also, issues are searchable and filterable.'
     replace: '${alsoIssuesAreSearchableAndFilterable}'
+  - pattern: 'Create a new deploy key for this project'
+    replace: '${createANewDeployKeyForThisProject}'
+  - pattern: 'Protect a branch'
+    replace: '${protectABranch}'
+  - pattern: 'There are currently no protected branches, protect a branch with the form above.'
+    replace: '${thereAreCurrentlyNoProtectedBranchesProtectABranchWithTheFormAbove}'
 
   - name: formLabel
     params:
@@ -1126,6 +1132,8 @@ translations:
     - {word: 'User Settings', key: userSettings}
     - {word: 'Description format', key: descriptionFormat}
     - {word: 'Register', key: register}
+    - {word: 'General', key: general}
+    - {word: 'Secret Token', key: secretToken}
   - name: singleWord
     evaluate-when: "semver.gte(version, '9.0.0')"
     params:

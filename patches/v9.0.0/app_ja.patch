@@ -2534,7 +2534,7 @@ index e793032..c7d1860 100644
          = icon('circle', class: 'cgreen')
          Healthy
 diff --git a/app/views/admin/hooks/index.html.haml b/app/views/admin/hooks/index.html.haml
-index 551edf1..bec927f 100644
+index 551edf1..385a7ee 100644
 --- a/app/views/admin/hooks/index.html.haml
 +++ b/app/views/admin/hooks/index.html.haml
 @@ -1,6 +1,6 @@
@@ -2546,7 +2546,14 @@ index 551edf1..bec927f 100644
  
  %p.light
    #{link_to "System hooks ", help_page_path("system_hooks/system_hooks"), class: "vlink"} can be
-@@ -23,35 +23,35 @@
+@@ -17,41 +17,41 @@
+     .col-sm-10
+       = f.text_field :url, class: 'form-control'
+   .form-group
+-    = f.label :token, 'Secret Token', class: 'control-label'
++    = f.label :token, 'シークレットトークン', class: 'control-label'
+     .col-sm-10
+       = f.text_field :token, class: 'form-control'
        %p.help-block
          Use this token to validate received payloads
    .form-group
@@ -9515,7 +9522,7 @@ index 1421da7..d321bdd 100644
 -  = f.submit "Add key", class: "btn-create btn"
 +  = f.submit "キーを追加", class: "btn-create btn"
 diff --git a/app/views/projects/deploy_keys/_index.html.haml b/app/views/projects/deploy_keys/_index.html.haml
-index 0cbe9b3..1ec7a3e 100644
+index 0cbe9b3..e177758 100644
 --- a/app/views/projects/deploy_keys/_index.html.haml
 +++ b/app/views/projects/deploy_keys/_index.html.haml
 @@ -1,12 +1,12 @@
@@ -9530,7 +9537,7 @@ index 0cbe9b3..1ec7a3e 100644
    .col-lg-9
      %h5.prepend-top-0
 -      Create a new deploy key for this project
-+      new deploy key for this プロジェクトを作成
++      このプロジェクトの新しいデプロイキーを作成
      = render @deploy_keys.form_partial_path
    .col-lg-9.col-lg-offset-3
      %hr
@@ -12098,8 +12105,21 @@ index 42ce4f8..cc71819 100644
 -    = link_to "Cancel", namespace_project_settings_members_path(@project.namespace, @project), class: "btn btn-cancel"
 +    = button_tag 'プロジェクト メンバーをインポート', class: "btn btn-create"
 +    = link_to "キャンセル", namespace_project_settings_members_path(@project.namespace, @project), class: "btn btn-cancel"
+diff --git a/app/views/projects/protected_branches/_branches_list.html.haml b/app/views/projects/protected_branches/_branches_list.html.haml
+index cf0db94..5f29f25 100644
+--- a/app/views/projects/protected_branches/_branches_list.html.haml
++++ b/app/views/projects/protected_branches/_branches_list.html.haml
+@@ -4,7 +4,7 @@
+       %h3.panel-title
+         Protected branch (#{@protected_branches.size})
+     %p.settings-message.text-center
+-      There are currently no protected branches, protect a branch with the form above.
++      現在、保護されたブランチはありません。上のフォームでブランチを保護してください。
+   - else
+     - can_admin_project = can?(current_user, :admin_project, @project)
+ 
 diff --git a/app/views/projects/protected_branches/_create_protected_branch.html.haml b/app/views/projects/protected_branches/_create_protected_branch.html.haml
-index b8e885b..c8f1781 100644
+index b8e885b..1abbd54 100644
 --- a/app/views/projects/protected_branches/_create_protected_branch.html.haml
 +++ b/app/views/projects/protected_branches/_create_protected_branch.html.haml
 @@ -2,13 +2,13 @@
@@ -12107,7 +12127,7 @@ index b8e885b..c8f1781 100644
      .panel-heading
        %h3.panel-title
 -        Protect a branch
-+        Protect a ブランチ
++        ブランチを保護
      .panel-body
        .form-horizontal
          = form_errors(@protected_branch)
@@ -12582,12 +12602,18 @@ index 078b7be..7af9573 100644
 +        %strong 変更を保存
          and start using GitLab inside Slack!
 diff --git a/app/views/projects/settings/_head.html.haml b/app/views/projects/settings/_head.html.haml
-index 88bcb54..564a4a9 100644
+index 88bcb54..1dbad35 100644
 --- a/app/views/projects/settings/_head.html.haml
 +++ b/app/views/projects/settings/_head.html.haml
-@@ -10,9 +10,9 @@
+@@ -6,13 +6,13 @@
+         - can_edit = can?(current_user, :admin_project, @project)
+         - if can_edit
+           = nav_link(controller: :projects) do
+-            = link_to edit_project_path(@project), title: 'General' do
++            = link_to edit_project_path(@project), title: '一般' do
                %span
-                 General
+-                General
++                一般
          = nav_link(controller: :members) do
 -          = link_to project_settings_members_path(@project), title: 'Members' do
 +          = link_to project_settings_members_path(@project), title: 'メンバー' do
@@ -15360,10 +15386,16 @@ index e7f7db7..ad957f8 100644
 -        = link_to "Cancel", snippets_path(@project), class: "btn btn-cancel"
 +        = link_to "キャンセル", snippets_path(@project), class: "btn btn-cancel"
 diff --git a/app/views/shared/web_hooks/_form.html.haml b/app/views/shared/web_hooks/_form.html.haml
-index 37e2a37..39a4e2e 100644
+index 37e2a37..c01ac09 100644
 --- a/app/views/shared/web_hooks/_form.html.haml
 +++ b/app/views/shared/web_hooks/_form.html.haml
-@@ -18,48 +18,48 @@
+@@ -13,53 +13,53 @@
+         = f.label :url, "URL", class: 'label-light'
+         = f.text_field :url, class: "form-control", placeholder: 'http://example.com/trigger-ci.json'
+       .form-group
+-        = f.label :token, "Secret Token", class: 'label-light'
++        = f.label :token, "シークレットトークン", class: 'label-light'
+         = f.text_field :token, class: "form-control", placeholder: ''
          %p.help-block
            Use this token to validate received payloads. It will be sent with the request in the X-Gitlab-Token HTTP header.
        .form-group

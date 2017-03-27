@@ -2521,7 +2521,7 @@ index e793032..c7d1860 100644
          = icon('circle', class: 'cgreen')
          Healthy
 diff --git a/app/views/admin/hooks/index.html.haml b/app/views/admin/hooks/index.html.haml
-index 551edf1..bec927f 100644
+index 551edf1..385a7ee 100644
 --- a/app/views/admin/hooks/index.html.haml
 +++ b/app/views/admin/hooks/index.html.haml
 @@ -1,6 +1,6 @@
@@ -2533,7 +2533,14 @@ index 551edf1..bec927f 100644
  
  %p.light
    #{link_to "System hooks ", help_page_path("system_hooks/system_hooks"), class: "vlink"} can be
-@@ -23,35 +23,35 @@
+@@ -17,41 +17,41 @@
+     .col-sm-10
+       = f.text_field :url, class: 'form-control'
+   .form-group
+-    = f.label :token, 'Secret Token', class: 'control-label'
++    = f.label :token, 'シークレットトークン', class: 'control-label'
+     .col-sm-10
+       = f.text_field :token, class: 'form-control'
        %p.help-block
          Use this token to validate received payloads
    .form-group
@@ -9569,7 +9576,7 @@ index c91bb9c..4fd98ae 100644
 -  = f.submit "Add key", class: "btn-create btn"
 +  = f.submit "キーを追加", class: "btn-create btn"
 diff --git a/app/views/projects/deploy_keys/index.html.haml b/app/views/projects/deploy_keys/index.html.haml
-index 04fbb37..3be0afb 100644
+index 04fbb37..7b0ab89 100644
 --- a/app/views/projects/deploy_keys/index.html.haml
 +++ b/app/views/projects/deploy_keys/index.html.haml
 @@ -1,14 +1,14 @@
@@ -9586,7 +9593,7 @@ index 04fbb37..3be0afb 100644
    .col-lg-9
      %h5.prepend-top-0
 -      Create a new deploy key for this project
-+      new deploy key for this プロジェクトを作成
++      このプロジェクトの新しいデプロイキーを作成
      = render "form"
    .col-lg-9.col-lg-offset-3
      %hr
@@ -12054,8 +12061,21 @@ index 42ce4f8..cc71819 100644
 -    = link_to "Cancel", namespace_project_settings_members_path(@project.namespace, @project), class: "btn btn-cancel"
 +    = button_tag 'プロジェクト メンバーをインポート', class: "btn btn-create"
 +    = link_to "キャンセル", namespace_project_settings_members_path(@project.namespace, @project), class: "btn btn-cancel"
+diff --git a/app/views/projects/protected_branches/_branches_list.html.haml b/app/views/projects/protected_branches/_branches_list.html.haml
+index 04b19a8..2ed6bc0 100644
+--- a/app/views/projects/protected_branches/_branches_list.html.haml
++++ b/app/views/projects/protected_branches/_branches_list.html.haml
+@@ -4,7 +4,7 @@
+       %h3.panel-title
+         Protected branch (#{@protected_branches.size})
+     %p.settings-message.text-center
+-      There are currently no protected branches, protect a branch with the form above.
++      現在、保護されたブランチはありません。上のフォームでブランチを保護してください。
+   - else
+     - can_admin_project = can?(current_user, :admin_project, @project)
+ 
 diff --git a/app/views/projects/protected_branches/_create_protected_branch.html.haml b/app/views/projects/protected_branches/_create_protected_branch.html.haml
-index e95a3b1..65b60b1 100644
+index e95a3b1..435aff3 100644
 --- a/app/views/projects/protected_branches/_create_protected_branch.html.haml
 +++ b/app/views/projects/protected_branches/_create_protected_branch.html.haml
 @@ -2,13 +2,13 @@
@@ -12063,7 +12083,7 @@ index e95a3b1..65b60b1 100644
      .panel-heading
        %h3.panel-title
 -        Protect a branch
-+        Protect a ブランチ
++        ブランチを保護
      .panel-body
        .form-horizontal
          = form_errors(@protected_branch)
@@ -15097,10 +15117,16 @@ index 2d22782..8c79fef 100644
 -        = link_to "Cancel", snippets_path(@project), class: "btn btn-cancel"
 +        = link_to "キャンセル", snippets_path(@project), class: "btn btn-cancel"
 diff --git a/app/views/shared/web_hooks/_form.html.haml b/app/views/shared/web_hooks/_form.html.haml
-index 13586a5..eee1cce 100644
+index 13586a5..1bc7f74 100644
 --- a/app/views/shared/web_hooks/_form.html.haml
 +++ b/app/views/shared/web_hooks/_form.html.haml
-@@ -18,64 +18,64 @@
+@@ -13,69 +13,69 @@
+         = f.label :url, "URL", class: 'label-light'
+         = f.text_field :url, class: "form-control", placeholder: 'http://example.com/trigger-ci.json'
+       .form-group
+-        = f.label :token, "Secret Token", class: 'label-light'
++        = f.label :token, "シークレットトークン", class: 'label-light'
+         = f.text_field :token, class: "form-control", placeholder: ''
          %p.help-block
            Use this token to validate received payloads. It will be sent with the request in the X-Gitlab-Token HTTP header.
        .form-group

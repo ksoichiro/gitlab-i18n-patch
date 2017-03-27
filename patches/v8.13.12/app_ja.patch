@@ -2477,7 +2477,7 @@ index e793032..c7d1860 100644
          = icon('circle', class: 'cgreen')
          Healthy
 diff --git a/app/views/admin/hooks/index.html.haml b/app/views/admin/hooks/index.html.haml
-index c217490..be2926d 100644
+index c217490..7e5ab81 100644
 --- a/app/views/admin/hooks/index.html.haml
 +++ b/app/views/admin/hooks/index.html.haml
 @@ -1,6 +1,6 @@
@@ -2489,7 +2489,14 @@ index c217490..be2926d 100644
  
  %p.light
    #{link_to "System hooks ", help_page_path("system_hooks/system_hooks"), class: "vlink"} can be
-@@ -23,35 +23,35 @@
+@@ -17,41 +17,41 @@
+     .col-sm-10
+       = f.text_field :url, class: 'form-control'
+   .form-group
+-    = f.label :token, 'Secret Token', class: 'control-label'
++    = f.label :token, 'シークレットトークン', class: 'control-label'
+     .col-sm-10
+       = f.text_field :token, class: 'form-control'
        %p.help-block
          Use this token to validate received payloads
    .form-group
@@ -9354,7 +9361,7 @@ index 901605f..137aabc 100644
 +      = link_to "こちら", help_page_path("ssh/README")
 +  = f.submit "キーを追加", class: "btn-create btn"
 diff --git a/app/views/projects/deploy_keys/index.html.haml b/app/views/projects/deploy_keys/index.html.haml
-index 04fbb37..3be0afb 100644
+index 04fbb37..7b0ab89 100644
 --- a/app/views/projects/deploy_keys/index.html.haml
 +++ b/app/views/projects/deploy_keys/index.html.haml
 @@ -1,14 +1,14 @@
@@ -9371,7 +9378,7 @@ index 04fbb37..3be0afb 100644
    .col-lg-9
      %h5.prepend-top-0
 -      Create a new deploy key for this project
-+      new deploy key for this プロジェクトを作成
++      このプロジェクトの新しいデプロイキーを作成
      = render "form"
    .col-lg-9.col-lg-offset-3
      %hr
@@ -11825,8 +11832,21 @@ index bdeb704..072595f 100644
            = icon("search")
    - if @group_links.any?
      = render 'groups', group_links: @group_links
+diff --git a/app/views/projects/protected_branches/_branches_list.html.haml b/app/views/projects/protected_branches/_branches_list.html.haml
+index 04b19a8..2ed6bc0 100644
+--- a/app/views/projects/protected_branches/_branches_list.html.haml
++++ b/app/views/projects/protected_branches/_branches_list.html.haml
+@@ -4,7 +4,7 @@
+       %h3.panel-title
+         Protected branch (#{@protected_branches.size})
+     %p.settings-message.text-center
+-      There are currently no protected branches, protect a branch with the form above.
++      現在、保護されたブランチはありません。上のフォームでブランチを保護してください。
+   - else
+     - can_admin_project = can?(current_user, :admin_project, @project)
+ 
 diff --git a/app/views/projects/protected_branches/_create_protected_branch.html.haml b/app/views/projects/protected_branches/_create_protected_branch.html.haml
-index e95a3b1..65b60b1 100644
+index e95a3b1..435aff3 100644
 --- a/app/views/projects/protected_branches/_create_protected_branch.html.haml
 +++ b/app/views/projects/protected_branches/_create_protected_branch.html.haml
 @@ -2,13 +2,13 @@
@@ -11834,7 +11854,7 @@ index e95a3b1..65b60b1 100644
      .panel-heading
        %h3.panel-title
 -        Protect a branch
-+        Protect a ブランチ
++        ブランチを保護
      .panel-body
        .form-horizontal
          = form_errors(@protected_branch)
@@ -14566,10 +14586,16 @@ index 0c78803..7eaea0b 100644
 +        = link_to "キャンセル", snippets_path(@project), class: "btn btn-cancel"
  
 diff --git a/app/views/shared/web_hooks/_form.html.haml b/app/views/shared/web_hooks/_form.html.haml
-index 5d659eb..ef90404 100644
+index 5d659eb..d793fdd 100644
 --- a/app/views/shared/web_hooks/_form.html.haml
 +++ b/app/views/shared/web_hooks/_form.html.haml
-@@ -21,64 +21,64 @@
+@@ -16,69 +16,69 @@
+         = f.label :url, "URL", class: 'label-light'
+         = f.text_field :url, class: "form-control", placeholder: 'http://example.com/trigger-ci.json'
+       .form-group
+-        = f.label :token, "Secret Token", class: 'label-light'
++        = f.label :token, "シークレットトークン", class: 'label-light'
+         = f.text_field :token, class: "form-control", placeholder: ''
          %p.help-block
            Use this token to validate received payloads. It will be sent with the request in the X-Gitlab-Token HTTP header.
        .form-group

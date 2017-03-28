@@ -906,6 +906,8 @@ translations:
     replace: '${protectABranch}'
   - pattern: 'There are currently no protected branches, protect a branch with the form above.'
     replace: '${thereAreCurrentlyNoProtectedBranchesProtectABranchWithTheFormAbove}'
+  - pattern: 'Enabled deploy keys for this project'
+    replace: '${enabledDeployKeysForThisProject}'
 
   - name: formLabel
     params:

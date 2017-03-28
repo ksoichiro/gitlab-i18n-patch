@@ -9522,10 +9522,10 @@ index 1421da7..d321bdd 100644
 -  = f.submit "Add key", class: "btn-create btn"
 +  = f.submit "キーを追加", class: "btn-create btn"
 diff --git a/app/views/projects/deploy_keys/_index.html.haml b/app/views/projects/deploy_keys/_index.html.haml
-index 0cbe9b3..e177758 100644
+index 0cbe9b3..c66ea49 100644
 --- a/app/views/projects/deploy_keys/_index.html.haml
 +++ b/app/views/projects/deploy_keys/_index.html.haml
-@@ -1,12 +1,12 @@
+@@ -1,24 +1,24 @@
  .row.prepend-top-default
    .col-lg-3.profile-settings-sidebar
      %h4.prepend-top-0
@@ -9541,7 +9541,12 @@ index 0cbe9b3..e177758 100644
      = render @deploy_keys.form_partial_path
    .col-lg-9.col-lg-offset-3
      %hr
-@@ -18,7 +18,7 @@
+   .col-lg-9.col-lg-offset-3.append-bottom-default.deploy-keys
+     %h5.prepend-top-0
+-      Enabled deploy keys for this project (#{@deploy_keys.enabled_keys_size})
++      このプロジェクトで有効なデプロイキー (#{@deploy_keys.enabled_keys_size})
+     - if @deploy_keys.any_keys_enabled?
+       %ul.well-list
          = render partial: 'projects/deploy_keys/deploy_key', collection: @deploy_keys.enabled_keys, as: :deploy_key
      - else
        .settings-message.text-center

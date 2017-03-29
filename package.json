@@ -1,6 +1,7 @@
 {
   "private": "true",
   "dependencies": {
+    "async": "^2.2.0",
     "ava": "^0.18.1",
     "glob": "^7.1.1",
     "i18n-patch": "1.4.0",

@@ -1,6 +1,7 @@
 /.vagrant/
 /packages/*.deb
 /gitlabhq/
+/.gitlabhq/
 /node_modules/
 *.swp
 *.log

@@ -908,6 +908,8 @@ translations:
     replace: '${thereAreCurrentlyNoProtectedBranchesProtectABranchWithTheFormAbove}'
   - pattern: 'Enabled deploy keys for this project'
     replace: '${enabledDeployKeysForThisProject}'
+  - pattern: 'Go to a project'
+    replace: '${goToAProject}'
 
   - name: formLabel
     params:

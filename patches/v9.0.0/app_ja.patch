@@ -7122,7 +7122,7 @@ index 0ee8a57..005cc3d 100644
  - nav           "profile"
  
 diff --git a/app/views/layouts/project.html.haml b/app/views/layouts/project.html.haml
-index f5e7ea7..d04d134 100644
+index f5e7ea7..4995a58 100644
 --- a/app/views/layouts/project.html.haml
 +++ b/app/views/layouts/project.html.haml
 @@ -17,8 +17,8 @@
@@ -7131,7 +7131,7 @@ index f5e7ea7..d04d134 100644
      .dropdown-menu.dropdown-select.dropdown-menu-projects
 -      = dropdown_title("Go to a project")
 -      = dropdown_filter("Search your projects")
-+      = dropdown_title("Go to a プロジェクト")
++      = dropdown_title("プロジェクトに移動")
 +      = dropdown_filter("Search your プロジェクト")
        = dropdown_content
        = dropdown_loading

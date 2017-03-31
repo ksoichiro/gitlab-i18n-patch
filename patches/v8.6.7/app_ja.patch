@@ -10568,7 +10568,7 @@ index c296422..bcd1256 100644
 +      削除して
 +    マージリクエストをマージできるようにします。
 diff --git a/app/views/projects/milestones/_form.html.haml b/app/views/projects/milestones/_form.html.haml
-index 23f2bca..534d77b 100644
+index 23f2bca..6b58a27 100644
 --- a/app/views/projects/milestones/_form.html.haml
 +++ b/app/views/projects/milestones/_form.html.haml
 @@ -7,11 +7,11 @@
@@ -10599,7 +10599,7 @@ index 23f2bca..534d77b 100644
      - if @milestone.new_record?
 -      = f.submit 'Create milestone', class: "btn-create btn"
 -      = link_to "Cancel", namespace_project_milestones_path(@project.namespace, @project), class: "btn btn-cancel"
-+      = f.submit 'マイルストーンを作成', class: "btn-create btn"
++      = f.submit 'milestoneを作成', class: "btn-create btn"
 +      = link_to "キャンセル", namespace_project_milestones_path(@project.namespace, @project), class: "btn btn-cancel"
      -else
 -      = f.submit 'Save changes', class: "btn-save btn"

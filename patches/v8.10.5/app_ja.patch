@@ -7037,7 +7037,7 @@ index b77d340..bc8fce9 100644
  - nav           "profile"
  
 diff --git a/app/views/layouts/project.html.haml b/app/views/layouts/project.html.haml
-index ee9c036..be1918f 100644
+index ee9c036..adb4776 100644
 --- a/app/views/layouts/project.html.haml
 +++ b/app/views/layouts/project.html.haml
 @@ -20,8 +20,8 @@
@@ -7046,7 +7046,7 @@ index ee9c036..be1918f 100644
      .dropdown-menu.dropdown-select.dropdown-menu-projects
 -      = dropdown_title("Go to a project")
 -      = dropdown_filter("Search your projects")
-+      = dropdown_title("Go to a プロジェクト")
++      = dropdown_title("プロジェクトに移動")
 +      = dropdown_filter("Search your プロジェクト")
        = dropdown_content
        = dropdown_loading
@@ -8968,10 +8968,10 @@ index 901605f..137aabc 100644
 +      = link_to "こちら", help_page_path("ssh/README")
 +  = f.submit "キーを追加", class: "btn-create btn"
 diff --git a/app/views/projects/deploy_keys/index.html.haml b/app/views/projects/deploy_keys/index.html.haml
-index 04fbb37..7b0ab89 100644
+index 04fbb37..dd1b8f4 100644
 --- a/app/views/projects/deploy_keys/index.html.haml
 +++ b/app/views/projects/deploy_keys/index.html.haml
-@@ -1,14 +1,14 @@
+@@ -1,26 +1,26 @@
 -- page_title "Deploy Keys"
 +- page_title "デプロイキー"
  
@@ -8989,7 +8989,12 @@ index 04fbb37..7b0ab89 100644
      = render "form"
    .col-lg-9.col-lg-offset-3
      %hr
-@@ -20,7 +20,7 @@
+   .col-lg-9.col-lg-offset-3.append-bottom-default.deploy-keys
+     %h5.prepend-top-0
+-      Enabled deploy keys for this project (#{@enabled_keys.size})
++      このプロジェクトで有効なデプロイキー (#{@enabled_keys.size})
+     - if @enabled_keys.any?
+       %ul.well-list
          = render @enabled_keys
      - else
        .settings-message.text-center

@@ -7124,7 +7124,7 @@ index dfa6cc5..6cff169 100644
  
  = render template: "layouts/application"
 diff --git a/app/views/layouts/project.html.haml b/app/views/layouts/project.html.haml
-index 6dfe7fb..eb65e00 100644
+index 6dfe7fb..14f874e 100644
 --- a/app/views/layouts/project.html.haml
 +++ b/app/views/layouts/project.html.haml
 @@ -20,8 +20,8 @@
@@ -7133,7 +7133,7 @@ index 6dfe7fb..eb65e00 100644
      .dropdown-menu.dropdown-select.dropdown-menu-projects
 -      = dropdown_title("Go to a project")
 -      = dropdown_filter("Search your projects")
-+      = dropdown_title("Go to a プロジェクト")
++      = dropdown_title("プロジェクトに移動")
 +      = dropdown_filter("Search your プロジェクト")
        = dropdown_content
        = dropdown_loading

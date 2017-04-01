@@ -910,6 +910,8 @@ translations:
     replace: '${enabledDeployKeysForThisProject}'
   - pattern: 'Go to a project'
     replace: '${goToAProject}'
+  - pattern: 'Reset filters'
+    replace: '${resetFilters}'
 
   - name: formLabel
     params:

@@ -3056,3 +3056,4 @@ protectABranch: ブランチを保護
 thereAreCurrentlyNoProtectedBranchesProtectABranchWithTheFormAbove: 現在、保護されたブランチはありません。上のフォームでブランチを保護してください。
 enabledDeployKeysForThisProject: このプロジェクトで有効なデプロイキー
 goToAProject: プロジェクトに移動
+resetFilters: フィルタをリセット

@@ -912,6 +912,11 @@ translations:
     replace: '${goToAProject}'
   - pattern: 'Reset filters'
     replace: '${resetFilters}'
+  - pattern: !!js/regexp /^(\s+)Add a new member to\n(\s+)([^\n]+)$/m
+    replace: '$1${addANewMemberTo}'
+    args:
+    - '$2'
+    - '$3'
 
   - name: formLabel
     params:

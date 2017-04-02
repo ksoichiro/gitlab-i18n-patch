@@ -3057,3 +3057,4 @@ thereAreCurrentlyNoProtectedBranchesProtectABranchWithTheFormAbove: 現在、保
 enabledDeployKeysForThisProject: このプロジェクトで有効なデプロイキー
 goToAProject: プロジェクトに移動
 resetFilters: フィルタをリセット
+addANewMemberTo: "{1}\n{0}にメンバーを追加"

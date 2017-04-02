@@ -12004,10 +12004,10 @@ index c799607..21a3d35 100644
 -        and #{members.count - 20} more. For full list visit #{link_to 'group members page', group_group_members_path(@group)}
 +        and #{members.count - 20} more. For full list visit #{link_to 'group メンバー ページ', group_group_members_path(@group)}
 diff --git a/app/views/projects/project_members/_index.html.haml b/app/views/projects/project_members/_index.html.haml
-index ab0771b..e8598a7 100644
+index ab0771b..ff2f75b 100644
 --- a/app/views/projects/project_members/_index.html.haml
 +++ b/app/views/projects/project_members/_index.html.haml
-@@ -1,10 +1,10 @@
+@@ -1,11 +1,11 @@
  .row.prepend-top-default
    .col-lg-3.settings-sidebar
      %h4.prepend-top-0
@@ -12016,10 +12016,11 @@ index ab0771b..e8598a7 100644
      - if can?(current_user, :admin_project_member, @project)
        %p
 -        Add a new member to
-+        new member toを追加
          %strong= @project.name
++        にメンバーを追加
    .col-lg-9
      .light.prepend-top-default
+       - if can?(current_user, :admin_project_member, @project)
 @@ -14,7 +14,7 @@
          = render 'shared/members/requests', membership_source: @project, requesters: @requesters
          .append-bottom-default.clearfix

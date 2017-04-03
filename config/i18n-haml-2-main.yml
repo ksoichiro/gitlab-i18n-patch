@@ -917,6 +917,8 @@ translations:
     args:
     - '$2'
     - '$3'
+  - pattern: 'Search for members by name, username, or email, or invite new ones using their email address.'
+    replace: '${searchForMembersByNameUsernameOrEmailOrInviteNewOnesUsingTheirEmailAddress}'
 
   - name: formLabel
     params:

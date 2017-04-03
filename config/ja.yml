@@ -3058,3 +3058,4 @@ enabledDeployKeysForThisProject: このプロジェクトで有効なデプロ�
 goToAProject: プロジェクトに移動
 resetFilters: フィルタをリセット
 addANewMemberTo: "{1}\n{0}にメンバーを追加"
+searchForMembersByNameUsernameOrEmailOrInviteNewOnesUsingTheirEmailAddress: 名前、ユーザ名、メールアドレスでメンバーを検索するか、メールアドレスを指定して新しいメンバーを招待してください。

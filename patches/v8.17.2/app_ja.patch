@@ -4883,9 +4883,18 @@ index 2706e86..bdbfc53 100644
 -      = link_to 'Remove Group', @group, data: {confirm: 'Removed group can not be restored! Are you sure?'}, method: :delete, class: "btn btn-remove"
 +      = link_to 'グループを削除', @group, data: {confirm: 'グループの削除は元に戻せません！ 本当によろしいですか？'}, method: :delete, class: "btn btn-remove"
 diff --git a/app/views/groups/group_members/_new_group_member.html.haml b/app/views/groups/group_members/_new_group_member.html.haml
-index 5b1a463..25826f0 100644
+index 5b1a463..71acea1 100644
 --- a/app/views/groups/group_members/_new_group_member.html.haml
 +++ b/app/views/groups/group_members/_new_group_member.html.haml
+@@ -3,7 +3,7 @@
+     .col-md-4.col-lg-6
+       = users_select_tag(:user_ids, multiple: true, class: 'input-clamp', scope: :all, email_user: true)
+       .help-block.append-bottom-10
+-        Search for members by name, username, or email, or invite new ones using their email address.
++        名前、ユーザ名、メールアドレスでメンバーを検索するか、メールアドレスを指定して新しいメンバーを招待してください。
+ 
+     .col-md-3.col-lg-2
+       = select_tag :access_level, options_for_select(GroupMember.access_level_roles, @group_member.access_level), class: "form-control project-access-select"
 @@ -19,4 +19,4 @@
          On this date, the member(s) will automatically lose access to this group and all of its projects.
  
@@ -12048,10 +12057,10 @@ index c799607..21a3d35 100644
 -        and #{members.count - 20} more. For full list visit #{link_to 'group members page', group_group_members_path(@group)}
 +        and #{members.count - 20} more. For full list visit #{link_to 'group メンバー ページ', group_group_members_path(@group)}
 diff --git a/app/views/projects/project_members/_index.html.haml b/app/views/projects/project_members/_index.html.haml
-index ab0771b..e8598a7 100644
+index ab0771b..ff2f75b 100644
 --- a/app/views/projects/project_members/_index.html.haml
 +++ b/app/views/projects/project_members/_index.html.haml
-@@ -1,10 +1,10 @@
+@@ -1,11 +1,11 @@
  .row.prepend-top-default
    .col-lg-3.settings-sidebar
      %h4.prepend-top-0
@@ -12060,10 +12069,11 @@ index ab0771b..e8598a7 100644
      - if can?(current_user, :admin_project_member, @project)
        %p
 -        Add a new member to
-+        new member toを追加
          %strong= @project.name
++        にメンバーを追加
    .col-lg-9
      .light.prepend-top-default
+       - if can?(current_user, :admin_project_member, @project)
 @@ -14,7 +14,7 @@
          = render 'shared/members/requests', membership_source: @project, requesters: @requesters
          .append-bottom-default.clearfix
@@ -12074,17 +12084,20 @@ index ab0771b..e8598a7 100644
            = render 'projects/project_members/groups', group_links: @group_links
  
 diff --git a/app/views/projects/project_members/_new_project_member.html.haml b/app/views/projects/project_members/_new_project_member.html.haml
-index 2b1c23f..15afc2d 100644
+index 2b1c23f..85e7fab 100644
 --- a/app/views/projects/project_members/_new_project_member.html.haml
 +++ b/app/views/projects/project_members/_new_project_member.html.haml
-@@ -1,6 +1,6 @@
+@@ -1,8 +1,8 @@
  = form_for @project_member, as: :project_member, url: namespace_project_project_members_path(@project.namespace, @project), html: { class: 'users-project-form' } do |f|
    .form-group
 -    = users_select_tag(:user_ids, multiple: true, class: "input-clamp", scope: :all, email_user: true, placeholder: "Search for members to update or invite")
 +    = users_select_tag(:user_ids, multiple: true, class: "input-clamp", scope: :all, email_user: true, placeholder: "Search for メンバー to update or invite")
      .help-block.append-bottom-10
-       Search for members by name, username, or email, or invite new ones using their email address.
+-      Search for members by name, username, or email, or invite new ones using their email address.
++      名前、ユーザ名、メールアドレスでメンバーを検索するか、メールアドレスを指定して新しいメンバーを招待してください。
    .form-group
+     = select_tag :access_level, options_for_select(ProjectMember.access_level_roles, @project_member.access_level), class: "form-control project-access-select"
+     .help-block.append-bottom-10
 @@ -14,5 +14,5 @@
        %i.clear-icon.js-clear-input
      .help-block.append-bottom-10
@@ -14182,7 +14195,7 @@ index 427595c..4f1c24b 100644
 -  .nothing-here-block No groups found
 +  .nothing-here-block グループがありません
 diff --git a/app/views/shared/issuable/_filter.html.haml b/app/views/shared/issuable/_filter.html.haml
-index f17ae9f..49dabb9 100644
+index f17ae9f..5791205 100644
 --- a/app/views/shared/issuable/_filter.html.haml
 +++ b/app/views/shared/issuable/_filter.html.haml
 @@ -14,14 +14,14 @@
@@ -14209,7 +14222,7 @@ index f17ae9f..49dabb9 100644
          - if issuable_filter_present?
            .filter-item.inline.reset-filters
 -            %a{ href: page_filter_path(without: issuable_filter_params) } Reset filters
-+            %a{ href: page_filter_path(without: issuable_filter_params) } filtersをリセット
++            %a{ href: page_filter_path(without: issuable_filter_params) } フィルタをリセット
  
          .pull-right
            - if boards_page

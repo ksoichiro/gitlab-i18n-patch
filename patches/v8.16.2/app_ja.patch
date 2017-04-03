@@ -11960,10 +11960,10 @@ index 9738f36..457cb0e 100644
 -        and #{members.count - 20} more. For full list visit #{link_to 'group members page', group_group_members_path(@group)}
 +        and #{members.count - 20} more. For full list visit #{link_to 'group メンバー ページ', group_group_members_path(@group)}
 diff --git a/app/views/projects/project_members/_index.html.haml b/app/views/projects/project_members/_index.html.haml
-index ab0771b..e8598a7 100644
+index ab0771b..ff2f75b 100644
 --- a/app/views/projects/project_members/_index.html.haml
 +++ b/app/views/projects/project_members/_index.html.haml
-@@ -1,10 +1,10 @@
+@@ -1,11 +1,11 @@
  .row.prepend-top-default
    .col-lg-3.settings-sidebar
      %h4.prepend-top-0
@@ -11972,10 +11972,11 @@ index ab0771b..e8598a7 100644
      - if can?(current_user, :admin_project_member, @project)
        %p
 -        Add a new member to
-+        new member toを追加
          %strong= @project.name
++        にメンバーを追加
    .col-lg-9
      .light.prepend-top-default
+       - if can?(current_user, :admin_project_member, @project)
 @@ -14,7 +14,7 @@
          = render 'shared/members/requests', membership_source: @project, requesters: @requesters
          .append-bottom-default.clearfix
@@ -11986,17 +11987,20 @@ index ab0771b..e8598a7 100644
            = render 'projects/project_members/groups', group_links: @group_links
  
 diff --git a/app/views/projects/project_members/_new_project_member.html.haml b/app/views/projects/project_members/_new_project_member.html.haml
-index 2b1c23f..15afc2d 100644
+index 2b1c23f..85e7fab 100644
 --- a/app/views/projects/project_members/_new_project_member.html.haml
 +++ b/app/views/projects/project_members/_new_project_member.html.haml
-@@ -1,6 +1,6 @@
+@@ -1,8 +1,8 @@
  = form_for @project_member, as: :project_member, url: namespace_project_project_members_path(@project.namespace, @project), html: { class: 'users-project-form' } do |f|
    .form-group
 -    = users_select_tag(:user_ids, multiple: true, class: "input-clamp", scope: :all, email_user: true, placeholder: "Search for members to update or invite")
 +    = users_select_tag(:user_ids, multiple: true, class: "input-clamp", scope: :all, email_user: true, placeholder: "Search for メンバー to update or invite")
      .help-block.append-bottom-10
-       Search for members by name, username, or email, or invite new ones using their email address.
+-      Search for members by name, username, or email, or invite new ones using their email address.
++      名前、ユーザ名、メールアドレスでメンバーを検索するか、メールアドレスを指定して新しいメンバーを招待してください。
    .form-group
+     = select_tag :access_level, options_for_select(ProjectMember.access_level_roles, @project_member.access_level), class: "form-control project-access-select"
+     .help-block.append-bottom-10
 @@ -14,5 +14,5 @@
        %i.clear-icon.js-clear-input
      .help-block.append-bottom-10
@@ -14090,7 +14094,7 @@ index 427595c..4f1c24b 100644
 -  .nothing-here-block No groups found
 +  .nothing-here-block グループがありません
 diff --git a/app/views/shared/issuable/_filter.html.haml b/app/views/shared/issuable/_filter.html.haml
-index b42eaab..1e41695 100644
+index b42eaab..1f7efc4 100644
 --- a/app/views/shared/issuable/_filter.html.haml
 +++ b/app/views/shared/issuable/_filter.html.haml
 @@ -14,14 +14,14 @@
@@ -14117,7 +14121,7 @@ index b42eaab..1e41695 100644
          - if issuable_filter_present?
            .filter-item.inline.reset-filters
 -            %a{ href: page_filter_path(without: issuable_filter_params) } Reset filters
-+            %a{ href: page_filter_path(without: issuable_filter_params) } filtersをリセット
++            %a{ href: page_filter_path(without: issuable_filter_params) } フィルタをリセット
  
          .pull-right
            - if boards_page

@@ -13426,7 +13426,7 @@ index 427595c..4f1c24b 100644
 -  .nothing-here-block No groups found
 +  .nothing-here-block グループがありません
 diff --git a/app/views/shared/issuable/_filter.html.haml b/app/views/shared/issuable/_filter.html.haml
-index f170969..02ca676 100644
+index f170969..f30c11e 100644
 --- a/app/views/shared/issuable/_filter.html.haml
 +++ b/app/views/shared/issuable/_filter.html.haml
 @@ -13,14 +13,14 @@
@@ -13453,7 +13453,7 @@ index f170969..02ca676 100644
  
          .filter-item.inline.reset-filters
 -          %a{href: page_filter_path(without: [:assignee_id, :author_id, :milestone_title, :label_name, :search])} Reset filters
-+          %a{href: page_filter_path(without: [:assignee_id, :author_id, :milestone_title, :label_name, :search])} filtersをリセット
++          %a{href: page_filter_path(without: [:assignee_id, :author_id, :milestone_title, :label_name, :search])} フィルタをリセット
  
          .pull-right
            - if boards_page

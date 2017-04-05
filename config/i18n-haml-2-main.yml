@@ -921,6 +921,10 @@ translations:
     replace: '${searchForMembersByNameUsernameOrEmailOrInviteNewOnesUsingTheirEmailAddress}'
   - pattern: 'Members with access to'
     replace: '${membersWithAccessTo}'
+  - pattern: 'Existing members and groups'
+    replace: '${existingMembersAndGroups}'
+  - pattern: 'Existing members'
+    replace: '${existingMembers}'
 
   - name: formLabel
     params:

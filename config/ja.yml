@@ -3060,3 +3060,5 @@ resetFilters: フィルタをリセット
 addANewMemberTo: "{1}\n{0}にメンバーを追加"
 searchForMembersByNameUsernameOrEmailOrInviteNewOnesUsingTheirEmailAddress: 名前、ユーザ名、メールアドレスでメンバーを検索するか、メールアドレスを指定して新しいメンバーを招待してください。
 membersWithAccessTo: "右記にアクセスできるメンバー:"
+existingMembers: 追加済みのメンバー
+existingMembersAndGroups: 追加済みのメンバーとグループ

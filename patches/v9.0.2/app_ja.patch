@@ -79,10 +79,10 @@ index 689a6c3..99678b4 100644
      });
      $('.account-box').hover(function () {
 diff --git a/app/assets/javascripts/milestone_select.js b/app/assets/javascripts/milestone_select.js
-index 5b25d72..29a8dde 100644
+index 856b7f8..b28eb40 100644
 --- a/app/assets/javascripts/milestone_select.js
 +++ b/app/assets/javascripts/milestone_select.js
-@@ -54,14 +54,14 @@
+@@ -55,14 +55,14 @@
                  extraOptions.push({
                    id: 0,
                    name: '',
@@ -783,7 +783,7 @@ index fb872a1..dce2226 100644
  
      content_tag :li, class: active do
 diff --git a/app/helpers/issuables_helper.rb b/app/helpers/issuables_helper.rb
-index c2b3990..5d8e9fb 100644
+index fae1066..658713e 100644
 --- a/app/helpers/issuables_helper.rb
 +++ b/app/helpers/issuables_helper.rb
 @@ -1,3 +1,4 @@
@@ -800,7 +800,7 @@ index c2b3990..5d8e9fb 100644
  
      user = User.find_by(id: user_id)
  
-@@ -129,7 +130,10 @@ module IssuablesHelper
+@@ -132,7 +133,10 @@ module IssuablesHelper
  
    def issuables_state_counter_text(issuable_type, state)
      titles = {
@@ -930,10 +930,10 @@ index 8706876..ad5fe0d 100644
        any_user: opts[:any_user]         || false,
        email_user: opts[:email_user]     || false,
 diff --git a/app/helpers/sorting_helper.rb b/app/helpers/sorting_helper.rb
-index 18734f1..d91be7f 100644
+index 959ee31..44eb0d6 100644
 --- a/app/helpers/sorting_helper.rb
 +++ b/app/helpers/sorting_helper.rb
-@@ -54,7 +54,7 @@ module SortingHelper
+@@ -59,7 +59,7 @@ module SortingHelper
    end
  
    def sort_title_oldest_updated
@@ -942,7 +942,7 @@ index 18734f1..d91be7f 100644
    end
  
    def sort_title_recently_updated
-@@ -62,7 +62,7 @@ module SortingHelper
+@@ -67,7 +67,7 @@ module SortingHelper
    end
  
    def sort_title_oldest_created
@@ -951,7 +951,7 @@ index 18734f1..d91be7f 100644
    end
  
    def sort_title_recently_created
-@@ -70,11 +70,11 @@ module SortingHelper
+@@ -75,11 +75,11 @@ module SortingHelper
    end
  
    def sort_title_milestone_soon
@@ -965,7 +965,7 @@ index 18734f1..d91be7f 100644
    end
  
    def sort_title_due_date_soon
-@@ -86,11 +86,11 @@ module SortingHelper
+@@ -91,11 +91,11 @@ module SortingHelper
    end
  
    def sort_title_name
@@ -979,7 +979,7 @@ index 18734f1..d91be7f 100644
    end
  
    def sort_title_largest_group
-@@ -98,11 +98,11 @@ module SortingHelper
+@@ -103,11 +103,11 @@ module SortingHelper
    end
  
    def sort_title_recently_signin
@@ -1118,7 +1118,7 @@ index 446f9f8..f89842a 100644
  
    private
 diff --git a/app/models/merge_request.rb b/app/models/merge_request.rb
-index 0f7b831..a21b897 100644
+index aa45ecf..612bae9 100644
 --- a/app/models/merge_request.rb
 +++ b/app/models/merge_request.rb
 @@ -1,3 +1,4 @@
@@ -1126,7 +1126,7 @@ index 0f7b831..a21b897 100644
  class MergeRequest < ActiveRecord::Base
    include InternalId
    include Issuable
-@@ -738,7 +739,7 @@ class MergeRequest < ActiveRecord::Base
+@@ -740,7 +741,7 @@ class MergeRequest < ActiveRecord::Base
      elsif closed?
        "Closed"
      else
@@ -1136,7 +1136,7 @@ index 0f7b831..a21b897 100644
    end
  
 diff --git a/app/models/milestone.rb b/app/models/milestone.rb
-index 7331000..7eae939 100644
+index c0deb59..0a15f8a 100644
 --- a/app/models/milestone.rb
 +++ b/app/models/milestone.rb
 @@ -1,8 +1,9 @@
@@ -1149,9 +1149,9 @@ index 7331000..7eae939 100644
 +  None = MilestoneStruct.new('マイルストーンなし', 'No Milestone', 0)
    Any = MilestoneStruct.new('Any Milestone', '', -1)
    Upcoming = MilestoneStruct.new('Upcoming', '#upcoming', -2)
- 
+   Started = MilestoneStruct.new('Started', '#started', -3)
 diff --git a/app/models/project.rb b/app/models/project.rb
-index 04641dd..4a62af9 100644
+index f1bba56..ba24bd0 100644
 --- a/app/models/project.rb
 +++ b/app/models/project.rb
 @@ -1,3 +1,4 @@
@@ -1159,7 +1159,7 @@ index 04641dd..4a62af9 100644
  require 'carrierwave/orm/activerecord'
  
  class Project < ActiveRecord::Base
-@@ -563,11 +564,11 @@ class Project < ActiveRecord::Base
+@@ -558,11 +559,11 @@ class Project < ActiveRecord::Base
        if projects_limit == 0
          self.errors.add(:limit_reached, "Personal project creation is not allowed. Please contact your administrator with questions")
        else
@@ -1173,7 +1173,7 @@ index 04641dd..4a62af9 100644
    end
  
    def visibility_level_allowed_by_group
-@@ -846,7 +847,7 @@ class Project < ActiveRecord::Base
+@@ -841,7 +842,7 @@ class Project < ActiveRecord::Base
    def valid_repo?
      repository.exists?
    rescue
@@ -4116,7 +4116,7 @@ index a3993d5..ac628e7 100644
        = link_to restore_dashboard_todo_path(todo), method: :patch, class: 'btn btn-loading js-undo-todo hidden'  do
          Undo
 diff --git a/app/views/dashboard/todos/index.html.haml b/app/views/dashboard/todos/index.html.haml
-index d7e0a8e..16ba649 100644
+index 3ed67d9..caa4ffd 100644
 --- a/app/views/dashboard/todos/index.html.haml
 +++ b/app/views/dashboard/todos/index.html.haml
 @@ -1,5 +1,5 @@
@@ -8934,7 +8934,7 @@ index 7eb17e8..8925c02 100644
        = link_to "Retry job", retry_namespace_project_build_path(@project.namespace, @project, @build), class: 'btn btn-inverted-secondary', method: :post
    %button.btn.btn-default.pull-right.visible-xs-block.visible-sm-block.build-gutter-toggle.js-sidebar-build-toggle{ role: "button", type: "button" }
 diff --git a/app/views/projects/builds/_sidebar.html.haml b/app/views/projects/builds/_sidebar.html.haml
-index 78720d8..bc40a27 100644
+index 4192013..d870d3b 100644
 --- a/app/views/projects/builds/_sidebar.html.haml
 +++ b/app/views/projects/builds/_sidebar.html.haml
 @@ -2,7 +2,7 @@
@@ -13422,7 +13422,7 @@ index 6298cf6..0598080 100644
 -    %small Last edited #{time_ago_with_tooltip(wiki_page.commit.authored_date)}
 +    %small 最終更新：#{time_ago_with_tooltip(wiki_page.commit.authored_date)}
 diff --git a/app/views/projects/wikis/_sidebar.html.haml b/app/views/projects/wikis/_sidebar.html.haml
-index 8c582f7..daed671 100644
+index cfacb9e..8a282a0 100644
 --- a/app/views/projects/wikis/_sidebar.html.haml
 +++ b/app/views/projects/wikis/_sidebar.html.haml
 @@ -7,7 +7,7 @@
@@ -13434,7 +13434,7 @@ index 8c582f7..daed671 100644
  
    .blocks-container
      .block.block-first
-@@ -16,6 +16,6 @@
+@@ -16,7 +16,7 @@
  
      .block
        = link_to namespace_project_wikis_pages_path(@project.namespace, @project), class: 'btn btn-block' do
@@ -13442,6 +13442,7 @@ index 8c582f7..daed671 100644
 +        More ページ
  
  = render 'projects/wikis/new'
+ 
 diff --git a/app/views/projects/wikis/edit.html.haml b/app/views/projects/wikis/edit.html.haml
 index 8cf018d..bedf32f 100644
 --- a/app/views/projects/wikis/edit.html.haml
@@ -13918,10 +13919,10 @@ index 8d6e16f..4d72944 100644
      = form.label name, title, class: "control-label"
    .col-sm-10
 diff --git a/app/views/shared/_group_form.html.haml b/app/views/shared/_group_form.html.haml
-index c2d9ac8..5d89bfb 100644
+index 981b4f2..a4dc34a 100644
 --- a/app/views/shared/_group_form.html.haml
 +++ b/app/views/shared/_group_form.html.haml
-@@ -2,13 +2,13 @@
+@@ -3,13 +3,13 @@
  - if @group.persisted?
    .form-group
      = f.label :name, class: 'control-label' do
@@ -13937,7 +13938,7 @@ index c2d9ac8..5d89bfb 100644
    .col-sm-10
      .input-group.gl-field-error-anchor
        .input-group-addon
-@@ -18,7 +18,7 @@
+@@ -19,7 +19,7 @@
        = f.text_field :path, placeholder: 'open-source', class: 'form-control',
          autofocus: local_assigns[:autofocus] || false, required: true,
          pattern: Gitlab::Regex::NAMESPACE_REGEX_STR_JS,
@@ -13946,7 +13947,7 @@ index c2d9ac8..5d89bfb 100644
          "data-bind-in" => "#{'create_chat_team' if Gitlab.config.mattermost.enabled}"
        - if parent
          = f.hidden_field :parent_id, value: parent.id
-@@ -27,12 +27,12 @@
+@@ -28,12 +28,12 @@
        .alert.alert-warning.prepend-top-10
          %ul
            %li Changing group path can have unintended side effects.
@@ -14310,12 +14311,12 @@ index e203365..d86dad1 100644
 -        %h4.text-center There are no issues to show.
 +        %h4.text-center 課題はありません
 diff --git a/app/views/shared/empty_states/_labels.html.haml b/app/views/shared/empty_states/_labels.html.haml
-index ba5c2da..0db2c3e 100644
+index 00fb77b..f911e1f 100644
 --- a/app/views/shared/empty_states/_labels.html.haml
 +++ b/app/views/shared/empty_states/_labels.html.haml
 @@ -7,5 +7,5 @@
        %h4 Labels can be applied to issues and merge requests to categorize them.
-       %p You can also star label to make it a priority label.
+       %p You can also star a label to make it a priority label.
        - if can?(current_user, :admin_label, @project)
 -        = link_to 'New label', new_namespace_project_label_path(@project.namespace, @project), class: 'btn btn-new', title: 'New label', id: 'new_label_link'
 -        = link_to 'Generate a default set of labels', generate_namespace_project_labels_path(@project.namespace, @project), method: :post, class: 'btn btn-success btn-inverted', title: 'Generate a default set of labels', id: 'generate_labels_link'
@@ -14353,7 +14354,7 @@ index ad7a7fa..f3a6a91 100644
 -  = search_field_tag :filter_groups, params[:filter_groups], placeholder: 'Filter by name...', class: 'group-filter-form-field form-control input-short js-groups-list-filter', spellcheck: false, id: 'group-filter-form-field', tabindex: "2"
 +  = search_field_tag :filter_groups, params[:filter_groups], placeholder: '名前で絞り込み...', class: 'group-filter-form-field form-control input-short js-groups-list-filter', spellcheck: false, id: 'group-filter-form-field', tabindex: "2"
 diff --git a/app/views/shared/issuable/_filter.html.haml b/app/views/shared/issuable/_filter.html.haml
-index f17ae9f..5791205 100644
+index 134f798..573b477 100644
 --- a/app/views/shared/issuable/_filter.html.haml
 +++ b/app/views/shared/issuable/_filter.html.haml
 @@ -14,14 +14,14 @@
@@ -14374,7 +14375,7 @@ index f17ae9f..5791205 100644
 +            placeholder: "Search 担当者", data: { any_user: "Any 担当者", first_user: current_user.try(:username), null_user: true, current_user: true, project_id: @project.try(:id), selected: params[:assignee_id], field_name: "assignee_id", default_label: "Assignee" } })
  
          .filter-item.inline.milestone-filter
-           = render "shared/issuable/milestone_dropdown", selected: finder.milestones.try(:first), name: :milestone_title, show_any: true, show_upcoming: true
+           = render "shared/issuable/milestone_dropdown", selected: finder.milestones.try(:first), name: :milestone_title, show_any: true, show_upcoming: true, show_started: true
 @@ -31,19 +31,19 @@
  
          - if issuable_filter_present?
@@ -14575,7 +14576,7 @@ index 9a8529c..5fb9ae1 100644
 +              View ラベル
    = dropdown_loading
 diff --git a/app/views/shared/issuable/_milestone_dropdown.html.haml b/app/views/shared/issuable/_milestone_dropdown.html.haml
-index 415361f..a826082 100644
+index f0d5082..bcbd6c1 100644
 --- a/app/views/shared/issuable/_milestone_dropdown.html.haml
 +++ b/app/views/shared/issuable/_milestone_dropdown.html.haml
 @@ -2,20 +2,20 @@
@@ -14587,8 +14588,8 @@ index 415361f..a826082 100644
  - if selected.present? || params[:milestone_title].present?
    = hidden_field_tag(name, name == :milestone_title ? selected_text : selected.id)
  = dropdown_tag(milestone_dropdown_label(selected_text), options: { title: dropdown_title, toggle_class: "js-milestone-select js-filter-submit #{extra_class}", filter: true, dropdown_class: "dropdown-menu-selectable dropdown-menu-milestone",
--  placeholder: "Search milestones", footer_content: project.present?, data: { show_no: true, show_menu_above: show_menu_above, show_any: show_any, show_upcoming: show_upcoming, field_name: name, selected: selected.try(:title), project_id: project.try(:id), milestones: milestones_filter_dropdown_path, default_label: "Milestone" } }) do
-+  placeholder: "Search マイルストーン", footer_content: project.present?, data: { show_no: true, show_menu_above: show_menu_above, show_any: show_any, show_upcoming: show_upcoming, field_name: name, selected: selected.try(:title), project_id: project.try(:id), milestones: milestones_filter_dropdown_path, default_label: "マイルストーン" } }) do
+-  placeholder: "Search milestones", footer_content: project.present?, data: { show_no: true, show_menu_above: show_menu_above, show_any: show_any, show_upcoming: show_upcoming, show_started: show_started, field_name: name, selected: selected.try(:title), project_id: project.try(:id), milestones: milestones_filter_dropdown_path, default_label: "Milestone" } }) do
++  placeholder: "Search マイルストーン", footer_content: project.present?, data: { show_no: true, show_menu_above: show_menu_above, show_any: show_any, show_upcoming: show_upcoming, show_started: show_started, field_name: name, selected: selected.try(:title), project_id: project.try(:id), milestones: milestones_filter_dropdown_path, default_label: "マイルストーン" } }) do
    - if project
      %ul.dropdown-footer-list
        - if can? current_user, :admin_milestone, project
@@ -14648,7 +14649,7 @@ index 171da89..cad2475 100644
      - participants.each do |participant|
        .participants-author.js-participants-author
 diff --git a/app/views/shared/issuable/_search_bar.html.haml b/app/views/shared/issuable/_search_bar.html.haml
-index afd37e7..11de483 100644
+index 204b7b0..c132294 100644
 --- a/app/views/shared/issuable/_search_bar.html.haml
 +++ b/app/views/shared/issuable/_search_bar.html.haml
 @@ -49,7 +49,7 @@
@@ -14669,7 +14670,7 @@ index afd37e7..11de483 100644
                %li.filter-dropdown-item{ 'data-value' => 'upcoming' }
                  %button.btn.btn-link
                    Upcoming
-@@ -77,7 +77,7 @@
+@@ -80,7 +80,7 @@
              %ul{ 'data-dropdown' => true }
                %li.filter-dropdown-item{ 'data-value' => 'none' }
                  %button.btn.btn-link
@@ -14678,7 +14679,7 @@ index afd37e7..11de483 100644
                %li.divider
              %ul.filter-dropdown{ 'data-dynamic' => true, 'data-dropdown' => true }
                %li.filter-dropdown-item
-@@ -92,21 +92,21 @@
+@@ -95,21 +95,21 @@
        .issues_bulk_update.hide
          = form_tag [:bulk_update, @project.namespace.becomes(Namespace), @project, type], method: :post, class: 'bulk-update'  do
            .filter-item.inline
@@ -14707,7 +14708,7 @@ index afd37e7..11de483 100644
                %ul
                  %li
                    %a{ href: "#", data: { id: "subscribe" } } Subscribe
-@@ -116,7 +116,7 @@
+@@ -119,7 +119,7 @@
            = hidden_field_tag 'update[issuable_ids]', []
            = hidden_field_tag :state_event, params[:state_event]
            .filter-item.inline.update-issues-btn
@@ -14907,7 +14908,7 @@ index 0330972..810355c 100644
 -          Remove source branch when merge request is accepted.
 +          source branch when merge request is accepted.を削除
 diff --git a/app/views/shared/issuable/form/_metadata.html.haml b/app/views/shared/issuable/form/_metadata.html.haml
-index 7a21f19..de87460 100644
+index 9dbfedb..d2e3d03 100644
 --- a/app/views/shared/issuable/form/_metadata.html.haml
 +++ b/app/views/shared/issuable/form/_metadata.html.haml
 @@ -10,29 +10,29 @@
@@ -14930,8 +14931,8 @@ index 7a21f19..de87460 100644
 +      = form.label :milestone_id, "マイルストーン", class: "control-label #{"col-lg-4" if has_due_date}"
        .col-sm-10{ class: ("col-lg-8" if has_due_date) }
          .issuable-form-select-holder
--          = render "shared/issuable/milestone_dropdown", selected: issuable.milestone, name: "#{issuable.class.model_name.param_key}[milestone_id]", show_any: false, show_upcoming: false, extra_class: "js-issuable-form-dropdown js-dropdown-keep-input", dropdown_title: "Select milestone"
-+          = render "shared/issuable/milestone_dropdown", selected: issuable.milestone, name: "#{issuable.class.model_name.param_key}[milestone_id]", show_any: false, show_upcoming: false, extra_class: "js-issuable-form-dropdown js-dropdown-keep-input", dropdown_title: "マイルストーンを選択"
+-          = render "shared/issuable/milestone_dropdown", selected: issuable.milestone, name: "#{issuable.class.model_name.param_key}[milestone_id]", show_any: false, show_upcoming: false, show_started: false, extra_class: "js-issuable-form-dropdown js-dropdown-keep-input", dropdown_title: "Select milestone"
++          = render "shared/issuable/milestone_dropdown", selected: issuable.milestone, name: "#{issuable.class.model_name.param_key}[milestone_id]", show_any: false, show_upcoming: false, show_started: false, extra_class: "js-issuable-form-dropdown js-dropdown-keep-input", dropdown_title: "マイルストーンを選択"
      .form-group
        - has_labels = @labels && @labels.any?
 -      = form.label :label_ids, "Labels", class: "control-label #{"col-lg-4" if has_due_date}"
@@ -17057,7 +17058,7 @@ index b71f8fa..94d0f51 100644
  
  Start by attaching to the Sidekiq PID:
 diff --git a/doc/api/README.md b/doc/api/README.md
-index 58d090b..ec30d9f 100644
+index e627b6f..5ef985e 100644
 --- a/doc/api/README.md
 +++ b/doc/api/README.md
 @@ -1,6 +1,6 @@
@@ -17471,7 +17472,7 @@ index 33018f0..814e442 100644
  the authenticated user will be used to replace the copyright holder placeholder.
  
 diff --git a/doc/api/users.md b/doc/api/users.md
-index 14b5c6c7..6c5d427 100644
+index 2ada4d0..7f73e26 100644
 --- a/doc/api/users.md
 +++ b/doc/api/users.md
 @@ -124,7 +124,7 @@ In addition, you can lookup users by username:
@@ -17747,7 +17748,7 @@ index 49e7ac3..c821513 100644
  GitLab currently doesn't have built-in support for managing SSH keys in a build
  environment.
 diff --git a/doc/ci/triggers/README.md b/doc/ci/triggers/README.md
-index ccaee33..510d268 100644
+index e380282..0f1df67 100644
 --- a/doc/ci/triggers/README.md
 +++ b/doc/ci/triggers/README.md
 @@ -1,6 +1,6 @@
@@ -17758,16 +17759,16 @@ index ccaee33..510d268 100644
  - [Introduced][ci-229] in GitLab CE 7.14.
  - GitLab 8.12 has a completely redesigned job permissions system. Read all
    about the [new model and its implications](../../user/project/new_ci_build_permissions_model.md#job-triggers).
-@@ -29,7 +29,7 @@ irreversible.
+@@ -47,7 +47,7 @@ irreversible.
  
- ## Trigger a job
+ ## Trigger a pipeline
  
 -> **Note**:
 +> **注意**:
  Valid refs are only the branches and tags. If you pass a commit SHA as a ref,
  it will not trigger a job.
  
-@@ -74,7 +74,7 @@ webhook url for Push and Tag push events:
+@@ -92,7 +92,7 @@ webhook url for Push and Tag push events:
  https://gitlab.example.com/api/v4/projects/:id/ref/:ref/trigger/pipeline?token=TOKEN
  ```
  
@@ -18558,7 +18559,7 @@ index 820060a..b5a6bda 100644
  + RAM: 4GB
  + Name: `gitlab-test-env-do`
 diff --git a/doc/install/installation.md b/doc/install/installation.md
-index e79b8d6..0d6f49a 100644
+index a6b1017..af11ab6 100644
 --- a/doc/install/installation.md
 +++ b/doc/install/installation.md
 @@ -56,7 +56,7 @@ up-to-date and install it.
@@ -18592,12 +18593,12 @@ index e79b8d6..0d6f49a 100644
  
  ## 2. Ruby
  
--**Note:** The current supported Ruby versions are 2.1.x and 2.3.x. 2.3.x is preferred, and support for 2.1.x will be dropped in the future.
-+**注意:** The current supported Ruby versions are 2.1.x and 2.3.x. 2.3.x is preferred, and support for 2.1.x will be dropped in the future.
+-**Note:** The current supported Ruby version is 2.3.x. GitLab 9.0 dropped support
++**注意:** The current supported Ruby version is 2.3.x. GitLab 9.0 dropped support
+ for Ruby 2.1.x.
  
  The use of Ruby version managers such as [RVM], [rbenv] or [chruby] with GitLab
- in production, frequently leads to hard to diagnose problems. For example,
-@@ -179,7 +179,7 @@ Create a `git` user for GitLab:
+@@ -180,7 +180,7 @@ Create a `git` user for GitLab:
  We recommend using a PostgreSQL database. For MySQL check the
  [MySQL setup guide](database_mysql.md).
  
@@ -18606,7 +18607,7 @@ index e79b8d6..0d6f49a 100644
  
  1. Install the database packages:
  
-@@ -290,7 +290,7 @@ sudo usermod -aG redis git
+@@ -291,7 +291,7 @@ sudo usermod -aG redis git
      # Clone GitLab repository
      sudo -u git -H git clone https://gitlab.com/gitlab-org/gitlab-ce.git -b 9-0-stable gitlab
  
@@ -18615,7 +18616,7 @@ index e79b8d6..0d6f49a 100644
  
  ### Configure It
  
-@@ -365,7 +365,7 @@ sudo usermod -aG redis git
+@@ -366,7 +366,7 @@ sudo usermod -aG redis git
  
  **Important Note:** Make sure to edit both `gitlab.yml` and `unicorn.rb` to match your setup.
  
@@ -18624,7 +18625,7 @@ index e79b8d6..0d6f49a 100644
  
  ### Configure GitLab DB Settings
  
-@@ -389,7 +389,7 @@ sudo usermod -aG redis git
+@@ -390,7 +390,7 @@ sudo usermod -aG redis git
  
  ### Install Gems
  
@@ -18633,7 +18634,7 @@ index e79b8d6..0d6f49a 100644
  
      # For PostgreSQL (note, the option says "without ... mysql")
      sudo -u git -H bundle install --deployment --without development test mysql aws kerberos
-@@ -397,7 +397,7 @@ sudo usermod -aG redis git
+@@ -398,7 +398,7 @@ sudo usermod -aG redis git
      # Or if you use MySQL (note, the option says "without ... postgres")
      sudo -u git -H bundle install --deployment --without development test postgres aws kerberos
  
@@ -18642,7 +18643,7 @@ index e79b8d6..0d6f49a 100644
  
  ### Install GitLab Shell
  
-@@ -410,9 +410,9 @@ GitLab Shell is an SSH access and repository management software developed speci
+@@ -411,9 +411,9 @@ GitLab Shell is an SSH access and repository management software developed speci
      # You can review (and modify) the gitlab-shell config as follows:
      sudo -u git -H editor /home/git/gitlab-shell/config.yml
  
@@ -18654,7 +18655,7 @@ index e79b8d6..0d6f49a 100644
  
  ### Install gitlab-workhorse
  
-@@ -430,7 +430,7 @@ which is the recommended location.
+@@ -431,7 +431,7 @@ which is the recommended location.
  
      # When done you see 'Administrator account created:'
  
@@ -18663,7 +18664,7 @@ index e79b8d6..0d6f49a 100644
  
      sudo -u git -H bundle exec rake gitlab:setup RAILS_ENV=production GITLAB_ROOT_PASSWORD=yourpassword GITLAB_ROOT_EMAIL=youremail
  
-@@ -509,7 +509,7 @@ Check if GitLab and its environment are configured correctly:
+@@ -510,7 +510,7 @@ Check if GitLab and its environment are configured correctly:
  
  ## 9. Nginx
  
@@ -18672,7 +18673,7 @@ index e79b8d6..0d6f49a 100644
  
  ### Installation
  
-@@ -539,7 +539,7 @@ If you intend to enable GitLab pages, there is a separate Nginx config you need
+@@ -540,7 +540,7 @@ If you intend to enable GitLab pages, there is a separate Nginx config you need
  to use. Read all about the needed configuration at the
  [GitLab Pages administration guide](../administration/pages/index.md).
  
@@ -21376,7 +21377,7 @@ index c56a1ef..b3bd28f 100644
  by using `Set Up Koding` button which will be visible on every project's
  landing page;
 diff --git a/doc/user/project/labels.md b/doc/user/project/labels.md
-index cf1d9cb..a7029b8 100644
+index 8ec7ada..dadd0c2 100644
 --- a/doc/user/project/labels.md
 +++ b/doc/user/project/labels.md
 @@ -1,6 +1,6 @@
@@ -21431,7 +21432,7 @@ index cf1d9cb..a7029b8 100644
  > - Priority sorting is based on the highest priority label only. This might
 @@ -67,12 +67,12 @@ issues and merge requests assigned to each label.
  Prioritized labels are like any other label, but sorted by priority. This allows
- you to sort issues and merge requests by priority.
+ you to sort issues and merge requests by label priority.
  
 -To prioritize labels, navigate to your project's **Issues > Labels** and click
 +To prioritize labels, navigate to your project's **Issues > ラベル** and click
@@ -21444,7 +21445,7 @@ index cf1d9cb..a7029b8 100644
  having their priority set to null.
  
  ![Prioritize labels](img/labels_prioritize.png)
-@@ -89,7 +89,7 @@ If you don’t want to miss issues or merge requests that are important to you,
+@@ -93,7 +93,7 @@ If you don’t want to miss issues or merge requests that are important to you,
  simply subscribe to a label. You’ll get notified whenever the label gets added
  to an issue or merge request, making sure you don’t miss a thing.
  
@@ -21453,7 +21454,7 @@ index cf1d9cb..a7029b8 100644
  subscribe to and click on the eye icon. Click again to unsubscribe.
  
  ![Subscribe to labels](img/labels_subscribe.png)
-@@ -103,7 +103,7 @@ important.
+@@ -107,7 +107,7 @@ important.
  > Introduced in GitLab 8.6.
  
  There are times when you are already in the issue tracker searching for a
@@ -21462,7 +21463,7 @@ index cf1d9cb..a7029b8 100644
  page and being distracted from your original purpose, you can create new
  labels on the fly.
  
-@@ -140,7 +140,7 @@ Simple as that.
+@@ -144,7 +144,7 @@ Simple as that.
  ##  Use labels to filter issues
  
  Once you start adding labels to your issues, you'll see the benefit of it.
@@ -21570,7 +21571,7 @@ index 546c8bd..4f666fe 100644
  To prevent merge requests from accidentally being accepted before they're
  completely ready, GitLab blocks the "Accept" button for merge requests that
 diff --git a/doc/user/project/new_ci_build_permissions_model.md b/doc/user/project/new_ci_build_permissions_model.md
-index b559d13..c659934 100644
+index 55610a7..6ff72ce 100644
 --- a/doc/user/project/new_ci_build_permissions_model.md
 +++ b/doc/user/project/new_ci_build_permissions_model.md
 @@ -116,7 +116,7 @@ https://gitlab-ci-token:<project-runners-token>/gitlab.com/gitlab-org/gitlab-ce.
@@ -22159,16 +22160,16 @@ index 6adde44..4185d03 100644
   to the Git LFS client, so no action is required by the user.
  
 diff --git a/doc/workflow/milestones.md b/doc/workflow/milestones.md
-index dff3689..e81723f 100644
+index 37afe55..43e8311 100644
 --- a/doc/workflow/milestones.md
 +++ b/doc/workflow/milestones.md
 @@ -1,11 +1,11 @@
 -# Milestones
 +# マイルストーン
  
--Milestones allow you to organize issues and merge requests into a cohesive group, optionally setting a due date. 
+-Milestones allow you to organize issues and merge requests into a cohesive group, optionally setting a due date.
 -A common use is keeping track of an upcoming software version. Milestones are created per-project.
-+マイルストーン allow you to organize issues and merge requests into a cohesive group, optionally setting a due date. 
++マイルストーン allow you to organize issues and merge requests into a cohesive group, optionally setting a due date.
 +A common use is keeping track of an upcoming software version. マイルストーン are created per-project.
  
  ![milestone form](milestones/form.png)
@@ -22176,8 +22177,17 @@ index dff3689..e81723f 100644
 -## Groups and milestones
 +## グループとマイルストーン
  
- You can create a milestone for several projects in the same group simultaneously. 
+ You can create a milestone for several projects in the same group simultaneously.
  On the group's milestones page, you will be able to see the status of that milestone across all of the selected projects.
+@@ -19,7 +19,7 @@ special options available when filtering by milestone:
+ 
+ * **No Milestone** - only show issues or merge requests without a milestone.
+ * **Upcoming** - show issues or merge request that belong to the next open
+-  milestone with a due date, by project. (For example: if project A has
++  milestone with a due date, by project. (例: if project A has
+   milestone v1 due in three days, and project B has milestone v2 due in a week,
+   then this will show issues or merge requests from milestone v1 in project A
+   and milestone v2 in project B.)
 diff --git a/doc/workflow/notifications.md b/doc/workflow/notifications.md
 index 4c52974..dd7330c 100644
 --- a/doc/workflow/notifications.md

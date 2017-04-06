@@ -7947,7 +7947,7 @@ index e330aad..7c46faf 100644
  
  = render 'codes'
 diff --git a/app/views/profiles/two_factor_auths/new.html.haml b/app/views/profiles/two_factor_auths/new.html.haml
-index 92dc58c..d911bed 100644
+index 92dc58c1..d911bed 100644
 --- a/app/views/profiles/two_factor_auths/new.html.haml
 +++ b/app/views/profiles/two_factor_auths/new.html.haml
 @@ -1,4 +1,4 @@

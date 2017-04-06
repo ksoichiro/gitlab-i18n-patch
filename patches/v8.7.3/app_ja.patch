@@ -5053,7 +5053,7 @@ index ab30770..82f9994 100644
        - @milestones.each do |milestone|
          = render 'milestone', milestone: milestone
 diff --git a/app/views/groups/milestones/new.html.haml b/app/views/groups/milestones/new.html.haml
-index 7d9d27a..03e58b7 100644
+index 7d9d27a..24ad8b8 100644
 --- a/app/views/groups/milestones/new.html.haml
 +++ b/app/views/groups/milestones/new.html.haml
 @@ -1,11 +1,11 @@
@@ -5107,7 +5107,7 @@ index 7d9d27a..03e58b7 100644
    .form-actions
 -    = f.submit 'Create Milestone', class: "btn-create btn"
 -    = link_to "Cancel", group_milestones_path(@group), class: "btn btn-cancel"
-+    = f.submit 'マイルストーンを作成', class: "btn-create btn"
++    = f.submit 'Milestoneを作成', class: "btn-create btn"
 +    = link_to "キャンセル", group_milestones_path(@group), class: "btn btn-cancel"
  
  

@@ -4902,7 +4902,7 @@ index 5b1a463..71acea1 100644
 -      = f.submit 'Add to group', class: "btn btn-create btn-block"
 +      = f.submit 'to グループを追加', class: "btn btn-create btn-block"
 diff --git a/app/views/groups/group_members/index.html.haml b/app/views/groups/group_members/index.html.haml
-index 2e4e451..1e13f02 100644
+index 2e4e451..05cf694 100644
 --- a/app/views/groups/group_members/index.html.haml
 +++ b/app/views/groups/group_members/index.html.haml
 @@ -1,13 +1,13 @@
@@ -4922,12 +4922,12 @@ index 2e4e451..1e13f02 100644
          %strong= @group.name
        = render "new_group_member"
  
-@@ -15,11 +15,11 @@
+@@ -15,16 +15,16 @@
  
    .append-bottom-default.clearfix
      %h5.member.existing-title
 -      Existing members
-+      Existing メンバー
++      追加済みのメンバー
      = form_tag group_group_members_path(@group), method: :get, class: 'form-inline member-search-form'  do
        .form-group
 -        = search_field_tag :search, params[:search], { placeholder: 'Find existing members by name', class: 'form-control', spellcheck: false }
@@ -4937,6 +4937,12 @@ index 2e4e451..1e13f02 100644
            = icon("search")
          = render 'shared/members/sort_dropdown'
    .panel.panel-default
+     .panel-heading
+-      Members with access to
++      右記にアクセスできるメンバー:
+       %strong= @group.name
+       %span.badge= @members.total_count
+     %ul.content-list
 diff --git a/app/views/groups/issues.html.haml b/app/views/groups/issues.html.haml
 index 83edb71..3a52e16 100644
 --- a/app/views/groups/issues.html.haml
@@ -12057,7 +12063,7 @@ index c799607..21a3d35 100644
 -        and #{members.count - 20} more. For full list visit #{link_to 'group members page', group_group_members_path(@group)}
 +        and #{members.count - 20} more. For full list visit #{link_to 'group メンバー ページ', group_group_members_path(@group)}
 diff --git a/app/views/projects/project_members/_index.html.haml b/app/views/projects/project_members/_index.html.haml
-index ab0771b..ff2f75b 100644
+index ab0771b..16ca2db 100644
 --- a/app/views/projects/project_members/_index.html.haml
 +++ b/app/views/projects/project_members/_index.html.haml
 @@ -1,11 +1,11 @@
@@ -12079,7 +12085,7 @@ index ab0771b..ff2f75b 100644
          .append-bottom-default.clearfix
            %h5.member.existing-title
 -            Existing members and groups
-+            Existing members and グループ
++            追加済みのメンバーとグループ
          - if @group_links.any?
            = render 'projects/project_members/groups', group_links: @group_links
  
@@ -12126,10 +12132,15 @@ index 7902ddb..c1c203f 100644
 -          and #{shared_group_users_count - 20} more. For full list visit #{link_to 'group members page', group_group_members_path(shared_group)}
 +          and #{shared_group_users_count - 20} more. For full list visit #{link_to 'group メンバー ページ', group_group_members_path(shared_group)}
 diff --git a/app/views/projects/project_members/_team.html.haml b/app/views/projects/project_members/_team.html.haml
-index 81d57c7..542bc25 100644
+index 81d57c7..25fa79e 100644
 --- a/app/views/projects/project_members/_team.html.haml
 +++ b/app/views/projects/project_members/_team.html.haml
-@@ -5,8 +5,8 @@
+@@ -1,12 +1,12 @@
+ .panel.panel-default
+   .panel-heading
+-    Members with access to
++    右記にアクセスできるメンバー:
+     %strong= @project.name
      %span.badge= @project_members.total_count
      = form_tag namespace_project_settings_members_path(@project.namespace, @project), method: :get, class: 'form-inline member-search-form'  do
        .form-group

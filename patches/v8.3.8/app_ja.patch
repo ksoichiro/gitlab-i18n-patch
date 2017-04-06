@@ -8597,7 +8597,7 @@ index b277b76..1d7dfa3 100644
 -            New tag
 +            新しいタグ
 diff --git a/app/views/projects/buttons/_fork.html.haml b/app/views/projects/buttons/_fork.html.haml
-index 2d3abf0..f12ee73 100644
+index 2d3abf0..df64415 100644
 --- a/app/views/projects/buttons/_fork.html.haml
 +++ b/app/views/projects/buttons/_fork.html.haml
 @@ -1,13 +1,13 @@
@@ -8613,7 +8613,7 @@ index 2d3abf0..f12ee73 100644
            = @project.forks_count
      - else
 -      = link_to new_namespace_project_fork_path(@project.namespace, @project), title: "Fork project", class: 'btn has_tooltip' do
-+      = link_to new_namespace_project_fork_path(@project.namespace, @project), title: "Fork プロジェクト", class: 'btn has_tooltip' do
++      = link_to new_namespace_project_fork_path(@project.namespace, @project), title: "プロジェクトをフォーク", class: 'btn has_tooltip' do
          = icon('code-fork fw')
          %span.count
            = @project.forks_count
@@ -9330,12 +9330,12 @@ index 503d156..82a3a16 100644
 -            = link_to 'Remove project', [@project.namespace.becomes(Namespace), @project], data: { confirm: remove_project_message(@project)}, method: :delete, class: "btn btn-remove pull-right"
 +            = link_to 'プロジェクトを削除', [@project.namespace.becomes(Namespace), @project], data: { confirm: remove_project_message(@project)}, method: :delete, class: "btn btn-remove pull-right"
 diff --git a/app/views/projects/forks/error.html.haml b/app/views/projects/forks/error.html.haml
-index 3d0ab5b..0be076f 100644
+index 3d0ab5b..0d7d53b 100644
 --- a/app/views/projects/forks/error.html.haml
 +++ b/app/views/projects/forks/error.html.haml
 @@ -1,4 +1,4 @@
 -- page_title "Fork project"
-+- page_title "Fork プロジェクト"
++- page_title "プロジェクトをフォーク"
  - if @forked_project && !@forked_project.saved?
    .alert.alert-danger.alert-block
      %h4
@@ -9348,15 +9348,15 @@ index 3d0ab5b..0be076f 100644
          %i.fa.fa-code-fork
          Try to Fork again
 diff --git a/app/views/projects/forks/new.html.haml b/app/views/projects/forks/new.html.haml
-index f0b0a11..5c35dc7 100644
+index f0b0a11..c1c3d72 100644
 --- a/app/views/projects/forks/new.html.haml
 +++ b/app/views/projects/forks/new.html.haml
 @@ -1,8 +1,8 @@
 -- page_title "Fork project"
-+- page_title "Fork プロジェクト"
++- page_title "プロジェクトをフォーク"
  - if @namespaces.present?
 -  %h3.page-title Fork project
-+  %h3.page-title Fork プロジェクト
++  %h3.page-title プロジェクトをフォーク
    %p.lead
 -    Click to fork the project to a user or group
 +    Click to fork the project to a user or グループ

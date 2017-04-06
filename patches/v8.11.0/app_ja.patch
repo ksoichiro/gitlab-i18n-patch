@@ -8721,7 +8721,7 @@ index ca90707..354dead 100644
 -            New file
 +            新しいファイル
 diff --git a/app/views/projects/buttons/_fork.html.haml b/app/views/projects/buttons/_fork.html.haml
-index d78888e..ff53a7a 100644
+index d78888e..5b73b65 100644
 --- a/app/views/projects/buttons/_fork.html.haml
 +++ b/app/views/projects/buttons/_fork.html.haml
 @@ -1,13 +1,13 @@
@@ -8735,7 +8735,7 @@ index d78888e..ff53a7a 100644
 +        フォーク
      - else
 -      = link_to new_namespace_project_fork_path(@project.namespace, @project), title: "Fork project", class: 'btn has-tooltip' do
-+      = link_to new_namespace_project_fork_path(@project.namespace, @project), title: "Fork プロジェクト", class: 'btn has-tooltip' do
++      = link_to new_namespace_project_fork_path(@project.namespace, @project), title: "プロジェクトをフォーク", class: 'btn has-tooltip' do
          = custom_icon('icon_fork')
 -        Fork
 +        フォーク
@@ -9716,9 +9716,15 @@ index 9322c82..5e946a6 100644
  .file-finder-holder.tree-holder.clearfix
    .nav-block
 diff --git a/app/views/projects/forks/error.html.haml b/app/views/projects/forks/error.html.haml
-index 3d0ab5b..f6716fe 100644
+index 3d0ab5b..0d7d53b 100644
 --- a/app/views/projects/forks/error.html.haml
 +++ b/app/views/projects/forks/error.html.haml
+@@ -1,4 +1,4 @@
+-- page_title "Fork project"
++- page_title "プロジェクトをフォーク"
+ - if @forked_project && !@forked_project.saved?
+   .alert.alert-danger.alert-block
+     %h4
 @@ -16,6 +16,6 @@
          = @forked_project.errors.full_messages.first
  
@@ -9728,7 +9734,7 @@ index 3d0ab5b..f6716fe 100644
          %i.fa.fa-code-fork
          Try to Fork again
 diff --git a/app/views/projects/forks/index.html.haml b/app/views/projects/forks/index.html.haml
-index a1d79bd..03febb7 100644
+index a1d79bd..5172a6d 100644
 --- a/app/views/projects/forks/index.html.haml
 +++ b/app/views/projects/forks/index.html.haml
 @@ -10,7 +10,7 @@
@@ -9751,7 +9757,7 @@ index a1d79bd..03febb7 100644
 +          フォーク
        - else
 -        = link_to new_namespace_project_fork_path(@project.namespace, @project), title: "Fork project", class: 'btn btn-new' do
-+        = link_to new_namespace_project_fork_path(@project.namespace, @project), title: "Fork プロジェクト", class: 'btn btn-new' do
++        = link_to new_namespace_project_fork_path(@project.namespace, @project), title: "プロジェクトをフォーク", class: 'btn btn-new' do
            = custom_icon('icon_fork')
 -          Fork
 +          フォーク
@@ -9759,18 +9765,18 @@ index a1d79bd..03febb7 100644
  
  = render 'projects', projects: @forks
 diff --git a/app/views/projects/forks/new.html.haml b/app/views/projects/forks/new.html.haml
-index 5242bc7..7712973 100644
+index 5242bc7..4fc4f06 100644
 --- a/app/views/projects/forks/new.html.haml
 +++ b/app/views/projects/forks/new.html.haml
 @@ -1,9 +1,9 @@
 -- page_title "Fork project"
-+- page_title "Fork プロジェクト"
++- page_title "プロジェクトをフォーク"
  
  .row.prepend-top-default
    .col-lg-3
      %h4.prepend-top-0
 -      Fork project
-+      Fork プロジェクト
++      プロジェクトをフォーク
      %p
        A fork is a copy of a project.
        %br

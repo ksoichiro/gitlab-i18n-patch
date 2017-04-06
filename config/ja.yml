@@ -3062,3 +3062,5 @@ searchForMembersByNameUsernameOrEmailOrInviteNewOnesUsingTheirEmailAddress: 名�
 membersWithAccessTo: "右記にアクセスできるメンバー:"
 existingMembers: 追加済みのメンバー
 existingMembersAndGroups: 追加済みのメンバーとグループ
+forkProject: プロジェクトをフォーク
+createMilestone: マイルストーンを作成

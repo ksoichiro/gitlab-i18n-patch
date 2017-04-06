@@ -925,6 +925,10 @@ translations:
     replace: '${existingMembersAndGroups}'
   - pattern: 'Existing members'
     replace: '${existingMembers}'
+  - pattern: 'Fork project'
+    replace: '${forkProject}'
+  - pattern: 'Create milestone'
+    replace: '${createMilestone}'
 
   - name: formLabel
     params:

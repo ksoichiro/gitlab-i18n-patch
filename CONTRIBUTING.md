@@ -17,9 +17,9 @@ GitLab v8.3.0 以降については、基本的に i18n-patch を使ったパッ
 
 以下の手順で作成・更新してください。
 
+1. [yarn](https://github.com/yarnpkg/yarn) をインストール (初回のみ)
 1. node/npm をインストール (初回のみ)
-1. `npm install`
-    * 過去に実行済みで i18n-patch がアップデートされているときは `npm update`
+1. `yarn` を実行
 1. `config/i18n.yml`, `config/ja.yml` を更新
 1. 対象バージョンを増やすときは `config/gitlab.yml` を更新して `npm run readme`
 1. `npm run translate` で対象全バージョンのパッチを更新

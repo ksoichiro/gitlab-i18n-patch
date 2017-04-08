@@ -3,6 +3,7 @@
   "dependencies": {
     "async": "^2.2.0",
     "ava": "^0.18.1",
+    "eslint": "^3.19.0",
     "glob": "^7.1.1",
     "i18n-patch": "1.4.0",
     "js-yaml": "^3.6.1",
@@ -15,6 +16,37 @@
     "readme": "node lib/cli.js readme",
     "check": "node lib/cli.js check",
     "update": "node lib/cli.js update",
-    "test": "ava"
+    "test": "eslint lib && ava"
+  },
+  "eslintConfig": {
+    "env": {
+      "es6": true,
+      "node": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "sourceType": "module"
+    },
+    "rules": {
+      "indent": [
+        "error",
+        2
+      ],
+      "linebreak-style": [
+        "error",
+        "unix"
+      ],
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ],
+      "no-console": [
+        "off"
+      ]
+    }
   }
 }

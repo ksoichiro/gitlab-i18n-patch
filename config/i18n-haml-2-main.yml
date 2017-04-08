@@ -927,6 +927,8 @@ translations:
     replace: '${existingMembers}'
   - pattern: 'Fork project'
     replace: '${forkProject}'
+  - pattern: 'Create Milestone'
+    replace: '${createMilestone}'
   - pattern: 'Create milestone'
     replace: '${createMilestone}'
 

@@ -6,6 +6,6 @@ cache: yarn
 before_install:
   - 'npm install -g npm@latest'
 script:
-  - 'npm run readme'
+  - 'npm run check'
   - 'npm run translate'
   - 'npm test'

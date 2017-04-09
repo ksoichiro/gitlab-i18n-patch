@@ -13,6 +13,7 @@
   },
   "scripts": {
     "translate": "node lib/cli.js translate",
+    "docker": "node lib/cli.js docker",
     "check": "node lib/cli.js check",
     "update": "node lib/cli.js update",
     "test": "eslint lib && ava"

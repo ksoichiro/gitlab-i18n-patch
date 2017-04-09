@@ -1,7 +1,0 @@
-.git
-.gitlabhq
-.vagrant
-gitlabhq
-packages
-node_modules
-test

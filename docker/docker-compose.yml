@@ -1,0 +1,17 @@
+# docker-compose up -d
+
+version: '3'
+
+services:
+  app:
+    build: .
+    hostname: localhost
+    restart: always
+    ports:
+    - '443:443'
+    - '80:80'
+    - '22:22'
+    volumes:
+    - ./config:/etc/gitlab
+    - ./logs:/var/log/gitlab
+    - ./data:/var/opt/gitlab

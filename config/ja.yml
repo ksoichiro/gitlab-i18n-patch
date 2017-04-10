@@ -3064,3 +3064,6 @@ existingMembers: 追加済みのメンバー
 existingMembersAndGroups: 追加済みのメンバーとグループ
 forkProject: プロジェクトをフォーク
 createMilestone: マイルストーンを作成
+todosLetYouSeeWhatYouShouldDoNext: ToDoはあなたが次に何をすべきかを教えてくれます。
+whenAnIssueOrMergeRequestIsAssignedToYouOrWhenYouMentionInACommitThisWillTriggerANewItemInYourTodoListAutomatically: "課題やマージリクエストがあなたにアサインされたとき、またはあなたがコメントで\n{0}\n{1}@メンション\n{2}したとき、あなたのToDoリストに新しい項目が自動的に追加されます。"
+youWillAlwaysKnowWhatToWorkOnNext: あなたは次にやるべきことが常にわかるようになるでしょう。

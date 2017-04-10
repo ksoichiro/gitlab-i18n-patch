@@ -4086,7 +4086,7 @@ index 605bfd0..e8d6f2a 100644
 +        完了
          = icon('spinner spin')
 diff --git a/app/views/dashboard/todos/index.html.haml b/app/views/dashboard/todos/index.html.haml
-index c4bf2c9..971c7be 100644
+index c4bf2c9..0737bee 100644
 --- a/app/views/dashboard/todos/index.html.haml
 +++ b/app/views/dashboard/todos/index.html.haml
 @@ -1,5 +1,5 @@
@@ -4133,6 +4133,23 @@ index c4bf2c9..971c7be 100644
            contribute to
            = link_to "merge requests", merge_requests_dashboard_path
            or mention someone in a comment to assign a new todo automatically.
+@@ -97,11 +97,11 @@
+         = render "shared/empty_states/icons/todos_empty.svg"
+       .todos-empty-content
+         %h4
+-          Todos let you see what you should do next.
++          ToDoはあなたが次に何をすべきかを教えてくれます。
+         %p
+-          When an issue or merge request is assigned to you, or when you
++          課題やマージリクエストがあなたにアサインされたとき、またはあなたがコメントで
+           %strong
+-            @mention
+-          in a comment, this will trigger a new item in your todo list, automatically.
++            @メンション
++          したとき、あなたのToDoリストに新しい項目が自動的に追加されます。
+         %p
+-          You will always know what to work on next.
++          あなたは次にやるべきことが常にわかるようになるでしょう。
 diff --git a/app/views/devise/confirmations/almost_there.haml b/app/views/devise/confirmations/almost_there.haml
 index fb70d15..0dc6e95 100644
 --- a/app/views/devise/confirmations/almost_there.haml

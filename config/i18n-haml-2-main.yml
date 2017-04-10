@@ -931,6 +931,16 @@ translations:
     replace: '${createMilestone}'
   - pattern: 'Create milestone'
     replace: '${createMilestone}'
+  - pattern: 'Todos let you see what you should do next.'
+    replace: '${todosLetYouSeeWhatYouShouldDoNext}'
+  - pattern: !!js/regexp /(\s+)When an issue or merge request is assigned to you, or when you\n([^\n]+)\n(\s+)@mention\n(\s+)in a comment, this will trigger a new item in your todo list, automatically./m
+    replace: '$1${whenAnIssueOrMergeRequestIsAssignedToYouOrWhenYouMentionInACommitThisWillTriggerANewItemInYourTodoListAutomatically}'
+    args:
+    - '$2'
+    - '$3'
+    - '$4'
+  - pattern: 'You will always know what to work on next.'
+    replace: '${youWillAlwaysKnowWhatToWorkOnNext}'
 
   - name: formLabel
     params:

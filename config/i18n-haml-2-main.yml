@@ -941,6 +941,8 @@ translations:
     - '$4'
   - pattern: 'You will always know what to work on next.'
     replace: '${youWillAlwaysKnowWhatToWorkOnNext}'
+  - pattern: 'Most Recent Activity'
+    replace: '${mostRecentActivity}'
 
   - name: formLabel
     params:

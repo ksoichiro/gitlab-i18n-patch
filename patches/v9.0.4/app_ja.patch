@@ -15721,7 +15721,7 @@ index adc07bc..af85af7 100644
          .row.append-bottom-10
            .col-md-3
 diff --git a/app/views/users/show.html.haml b/app/views/users/show.html.haml
-index dc9a3b0..fd1245e 100644
+index dc9a3b0..33138e4 100644
 --- a/app/views/users/show.html.haml
 +++ b/app/views/users/show.html.haml
 @@ -27,7 +27,7 @@
@@ -15763,7 +15763,7 @@ index dc9a3b0..fd1245e 100644
  
          %h4.prepend-top-20
 -          Most Recent Activity
-+          Most Recent アクティビティ
++          直近のアクティビティ
          .content_list{ data: { href: user_path } }
          = spinner
  

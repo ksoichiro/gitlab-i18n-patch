@@ -5216,7 +5216,7 @@ index 644895c..013495e 100644
        - @milestones.each do |milestone|
          = render 'milestone', milestone: milestone
 diff --git a/app/views/groups/milestones/new.html.haml b/app/views/groups/milestones/new.html.haml
-index 63cadfc..826951d 100644
+index 63cadfc..4b379c7 100644
 --- a/app/views/groups/milestones/new.html.haml
 +++ b/app/views/groups/milestones/new.html.haml
 @@ -1,11 +1,11 @@
@@ -5249,7 +5249,7 @@ index 63cadfc..826951d 100644
          .col-sm-10
            = render layout: 'projects/md_preview', locals: { preview_class: "md-preview" } do
 -            = render 'projects/zen', f: f, attr: :description, classes: 'note-textarea', placeholder: 'Write milestone description...'
-+            = render 'projects/zen', f: f, attr: :description, classes: 'note-textarea', placeholder: 'Write マイルストーン description...'
++            = render 'projects/zen', f: f, attr: :description, classes: 'note-textarea', placeholder: 'マイルストーンの説明を記述...'
              .clearfix
              .error-alert
        .form-group
@@ -11295,7 +11295,7 @@ index c296422..bcd1256 100644
 +      削除して
 +    マージリクエストをマージできるようにします。
 diff --git a/app/views/projects/milestones/_form.html.haml b/app/views/projects/milestones/_form.html.haml
-index 0f4a850..5e1eaf2 100644
+index 0f4a850..eb92795 100644
 --- a/app/views/projects/milestones/_form.html.haml
 +++ b/app/views/projects/milestones/_form.html.haml
 @@ -3,14 +3,14 @@
@@ -11312,7 +11312,7 @@ index 0f4a850..5e1eaf2 100644
          .col-sm-10
            = render layout: 'projects/md_preview', locals: { preview_class: "md-preview" } do
 -            = render 'projects/zen', f: f, attr: :description, classes: 'note-textarea', placeholder: 'Write milestone description...'
-+            = render 'projects/zen', f: f, attr: :description, classes: 'note-textarea', placeholder: 'Write マイルストーン description...'
++            = render 'projects/zen', f: f, attr: :description, classes: 'note-textarea', placeholder: 'マイルストーンの説明を記述...'
              = render 'projects/notes/hints'
            .clearfix
            .error-alert
@@ -15105,24 +15105,28 @@ index 8e721c9..99cba71 100644
        - else
          %span.member-access-text= member.human_access
 diff --git a/app/views/shared/milestones/_form_dates.html.haml b/app/views/shared/milestones/_form_dates.html.haml
-index ed94773..97bf2bb 100644
+index ed94773..7efeffd 100644
 --- a/app/views/shared/milestones/_form_dates.html.haml
 +++ b/app/views/shared/milestones/_form_dates.html.haml
-@@ -2,11 +2,11 @@
+@@ -1,12 +1,12 @@
+ .col-md-6
    .form-group
-     = f.label :start_date, "Start Date", class: "control-label"
+-    = f.label :start_date, "Start Date", class: "control-label"
++    = f.label :start_date, "開始日", class: "control-label"
      .col-sm-10
 -      = f.text_field :start_date, class: "datepicker form-control", placeholder: "Select start date"
-+      = f.text_field :start_date, class: "datepicker form-control", placeholder: "start dateを選択"
-       %a.inline.prepend-top-5.js-clear-start-date{ href: "#" } Clear start date
+-      %a.inline.prepend-top-5.js-clear-start-date{ href: "#" } Clear start date
++      = f.text_field :start_date, class: "datepicker form-control", placeholder: "開始日を選択"
++      %a.inline.prepend-top-5.js-clear-start-date{ href: "#" } 開始日をクリア
  .col-md-6
    .form-group
 -    = f.label :due_date, "Due Date", class: "control-label"
 +    = f.label :due_date, "期限", class: "control-label"
      .col-sm-10
 -      = f.text_field :due_date, class: "datepicker form-control", placeholder: "Select due date"
+-      %a.inline.prepend-top-5.js-clear-due-date{ href: "#" } Clear due date
 +      = f.text_field :due_date, class: "datepicker form-control", placeholder: "期限を選択"
-       %a.inline.prepend-top-5.js-clear-due-date{ href: "#" } Clear due date
++      %a.inline.prepend-top-5.js-clear-due-date{ href: "#" } 期限をクリア
 diff --git a/app/views/shared/milestones/_issues_tab.html.haml b/app/views/shared/milestones/_issues_tab.html.haml
 index a8db7f8..8ad5a0b 100644
 --- a/app/views/shared/milestones/_issues_tab.html.haml

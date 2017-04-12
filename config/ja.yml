@@ -3069,3 +3069,8 @@ whenAnIssueOrMergeRequestIsAssignedToYouOrWhenYouMentionInACommitThisWillTrigger
 youWillAlwaysKnowWhatToWorkOnNext: あなたは次にやるべきことが常にわかるようになるでしょう。
 mostRecentActivity: 直近のアクティビティ
 searchAssignee: 担当者を検索
+writeMilestoneDescription: "マイルストーンの説明を記述..."
+startDate: 開始日
+selectStartDate: 開始日を選択
+clearStartDate: 開始日をクリア
+clearDueDate: 期限をクリア

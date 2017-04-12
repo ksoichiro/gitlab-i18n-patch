@@ -951,6 +951,10 @@ translations:
     replace: '${mostRecentActivity}'
   - pattern: 'Write milestone description...'
     replace: '${writeMilestoneDescription}'
+  - pattern: !!js/regexp /^(\s+)is\n(\s+)supported/m
+    replace: '$1${isSupported}'
+    args:
+    - '$2'
 
   - name: formLabel
     params:

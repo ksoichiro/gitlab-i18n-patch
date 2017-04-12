@@ -3074,3 +3074,4 @@ startDate: 開始日
 selectStartDate: 開始日を選択
 clearStartDate: 開始日をクリア
 clearDueDate: 期限をクリア
+isSupported: "が\n{0}サポートされています"

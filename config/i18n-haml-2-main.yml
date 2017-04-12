@@ -1001,6 +1001,7 @@ translations:
     - {word: 'Protected Branch(?:es)', key: protectedBranch}
     - {word: 'Import project from', key: importProjectFrom}
     - {word: 'Search for projects, issues etc', key: searchForProjectsIssuesEtc}
+    - {word: 'Search assignee', key: searchAssignee}
     - {word: 'Due [dD]ate', key: dueDate}
     - {word: 'Sign in', key: signIn}
     - {word: 'Sign up', key: signUp}

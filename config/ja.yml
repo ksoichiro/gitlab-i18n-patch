@@ -3068,3 +3068,4 @@ todosLetYouSeeWhatYouShouldDoNext: ToDoはあなたが次に何をすべきか�
 whenAnIssueOrMergeRequestIsAssignedToYouOrWhenYouMentionInACommitThisWillTriggerANewItemInYourTodoListAutomatically: "課題やマージリクエストがあなたにアサインされたとき、またはあなたがコメントで\n{0}\n{1}@メンション\n{2}したとき、あなたのToDoリストに新しい項目が自動的に追加されます。"
 youWillAlwaysKnowWhatToWorkOnNext: あなたは次にやるべきことが常にわかるようになるでしょう。
 mostRecentActivity: 直近のアクティビティ
+searchAssignee: 担当者を検索

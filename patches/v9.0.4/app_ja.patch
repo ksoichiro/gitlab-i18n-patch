@@ -1081,6 +1081,24 @@ index 256cbcd..1194b62 100644
      end
    end
  end
+diff --git a/app/models/label.rb b/app/models/label.rb
+index f68a8c9..d8651db 100644
+--- a/app/models/label.rb
++++ b/app/models/label.rb
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ class Label < ActiveRecord::Base
+   include CacheMarkdownField
+   include Referable
+@@ -7,7 +8,7 @@ class Label < ActiveRecord::Base
+   # Requests that have no label assigned.
+   LabelStruct = Struct.new(:title, :name)
+   None = LabelStruct.new('No Label', 'No Label')
+-  Any = LabelStruct.new('Any Label', '')
++  Any = LabelStruct.new('すべてのラベル', '')
+ 
+   cache_markdown_field :description, pipeline: :single_line
+ 
 diff --git a/app/models/members/group_member.rb b/app/models/members/group_member.rb
 index 446f9f8..f89842a 100644
 --- a/app/models/members/group_member.rb
@@ -14356,7 +14374,7 @@ index ad7a7fa..f3a6a91 100644
 -  = search_field_tag :filter_groups, params[:filter_groups], placeholder: 'Filter by name...', class: 'group-filter-form-field form-control input-short js-groups-list-filter', spellcheck: false, id: 'group-filter-form-field', tabindex: "2"
 +  = search_field_tag :filter_groups, params[:filter_groups], placeholder: '名前で絞り込み...', class: 'group-filter-form-field form-control input-short js-groups-list-filter', spellcheck: false, id: 'group-filter-form-field', tabindex: "2"
 diff --git a/app/views/shared/issuable/_filter.html.haml b/app/views/shared/issuable/_filter.html.haml
-index 134f798..573b477 100644
+index 134f798..e43aa19 100644
 --- a/app/views/shared/issuable/_filter.html.haml
 +++ b/app/views/shared/issuable/_filter.html.haml
 @@ -14,14 +14,14 @@
@@ -14374,7 +14392,7 @@ index 134f798..573b477 100644
 -          = dropdown_tag(user_dropdown_label(params[:assignee_id], "Assignee"), options: { toggle_class: "js-user-search js-filter-submit js-assignee-search", title: "Filter by assignee", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable dropdown-menu-assignee js-filter-submit",
 -            placeholder: "Search assignee", data: { any_user: "Any Assignee", first_user: current_user.try(:username), null_user: true, current_user: true, project_id: @project.try(:id), selected: params[:assignee_id], field_name: "assignee_id", default_label: "Assignee" } })
 +          = dropdown_tag(user_dropdown_label(params[:assignee_id], "担当者"), options: { toggle_class: "js-user-search js-filter-submit js-assignee-search", title: "担当者で絞り込み", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable dropdown-menu-assignee js-filter-submit",
-+            placeholder: "Search 担当者", data: { any_user: "Any 担当者", first_user: current_user.try(:username), null_user: true, current_user: true, project_id: @project.try(:id), selected: params[:assignee_id], field_name: "assignee_id", default_label: "Assignee" } })
++            placeholder: "担当者を検索", data: { any_user: "Any 担当者", first_user: current_user.try(:username), null_user: true, current_user: true, project_id: @project.try(:id), selected: params[:assignee_id], field_name: "assignee_id", default_label: "Assignee" } })
  
          .filter-item.inline.milestone-filter
            = render "shared/issuable/milestone_dropdown", selected: finder.milestones.try(:first), name: :milestone_title, show_any: true, show_upcoming: true, show_started: true
@@ -14910,7 +14928,7 @@ index 0330972..810355c 100644
 -          Remove source branch when merge request is accepted.
 +          source branch when merge request is accepted.を削除
 diff --git a/app/views/shared/issuable/form/_metadata.html.haml b/app/views/shared/issuable/form/_metadata.html.haml
-index 9dbfedb..d2e3d03 100644
+index 9dbfedb..56ef16f 100644
 --- a/app/views/shared/issuable/form/_metadata.html.haml
 +++ b/app/views/shared/issuable/form/_metadata.html.haml
 @@ -10,29 +10,29 @@
@@ -14926,7 +14944,7 @@ index 9dbfedb..d2e3d03 100644
 -            placeholder: "Search assignee", data: { first_user: current_user.try(:username), null_user: true, current_user: true, project_id: issuable.project.try(:id), selected: issuable.assignee_id, field_name: "#{issuable.class.model_name.param_key}[assignee_id]", default_label: "Assignee"} })
 -        = link_to 'Assign to me', '#', class: "assign-to-me-link #{'hide' if issuable.assignee_id == current_user.id}"
 +          = dropdown_tag(user_dropdown_label(issuable.assignee_id, "担当者"), options: { toggle_class: "js-dropdown-keep-input js-user-search js-issuable-form-dropdown js-assignee-search", title: "担当者を選択", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable dropdown-menu-assignee js-filter-submit",
-+            placeholder: "Search 担当者", data: { first_user: current_user.try(:username), null_user: true, current_user: true, project_id: issuable.project.try(:id), selected: issuable.assignee_id, field_name: "#{issuable.class.model_name.param_key}[assignee_id]", default_label: "担当者"} })
++            placeholder: "担当者を検索", data: { first_user: current_user.try(:username), null_user: true, current_user: true, project_id: issuable.project.try(:id), selected: issuable.assignee_id, field_name: "#{issuable.class.model_name.param_key}[assignee_id]", default_label: "担当者"} })
 +        = link_to '自分に割り当てる', '#', class: "assign-to-me-link #{'hide' if issuable.assignee_id == current_user.id}"
      .form-group.issue-milestone
 -      = form.label :milestone_id, "Milestone", class: "control-label #{"col-lg-4" if has_due_date}"

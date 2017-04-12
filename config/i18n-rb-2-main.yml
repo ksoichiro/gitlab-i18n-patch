@@ -259,6 +259,7 @@ translations:
     - {word: 'Users', key: user}
     - {word: 'Inline', key: inline}
     - {word: 'Unassigned', key: unassigned}
+    - {word: 'Any Label', key: anyLabel}
   - name: sthCountsDone
     params:
     - {obj: issues, objKey: issue, done: updated, doneKey: update}

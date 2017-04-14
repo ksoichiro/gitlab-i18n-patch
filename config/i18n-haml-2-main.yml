@@ -1185,6 +1185,8 @@ translations:
     - {word: 'Register', key: register}
     - {word: 'General', key: general}
     - {word: 'Secret Token', key: secretToken}
+    - {word: 'This project', key: thisProject}
+    - {word: 'This group', key: thisGroup}
   - name: singleWord
     evaluate-when: "semver.gte(version, '9.0.0')"
     params:

@@ -13858,6 +13858,19 @@ index 9429597..47b6305 100644
  = f.file_field :avatar, class: 'js-group-avatar-input hidden'
 -.light The maximum file size allowed is 200KB.
 +.light ファイルの最大サイズは200KBです
+diff --git a/app/views/shared/_clone_panel.html.haml b/app/views/shared/_clone_panel.html.haml
+index 0368438..13c0e45 100644
+--- a/app/views/shared/_clone_panel.html.haml
++++ b/app/views/shared/_clone_panel.html.haml
+@@ -19,7 +19,7 @@
+ 
+   = text_field_tag :project_clone, default_url_to_repo(project), class: "js-select-on-focus form-control", readonly: true
+   .input-group-btn
+-    = clipboard_button(clipboard_target: '#project_clone', title: "Copy URL to clipboard")
++    = clipboard_button(clipboard_target: '#project_clone', title: "URLをクリップボードにコピー")
+ 
+ :javascript
+   $('ul.clone-options-dropdown a').on('click',function(e){
 diff --git a/app/views/shared/_commit_message_container.html.haml b/app/views/shared/_commit_message_container.html.haml
 index 4b98ff8..8a9b062 100644
 --- a/app/views/shared/_commit_message_container.html.haml

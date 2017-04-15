@@ -955,6 +955,8 @@ translations:
     replace: '$1${isSupported}'
     args:
     - '$2'
+  - pattern: 'Copy URL to clipboard'
+    replace: '${copyURLToClipboard}'
 
   - name: formLabel
     params:

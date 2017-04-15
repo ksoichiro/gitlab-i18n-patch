@@ -3077,3 +3077,4 @@ clearDueDate: 期限をクリア
 isSupported: "が\n{0}サポートされています"
 thisProject: このプロジェクト
 thisGroup: このグループ
+copyURLToClipboard: URLをクリップボードにコピー

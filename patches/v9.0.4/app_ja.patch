@@ -8668,18 +8668,9 @@ index 72bce40..cd127f0 100644
      %board-list{ "v-if" => 'list.type !== "blank"',
        ":list" => "list",
 diff --git a/app/views/projects/boards/components/_board_list.html.haml b/app/views/projects/boards/components/_board_list.html.haml
-index 4a4dd84..99f7b08 100644
+index 4a4dd84..ba20bb1 100644
 --- a/app/views/projects/boards/components/_board_list.html.haml
 +++ b/app/views/projects/boards/components/_board_list.html.haml
-@@ -8,7 +8,7 @@
-     "v-show" => "!loading",
-     ":data-board" => "list.id",
-     ":class" => '{ "is-smaller": showIssueForm }' }
--    %board-card{ "v-for" => "(issue, index) in issues",
-+    %board-card{ "v-for" => "(issue, index) in 課題",
-       "ref" => "issue",
-       ":index" => "index",
-       ":list" => "list",
 @@ -21,6 +21,6 @@
        "data-issue-id" => "-1" }
        = icon("spinner spin", "v-show" => "list.loadingMore" )

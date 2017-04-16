@@ -1099,6 +1099,24 @@ index 256cbcd..1194b62 100644
      end
    end
  end
+diff --git a/app/models/label.rb b/app/models/label.rb
+index f68a8c9..d8651db 100644
+--- a/app/models/label.rb
++++ b/app/models/label.rb
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ class Label < ActiveRecord::Base
+   include CacheMarkdownField
+   include Referable
+@@ -7,7 +8,7 @@ class Label < ActiveRecord::Base
+   # Requests that have no label assigned.
+   LabelStruct = Struct.new(:title, :name)
+   None = LabelStruct.new('No Label', 'No Label')
+-  Any = LabelStruct.new('Any Label', '')
++  Any = LabelStruct.new('すべてのラベル', '')
+ 
+   cache_markdown_field :description, pipeline: :single_line
+ 
 diff --git a/app/models/members/group_member.rb b/app/models/members/group_member.rb
 index 446f9f8..f89842a 100644
 --- a/app/models/members/group_member.rb
@@ -5216,7 +5234,7 @@ index 644895c..013495e 100644
        - @milestones.each do |milestone|
          = render 'milestone', milestone: milestone
 diff --git a/app/views/groups/milestones/new.html.haml b/app/views/groups/milestones/new.html.haml
-index 63cadfc..826951d 100644
+index 63cadfc..4b379c7 100644
 --- a/app/views/groups/milestones/new.html.haml
 +++ b/app/views/groups/milestones/new.html.haml
 @@ -1,11 +1,11 @@
@@ -5249,7 +5267,7 @@ index 63cadfc..826951d 100644
          .col-sm-10
            = render layout: 'projects/md_preview', locals: { preview_class: "md-preview" } do
 -            = render 'projects/zen', f: f, attr: :description, classes: 'note-textarea', placeholder: 'Write milestone description...'
-+            = render 'projects/zen', f: f, attr: :description, classes: 'note-textarea', placeholder: 'Write マイルストーン description...'
++            = render 'projects/zen', f: f, attr: :description, classes: 'note-textarea', placeholder: 'マイルストーンの説明を記述...'
              .clearfix
              .error-alert
        .form-group
@@ -6543,16 +6561,16 @@ index 77c77dc..9c7f12d 100644
 -    = f.submit "Submit #{humanized_resource_name}", class: 'btn btn-create'
 +    = f.submit "#{humanized_resource_name}を送信", class: 'btn btn-create'
 diff --git a/app/views/layouts/_search.html.haml b/app/views/layouts/_search.html.haml
-index 0e64ebd..09c8739 100644
+index 0e64ebd..e1224ee 100644
 --- a/app/views/layouts/_search.html.haml
 +++ b/app/views/layouts/_search.html.haml
 @@ -1,7 +1,7 @@
  - if controller.controller_path =~ /^groups/ && @group.persisted?
 -  - label = 'This group'
-+  - label = 'This グループ'
++  - label = 'このグループ'
  - if controller.controller_path =~ /^projects/ && @project.persisted?
 -  - label = 'This project'
-+  - label = 'This プロジェクト'
++  - label = 'このプロジェクト'
  - if @group && @group.persisted? && @group.path
    - group_data_attrs = { group_path: j(@group.path), name: @group.name, issues_path: issues_group_path(j(@group.path)), mr_path: merge_requests_group_path(j(@group.path)) }
  - if @project && @project.persisted?
@@ -8665,18 +8683,9 @@ index 72bce40..cd127f0 100644
      %board-list{ "v-if" => 'list.type !== "blank"',
        ":list" => "list",
 diff --git a/app/views/projects/boards/components/_board_list.html.haml b/app/views/projects/boards/components/_board_list.html.haml
-index 4a4dd84..99f7b08 100644
+index 4a4dd84..ba20bb1 100644
 --- a/app/views/projects/boards/components/_board_list.html.haml
 +++ b/app/views/projects/boards/components/_board_list.html.haml
-@@ -8,7 +8,7 @@
-     "v-show" => "!loading",
-     ":data-board" => "list.id",
-     ":class" => '{ "is-smaller": showIssueForm }' }
--    %board-card{ "v-for" => "(issue, index) in issues",
-+    %board-card{ "v-for" => "(issue, index) in 課題",
-       "ref" => "issue",
-       ":index" => "index",
-       ":list" => "list",
 @@ -21,6 +21,6 @@
        "data-issue-id" => "-1" }
        = icon("spinner spin", "v-show" => "list.loadingMore" )
@@ -11292,7 +11301,7 @@ index c296422..bcd1256 100644
 +      削除して
 +    マージリクエストをマージできるようにします。
 diff --git a/app/views/projects/milestones/_form.html.haml b/app/views/projects/milestones/_form.html.haml
-index 0f4a850..5e1eaf2 100644
+index 0f4a850..eb92795 100644
 --- a/app/views/projects/milestones/_form.html.haml
 +++ b/app/views/projects/milestones/_form.html.haml
 @@ -3,14 +3,14 @@
@@ -11309,7 +11318,7 @@ index 0f4a850..5e1eaf2 100644
          .col-sm-10
            = render layout: 'projects/md_preview', locals: { preview_class: "md-preview" } do
 -            = render 'projects/zen', f: f, attr: :description, classes: 'note-textarea', placeholder: 'Write milestone description...'
-+            = render 'projects/zen', f: f, attr: :description, classes: 'note-textarea', placeholder: 'Write マイルストーン description...'
++            = render 'projects/zen', f: f, attr: :description, classes: 'note-textarea', placeholder: 'マイルストーンの説明を記述...'
              = render 'projects/notes/hints'
            .clearfix
            .error-alert
@@ -11602,11 +11611,17 @@ index b561052..9dfad59 100644
 +    %a.btn.btn-cancel.js-note-discard{ role: "button", data: {cancel_text: "キャンセル" } }
        Discard draft
 diff --git a/app/views/projects/notes/_hints.html.haml b/app/views/projects/notes/_hints.html.haml
-index 81d97ea..5a3836f 100644
+index 81d97ea..f65fb60 100644
 --- a/app/views/projects/notes/_hints.html.haml
 +++ b/app/views/projects/notes/_hints.html.haml
-@@ -11,4 +11,4 @@
-     supported
+@@ -7,8 +7,8 @@
+       = link_to 'slash commands', help_page_path('user/project/slash_commands'), target: '_blank', tabindex: -1
+       are
+     - else
+-      is
+-    supported
++      が
++    サポートされています
    %button.toolbar-button.markdown-selector{ type: 'button', tabindex: '-1' }
      = icon('file-image-o', class: 'toolbar-button-icon')
 -    Attach a file
@@ -13848,6 +13863,19 @@ index 9429597..47b6305 100644
  = f.file_field :avatar, class: 'js-group-avatar-input hidden'
 -.light The maximum file size allowed is 200KB.
 +.light ファイルの最大サイズは200KBです
+diff --git a/app/views/shared/_clone_panel.html.haml b/app/views/shared/_clone_panel.html.haml
+index 0368438..13c0e45 100644
+--- a/app/views/shared/_clone_panel.html.haml
++++ b/app/views/shared/_clone_panel.html.haml
+@@ -19,7 +19,7 @@
+ 
+   = text_field_tag :project_clone, default_url_to_repo(project), class: "js-select-on-focus form-control", readonly: true
+   .input-group-btn
+-    = clipboard_button(clipboard_target: '#project_clone', title: "Copy URL to clipboard")
++    = clipboard_button(clipboard_target: '#project_clone', title: "URLをクリップボードにコピー")
+ 
+ :javascript
+   $('ul.clone-options-dropdown a').on('click',function(e){
 diff --git a/app/views/shared/_commit_message_container.html.haml b/app/views/shared/_commit_message_container.html.haml
 index 4b98ff8..8a9b062 100644
 --- a/app/views/shared/_commit_message_container.html.haml
@@ -14370,7 +14398,7 @@ index ad7a7fa..f3a6a91 100644
 -  = search_field_tag :filter_groups, params[:filter_groups], placeholder: 'Filter by name...', class: 'group-filter-form-field form-control input-short js-groups-list-filter', spellcheck: false, id: 'group-filter-form-field', tabindex: "2"
 +  = search_field_tag :filter_groups, params[:filter_groups], placeholder: '名前で絞り込み...', class: 'group-filter-form-field form-control input-short js-groups-list-filter', spellcheck: false, id: 'group-filter-form-field', tabindex: "2"
 diff --git a/app/views/shared/issuable/_filter.html.haml b/app/views/shared/issuable/_filter.html.haml
-index f17ae9f..5791205 100644
+index f17ae9f..8f20f8e 100644
 --- a/app/views/shared/issuable/_filter.html.haml
 +++ b/app/views/shared/issuable/_filter.html.haml
 @@ -14,14 +14,14 @@
@@ -14388,7 +14416,7 @@ index f17ae9f..5791205 100644
 -          = dropdown_tag(user_dropdown_label(params[:assignee_id], "Assignee"), options: { toggle_class: "js-user-search js-filter-submit js-assignee-search", title: "Filter by assignee", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable dropdown-menu-assignee js-filter-submit",
 -            placeholder: "Search assignee", data: { any_user: "Any Assignee", first_user: current_user.try(:username), null_user: true, current_user: true, project_id: @project.try(:id), selected: params[:assignee_id], field_name: "assignee_id", default_label: "Assignee" } })
 +          = dropdown_tag(user_dropdown_label(params[:assignee_id], "担当者"), options: { toggle_class: "js-user-search js-filter-submit js-assignee-search", title: "担当者で絞り込み", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable dropdown-menu-assignee js-filter-submit",
-+            placeholder: "Search 担当者", data: { any_user: "Any 担当者", first_user: current_user.try(:username), null_user: true, current_user: true, project_id: @project.try(:id), selected: params[:assignee_id], field_name: "assignee_id", default_label: "Assignee" } })
++            placeholder: "担当者を検索", data: { any_user: "Any 担当者", first_user: current_user.try(:username), null_user: true, current_user: true, project_id: @project.try(:id), selected: params[:assignee_id], field_name: "assignee_id", default_label: "Assignee" } })
  
          .filter-item.inline.milestone-filter
            = render "shared/issuable/milestone_dropdown", selected: finder.milestones.try(:first), name: :milestone_title, show_any: true, show_upcoming: true
@@ -14924,7 +14952,7 @@ index 0330972..810355c 100644
 -          Remove source branch when merge request is accepted.
 +          source branch when merge request is accepted.を削除
 diff --git a/app/views/shared/issuable/form/_metadata.html.haml b/app/views/shared/issuable/form/_metadata.html.haml
-index 7a21f19..de87460 100644
+index 7a21f19..3e89ae3 100644
 --- a/app/views/shared/issuable/form/_metadata.html.haml
 +++ b/app/views/shared/issuable/form/_metadata.html.haml
 @@ -10,29 +10,29 @@
@@ -14940,7 +14968,7 @@ index 7a21f19..de87460 100644
 -            placeholder: "Search assignee", data: { first_user: current_user.try(:username), null_user: true, current_user: true, project_id: issuable.project.try(:id), selected: issuable.assignee_id, field_name: "#{issuable.class.model_name.param_key}[assignee_id]", default_label: "Assignee"} })
 -        = link_to 'Assign to me', '#', class: "assign-to-me-link #{'hide' if issuable.assignee_id == current_user.id}"
 +          = dropdown_tag(user_dropdown_label(issuable.assignee_id, "担当者"), options: { toggle_class: "js-dropdown-keep-input js-user-search js-issuable-form-dropdown js-assignee-search", title: "担当者を選択", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable dropdown-menu-assignee js-filter-submit",
-+            placeholder: "Search 担当者", data: { first_user: current_user.try(:username), null_user: true, current_user: true, project_id: issuable.project.try(:id), selected: issuable.assignee_id, field_name: "#{issuable.class.model_name.param_key}[assignee_id]", default_label: "担当者"} })
++            placeholder: "担当者を検索", data: { first_user: current_user.try(:username), null_user: true, current_user: true, project_id: issuable.project.try(:id), selected: issuable.assignee_id, field_name: "#{issuable.class.model_name.param_key}[assignee_id]", default_label: "担当者"} })
 +        = link_to '自分に割り当てる', '#', class: "assign-to-me-link #{'hide' if issuable.assignee_id == current_user.id}"
      .form-group.issue-milestone
 -      = form.label :milestone_id, "Milestone", class: "control-label #{"col-lg-4" if has_due_date}"
@@ -15101,24 +15129,28 @@ index 8e721c9..99cba71 100644
        - else
          %span.member-access-text= member.human_access
 diff --git a/app/views/shared/milestones/_form_dates.html.haml b/app/views/shared/milestones/_form_dates.html.haml
-index ed94773..97bf2bb 100644
+index ed94773..7efeffd 100644
 --- a/app/views/shared/milestones/_form_dates.html.haml
 +++ b/app/views/shared/milestones/_form_dates.html.haml
-@@ -2,11 +2,11 @@
+@@ -1,12 +1,12 @@
+ .col-md-6
    .form-group
-     = f.label :start_date, "Start Date", class: "control-label"
+-    = f.label :start_date, "Start Date", class: "control-label"
++    = f.label :start_date, "開始日", class: "control-label"
      .col-sm-10
 -      = f.text_field :start_date, class: "datepicker form-control", placeholder: "Select start date"
-+      = f.text_field :start_date, class: "datepicker form-control", placeholder: "start dateを選択"
-       %a.inline.prepend-top-5.js-clear-start-date{ href: "#" } Clear start date
+-      %a.inline.prepend-top-5.js-clear-start-date{ href: "#" } Clear start date
++      = f.text_field :start_date, class: "datepicker form-control", placeholder: "開始日を選択"
++      %a.inline.prepend-top-5.js-clear-start-date{ href: "#" } 開始日をクリア
  .col-md-6
    .form-group
 -    = f.label :due_date, "Due Date", class: "control-label"
 +    = f.label :due_date, "期限", class: "control-label"
      .col-sm-10
 -      = f.text_field :due_date, class: "datepicker form-control", placeholder: "Select due date"
+-      %a.inline.prepend-top-5.js-clear-due-date{ href: "#" } Clear due date
 +      = f.text_field :due_date, class: "datepicker form-control", placeholder: "期限を選択"
-       %a.inline.prepend-top-5.js-clear-due-date{ href: "#" } Clear due date
++      %a.inline.prepend-top-5.js-clear-due-date{ href: "#" } 期限をクリア
 diff --git a/app/views/shared/milestones/_issues_tab.html.haml b/app/views/shared/milestones/_issues_tab.html.haml
 index a8db7f8..8ad5a0b 100644
 --- a/app/views/shared/milestones/_issues_tab.html.haml
@@ -15735,7 +15767,7 @@ index adc07bc..af85af7 100644
          .row.append-bottom-10
            .col-md-3
 diff --git a/app/views/users/show.html.haml b/app/views/users/show.html.haml
-index dc9a3b0..fd1245e 100644
+index dc9a3b0..33138e4 100644
 --- a/app/views/users/show.html.haml
 +++ b/app/views/users/show.html.haml
 @@ -27,7 +27,7 @@
@@ -15777,7 +15809,7 @@ index dc9a3b0..fd1245e 100644
  
          %h4.prepend-top-20
 -          Most Recent Activity
-+          Most Recent アクティビティ
++          直近のアクティビティ
          .content_list{ data: { href: user_path } }
          = spinner
  

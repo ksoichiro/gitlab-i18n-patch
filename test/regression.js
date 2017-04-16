@@ -11,7 +11,7 @@ test('ja', t => {
   t.is(grep(/\+ +\.location-badge= ラベル/, files).stdout, '\n');
 
   // https://github.com/ksoichiro/gitlab-i18n-patch/issues/4
-  t.is(grep(/\+  "v-for" => "issue in 課題/, files).stdout, '\n');
+  t.is(grep(/\+.*"v-for" => "[^"]* in 課題/, files).stdout, '\n');
 
   // https://github.com/ksoichiro/gitlab-i18n-patch/pull/6
   t.is(grep(/\+ +milestone: マイルストーン/, files).stdout, '\n');

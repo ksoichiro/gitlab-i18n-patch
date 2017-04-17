@@ -957,6 +957,8 @@ translations:
     - '$2'
   - pattern: 'Copy URL to clipboard'
     replace: '${copyURLToClipboard}'
+  - pattern: 'Search or filter results...'
+    replace: '${searchOrFilterResults}'
 
   - name: formLabel
     params:

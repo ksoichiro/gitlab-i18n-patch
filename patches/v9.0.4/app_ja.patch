@@ -14679,9 +14679,18 @@ index 171da89..cad2475 100644
      - participants.each do |participant|
        .participants-author.js-participants-author
 diff --git a/app/views/shared/issuable/_search_bar.html.haml b/app/views/shared/issuable/_search_bar.html.haml
-index 204b7b0..c132294 100644
+index 204b7b0..203b0d1 100644
 --- a/app/views/shared/issuable/_search_bar.html.haml
 +++ b/app/views/shared/issuable/_search_bar.html.haml
+@@ -14,7 +14,7 @@
+           .scroll-container
+             %ul.tokens-container.list-unstyled
+               %li.input-token
+-                %input.form-control.filtered-search{ placeholder: 'Search or filter results...', 'data-id' => 'filtered-search', 'data-project-id' => @project.id, 'data-username-params' => @users.to_json(only: [:id, :username]), 'data-base-endpoint' => namespace_project_path(@project.namespace, @project) }
++                %input.form-control.filtered-search{ placeholder: '検索または結果をフィルタ...', 'data-id' => 'filtered-search', 'data-project-id' => @project.id, 'data-username-params' => @users.to_json(only: [:id, :username]), 'data-base-endpoint' => namespace_project_path(@project.namespace, @project) }
+             = icon('filter')
+             %button.clear-search.hidden{ type: 'button' }
+               = icon('times')
 @@ -49,7 +49,7 @@
              %ul{ 'data-dropdown' => true }
                %li.filter-dropdown-item{ 'data-value' => 'none' }

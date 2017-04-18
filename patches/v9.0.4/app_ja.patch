@@ -1,3 +1,16 @@
+diff --git a/app/assets/javascripts/commit/pipelines/pipelines_table.js b/app/assets/javascripts/commit/pipelines/pipelines_table.js
+index 4e770ab..853e4c8 100644
+--- a/app/assets/javascripts/commit/pipelines/pipelines_table.js
++++ b/app/assets/javascripts/commit/pipelines/pipelines_table.js
+@@ -83,7 +83,7 @@ module.exports = Vue.component('pipelines-table', {
+       <div class="blank-state blank-state-no-icon"
+         v-if="!isLoading && state.pipelines.length === 0">
+         <h2 class="blank-state-title js-blank-state-title">
+-          No pipelines to show
++          パイプラインがありません
+         </h2>
+       </div>
+ 
 diff --git a/app/assets/javascripts/due_date_select.js b/app/assets/javascripts/due_date_select.js
 index b92694c..68dc66a 100644
 --- a/app/assets/javascripts/due_date_select.js
@@ -130,6 +143,19 @@ index 6fd5345..1146f1f 100644
        return this.dropdownContent.html(html);
      }
  
+diff --git a/app/assets/javascripts/users/calendar.js b/app/assets/javascripts/users/calendar.js
+index 754d448..c55600f 100644
+--- a/app/assets/javascripts/users/calendar.js
++++ b/app/assets/javascripts/users/calendar.js
+@@ -118,7 +118,7 @@ import d3 from 'd3';
+         return function(stamp) {
+           var contribText, date, dateText;
+           date = new Date(stamp.date);
+-          contribText = 'No contributions';
++          contribText = 'コントリビューションなし';
+           if (stamp.count > 0) {
+             contribText = stamp.count + " contribution" + (stamp.count > 1 ? 's' : '');
+           }
 diff --git a/app/assets/javascripts/users_select.js b/app/assets/javascripts/users_select.js
 index 910af8b..251c038 100644
 --- a/app/assets/javascripts/users_select.js
@@ -206,6 +232,32 @@ index 910af8b..251c038 100644
          };
          return callback(nullUser);
        } else if (id !== "") {
+diff --git a/app/assets/javascripts/vue_pipelines_index/pipelines.js b/app/assets/javascripts/vue_pipelines_index/pipelines.js
+index 4732092..2a5992b 100644
+--- a/app/assets/javascripts/vue_pipelines_index/pipelines.js
++++ b/app/assets/javascripts/vue_pipelines_index/pipelines.js
+@@ -66,7 +66,7 @@ const PipelinesTableComponent = require('../vue_shared/components/pipelines_tabl
+         <div class="blank-state blank-state-no-icon"
+           v-if="!pageRequest && pipelines.length === 0">
+           <h2 class="blank-state-title js-blank-state-title">
+-            No pipelines to show
++            パイプラインがありません
+           </h2>
+         </div>
+ 
+diff --git a/app/assets/javascripts/vue_pipelines_index/stage.js b/app/assets/javascripts/vue_pipelines_index/stage.js
+index f67ebd6..4361c8e 100644
+--- a/app/assets/javascripts/vue_pipelines_index/stage.js
++++ b/app/assets/javascripts/vue_pipelines_index/stage.js
+@@ -55,7 +55,7 @@ import warningSvg from 'icons/_icon_status_warning_borderless.svg';
+           .then((response) => {
+             this.builds = JSON.parse(response.body).html;
+           }, () => {
+-            const flash = new Flash('Something went wrong on our end.');
++            const flash = new Flash('サーバで問題が発生しました。');
+             return flash;
+           });
+       },
 diff --git a/app/controllers/admin/application_settings_controller.rb b/app/controllers/admin/application_settings_controller.rb
 index 8d831ff..edd1b84 100644
 --- a/app/controllers/admin/application_settings_controller.rb

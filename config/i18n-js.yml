@@ -11,10 +11,10 @@ translations:
 
 - name: 'js'
   parallel-group: 'group2'
-  src: 'app/assets/javascripts/**.js*'
+  src: 'app/assets/javascripts/**/*.js*'
   skip-patterns:
   # Lines that does not contain quotes
-  - !!js/regexp /^(?!.*\$\('[^']*'\))(?!.*['"]).+$/
+  #- !!js/regexp /^(?!.*\$\('[^']*'\))(?!.*['"]).+$/
   # Quoted strings don't require translation: symbols, css-id or css-class, digits, true/false (single quote)
   - !!js/regexp /^[^']*('([^a-zA-Z0-9]*|[.#]?[a-z]+([-_][a-z]+)+|[0-9.]+|true|false)'[^']*)+$/
   # Quoted strings don't require translation: symbols, css-id or css-class, digits, true/false (double quote)
@@ -70,6 +70,8 @@ translations:
     replace: '${youNeedToBeLoggedIn}'
   - pattern: 'Something went wrong on our end.'
     replace: '${somethingWentWrongOnOurEnd}'
+  - pattern: 'No pipelines to show'
+    replace: '${noPipelinesToShow}'
   - name: doubleQuoted
     params:
     - {word: 'Search for a user', key: searchForAUser}

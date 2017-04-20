@@ -34,10 +34,10 @@ index b92694c..68dc66a 100644
            this.$loading.removeClass('hidden').fadeIn();
  
 diff --git a/app/assets/javascripts/environments/components/environment.js b/app/assets/javascripts/environments/components/environment.js
-index 2cb48dd..9619fd0 100644
+index 2cb48dd..51fddb8 100644
 --- a/app/assets/javascripts/environments/components/environment.js
 +++ b/app/assets/javascripts/environments/components/environment.js
-@@ -150,7 +150,7 @@ module.exports = Vue.component('environment-component', {
+@@ -150,10 +150,10 @@ module.exports = Vue.component('environment-component', {
          <div class="blank-state blank-state-no-icon"
            v-if="!isLoading && state.environments.length === 0">
            <h2 class="blank-state-title js-blank-state-title">
@@ -45,7 +45,11 @@ index 2cb48dd..9619fd0 100644
 +            環境がありません
            </h2>
            <p class="blank-state-text">
-             Environments are places where code gets deployed, such as staging or production.
+-            Environments are places where code gets deployed, such as staging or production.
++            環境は、ステージングや本番などコードがデプロイされる場所です。
+             <br />
+             <a :href="helpPagePath">
+               Read more about environments
 diff --git a/app/assets/javascripts/gfm_auto_complete.js b/app/assets/javascripts/gfm_auto_complete.js
 index 4f7ce1f..86de110 100644
 --- a/app/assets/javascripts/gfm_auto_complete.js

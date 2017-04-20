@@ -74,6 +74,8 @@ translations:
     replace: '${noPipelinesToShow}'
   - pattern: "You don't have any environments right now."
     replace: '${youDontHaveAnyEnvironmentsRightNow}'
+  - pattern: 'Environments are places where code gets deployed, such as staging or production.'
+    replace: '${environmentsArePlacesWhereCodeGetsDeployedSuchAsStagingOrProduction}'
   - name: doubleQuoted
     params:
     - {word: 'Search for a user', key: searchForAUser}

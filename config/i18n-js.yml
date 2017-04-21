@@ -76,6 +76,8 @@ translations:
     replace: '${youDontHaveAnyEnvironmentsRightNow}'
   - pattern: 'Environments are places where code gets deployed, such as staging or production.'
     replace: '${environmentsArePlacesWhereCodeGetsDeployedSuchAsStagingOrProduction}'
+  - pattern: 'Read more about environments'
+    replace: '${readMoreAboutEnvironments}'
   - name: doubleQuoted
     params:
     - {word: 'Search for a user', key: searchForAUser}

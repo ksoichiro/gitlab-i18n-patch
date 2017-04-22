@@ -260,6 +260,7 @@ translations:
     - {word: 'Inline', key: inline}
     - {word: 'Unassigned', key: unassigned}
     - {word: 'Any Label', key: anyLabel}
+    - {word: 'Any Milestone', key: anyMilestone}
   - name: sthCountsDone
     params:
     - {obj: issues, objKey: issue, done: updated, doneKey: update}

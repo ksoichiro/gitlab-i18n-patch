@@ -261,6 +261,7 @@ translations:
     - {word: 'Unassigned', key: unassigned}
     - {word: 'Any Label', key: anyLabel}
     - {word: 'Any Milestone', key: anyMilestone}
+    - {word: 'No Milestone', key: noMilestone}
   - name: sthCountsDone
     params:
     - {obj: issues, objKey: issue, done: updated, doneKey: update}

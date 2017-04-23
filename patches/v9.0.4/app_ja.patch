@@ -1209,7 +1209,7 @@ index aa45ecf..612bae9 100644
    end
  
 diff --git a/app/models/milestone.rb b/app/models/milestone.rb
-index c0deb59..bedf4a5 100644
+index c0deb59..db98585 100644
 --- a/app/models/milestone.rb
 +++ b/app/models/milestone.rb
 @@ -1,9 +1,10 @@
@@ -1220,7 +1220,7 @@ index c0deb59..bedf4a5 100644
    MilestoneStruct = Struct.new(:title, :name, :id)
 -  None = MilestoneStruct.new('No Milestone', 'No Milestone', 0)
 -  Any = MilestoneStruct.new('Any Milestone', '', -1)
-+  None = MilestoneStruct.new('マイルストーンなし', 'No Milestone', 0)
++  None = MilestoneStruct.new('マイルストーンなし', 'マイルストーンなし', 0)
 +  Any = MilestoneStruct.new('すべてのマイルストーン', '', -1)
    Upcoming = MilestoneStruct.new('Upcoming', '#upcoming', -2)
    Started = MilestoneStruct.new('Started', '#started', -3)

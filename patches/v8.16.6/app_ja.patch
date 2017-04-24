@@ -36,6 +36,27 @@ index 201f9fd..1f3ea5a 100644
  
            this.$loading.fadeIn();
  
+diff --git a/app/assets/javascripts/environments/components/environment.js.es6 b/app/assets/javascripts/environments/components/environment.js.es6
+index fea6424..438e490 100644
+--- a/app/assets/javascripts/environments/components/environment.js.es6
++++ b/app/assets/javascripts/environments/components/environment.js.es6
+@@ -155,13 +155,13 @@
+           <div class="blank-state blank-state-no-icon"
+             v-if="!isLoading && state.environments.length === 0">
+             <h2 class="blank-state-title js-blank-state-title">
+-              You don't have any environments right now.
++              環境がありません
+             </h2>
+             <p class="blank-state-text">
+-              Environments are places where code gets deployed, such as staging or production.
++              環境は、ステージングや本番などコードがデプロイされる場所です。
+               <br />
+               <a :href="helpPagePath">
+-                Read more about environments
++                環境についての詳細
+               </a>
+             </p>
+ 
 diff --git a/app/assets/javascripts/gfm_auto_complete.js.es6 b/app/assets/javascripts/gfm_auto_complete.js.es6
 index ff17711..0886d90 100644
 --- a/app/assets/javascripts/gfm_auto_complete.js.es6
@@ -130,6 +151,19 @@ index cec8856..0de5fea 100644
        return this.dropdownContent.html(html);
      };
  
+diff --git a/app/assets/javascripts/users/calendar.js b/app/assets/javascripts/users/calendar.js
+index 578be7c..7f3c2b5 100644
+--- a/app/assets/javascripts/users/calendar.js
++++ b/app/assets/javascripts/users/calendar.js
+@@ -118,7 +118,7 @@
+         return function(stamp) {
+           var contribText, date, dateText;
+           date = new Date(stamp.date);
+-          contribText = 'No contributions';
++          contribText = 'コントリビューションなし';
+           if (stamp.count > 0) {
+             contribText = stamp.count + " contribution" + (stamp.count > 1 ? 's' : '');
+           }
 diff --git a/app/assets/javascripts/users_select.js b/app/assets/javascripts/users_select.js
 index d4b5e03..5e50649 100644
 --- a/app/assets/javascripts/users_select.js
@@ -206,6 +240,32 @@ index d4b5e03..5e50649 100644
          };
          return callback(nullUser);
        } else if (id !== "") {
+diff --git a/app/assets/javascripts/vue_pipelines_index/stage.js.es6 b/app/assets/javascripts/vue_pipelines_index/stage.js.es6
+index 4e85f16..f62b4ea 100644
+--- a/app/assets/javascripts/vue_pipelines_index/stage.js.es6
++++ b/app/assets/javascripts/vue_pipelines_index/stage.js.es6
+@@ -33,7 +33,7 @@
+           .then((response) => {
+             this.builds = JSON.parse(response.body).html;
+           }, () => {
+-            const flash = new Flash('Something went wrong on our end.');
++            const flash = new Flash('サーバで問題が発生しました。');
+             return flash;
+           });
+       },
+diff --git a/app/assets/javascripts/vue_pipelines_index/store.js.es6 b/app/assets/javascripts/vue_pipelines_index/store.js.es6
+index 1982142..17de409 100644
+--- a/app/assets/javascripts/vue_pipelines_index/store.js.es6
++++ b/app/assets/javascripts/vue_pipelines_index/store.js.es6
+@@ -45,7 +45,7 @@
+             this.pageRequest = false;
+           }, () => {
+             this.pageRequest = false;
+-            return new Flash('Something went wrong on our end.');
++            return new Flash('サーバで問題が発生しました。');
+           });
+ 
+       goFetch();
 diff --git a/app/controllers/admin/application_settings_controller.rb b/app/controllers/admin/application_settings_controller.rb
 index 1b4987d..69764e3 100644
 --- a/app/controllers/admin/application_settings_controller.rb
@@ -828,6 +888,24 @@ index a2d21b6..a26f117 100644
    end
  
    def url_for_issue(issue_iid, project = @project, options = {})
+diff --git a/app/helpers/milestones_helper.rb b/app/helpers/milestones_helper.rb
+index 729928c..f928243 100644
+--- a/app/helpers/milestones_helper.rb
++++ b/app/helpers/milestones_helper.rb
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ module MilestonesHelper
+   def milestones_filter_path(opts = {})
+     if @project
+@@ -87,7 +88,7 @@ module MilestonesHelper
+       content = content_tag(:strong, days)
+       content << " #{'day'.pluralize(days)} remaining"
+     elsif milestone.upcoming?
+-      content_tag(:strong, 'Upcoming')
++      content_tag(:strong, 'まもなく期限')
+     elsif milestone.start_date && milestone.start_date.past?
+       days    = milestone.elapsed_days
+       content = content_tag(:strong, days)
 diff --git a/app/helpers/namespaces_helper.rb b/app/helpers/namespaces_helper.rb
 index e0b8dc1..8a36cad 100644
 --- a/app/helpers/namespaces_helper.rb
@@ -1097,6 +1175,24 @@ index 256cbcd..1194b62 100644
      end
    end
  end
+diff --git a/app/models/label.rb b/app/models/label.rb
+index 5b6b9a7..511f592 100644
+--- a/app/models/label.rb
++++ b/app/models/label.rb
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ class Label < ActiveRecord::Base
+   include CacheMarkdownField
+   include Referable
+@@ -7,7 +8,7 @@ class Label < ActiveRecord::Base
+   # Requests that have no label assigned.
+   LabelStruct = Struct.new(:title, :name)
+   None = LabelStruct.new('No Label', 'No Label')
+-  Any = LabelStruct.new('Any Label', '')
++  Any = LabelStruct.new('すべてのラベル', '')
+ 
+   cache_markdown_field :description, pipeline: :single_line
+ 
 diff --git a/app/models/members/group_member.rb b/app/models/members/group_member.rb
 index 204f34f..8376225 100644
 --- a/app/models/members/group_member.rb
@@ -1134,20 +1230,24 @@ index 1025130..8702658 100644
    end
  
 diff --git a/app/models/milestone.rb b/app/models/milestone.rb
-index 7331000..7eae939 100644
+index 7331000..41b4f51 100644
 --- a/app/models/milestone.rb
 +++ b/app/models/milestone.rb
-@@ -1,8 +1,9 @@
+@@ -1,10 +1,11 @@
 +# encoding: utf-8
  class Milestone < ActiveRecord::Base
    # Represents a "No Milestone" state used for filtering Issues and Merge
    # Requests that have no milestone assigned.
    MilestoneStruct = Struct.new(:title, :name, :id)
 -  None = MilestoneStruct.new('No Milestone', 'No Milestone', 0)
-+  None = MilestoneStruct.new('マイルストーンなし', 'No Milestone', 0)
-   Any = MilestoneStruct.new('Any Milestone', '', -1)
-   Upcoming = MilestoneStruct.new('Upcoming', '#upcoming', -2)
+-  Any = MilestoneStruct.new('Any Milestone', '', -1)
+-  Upcoming = MilestoneStruct.new('Upcoming', '#upcoming', -2)
++  None = MilestoneStruct.new('マイルストーンなし', 'マイルストーンなし', 0)
++  Any = MilestoneStruct.new('すべてのマイルストーン', '', -1)
++  Upcoming = MilestoneStruct.new('まもなく期限', '#upcoming', -2)
  
+   include CacheMarkdownField
+   include InternalId
 diff --git a/app/models/project.rb b/app/models/project.rb
 index 63ff651..f42cba3 100644
 --- a/app/models/project.rb
@@ -5092,7 +5192,7 @@ index a8fdbd8..c1af6a0 100644
        - @milestones.each do |milestone|
          = render 'milestone', milestone: milestone
 diff --git a/app/views/groups/milestones/new.html.haml b/app/views/groups/milestones/new.html.haml
-index 63cadfc..826951d 100644
+index 63cadfc..4b379c7 100644
 --- a/app/views/groups/milestones/new.html.haml
 +++ b/app/views/groups/milestones/new.html.haml
 @@ -1,11 +1,11 @@
@@ -5125,7 +5225,7 @@ index 63cadfc..826951d 100644
          .col-sm-10
            = render layout: 'projects/md_preview', locals: { preview_class: "md-preview" } do
 -            = render 'projects/zen', f: f, attr: :description, classes: 'note-textarea', placeholder: 'Write milestone description...'
-+            = render 'projects/zen', f: f, attr: :description, classes: 'note-textarea', placeholder: 'Write マイルストーン description...'
++            = render 'projects/zen', f: f, attr: :description, classes: 'note-textarea', placeholder: 'マイルストーンの説明を記述...'
              .clearfix
              .error-alert
        .form-group
@@ -6402,16 +6502,16 @@ index 882fdf1..f4a1c5f 100644
 +    = link_to "招待を承認", accept_invite_url(@token), method: :post, class: "btn btn-success"
      = link_to "Decline", decline_invite_url(@token), method: :post, class: "btn btn-danger prepend-left-10"
 diff --git a/app/views/layouts/_search.html.haml b/app/views/layouts/_search.html.haml
-index 0e64ebd..09c8739 100644
+index 0e64ebd..e1224ee 100644
 --- a/app/views/layouts/_search.html.haml
 +++ b/app/views/layouts/_search.html.haml
 @@ -1,7 +1,7 @@
  - if controller.controller_path =~ /^groups/ && @group.persisted?
 -  - label = 'This group'
-+  - label = 'This グループ'
++  - label = 'このグループ'
  - if controller.controller_path =~ /^projects/ && @project.persisted?
 -  - label = 'This project'
-+  - label = 'This プロジェクト'
++  - label = 'このプロジェクト'
  - if @group && @group.persisted? && @group.path
    - group_data_attrs = { group_path: j(@group.path), name: @group.name, issues_path: issues_group_path(j(@group.path)), mr_path: merge_requests_group_path(j(@group.path)) }
  - if @project && @project.persisted?
@@ -11337,7 +11437,7 @@ index c296422..bcd1256 100644
 +      削除して
 +    マージリクエストをマージできるようにします。
 diff --git a/app/views/projects/milestones/_form.html.haml b/app/views/projects/milestones/_form.html.haml
-index 0f4a850..5e1eaf2 100644
+index 0f4a850..eb92795 100644
 --- a/app/views/projects/milestones/_form.html.haml
 +++ b/app/views/projects/milestones/_form.html.haml
 @@ -3,14 +3,14 @@
@@ -11354,7 +11454,7 @@ index 0f4a850..5e1eaf2 100644
          .col-sm-10
            = render layout: 'projects/md_preview', locals: { preview_class: "md-preview" } do
 -            = render 'projects/zen', f: f, attr: :description, classes: 'note-textarea', placeholder: 'Write milestone description...'
-+            = render 'projects/zen', f: f, attr: :description, classes: 'note-textarea', placeholder: 'Write マイルストーン description...'
++            = render 'projects/zen', f: f, attr: :description, classes: 'note-textarea', placeholder: 'マイルストーンの説明を記述...'
              = render 'projects/notes/hints'
            .clearfix
            .error-alert
@@ -13674,6 +13774,19 @@ index 9429597..47b6305 100644
  = f.file_field :avatar, class: 'js-group-avatar-input hidden'
 -.light The maximum file size allowed is 200KB.
 +.light ファイルの最大サイズは200KBです
+diff --git a/app/views/shared/_clone_panel.html.haml b/app/views/shared/_clone_panel.html.haml
+index 0368438..13c0e45 100644
+--- a/app/views/shared/_clone_panel.html.haml
++++ b/app/views/shared/_clone_panel.html.haml
+@@ -19,7 +19,7 @@
+ 
+   = text_field_tag :project_clone, default_url_to_repo(project), class: "js-select-on-focus form-control", readonly: true
+   .input-group-btn
+-    = clipboard_button(clipboard_target: '#project_clone', title: "Copy URL to clipboard")
++    = clipboard_button(clipboard_target: '#project_clone', title: "URLをクリップボードにコピー")
+ 
+ :javascript
+   $('ul.clone-options-dropdown a').on('click',function(e){
 diff --git a/app/views/shared/_commit_message_container.html.haml b/app/views/shared/_commit_message_container.html.haml
 index c196bc0..56925b8 100644
 --- a/app/views/shared/_commit_message_container.html.haml
@@ -14123,7 +14236,7 @@ index 427595c..4f1c24b 100644
 -  .nothing-here-block No groups found
 +  .nothing-here-block グループがありません
 diff --git a/app/views/shared/issuable/_filter.html.haml b/app/views/shared/issuable/_filter.html.haml
-index b42eaab..1f7efc4 100644
+index b42eaab..6d40a68 100644
 --- a/app/views/shared/issuable/_filter.html.haml
 +++ b/app/views/shared/issuable/_filter.html.haml
 @@ -14,14 +14,14 @@
@@ -14141,7 +14254,7 @@ index b42eaab..1f7efc4 100644
 -          = dropdown_tag(user_dropdown_label(params[:assignee_id], "Assignee"), options: { toggle_class: "js-user-search js-filter-submit js-assignee-search", title: "Filter by assignee", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable dropdown-menu-assignee js-filter-submit",
 -            placeholder: "Search assignee", data: { any_user: "Any Assignee", first_user: current_user.try(:username), null_user: true, current_user: true, project_id: @project.try(:id), selected: params[:assignee_id], field_name: "assignee_id", default_label: "Assignee" } })
 +          = dropdown_tag(user_dropdown_label(params[:assignee_id], "担当者"), options: { toggle_class: "js-user-search js-filter-submit js-assignee-search", title: "担当者で絞り込み", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable dropdown-menu-assignee js-filter-submit",
-+            placeholder: "Search 担当者", data: { any_user: "Any 担当者", first_user: current_user.try(:username), null_user: true, current_user: true, project_id: @project.try(:id), selected: params[:assignee_id], field_name: "assignee_id", default_label: "Assignee" } })
++            placeholder: "担当者を検索", data: { any_user: "Any 担当者", first_user: current_user.try(:username), null_user: true, current_user: true, project_id: @project.try(:id), selected: params[:assignee_id], field_name: "assignee_id", default_label: "Assignee" } })
  
          .filter-item.inline.milestone-filter
            = render "shared/issuable/milestone_dropdown", selected: finder.milestones.try(:first), name: :milestone_title, show_any: true, show_upcoming: true
@@ -14415,9 +14528,18 @@ index 171da89..cad2475 100644
      - participants.each do |participant|
        .participants-author.js-participants-author
 diff --git a/app/views/shared/issuable/_search_bar.html.haml b/app/views/shared/issuable/_search_bar.html.haml
-index ee9d87d..647e06d 100644
+index ee9d87d..5f83751 100644
 --- a/app/views/shared/issuable/_search_bar.html.haml
 +++ b/app/views/shared/issuable/_search_bar.html.haml
+@@ -11,7 +11,7 @@
+             class: "check_all_issues left"
+       .issues-other-filters.filtered-search-container
+         .filtered-search-input-container
+-          %input.form-control.filtered-search{ placeholder: 'Search or filter results...', 'data-id' => 'filtered-search', 'data-project-id' => @project.id, 'data-username-params' => @users.to_json(only: [:id, :username]), 'data-base-endpoint' => namespace_project_path(@project.namespace, @project) }
++          %input.form-control.filtered-search{ placeholder: '検索または結果をフィルタ...', 'data-id' => 'filtered-search', 'data-project-id' => @project.id, 'data-username-params' => @users.to_json(only: [:id, :username]), 'data-base-endpoint' => namespace_project_path(@project.namespace, @project) }
+           = icon('filter')
+           %button.clear-search.hidden{ type: 'button' }
+             = icon('times')
 @@ -46,7 +46,7 @@
              %ul{ 'data-dropdown' => true }
                %li.filter-dropdown-item{ 'data-value' => 'none' }
@@ -14672,7 +14794,7 @@ index dbace9c..cfaeed5 100644
        = render 'projects/notes/hints', supports_slash_commands: !issuable.persisted?
        .clearfix
 diff --git a/app/views/shared/issuable/form/_metadata.html.haml b/app/views/shared/issuable/form/_metadata.html.haml
-index a470852..cce8f02 100644
+index a470852..d6b6a6e 100644
 --- a/app/views/shared/issuable/form/_metadata.html.haml
 +++ b/app/views/shared/issuable/form/_metadata.html.haml
 @@ -10,29 +10,29 @@
@@ -14688,7 +14810,7 @@ index a470852..cce8f02 100644
 -          = dropdown_tag(user_dropdown_label(issuable.assignee_id, "Assignee"), options: { toggle_class: "js-dropdown-keep-input js-user-search js-issuable-form-dropdown js-assignee-search", title: "Select assignee", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable dropdown-menu-assignee js-filter-submit",
 -            placeholder: "Search assignee", data: { first_user: current_user.try(:username), null_user: true, current_user: true, project_id: issuable.project.try(:id), selected: issuable.assignee_id, field_name: "#{issuable.class.model_name.param_key}[assignee_id]", default_label: "Assignee"} })
 +          = dropdown_tag(user_dropdown_label(issuable.assignee_id, "担当者"), options: { toggle_class: "js-dropdown-keep-input js-user-search js-issuable-form-dropdown js-assignee-search", title: "担当者を選択", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable dropdown-menu-assignee js-filter-submit",
-+            placeholder: "Search 担当者", data: { first_user: current_user.try(:username), null_user: true, current_user: true, project_id: issuable.project.try(:id), selected: issuable.assignee_id, field_name: "#{issuable.class.model_name.param_key}[assignee_id]", default_label: "担当者"} })
++            placeholder: "担当者を検索", data: { first_user: current_user.try(:username), null_user: true, current_user: true, project_id: issuable.project.try(:id), selected: issuable.assignee_id, field_name: "#{issuable.class.model_name.param_key}[assignee_id]", default_label: "担当者"} })
      .form-group.issue-milestone
 -      = form.label :milestone_id, "Milestone", class: "control-label #{"col-lg-4" if has_due_date}"
 +      = form.label :milestone_id, "マイルストーン", class: "control-label #{"col-lg-4" if has_due_date}"
@@ -14845,26 +14967,31 @@ index 659d4c9..40151b6 100644
        - else
          %span.member-access-text= member.human_access
 diff --git a/app/views/shared/milestones/_form_dates.html.haml b/app/views/shared/milestones/_form_dates.html.haml
-index 748b10a..b7e35b5 100644
+index 748b10a..c2c241f 100644
 --- a/app/views/shared/milestones/_form_dates.html.haml
 +++ b/app/views/shared/milestones/_form_dates.html.haml
-@@ -2,13 +2,13 @@
+@@ -1,15 +1,15 @@
+ .col-md-6
    .form-group
-     = f.label :start_date, "Start Date", class: "control-label"
+-    = f.label :start_date, "Start Date", class: "control-label"
++    = f.label :start_date, "開始日", class: "control-label"
      .col-sm-10
 -      = f.text_field :start_date, class: "datepicker form-control", placeholder: "Select start date"
-+      = f.text_field :start_date, class: "datepicker form-control", placeholder: "start dateを選択"
-       %a.inline.prepend-top-5.js-clear-start-date{ href: "#" } Clear start date
+-      %a.inline.prepend-top-5.js-clear-start-date{ href: "#" } Clear start date
++      = f.text_field :start_date, class: "datepicker form-control", placeholder: "開始日を選択"
++      %a.inline.prepend-top-5.js-clear-start-date{ href: "#" } 開始日をクリア
  .col-md-6
    .form-group
 -    = f.label :due_date, "Due Date", class: "control-label"
 +    = f.label :due_date, "期限", class: "control-label"
      .col-sm-10
 -      = f.text_field :due_date, class: "datepicker form-control", placeholder: "Select due date"
+-      %a.inline.prepend-top-5.js-clear-due-date{ href: "#" } Clear due date
 +      = f.text_field :due_date, class: "datepicker form-control", placeholder: "期限を選択"
-       %a.inline.prepend-top-5.js-clear-due-date{ href: "#" } Clear due date
++      %a.inline.prepend-top-5.js-clear-due-date{ href: "#" } 期限をクリア
  
  :javascript
+   new gl.DueDateSelectors();
 diff --git a/app/views/shared/milestones/_issues_tab.html.haml b/app/views/shared/milestones/_issues_tab.html.haml
 index a8db7f8..8ad5a0b 100644
 --- a/app/views/shared/milestones/_issues_tab.html.haml

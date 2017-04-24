@@ -1185,6 +1185,24 @@ index 3a83b08..c194174 100644
      end
    end
  end
+diff --git a/app/models/label.rb b/app/models/label.rb
+index 07a1db4..03bbeab 100644
+--- a/app/models/label.rb
++++ b/app/models/label.rb
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ # == Schema Information
+ #
+ # Table name: labels
+@@ -18,7 +19,7 @@ class Label < ActiveRecord::Base
+   # Requests that have no label assigned.
+   LabelStruct = Struct.new(:title, :name)
+   None = LabelStruct.new('No Label', 'No Label')
+-  Any = LabelStruct.new('Any Label', '')
++  Any = LabelStruct.new('すべてのラベル', '')
+ 
+   DEFAULT_COLOR = '#428BCA'
+ 
 diff --git a/app/models/merge_request.rb b/app/models/merge_request.rb
 index 1543ef3..81e9c46 100644
 --- a/app/models/merge_request.rb
@@ -1204,7 +1222,7 @@ index 1543ef3..81e9c46 100644
    end
  
 diff --git a/app/models/milestone.rb b/app/models/milestone.rb
-index cbe65d7..ee7a10b 100644
+index cbe65d7..541e5ee 100644
 --- a/app/models/milestone.rb
 +++ b/app/models/milestone.rb
 @@ -1,3 +1,4 @@
@@ -1212,15 +1230,17 @@ index cbe65d7..ee7a10b 100644
  # == Schema Information
  #
  # Table name: milestones
-@@ -17,7 +18,7 @@ class Milestone < ActiveRecord::Base
+@@ -17,8 +18,8 @@ class Milestone < ActiveRecord::Base
    # Represents a "No Milestone" state used for filtering Issues and Merge
    # Requests that have no milestone assigned.
    MilestoneStruct = Struct.new(:title, :name, :id)
 -  None = MilestoneStruct.new('No Milestone', 'No Milestone', 0)
-+  None = MilestoneStruct.new('マイルストーンなし', 'No Milestone', 0)
-   Any = MilestoneStruct.new('Any Milestone', '', -1)
+-  Any = MilestoneStruct.new('Any Milestone', '', -1)
++  None = MilestoneStruct.new('マイルストーンなし', 'マイルストーンなし', 0)
++  Any = MilestoneStruct.new('すべてのマイルストーン', '', -1)
  
    include InternalId
+   include Sortable
 diff --git a/app/models/project.rb b/app/models/project.rb
 index 95ad88c..a767c06 100644
 --- a/app/models/project.rb

@@ -1,3 +1,16 @@
+diff --git a/app/assets/javascripts/commit/pipelines/pipelines_table.js b/app/assets/javascripts/commit/pipelines/pipelines_table.js
+index 631ed34..90eab93 100644
+--- a/app/assets/javascripts/commit/pipelines/pipelines_table.js
++++ b/app/assets/javascripts/commit/pipelines/pipelines_table.js
+@@ -90,7 +90,7 @@ const PipelineStore = require('./pipelines_store');
+         <div class="blank-state blank-state-no-icon"
+           v-if="!isLoading && state.pipelines.length === 0">
+           <h2 class="blank-state-title js-blank-state-title">
+-            No pipelines to show
++            パイプラインがありません
+           </h2>
+         </div>
+ 
 diff --git a/app/assets/javascripts/due_date_select.js b/app/assets/javascripts/due_date_select.js
 index b92694c..68dc66a 100644
 --- a/app/assets/javascripts/due_date_select.js
@@ -19,6 +32,27 @@ index b92694c..68dc66a 100644
 +          const displayedDateStyle = this.displayedDate !== '期限なし' ? 'bold' : 'no-value';
  
            this.$loading.removeClass('hidden').fadeIn();
+ 
+diff --git a/app/assets/javascripts/environments/components/environment.js b/app/assets/javascripts/environments/components/environment.js
+index 2cb48dd..04993f8 100644
+--- a/app/assets/javascripts/environments/components/environment.js
++++ b/app/assets/javascripts/environments/components/environment.js
+@@ -150,13 +150,13 @@ module.exports = Vue.component('environment-component', {
+         <div class="blank-state blank-state-no-icon"
+           v-if="!isLoading && state.environments.length === 0">
+           <h2 class="blank-state-title js-blank-state-title">
+-            You don't have any environments right now.
++            環境がありません
+           </h2>
+           <p class="blank-state-text">
+-            Environments are places where code gets deployed, such as staging or production.
++            環境は、ステージングや本番などコードがデプロイされる場所です。
+             <br />
+             <a :href="helpPagePath">
+-              Read more about environments
++              環境についての詳細
+             </a>
+           </p>
  
 diff --git a/app/assets/javascripts/gfm_auto_complete.js b/app/assets/javascripts/gfm_auto_complete.js
 index 4f7ce1f..86de110 100644
@@ -130,6 +164,19 @@ index 6fd5345..1146f1f 100644
        return this.dropdownContent.html(html);
      }
  
+diff --git a/app/assets/javascripts/users/calendar.js b/app/assets/javascripts/users/calendar.js
+index 754d448..c55600f 100644
+--- a/app/assets/javascripts/users/calendar.js
++++ b/app/assets/javascripts/users/calendar.js
+@@ -118,7 +118,7 @@ import d3 from 'd3';
+         return function(stamp) {
+           var contribText, date, dateText;
+           date = new Date(stamp.date);
+-          contribText = 'No contributions';
++          contribText = 'コントリビューションなし';
+           if (stamp.count > 0) {
+             contribText = stamp.count + " contribution" + (stamp.count > 1 ? 's' : '');
+           }
 diff --git a/app/assets/javascripts/users_select.js b/app/assets/javascripts/users_select.js
 index 910af8b..251c038 100644
 --- a/app/assets/javascripts/users_select.js
@@ -206,6 +253,32 @@ index 910af8b..251c038 100644
          };
          return callback(nullUser);
        } else if (id !== "") {
+diff --git a/app/assets/javascripts/vue_pipelines_index/pipelines.js b/app/assets/javascripts/vue_pipelines_index/pipelines.js
+index 601ef41..d6a50b8 100644
+--- a/app/assets/javascripts/vue_pipelines_index/pipelines.js
++++ b/app/assets/javascripts/vue_pipelines_index/pipelines.js
+@@ -65,7 +65,7 @@ const CommitPipelinesStoreWithTimeAgo = require('../commit/pipelines/pipelines_s
+         <div class="blank-state blank-state-no-icon"
+           v-if="!pageRequest && pipelines.length === 0">
+           <h2 class="blank-state-title js-blank-state-title">
+-            No pipelines to show
++            パイプラインがありません
+           </h2>
+         </div>
+ 
+diff --git a/app/assets/javascripts/vue_pipelines_index/stage.js b/app/assets/javascripts/vue_pipelines_index/stage.js
+index f67ebd6..4361c8e 100644
+--- a/app/assets/javascripts/vue_pipelines_index/stage.js
++++ b/app/assets/javascripts/vue_pipelines_index/stage.js
+@@ -55,7 +55,7 @@ import warningSvg from 'icons/_icon_status_warning_borderless.svg';
+           .then((response) => {
+             this.builds = JSON.parse(response.body).html;
+           }, () => {
+-            const flash = new Flash('Something went wrong on our end.');
++            const flash = new Flash('サーバで問題が発生しました。');
+             return flash;
+           });
+       },
 diff --git a/app/controllers/admin/application_settings_controller.rb b/app/controllers/admin/application_settings_controller.rb
 index 8d831ff..edd1b84 100644
 --- a/app/controllers/admin/application_settings_controller.rb
@@ -830,6 +903,24 @@ index 4bdf07f..1c0561c 100644
    end
  
    def url_for_issue(issue_iid, project = @project, options = {})
+diff --git a/app/helpers/milestones_helper.rb b/app/helpers/milestones_helper.rb
+index 29c074f..8c1385a 100644
+--- a/app/helpers/milestones_helper.rb
++++ b/app/helpers/milestones_helper.rb
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ module MilestonesHelper
+   def milestones_filter_path(opts = {})
+     if @project
+@@ -88,7 +89,7 @@ module MilestonesHelper
+       content << " #{'day'.pluralize(days)} remaining"
+       content.html_safe
+     elsif milestone.upcoming?
+-      content_tag(:strong, 'Upcoming')
++      content_tag(:strong, 'まもなく期限')
+     elsif milestone.start_date && milestone.start_date.past?
+       days    = milestone.elapsed_days
+       content = content_tag(:strong, days)
 diff --git a/app/helpers/namespaces_helper.rb b/app/helpers/namespaces_helper.rb
 index 2e3a15b..2c3b0d6 100644
 --- a/app/helpers/namespaces_helper.rb
@@ -1154,20 +1245,26 @@ index aa45ecf..612bae9 100644
    end
  
 diff --git a/app/models/milestone.rb b/app/models/milestone.rb
-index c0deb59..0a15f8a 100644
+index c0deb59..8b85ad8 100644
 --- a/app/models/milestone.rb
 +++ b/app/models/milestone.rb
-@@ -1,8 +1,9 @@
+@@ -1,11 +1,12 @@
 +# encoding: utf-8
  class Milestone < ActiveRecord::Base
    # Represents a "No Milestone" state used for filtering Issues and Merge
    # Requests that have no milestone assigned.
    MilestoneStruct = Struct.new(:title, :name, :id)
 -  None = MilestoneStruct.new('No Milestone', 'No Milestone', 0)
-+  None = MilestoneStruct.new('マイルストーンなし', 'No Milestone', 0)
-   Any = MilestoneStruct.new('Any Milestone', '', -1)
-   Upcoming = MilestoneStruct.new('Upcoming', '#upcoming', -2)
-   Started = MilestoneStruct.new('Started', '#started', -3)
+-  Any = MilestoneStruct.new('Any Milestone', '', -1)
+-  Upcoming = MilestoneStruct.new('Upcoming', '#upcoming', -2)
+-  Started = MilestoneStruct.new('Started', '#started', -3)
++  None = MilestoneStruct.new('マイルストーンなし', 'マイルストーンなし', 0)
++  Any = MilestoneStruct.new('すべてのマイルストーン', '', -1)
++  Upcoming = MilestoneStruct.new('まもなく期限', '#upcoming', -2)
++  Started = MilestoneStruct.new('開始している', '#started', -3)
+ 
+   include CacheMarkdownField
+   include InternalId
 diff --git a/app/models/project.rb b/app/models/project.rb
 index f1bba56..ba24bd0 100644
 --- a/app/models/project.rb
@@ -14694,9 +14791,18 @@ index 171da89..cad2475 100644
      - participants.each do |participant|
        .participants-author.js-participants-author
 diff --git a/app/views/shared/issuable/_search_bar.html.haml b/app/views/shared/issuable/_search_bar.html.haml
-index 204b7b0..c132294 100644
+index 204b7b0..203b0d1 100644
 --- a/app/views/shared/issuable/_search_bar.html.haml
 +++ b/app/views/shared/issuable/_search_bar.html.haml
+@@ -14,7 +14,7 @@
+           .scroll-container
+             %ul.tokens-container.list-unstyled
+               %li.input-token
+-                %input.form-control.filtered-search{ placeholder: 'Search or filter results...', 'data-id' => 'filtered-search', 'data-project-id' => @project.id, 'data-username-params' => @users.to_json(only: [:id, :username]), 'data-base-endpoint' => namespace_project_path(@project.namespace, @project) }
++                %input.form-control.filtered-search{ placeholder: '検索または結果をフィルタ...', 'data-id' => 'filtered-search', 'data-project-id' => @project.id, 'data-username-params' => @users.to_json(only: [:id, :username]), 'data-base-endpoint' => namespace_project_path(@project.namespace, @project) }
+             = icon('filter')
+             %button.clear-search.hidden{ type: 'button' }
+               = icon('times')
 @@ -49,7 +49,7 @@
              %ul{ 'data-dropdown' => true }
                %li.filter-dropdown-item{ 'data-value' => 'none' }

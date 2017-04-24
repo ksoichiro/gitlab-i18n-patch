@@ -1262,6 +1262,24 @@ index 256cbcd..1194b62 100644
      end
    end
  end
+diff --git a/app/models/label.rb b/app/models/label.rb
+index f7ffc0b..a52cce8 100644
+--- a/app/models/label.rb
++++ b/app/models/label.rb
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ # == Schema Information
+ #
+ # Table name: labels
+@@ -20,7 +21,7 @@ class Label < ActiveRecord::Base
+   # Requests that have no label assigned.
+   LabelStruct = Struct.new(:title, :name)
+   None = LabelStruct.new('No Label', 'No Label')
+-  Any = LabelStruct.new('Any Label', '')
++  Any = LabelStruct.new('すべてのラベル', '')
+ 
+   DEFAULT_COLOR = '#428BCA'
+ 
 diff --git a/app/models/merge_request.rb b/app/models/merge_request.rb
 index ef48207..2f9b04d 100644
 --- a/app/models/merge_request.rb
@@ -1281,7 +1299,7 @@ index ef48207..2f9b04d 100644
    end
  
 diff --git a/app/models/milestone.rb b/app/models/milestone.rb
-index de7183b..c9bd620 100644
+index de7183b..570bb5e 100644
 --- a/app/models/milestone.rb
 +++ b/app/models/milestone.rb
 @@ -1,3 +1,4 @@
@@ -1289,15 +1307,19 @@ index de7183b..c9bd620 100644
  # == Schema Information
  #
  # Table name: milestones
-@@ -17,7 +18,7 @@ class Milestone < ActiveRecord::Base
+@@ -17,9 +18,9 @@ class Milestone < ActiveRecord::Base
    # Represents a "No Milestone" state used for filtering Issues and Merge
    # Requests that have no milestone assigned.
    MilestoneStruct = Struct.new(:title, :name, :id)
 -  None = MilestoneStruct.new('No Milestone', 'No Milestone', 0)
-+  None = MilestoneStruct.new('マイルストーンなし', 'No Milestone', 0)
-   Any = MilestoneStruct.new('Any Milestone', '', -1)
-   Upcoming = MilestoneStruct.new('Upcoming', '#upcoming', -2)
+-  Any = MilestoneStruct.new('Any Milestone', '', -1)
+-  Upcoming = MilestoneStruct.new('Upcoming', '#upcoming', -2)
++  None = MilestoneStruct.new('マイルストーンなし', 'マイルストーンなし', 0)
++  Any = MilestoneStruct.new('すべてのマイルストーン', '', -1)
++  Upcoming = MilestoneStruct.new('まもなく期限', '#upcoming', -2)
  
+   include InternalId
+   include Sortable
 diff --git a/app/models/project.rb b/app/models/project.rb
 index 9c8246e..f4d26bf 100644
 --- a/app/models/project.rb
@@ -12700,7 +12722,7 @@ index 1aa7ed1..2ea101d 100644
 -  %h3 No groups found
 +  %h3 グループがありません
 diff --git a/app/views/shared/issuable/_filter.html.haml b/app/views/shared/issuable/_filter.html.haml
-index ac20f7d..5896530 100644
+index ac20f7d..a6723c1 100644
 --- a/app/views/shared/issuable/_filter.html.haml
 +++ b/app/views/shared/issuable/_filter.html.haml
 @@ -9,14 +9,14 @@
@@ -12718,7 +12740,7 @@ index ac20f7d..5896530 100644
 -          = dropdown_tag(user_dropdown_label(params[:assignee_id], "Assignee"), options: { toggle_class: "js-user-search js-filter-submit js-assignee-search", title: "Filter by assignee", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable dropdown-menu-assignee",
 -            placeholder: "Search assignee", data: { any_user: "Any Assignee", first_user: (current_user.username if current_user), null_user: true, current_user: true, project_id: (@project.id if @project), selected: params[:assignee_id], field_name: "assignee_id", default_label: "Assignee" } })
 +          = dropdown_tag(user_dropdown_label(params[:assignee_id], "担当者"), options: { toggle_class: "js-user-search js-filter-submit js-assignee-search", title: "担当者で絞り込み", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable dropdown-menu-assignee",
-+            placeholder: "Search 担当者", data: { any_user: "Any 担当者", first_user: (current_user.username if current_user), null_user: true, current_user: true, project_id: (@project.id if @project), selected: params[:assignee_id], field_name: "assignee_id", default_label: "Assignee" } })
++            placeholder: "担当者を検索", data: { any_user: "Any 担当者", first_user: (current_user.username if current_user), null_user: true, current_user: true, project_id: (@project.id if @project), selected: params[:assignee_id], field_name: "assignee_id", default_label: "Assignee" } })
  
          .filter-item.inline.milestone-filter
            = render "shared/issuable/milestone_dropdown"

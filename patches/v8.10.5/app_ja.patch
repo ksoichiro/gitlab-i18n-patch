@@ -113,8 +113,21 @@ index 2c83bc0..319d1e4 100644
              </ul>"
      @dropdownContent.html(html)
  
+diff --git a/app/assets/javascripts/users/calendar.js.coffee b/app/assets/javascripts/users/calendar.js.coffee
+index c49ba51..b0bbc0a 100644
+--- a/app/assets/javascripts/users/calendar.js.coffee
++++ b/app/assets/javascripts/users/calendar.js.coffee
+@@ -88,7 +88,7 @@ class @Calendar
+       .attr 'height', @daySize
+       .attr 'title', (stamp) =>
+         date = new Date(stamp.date)
+-        contribText = 'No contributions'
++        contribText = 'コントリビューションなし'
+ 
+         if stamp.count > 0
+           contribText = "#{stamp.count} contribution#{if stamp.count > 1 then 's' else ''}"
 diff --git a/app/assets/javascripts/users_select.js.coffee b/app/assets/javascripts/users_select.js.coffee
-index 344be81..a0b98e7 100644
+index 344be81..bec32da 100644
 --- a/app/assets/javascripts/users_select.js.coffee
 +++ b/app/assets/javascripts/users_select.js.coffee
 @@ -52,7 +52,7 @@ class @UsersSelect
@@ -126,6 +139,18 @@ index 344be81..a0b98e7 100644
                username: ''
                avatar: ''
            $value.html(assigneeTemplate(user))
+@@ -87,9 +87,9 @@ class @UsersSelect
+         </a>
+           <% } else { %>
+         <span class="no-value assign-yourself">
+-          No assignee -
++          担当なし -
+           <a href="#" class="js-assign-yourself">
+-            assign yourself
++            自分に割り当てる
+           </a>
+         </span>
+           <% } %>'
 @@ -115,14 +115,14 @@ class @UsersSelect
                  showDivider += 1
                  users.unshift(
@@ -1089,6 +1114,24 @@ index 256cbcd..1194b62 100644
      end
    end
  end
+diff --git a/app/models/label.rb b/app/models/label.rb
+index 35e6780..6d4d5d8 100644
+--- a/app/models/label.rb
++++ b/app/models/label.rb
+@@ -1,3 +1,4 @@
++# encoding: utf-8
+ class Label < ActiveRecord::Base
+   include Referable
+   include Subscribable
+@@ -6,7 +7,7 @@ class Label < ActiveRecord::Base
+   # Requests that have no label assigned.
+   LabelStruct = Struct.new(:title, :name)
+   None = LabelStruct.new('No Label', 'No Label')
+-  Any = LabelStruct.new('Any Label', '')
++  Any = LabelStruct.new('すべてのラベル', '')
+ 
+   DEFAULT_COLOR = '#428BCA'
+ 
 diff --git a/app/models/members/group_member.rb b/app/models/members/group_member.rb
 index 2f13d33..f80be7c 100644
 --- a/app/models/members/group_member.rb
@@ -1126,20 +1169,24 @@ index f1b9c1d..ff15b20 100644
    end
  
 diff --git a/app/models/milestone.rb b/app/models/milestone.rb
-index 2bd7f19..36983f8 100644
+index 2bd7f19..b8fcc5e 100644
 --- a/app/models/milestone.rb
 +++ b/app/models/milestone.rb
-@@ -1,8 +1,9 @@
+@@ -1,10 +1,11 @@
 +# encoding: utf-8
  class Milestone < ActiveRecord::Base
    # Represents a "No Milestone" state used for filtering Issues and Merge
    # Requests that have no milestone assigned.
    MilestoneStruct = Struct.new(:title, :name, :id)
 -  None = MilestoneStruct.new('No Milestone', 'No Milestone', 0)
-+  None = MilestoneStruct.new('マイルストーンなし', 'No Milestone', 0)
-   Any = MilestoneStruct.new('Any Milestone', '', -1)
-   Upcoming = MilestoneStruct.new('Upcoming', '#upcoming', -2)
+-  Any = MilestoneStruct.new('Any Milestone', '', -1)
+-  Upcoming = MilestoneStruct.new('Upcoming', '#upcoming', -2)
++  None = MilestoneStruct.new('マイルストーンなし', 'マイルストーンなし', 0)
++  Any = MilestoneStruct.new('すべてのマイルストーン', '', -1)
++  Upcoming = MilestoneStruct.new('まもなく期限', '#upcoming', -2)
  
+   include InternalId
+   include Sortable
 diff --git a/app/models/project.rb b/app/models/project.rb
 index c5ca58b..7709253 100644
 --- a/app/models/project.rb
@@ -5052,7 +5099,7 @@ index a8fdbd8..c1af6a0 100644
        - @milestones.each do |milestone|
          = render 'milestone', milestone: milestone
 diff --git a/app/views/groups/milestones/new.html.haml b/app/views/groups/milestones/new.html.haml
-index ca6c432..582d656 100644
+index ca6c432..21eae47 100644
 --- a/app/views/groups/milestones/new.html.haml
 +++ b/app/views/groups/milestones/new.html.haml
 @@ -1,11 +1,11 @@
@@ -5085,7 +5132,7 @@ index ca6c432..582d656 100644
          .col-sm-10
            = render layout: 'projects/md_preview', locals: { preview_class: "md-preview" } do
 -            = render 'projects/zen', f: f, attr: :description, classes: 'note-textarea', placeholder: 'Write milestone description...'
-+            = render 'projects/zen', f: f, attr: :description, classes: 'note-textarea', placeholder: 'Write マイルストーン description...'
++            = render 'projects/zen', f: f, attr: :description, classes: 'note-textarea', placeholder: 'マイルストーンの説明を記述...'
              .clearfix
              .error-alert
        .form-group
@@ -6347,16 +6394,16 @@ index 2fd4859..ef409f5 100644
 +    = link_to "招待を承認", accept_invite_url(@token), method: :post, class: "btn btn-success"
      = link_to "Decline", decline_invite_url(@token), method: :post, class: "btn btn-danger prepend-left-10"
 diff --git a/app/views/layouts/_search.html.haml b/app/views/layouts/_search.html.haml
-index f7580f0..98e4bd7 100644
+index f7580f0..8fe6ad0 100644
 --- a/app/views/layouts/_search.html.haml
 +++ b/app/views/layouts/_search.html.haml
 @@ -1,7 +1,7 @@
  - if controller.controller_path =~ /^groups/ && @group.persisted?
 -  - label = 'This group'
-+  - label = 'This グループ'
++  - label = 'このグループ'
  - if controller.controller_path =~ /^projects/ && @project.persisted?
 -  - label = 'This project'
-+  - label = 'This プロジェクト'
++  - label = 'このプロジェクト'
  
  .search.search-form{class: "#{'has-location-badge' if label.present?}"}
    = form_tag search_path, method: :get, class: 'navbar-form' do |f|
@@ -10632,7 +10679,7 @@ index c296422..bcd1256 100644
 +      削除して
 +    マージリクエストをマージできるようにします。
 diff --git a/app/views/projects/milestones/_form.html.haml b/app/views/projects/milestones/_form.html.haml
-index cbf1ba0..6337988 100644
+index cbf1ba0..8751cb8 100644
 --- a/app/views/projects/milestones/_form.html.haml
 +++ b/app/views/projects/milestones/_form.html.haml
 @@ -3,28 +3,28 @@
@@ -10649,7 +10696,7 @@ index cbf1ba0..6337988 100644
          .col-sm-10
            = render layout: 'projects/md_preview', locals: { preview_class: "md-preview" } do
 -            = render 'projects/zen', f: f, attr: :description, classes: 'note-textarea', placeholder: 'Write milestone description...'
-+            = render 'projects/zen', f: f, attr: :description, classes: 'note-textarea', placeholder: 'Write マイルストーン description...'
++            = render 'projects/zen', f: f, attr: :description, classes: 'note-textarea', placeholder: 'マイルストーンの説明を記述...'
              = render 'projects/notes/hints'
            .clearfix
            .error-alert
@@ -10659,8 +10706,9 @@ index cbf1ba0..6337988 100644
 +        = f.label :due_date, "期限", class: "control-label"
          .col-sm-10
 -          = f.text_field :due_date, class: "datepicker form-control", placeholder: "Select due date"
+-          %a.inline.prepend-top-5.js-clear-due-date{ href: "#" } Clear due date
 +          = f.text_field :due_date, class: "datepicker form-control", placeholder: "期限を選択"
-           %a.inline.prepend-top-5.js-clear-due-date{ href: "#" } Clear due date
++          %a.inline.prepend-top-5.js-clear-due-date{ href: "#" } 期限をクリア
  
    .form-actions
      - if @milestone.new_record?
@@ -13136,7 +13184,7 @@ index 427595c..4f1c24b 100644
 -  .nothing-here-block No groups found
 +  .nothing-here-block グループがありません
 diff --git a/app/views/shared/issuable/_filter.html.haml b/app/views/shared/issuable/_filter.html.haml
-index 0b7fa8c..5906bc6 100644
+index 0b7fa8c..6a33944 100644
 --- a/app/views/shared/issuable/_filter.html.haml
 +++ b/app/views/shared/issuable/_filter.html.haml
 @@ -11,14 +11,14 @@
@@ -13154,7 +13202,7 @@ index 0b7fa8c..5906bc6 100644
 -          = dropdown_tag(user_dropdown_label(params[:assignee_id], "Assignee"), options: { toggle_class: "js-user-search js-filter-submit js-assignee-search", title: "Filter by assignee", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable dropdown-menu-assignee js-filter-submit",
 -            placeholder: "Search assignee", data: { any_user: "Any Assignee", first_user: (current_user.username if current_user), null_user: true, current_user: true, project_id: (@project.id if @project), selected: params[:assignee_id], field_name: "assignee_id", default_label: "Assignee" } })
 +          = dropdown_tag(user_dropdown_label(params[:assignee_id], "担当者"), options: { toggle_class: "js-user-search js-filter-submit js-assignee-search", title: "担当者で絞り込み", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable dropdown-menu-assignee js-filter-submit",
-+            placeholder: "Search 担当者", data: { any_user: "Any 担当者", first_user: (current_user.username if current_user), null_user: true, current_user: true, project_id: (@project.id if @project), selected: params[:assignee_id], field_name: "assignee_id", default_label: "Assignee" } })
++            placeholder: "担当者を検索", data: { any_user: "Any 担当者", first_user: (current_user.username if current_user), null_user: true, current_user: true, project_id: (@project.id if @project), selected: params[:assignee_id], field_name: "assignee_id", default_label: "Assignee" } })
  
          .filter-item.inline.milestone-filter
            = render "shared/issuable/milestone_dropdown"

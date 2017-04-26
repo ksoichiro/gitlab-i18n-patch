@@ -63,3 +63,4 @@ versions:
   v9.0.4: 'https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_9.0.4-ce.0_amd64.deb/download'
   v9.0.6: 'https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_9.0.6-ce.0_amd64.deb/download'
   v9.1.0: 'https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_9.1.0-ce.0_amd64.deb/download'
+  v9.1.1: 'https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_9.1.1-ce.0_amd64.deb/download'

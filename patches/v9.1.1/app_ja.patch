@@ -988,7 +988,7 @@ index 8706876..ad5fe0d 100644
        any_user: opts[:any_user]         || false,
        email_user: opts[:email_user]     || false,
 diff --git a/app/helpers/sorting_helper.rb b/app/helpers/sorting_helper.rb
-index 2fda98c..06d5ee4 100644
+index 2fda98c..b2c0f55 100644
 --- a/app/helpers/sorting_helper.rb
 +++ b/app/helpers/sorting_helper.rb
 @@ -79,7 +79,7 @@ module SortingHelper
@@ -1018,7 +1018,7 @@ index 2fda98c..06d5ee4 100644
    end
  
    def sort_title_recently_created
-@@ -103,11 +103,11 @@ module SortingHelper
+@@ -103,19 +103,19 @@ module SortingHelper
    end
  
    def sort_title_milestone_soon
@@ -1032,6 +1032,16 @@ index 2fda98c..06d5ee4 100644
    end
  
    def sort_title_due_date_soon
+-    'Due soon'
++    '期限が近い順'
+   end
+ 
+   def sort_title_due_date_later
+-    'Due later'
++    '期限が遠い順'
+   end
+ 
+   def sort_title_start_date_soon
 @@ -127,11 +127,11 @@ module SortingHelper
    end
  

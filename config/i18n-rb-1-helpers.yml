@@ -154,3 +154,7 @@ translations:
     replace: '$1"${theProjectCanBeClonedWithoutAnyAuthentication}"'
   - pattern: "The snippet is visible only to project members."
     replace: '${theSnippetIsVisibleOnlyToProjectMembers}'
+  - pattern: 'Due soon'
+    replace: '${dueSoon}'
+  - pattern: 'Due later'
+    replace: '${dueLater}'

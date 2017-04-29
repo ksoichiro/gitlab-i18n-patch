@@ -78,6 +78,8 @@ translations:
     replace: '${environmentsArePlacesWhereCodeGetsDeployedSuchAsStagingOrProduction}'
   - pattern: 'Read more about environments'
     replace: '${readMoreAboutEnvironments}'
+  - pattern: 'Search milestones'
+    replace: '${searchMilestones}'
   - name: doubleQuoted
     params:
     - {word: 'Search for a user', key: searchForAUser}

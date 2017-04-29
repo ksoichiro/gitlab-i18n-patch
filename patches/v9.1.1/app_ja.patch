@@ -8998,7 +8998,7 @@ index 0f0a84c..27001fb 100644
          .dropdown-menu.dropdown-select.dropdown-menu-paging.dropdown-menu-labels.dropdown-menu-selectable
            = render partial: "shared/issuable/label_page_default"
 diff --git a/app/views/projects/boards/components/sidebar/_milestone.html.haml b/app/views/projects/boards/components/sidebar/_milestone.html.haml
-index 008d118..be93cb9 100644
+index 008d118..c67856d 100644
 --- a/app/views/projects/boards/components/sidebar/_milestone.html.haml
 +++ b/app/views/projects/boards/components/sidebar/_milestone.html.haml
 @@ -1,9 +1,9 @@
@@ -9024,7 +9024,7 @@ index 008d118..be93cb9 100644
 -          = dropdown_title("Assignee milestone")
 -          = dropdown_filter("Search milestones")
 +          = dropdown_title("Assignee マイルストーン")
-+          = dropdown_filter("Search マイルストーン")
++          = dropdown_filter("マイルストーンを検索")
            = dropdown_content
            = dropdown_loading
 diff --git a/app/views/projects/boards/components/sidebar/_notifications.html.haml b/app/views/projects/boards/components/sidebar/_notifications.html.haml
@@ -14770,7 +14770,7 @@ index ad7a7fa..f3a6a91 100644
 -  = search_field_tag :filter_groups, params[:filter_groups], placeholder: 'Filter by name...', class: 'group-filter-form-field form-control input-short js-groups-list-filter', spellcheck: false, id: 'group-filter-form-field', tabindex: "2"
 +  = search_field_tag :filter_groups, params[:filter_groups], placeholder: '名前で絞り込み...', class: 'group-filter-form-field form-control input-short js-groups-list-filter', spellcheck: false, id: 'group-filter-form-field', tabindex: "2"
 diff --git a/app/views/shared/issuable/_filter.html.haml b/app/views/shared/issuable/_filter.html.haml
-index c722684..ca30008 100644
+index c722684..dfb9056 100644
 --- a/app/views/shared/issuable/_filter.html.haml
 +++ b/app/views/shared/issuable/_filter.html.haml
 @@ -14,14 +14,14 @@
@@ -14821,7 +14821,7 @@ index c722684..ca30008 100644
 +              placeholder: "作成者を検索", data: { first_user: (current_user.username if current_user), null_user: true, current_user: true, project_id: @project.id, field_name: "update[assignee_id]", default_label: "担当者" } })
            .filter-item.inline
 -            = dropdown_tag("Milestone", options: { title: "Assign milestone", toggle_class: 'issue-bulk-update-dropdown-toggle js-milestone-select js-extra-options js-filter-submit js-filter-bulk-update', filter: true, dropdown_class: "dropdown-menu-selectable dropdown-menu-milestone", placeholder: "Search milestones", data: { show_no: true, field_name: "update[milestone_id]", default_label: "Milestone", project_id: @project.id, milestones: namespace_project_milestones_path(@project.namespace, @project, :json), use_id: true } })
-+            = dropdown_tag("マイルストーン", options: { title: "Assign マイルストーン", toggle_class: 'issue-bulk-update-dropdown-toggle js-milestone-select js-extra-options js-filter-submit js-filter-bulk-update', filter: true, dropdown_class: "dropdown-menu-selectable dropdown-menu-milestone", placeholder: "Search マイルストーン", data: { show_no: true, field_name: "update[milestone_id]", default_label: "Milestone", project_id: @project.id, milestones: namespace_project_milestones_path(@project.namespace, @project, :json), use_id: true } })
++            = dropdown_tag("マイルストーン", options: { title: "Assign マイルストーン", toggle_class: 'issue-bulk-update-dropdown-toggle js-milestone-select js-extra-options js-filter-submit js-filter-bulk-update', filter: true, dropdown_class: "dropdown-menu-selectable dropdown-menu-milestone", placeholder: "マイルストーンを検索", data: { show_no: true, field_name: "update[milestone_id]", default_label: "Milestone", project_id: @project.id, milestones: namespace_project_milestones_path(@project.namespace, @project, :json), use_id: true } })
            .filter-item.inline.labels-filter
 -            = render "shared/issuable/label_dropdown", classes: ['js-filter-bulk-update', 'js-multiselect'], dropdown_title: 'Apply a label', show_create: false, show_footer: false, extra_options: false, filter_submit: false, data_options: { persist_when_hide: "true", field_name: "update[label_ids][]", show_no: false, show_any: false, use_id: true }
 +            = render "shared/issuable/label_dropdown", classes: ['js-filter-bulk-update', 'js-multiselect'], dropdown_title: 'Apply a ラベル', show_create: false, show_footer: false, extra_options: false, filter_submit: false, data_options: { persist_when_hide: "true", field_name: "update[label_ids][]", show_no: false, show_any: false, use_id: true }
@@ -14972,7 +14972,7 @@ index 9a8529c..5fb9ae1 100644
 +              View ラベル
    = dropdown_loading
 diff --git a/app/views/shared/issuable/_milestone_dropdown.html.haml b/app/views/shared/issuable/_milestone_dropdown.html.haml
-index f0d5082..bcbd6c1 100644
+index f0d5082..70eac7a 100644
 --- a/app/views/shared/issuable/_milestone_dropdown.html.haml
 +++ b/app/views/shared/issuable/_milestone_dropdown.html.haml
 @@ -2,20 +2,20 @@
@@ -14985,7 +14985,7 @@ index f0d5082..bcbd6c1 100644
    = hidden_field_tag(name, name == :milestone_title ? selected_text : selected.id)
  = dropdown_tag(milestone_dropdown_label(selected_text), options: { title: dropdown_title, toggle_class: "js-milestone-select js-filter-submit #{extra_class}", filter: true, dropdown_class: "dropdown-menu-selectable dropdown-menu-milestone",
 -  placeholder: "Search milestones", footer_content: project.present?, data: { show_no: true, show_menu_above: show_menu_above, show_any: show_any, show_upcoming: show_upcoming, show_started: show_started, field_name: name, selected: selected.try(:title), project_id: project.try(:id), milestones: milestones_filter_dropdown_path, default_label: "Milestone" } }) do
-+  placeholder: "Search マイルストーン", footer_content: project.present?, data: { show_no: true, show_menu_above: show_menu_above, show_any: show_any, show_upcoming: show_upcoming, show_started: show_started, field_name: name, selected: selected.try(:title), project_id: project.try(:id), milestones: milestones_filter_dropdown_path, default_label: "マイルストーン" } }) do
++  placeholder: "マイルストーンを検索", footer_content: project.present?, data: { show_no: true, show_menu_above: show_menu_above, show_any: show_any, show_upcoming: show_upcoming, show_started: show_started, field_name: name, selected: selected.try(:title), project_id: project.try(:id), milestones: milestones_filter_dropdown_path, default_label: "マイルストーン" } }) do
    - if project
      %ul.dropdown-footer-list
        - if can? current_user, :admin_milestone, project
@@ -15045,7 +15045,7 @@ index 171da89..cad2475 100644
      - participants.each do |participant|
        .participants-author.js-participants-author
 diff --git a/app/views/shared/issuable/_search_bar.html.haml b/app/views/shared/issuable/_search_bar.html.haml
-index f135016..104a5e6 100644
+index f135016..5249924 100644
 --- a/app/views/shared/issuable/_search_bar.html.haml
 +++ b/app/views/shared/issuable/_search_bar.html.haml
 @@ -24,7 +24,7 @@
@@ -15116,7 +15116,7 @@ index f135016..104a5e6 100644
 +              placeholder: "作成者を検索", data: { first_user: (current_user.username if current_user), null_user: true, current_user: true, project_id: @project.id, field_name: "update[assignee_id]" } })
            .filter-item.inline
 -            = dropdown_tag("Milestone", options: { title: "Assign milestone", toggle_class: 'js-milestone-select js-extra-options js-filter-submit js-filter-bulk-update', filter: true, dropdown_class: "dropdown-menu-selectable dropdown-menu-milestone", placeholder: "Search milestones", data: { show_no: true, field_name: "update[milestone_id]", project_id: @project.id, milestones: namespace_project_milestones_path(@project.namespace, @project, :json), use_id: true } })
-+            = dropdown_tag("マイルストーン", options: { title: "Assign マイルストーン", toggle_class: 'js-milestone-select js-extra-options js-filter-submit js-filter-bulk-update', filter: true, dropdown_class: "dropdown-menu-selectable dropdown-menu-milestone", placeholder: "Search マイルストーン", data: { show_no: true, field_name: "update[milestone_id]", project_id: @project.id, milestones: namespace_project_milestones_path(@project.namespace, @project, :json), use_id: true } })
++            = dropdown_tag("マイルストーン", options: { title: "Assign マイルストーン", toggle_class: 'js-milestone-select js-extra-options js-filter-submit js-filter-bulk-update', filter: true, dropdown_class: "dropdown-menu-selectable dropdown-menu-milestone", placeholder: "マイルストーンを検索", data: { show_no: true, field_name: "update[milestone_id]", project_id: @project.id, milestones: namespace_project_milestones_path(@project.namespace, @project, :json), use_id: true } })
            .filter-item.inline.labels-filter
 -            = render "shared/issuable/label_dropdown", classes: ['js-filter-bulk-update', 'js-multiselect'], dropdown_title: 'Apply a label', show_create: false, show_footer: false, extra_options: false, filter_submit: false, data_options: { persist_when_hide: "true", field_name: "update[label_ids][]", show_no: false, show_any: false, use_id: true }
 +            = render "shared/issuable/label_dropdown", classes: ['js-filter-bulk-update', 'js-multiselect'], dropdown_title: 'Apply a ラベル', show_create: false, show_footer: false, extra_options: false, filter_submit: false, data_options: { persist_when_hide: "true", field_name: "update[label_ids][]", show_no: false, show_any: false, use_id: true }
@@ -15144,7 +15144,7 @@ index 2c89217..cda5bc4 100644
 -  = search_field_tag :search, params[:search], { id: 'issuable_search', placeholder: 'Filter by name ...', class: 'form-control issuable_search search-text-input input-short', spellcheck: false }
 +  = search_field_tag :search, params[:search], { id: 'issuable_search', placeholder: '名前で絞り込み ...', class: 'form-control issuable_search search-text-input input-short', spellcheck: false }
 diff --git a/app/views/shared/issuable/_sidebar.html.haml b/app/views/shared/issuable/_sidebar.html.haml
-index 2e0d6a1..db21dd5 100644
+index 2e0d6a1..c28d39b 100644
 --- a/app/views/shared/issuable/_sidebar.html.haml
 +++ b/app/views/shared/issuable/_sidebar.html.haml
 @@ -9,7 +9,7 @@
@@ -15206,7 +15206,7 @@ index 2e0d6a1..db21dd5 100644
          .selectbox.hide-collapsed
            = f.hidden_field 'milestone_id', value: issuable.milestone_id, id: nil
 -          = dropdown_tag('Milestone', options: { title: 'Assign milestone', toggle_class: 'js-milestone-select js-extra-options', filter: true, dropdown_class: 'dropdown-menu-selectable', placeholder: 'Search milestones', data: { show_no: true, field_name: "#{issuable.to_ability_name}[milestone_id]", project_id: @project.id, issuable_id: issuable.id, milestones: namespace_project_milestones_path(@project.namespace, @project, :json), ability_name: issuable.to_ability_name, issue_update: issuable_json_path(issuable), use_id: true }})
-+          = dropdown_tag('マイルストーン', options: { title: 'Assign マイルストーン', toggle_class: 'js-milestone-select js-extra-options', filter: true, dropdown_class: 'dropdown-menu-selectable', placeholder: 'Search マイルストーン', data: { show_no: true, field_name: "#{issuable.to_ability_name}[milestone_id]", project_id: @project.id, issuable_id: issuable.id, milestones: namespace_project_milestones_path(@project.namespace, @project, :json), ability_name: issuable.to_ability_name, issue_update: issuable_json_path(issuable), use_id: true }})
++          = dropdown_tag('マイルストーン', options: { title: 'Assign マイルストーン', toggle_class: 'js-milestone-select js-extra-options', filter: true, dropdown_class: 'dropdown-menu-selectable', placeholder: 'マイルストーンを検索', data: { show_no: true, field_name: "#{issuable.to_ability_name}[milestone_id]", project_id: @project.id, issuable_id: issuable.id, milestones: namespace_project_milestones_path(@project.namespace, @project, :json), ability_name: issuable.to_ability_name, issue_update: issuable_json_path(issuable), use_id: true }})
        - if issuable.has_attribute?(:time_estimate)
          #issuable-time-tracker.block
            %issuable-time-tracker{ ':time_estimate' => 'issuable.time_estimate', ':time_spent' => 'issuable.total_time_spent', ':human_time_estimate' => 'issuable.human_time_estimate', ':human_time_spent' => 'issuable.human_total_time_spent', 'docs-url' => help_page_path('workflow/time_tracking.md') }

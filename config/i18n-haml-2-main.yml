@@ -961,6 +961,8 @@ translations:
     replace: '${searchOrFilterResults}'
   - pattern: 'Search authors'
     replace: '${searchAuthors}'
+  - pattern: 'Search milestones'
+    replace: '${searchMilestones}'
 
   - name: formLabel
     params:

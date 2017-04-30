@@ -14935,7 +14935,7 @@ index bd66f39..99a8786 100644
 -        Cancel
 +        キャンセル
 diff --git a/app/views/shared/issuable/_label_page_default.html.haml b/app/views/shared/issuable/_label_page_default.html.haml
-index 9a8529c..5fb9ae1 100644
+index 9a8529c..ed5fa74 100644
 --- a/app/views/shared/issuable/_label_page_default.html.haml
 +++ b/app/views/shared/issuable/_label_page_default.html.haml
 @@ -1,14 +1,14 @@
@@ -14966,7 +14966,7 @@ index 9a8529c..5fb9ae1 100644
            = link_to namespace_project_labels_path(@project.namespace, @project), :"data-is-link" => true do
              - if show_create && @project && can?(current_user, :admin_label, @project)
 -              Manage labels
-+              Manage ラベル
++              ラベルを管理する
              - else
 -              View labels
 +              View ラベル

@@ -12722,7 +12722,7 @@ index 1aa7ed1..2ea101d 100644
 -  %h3 No groups found
 +  %h3 グループがありません
 diff --git a/app/views/shared/issuable/_filter.html.haml b/app/views/shared/issuable/_filter.html.haml
-index ac20f7d..a6723c1 100644
+index ac20f7d..4979776 100644
 --- a/app/views/shared/issuable/_filter.html.haml
 +++ b/app/views/shared/issuable/_filter.html.haml
 @@ -9,14 +9,14 @@
@@ -12732,7 +12732,7 @@ index ac20f7d..a6723c1 100644
 -          = dropdown_tag(user_dropdown_label(params[:author_id], "Author"), options: { toggle_class: "js-user-search js-filter-submit js-author-search", title: "Filter by author", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable dropdown-menu-author",
 -            placeholder: "Search authors", data: { any_user: "Any Author", first_user: (current_user.username if current_user), current_user: true, project_id: (@project.id if @project), selected: params[:author_id], field_name: "author_id", default_label: "Author" } })
 +          = dropdown_tag(user_dropdown_label(params[:author_id], "作成者"), options: { toggle_class: "js-user-search js-filter-submit js-author-search", title: "作成者で絞り込み", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable dropdown-menu-author",
-+            placeholder: "Search authors", data: { any_user: "Any 作成者", first_user: (current_user.username if current_user), current_user: true, project_id: (@project.id if @project), selected: params[:author_id], field_name: "author_id", default_label: "Author" } })
++            placeholder: "作成者を検索", data: { any_user: "Any 作成者", first_user: (current_user.username if current_user), current_user: true, project_id: (@project.id if @project), selected: params[:author_id], field_name: "author_id", default_label: "Author" } })
  
          .filter-item.inline
            - if params[:assignee_id]
@@ -12759,13 +12759,14 @@ index ac20f7d..a6723c1 100644
 +                  %a{href: "#", data: {id: "close"}} クローズ
            .filter-item.inline
 -            = dropdown_tag("Assignee", options: { toggle_class: "js-user-search", title: "Assign to", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable",
+-              placeholder: "Search authors", data: { first_user: (current_user.username if current_user), null_user: true, current_user: true, project_id: @project.id, field_name: "update[assignee_id]" } })
 +            = dropdown_tag("担当者", options: { toggle_class: "js-user-search", title: "Assign to", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable",
-               placeholder: "Search authors", data: { first_user: (current_user.username if current_user), null_user: true, current_user: true, project_id: @project.id, field_name: "update[assignee_id]" } })
++              placeholder: "作成者を検索", data: { first_user: (current_user.username if current_user), null_user: true, current_user: true, project_id: @project.id, field_name: "update[assignee_id]" } })
            .filter-item.inline
 -            = dropdown_tag("Milestone", options: { title: "Assign milestone", toggle_class: 'js-milestone-select', filter: true, dropdown_class: "dropdown-menu-selectable",
 -              placeholder: "Search milestones", data: { show_no: true, field_name: "update[milestone_id]", project_id: @project.id, milestones: namespace_project_milestones_path(@project.namespace, @project, :js), use_id: true } })
 +            = dropdown_tag("マイルストーン", options: { title: "Assign マイルストーン", toggle_class: 'js-milestone-select', filter: true, dropdown_class: "dropdown-menu-selectable",
-+              placeholder: "Search マイルストーン", data: { show_no: true, field_name: "update[milestone_id]", project_id: @project.id, milestones: namespace_project_milestones_path(@project.namespace, @project, :js), use_id: true } })
++              placeholder: "マイルストーンを検索", data: { show_no: true, field_name: "update[milestone_id]", project_id: @project.id, milestones: namespace_project_milestones_path(@project.namespace, @project, :js), use_id: true } })
            = hidden_field_tag 'update[issues_ids]', []
            = hidden_field_tag :state_event, params[:state_event]
            .filter-item.inline
@@ -12929,7 +12930,7 @@ index 551f0cc..94949e4 100644
 +          削除
 +      = link_to 'キャンセル', namespace_project_issue_path(@project.namespace, @project, issuable), class: 'btn btn-grouped btn-cancel'
 diff --git a/app/views/shared/issuable/_label_dropdown.html.haml b/app/views/shared/issuable/_label_dropdown.html.haml
-index 8761731..458887c 100644
+index 8761731..ee99a45 100644
 --- a/app/views/shared/issuable/_label_dropdown.html.haml
 +++ b/app/views/shared/issuable/_label_dropdown.html.haml
 @@ -1,14 +1,14 @@
@@ -12961,7 +12962,7 @@ index 8761731..458887c 100644
                = link_to namespace_project_labels_path(@project.namespace, @project) do
                  - if can? current_user, :admin_label, @project
 -                  Manage labels
-+                  Manage ラベル
++                  ラベルを管理する
                  - else
 -                  View labels
 +                  View ラベル
@@ -12977,7 +12978,7 @@ index 8761731..458887c 100644
            .suggest-colors.suggest-colors-dropdown
              - suggested_colors.each do |color|
 diff --git a/app/views/shared/issuable/_milestone_dropdown.html.haml b/app/views/shared/issuable/_milestone_dropdown.html.haml
-index 0434506..89aab2c 100644
+index 0434506..6da4e21 100644
 --- a/app/views/shared/issuable/_milestone_dropdown.html.haml
 +++ b/app/views/shared/issuable/_milestone_dropdown.html.haml
 @@ -1,16 +1,16 @@
@@ -12986,7 +12987,7 @@ index 0434506..89aab2c 100644
 -= dropdown_tag(h(params[:milestone_title].presence || "Milestone"), options: { title: "Filter by milestone", toggle_class: 'js-milestone-select js-filter-submit', filter: true, dropdown_class: "dropdown-menu-selectable",
 -  placeholder: "Search milestones", footer_content: @project.present?, data: { show_no: true, show_any: true, field_name: "milestone_title", selected: params[:milestone_title], project_id: @project.try(:id), milestones: milestones_filter_dropdown_path, default_label: "Milestone" } }) do
 += dropdown_tag(h(params[:milestone_title].presence || "マイルストーン"), options: { title: "マイルストーンで絞り込み", toggle_class: 'js-milestone-select js-filter-submit', filter: true, dropdown_class: "dropdown-menu-selectable",
-+  placeholder: "Search マイルストーン", footer_content: @project.present?, data: { show_no: true, show_any: true, field_name: "milestone_title", selected: params[:milestone_title], project_id: @project.try(:id), milestones: milestones_filter_dropdown_path, default_label: "マイルストーン" } }) do
++  placeholder: "マイルストーンを検索", footer_content: @project.present?, data: { show_no: true, show_any: true, field_name: "milestone_title", selected: params[:milestone_title], project_id: @project.try(:id), milestones: milestones_filter_dropdown_path, default_label: "マイルストーン" } }) do
    - if @project
      %ul.dropdown-footer-list
        - if can? current_user, :admin_milestone, @project

@@ -963,6 +963,8 @@ translations:
     replace: '${searchAuthors}'
   - pattern: 'Search milestones'
     replace: '${searchMilestones}'
+  - pattern: 'Manage labels'
+    replace: '${manageLabels}'
 
   - name: formLabel
     params:

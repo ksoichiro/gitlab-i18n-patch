@@ -924,6 +924,19 @@ index 5f3d89c..14fb3c2 100644
    end
  
    def note_max_access_for_user(note)
+diff --git a/app/helpers/notifications_helper.rb b/app/helpers/notifications_helper.rb
+index 03cc8f2..7e0dc55 100644
+--- a/app/helpers/notifications_helper.rb
++++ b/app/helpers/notifications_helper.rb
+@@ -42,7 +42,7 @@ module NotificationsHelper
+     when :disabled
+       'You will not get any notifications via email'
+     when :global
+-      'Use your global notification setting'
++      'あなたのグローバルな通知設定を使用します'
+     when :custom
+       'You will only receive notifications for the events you choose'
+     end
 diff --git a/app/helpers/preferences_helper.rb b/app/helpers/preferences_helper.rb
 index de959f1..eaf6d48 100644
 --- a/app/helpers/preferences_helper.rb

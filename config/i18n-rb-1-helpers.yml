@@ -158,3 +158,5 @@ translations:
     replace: '${dueSoon}'
   - pattern: 'Due later'
     replace: '${dueLater}'
+  - pattern: 'Use your global notification setting'
+    replace: '${useYourGlobalNotificationSetting}'

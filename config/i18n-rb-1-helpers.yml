@@ -160,3 +160,5 @@ translations:
     replace: '${dueLater}'
   - pattern: 'Use your global notification setting'
     replace: '${useYourGlobalNotificationSetting}'
+  - pattern: 'You will receive notifications for any activity'
+    replace: '${youWillReceiveNotificationsForAnyActivity}'

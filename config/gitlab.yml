@@ -20,6 +20,7 @@ versions:
   v8.8.4: 'https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/trusty/gitlab-ce_8.8.4-ce.0_amd64.deb/download'
   v8.8.5: 'https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/trusty/gitlab-ce_8.8.5-ce.0_amd64.deb/download'
   v8.8.7: 'https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/trusty/gitlab-ce_8.8.7-ce.0_amd64.deb/download'
+  v8.9.4: 'https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/trusty/gitlab-ce_8.9.4-ce.1_amd64.deb/download'
   v8.9.6: 'https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/trusty/gitlab-ce_8.9.6-ce.0_amd64.deb/download'
   v8.10.5: 'https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/trusty/gitlab-ce_8.10.5-ce.0_amd64.deb/download'
   v8.11.0: 'https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/trusty/gitlab-ce_8.11.0-ce.0_amd64.deb/download'

@@ -7,6 +7,7 @@ GITLAB_VERSION=$1
 GITLAB_VERSION_INT=`echo -n "${GITLAB_VERSION}" | sed -e 's/v//' | sed -e 's/\.//g'`
 GITLAB_WEB_PORT=$2
 GITLAB_INSTALLER_URL=$3
+GITLAB_APPLY_PATCH=$4
 GITLAB_INSTALLER=${GITLAB_INSTALLER_DIR}/${GITLAB_INSTALLER_URL##*/}
 if [ ${GITLAB_VERSION_INT} -gt 794 ]; then
   # Since v7.10.0, URL changed: https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_7.10.0\~omnibus.4-1_amd64.deb/download
@@ -62,29 +63,31 @@ if [ $? -ne 0 ]; then
   echo 'export PATH=${PATH}:/opt/gitlab/embedded/bin' >> ~root/.bashrc
 fi
 
-pushd /opt/gitlab/embedded/service > /dev/null 2>&1
-if [ ! -d ./gitlab-rails.bk ]; then
-  echo "Creating backup of gitlab-rails..."
-  cp -pR gitlab-rails gitlab-rails.bk
-  cd gitlab-rails
-  echo "Applying patch..."
-  patch -p1 < /vagrant/patches/${GITLAB_VERSION}/app_ja.patch > /dev/null 2>&1
-  echo "Refreshing assets (this may take minutes)..."
-  if [ -d /var/opt/gitlab/gitlab-rails/tmp/cache ]; then
-    # Since v6.8.1, permission error occurs in this directory
-    chown -R git:root /var/opt/gitlab/gitlab-rails/tmp/cache
+if [ $GITLAB_APPLY_PATCH -eq 1 ]; then
+  pushd /opt/gitlab/embedded/service > /dev/null 2>&1
+  if [ ! -d ./gitlab-rails.bk ]; then
+    echo "Creating backup of gitlab-rails..."
+    cp -pR gitlab-rails gitlab-rails.bk
+    cd gitlab-rails
+    echo "Applying patch..."
+    patch -p1 < /vagrant/patches/${GITLAB_VERSION}/app_ja.patch > /dev/null 2>&1
+    echo "Refreshing assets (this may take minutes)..."
+    if [ -d /var/opt/gitlab/gitlab-rails/tmp/cache ]; then
+      # Since v6.8.1, permission error occurs in this directory
+      chown -R git:root /var/opt/gitlab/gitlab-rails/tmp/cache
+    fi
+    export PATH=/opt/gitlab/embedded/bin:$PATH
+    if [ ${GITLAB_VERSION_INT} -ge 830 ]; then
+      bundle exec rake assets:clean assets:precompile cache:clear RAILS_ENV=production > /dev/null 2>&1
+    else
+      rm -rf ./public/assets > /dev/null 2>&1
+      bundle exec rake assets:precompile RAILS_ENV=production > /dev/null 2>&1
+    fi
+    echo "Restarting gitlab..."
+    gitlab-ctl restart > /dev/null 2>&1
   fi
-  export PATH=/opt/gitlab/embedded/bin:$PATH
-  if [ ${GITLAB_VERSION_INT} -ge 830 ]; then
-    bundle exec rake assets:clean assets:precompile cache:clear RAILS_ENV=production > /dev/null 2>&1
-  else
-    rm -rf ./public/assets > /dev/null 2>&1
-    bundle exec rake assets:precompile RAILS_ENV=production > /dev/null 2>&1
-  fi
-  echo "Restarting gitlab..."
-  gitlab-ctl restart > /dev/null 2>&1
+  popd > /dev/null 2>&1
 fi
-popd > /dev/null 2>&1
 
 echo "[33;1mDone![m"
 echo "[33;1mGitLab ${GITLAB_VERSION} has been installed: http://localhost:${GITLAB_WEB_PORT}/[m"

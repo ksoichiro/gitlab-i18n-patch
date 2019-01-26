@@ -19,7 +19,13 @@ Vagrant.configure("2") do |config|
     config.vm.define ver.to_s.gsub(/\./, "") do |gl|
       port = web_port(gitlab_config["base_port"], ver)
       gl.vm.network "forwarded_port", guest: 80, host: port
-      gl.vm.provision :shell, path: 'lib/provision.sh', args: [ver, port.to_s, url]
+      gl.vm.provision :shell, path: 'lib/provision.sh', args: [ver, port.to_s, url, 1]
+    end
+
+    config.vm.define "#{ver.to_s.gsub(/\./, "")}_original" do |gl|
+      port = web_port(gitlab_config["base_port"], ver) + 1
+      gl.vm.network "forwarded_port", guest: 80, host: port
+      gl.vm.provision :shell, path: 'lib/provision.sh', args: [ver, port.to_s, url, 0]
     end
   end
 end

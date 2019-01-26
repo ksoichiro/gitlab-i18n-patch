@@ -11,7 +11,7 @@ GITLAB_APPLY_PATCH=$4
 GITLAB_INSTALLER=${GITLAB_INSTALLER_DIR}/${GITLAB_INSTALLER_URL##*/}
 if [ ${GITLAB_VERSION_INT} -gt 794 ]; then
   # Since v7.10.0, URL changed: https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/precise/gitlab-ce_7.10.0\~omnibus.4-1_amd64.deb/download
-  GITLAB_INSTALLER_FILE=${GITLAB_INSTALLER_URL##*precise/}
+  GITLAB_INSTALLER_FILE=${GITLAB_INSTALLER_URL##*trusty/}
   GITLAB_INSTALLER_FILE=${GITLAB_INSTALLER_FILE%/download}
   GITLAB_INSTALLER=${GITLAB_INSTALLER_DIR}/${GITLAB_INSTALLER_FILE}
 fi

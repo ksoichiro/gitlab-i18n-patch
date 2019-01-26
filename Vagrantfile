@@ -8,9 +8,9 @@ include GitLabI18NPatch::Util
 
 Vagrant.configure("2") do |config|
   config.vm.box = "ksoichiro/gitlab-i18n-patch-box"
-  config.vm.box_version = "= 0.1.0"
+  config.vm.box_version = "= 0.2.0"
   config.vm.provider "virtualbox" do |v|
-    v.memory = 1024
+    v.memory = 2048
     v.cpus = 2
   end
 

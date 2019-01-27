@@ -1,11 +1,10 @@
-gitlab-i18n-patch
-=================
+# gitlab-i18n-patch
 
 [![Build Status](https://travis-ci.org/ksoichiro/gitlab-i18n-patch.svg?branch=master)](https://travis-ci.org/ksoichiro/gitlab-i18n-patch)
 
 [GitLab Community Edition](https://gitlab.com/gitlab-org/gitlab-ce)を勝手に日本語化していくプロジェクトです。
 
-GitLabはi18nに対応しないとのことですが、  
+GitLab は i18n に対応しないとのことですが、  
 社内で使う場合等で英語であるために導入の抵抗があるケースのために作っています。
 
 このパッチを適用することによって生じたいかなる問題についても責任は負いかねます。  
@@ -13,34 +12,34 @@ GitLabはi18nに対応しないとのことですが、
 
 ## 対応バージョン
 
-patchesディレクトリ内にGitLabのバージョンごとにパッチを格納しています。  
+patches ディレクトリ内に GitLab のバージョンごとにパッチを格納しています。  
 バージョンが少しでも異なると適用できませんので、完全に一致するバージョンを選んでください。  
-v8.3.0以降のパッチは [i18n-patch](https://github.com/ksoichiro/i18n-patch) を利用して生成しています。  
+v8.3.0 以降のパッチは [i18n-patch](https://github.com/ksoichiro/i18n-patch) を利用して生成しています。  
 ご希望のバージョンが登録されていない場合は、ご自身で生成することができます。
 
 ## 動作確認環境
 
-| ソフトウェア | バージョン等                                     |
-| ------------ | ------------------------------------------------ |
-| マシン       | MacBookPro                                       |
-| OS           | OS X 10.12                                       |
-| VM           | VirtualBox 5.1.4                                 |
-| ゲストOS     | Ubuntu Precise 64 VirtualBox                     |
-| GitLab       | GitLab Omnibus Package                           |
-| Vagrant      | Vagrant 1.8.5                                    |
-| Docker       | 17.03.1-ce                                       |
-| Node.js      | v7.8.0                                           |
+| ソフトウェア | バージョン等                 |
+| ------------ | ---------------------------- |
+| マシン       | MacBookPro                   |
+| OS           | OS X 10.12                   |
+| VM           | VirtualBox 5.1.4             |
+| ゲスト OS    | Ubuntu Precise 64 VirtualBox |
+| GitLab       | GitLab Omnibus Package       |
+| Vagrant      | Vagrant 1.8.5                |
+| Docker       | 17.03.1-ce                   |
+| Node.js      | v7.8.0                       |
 
 ## 適用方法
 
 ### 前提
 
-[GitLab Community Editionのパッケージ](https://about.gitlab.com/downloads/)がインストールされているものとします。  
+[GitLab Community Edition のパッケージ](https://about.gitlab.com/downloads/)がインストールされているものとします。
 
 ### 基本
 
 `patches/[GitLabバージョン]/app_ja.patch`がパッチです。  
-パッチを適用するGitLabのバージョンと完全に一致するものを選びます。  
+パッチを適用する GitLab のバージョンと完全に一致するものを選びます。  
 リポジトリをクローンするか、wget、curl などで直接パッチファイルをダウンロードします。  
 以下は wget で v8.16.6 のパッチを取得する例です。
 
@@ -51,14 +50,14 @@ v8.3.0以降のパッチは [i18n-patch](https://github.com/ksoichiro/i18n-patch
     $ cd /opt/gitlab/embedded/service/gitlab-rails
     $ patch -p1 < ~/app_ja.patch
 
-なお、このプロジェクドでは過去にはGitLabのバージョンごとにブランチを用意して  
-タグづけ(リリース)していたため、[masterブランチ以外のブランチ](https://github.com/ksoichiro/gitlab-i18n-patch/branches/all)や  
-[v0.24.1などのリリース](https://github.com/ksoichiro/gitlab-i18n-patch/releases)が残っていますが、翻訳の作成方法を変更したため、これらは現在運用していません。  
-masterブランチの最新のコミットを利用してください。
+なお、このプロジェクトでは過去には GitLab のバージョンごとにブランチを用意して  
+タグづけ(リリース)していたため、[master ブランチ以外のブランチ](https://github.com/ksoichiro/gitlab-i18n-patch/branches/all)や  
+[v0.24.1 などのリリース](https://github.com/ksoichiro/gitlab-i18n-patch/releases)が残っていますが、翻訳の作成方法を変更したため、これらは現在運用していません。  
+master ブランチの最新のコミットを利用してください。
 
 ### 既に稼働させている場合
 
-Javascriptファイルを変更するため、パッチ適用後にプリコンパイルされたファイルを一度削除してプリコンパイルし直してください。
+Javascript ファイルを変更するため、パッチ適用後にプリコンパイルされたファイルを一度削除してプリコンパイルし直してください。
 
 例：
 
@@ -67,16 +66,15 @@ Javascriptファイルを変更するため、パッチ適用後にプリコン�
     $ export PATH=/opt/gitlab/embedded/bin:$PATH
     $ bundle exec rake assets:precompile RAILS_ENV=production
 
-
 ## 動作確認
 
-### Vagrantでの動作確認
+### Vagrant での動作確認
 
-各バージョンのパッチの動作確認のために、Vagrantで日本語反映版のGitLabを起動できます。
+各バージョンのパッチの動作確認のために、Vagrant で日本語反映版の GitLab を起動できます。
 
 #### 起動
 
-以下のコマンドで、指定のバージョン用の仮想マシン起動、GitLab Omnibusパッケージダウンロード、パッチ適用を行います。  
+以下のコマンドで、指定のバージョン用の仮想マシン起動、GitLab Omnibus パッケージダウンロード、パッチ適用を行います。  
 例えば v6.6.4 ならば以下のようにします。
 
     $ vagrant up v664
@@ -95,22 +93,22 @@ Javascriptファイルを変更するため、パッチ適用後にプリコン�
 
 #### ポート番号
 
-Webのポート番号(80)は、 `config/gitlab.yml` に定義する `base_port` の番号を起点として  
-バージョン番号(v6.6.4なら664)を加えた番号にポートフォワードします。  
+Web のポート番号(80)は、 `config/gitlab.yml` に定義する `base_port` の番号を起点として  
+バージョン番号(v6.6.4 なら 664)を加えた番号にポートフォワードします。  
 例えば、 `base_port: 9000` の状態で `vagrant up v664` を実行した場合は  
-`http://localhost:9664` でGitLabにアクセスできます。  
-v7.10.0の場合は(番号が飛びますが)7100 + 9000で16100です。
+`http://localhost:9664` で GitLab にアクセスできます。  
+v7.10.0 の場合は(番号が飛びますが)7100 + 9000 で 16100 です。
 
-### Dockerでの動作確認
+### Docker での動作確認
 
-GitLab Community Edition の Docker イメージが公開されているものについては、Dockerを使って動作確認できます。  
+GitLab Community Edition の Docker イメージが公開されているものについては、Docker を使って動作確認できます。  
 公開されているイメージ(タグ)については[Docker Hub](https://hub.docker.com/r/gitlab/gitlab-ce/tags/)で確認してください。  
 `9.0.4-ce.0` のように、`バージョン-ce.0`の形式になっているタグがあれば、  
 日本語化版をビルドして利用することができます。
 
-`docker`コマンドや`docker-compose`コマンドを利用して手作業でビルドしていただくことができますが、以下のような部分をバージョンに応じて切り替える手間を省き、手軽に動作確認できるようNode.js/npmのスクリプトでラッピングしています。
+`docker`コマンドや`docker-compose`コマンドを利用して手作業でビルドしていただくことができますが、以下のような部分をバージョンに応じて切り替える手間を省き、手軽に動作確認できるよう Node.js/npm のスクリプトでラッピングしています。
 
-- ソースイメージのバージョン(DockerfileのFROM)
+- ソースイメージのバージョン(Dockerfile の FROM)
 - 適用するパッチのバージョン
 - マウントする各種ディレクトリ
 
@@ -145,8 +143,8 @@ GitLab Community Edition の Docker イメージが公開されているもの�
 
 #### ポート番号
 
-Vagrantの場合と同様です。  
-v9.0.4を起動した場合は `http://localhost:9904` でアクセスできます。
+Vagrant の場合と同様です。  
+v9.0.4 を起動した場合は `http://localhost:9904` でアクセスできます。
 
 ## ライセンス
 
